@@ -1,7 +1,7 @@
 <idea-plugin>
-    <id>com.github.voml.voml_intellij</id>
-    <name>VOML Support</name>
-    <vendor>voml</vendor>
+    <id>com.github.ygg_lang.ygg_intellij</id>
+    <name>Yggdrasil Support</name>
+    <vendor>Yggdrasil</vendor>
 
     <description><![CDATA[
 Intellij plugin for [VOML](https://github.com/voml), support all IDEs.
@@ -15,82 +15,82 @@ Intellij plugin for [VOML](https://github.com/voml), support all IDEs.
     <!-- https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html -->
     <depends>com.intellij.modules.platform</depends>
 <!--    <depends optional="true" config-file="plugin-with-rust.xml">org.rust.lang</depends>-->
-    <resource-bundle>messages.VomlBundle</resource-bundle>
+    <resource-bundle>messages.YggBundle</resource-bundle>
     <extensions defaultExtensionNs="com.intellij">
         <fileType
-                name="VOML"
-                implementationClass="com.github.voml.voml_intellij.language.VomlFileType"
+                name="YGG"
+                implementationClass="com.github.ygg_lang.ygg_intellij.language.YggFileType"
                 fieldName="INSTANCE"
-                language="VOML"
+                language="YGG"
                 extensions="voml"
         />
         <lang.parserDefinition
-                language="VOML"
-                implementationClass="com.github.voml.voml_intellij.language.VomlParserDefinition"
+                language="YGG"
+                implementationClass="com.github.ygg_lang.ygg_intellij.language.YggParserDefinition"
         />
         <lang.syntaxHighlighter
-                language="VOML"
-                implementationClass="com.github.voml.voml_intellij.ide.VomlSyntaxHighlighter"
+                language="YGG"
+                implementationClass="com.github.ygg_lang.ygg_intellij.ide.YggSyntaxHighlighter"
         />
         <colorSettingsPage
-                implementation="com.github.voml.voml_intellij.ide.colors.VomlColorSettingsPage"
+                implementation="com.github.ygg_lang.ygg_intellij.ide.colors.VomlColorSettingsPage"
         />
         <lang.commenter
-                language="VOML"
-                implementationClass="com.github.voml.voml_intellij.ide.VomlCommenter"
+                language="YGG"
+                implementationClass="com.github.ygg_lang.ygg_intellij.ide.VomlCommenter"
         />
         <lang.braceMatcher
-                language="VOML"
-                implementationClass="com.github.voml.voml_intellij.ide.braces.VomlBraceMatcher"
+                language="YGG"
+                implementationClass="com.github.ygg_lang.ygg_intellij.ide.braces.VomlBraceMatcher"
         />
         <lang.quoteHandler
-                language="VOML"
-                implementationClass="com.github.voml.voml_intellij.ide.VomlQuoteHandler"
+                language="YGG"
+                implementationClass="com.github.ygg_lang.ygg_intellij.ide.YggQuoteHandler"
         />
         <lang.foldingBuilder
-                language="VOML"
-                implementationClass="com.github.voml.voml_intellij.ide.folding.VomlFoldingBuilder"
+                language="YGG"
+                implementationClass="com.github.ygg_lang.ygg_intellij.ide.folding.YggFoldingBuilder"
         />
         <indexPatternBuilder
-                implementation="com.github.voml.voml_intellij.ide.todo.VomlTodoIndexPatternBuilder"
+                implementation="com.github.ygg_lang.ygg_intellij.ide.todo.VomlTodoIndexPatternBuilder"
         />
         <todoIndexer
-                filetype="VOML"
-                implementationClass="com.github.voml.voml_intellij.ide.todo.VomlTodoIndexer"
+                filetype="YGG"
+                implementationClass="com.github.ygg_lang.ygg_intellij.ide.todo.VomlTodoIndexer"
         />
         <completion.contributor
-                language="VOML"
-                implementationClass="com.github.voml.voml_intellij.ide.completion.VomlOptionCompletionContributor"
+                language="YGG"
+                implementationClass="com.github.ygg_lang.ygg_intellij.ide.completion.VomlOptionCompletionContributor"
         />
         <annotator
-                language="VOML"
-                implementationClass="com.github.voml.voml_intellij.ide.annotator.VomlHighlightingAnnotator"
+                language="YGG"
+                implementationClass="com.github.ygg_lang.ygg_intellij.ide.annotator.VomlHighlightingAnnotator"
         />
         <annotator
-                language="VOML"
-                implementationClass="com.github.voml.voml_intellij.ide.annotator.checkers.VomlScopeCheckerAnnotator"
+                language="YGG"
+                implementationClass="com.github.ygg_lang.ygg_intellij.ide.annotator.checkers.YggScopeCheckerAnnotator"
         />
         <annotator
-                language="VOML"
-                implementationClass="com.github.voml.voml_intellij.ide.annotator.checkers.VomlTableCheckerAnnotator"
+                language="YGG"
+                implementationClass="com.github.ygg_lang.ygg_intellij.ide.annotator.checkers.YggTableCheckerAnnotator"
         />
         <additionalTextAttributes scheme="Default" file="colors/VomlDefault.xml"/>
         <additionalTextAttributes scheme="Darcula" file="colors/VomlDarcula.xml"/>
         <langCodeStyleSettingsProvider
-                implementation="com.github.voml.voml_intellij.ide.codeStyle.VomlLanguageCodeStyleSettingsProvider"
+                implementation="com.github.ygg_lang.ygg_intellij.ide.codeStyle.VomlLanguageCodeStyleSettingsProvider"
         />
         <lang.formatter
-                language="VOML"
-                implementationClass="com.github.voml.voml_intellij.ide.formatter.VomlFormattingModelBuilder"
+                language="YGG"
+                implementationClass="com.github.ygg_lang.ygg_intellij.ide.formatter.VomlFormattingModelBuilder"
         />
         <lang.smartEnterProcessor
-                language="VOML"
-                implementationClass="com.github.voml.voml_intellij.ide.assist.fixers.VomlSmartEnterProcessor"
+                language="YGG"
+                implementationClass="com.github.ygg_lang.ygg_intellij.ide.assist.fixers.VomlSmartEnterProcessor"
         />
     </extensions>
     <actions>
-        <action id="com.github.voml.voml_intellij.ide.actions.VomlCreateFile"
-                class="com.github.voml.voml_intellij.ide.actions.VomlCreateFile"
+        <action id="com.github.ygg_lang.ygg_intellij.ide.actions.VomlCreateFile"
+                class="com.github.ygg_lang.ygg_intellij.ide.actions.VomlCreateFile"
                 text="Voml File"
                 description="Create new Voml file">
             <add-to-group group-id="NewGroup" anchor="after" relative-to-action="NewFile"/>
