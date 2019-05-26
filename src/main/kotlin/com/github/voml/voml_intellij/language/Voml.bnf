@@ -1,0 +1,129 @@
+{
+    parserClass = "com.github.voml.voml_intellij.language.parser.VomlParser"
+    parserUtilClass = "com.github.voml.voml_intellij.language.psi.VomlParserUtil"
+
+    extends = "com.intellij.extapi.psi.ASTWrapperPsiElement"
+
+    psiClassPrefix = "Voml"
+    psiImplClassSuffix = "Impl"
+    psiPackage = "com.github.voml.voml_intellij.language.psi"
+    psiImplPackage = "com.github.voml.voml_intellij.language.psi.impl"
+
+    elementTypeHolderClass = "com.github.voml.voml_intellij.language.psi.VomlTypes"
+    elementTypeClass = "com.github.voml.voml_intellij.language.psi.VomlElementType"
+    tokenTypeClass = "com.github.voml.voml_intellij.language.psi.VomlTokenType"
+
+    psiImplUtilClass = "com.github.voml.voml_intellij.language.psi.impl.VomlPsiImplUtil"
+
+    tokens = [
+        COMMENT = 'regexp:(//|#)[^\r\n]*'
+        BLOCK_COMMENT = 'regexp:[/][*][^*]*[*]+([^/*][^*]*[*]+)*[/]'
+
+        INCLUDE = '@include'
+        INHERIT = '@inherit'
+        IMPORT = '@import'
+        EXPORT = '@export'
+        AS = "as"
+
+        NULL = 'null'
+        BOOLEAN = 'regexp:true|false'
+
+        SYMBOL = 'regexp:[A-Za-z_][A-Za-z0-9_]*'
+        STRING = "regexp:'([^'\\]|\\.)*'|\"([^\"\\]|\\\"|\\'|\\)*\""
+        BYTE = 'regexp:(0[bBoOxXfF][0-9A-Fa-f][0-9A-Fa-f_]*)'
+        INTEGER = 'regexp:(0|[1-9][0-9_]*)'
+        DECIMAL = 'regexp:([0-9]+\.[0-9]*([*][*][0-9]+)?)|(\.[0-9]+([Ee][0-9]+)?)'
+        SIGN = 'regexp:[+-]'
+
+        PARENTHESIS_L = '('
+        PARENTHESIS_R = ')'
+        BRACKET_L = '['
+        BRACKET_R = ']'
+        BRACE_L = '{'
+        BRACE_R = '}'
+        ACCENT = '^'
+        ANGLE_L = '<'
+        ANGLE_R = '>'
+        QUOTATION = '"'
+        ESCAPE = '\'
+        NON_ESCAPE = 'regexp:[^\\]'
+        EQ = '='
+        NAN = "nan"
+        COLON = ':'
+        SEMICOLON = ';'
+        COMMA = ','
+        CITE = '$'
+        DOT = '.'
+        STAR = '*'
+        AT = '@'
+//      SPACE='regexp:\s+'
+//      ANY = 'regexp:.'
+    ]
+}
+
+Voml ::= expression*;
+
+expression ::= scope
+    | back_top
+    | include_statement
+    | inherit_statement
+    | export_statement
+    | insert_pair
+    | insert_item
+    | annotation
+    | SEMICOLON;
+// ------------------------------------
+export_statement ::= EXPORT [string_prefix] string_inline;
+// ------------------------------------
+inherit_statement ::= INHERIT (predefined_symbol | [string_prefix] string_inline);
+predefined_symbol ::= SYMBOL;
+// -------------------------------G-----
+include_statement ::= INCLUDE [string_prefix] string_inline (AS key_symbol | <<paired include_inner>>);
+private include_inner ::= key_symbol*;
+
+// ------------------------------------
+scope ::= <<paired scope_inner>>;
+private scope_inner ::= [scope_mark] scope_path;
+private scope_path  ::= scope_key (DOT scope_key)*
+private scope_key   ::= string_inline | scope_symbol | INTEGER;
+scope_mark ::= ACCENT | ANGLE_L+ | ANGLE_R;
+back_top ::= "---";
+scope_symbol ::= SYMBOL;
+// ------------------------------------
+pair ::= symbol_path eq value;
+symbol_path ::= key (DOT key)*;
+private key ::= string_inline | key_symbol | INTEGER;
+private eq ::= EQ | COLON;
+insert_pair ::= [insert_dot] pair;
+insert_item ::= insert_star value;
+insert_dot ::= DOT;
+insert_star ::= STAR;
+key_symbol ::= SYMBOL;
+// ------------------------------------
+value ::= NULL | BOOLEAN | num | ref | str | table | annotation;
+type_hint ::= SYMBOL;
+string_prefix ::= SYMBOL;
+number_suffix ::= SYMBOL;
+// ------------------------------------
+private num ::= [SIGN] (INTEGER | DECIMAL) [number_suffix] | [SIGN] BYTE | other_num;
+private other_num ::= NAN;
+// ------------------------------------
+private str ::= [string_prefix] (string_inline|string_multi);
+string_inline ::= QUOTATION char* QUOTATION;
+string_multi ::= QUOTATION char* QUOTATION;
+private char ::= escaped | NON_ESCAPE;
+escaped ::= ESCAPE (ESCAPE|NON_ESCAPE);
+// ------------------------------------
+ref ::= CITE symbol_path;
+// ------------------------------------
+annotation ::= annotation_mark <<paired table_inner>>;
+annotation_mark ::= AT SYMBOL;
+// ------------------------------------
+table ::= [type_hint] <<paired table_inner>>;
+private table_inner ::= [table_item (COMMA table_item)* [COMMA]];
+private table_item ::= pair | value;
+// ------------------------------------
+meta paired ::=
+    PARENTHESIS_L <<param>> PARENTHESIS_R
+  | BRACKET_L <<param>> BRACKET_R
+  | BRACE_L <<param>> BRACE_R

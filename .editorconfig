@@ -1,0 +1,15 @@
+[*]
+charset = utf-8
+end_of_line = lf
+
+[*.bnf]
+indent_style = space
+indent_size = 4
+
+[*.toml]
+indent_style = space
+indent_size = 4
+
+[*.arc]
+indent_style = space
+indent_size = 4
