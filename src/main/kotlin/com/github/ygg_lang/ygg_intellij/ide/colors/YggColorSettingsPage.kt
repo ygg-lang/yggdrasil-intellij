@@ -1,18 +1,18 @@
 package com.github.ygg_lang.ygg_intellij.ide.colors
 
 import com.github.ygg_lang.ygg_intellij.ide.YggSyntaxHighlighter
-import com.github.ygg_lang.ygg_intellij.ide.icons.VomlIcons
+import com.github.ygg_lang.ygg_intellij.ide.icons.YggIcons
 import com.github.ygg_lang.ygg_intellij.language.YggBundle
 import com.intellij.openapi.options.colors.ColorDescriptor
 import com.intellij.openapi.options.colors.ColorSettingsPage
 
-class VomlColorSettingsPage : ColorSettingsPage {
-    private val attrs = VomlColor
+class YggColorSettingsPage : ColorSettingsPage {
+    private val attrs = YggColor
         .values()
         .map { it.attributesDescriptor }
         .toTypedArray()
 
-    private val annotatorTags = VomlColor
+    private val annotatorTags = YggColor
         .values()
         .associateBy({ it.name }, { it.textAttributesKey })
 
@@ -22,7 +22,7 @@ class VomlColorSettingsPage : ColorSettingsPage {
 
     override fun getDisplayName() =  YggBundle.message("filetype.voml.name")
 
-    override fun getIcon() = VomlIcons.FILE
+    override fun getIcon() = YggIcons.FILE
 
     override fun getHighlighter() = YggSyntaxHighlighter()
 

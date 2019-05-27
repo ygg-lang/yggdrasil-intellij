@@ -22,7 +22,7 @@ Intellij plugin for [VOML](https://github.com/voml), support all IDEs.
                 implementationClass="com.github.ygg_lang.ygg_intellij.language.YggFileType"
                 fieldName="INSTANCE"
                 language="YGG"
-                extensions="voml"
+                extensions="ygg"
         />
         <lang.parserDefinition
                 language="YGG"
@@ -33,7 +33,7 @@ Intellij plugin for [VOML](https://github.com/voml), support all IDEs.
                 implementationClass="com.github.ygg_lang.ygg_intellij.ide.YggSyntaxHighlighter"
         />
         <colorSettingsPage
-                implementation="com.github.ygg_lang.ygg_intellij.ide.colors.VomlColorSettingsPage"
+                implementation="com.github.ygg_lang.ygg_intellij.ide.colors.YggColorSettingsPage"
         />
         <lang.commenter
                 language="YGG"
@@ -89,8 +89,8 @@ Intellij plugin for [VOML](https://github.com/voml), support all IDEs.
         />
     </extensions>
     <actions>
-        <action id="com.github.ygg_lang.ygg_intellij.ide.actions.VomlCreateFile"
-                class="com.github.ygg_lang.ygg_intellij.ide.actions.VomlCreateFile"
+        <action id="com.github.ygg_lang.ygg_intellij.ide.actions.YggCreateFile"
+                class="com.github.ygg_lang.ygg_intellij.ide.actions.YggCreateFile"
                 text="Voml File"
                 description="Create new Voml file">
             <add-to-group group-id="NewGroup" anchor="after" relative-to-action="NewFile"/>

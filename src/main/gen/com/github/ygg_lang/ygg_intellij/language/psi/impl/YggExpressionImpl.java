@@ -41,8 +41,8 @@ public class YggExpressionImpl extends ASTWrapperPsiElement implements YggExpres
 
   @Override
   @Nullable
-  public YggExportStatement getExportStatement() {
-    return findChildByClass(YggExportStatement.class);
+  public YggIgnoreStatement getIgnoreStatement() {
+    return findChildByClass(YggIgnoreStatement.class);
   }
 
   @Override

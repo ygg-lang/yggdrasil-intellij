@@ -23,11 +23,11 @@ public class YggVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitExportStatement(@NotNull YggExportStatement o) {
+  public void visitExpression(@NotNull YggExpression o) {
     visitPsiElement(o);
   }
 
-  public void visitExpression(@NotNull YggExpression o) {
+  public void visitIgnoreStatement(@NotNull YggIgnoreStatement o) {
     visitPsiElement(o);
   }
 
@@ -79,15 +79,15 @@ public class YggVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitRuleSymbol(@NotNull YggRuleSymbol o) {
+    visitPsiElement(o);
+  }
+
   public void visitScope(@NotNull YggScope o) {
     visitPsiElement(o);
   }
 
   public void visitScopeMark(@NotNull YggScopeMark o) {
-    visitPsiElement(o);
-  }
-
-  public void visitScopeSymbol(@NotNull YggScopeSymbol o) {
     visitPsiElement(o);
   }
 

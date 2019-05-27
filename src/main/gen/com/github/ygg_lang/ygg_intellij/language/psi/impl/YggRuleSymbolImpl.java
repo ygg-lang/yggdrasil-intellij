@@ -11,14 +11,14 @@ import static com.github.ygg_lang.ygg_intellij.language.psi.YggTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.github.ygg_lang.ygg_intellij.language.psi.*;
 
-public class YggExportStatementImpl extends ASTWrapperPsiElement implements YggExportStatement {
+public class YggRuleSymbolImpl extends ASTWrapperPsiElement implements YggRuleSymbol {
 
-  public YggExportStatementImpl(@NotNull ASTNode node) {
+  public YggRuleSymbolImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull YggVisitor visitor) {
-    visitor.visitExportStatement(this);
+    visitor.visitRuleSymbol(this);
   }
 
   @Override
@@ -29,14 +29,8 @@ public class YggExportStatementImpl extends ASTWrapperPsiElement implements YggE
 
   @Override
   @NotNull
-  public YggStringInline getStringInline() {
-    return findNotNullChildByClass(YggStringInline.class);
-  }
-
-  @Override
-  @Nullable
-  public YggStringPrefix getStringPrefix() {
-    return findChildByClass(YggStringPrefix.class);
+  public PsiElement getSymbol() {
+    return findNotNullChildByType(SYMBOL);
   }
 
 }

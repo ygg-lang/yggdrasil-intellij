@@ -14,7 +14,7 @@ public interface YggExpression extends PsiElement {
   YggBackTop getBackTop();
 
   @Nullable
-  YggExportStatement getExportStatement();
+  YggIgnoreStatement getIgnoreStatement();
 
   @Nullable
   YggIncludeStatement getIncludeStatement();

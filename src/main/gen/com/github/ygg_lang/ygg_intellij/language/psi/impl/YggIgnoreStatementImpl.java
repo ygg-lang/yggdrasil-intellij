@@ -11,14 +11,14 @@ import static com.github.ygg_lang.ygg_intellij.language.psi.YggTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.github.ygg_lang.ygg_intellij.language.psi.*;
 
-public class YggScopeSymbolImpl extends ASTWrapperPsiElement implements YggScopeSymbol {
+public class YggIgnoreStatementImpl extends ASTWrapperPsiElement implements YggIgnoreStatement {
 
-  public YggScopeSymbolImpl(@NotNull ASTNode node) {
+  public YggIgnoreStatementImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull YggVisitor visitor) {
-    visitor.visitScopeSymbol(this);
+    visitor.visitIgnoreStatement(this);
   }
 
   @Override
@@ -29,8 +29,8 @@ public class YggScopeSymbolImpl extends ASTWrapperPsiElement implements YggScope
 
   @Override
   @NotNull
-  public PsiElement getSymbol() {
-    return findNotNullChildByType(SYMBOL);
+  public YggPaired getPaired() {
+    return findNotNullChildByClass(YggPaired.class);
   }
 
 }

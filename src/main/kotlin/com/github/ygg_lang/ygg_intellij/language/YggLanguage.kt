@@ -1,7 +1,7 @@
 package com.github.ygg_lang.ygg_intellij.language
 
 import com.intellij.lang.Language
-import com.github.ygg_lang.ygg_intellij.ide.icons.VomlIcons
+import com.github.ygg_lang.ygg_intellij.ide.icons.YggIcons
 import com.intellij.openapi.fileTypes.LanguageFileType
 import javax.swing.Icon
 import com.intellij.extapi.psi.PsiFileBase
@@ -22,7 +22,7 @@ class YggFileType private constructor() : LanguageFileType(YggLanguage.INSTANCE)
 
     override fun getDefaultExtension(): String = "ygg"
 
-    override fun getIcon(): Icon = VomlIcons.FILE
+    override fun getIcon(): Icon = YggIcons.FILE
 
     companion object {
         @JvmStatic

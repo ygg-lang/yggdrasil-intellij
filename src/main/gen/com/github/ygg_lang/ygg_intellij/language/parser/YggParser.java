@@ -128,32 +128,11 @@ public class YggParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // EXPORT [string_prefix] string_inline
-  public static boolean export_statement(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "export_statement")) return false;
-    if (!nextTokenIs(b, EXPORT)) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = consumeToken(b, EXPORT);
-    r = r && export_statement_1(b, l + 1);
-    r = r && string_inline(b, l + 1);
-    exit_section_(b, m, EXPORT_STATEMENT, r);
-    return r;
-  }
-
-  // [string_prefix]
-  private static boolean export_statement_1(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "export_statement_1")) return false;
-    string_prefix(b, l + 1);
-    return true;
-  }
-
-  /* ********************************************************** */
   // scope
   //     | back_top
   //     | include_statement
   //     | inherit_statement
-  //     | export_statement
+  //     | ignore_statement
   //     | insert_pair
   //     | insert_item
   //     | annotation
@@ -166,12 +145,74 @@ public class YggParser implements PsiParser, LightPsiParser {
     if (!r) r = back_top(b, l + 1);
     if (!r) r = include_statement(b, l + 1);
     if (!r) r = inherit_statement(b, l + 1);
-    if (!r) r = export_statement(b, l + 1);
+    if (!r) r = ignore_statement(b, l + 1);
     if (!r) r = insert_pair(b, l + 1);
     if (!r) r = insert_item(b, l + 1);
     if (!r) r = annotation(b, l + 1);
     if (!r) r = consumeToken(b, SEMICOLON);
     exit_section_(b, l, m, r, false, null);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // [rule_symbol (COMMA rule_symbol)* [COMMA]]
+  static boolean ignore_inner(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "ignore_inner")) return false;
+    ignore_inner_0(b, l + 1);
+    return true;
+  }
+
+  // rule_symbol (COMMA rule_symbol)* [COMMA]
+  private static boolean ignore_inner_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "ignore_inner_0")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = rule_symbol(b, l + 1);
+    r = r && ignore_inner_0_1(b, l + 1);
+    r = r && ignore_inner_0_2(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // (COMMA rule_symbol)*
+  private static boolean ignore_inner_0_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "ignore_inner_0_1")) return false;
+    while (true) {
+      int c = current_position_(b);
+      if (!ignore_inner_0_1_0(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "ignore_inner_0_1", c)) break;
+    }
+    return true;
+  }
+
+  // COMMA rule_symbol
+  private static boolean ignore_inner_0_1_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "ignore_inner_0_1_0")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, COMMA);
+    r = r && rule_symbol(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // [COMMA]
+  private static boolean ignore_inner_0_2(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "ignore_inner_0_2")) return false;
+    consumeToken(b, COMMA);
+    return true;
+  }
+
+  /* ********************************************************** */
+  // IGNORE <<paired ignore_inner>>
+  public static boolean ignore_statement(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "ignore_statement")) return false;
+    if (!nextTokenIs(b, IGNORE)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, IGNORE);
+    r = r && paired(b, l + 1, YggParser::ignore_inner);
+    exit_section_(b, m, IGNORE_STATEMENT, r);
     return r;
   }
 
@@ -526,6 +567,18 @@ public class YggParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // SYMBOL
+  public static boolean rule_symbol(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "rule_symbol")) return false;
+    if (!nextTokenIs(b, SYMBOL)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, SYMBOL);
+    exit_section_(b, m, RULE_SYMBOL, r);
+    return r;
+  }
+
+  /* ********************************************************** */
   // <<paired scope_inner>>
   public static boolean scope(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "scope")) return false;
@@ -556,12 +609,12 @@ public class YggParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // string_inline | scope_symbol | INTEGER
+  // string_inline | rule_symbol | INTEGER
   static boolean scope_key(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "scope_key")) return false;
     boolean r;
     r = string_inline(b, l + 1);
-    if (!r) r = scope_symbol(b, l + 1);
+    if (!r) r = rule_symbol(b, l + 1);
     if (!r) r = consumeToken(b, INTEGER);
     return r;
   }
@@ -625,18 +678,6 @@ public class YggParser implements PsiParser, LightPsiParser {
     r = consumeToken(b, DOT);
     r = r && scope_key(b, l + 1);
     exit_section_(b, m, null, r);
-    return r;
-  }
-
-  /* ********************************************************** */
-  // SYMBOL
-  public static boolean scope_symbol(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "scope_symbol")) return false;
-    if (!nextTokenIs(b, SYMBOL)) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = consumeToken(b, SYMBOL);
-    exit_section_(b, m, SCOPE_SYMBOL, r);
     return r;
   }
 

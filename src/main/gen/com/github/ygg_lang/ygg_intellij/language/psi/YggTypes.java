@@ -12,8 +12,8 @@ public interface YggTypes {
   IElementType ANNOTATION_MARK = new YggElementType("ANNOTATION_MARK");
   IElementType BACK_TOP = new YggElementType("BACK_TOP");
   IElementType ESCAPED = new YggElementType("ESCAPED");
-  IElementType EXPORT_STATEMENT = new YggElementType("EXPORT_STATEMENT");
   IElementType EXPRESSION = new YggElementType("EXPRESSION");
+  IElementType IGNORE_STATEMENT = new YggElementType("IGNORE_STATEMENT");
   IElementType INCLUDE_STATEMENT = new YggElementType("INCLUDE_STATEMENT");
   IElementType INHERIT_STATEMENT = new YggElementType("INHERIT_STATEMENT");
   IElementType INSERT_DOT = new YggElementType("INSERT_DOT");
@@ -26,9 +26,9 @@ public interface YggTypes {
   IElementType PAIRED = new YggElementType("PAIRED");
   IElementType PREDEFINED_SYMBOL = new YggElementType("PREDEFINED_SYMBOL");
   IElementType REF = new YggElementType("REF");
+  IElementType RULE_SYMBOL = new YggElementType("RULE_SYMBOL");
   IElementType SCOPE = new YggElementType("SCOPE");
   IElementType SCOPE_MARK = new YggElementType("SCOPE_MARK");
-  IElementType SCOPE_SYMBOL = new YggElementType("SCOPE_SYMBOL");
   IElementType STRING_INLINE = new YggElementType("STRING_INLINE");
   IElementType STRING_MULTI = new YggElementType("STRING_MULTI");
   IElementType STRING_PREFIX = new YggElementType("STRING_PREFIX");
@@ -57,7 +57,7 @@ public interface YggTypes {
   IElementType DOT = new YggTokenType(".");
   IElementType EQ = new YggTokenType("=");
   IElementType ESCAPE = new YggTokenType("\\");
-  IElementType EXPORT = new YggTokenType("@export");
+  IElementType IGNORE = new YggTokenType("@ignore");
   IElementType IMPORT = new YggTokenType("@import");
   IElementType INCLUDE = new YggTokenType("@include");
   IElementType INHERIT = new YggTokenType("@inherit");
@@ -89,11 +89,11 @@ public interface YggTypes {
       else if (type == ESCAPED) {
         return new YggEscapedImpl(node);
       }
-      else if (type == EXPORT_STATEMENT) {
-        return new YggExportStatementImpl(node);
-      }
       else if (type == EXPRESSION) {
         return new YggExpressionImpl(node);
+      }
+      else if (type == IGNORE_STATEMENT) {
+        return new YggIgnoreStatementImpl(node);
       }
       else if (type == INCLUDE_STATEMENT) {
         return new YggIncludeStatementImpl(node);
@@ -131,14 +131,14 @@ public interface YggTypes {
       else if (type == REF) {
         return new YggRefImpl(node);
       }
+      else if (type == RULE_SYMBOL) {
+        return new YggRuleSymbolImpl(node);
+      }
       else if (type == SCOPE) {
         return new YggScopeImpl(node);
       }
       else if (type == SCOPE_MARK) {
         return new YggScopeMarkImpl(node);
-      }
-      else if (type == SCOPE_SYMBOL) {
-        return new YggScopeSymbolImpl(node);
       }
       else if (type == STRING_INLINE) {
         return new YggStringInlineImpl(node);

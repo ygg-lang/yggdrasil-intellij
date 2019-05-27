@@ -1,22 +1,22 @@
-package com.github.voml.voml_intellij.language;
+package com.github.ygg_lang.ygg_intellij.language;
 
 import com.intellij.lexer.FlexLexer;
 import com.intellij.psi.tree.IElementType;
 
 import static com.intellij.psi.TokenType.BAD_CHARACTER;
 import static com.intellij.psi.TokenType.WHITE_SPACE;
-import static com.github.voml.voml_intellij.language.psi.VomlTypes.*;
+import static com.github.ygg_lang.ygg_intellij.language.psi.YggTypes.*;
 
 %%
 
 %{
-  public _VomlLexer() {
+  public _YggLexer() {
     this((java.io.Reader)null);
   }
 %}
 
 %public
-%class _VomlLexer
+%class _YggLexer
 %implements FlexLexer
 %function advance
 %type IElementType
@@ -40,12 +40,12 @@ NON_ESCAPE=[^\\]
 <YYINITIAL> {
   {WHITE_SPACE}        { return WHITE_SPACE; }
 
-  "null"               { return NULL; }
   "@include"           { return INCLUDE; }
   "@inherit"           { return INHERIT; }
   "@import"            { return IMPORT; }
-  "@export"            { return EXPORT; }
+  "@ignore"            { return IGNORE; }
   "as"                 { return AS; }
+  "null"               { return NULL; }
   "("                  { return PARENTHESIS_L; }
   ")"                  { return PARENTHESIS_R; }
   "["                  { return BRACKET_L; }
