@@ -31,7 +31,7 @@ public class YggVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitIncludeStatement(@NotNull YggIncludeStatement o) {
+  public void visitImportStatement(@NotNull YggImportStatement o) {
     visitPsiElement(o);
   }
 

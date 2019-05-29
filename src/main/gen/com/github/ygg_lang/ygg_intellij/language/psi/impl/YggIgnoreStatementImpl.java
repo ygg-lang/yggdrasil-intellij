@@ -28,9 +28,15 @@ public class YggIgnoreStatementImpl extends ASTWrapperPsiElement implements YggI
   }
 
   @Override
-  @NotNull
+  @Nullable
   public YggPaired getPaired() {
-    return findNotNullChildByClass(YggPaired.class);
+    return findChildByClass(YggPaired.class);
+  }
+
+  @Override
+  @Nullable
+  public YggRuleSymbol getRuleSymbol() {
+    return findChildByClass(YggRuleSymbol.class);
   }
 
 }

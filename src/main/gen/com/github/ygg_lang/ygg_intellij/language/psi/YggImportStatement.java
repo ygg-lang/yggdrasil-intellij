@@ -5,9 +5,15 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface YggScopeSymbol extends PsiElement {
+public interface YggImportStatement extends PsiElement {
+
+  @Nullable
+  YggPaired getPaired();
+
+  @Nullable
+  YggRuleSymbol getRuleSymbol();
 
   @NotNull
-  PsiElement getSymbol();
+  YggStringInline getStringInline();
 
 }

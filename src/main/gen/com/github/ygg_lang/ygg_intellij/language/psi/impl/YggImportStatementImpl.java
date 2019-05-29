@@ -11,14 +11,14 @@ import static com.github.ygg_lang.ygg_intellij.language.psi.YggTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import com.github.ygg_lang.ygg_intellij.language.psi.*;
 
-public class YggIncludeStatementImpl extends ASTWrapperPsiElement implements YggIncludeStatement {
+public class YggImportStatementImpl extends ASTWrapperPsiElement implements YggImportStatement {
 
-  public YggIncludeStatementImpl(@NotNull ASTNode node) {
+  public YggImportStatementImpl(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull YggVisitor visitor) {
-    visitor.visitIncludeStatement(this);
+    visitor.visitImportStatement(this);
   }
 
   @Override
@@ -29,26 +29,20 @@ public class YggIncludeStatementImpl extends ASTWrapperPsiElement implements Ygg
 
   @Override
   @Nullable
-  public YggKeySymbol getKeySymbol() {
-    return findChildByClass(YggKeySymbol.class);
+  public YggPaired getPaired() {
+    return findChildByClass(YggPaired.class);
   }
 
   @Override
   @Nullable
-  public YggPaired getPaired() {
-    return findChildByClass(YggPaired.class);
+  public YggRuleSymbol getRuleSymbol() {
+    return findChildByClass(YggRuleSymbol.class);
   }
 
   @Override
   @NotNull
   public YggStringInline getStringInline() {
     return findNotNullChildByClass(YggStringInline.class);
-  }
-
-  @Override
-  @Nullable
-  public YggStringPrefix getStringPrefix() {
-    return findChildByClass(YggStringPrefix.class);
   }
 
 }

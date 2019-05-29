@@ -12,9 +12,9 @@ class YggFoldingVisitor(private val descriptors: MutableList<FoldingDescriptor>)
         super.visitTable(o)
     }
 
-    override fun visitIncludeStatement(o: YggIncludeStatement) {
+    override fun visitImportStatement(o: YggImportStatement) {
         fold(o)
-        super.visitIncludeStatement(o)
+        super.visitImportStatement(o)
     }
 
     override fun visitInheritStatement(o: YggInheritStatement) {

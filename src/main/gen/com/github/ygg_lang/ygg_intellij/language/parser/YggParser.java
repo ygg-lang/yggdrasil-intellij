@@ -130,7 +130,7 @@ public class YggParser implements PsiParser, LightPsiParser {
   /* ********************************************************** */
   // scope
   //     | back_top
-  //     | include_statement
+  //     | import_statement
   //     | inherit_statement
   //     | ignore_statement
   //     | insert_pair
@@ -143,7 +143,7 @@ public class YggParser implements PsiParser, LightPsiParser {
     Marker m = enter_section_(b, l, _NONE_, EXPRESSION, "<expression>");
     r = scope(b, l + 1);
     if (!r) r = back_top(b, l + 1);
-    if (!r) r = include_statement(b, l + 1);
+    if (!r) r = import_statement(b, l + 1);
     if (!r) r = inherit_statement(b, l + 1);
     if (!r) r = ignore_statement(b, l + 1);
     if (!r) r = insert_pair(b, l + 1);
@@ -204,72 +204,108 @@ public class YggParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // IGNORE <<paired ignore_inner>>
+  // IGNORE (rule_symbol | <<paired ignore_inner>>)
   public static boolean ignore_statement(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ignore_statement")) return false;
     if (!nextTokenIs(b, IGNORE)) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, IGNORE);
-    r = r && paired(b, l + 1, YggParser::ignore_inner);
+    r = r && ignore_statement_1(b, l + 1);
     exit_section_(b, m, IGNORE_STATEMENT, r);
     return r;
   }
 
-  /* ********************************************************** */
-  // key_symbol*
-  static boolean include_inner(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "include_inner")) return false;
-    while (true) {
-      int c = current_position_(b);
-      if (!key_symbol(b, l + 1)) break;
-      if (!empty_element_parsed_guard_(b, "include_inner", c)) break;
-    }
-    return true;
-  }
-
-  /* ********************************************************** */
-  // INCLUDE [string_prefix] string_inline (AS key_symbol | <<paired include_inner>>)
-  public static boolean include_statement(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "include_statement")) return false;
-    if (!nextTokenIs(b, INCLUDE)) return false;
+  // rule_symbol | <<paired ignore_inner>>
+  private static boolean ignore_statement_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "ignore_statement_1")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeToken(b, INCLUDE);
-    r = r && include_statement_1(b, l + 1);
-    r = r && string_inline(b, l + 1);
-    r = r && include_statement_3(b, l + 1);
-    exit_section_(b, m, INCLUDE_STATEMENT, r);
+    r = rule_symbol(b, l + 1);
+    if (!r) r = paired(b, l + 1, YggParser::ignore_inner);
+    exit_section_(b, m, null, r);
     return r;
   }
 
-  // [string_prefix]
-  private static boolean include_statement_1(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "include_statement_1")) return false;
-    string_prefix(b, l + 1);
+  /* ********************************************************** */
+  // IMPORT string_inline [rule_symbol | <<paired include_inner>>]
+  public static boolean import_statement(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "import_statement")) return false;
+    if (!nextTokenIs(b, IMPORT)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, IMPORT);
+    r = r && string_inline(b, l + 1);
+    r = r && import_statement_2(b, l + 1);
+    exit_section_(b, m, IMPORT_STATEMENT, r);
+    return r;
+  }
+
+  // [rule_symbol | <<paired include_inner>>]
+  private static boolean import_statement_2(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "import_statement_2")) return false;
+    import_statement_2_0(b, l + 1);
     return true;
   }
 
-  // AS key_symbol | <<paired include_inner>>
-  private static boolean include_statement_3(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "include_statement_3")) return false;
+  // rule_symbol | <<paired include_inner>>
+  private static boolean import_statement_2_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "import_statement_2_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = include_statement_3_0(b, l + 1);
+    r = rule_symbol(b, l + 1);
     if (!r) r = paired(b, l + 1, YggParser::include_inner);
     exit_section_(b, m, null, r);
     return r;
   }
 
-  // AS key_symbol
-  private static boolean include_statement_3_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "include_statement_3_0")) return false;
+  /* ********************************************************** */
+  // [rule_symbol (COMMA rule_symbol)* [COMMA]]
+  static boolean include_inner(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "include_inner")) return false;
+    include_inner_0(b, l + 1);
+    return true;
+  }
+
+  // rule_symbol (COMMA rule_symbol)* [COMMA]
+  private static boolean include_inner_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "include_inner_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = consumeToken(b, AS);
-    r = r && key_symbol(b, l + 1);
+    r = rule_symbol(b, l + 1);
+    r = r && include_inner_0_1(b, l + 1);
+    r = r && include_inner_0_2(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
+  }
+
+  // (COMMA rule_symbol)*
+  private static boolean include_inner_0_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "include_inner_0_1")) return false;
+    while (true) {
+      int c = current_position_(b);
+      if (!include_inner_0_1_0(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "include_inner_0_1", c)) break;
+    }
+    return true;
+  }
+
+  // COMMA rule_symbol
+  private static boolean include_inner_0_1_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "include_inner_0_1_0")) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, COMMA);
+    r = r && rule_symbol(b, l + 1);
+    exit_section_(b, m, null, r);
+    return r;
+  }
+
+  // [COMMA]
+  private static boolean include_inner_0_2(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "include_inner_0_2")) return false;
+    consumeToken(b, COMMA);
+    return true;
   }
 
   /* ********************************************************** */

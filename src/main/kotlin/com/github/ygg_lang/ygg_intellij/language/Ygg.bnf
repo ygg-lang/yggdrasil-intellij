@@ -65,7 +65,7 @@ Voml ::= expression*;
 
 expression ::= scope
     | back_top
-    | include_statement
+    | import_statement
     | inherit_statement
     | ignore_statement
     | insert_pair
@@ -73,15 +73,14 @@ expression ::= scope
     | annotation
     | SEMICOLON;
 // ------------------------------------
-ignore_statement ::= IGNORE <<paired ignore_inner>>;
+ignore_statement ::= IGNORE (rule_symbol | <<paired ignore_inner>>);
 private ignore_inner ::= [rule_symbol (COMMA rule_symbol)* [COMMA]];
 // ------------------------------------
 inherit_statement ::= INHERIT (predefined_symbol | [string_prefix] string_inline);
 predefined_symbol ::= SYMBOL;
 // -------------------------------G-----
-include_statement ::= INCLUDE [string_prefix] string_inline (AS key_symbol | <<paired include_inner>>);
-private include_inner ::= key_symbol*;
-
+import_statement ::= IMPORT string_inline [rule_symbol | <<paired include_inner>>];
+private include_inner ::= [rule_symbol (COMMA rule_symbol)* [COMMA]];
 // ------------------------------------
 scope ::= <<paired scope_inner>>;
 private scope_inner ::= [scope_mark] scope_path;

@@ -27,12 +27,13 @@ class YggColorSettingsPage : ColorSettingsPage {
     override fun getHighlighter() = YggSyntaxHighlighter()
 
     override fun getDemoText() =
-"""<KEYWORD>@inherit</KEYWORD> <PREDEFINED>user</PREDEFINED>;
+"""@grammar <PREDEFINED>ygg</PREDEFINED> {"*.yg","*.ygg", "*.grammar"};
 
-@include <STRING_HINT>json</STRING_HINT> <STRING>"some/path/test.json"</STRING> <KEYWORD>as</KEYWORD> <KEY_SYMBOL>json</KEY_SYMBOL>;
-@include <STRING>"https://example.org/test.voml"</STRING> {
-	<KEY_SYMBOL>external_key</KEY_SYMBOL> <KEYWORD>as</KEYWORD> <KEY_SYMBOL>external</KEY_SYMBOL>
-}
+// Import the predefined types,
+// Otherwise the `String` type of each language will be used directly to represent the atomic expression
+@import "literal_types.toml";
+
+@ignore {NEWLINE, WHITESPACE, COMMENT}
 
 [<SCOPE_SYMBOL>literals</SCOPE_SYMBOL>]
 <KEY_SYMBOL>boolean</KEY_SYMBOL> = [true, false]

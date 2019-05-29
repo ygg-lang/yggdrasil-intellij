@@ -7,7 +7,10 @@ import com.intellij.psi.PsiElement;
 
 public interface YggIgnoreStatement extends PsiElement {
 
-  @NotNull
+  @Nullable
   YggPaired getPaired();
+
+  @Nullable
+  YggRuleSymbol getRuleSymbol();
 
 }

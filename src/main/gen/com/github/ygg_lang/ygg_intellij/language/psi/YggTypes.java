@@ -14,7 +14,7 @@ public interface YggTypes {
   IElementType ESCAPED = new YggElementType("ESCAPED");
   IElementType EXPRESSION = new YggElementType("EXPRESSION");
   IElementType IGNORE_STATEMENT = new YggElementType("IGNORE_STATEMENT");
-  IElementType INCLUDE_STATEMENT = new YggElementType("INCLUDE_STATEMENT");
+  IElementType IMPORT_STATEMENT = new YggElementType("IMPORT_STATEMENT");
   IElementType INHERIT_STATEMENT = new YggElementType("INHERIT_STATEMENT");
   IElementType INSERT_DOT = new YggElementType("INSERT_DOT");
   IElementType INSERT_ITEM = new YggElementType("INSERT_ITEM");
@@ -95,8 +95,8 @@ public interface YggTypes {
       else if (type == IGNORE_STATEMENT) {
         return new YggIgnoreStatementImpl(node);
       }
-      else if (type == INCLUDE_STATEMENT) {
-        return new YggIncludeStatementImpl(node);
+      else if (type == IMPORT_STATEMENT) {
+        return new YggImportStatementImpl(node);
       }
       else if (type == INHERIT_STATEMENT) {
         return new YggInheritStatementImpl(node);
