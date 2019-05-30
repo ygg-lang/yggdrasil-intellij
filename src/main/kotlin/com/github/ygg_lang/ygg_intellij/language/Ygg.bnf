@@ -28,8 +28,8 @@
         NULL = 'null'
         BOOLEAN = 'regexp:true|false'
 
-        SYMBOL = 'regexp:[A-Za-z_][A-Za-z0-9_]*'
-        STRING = "regexp:'([^'\\]|\\.)*'|\"([^\"\\]|\\\"|\\'|\\)*\""
+        SYMBOL = 'regexp:[\p{XID_Start}_][\p{XID_Continue}_]*'
+        STRING = 'regexp:"([^"\\]|\\.)*"'
         BYTE = 'regexp:(0[bBoOxXfF][0-9A-Fa-f][0-9A-Fa-f_]*)'
         INTEGER = 'regexp:(0|[1-9][0-9_]*)'
         DECIMAL = 'regexp:([0-9]+\.[0-9]*([*][*][0-9]+)?)|(\.[0-9]+([Ee][0-9]+)?)'
@@ -124,7 +124,7 @@ table ::= [type_hint] <<paired table_inner>>;
 private table_inner ::= [table_item (COMMA table_item)* [COMMA]];
 private table_item ::= pair | value;
 // ------------------------------------
-meta paired ::=
+private meta paired ::=
     PARENTHESIS_L <<param>> PARENTHESIS_R
   | BRACKET_L <<param>> BRACKET_R
   | BRACE_L <<param>> BRACE_R

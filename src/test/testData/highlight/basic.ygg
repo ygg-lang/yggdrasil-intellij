@@ -47,8 +47,6 @@ ignores_statement ^=
     | ignores ~ ^id
     | ignores ~ "{" ~ $join(^id, ",", trailing = 1)? ~ "}";
 
-
-
 expression =
     | priority          #Priority
     | data              #Data

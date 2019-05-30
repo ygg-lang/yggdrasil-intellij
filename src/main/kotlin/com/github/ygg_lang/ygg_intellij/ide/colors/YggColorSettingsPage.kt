@@ -1,7 +1,7 @@
 package com.github.ygg_lang.ygg_intellij.ide.colors
 
 import com.github.ygg_lang.ygg_intellij.ide.YggSyntaxHighlighter
-import com.github.ygg_lang.ygg_intellij.ide.icons.YggIcons
+import com.github.ygg_lang.ygg_intellij.ide.icons.YggIconProvider
 import com.github.ygg_lang.ygg_intellij.language.YggBundle
 import com.intellij.openapi.options.colors.ColorDescriptor
 import com.intellij.openapi.options.colors.ColorSettingsPage
@@ -22,7 +22,7 @@ class YggColorSettingsPage : ColorSettingsPage {
 
     override fun getDisplayName() =  YggBundle.message("filetype.voml.name")
 
-    override fun getIcon() = YggIcons.FILE
+    override fun getIcon() = YggIconProvider.FILE
 
     override fun getHighlighter() = YggSyntaxHighlighter()
 
