@@ -14,13 +14,13 @@ public interface YggExpression extends PsiElement {
   YggBackTop getBackTop();
 
   @Nullable
+  YggGrammarStatement getGrammarStatement();
+
+  @Nullable
   YggIgnoreStatement getIgnoreStatement();
 
   @Nullable
   YggImportStatement getImportStatement();
-
-  @Nullable
-  YggInheritStatement getInheritStatement();
 
   @Nullable
   YggInsertItem getInsertItem();

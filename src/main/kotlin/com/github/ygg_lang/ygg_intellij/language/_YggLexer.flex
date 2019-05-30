@@ -40,8 +40,8 @@ NON_ESCAPE=[^\\]
 <YYINITIAL> {
   {WHITE_SPACE}        { return WHITE_SPACE; }
 
-  "@include"           { return INCLUDE; }
-  "@inherit"           { return INHERIT; }
+  "@grammar"           { return GRAMMAR; }
+  "@fragment"          { return FRAGMENT; }
   "@import"            { return IMPORT; }
   "@ignore"            { return IGNORE; }
   "as"                 { return AS; }

@@ -19,8 +19,8 @@
         COMMENT = 'regexp:(//|#)[^\r\n]*'
         BLOCK_COMMENT = 'regexp:[/][*][^*]*[*]+([^/*][^*]*[*]+)*[/]'
 
-        INCLUDE = '@include'
-        INHERIT = '@inherit'
+        GRAMMAR = '@grammar'
+        FRAGMENT = '@fragment'
         IMPORT = '@import'
         IGNORE = '@ignore'
         AS = "as"
@@ -66,7 +66,7 @@ Voml ::= expression*;
 expression ::= scope
     | back_top
     | import_statement
-    | inherit_statement
+    | grammar_statement
     | ignore_statement
     | insert_pair
     | insert_item
@@ -76,7 +76,8 @@ expression ::= scope
 ignore_statement ::= IGNORE (rule_symbol | <<paired ignore_inner>>);
 private ignore_inner ::= [rule_symbol (COMMA rule_symbol)* [COMMA]];
 // ------------------------------------
-inherit_statement ::= INHERIT (predefined_symbol | [string_prefix] string_inline);
+grammar_statement ::= GRAMMAR predefined_symbol [<<paired grammar_inner>>];
+private grammar_inner ::= [string_inline (COMMA string_inline)* [COMMA]];
 predefined_symbol ::= SYMBOL;
 // -------------------------------G-----
 import_statement ::= IMPORT string_inline [rule_symbol | <<paired include_inner>>];

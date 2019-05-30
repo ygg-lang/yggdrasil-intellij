@@ -27,15 +27,15 @@ public class YggVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitGrammarStatement(@NotNull YggGrammarStatement o) {
+    visitPsiElement(o);
+  }
+
   public void visitIgnoreStatement(@NotNull YggIgnoreStatement o) {
     visitPsiElement(o);
   }
 
   public void visitImportStatement(@NotNull YggImportStatement o) {
-    visitPsiElement(o);
-  }
-
-  public void visitInheritStatement(@NotNull YggInheritStatement o) {
     visitPsiElement(o);
   }
 

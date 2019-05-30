@@ -5,15 +5,12 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface YggInheritStatement extends PsiElement {
+public interface YggGrammarStatement extends PsiElement {
 
   @Nullable
+  YggPaired getPaired();
+
+  @NotNull
   YggPredefinedSymbol getPredefinedSymbol();
-
-  @Nullable
-  YggStringInline getStringInline();
-
-  @Nullable
-  YggStringPrefix getStringPrefix();
 
 }

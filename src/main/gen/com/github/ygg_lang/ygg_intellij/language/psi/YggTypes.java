@@ -13,9 +13,9 @@ public interface YggTypes {
   IElementType BACK_TOP = new YggElementType("BACK_TOP");
   IElementType ESCAPED = new YggElementType("ESCAPED");
   IElementType EXPRESSION = new YggElementType("EXPRESSION");
+  IElementType GRAMMAR_STATEMENT = new YggElementType("GRAMMAR_STATEMENT");
   IElementType IGNORE_STATEMENT = new YggElementType("IGNORE_STATEMENT");
   IElementType IMPORT_STATEMENT = new YggElementType("IMPORT_STATEMENT");
-  IElementType INHERIT_STATEMENT = new YggElementType("INHERIT_STATEMENT");
   IElementType INSERT_DOT = new YggElementType("INSERT_DOT");
   IElementType INSERT_ITEM = new YggElementType("INSERT_ITEM");
   IElementType INSERT_PAIR = new YggElementType("INSERT_PAIR");
@@ -57,10 +57,10 @@ public interface YggTypes {
   IElementType DOT = new YggTokenType(".");
   IElementType EQ = new YggTokenType("=");
   IElementType ESCAPE = new YggTokenType("\\");
+  IElementType FRAGMENT = new YggTokenType("@fragment");
+  IElementType GRAMMAR = new YggTokenType("@grammar");
   IElementType IGNORE = new YggTokenType("@ignore");
   IElementType IMPORT = new YggTokenType("@import");
-  IElementType INCLUDE = new YggTokenType("@include");
-  IElementType INHERIT = new YggTokenType("@inherit");
   IElementType INTEGER = new YggTokenType("INTEGER");
   IElementType NAN = new YggTokenType("nan");
   IElementType NON_ESCAPE = new YggTokenType("NON_ESCAPE");
@@ -92,14 +92,14 @@ public interface YggTypes {
       else if (type == EXPRESSION) {
         return new YggExpressionImpl(node);
       }
+      else if (type == GRAMMAR_STATEMENT) {
+        return new YggGrammarStatementImpl(node);
+      }
       else if (type == IGNORE_STATEMENT) {
         return new YggIgnoreStatementImpl(node);
       }
       else if (type == IMPORT_STATEMENT) {
         return new YggImportStatementImpl(node);
-      }
-      else if (type == INHERIT_STATEMENT) {
-        return new YggInheritStatementImpl(node);
       }
       else if (type == INSERT_DOT) {
         return new YggInsertDotImpl(node);

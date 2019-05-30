@@ -17,9 +17,14 @@ class YggFoldingVisitor(private val descriptors: MutableList<FoldingDescriptor>)
         super.visitImportStatement(o)
     }
 
-    override fun visitInheritStatement(o: YggInheritStatement) {
+    override fun visitGrammarStatement(o: YggGrammarStatement) {
         fold(o)
-        super.visitInheritStatement(o)
+        super.visitGrammarStatement(o)
+    }
+
+    override fun visitIgnoreStatement(o: YggIgnoreStatement) {
+        fold(o)
+        super.visitIgnoreStatement(o)
     }
 
 //    override fun visitObjectBody(o: VomlObjectBody) {

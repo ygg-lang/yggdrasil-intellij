@@ -21,7 +21,7 @@ class YggSyntaxHighlighter : SyntaxHighlighterBase() {
     private fun getTokenColor(tokenType: IElementType): YggColor? {
         return when (tokenType) {
             //
-            YggTypes.INCLUDE, YggTypes.INHERIT, YggTypes.AS -> YggColor.KEYWORD
+            YggTypes.IMPORT, YggTypes.GRAMMAR, YggTypes.IGNORE, YggTypes.AS -> YggColor.KEYWORD
             YggTypes.ANNOTATION, YggTypes.ANNOTATION_MARK -> YggColor.ANNOTATION
             YggTypes.PREDEFINED_SYMBOL -> YggColor.PREDEFINED
             //
