@@ -188,5 +188,3 @@ inline val <T : StubElement<*>> StubBasedPsiElement<T>.greenStub: T?
 
 
 fun tokenSetOf(vararg tokens: IElementType) = TokenSet.create(*tokens)
-
-val Voml_COMMENTS = tokenSetOf(ygg.intellij.language.psi.YggTypes.BLOCK_COMMENT, ygg.intellij.language.psi.YggTypes.COMMENT)

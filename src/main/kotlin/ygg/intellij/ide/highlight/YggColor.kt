@@ -6,29 +6,30 @@ import com.intellij.openapi.editor.colors.TextAttributesKey
 import com.intellij.openapi.options.OptionsBundle
 import com.intellij.openapi.options.colors.AttributesDescriptor
 import com.intellij.openapi.util.NlsContexts
+import ygg.intellij.YggBundle
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors as Default
 import java.util.function.Supplier
 
 
-// TODO: 分类
 enum class YggColor(humanName: Supplier<@NlsContexts.AttributeDescriptor String>, default: TextAttributesKey? = null) {
     // 特殊关键词
-    KEYWORD(ygg.intellij.YggBundle.messagePointer("color.settings.toml.keyword"), Default.KEYWORD),
+    KEYWORD(YggBundle.messagePointer("color.settings.toml.keyword"), Default.KEYWORD),
+    EXTENSION(OptionsBundle.messagePointer("options.language.defaults.metadata"), Default.METADATA),
     // 字面量
-    NULL(ygg.intellij.YggBundle.messagePointer("color.settings.voml.null"), Default.KEYWORD),
-    BOOLEAN(ygg.intellij.YggBundle.messagePointer("color.settings.voml.boolean"), Default.KEYWORD),
-    NUMBER_HINT(ygg.intellij.YggBundle.messagePointer("color.settings.toml.number_hint"), Default.METADATA),
-    DECIMAL(ygg.intellij.YggBundle.messagePointer("color.settings.toml.decimal"), Default.NUMBER),
-    INTEGER(ygg.intellij.YggBundle.messagePointer("color.settings.toml.integer"), Default.NUMBER),
-    STRING_HINT(ygg.intellij.YggBundle.messagePointer("color.settings.toml.string_hint"), Default.KEYWORD),
+    NULL(YggBundle.messagePointer("color.settings.voml.null"), Default.KEYWORD),
+    BOOLEAN(YggBundle.messagePointer("color.settings.voml.boolean"), Default.KEYWORD),
+    NUMBER_HINT(YggBundle.messagePointer("color.settings.toml.number_hint"), Default.METADATA),
+    DECIMAL(YggBundle.messagePointer("color.settings.toml.decimal"), Default.NUMBER),
+    INTEGER(YggBundle.messagePointer("color.settings.toml.integer"), Default.NUMBER),
+    STRING_HINT(YggBundle.messagePointer("color.settings.toml.string_hint"), Default.KEYWORD),
     STRING(OptionsBundle.messagePointer("options.language.defaults.string"), Default.STRING),
     IDENTIFIER(OptionsBundle.messagePointer("options.language.defaults.identifier"), Default.IDENTIFIER),
     //
-    TYPE_HINT(ygg.intellij.YggBundle.messagePointer("color.settings.toml.type_hint"), Default.CLASS_NAME),
-    KEY_SYMBOL(ygg.intellij.YggBundle.messagePointer("color.settings.voml.key_symbol"), Default.STATIC_FIELD),
-    SCOPE_SYMBOL(ygg.intellij.YggBundle.messagePointer("color.settings.voml.scope_symbol"), Default.STATIC_METHOD),
-    SCOPE_MARK(ygg.intellij.YggBundle.messagePointer("color.settings.voml.scope_mark"), KEYWORD.textAttributesKey),
-    INSERT_MARK(ygg.intellij.YggBundle.messagePointer("color.settings.voml.insert_mark"), KEYWORD.textAttributesKey),
+    TYPE_HINT(YggBundle.messagePointer("color.settings.toml.type_hint"), Default.CLASS_NAME),
+    KEY_SYMBOL(YggBundle.messagePointer("color.settings.voml.key_symbol"), Default.STATIC_FIELD),
+    SCOPE_SYMBOL(YggBundle.messagePointer("color.settings.voml.scope_symbol"), Default.STATIC_METHOD),
+    SCOPE_MARK(YggBundle.messagePointer("color.settings.voml.scope_mark"), KEYWORD.textAttributesKey),
+    INSERT_MARK(YggBundle.messagePointer("color.settings.voml.insert_mark"), KEYWORD.textAttributesKey),
     ANNOTATION(OptionsBundle.messagePointer("options.java.attribute.descriptor.annotation.name"), Default.METADATA),
     PREDEFINED(OptionsBundle.messagePointer("options.language.defaults.predefined"), Default.PREDEFINED_SYMBOL),
     // 标点符号
@@ -37,18 +38,18 @@ enum class YggColor(humanName: Supplier<@NlsContexts.AttributeDescriptor String>
     BRACES(OptionsBundle.messagePointer("options.language.defaults.braces"), Default.BRACES),
     DOT(OptionsBundle.messagePointer("options.language.defaults.dot"), Default.DOT),
     COMMA(OptionsBundle.messagePointer("options.language.defaults.comma"), Default.COMMA),
-    SET(ygg.intellij.YggBundle.messagePointer("color.settings.voml.set"), Default.OPERATION_SIGN),
     SEMICOLON(OptionsBundle.messagePointer("options.language.defaults.semicolon"), Default.SEMICOLON),
+    SET(YggBundle.messagePointer("color.token.set"), Default.OPERATION_SIGN),
     // 注释
-    LINE_COMMENT(OptionsBundle.messagePointer("options.language.defaults.line.comment"), Default.LINE_COMMENT),
-    BLOCK_COMMENT(OptionsBundle.messagePointer("options.language.defaults.block.comment"), Default.BLOCK_COMMENT),
+    COMMENT_INLINE(OptionsBundle.messagePointer("options.language.defaults.line.comment"), Default.LINE_COMMENT),
+    COMMENT_BLOCK(OptionsBundle.messagePointer("options.language.defaults.block.comment"), Default.BLOCK_COMMENT),
+    COMMENT_DOCUMENT(OptionsBundle.messagePointer("options.language.defaults.block.comment"), Default.DOC_COMMENT_MARKUP),
     // 错误
     BAD_CHARACTER(OptionsBundle.messagePointer("options.java.attribute.descriptor.bad.character"), HighlighterColors.BAD_CHARACTER),
-    // 废弃
-    EXTENSION(OptionsBundle.messagePointer("options.language.defaults.metadata"), Default.METADATA),
     ;
 
-    val textAttributesKey: TextAttributesKey = TextAttributesKey.createTextAttributesKey("voml.lang.$name", default)
+
+    val textAttributesKey: TextAttributesKey = TextAttributesKey.createTextAttributesKey("ygg.$name", default)
     val attributesDescriptor: AttributesDescriptor = AttributesDescriptor(humanName, textAttributesKey)
     val testSeverity: HighlightSeverity = HighlightSeverity(name, HighlightSeverity.INFORMATION.myVal)
 }

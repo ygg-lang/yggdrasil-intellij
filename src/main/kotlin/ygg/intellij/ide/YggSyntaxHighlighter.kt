@@ -51,8 +51,9 @@ class YggSyntaxHighlighter : SyntaxHighlighterBase() {
 
             SYMBOL -> YggColor.IDENTIFIER
             // 注释
-            COMMENT -> YggColor.LINE_COMMENT
-            BLOCK_COMMENT -> YggColor.BLOCK_COMMENT
+            COMMENT_LINE -> YggColor.COMMENT_INLINE
+            COMMENT_BLOCK -> YggColor.COMMENT_BLOCK
+            COMMENT_DOC -> YggColor.COMMENT_BLOCK
             // 错误
             TokenType.BAD_CHARACTER -> YggColor.BAD_CHARACTER
             else -> null

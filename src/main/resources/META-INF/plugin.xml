@@ -2,30 +2,32 @@
 	<id>Yggdrasil</id>
 	<name>Yggdrasil Support</name>
 	<vendor>Yggdrasil</vendor>
-
-	<!-- Product and plugin compatibility requirements -->
-	<!-- https://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html -->
 	<depends>com.intellij.modules.platform</depends>
-	<!--    <depends optional="true" config-file="plugin-with-rust.xml">org.rust.lang</depends>-->
+	<depends optional="true" config-file="plugin-with-rust.xml">org.rust.lang</depends>
 	<resource-bundle>messages.YggBundle</resource-bundle>
 	<extensions defaultExtensionNs="com.intellij">
 		<fileType
 			name="YGG"
-			implementationClass="ygg.intellij.ide.file_view.YggFileType"
-			fieldName="INSTANCE"
 			language="YGG"
 			extensions="ygg"
+			implementationClass="ygg.intellij.ide.file_view.YggFileType"
+			fieldName="INSTANCE"
 		/>
 		<lang.parserDefinition
 			language="YGG"
 			implementationClass="ygg.intellij.language.YggParserDefinition"
 		/>
+		<!-- Highlighter -->
 		<lang.syntaxHighlighter
 			language="YGG"
 			implementationClass="ygg.intellij.ide.YggSyntaxHighlighter"
 		/>
-		<colorSettingsPage
-			implementation="ygg.intellij.ide.highlight.YggHighlightSettingPage"
+		<colorSettingsPage implementation="ygg.intellij.ide.highlight.YggHighlightSettingPage"/>
+		<additionalTextAttributes scheme="Default" file="colors/VomlDefault.xml"/>
+		<additionalTextAttributes scheme="Darcula" file="colors/VomlDarcula.xml"/>
+		<!-- Formatter -->
+		<langCodeStyleSettingsProvider
+			implementation="ygg.intellij.ide.codeStyle.VomlLanguageCodeStyleSettingsProvider"
 		/>
 		<lang.commenter
 			language="YGG"
@@ -39,6 +41,7 @@
 			language="YGG"
 			implementationClass="ygg.intellij.ide.YggQuoteHandler"
 		/>
+		<!-- Structure View -->
 		<lang.foldingBuilder
 			language="YGG"
 			implementationClass="ygg.intellij.ide.folding.YggFoldingBuilder"
@@ -66,11 +69,7 @@
 			language="YGG"
 			implementationClass="ygg.intellij.ide.annotator.checkers.YggTableCheckerAnnotator"
 		/>
-		<additionalTextAttributes scheme="Default" file="colors/VomlDefault.xml"/>
-		<additionalTextAttributes scheme="Darcula" file="colors/VomlDarcula.xml"/>
-		<langCodeStyleSettingsProvider
-			implementation="ygg.intellij.ide.codeStyle.VomlLanguageCodeStyleSettingsProvider"
-		/>
+
 		<lang.formatter
 			language="YGG"
 			implementationClass="ygg.intellij.ide.formatter.VomlFormattingModelBuilder"

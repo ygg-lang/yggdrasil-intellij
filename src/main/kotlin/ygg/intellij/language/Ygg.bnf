@@ -1,39 +1,24 @@
 {
     parserClass = "ygg.intellij.language.parser.YggParser"
-    parserUtilClass = "com.github.ygg_lang.ygg_intellij.language.psi.YggParserUtil"
-
-    extends = "com.intellij.extapi.psi.ASTWrapperPsiElement"
+    parserUtilClass = "ygg.intellij.language.psi.YggParserExtension"
 
     psiClassPrefix = "Ygg"
-    psiImplClassSuffix = "Impl"
-    psiPackage = "com.github.ygg_lang.ygg_intellij.language.psi"
-    psiImplPackage = "com.github.ygg_lang.ygg_intellij.language.psi.impl"
+    psiImplClassSuffix = "Node"
+    psiPackage = "ygg.intellij.language.psi"
+    psiImplPackage = "ygg.intellij.language.psi_node"
 
     elementTypeHolderClass = "ygg.intellij.language.psi.YggTypes"
-    elementTypeClass = "com.github.ygg_lang.ygg_intellij.language.psi.YggElementType"
-    tokenTypeClass = "com.github.ygg_lang.ygg_intellij.language.psi.YggTokenType"
+    elementTypeClass = "ygg.intellij.language.psi.YggElementType"
+    tokenTypeClass = "ygg.intellij.language.psi.YggTokenType"
 
-    psiImplUtilClass = "com.github.ygg_lang.ygg_intellij.language.psi.impl.YggPsiImplUtil"
+    psiImplUtilClass = "ygg.intellij.language.psi_node.YggPsiExtension"
 
     tokens = [
-        COMMENT = 'regexp:(//|#)[^\r\n]*'
-        BLOCK_COMMENT = 'regexp:[/][*][^*]*[*]+([^/*][^*]*[*]+)*[/]'
-
         GRAMMAR = '@grammar'
         FRAGMENT = '@fragment'
         IMPORT = '@import'
         IGNORE = '@ignore'
         AS = "as"
-
-        NULL = 'null'
-        BOOLEAN = 'regexp:true|false'
-
-        SYMBOL = 'regexp:[\p{XID_Start}_][\p{XID_Continue}_]*'
-        STRING = 'regexp:"([^"\\]|\\.)*"'
-        BYTE = 'regexp:(0[bBoOxXfF][0-9A-Fa-f][0-9A-Fa-f_]*)'
-        INTEGER = 'regexp:(0|[1-9][0-9_]*)'
-        DECIMAL = 'regexp:([0-9]+\.[0-9]*([*][*][0-9]+)?)|(\.[0-9]+([Ee][0-9]+)?)'
-        SIGN = 'regexp:[+-]'
 
         PARENTHESIS_L = '('
         PARENTHESIS_R = ')'
@@ -59,9 +44,14 @@
 //      SPACE='regexp:\s+'
 //      ANY = 'regexp:.'
     ]
+
+    extends = "com.intellij.extapi.psi.ASTWrapperPsiElement"
 }
 
-Voml ::= expression*;
+Ygg ::= expression*;
+
+fake comment_doc ::= COMMENT_DOC;
+private comment ::= COMMENT_LINE | COMMENT_BLOCK | COMMENT_DOC | STRING;
 
 expression ::= scope
     | back_top
@@ -124,6 +114,9 @@ table ::= [type_hint] <<paired table_inner>>;
 private table_inner ::= [table_item (COMMA table_item)* [COMMA]];
 private table_item ::= pair | value;
 // ------------------------------------
+
+
+
 private meta paired ::=
     PARENTHESIS_L <<param>> PARENTHESIS_R
   | BRACKET_L <<param>> BRACKET_R

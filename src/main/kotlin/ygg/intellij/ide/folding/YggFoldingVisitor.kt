@@ -1,6 +1,6 @@
 package ygg.intellij.ide.folding
 
-import com.github.ygg_lang.ygg_intellij.language.psi.*
+import ygg.intellij.language.psi.*
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.psi.PsiComment
 import com.intellij.psi.PsiElement
@@ -32,7 +32,7 @@ class YggFoldingVisitor(private val descriptors: MutableList<FoldingDescriptor>)
 //    }
 
     override fun visitComment(comment: PsiComment) {
-        if (comment.tokenType == YggTypes.BLOCK_COMMENT) {
+        if (comment.tokenType == YggTypes.COMMENT_BLOCK) {
             fold(comment)
             super.visitComment(comment)
         }

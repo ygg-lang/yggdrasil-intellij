@@ -1,4 +1,4 @@
-package com.github.ygg_lang.ygg_intellij.language;
+package ygg.intellij.language;
 
 import com.intellij.lexer.FlexLexer;
 import com.intellij.psi.tree.IElementType;
@@ -10,9 +10,9 @@ import static ygg.intellij.language.psi.YggTypes.*;
 %%
 
 %{
-  public _YggLexer() {
-    this((java.io.Reader)null);
-  }
+public _YggLexer() {
+	this((java.io.Reader)null);
+}
 %}
 
 %public
@@ -25,8 +25,9 @@ import static ygg.intellij.language.psi.YggTypes.*;
 EOL=\R
 WHITE_SPACE=\s+
 
-COMMENT=("//"|#)[^\r\n]*
-BLOCK_COMMENT=[/][*][^*]*[*]+([^/*][^*]*[*]+)*[/]
+COMMENT_LINE=("//"|#)[^\r\n]*
+COMMENT_BLOCK=[/][*][^*]*[*]+([^/*][^*]*[*]+)*[/]
+COMMENT_DOC=("//"|#)[^\r\n]*
 BOOLEAN=true|false
 SYMBOL=[\p{XID_Start}_][\p{XID_Continue}_]*
 STRING=\"([^\"\\]|\\.)*\"
@@ -58,7 +59,6 @@ NON_ESCAPE=[^\\]
   "\""                 { return QUOTATION; }
   "\\"                 { return ESCAPE; }
   "="                  { return EQ; }
-  "nan"                { return NAN; }
   ":"                  { return COLON; }
   ";"                  { return SEMICOLON; }
   ","                  { return COMMA; }
@@ -67,8 +67,8 @@ NON_ESCAPE=[^\\]
   "*"                  { return STAR; }
   "@"                  { return AT; }
 
-  {COMMENT}            { return COMMENT; }
-  {BLOCK_COMMENT}      { return BLOCK_COMMENT; }
+  {COMMENT_LINE}       { return COMMENT_LINE; }
+  {COMMENT_BLOCK}      { return COMMENT_BLOCK; }
   {BOOLEAN}            { return BOOLEAN; }
   {SYMBOL}             { return SYMBOL; }
   {STRING}             { return STRING; }
