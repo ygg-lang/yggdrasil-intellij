@@ -1,9 +1,10 @@
 package ygg.intellij.ide.annotator.checkers
 
-import com.github.ygg_lang.ygg_intellij.ide.annotator.AnnotatorBase
+
 import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.HighlightSeverity
 import com.intellij.psi.PsiElement
+import ygg.intellij.ide.annotator.AnnotatorBase
 
 abstract class CheckerAnnotator : AnnotatorBase() {
     protected abstract fun check(element: PsiElement, holder: AnnotationHolder): CheckerAnnotatorResult

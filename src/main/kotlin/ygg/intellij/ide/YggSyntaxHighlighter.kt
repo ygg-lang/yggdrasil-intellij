@@ -1,12 +1,11 @@
 package ygg.intellij.ide
 
-import ygg.intellij.language.psi.YggTypes
 import com.intellij.lexer.Lexer
 import com.intellij.openapi.editor.colors.TextAttributesKey
 import com.intellij.openapi.fileTypes.SyntaxHighlighterBase
 import com.intellij.psi.TokenType
 import com.intellij.psi.tree.IElementType
-import ygg.intellij.ide.colors.YggColor
+import ygg.intellij.ide.highlight.YggColor
 import ygg.intellij.language.YggLexerAdapter
 import ygg.intellij.language.psi.YggTypes.*
 

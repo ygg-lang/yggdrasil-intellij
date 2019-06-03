@@ -1,13 +1,13 @@
 package ygg.intellij.ide.todo
 
-import com.github.ygg_lang.ygg_intellij.language.YggFile
-import com.github.ygg_lang.ygg_intellij.language.YggLexerAdapter
-import com.github.ygg_lang.ygg_intellij.language.psi.Voml_COMMENTS
 import com.intellij.lexer.Lexer
 import com.intellij.psi.PsiFile
 import com.intellij.psi.impl.search.IndexPatternBuilder
 import com.intellij.psi.tree.IElementType
 import com.intellij.psi.tree.TokenSet
+import ygg.intellij.ide.file_view.YggFile
+import ygg.intellij.language.YggLexerAdapter
+import ygg.intellij.language.psi.Voml_COMMENTS
 
 class VomlTodoIndexPatternBuilder : IndexPatternBuilder {
     override fun getIndexingLexer(file: PsiFile): Lexer? =

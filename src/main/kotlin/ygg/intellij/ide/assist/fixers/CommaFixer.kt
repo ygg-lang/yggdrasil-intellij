@@ -1,12 +1,16 @@
 package ygg.intellij.ide.assist.fixers
 
-import com.github.ygg_lang.ygg_intellij.language.psi.*
+
 import com.intellij.lang.SmartEnterProcessorWithFixers
 import com.intellij.openapi.editor.Editor
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiErrorElement
 import com.intellij.psi.PsiFile
 import com.intellij.psi.impl.source.tree.LeafPsiElement
+import ygg.intellij.language.psi.endOffset
+import ygg.intellij.language.psi.getNextNonCommentSibling
+import ygg.intellij.language.psi.getPrevNonCommentSibling
+import ygg.intellij.language.psi.getPrevNonWhitespaceSibling
 
 class CommaFixer : SmartEnterProcessorWithFixers.Fixer<VomlSmartEnterProcessor>() {
     override fun apply(editor: Editor, processor: VomlSmartEnterProcessor, element: PsiElement) {

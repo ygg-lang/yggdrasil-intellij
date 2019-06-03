@@ -1,12 +1,13 @@
 package ygg.intellij.ide.todo
 
-import com.github.ygg_lang.ygg_intellij.language.YggLexerAdapter
-import com.github.ygg_lang.ygg_intellij.language.psi.Voml_COMMENTS
+
 import com.intellij.lexer.Lexer
 import com.intellij.psi.impl.cache.impl.BaseFilterLexer
 import com.intellij.psi.impl.cache.impl.OccurrenceConsumer
 import com.intellij.psi.impl.cache.impl.todo.LexerBasedTodoIndexer
 import com.intellij.psi.search.UsageSearchContext
+import ygg.intellij.language.YggLexerAdapter
+import ygg.intellij.language.psi.Voml_COMMENTS
 
 class VomlTodoIndexer : LexerBasedTodoIndexer() {
     override fun createLexer(consumer: OccurrenceConsumer): Lexer {

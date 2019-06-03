@@ -1,12 +1,12 @@
 package ygg.intellij.ide.assist.fixers
 
 
-import com.github.ygg_lang.ygg_intellij.language.YggFile
 import com.intellij.lang.SmartEnterProcessorWithFixers
 import com.intellij.openapi.editor.Editor
 import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
+import ygg.intellij.ide.file_view.YggFile
 
 class VomlSmartEnterProcessor : SmartEnterProcessorWithFixers() {
     init {

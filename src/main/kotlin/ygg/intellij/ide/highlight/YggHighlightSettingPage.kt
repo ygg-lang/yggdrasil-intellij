@@ -1,12 +1,12 @@
-package ygg.intellij.ide.colors
+package ygg.intellij.ide.highlight
 
-import com.github.ygg_lang.ygg_intellij.ide.YggSyntaxHighlighter
-import com.github.ygg_lang.ygg_intellij.ide.icons.YggIconProvider
-import ygg.intellij.YggBundle
+
 import com.intellij.openapi.options.colors.ColorDescriptor
 import com.intellij.openapi.options.colors.ColorSettingsPage
+import ygg.intellij.ide.YggSyntaxHighlighter
+import ygg.intellij.ide.file_view.YggIconProvider
 
-class YggColorSettingsPage : ColorSettingsPage {
+class YggHighlightSettingPage : ColorSettingsPage {
     private val attrs = YggColor
         .values()
         .map { it.attributesDescriptor }

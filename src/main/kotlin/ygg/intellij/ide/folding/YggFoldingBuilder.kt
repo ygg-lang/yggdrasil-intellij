@@ -1,7 +1,6 @@
 package ygg.intellij.ide.folding
 
-import com.github.ygg_lang.ygg_intellij.language.YggFile
-import com.github.ygg_lang.ygg_intellij.language.psi.*
+
 import com.intellij.lang.ASTNode
 import com.intellij.lang.folding.CustomFoldingBuilder
 import com.intellij.lang.folding.FoldingDescriptor
@@ -10,6 +9,8 @@ import com.intellij.openapi.project.DumbAware
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
 import com.intellij.psi.util.PsiTreeUtil
+import ygg.intellij.ide.file_view.YggFile
+import ygg.intellij.language.psi.YggTypes
 
 class YggFoldingBuilder : CustomFoldingBuilder(), DumbAware {
     override fun buildLanguageFoldRegions(
@@ -27,7 +28,7 @@ class YggFoldingBuilder : CustomFoldingBuilder(), DumbAware {
 
     override fun getLanguagePlaceholderText(node: ASTNode, range: TextRange) =
         when (node.elementType) {
-            ygg.intellij.language.psi.YggTypes.TABLE -> "[...]"
+            YggTypes.TABLE -> "[...]"
             else -> "{...}"
         }
 

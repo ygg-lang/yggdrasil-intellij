@@ -1,6 +1,5 @@
-package ygg.intellij.ide.colors
+package ygg.intellij.ide.highlight
 
-import ygg.intellij.YggBundle
 import com.intellij.lang.annotation.HighlightSeverity
 import com.intellij.openapi.editor.HighlighterColors
 import com.intellij.openapi.editor.colors.TextAttributesKey

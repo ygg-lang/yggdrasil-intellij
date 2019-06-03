@@ -1,14 +1,15 @@
 package ygg.intellij.ide.braces
 
-import ygg.intellij.language.psi.YggTypes
-import com.github.ygg_lang.ygg_intellij.language.psi.Voml_COMMENTS
-import com.github.ygg_lang.ygg_intellij.language.psi.tokenSetOf
+
 import com.intellij.lang.BracePair
 import com.intellij.lang.PairedBraceMatcher
 import com.intellij.psi.PsiFile
 import com.intellij.psi.TokenType
 import com.intellij.psi.tree.IElementType
 import com.intellij.psi.tree.TokenSet
+import ygg.intellij.language.psi.Voml_COMMENTS
+import ygg.intellij.language.psi.tokenSetOf
+import ygg.intellij.language.psi.YggTypes.*
 
 class VomlBaseBraceMatcher : PairedBraceMatcher {
     override fun getPairs(): Array<BracePair> = PAIRS
@@ -20,9 +21,9 @@ class VomlBaseBraceMatcher : PairedBraceMatcher {
 
     companion object {
         private val PAIRS = arrayOf(
-            BracePair(ygg.intellij.language.psi.YggTypes.BRACE_L, ygg.intellij.language.psi.YggTypes.BRACE_R, true),
-            BracePair(ygg.intellij.language.psi.YggTypes.BRACKET_L, ygg.intellij.language.psi.YggTypes.BRACKET_R, true),
-            BracePair(ygg.intellij.language.psi.YggTypes.PARENTHESIS_L, ygg.intellij.language.psi.YggTypes.PARENTHESIS_R, true),
+            BracePair(BRACE_L, BRACE_R, true),
+            BracePair(BRACKET_L, BRACKET_R, true),
+            BracePair(PARENTHESIS_L, PARENTHESIS_R, true),
             // BracePair(YggTypes.EXT_PREFIX, YggTypes.BRACKETR, false)
         )
 
@@ -30,11 +31,11 @@ class VomlBaseBraceMatcher : PairedBraceMatcher {
             Voml_COMMENTS,
             tokenSetOf(
                 TokenType.WHITE_SPACE,
-                ygg.intellij.language.psi.YggTypes.COMMA,
-                ygg.intellij.language.psi.YggTypes.PARENTHESIS_R,
-                ygg.intellij.language.psi.YggTypes.BRACKET_R,
-                ygg.intellij.language.psi.YggTypes.BRACE_R,
-                ygg.intellij.language.psi.YggTypes.BRACE_L
+                COMMA,
+                PARENTHESIS_R,
+                BRACKET_R,
+                BRACE_R,
+                BRACE_L
             )
         )
     }
