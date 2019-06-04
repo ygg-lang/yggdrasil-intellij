@@ -8,7 +8,7 @@
     psiImplPackage = "ygg.intellij.language.psi_node"
 
     elementTypeHolderClass = "ygg.intellij.language.psi.YggTypes"
-    elementTypeClass = "ygg.intellij.language.psi.YggElementType"
+    // elementTypeClass = "ygg.intellij.language.psi.YggElementType"
     tokenTypeClass = "ygg.intellij.language.psi.YggTokenType"
 
     psiImplUtilClass = "ygg.intellij.language.psi_node.YggPsiExtension"
@@ -51,7 +51,7 @@
 Ygg ::= expression*;
 
 fake comment_doc ::= COMMENT_DOC;
-private comment ::= COMMENT_LINE | COMMENT_BLOCK | COMMENT_DOC | STRING;
+private comment ::= COMMENT_LINE | COMMENT_BLOCK | COMMENT_DOC;
 
 expression ::= scope
     | back_top
@@ -100,7 +100,7 @@ private num ::= [SIGN] (INTEGER | DECIMAL) [number_suffix] | [SIGN] BYTE | other
 private other_num ::= NAN;
 // ------------------------------------
 private str ::= [string_prefix] (string_inline|string_multi);
-string_inline ::= QUOTATION char* QUOTATION;
+string_inline ::= STRING char* QUOTATION;
 string_multi ::= QUOTATION char* QUOTATION;
 private char ::= escaped | NON_ESCAPE;
 escaped ::= ESCAPE (ESCAPE|NON_ESCAPE);

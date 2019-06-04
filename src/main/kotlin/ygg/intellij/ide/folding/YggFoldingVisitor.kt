@@ -9,7 +9,6 @@ import ygg.intellij.language.psi.YggTypes
 
 class YggFoldingVisitor(private val descriptors: MutableList<FoldingDescriptor>) : YggRecursiveVisitor() {
 
-
 //    override fun visitObjectBody(o: VomlObjectBody) {
 //        if (o.objectEntryList.isNotEmpty()) {
 //            fold(o)
