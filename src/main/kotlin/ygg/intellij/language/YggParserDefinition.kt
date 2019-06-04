@@ -21,7 +21,7 @@ import ygg.intellij.language.psi.YggTypes.*
 class YggParserDefinition : ParserDefinition {
     companion object {
         val COMMENTS = TokenSet.create(COMMENT_LINE, COMMENT_BLOCK, COMMENT_BLOCK)
-        val STRING_LITERALS = TokenSet.create(STRING_INLINE, STRING_PREFIX, STRING_MULTI)
+        val STRING_LITERALS = TokenSet.create(STRING)
         val FILE = IFileElementType(YggLanguage.INSTANCE)
     }
 

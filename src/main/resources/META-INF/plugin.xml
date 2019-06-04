@@ -18,11 +18,12 @@
 			implementationClass="ygg.intellij.language.YggParserDefinition"
 		/>
 		<!-- Highlighter -->
+		<colorSettingsPage implementation="ygg.intellij.ide.highlight.YggHighlightSettingPage"/>
 		<lang.syntaxHighlighter
 			language="YGG"
 			implementationClass="ygg.intellij.ide.YggSyntaxHighlighter"
 		/>
-		<colorSettingsPage implementation="ygg.intellij.ide.highlight.YggHighlightSettingPage"/>
+		<highlightVisitor implementation="ygg.intellij.ide.highlight.YggHighlightVisitor"/>
 		<additionalTextAttributes scheme="Default" file="colors/VomlDefault.xml"/>
 		<additionalTextAttributes scheme="Darcula" file="colors/VomlDarcula.xml"/>
 		<!-- Formatter -->

@@ -11,26 +11,20 @@ import static ygg.intellij.language.psi.YggTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import ygg.intellij.language.psi.*;
 
-public class YggEscapedNode extends ASTWrapperPsiElement implements YggEscaped {
+public class YggStringNode extends ASTWrapperPsiElement implements YggString {
 
-  public YggEscapedNode(@NotNull ASTNode node) {
+  public YggStringNode(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull YggVisitor visitor) {
-    visitor.visitEscaped(this);
+    visitor.visitString(this);
   }
 
   @Override
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof YggVisitor) accept((YggVisitor)visitor);
     else super.accept(visitor);
-  }
-
-  @Override
-  @Nullable
-  public PsiElement getNonEscape() {
-    return findChildByType(NON_ESCAPE);
   }
 
 }

@@ -11,7 +11,7 @@ import com.intellij.openapi.editor.DefaultLanguageHighlighterColors as Default
 import java.util.function.Supplier
 
 
-enum class YggColor(humanName: Supplier<@NlsContexts.AttributeDescriptor String>, default: TextAttributesKey? = null) {
+enum class YggHighlightToken(humanName: Supplier<@NlsContexts.AttributeDescriptor String>, default: TextAttributesKey? = null) {
     // 特殊关键词
     KEYWORD(YggBundle.messagePointer("color.settings.toml.keyword"), Default.KEYWORD),
     EXTENSION(OptionsBundle.messagePointer("options.language.defaults.metadata"), Default.METADATA),

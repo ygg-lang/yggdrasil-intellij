@@ -23,15 +23,15 @@ public class YggVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitEscaped(@NotNull YggEscaped o) {
-    visitPsiElement(o);
-  }
-
   public void visitExpression(@NotNull YggExpression o) {
     visitPsiElement(o);
   }
 
   public void visitGrammarStatement(@NotNull YggGrammarStatement o) {
+    visitPsiElement(o);
+  }
+
+  public void visitGrammarSymbol(@NotNull YggGrammarSymbol o) {
     visitPsiElement(o);
   }
 
@@ -71,10 +71,6 @@ public class YggVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitPredefinedSymbol(@NotNull YggPredefinedSymbol o) {
-    visitPsiElement(o);
-  }
-
   public void visitRef(@NotNull YggRef o) {
     visitPsiElement(o);
   }
@@ -91,15 +87,7 @@ public class YggVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitStringInline(@NotNull YggStringInline o) {
-    visitPsiElement(o);
-  }
-
-  public void visitStringMulti(@NotNull YggStringMulti o) {
-    visitPsiElement(o);
-  }
-
-  public void visitStringPrefix(@NotNull YggStringPrefix o) {
+  public void visitString(@NotNull YggString o) {
     visitPsiElement(o);
   }
 

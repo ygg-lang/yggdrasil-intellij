@@ -29,14 +29,14 @@ public class YggGrammarStatementNode extends ASTWrapperPsiElement implements Ygg
 
   @Override
   @NotNull
-  public YggPredefinedSymbol getPredefinedSymbol() {
-    return findNotNullChildByClass(YggPredefinedSymbol.class);
+  public YggGrammarSymbol getGrammarSymbol() {
+    return findNotNullChildByClass(YggGrammarSymbol.class);
   }
 
   @Override
   @NotNull
-  public List<YggStringInline> getStringInlineList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, YggStringInline.class);
+  public List<YggString> getStringList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, YggString.class);
   }
 
 }

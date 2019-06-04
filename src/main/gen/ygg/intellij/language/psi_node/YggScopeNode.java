@@ -41,8 +41,8 @@ public class YggScopeNode extends ASTWrapperPsiElement implements YggScope {
 
   @Override
   @NotNull
-  public List<YggStringInline> getStringInlineList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, YggStringInline.class);
+  public List<YggString> getStringList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, YggString.class);
   }
 
 }

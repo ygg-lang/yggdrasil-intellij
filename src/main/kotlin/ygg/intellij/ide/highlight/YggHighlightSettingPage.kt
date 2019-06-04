@@ -7,12 +7,12 @@ import ygg.intellij.ide.YggSyntaxHighlighter
 import ygg.intellij.ide.file_view.YggIconProvider
 
 class YggHighlightSettingPage : ColorSettingsPage {
-    private val attrs = YggColor
+    private val attrs = YggHighlightToken
         .values()
         .map { it.attributesDescriptor }
         .toTypedArray()
 
-    private val annotatorTags = YggColor
+    private val annotatorTags = YggHighlightToken
         .values()
         .associateBy({ it.name }, { it.textAttributesKey })
 

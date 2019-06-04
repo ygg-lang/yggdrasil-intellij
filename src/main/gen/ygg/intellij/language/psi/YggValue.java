@@ -17,13 +17,7 @@ public interface YggValue extends PsiElement {
   YggRef getRef();
 
   @Nullable
-  YggStringInline getStringInline();
-
-  @Nullable
-  YggStringMulti getStringMulti();
-
-  @Nullable
-  YggStringPrefix getStringPrefix();
+  YggString getString();
 
   @Nullable
   YggTable getTable();

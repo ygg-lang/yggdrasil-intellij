@@ -35,8 +35,8 @@ public class YggImportStatementNode extends ASTWrapperPsiElement implements YggI
 
   @Override
   @NotNull
-  public YggStringInline getStringInline() {
-    return findNotNullChildByClass(YggStringInline.class);
+  public YggString getString() {
+    return findNotNullChildByClass(YggString.class);
   }
 
 }

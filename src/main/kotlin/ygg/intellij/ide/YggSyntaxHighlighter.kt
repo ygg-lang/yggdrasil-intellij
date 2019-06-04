@@ -5,9 +5,9 @@ import com.intellij.openapi.editor.colors.TextAttributesKey
 import com.intellij.openapi.fileTypes.SyntaxHighlighterBase
 import com.intellij.psi.TokenType
 import com.intellij.psi.tree.IElementType
-import ygg.intellij.ide.highlight.YggColor
 import ygg.intellij.language.YggLexerAdapter
 import ygg.intellij.language.psi.YggTypes.*
+import ygg.intellij.ide.highlight.YggHighlightToken as Color
 
 class YggSyntaxHighlighter : SyntaxHighlighterBase() {
     override fun getHighlightingLexer(): Lexer {
@@ -18,44 +18,39 @@ class YggSyntaxHighlighter : SyntaxHighlighterBase() {
         return pack(getTokenColor(tokenType)?.textAttributesKey)
     }
 
-    private fun getTokenColor(tokenType: IElementType): YggColor? {
+    private fun getTokenColor(tokenType: IElementType): Color? {
         return when (tokenType) {
             //
-            IMPORT, GRAMMAR, IGNORE, AS -> YggColor.KEYWORD
-            ANNOTATION, ANNOTATION_MARK -> YggColor.ANNOTATION
-            PREDEFINED_SYMBOL -> YggColor.PREDEFINED
+            IMPORT, GRAMMAR, IGNORE, AS -> Color.KEYWORD
+            ANNOTATION, ANNOTATION_MARK -> Color.ANNOTATION
+            GRAMMAR, IGNORE, IMPORT -> Color.PREDEFINED
             //
-            STRING_PREFIX -> YggColor.STRING_HINT
-            NUMBER_SUFFIX -> YggColor.NUMBER_HINT
-            TYPE_HINT -> YggColor.TYPE_HINT
-            RULE_SYMBOL -> YggColor.SCOPE_SYMBOL
-            SCOPE_MARK -> YggColor.SCOPE_MARK
-            INSERT_DOT, INSERT_STAR -> YggColor.INSERT_MARK
+            NUMBER_SUFFIX -> Color.NUMBER_HINT
+            TYPE_HINT -> Color.TYPE_HINT
+            RULE_SYMBOL -> Color.SCOPE_SYMBOL
+            SCOPE_MARK -> Color.SCOPE_MARK
+            INSERT_DOT, INSERT_STAR -> Color.INSERT_MARK
             //
-            PARENTHESIS_L, PARENTHESIS_R -> YggColor.PARENTHESES
-            BRACKET_L, BRACKET_R -> YggColor.BRACKETS
-            BRACE_L, BRACE_R -> YggColor.BRACES
-            COLON, EQ -> YggColor.SET
-            COMMA -> YggColor.COMMA
+            PARENTHESIS_L, PARENTHESIS_R -> Color.PARENTHESES
+            BRACKET_L, BRACKET_R -> Color.BRACKETS
+            BRACE_L, BRACE_R -> Color.BRACES
+            COLON, EQ -> Color.SET
+            COMMA -> Color.COMMA
             // atom
-            NULL -> YggColor.NULL
-            BOOLEAN -> YggColor.BOOLEAN
-
-            NUMBER_SUFFIX -> YggColor.NUMBER_HINT
-            INTEGER -> YggColor.INTEGER
-            DECIMAL -> YggColor.DECIMAL
-
-            STRING_PREFIX -> YggColor.STRING_HINT
-            STRING_INLINE -> YggColor.STRING
-            STRING_MULTI -> YggColor.STRING
-
-            SYMBOL -> YggColor.IDENTIFIER
+            NULL -> Color.NULL
+            BOOLEAN -> Color.BOOLEAN
+            STRING, STRING_QUOTE -> Color.STRING
+            NUMBER_SUFFIX -> Color.NUMBER_HINT
+            INTEGER -> Color.INTEGER
+            DECIMAL -> Color.DECIMAL
+            
+            SYMBOL -> Color.IDENTIFIER
             // 注释
-            COMMENT_LINE -> YggColor.COMMENT_INLINE
-            COMMENT_BLOCK -> YggColor.COMMENT_BLOCK
-            COMMENT_DOC -> YggColor.COMMENT_BLOCK
+            COMMENT_LINE -> Color.COMMENT_INLINE
+            COMMENT_BLOCK -> Color.COMMENT_BLOCK
+            COMMENT_DOC -> Color.COMMENT_BLOCK
             // 错误
-            TokenType.BAD_CHARACTER -> YggColor.BAD_CHARACTER
+            TokenType.BAD_CHARACTER -> Color.BAD_CHARACTER
             else -> null
         }
     }

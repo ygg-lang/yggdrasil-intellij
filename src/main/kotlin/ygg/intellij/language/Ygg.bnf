@@ -31,7 +31,11 @@
         ANGLE_R = '>'
         QUOTATION = '"'
         ESCAPE = '\'
+
         NON_ESCAPE = 'regexp:[^\\]'
+        SOFT_CONNECT = '~'
+        CHOOSE='|'
+        OPTIONAL='?'
         EQ = '='
         NAN = "nan"
         COLON = ':'
@@ -49,7 +53,8 @@
 }
 
 Ygg ::= expression*;
-
+// fake used for mixin
+// pri used for syntax highlight
 fake comment_doc ::= COMMENT_DOC;
 private comment ::= COMMENT_LINE | COMMENT_BLOCK | COMMENT_DOC;
 
@@ -63,27 +68,27 @@ expression ::= scope
     | annotation
     | SEMICOLON;
 // ------------------------------------
-ignore_statement ::= IGNORE (rule_symbol | <<paired ignore_inner>>);
+ignore_statement ::= "@ignore" (rule_symbol | <<paired ignore_inner>>);
 private ignore_inner ::= [rule_symbol (COMMA rule_symbol)* [COMMA]];
 // ------------------------------------
-grammar_statement ::= GRAMMAR predefined_symbol [<<paired grammar_inner>>];
-private grammar_inner ::= [string_inline (COMMA string_inline)* [COMMA]];
-predefined_symbol ::= SYMBOL;
+grammar_statement ::= "@grammar" grammar_symbol [<<paired grammar_inner>>];
+private grammar_inner ::= [string (COMMA string)* [COMMA]];
+grammar_symbol ::= SYMBOL;
 // -------------------------------G-----
-import_statement ::= IMPORT string_inline [rule_symbol | <<paired include_inner>>];
+import_statement ::= "@import" string [rule_symbol | <<paired include_inner>>];
 private include_inner ::= [rule_symbol (COMMA rule_symbol)* [COMMA]];
 // ------------------------------------
 scope ::= <<paired scope_inner>>;
 private scope_inner ::= [scope_mark] scope_path;
 private scope_path  ::= scope_key (DOT scope_key)*
-private scope_key   ::= string_inline | rule_symbol | INTEGER;
+private scope_key   ::= string | rule_symbol | INTEGER;
 scope_mark ::= ACCENT | ANGLE_L+ | ANGLE_R;
 back_top ::= "---";
 rule_symbol ::= SYMBOL;
 // ------------------------------------
 pair ::= symbol_path eq value;
 symbol_path ::= key (DOT key)*;
-private key ::= string_inline | key_symbol | INTEGER;
+private key ::= string | key_symbol | INTEGER;
 private eq ::= EQ | COLON;
 insert_pair ::= [insert_dot] pair;
 insert_item ::= insert_star value;
@@ -91,19 +96,15 @@ insert_dot ::= DOT;
 insert_star ::= STAR;
 key_symbol ::= SYMBOL;
 // ------------------------------------
-value ::= NULL | BOOLEAN | num | ref | str | table | annotation;
+value ::= NULL | BOOLEAN | num | ref | string | table | annotation;
 type_hint ::= SYMBOL;
-string_prefix ::= SYMBOL;
 number_suffix ::= SYMBOL;
 // ------------------------------------
 private num ::= [SIGN] (INTEGER | DECIMAL) [number_suffix] | [SIGN] BYTE | other_num;
 private other_num ::= NAN;
 // ------------------------------------
-private str ::= [string_prefix] (string_inline|string_multi);
-string_inline ::= STRING char* QUOTATION;
-string_multi ::= QUOTATION char* QUOTATION;
-private char ::= escaped | NON_ESCAPE;
-escaped ::= ESCAPE (ESCAPE|NON_ESCAPE);
+string ::= STRING_QUOTE char* STRING_QUOTE;
+private char ::= CHARACTER | ESCAPE_UNICODE | ESCAPE_SPECIAL;
 // ------------------------------------
 ref ::= CITE symbol_path;
 // ------------------------------------

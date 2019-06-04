@@ -63,12 +63,15 @@ HEX = [0-9a-fA-F]
 	"<"  { return ANGLE_L; }
 	">"  { return ANGLE_R; }
 	//
+	:    { return COLON; }
+	;    { return SEMICOLON; }
+	,    { return COMMA; }
+	\~   { return SOFT_CONNECT;}
+	\|   { return CHOOSE;}
+	\?   { return OPTIONAL;}
 	"\"" { return QUOTATION; }
 	"\\" { return ESCAPE; }
 	"="  { return EQ; }
-	":"  { return COLON; }
-	";"  { return SEMICOLON; }
-	","  { return COMMA; }
 	"$"  { return CITE; }
 	"."  { return DOT; }
 	"*"  { return STAR; }
@@ -76,6 +79,10 @@ HEX = [0-9a-fA-F]
 }
 
 <YYINITIAL> {
+	@import {return IMPORT;}
+	@ignore {return IGNORE;}
+	@grammar {return GRAMMAR;}
+
 	// literal
 	{BOOLEAN} { return BOOLEAN; }
 	{SYMBOL}  { return SYMBOL; }
@@ -108,6 +115,5 @@ HEX = [0-9a-fA-F]
 	[^\\\"] {return CHARACTER;}
 	\" {yybegin(YYINITIAL);}
 }
-
 
 [^] { return BAD_CHARACTER; }

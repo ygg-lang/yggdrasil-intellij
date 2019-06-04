@@ -14,6 +14,6 @@ public interface YggScope extends PsiElement {
   YggScopeMark getScopeMark();
 
   @NotNull
-  List<YggStringInline> getStringInlineList();
+  List<YggString> getStringList();
 
 }

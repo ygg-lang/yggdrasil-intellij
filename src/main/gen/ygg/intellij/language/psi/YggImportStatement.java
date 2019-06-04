@@ -11,6 +11,6 @@ public interface YggImportStatement extends PsiElement {
   List<YggRuleSymbol> getRuleSymbolList();
 
   @NotNull
-  YggStringInline getStringInline();
+  YggString getString();
 
 }
