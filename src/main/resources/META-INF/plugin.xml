@@ -43,10 +43,10 @@
 			implementationClass="ygg.intellij.ide.YggQuoteHandler"
 		/>
 		<!-- Structure View -->
-		<lang.foldingBuilder
-			language="YGG"
-			implementationClass="ygg.intellij.ide.folding.YggFoldingBuilder"
-		/>
+		<!--		<lang.foldingBuilder-->
+		<!--			language="YGG"-->
+		<!--			implementationClass="ygg.intellij.ide.folding.YggFoldingBuilder"-->
+		<!--		/>-->
 		<indexPatternBuilder
 			implementation="ygg.intellij.ide.todo.VomlTodoIndexPatternBuilder"
 		/>
@@ -81,11 +81,11 @@
 		/>
 	</extensions>
 	<actions>
-		<action id="ygg.intellij.ide.actions.YggCreateFile"
-		        class="ygg.intellij.ide.actions.YggCreateFile"
-		        text="Voml File"
-		        description="Create new Voml file">
-			<add-to-group group-id="NewGroup" anchor="after" relative-to-action="NewFile"/>
-		</action>
+		<!--		<action id="ygg.intellij.ide.actions.YggCreateFile"-->
+		<!--		        class="ygg.intellij.ide.actions.YggCreateFile"-->
+		<!--		        text="Voml File"-->
+		<!--		        description="Create new Voml file">-->
+		<!--			<add-to-group group-id="NewGroup" anchor="after" relative-to-action="NewFile"/>-->
+		<!--		</action>-->
 	</actions>
 </idea-plugin>

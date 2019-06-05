@@ -22,7 +22,8 @@ class YggFoldingBuilder : CustomFoldingBuilder(), DumbAware {
         if (root !is YggFile) return
         val visitor = YggFoldingVisitor(descriptors)
         PsiTreeUtil.processElements(root) {
-            it.accept(visitor); true
+            it.accept(visitor);
+            true
         }
     }
 

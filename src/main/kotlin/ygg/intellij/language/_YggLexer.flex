@@ -68,16 +68,19 @@ HEX = [0-9a-fA-F]
 	,    { return COMMA; }
 	\~   { return SOFT_CONNECT;}
 	\|   { return CHOOSE;}
+	\!   { return OPTIONAL;}
 	\?   { return OPTIONAL;}
-	"\"" { return QUOTATION; }
-	"\\" { return ESCAPE; }
-	"="  { return EQ; }
-	"$"  { return CITE; }
-	"."  { return DOT; }
-	"*"  { return STAR; }
-	"@"  { return AT; }
+	\"   { return QUOTATION; }
+	\\   { return ESCAPE; }
+	\/   { return EQ; }
+	\$   { return CITE; }
+	\.   { return DOT; }
+	\*   { return STAR; }
+	@    { return AT; }
 }
-
+<YYINITIAL> [\^]= {
+	return EQ;
+}
 <YYINITIAL> {
 	@import {return IMPORT;}
 	@ignore {return IGNORE;}

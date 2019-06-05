@@ -459,12 +459,6 @@ public class YggParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // GRAMMAR
-  static boolean keywords(PsiBuilder b, int l) {
-    return consumeToken(b, GRAMMAR);
-  }
-
-  /* ********************************************************** */
   // [SIGN] (INTEGER | DECIMAL) [number_suffix] | [SIGN] BYTE | other_num
   static boolean num(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "num")) return false;
