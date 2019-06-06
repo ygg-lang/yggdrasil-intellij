@@ -144,39 +144,33 @@ public class YggParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // [string (COMMA string)* [COMMA]]
+  // string (COMMA string)* [COMMA]
   static boolean grammar_inner(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "grammar_inner")) return false;
-    grammar_inner_0(b, l + 1);
-    return true;
-  }
-
-  // string (COMMA string)* [COMMA]
-  private static boolean grammar_inner_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "grammar_inner_0")) return false;
+    if (!nextTokenIs(b, STRING_QUOTE)) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = string(b, l + 1);
-    r = r && grammar_inner_0_1(b, l + 1);
-    r = r && grammar_inner_0_2(b, l + 1);
+    r = r && grammar_inner_1(b, l + 1);
+    r = r && grammar_inner_2(b, l + 1);
     exit_section_(b, m, null, r);
     return r;
   }
 
   // (COMMA string)*
-  private static boolean grammar_inner_0_1(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "grammar_inner_0_1")) return false;
+  private static boolean grammar_inner_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "grammar_inner_1")) return false;
     while (true) {
       int c = current_position_(b);
-      if (!grammar_inner_0_1_0(b, l + 1)) break;
-      if (!empty_element_parsed_guard_(b, "grammar_inner_0_1", c)) break;
+      if (!grammar_inner_1_0(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "grammar_inner_1", c)) break;
     }
     return true;
   }
 
   // COMMA string
-  private static boolean grammar_inner_0_1_0(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "grammar_inner_0_1_0")) return false;
+  private static boolean grammar_inner_1_0(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "grammar_inner_1_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, COMMA);
@@ -186,8 +180,8 @@ public class YggParser implements PsiParser, LightPsiParser {
   }
 
   // [COMMA]
-  private static boolean grammar_inner_0_2(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "grammar_inner_0_2")) return false;
+  private static boolean grammar_inner_2(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "grammar_inner_2")) return false;
     consumeToken(b, COMMA);
     return true;
   }

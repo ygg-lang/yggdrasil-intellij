@@ -10,14 +10,13 @@ import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
 import com.intellij.psi.util.PsiTreeUtil
 import ygg.intellij.ide.file_view.YggFile
-import ygg.intellij.language.psi.YggTypes
 
 class YggFoldingBuilder : CustomFoldingBuilder(), DumbAware {
     override fun buildLanguageFoldRegions(
         descriptors: MutableList<FoldingDescriptor>,
         root: PsiElement,
         document: Document,
-        quick: Boolean
+        quick: Boolean,
     ) {
         if (root !is YggFile) return
         val visitor = YggFoldingVisitor(descriptors)
@@ -27,11 +26,7 @@ class YggFoldingBuilder : CustomFoldingBuilder(), DumbAware {
         }
     }
 
-    override fun getLanguagePlaceholderText(node: ASTNode, range: TextRange) =
-        when (node.elementType) {
-            YggTypes.TABLE -> "[...]"
-            else -> "{...}"
-        }
+    override fun getLanguagePlaceholderText(node: ASTNode, range: TextRange) = "..."
 
     override fun isRegionCollapsedByDefault(node: ASTNode) = false
 }

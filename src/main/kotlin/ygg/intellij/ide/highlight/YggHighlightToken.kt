@@ -24,12 +24,12 @@ class YggHighlightToken : SyntaxHighlighterBase() {
             IMPORT, GRAMMAR, IGNORE, AS -> Color.KEYWORD
             ANNOTATION, ANNOTATION_MARK -> Color.ANNOTATION
             GRAMMAR, IGNORE, IMPORT -> Color.PREDEFINED
-            OPTIONAL, -> Color.KEYWORD
+            OPTIONAL -> Color.KEYWORD
             //
             NUMBER_SUFFIX -> Color.NUMBER_HINT
             TYPE_HINT -> Color.TYPE_HINT
             RULE_SYMBOL -> Color.SCOPE_SYMBOL
-            SCOPE_MARK -> Color.SCOPE_MARK
+            SCOPE_MARK -> Color.MANY
             INSERT_DOT, INSERT_STAR -> Color.INSERT_MARK
             //
             PARENTHESIS_L, PARENTHESIS_R -> Color.PARENTHESES

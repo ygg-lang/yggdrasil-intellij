@@ -1,6 +1,5 @@
 package ygg.intellij.ide.folding
 
-import ygg.intellij.language.psi.*
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.psi.PsiComment
 import com.intellij.psi.PsiElement
@@ -39,5 +38,13 @@ class YggFoldingVisitor(private val descriptors: MutableList<FoldingDescriptor>)
 
     private fun fold(element: PsiElement) {
         descriptors += FoldingDescriptor(element.node, element.textRange)
+    }
+
+    private fun fold(element: PsiElement, text: String) {
+        descriptors += FoldingDescriptor(element.node, element.textRange, null, text)
+    }
+
+    private fun fold(element: PsiElement, text: String, collapsed: Boolean) {
+        descriptors += FoldingDescriptor(element.node, element.textRange, null, text, collapsed, setOf())
     }
 }

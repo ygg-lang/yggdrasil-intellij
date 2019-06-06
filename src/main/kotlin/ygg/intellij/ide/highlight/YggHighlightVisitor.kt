@@ -7,6 +7,7 @@ import com.intellij.codeInsight.daemon.impl.analysis.HighlightInfoHolder
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import ygg.intellij.ide.file_view.YggFile
+import ygg.intellij.language.psi.YggGrammarSymbol
 import ygg.intellij.language.psi.YggVisitor
 
 class YggHighlightVisitor : YggVisitor(), HighlightVisitor {
@@ -37,5 +38,7 @@ class YggHighlightVisitor : YggVisitor(), HighlightVisitor {
         infoHolder?.add(builder.create())
     }
 
-
+    override fun visitGrammarSymbol(o: YggGrammarSymbol) {
+        highlight(o, YggHighlightColor.PREDEFINED)
+    }
 }

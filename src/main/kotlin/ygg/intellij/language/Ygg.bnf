@@ -8,7 +8,7 @@
     psiImplPackage = "ygg.intellij.language.psi_node"
 
     elementTypeHolderClass = "ygg.intellij.language.psi.YggTypes"
-    // elementTypeClass = "ygg.intellij.language.psi.YggElementType"
+    elementTypeClass = "ygg.intellij.language.psi.YggElementType"
     tokenTypeClass = "ygg.intellij.language.psi.YggTokenType"
 
     psiImplUtilClass = "ygg.intellij.language.psi_node.YggPsiExtension"
@@ -69,9 +69,11 @@ expression ::= scope
 // ------------------------------------
 ignore_statement ::= IGNORE (rule_symbol | <<paired ignore_inner>>);
 private ignore_inner ::= [rule_symbol (COMMA rule_symbol)* [COMMA]];
-// ------------------------------------
+// @grammar ------------------------------------------------------------------------------------------------------------
+// @grammar ygg {"*.yg","*.ygg", "*.grammar"}
+// @grammar ygg;
 grammar_statement ::= GRAMMAR grammar_symbol [<<paired grammar_inner>>];
-private grammar_inner ::= [string (COMMA string)* [COMMA]];
+private grammar_inner ::= string (COMMA string)* [COMMA];
 grammar_symbol ::= SYMBOL;
 // -------------------------------G-----
 import_statement ::= IMPORT string [rule_symbol | <<paired include_inner>>];

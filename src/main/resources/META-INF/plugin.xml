@@ -3,7 +3,7 @@
 	<name>Yggdrasil Support</name>
 	<vendor>Yggdrasil</vendor>
 	<depends>com.intellij.modules.platform</depends>
-<!--	<depends optional="true" config-file="plugin-with-rust.xml">org.rust.lang</depends>-->
+	<!--	<depends optional="true" config-file="plugin-with-rust.xml">org.rust.lang</depends>-->
 	<resource-bundle>messages.YggBundle</resource-bundle>
 	<extensions defaultExtensionNs="com.intellij">
 		<fileType
@@ -43,10 +43,10 @@
 			implementationClass="ygg.intellij.ide.YggQuoteHandler"
 		/>
 		<!-- Structure View -->
-		<!--		<lang.foldingBuilder-->
-		<!--			language="YGG"-->
-		<!--			implementationClass="ygg.intellij.ide.folding.YggFoldingBuilder"-->
-		<!--		/>-->
+		<lang.foldingBuilder
+			language="YGG"
+			implementationClass="ygg.intellij.ide.folding.YggFoldingBuilder"
+		/>
 		<indexPatternBuilder
 			implementation="ygg.intellij.ide.todo.VomlTodoIndexPatternBuilder"
 		/>
@@ -81,11 +81,13 @@
 		/>
 	</extensions>
 	<actions>
-		<!--		<action id="ygg.intellij.ide.actions.YggCreateFile"-->
-		<!--		        class="ygg.intellij.ide.actions.YggCreateFile"-->
-		<!--		        text="Voml File"-->
-		<!--		        description="Create new Voml file">-->
-		<!--			<add-to-group group-id="NewGroup" anchor="after" relative-to-action="NewFile"/>-->
-		<!--		</action>-->
+		<action
+			id="ygg.intellij.ide.actions.YggCreateFile"
+			class="ygg.intellij.ide.actions.YggCreateFile"
+			text="Voml File"
+			description="Create new Voml file"
+		>
+			<add-to-group group-id="NewGroup" anchor="after" relative-to-action="NewFile"/>
+		</action>
 	</actions>
 </idea-plugin>

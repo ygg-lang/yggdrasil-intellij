@@ -79,7 +79,7 @@ HEX = [0-9a-fA-F]
 	\.   { return DOT; }
 	\*   { return STAR; }
 }
-<YYINITIAL> [\^$]*= {
+<YYINITIAL> [\^$@]*= {
 	return EQ;
 }
 <YYINITIAL> {
@@ -113,11 +113,11 @@ HEX = [0-9a-fA-F]
 }
 <StringSQ> {
 	[^\\\'] {return CHARACTER;}
-	\' {yybegin(YYINITIAL);}
+	\' {yybegin(YYINITIAL);return STRING_QUOTE;}
 }
 <StringDQ> {
 	[^\\\"] {return CHARACTER;}
-	\" {yybegin(YYINITIAL);}
+	\" {yybegin(YYINITIAL);return STRING_QUOTE;}
 }
 
 [^] { return BAD_CHARACTER; }
