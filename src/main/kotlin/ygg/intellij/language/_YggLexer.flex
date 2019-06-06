@@ -59,13 +59,15 @@ HEX = [0-9a-fA-F]
 	"]"  { return BRACKET_R; }
 	"{"  { return BRACE_L; }
 	"}"  { return BRACE_R; }
-	"^"  { return ACCENT; }
+	"<-" { return TAGGED; }
 	"<"  { return ANGLE_L; }
 	">"  { return ANGLE_R; }
 	//
 	:    { return COLON; }
 	;    { return SEMICOLON; }
 	,    { return COMMA; }
+	@    { return AT; }
+	\^   { return ACCENT; }
 	\~   { return SOFT_CONNECT;}
 	\|   { return CHOOSE;}
 	\!   { return OPTIONAL;}
@@ -76,9 +78,8 @@ HEX = [0-9a-fA-F]
 	\$   { return CITE; }
 	\.   { return DOT; }
 	\*   { return STAR; }
-	@    { return AT; }
 }
-<YYINITIAL> [\^]= {
+<YYINITIAL> [\^$]*= {
 	return EQ;
 }
 <YYINITIAL> {

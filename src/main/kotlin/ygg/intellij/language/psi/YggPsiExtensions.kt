@@ -7,8 +7,6 @@ import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.psi.*
 import com.intellij.psi.impl.source.PsiFileImpl
 import com.intellij.psi.stubs.StubElement
-import com.intellij.psi.tree.IElementType
-import com.intellij.psi.tree.TokenSet
 import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.psi.util.prevLeaf
 
@@ -65,7 +63,7 @@ val PsiElement.stubParent: PsiElement?
     }
 
 val PsiElement.leftLeaves: Sequence<PsiElement>
-    get() = generateSequence(this){ it.prevLeaf() }.drop(1)
+    get() = generateSequence(this) { it.prevLeaf() }.drop(1)
 
 val PsiElement.rightSiblings: Sequence<PsiElement>
     get() = generateSequence(this.nextSibling) { it.nextSibling }
@@ -185,6 +183,3 @@ fun PsiWhiteSpace.isMultiLine(): Boolean = getLineCount() > 1
 @Suppress("UNCHECKED_CAST")
 inline val <T : StubElement<*>> StubBasedPsiElement<T>.greenStub: T?
     get() = (this as? StubBasedPsiElementBase<T>)?.greenStub
-
-
-fun tokenSetOf(vararg tokens: IElementType) = TokenSet.create(*tokens)

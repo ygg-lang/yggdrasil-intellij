@@ -1,14 +1,16 @@
 package ygg.intellij.ide.file_view
 
 import com.intellij.openapi.fileTypes.LanguageFileType
+import ygg.intellij.YggBundle
+import ygg.intellij.YggLanguage
 import javax.swing.Icon
 
-class YggFileType private constructor() : LanguageFileType(ygg.intellij.YggLanguage.INSTANCE) {
-    override fun getName(): String = ygg.intellij.YggLanguage.LanguageID
+class YggFileType private constructor() : LanguageFileType(YggLanguage.INSTANCE) {
+    override fun getName(): String = YggLanguage.LanguageID
 
-    override fun getDescription(): String = ygg.intellij.YggBundle.message("filetype.voml.description")
+    override fun getDescription(): String = YggBundle.message("filetype.description")
 
-    override fun getDefaultExtension(): String = ygg.intellij.YggLanguage.LanguageExtensions
+    override fun getDefaultExtension(): String = YggLanguage.LanguageExtensions
 
     override fun getIcon(): Icon = YggIconProvider.FILE
 

@@ -31,13 +31,12 @@
         ANGLE_R = '>'
         QUOTATION = '"'
         ESCAPE = '\'
+        TAGGED = '<-'
 
-        NON_ESCAPE = 'regexp:[^\\]'
         SOFT_CONNECT = '~'
         CHOOSE='|'
         OPTIONAL='?'
         EQ = '='
-        NAN = "nan"
         COLON = ':'
         SEMICOLON = ';'
         COMMA = ','
@@ -68,14 +67,14 @@ expression ::= scope
     | annotation
     | SEMICOLON;
 // ------------------------------------
-ignore_statement ::= "@ignore" (rule_symbol | <<paired ignore_inner>>);
+ignore_statement ::= IGNORE (rule_symbol | <<paired ignore_inner>>);
 private ignore_inner ::= [rule_symbol (COMMA rule_symbol)* [COMMA]];
 // ------------------------------------
-grammar_statement ::= "@grammar" grammar_symbol [<<paired grammar_inner>>];
+grammar_statement ::= GRAMMAR grammar_symbol [<<paired grammar_inner>>];
 private grammar_inner ::= [string (COMMA string)* [COMMA]];
 grammar_symbol ::= SYMBOL;
 // -------------------------------G-----
-import_statement ::= "@import" string [rule_symbol | <<paired include_inner>>];
+import_statement ::= IMPORT string [rule_symbol | <<paired include_inner>>];
 private include_inner ::= [rule_symbol (COMMA rule_symbol)* [COMMA]];
 // ------------------------------------
 scope ::= <<paired scope_inner>>;

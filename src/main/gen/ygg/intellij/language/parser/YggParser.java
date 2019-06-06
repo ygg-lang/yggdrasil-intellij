@@ -193,7 +193,7 @@ public class YggParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // "@grammar" grammar_symbol [<<paired grammar_inner>>]
+  // GRAMMAR grammar_symbol [<<paired grammar_inner>>]
   public static boolean grammar_statement(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "grammar_statement")) return false;
     if (!nextTokenIs(b, GRAMMAR)) return false;
@@ -275,7 +275,7 @@ public class YggParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // "@ignore" (rule_symbol | <<paired ignore_inner>>)
+  // IGNORE (rule_symbol | <<paired ignore_inner>>)
   public static boolean ignore_statement(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "ignore_statement")) return false;
     if (!nextTokenIs(b, IGNORE)) return false;
@@ -299,7 +299,7 @@ public class YggParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // "@import" string [rule_symbol | <<paired include_inner>>]
+  // IMPORT string [rule_symbol | <<paired include_inner>>]
   public static boolean import_statement(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "import_statement")) return false;
     if (!nextTokenIs(b, IMPORT)) return false;

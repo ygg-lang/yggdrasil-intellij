@@ -30,7 +30,7 @@ class YggHighlightVisitor : YggVisitor(), HighlightVisitor {
         return true
     }
 
-    private fun highlight(element: PsiElement, color: YggHighlightToken) {
+    private fun highlight(element: PsiElement, color: YggHighlightColor) {
         val builder = HighlightInfo.newHighlightInfo(HighlightInfoType.INFORMATION)
         builder.textAttributes(color.textAttributesKey)
         builder.range(element)

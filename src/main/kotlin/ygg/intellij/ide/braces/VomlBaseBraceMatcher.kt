@@ -8,7 +8,6 @@ import com.intellij.psi.TokenType
 import com.intellij.psi.tree.IElementType
 import com.intellij.psi.tree.TokenSet
 import ygg.intellij.language.YggParserDefinition
-import ygg.intellij.language.psi.tokenSetOf
 import ygg.intellij.language.psi.YggTypes.*
 
 class VomlBaseBraceMatcher : PairedBraceMatcher {
@@ -29,7 +28,7 @@ class VomlBaseBraceMatcher : PairedBraceMatcher {
 
         private val InsertPairBraceBefore = TokenSet.orSet(
             YggParserDefinition.COMMENTS,
-            tokenSetOf(
+            TokenSet.create(
                 TokenType.WHITE_SPACE,
                 COMMA,
                 PARENTHESIS_R,

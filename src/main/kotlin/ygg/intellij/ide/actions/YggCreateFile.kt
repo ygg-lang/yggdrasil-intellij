@@ -9,8 +9,8 @@ import ygg.intellij.ide.file_view.YggIconProvider
 
 class YggCreateFile : CreateFileFromTemplateAction(Name, Description, YggIconProvider.FILE) {
     companion object {
-        val Name = YggBundle.message("filetype.voml.create")
-        val Description = YggBundle.message("filetype.voml.create.description")
+        val Name = YggBundle.message("action.create")
+        val Description = YggBundle.message("action.create.description")
     }
 
     override fun buildDialog(project: Project, directory: PsiDirectory, builder: CreateFileFromTemplateDialog.Builder) {

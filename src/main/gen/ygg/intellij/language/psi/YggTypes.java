@@ -63,8 +63,7 @@ public interface YggTypes {
   IElementType IGNORE = new YggTokenType("@ignore");
   IElementType IMPORT = new YggTokenType("@import");
   IElementType INTEGER = new YggTokenType("INTEGER");
-  IElementType NAN = new YggTokenType("nan");
-  IElementType NON_ESCAPE = new YggTokenType("NON_ESCAPE");
+  IElementType NAN = new YggTokenType("NAN");
   IElementType NULL = new YggTokenType("NULL");
   IElementType OPTIONAL = new YggTokenType("?");
   IElementType PARENTHESIS_L = new YggTokenType("(");
@@ -76,6 +75,7 @@ public interface YggTypes {
   IElementType STAR = new YggTokenType("*");
   IElementType STRING_QUOTE = new YggTokenType("STRING_QUOTE");
   IElementType SYMBOL = new YggTokenType("SYMBOL");
+  IElementType TAGGED = new YggTokenType("<-");
 
   class Factory {
     public static PsiElement createElement(ASTNode node) {

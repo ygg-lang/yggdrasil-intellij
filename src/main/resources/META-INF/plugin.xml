@@ -3,7 +3,7 @@
 	<name>Yggdrasil Support</name>
 	<vendor>Yggdrasil</vendor>
 	<depends>com.intellij.modules.platform</depends>
-	<depends optional="true" config-file="plugin-with-rust.xml">org.rust.lang</depends>
+<!--	<depends optional="true" config-file="plugin-with-rust.xml">org.rust.lang</depends>-->
 	<resource-bundle>messages.YggBundle</resource-bundle>
 	<extensions defaultExtensionNs="com.intellij">
 		<fileType
@@ -21,7 +21,7 @@
 		<colorSettingsPage implementation="ygg.intellij.ide.highlight.YggHighlightSettingPage"/>
 		<lang.syntaxHighlighter
 			language="YGG"
-			implementationClass="ygg.intellij.ide.YggSyntaxHighlighter"
+			implementationClass="ygg.intellij.ide.highlight.YggHighlightToken"
 		/>
 		<highlightVisitor implementation="ygg.intellij.ide.highlight.YggHighlightVisitor"/>
 		<additionalTextAttributes scheme="Default" file="colors/VomlDefault.xml"/>
