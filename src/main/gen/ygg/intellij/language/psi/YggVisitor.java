@@ -59,6 +59,10 @@ public class YggVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitKey(@NotNull YggKey o) {
+    visitPsiElement(o);
+  }
+
   public void visitKeySymbol(@NotNull YggKeySymbol o) {
     visitPsiElement(o);
   }
@@ -72,6 +76,14 @@ public class YggVisitor extends PsiElementVisitor {
   }
 
   public void visitRef(@NotNull YggRef o) {
+    visitPsiElement(o);
+  }
+
+  public void visitRegex(@NotNull YggRegex o) {
+    visitPsiElement(o);
+  }
+
+  public void visitRegexMode(@NotNull YggRegexMode o) {
     visitPsiElement(o);
   }
 

@@ -5,9 +5,12 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface YggSymbolPath extends PsiElement {
+public interface YggKey extends PsiElement {
 
-  @NotNull
-  List<YggKey> getKeyList();
+  @Nullable
+  YggKeySymbol getKeySymbol();
+
+  @Nullable
+  YggString getString();
 
 }

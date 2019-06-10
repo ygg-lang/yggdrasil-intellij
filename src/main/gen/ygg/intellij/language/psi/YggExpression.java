@@ -8,12 +8,6 @@ import com.intellij.psi.PsiElement;
 public interface YggExpression extends PsiElement {
 
   @Nullable
-  YggAnnotation getAnnotation();
-
-  @Nullable
-  YggBackTop getBackTop();
-
-  @Nullable
   YggGrammarStatement getGrammarStatement();
 
   @Nullable
@@ -21,14 +15,5 @@ public interface YggExpression extends PsiElement {
 
   @Nullable
   YggImportStatement getImportStatement();
-
-  @Nullable
-  YggInsertItem getInsertItem();
-
-  @Nullable
-  YggInsertPair getInsertPair();
-
-  @Nullable
-  YggScope getScope();
 
 }

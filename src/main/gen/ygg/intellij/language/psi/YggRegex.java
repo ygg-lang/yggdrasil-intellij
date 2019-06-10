@@ -5,9 +5,9 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface YggSymbolPath extends PsiElement {
+public interface YggRegex extends PsiElement {
 
   @NotNull
-  List<YggKey> getKeyList();
+  YggRegexMode getRegexMode();
 
 }

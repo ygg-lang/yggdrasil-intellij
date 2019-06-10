@@ -24,6 +24,7 @@ public _YggLexer() {
 
 %state StringSQ
 %state StringDQ
+%state Regex
 
 EOL=\R
 WHITE_SPACE=\s+
@@ -74,7 +75,6 @@ HEX = [0-9a-fA-F]
 	\?   { return OPTIONAL;}
 	\"   { return QUOTATION; }
 	\\   { return ESCAPE; }
-	\/   { return EQ; }
 	\$   { return CITE; }
 	\.   { return DOT; }
 	\*   { return STAR; }
@@ -96,7 +96,7 @@ HEX = [0-9a-fA-F]
 	{DECIMAL} { return DECIMAL; }
 	{SIGN}    { return SIGN; }
 }
-
+// String Mode =========================================================================================================
 <YYINITIAL> \' {
 	yybegin(StringSQ);
 	return STRING_QUOTE;
@@ -119,5 +119,14 @@ HEX = [0-9a-fA-F]
 	[^\\\"] {return CHARACTER;}
 	\" {yybegin(YYINITIAL);return STRING_QUOTE;}
 }
-
+// Regex Mode ==========================================================================================================
+<YYINITIAL> \/ {
+	yybegin(Regex);
+	return REGEX_QUOTE;
+}
+<Regex> {
+	[^\\\/] {return CHARACTER;}
+	\/ {yybegin(YYINITIAL);return REGEX_QUOTE;}
+}
+// Otherwisw ===========================================================================================================
 [^] { return BAD_CHARACTER; }

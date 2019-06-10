@@ -57,14 +57,10 @@ Ygg ::= expression*;
 fake comment_doc ::= COMMENT_DOC;
 private comment ::= COMMENT_LINE | COMMENT_BLOCK | COMMENT_DOC;
 
-expression ::= scope
-    | back_top
-    | import_statement
-    | grammar_statement
+expression ::=
+      grammar_statement
     | ignore_statement
-    | insert_pair
-    | insert_item
-    | annotation
+    | import_statement
     | SEMICOLON;
 // ------------------------------------
 ignore_statement ::= IGNORE (rule_symbol | <<paired ignore_inner>>);
@@ -89,7 +85,7 @@ rule_symbol ::= SYMBOL;
 // ------------------------------------
 pair ::= symbol_path eq value;
 symbol_path ::= key (DOT key)*;
-private key ::= string | key_symbol | INTEGER;
+key ::= string | key_symbol | INTEGER;
 private eq ::= EQ | COLON;
 insert_pair ::= [insert_dot] pair;
 insert_item ::= insert_star value;
@@ -97,9 +93,11 @@ insert_dot ::= DOT;
 insert_star ::= STAR;
 key_symbol ::= SYMBOL;
 // ------------------------------------
-value ::= NULL | BOOLEAN | num | ref | string | table | annotation;
+value ::= NULL | BOOLEAN | num | ref | string | regex | table | annotation;
 type_hint ::= SYMBOL;
 number_suffix ::= SYMBOL;
+regex ::= REGEX_QUOTE char* REGEX_QUOTE regex_mode;
+regex_mode ::= SYMBOL;
 // ------------------------------------
 private num ::= [SIGN] (INTEGER | DECIMAL) [number_suffix] | [SIGN] BYTE | other_num;
 private other_num ::= NAN;

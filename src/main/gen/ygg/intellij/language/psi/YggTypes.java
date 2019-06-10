@@ -20,10 +20,13 @@ public interface YggTypes {
   IElementType INSERT_ITEM = new YggElementType("INSERT_ITEM");
   IElementType INSERT_PAIR = new YggElementType("INSERT_PAIR");
   IElementType INSERT_STAR = new YggElementType("INSERT_STAR");
+  IElementType KEY = new YggElementType("KEY");
   IElementType KEY_SYMBOL = new YggElementType("KEY_SYMBOL");
   IElementType NUMBER_SUFFIX = new YggElementType("NUMBER_SUFFIX");
   IElementType PAIR = new YggElementType("PAIR");
   IElementType REF = new YggElementType("REF");
+  IElementType REGEX = new YggElementType("REGEX");
+  IElementType REGEX_MODE = new YggElementType("REGEX_MODE");
   IElementType RULE_SYMBOL = new YggElementType("RULE_SYMBOL");
   IElementType SCOPE = new YggElementType("SCOPE");
   IElementType SCOPE_MARK = new YggElementType("SCOPE_MARK");
@@ -69,6 +72,7 @@ public interface YggTypes {
   IElementType PARENTHESIS_L = new YggTokenType("(");
   IElementType PARENTHESIS_R = new YggTokenType(")");
   IElementType QUOTATION = new YggTokenType("\"");
+  IElementType REGEX_QUOTE = new YggTokenType("REGEX_QUOTE");
   IElementType SEMICOLON = new YggTokenType(";");
   IElementType SIGN = new YggTokenType("SIGN");
   IElementType SOFT_CONNECT = new YggTokenType("~");
@@ -116,6 +120,9 @@ public interface YggTypes {
       else if (type == INSERT_STAR) {
         return new YggInsertStarNode(node);
       }
+      else if (type == KEY) {
+        return new YggKeyNode(node);
+      }
       else if (type == KEY_SYMBOL) {
         return new YggKeySymbolNode(node);
       }
@@ -127,6 +134,12 @@ public interface YggTypes {
       }
       else if (type == REF) {
         return new YggRefNode(node);
+      }
+      else if (type == REGEX) {
+        return new YggRegexNode(node);
+      }
+      else if (type == REGEX_MODE) {
+        return new YggRegexModeNode(node);
       }
       else if (type == RULE_SYMBOL) {
         return new YggRuleSymbolNode(node);

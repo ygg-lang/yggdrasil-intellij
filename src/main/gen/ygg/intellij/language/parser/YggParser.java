@@ -117,27 +117,17 @@ public class YggParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // scope
-  //     | back_top
-  //     | import_statement
-  //     | grammar_statement
+  // grammar_statement
   //     | ignore_statement
-  //     | insert_pair
-  //     | insert_item
-  //     | annotation
+  //     | import_statement
   //     | SEMICOLON
   public static boolean expression(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "expression")) return false;
     boolean r;
     Marker m = enter_section_(b, l, _NONE_, EXPRESSION, "<expression>");
-    r = scope(b, l + 1);
-    if (!r) r = back_top(b, l + 1);
-    if (!r) r = import_statement(b, l + 1);
-    if (!r) r = grammar_statement(b, l + 1);
+    r = grammar_statement(b, l + 1);
     if (!r) r = ignore_statement(b, l + 1);
-    if (!r) r = insert_pair(b, l + 1);
-    if (!r) r = insert_item(b, l + 1);
-    if (!r) r = annotation(b, l + 1);
+    if (!r) r = import_statement(b, l + 1);
     if (!r) r = consumeToken(b, SEMICOLON);
     exit_section_(b, l, m, r, false, null);
     return r;
@@ -431,12 +421,14 @@ public class YggParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // string | key_symbol | INTEGER
-  static boolean key(PsiBuilder b, int l) {
+  public static boolean key(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "key")) return false;
     boolean r;
+    Marker m = enter_section_(b, l, _NONE_, KEY, "<key>");
     r = string(b, l + 1);
     if (!r) r = key_symbol(b, l + 1);
     if (!r) r = consumeToken(b, INTEGER);
+    exit_section_(b, l, m, r, false, null);
     return r;
   }
 
@@ -610,6 +602,44 @@ public class YggParser implements PsiParser, LightPsiParser {
     r = consumeToken(b, CITE);
     r = r && symbol_path(b, l + 1);
     exit_section_(b, m, REF, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // REGEX_QUOTE char* REGEX_QUOTE regex_mode
+  public static boolean regex(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "regex")) return false;
+    if (!nextTokenIs(b, REGEX_QUOTE)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, REGEX_QUOTE);
+    r = r && regex_1(b, l + 1);
+    r = r && consumeToken(b, REGEX_QUOTE);
+    r = r && regex_mode(b, l + 1);
+    exit_section_(b, m, REGEX, r);
+    return r;
+  }
+
+  // char*
+  private static boolean regex_1(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "regex_1")) return false;
+    while (true) {
+      int c = current_position_(b);
+      if (!char_$(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "regex_1", c)) break;
+    }
+    return true;
+  }
+
+  /* ********************************************************** */
+  // SYMBOL
+  public static boolean regex_mode(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "regex_mode")) return false;
+    if (!nextTokenIs(b, SYMBOL)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = consumeToken(b, SYMBOL);
+    exit_section_(b, m, REGEX_MODE, r);
     return r;
   }
 
@@ -878,7 +908,7 @@ public class YggParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // NULL | BOOLEAN | num | ref | string | table | annotation
+  // NULL | BOOLEAN | num | ref | string | regex | table | annotation
   public static boolean value(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "value")) return false;
     boolean r;
@@ -888,6 +918,7 @@ public class YggParser implements PsiParser, LightPsiParser {
     if (!r) r = num(b, l + 1);
     if (!r) r = ref(b, l + 1);
     if (!r) r = string(b, l + 1);
+    if (!r) r = regex(b, l + 1);
     if (!r) r = table(b, l + 1);
     if (!r) r = annotation(b, l + 1);
     exit_section_(b, l, m, r, false, null);

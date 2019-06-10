@@ -47,6 +47,12 @@ public class YggValueNode extends ASTWrapperPsiElement implements YggValue {
 
   @Override
   @Nullable
+  public YggRegex getRegex() {
+    return findChildByClass(YggRegex.class);
+  }
+
+  @Override
+  @Nullable
   public YggString getString() {
     return findChildByClass(YggString.class);
   }

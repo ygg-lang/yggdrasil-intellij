@@ -29,14 +29,8 @@ public class YggSymbolPathNode extends ASTWrapperPsiElement implements YggSymbol
 
   @Override
   @NotNull
-  public List<YggKeySymbol> getKeySymbolList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, YggKeySymbol.class);
-  }
-
-  @Override
-  @NotNull
-  public List<YggString> getStringList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, YggString.class);
+  public List<YggKey> getKeyList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, YggKey.class);
   }
 
 }
