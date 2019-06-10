@@ -5,9 +5,12 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface YggStringMulti extends PsiElement {
+public interface YggFunctionStatement extends PsiElement {
+
+  @Nullable
+  YggRuleSymbol getRuleSymbol();
 
   @NotNull
-  List<YggEscaped> getEscapedList();
+  YggString getString();
 
 }

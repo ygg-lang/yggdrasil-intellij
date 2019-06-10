@@ -11,14 +11,14 @@ import static ygg.intellij.language.psi.YggTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import ygg.intellij.language.psi.*;
 
-public class YggValueNode extends ASTWrapperPsiElement implements YggValue {
+public class YggFunctionStatementNode extends ASTWrapperPsiElement implements YggFunctionStatement {
 
-  public YggValueNode(@NotNull ASTNode node) {
+  public YggFunctionStatementNode(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull YggVisitor visitor) {
-    visitor.visitValue(this);
+    visitor.visitFunctionStatement(this);
   }
 
   @Override
@@ -29,32 +29,14 @@ public class YggValueNode extends ASTWrapperPsiElement implements YggValue {
 
   @Override
   @Nullable
-  public YggNumberSuffix getNumberSuffix() {
-    return findChildByClass(YggNumberSuffix.class);
+  public YggRuleSymbol getRuleSymbol() {
+    return findChildByClass(YggRuleSymbol.class);
   }
 
   @Override
-  @Nullable
-  public YggRef getRef() {
-    return findChildByClass(YggRef.class);
-  }
-
-  @Override
-  @Nullable
-  public YggRegex getRegex() {
-    return findChildByClass(YggRegex.class);
-  }
-
-  @Override
-  @Nullable
+  @NotNull
   public YggString getString() {
-    return findChildByClass(YggString.class);
-  }
-
-  @Override
-  @Nullable
-  public YggTable getTable() {
-    return findChildByClass(YggTable.class);
+    return findNotNullChildByClass(YggString.class);
   }
 
 }

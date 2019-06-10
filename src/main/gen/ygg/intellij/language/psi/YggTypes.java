@@ -10,8 +10,8 @@ public interface YggTypes {
 
   IElementType ANNOTATION = new YggElementType("ANNOTATION");
   IElementType ANNOTATION_MARK = new YggElementType("ANNOTATION_MARK");
-  IElementType BACK_TOP = new YggElementType("BACK_TOP");
-  IElementType EXPRESSION = new YggElementType("EXPRESSION");
+  IElementType ARGUMENT = new YggElementType("ARGUMENT");
+  IElementType FUNCTION_STATEMENT = new YggElementType("FUNCTION_STATEMENT");
   IElementType GRAMMAR_STATEMENT = new YggElementType("GRAMMAR_STATEMENT");
   IElementType GRAMMAR_SYMBOL = new YggElementType("GRAMMAR_SYMBOL");
   IElementType IGNORE_STATEMENT = new YggElementType("IGNORE_STATEMENT");
@@ -22,8 +22,10 @@ public interface YggTypes {
   IElementType INSERT_STAR = new YggElementType("INSERT_STAR");
   IElementType KEY = new YggElementType("KEY");
   IElementType KEY_SYMBOL = new YggElementType("KEY_SYMBOL");
+  IElementType MACRO_STATEMENT = new YggElementType("MACRO_STATEMENT");
   IElementType NUMBER_SUFFIX = new YggElementType("NUMBER_SUFFIX");
   IElementType PAIR = new YggElementType("PAIR");
+  IElementType PARENTHESIS = new YggElementType("PARENTHESIS");
   IElementType REF = new YggElementType("REF");
   IElementType REGEX = new YggElementType("REGEX");
   IElementType REGEX_MODE = new YggElementType("REGEX_MODE");
@@ -61,12 +63,13 @@ public interface YggTypes {
   IElementType ESCAPE = new YggTokenType("\\");
   IElementType ESCAPE_SPECIAL = new YggTokenType("ESCAPE_SPECIAL");
   IElementType ESCAPE_UNICODE = new YggTokenType("ESCAPE_UNICODE");
+  IElementType EXPORT = new YggTokenType("EXPORT");
   IElementType FRAGMENT = new YggTokenType("@fragment");
   IElementType GRAMMAR = new YggTokenType("@grammar");
   IElementType IGNORE = new YggTokenType("@ignore");
   IElementType IMPORT = new YggTokenType("@import");
   IElementType INTEGER = new YggTokenType("INTEGER");
-  IElementType NAN = new YggTokenType("NAN");
+  IElementType MACRO_INNER = new YggTokenType("macro_inner");
   IElementType NULL = new YggTokenType("NULL");
   IElementType OPTIONAL = new YggTokenType("?");
   IElementType PARENTHESIS_L = new YggTokenType("(");
@@ -90,11 +93,11 @@ public interface YggTypes {
       else if (type == ANNOTATION_MARK) {
         return new YggAnnotationMarkNode(node);
       }
-      else if (type == BACK_TOP) {
-        return new YggBackTopNode(node);
+      else if (type == ARGUMENT) {
+        return new YggArgumentNode(node);
       }
-      else if (type == EXPRESSION) {
-        return new YggExpressionNode(node);
+      else if (type == FUNCTION_STATEMENT) {
+        return new YggFunctionStatementNode(node);
       }
       else if (type == GRAMMAR_STATEMENT) {
         return new YggGrammarStatementNode(node);
@@ -126,11 +129,17 @@ public interface YggTypes {
       else if (type == KEY_SYMBOL) {
         return new YggKeySymbolNode(node);
       }
+      else if (type == MACRO_STATEMENT) {
+        return new YggMacroStatementNode(node);
+      }
       else if (type == NUMBER_SUFFIX) {
         return new YggNumberSuffixNode(node);
       }
       else if (type == PAIR) {
         return new YggPairNode(node);
+      }
+      else if (type == PARENTHESIS) {
+        return new YggParenthesisNode(node);
       }
       else if (type == REF) {
         return new YggRefNode(node);

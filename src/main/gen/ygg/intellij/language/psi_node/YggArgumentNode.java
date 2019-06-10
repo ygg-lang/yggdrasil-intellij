@@ -11,20 +11,32 @@ import static ygg.intellij.language.psi.YggTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import ygg.intellij.language.psi.*;
 
-public class YggBackTopNode extends ASTWrapperPsiElement implements YggBackTop {
+public class YggArgumentNode extends ASTWrapperPsiElement implements YggArgument {
 
-  public YggBackTopNode(@NotNull ASTNode node) {
+  public YggArgumentNode(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull YggVisitor visitor) {
-    visitor.visitBackTop(this);
+    visitor.visitArgument(this);
   }
 
   @Override
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof YggVisitor) accept((YggVisitor)visitor);
     else super.accept(visitor);
+  }
+
+  @Override
+  @Nullable
+  public YggMacroStatement getMacroStatement() {
+    return findChildByClass(YggMacroStatement.class);
+  }
+
+  @Override
+  @Nullable
+  public YggValue getValue() {
+    return findChildByClass(YggValue.class);
   }
 
 }

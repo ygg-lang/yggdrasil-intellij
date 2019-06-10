@@ -5,9 +5,9 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface YggEscaped extends PsiElement {
+public interface YggMacroStatement extends PsiElement {
 
-  @Nullable
-  PsiElement getNonEscape();
+  @NotNull
+  YggParenthesis getParenthesis();
 
 }

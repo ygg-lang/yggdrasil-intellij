@@ -5,6 +5,12 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface YggBackTop extends PsiElement {
+public interface YggArgument extends PsiElement {
+
+  @Nullable
+  YggMacroStatement getMacroStatement();
+
+  @Nullable
+  YggValue getValue();
 
 }

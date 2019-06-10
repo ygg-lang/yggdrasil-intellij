@@ -15,7 +15,7 @@ public class YggVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitBackTop(@NotNull YggBackTop o) {
+  public void visitArgument(@NotNull YggArgument o) {
     visitPsiElement(o);
   }
 
@@ -23,7 +23,7 @@ public class YggVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitExpression(@NotNull YggExpression o) {
+  public void visitFunctionStatement(@NotNull YggFunctionStatement o) {
     visitPsiElement(o);
   }
 
@@ -67,11 +67,19 @@ public class YggVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitMacroStatement(@NotNull YggMacroStatement o) {
+    visitPsiElement(o);
+  }
+
   public void visitNumberSuffix(@NotNull YggNumberSuffix o) {
     visitPsiElement(o);
   }
 
   public void visitPair(@NotNull YggPair o) {
+    visitPsiElement(o);
+  }
+
+  public void visitParenthesis(@NotNull YggParenthesis o) {
     visitPsiElement(o);
   }
 

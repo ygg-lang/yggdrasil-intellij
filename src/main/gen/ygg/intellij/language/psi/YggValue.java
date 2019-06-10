@@ -8,9 +8,6 @@ import com.intellij.psi.PsiElement;
 public interface YggValue extends PsiElement {
 
   @Nullable
-  YggAnnotation getAnnotation();
-
-  @Nullable
   YggNumberSuffix getNumberSuffix();
 
   @Nullable
