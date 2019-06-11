@@ -11,20 +11,26 @@ import static ygg.intellij.language.psi.YggTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import ygg.intellij.language.psi.*;
 
-public class YggScopeMarkNode extends ASTWrapperPsiElement implements YggScopeMark {
+public class YggRuleStatementNode extends ASTWrapperPsiElement implements YggRuleStatement {
 
-  public YggScopeMarkNode(@NotNull ASTNode node) {
+  public YggRuleStatementNode(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull YggVisitor visitor) {
-    visitor.visitScopeMark(this);
+    visitor.visitRuleStatement(this);
   }
 
   @Override
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof YggVisitor) accept((YggVisitor)visitor);
     else super.accept(visitor);
+  }
+
+  @Override
+  @NotNull
+  public YggExpr getExpr() {
+    return findNotNullChildByClass(YggExpr.class);
   }
 
 }

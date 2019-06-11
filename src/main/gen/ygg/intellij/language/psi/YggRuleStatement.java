@@ -5,6 +5,9 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface YggScopeMark extends PsiElement {
+public interface YggRuleStatement extends PsiElement {
+
+  @NotNull
+  YggExpr getExpr();
 
 }

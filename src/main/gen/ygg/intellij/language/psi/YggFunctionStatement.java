@@ -7,10 +7,10 @@ import com.intellij.psi.PsiElement;
 
 public interface YggFunctionStatement extends PsiElement {
 
-  @Nullable
-  YggRuleSymbol getRuleSymbol();
+  @NotNull
+  YggParenthesis getParenthesis();
 
   @NotNull
-  YggString getString();
+  YggRuleSymbol getRuleSymbol();
 
 }

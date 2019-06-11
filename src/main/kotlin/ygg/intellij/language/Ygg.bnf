@@ -35,17 +35,19 @@
 
         SOFT_CONNECT = '~'
         CHOOSE='|'
-        OPTIONAL='?'
+
         EQ = '='
         COLON = ':'
         SEMICOLON = ';'
         COMMA = ','
         DOLLAR = '$'
         DOT = '.'
-        STAR = '*'
         AT = '@'
-//      SPACE='regexp:\s+'
-//      ANY = 'regexp:.'
+
+        NOT='!'
+        OPTIONAL='?'
+        MANY1 = '+'
+        MANY = '*'
     ]
 
     extends = "com.intellij.extapi.psi.ASTWrapperPsiElement"
@@ -107,8 +109,9 @@ key_symbol ::= SYMBOL;
 // ------------------------------------
 private num ::= [SIGN] (INTEGER | DECIMAL) [number_suffix] | [SIGN] BYTE;
 // ------------------------------------
-string ::= STRING_QUOTE char* STRING_QUOTE;
-private char ::= CHARACTER | ESCAPE_UNICODE | ESCAPE_SPECIAL;
+string ::= esc | STRING_QUOTE char* STRING_QUOTE;
+private char ::= CHARACTER | esc;
+private esc ::= ESCAPE_UNICODE | ESCAPE_SPECIAL;
 // ------------------------------------
 ref ::= CITE symbol_path;
 // ------------------------------------

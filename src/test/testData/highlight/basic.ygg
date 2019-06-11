@@ -126,7 +126,16 @@ regex_set = "\\p" ~ "{" ~ (set <- /[_0-9a-zA-Z]+/) ~ "}"
 regex_repeats ^=
     | "{" ~ (repeats <- integer) ~ "}"
     | "{" ~ (least <- integer?) ~ "," ~ (most <- integer?) ~ "}"
-// end of line
+// string
+string = string_inline;
+string_inline = \" DQ_CHAR \" | \' SQ_CHAR \'
+SQ_CHAR = [^\\\'] | ESCAPE_SPECIAL | ESCAPE_UNICODE
+DQ_CHAR = [^\\\"] | ESCAPE_SPECIAL | ESCAPE_UNICODE
+ESCAPE_SPECIAL = \\[^xuU]
+ESCAPE_UNICODE = \\("x" HEX{2} | "u"{HEX}{4} | "U"\{HEX+\})
+HEX = [0-9a-fA-F]
+
+// end of statement
 eos = ";"
 
 
@@ -153,7 +162,6 @@ comment_block = "//+" ~ "//-"
 // All elements defined next will warp with `@token`
 @define_hook(token)
 // All elements defined next will be marked as `keyword`
-@syntax_type_hook(keyword)
 fragment = "fragment!"
 grammar  = "grammar!"
 ignore   = "ignore!"
@@ -161,8 +169,21 @@ import   = "import!"
 macro    = "macro!"
 as       = "as"
 // clean warp broadcast
-@syntax_type_hook()
 // clean syntax type broadcast
 @define_hook()
 // clean all hook
 @clear_hook()
+//! Syntax Token Definition ======================================
+@syntax {
+    grammar, fragment, ignore, macro,
+    import, as
+        -> Keywords
+    //
+    COMMENT_INLINE -> Comment
+    //
+    WHITESPACE: WhiteSpace,
+}
+
+@color_theme {
+    Common::WhiteSpace :
+}

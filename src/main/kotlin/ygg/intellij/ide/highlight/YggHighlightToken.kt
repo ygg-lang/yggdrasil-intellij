@@ -25,11 +25,12 @@ class YggHighlightToken : SyntaxHighlighterBase() {
             ANNOTATION, ANNOTATION_MARK -> Color.ANNOTATION
             GRAMMAR, IGNORE, IMPORT -> Color.PREDEFINED
             OPTIONAL -> Color.KEYWORD
+            MANY -> Color.MANY
+            MANY1 -> Color.MANY1
             //
             NUMBER_SUFFIX -> Color.NUMBER_HINT
             TYPE_HINT -> Color.TYPE_HINT
             RULE_SYMBOL -> Color.SCOPE_SYMBOL
-            SCOPE_MARK -> Color.MANY
             INSERT_DOT, INSERT_STAR -> Color.INSERT_MARK
             //
             PARENTHESIS_L, PARENTHESIS_R -> Color.PARENTHESES
@@ -41,6 +42,7 @@ class YggHighlightToken : SyntaxHighlighterBase() {
             NULL -> Color.NULL
             BOOLEAN -> Color.BOOLEAN
             STRING, STRING_QUOTE -> Color.STRING
+            ESCAPE_SPECIAL, ESCAPE_UNICODE -> Color.STRING_ESCAPE
             NUMBER_SUFFIX -> Color.NUMBER_HINT
             INTEGER -> Color.INTEGER
             DECIMAL -> Color.DECIMAL

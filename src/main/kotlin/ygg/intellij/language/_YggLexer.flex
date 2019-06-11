@@ -71,15 +71,17 @@ HEX = [0-9a-fA-F]
 	\^   { return ACCENT; }
 	\~   { return SOFT_CONNECT;}
 	\|   { return CHOOSE;}
-	\!   { return OPTIONAL;}
-	\?   { return OPTIONAL;}
+	\!   { return NOT;}
 	\"   { return QUOTATION; }
 	\\   { return ESCAPE; }
 	\$   { return CITE; }
 	\.   { return DOT; }
-	\*   { return STAR; }
+
+	\?   { return OPTIONAL;}
+	\+   { return MANY1; }
+	\*   { return MANY; }
 }
-<YYINITIAL> [\^$@]*= {
+<YYINITIAL> [\^$@]]*= {
 	return EQ;
 }
 <YYINITIAL> {
@@ -105,10 +107,10 @@ HEX = [0-9a-fA-F]
 	yybegin(StringDQ);
 	return STRING_QUOTE;
 }
-<StringSQ, StringDQ> {ESCAPE_SPECIAL} {
+<StringSQ, StringDQ, YYINITIAL> {ESCAPE_SPECIAL} {
 	return ESCAPE_SPECIAL;
 }
-<StringSQ, StringDQ> {ESCAPE_UNICODE} {
+<StringSQ, StringDQ, YYINITIAL> {ESCAPE_UNICODE} {
 	return ESCAPE_UNICODE;
 }
 <StringSQ> {

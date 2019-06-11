@@ -15,11 +15,11 @@ public class YggVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitArgument(@NotNull YggArgument o) {
+  public void visitCommentDoc(@NotNull YggCommentDoc o) {
     visitPsiElement(o);
   }
 
-  public void visitCommentDoc(@NotNull YggCommentDoc o) {
+  public void visitExpr(@NotNull YggExpr o) {
     visitPsiElement(o);
   }
 
@@ -67,6 +67,10 @@ public class YggVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitMacroArg(@NotNull YggMacroArg o) {
+    visitPsiElement(o);
+  }
+
   public void visitMacroStatement(@NotNull YggMacroStatement o) {
     visitPsiElement(o);
   }
@@ -95,15 +99,11 @@ public class YggVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitRuleStatement(@NotNull YggRuleStatement o) {
+    visitPsiElement(o);
+  }
+
   public void visitRuleSymbol(@NotNull YggRuleSymbol o) {
-    visitPsiElement(o);
-  }
-
-  public void visitScope(@NotNull YggScope o) {
-    visitPsiElement(o);
-  }
-
-  public void visitScopeMark(@NotNull YggScopeMark o) {
     visitPsiElement(o);
   }
 

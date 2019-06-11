@@ -28,15 +28,15 @@ public class YggFunctionStatementNode extends ASTWrapperPsiElement implements Yg
   }
 
   @Override
-  @Nullable
-  public YggRuleSymbol getRuleSymbol() {
-    return findChildByClass(YggRuleSymbol.class);
+  @NotNull
+  public YggParenthesis getParenthesis() {
+    return findNotNullChildByClass(YggParenthesis.class);
   }
 
   @Override
   @NotNull
-  public YggString getString() {
-    return findNotNullChildByClass(YggString.class);
+  public YggRuleSymbol getRuleSymbol() {
+    return findNotNullChildByClass(YggRuleSymbol.class);
   }
 
 }

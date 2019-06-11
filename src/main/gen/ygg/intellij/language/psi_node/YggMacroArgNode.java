@@ -11,14 +11,14 @@ import static ygg.intellij.language.psi.YggTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import ygg.intellij.language.psi.*;
 
-public class YggScopeNode extends ASTWrapperPsiElement implements YggScope {
+public class YggMacroArgNode extends ASTWrapperPsiElement implements YggMacroArg {
 
-  public YggScopeNode(@NotNull ASTNode node) {
+  public YggMacroArgNode(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull YggVisitor visitor) {
-    visitor.visitScope(this);
+    visitor.visitMacroArg(this);
   }
 
   @Override
@@ -28,21 +28,15 @@ public class YggScopeNode extends ASTWrapperPsiElement implements YggScope {
   }
 
   @Override
-  @NotNull
-  public List<YggRuleSymbol> getRuleSymbolList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, YggRuleSymbol.class);
+  @Nullable
+  public YggMacroStatement getMacroStatement() {
+    return findChildByClass(YggMacroStatement.class);
   }
 
   @Override
   @Nullable
-  public YggScopeMark getScopeMark() {
-    return findChildByClass(YggScopeMark.class);
-  }
-
-  @Override
-  @NotNull
-  public List<YggString> getStringList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, YggString.class);
+  public YggValue getValue() {
+    return findChildByClass(YggValue.class);
   }
 
 }

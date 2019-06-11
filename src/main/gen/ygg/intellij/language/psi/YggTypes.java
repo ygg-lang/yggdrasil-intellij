@@ -10,7 +10,7 @@ public interface YggTypes {
 
   IElementType ANNOTATION = new YggElementType("ANNOTATION");
   IElementType ANNOTATION_MARK = new YggElementType("ANNOTATION_MARK");
-  IElementType ARGUMENT = new YggElementType("ARGUMENT");
+  IElementType EXPR = new YggElementType("EXPR");
   IElementType FUNCTION_STATEMENT = new YggElementType("FUNCTION_STATEMENT");
   IElementType GRAMMAR_STATEMENT = new YggElementType("GRAMMAR_STATEMENT");
   IElementType GRAMMAR_SYMBOL = new YggElementType("GRAMMAR_SYMBOL");
@@ -22,6 +22,7 @@ public interface YggTypes {
   IElementType INSERT_STAR = new YggElementType("INSERT_STAR");
   IElementType KEY = new YggElementType("KEY");
   IElementType KEY_SYMBOL = new YggElementType("KEY_SYMBOL");
+  IElementType MACRO_ARG = new YggElementType("MACRO_ARG");
   IElementType MACRO_STATEMENT = new YggElementType("MACRO_STATEMENT");
   IElementType NUMBER_SUFFIX = new YggElementType("NUMBER_SUFFIX");
   IElementType PAIR = new YggElementType("PAIR");
@@ -29,9 +30,8 @@ public interface YggTypes {
   IElementType REF = new YggElementType("REF");
   IElementType REGEX = new YggElementType("REGEX");
   IElementType REGEX_MODE = new YggElementType("REGEX_MODE");
+  IElementType RULE_STATEMENT = new YggElementType("RULE_STATEMENT");
   IElementType RULE_SYMBOL = new YggElementType("RULE_SYMBOL");
-  IElementType SCOPE = new YggElementType("SCOPE");
-  IElementType SCOPE_MARK = new YggElementType("SCOPE_MARK");
   IElementType STRING = new YggElementType("STRING");
   IElementType SYMBOL_PATH = new YggElementType("SYMBOL_PATH");
   IElementType TABLE = new YggElementType("TABLE");
@@ -51,25 +51,27 @@ public interface YggTypes {
   IElementType BYTE = new YggTokenType("BYTE");
   IElementType CHARACTER = new YggTokenType("CHARACTER");
   IElementType CHOOSE = new YggTokenType("|");
-  IElementType CITE = new YggTokenType("$");
+  IElementType CITE = new YggTokenType("CITE");
   IElementType COLON = new YggTokenType(":");
   IElementType COMMA = new YggTokenType(",");
   IElementType COMMENT_BLOCK = new YggTokenType("COMMENT_BLOCK");
   IElementType COMMENT_DOC = new YggTokenType("COMMENT_DOC");
   IElementType COMMENT_LINE = new YggTokenType("COMMENT_LINE");
   IElementType DECIMAL = new YggTokenType("DECIMAL");
+  IElementType DOLLAR = new YggTokenType("$");
   IElementType DOT = new YggTokenType(".");
   IElementType EQ = new YggTokenType("=");
   IElementType ESCAPE = new YggTokenType("\\");
   IElementType ESCAPE_SPECIAL = new YggTokenType("ESCAPE_SPECIAL");
   IElementType ESCAPE_UNICODE = new YggTokenType("ESCAPE_UNICODE");
-  IElementType EXPORT = new YggTokenType("EXPORT");
   IElementType FRAGMENT = new YggTokenType("@fragment");
   IElementType GRAMMAR = new YggTokenType("@grammar");
   IElementType IGNORE = new YggTokenType("@ignore");
   IElementType IMPORT = new YggTokenType("@import");
   IElementType INTEGER = new YggTokenType("INTEGER");
-  IElementType MACRO_INNER = new YggTokenType("macro_inner");
+  IElementType MANY = new YggTokenType("*");
+  IElementType MANY1 = new YggTokenType("+");
+  IElementType NOT = new YggTokenType("!");
   IElementType NULL = new YggTokenType("NULL");
   IElementType OPTIONAL = new YggTokenType("?");
   IElementType PARENTHESIS_L = new YggTokenType("(");
@@ -79,7 +81,7 @@ public interface YggTypes {
   IElementType SEMICOLON = new YggTokenType(";");
   IElementType SIGN = new YggTokenType("SIGN");
   IElementType SOFT_CONNECT = new YggTokenType("~");
-  IElementType STAR = new YggTokenType("*");
+  IElementType STAR = new YggTokenType("STAR");
   IElementType STRING_QUOTE = new YggTokenType("STRING_QUOTE");
   IElementType SYMBOL = new YggTokenType("SYMBOL");
   IElementType TAGGED = new YggTokenType("<-");
@@ -93,8 +95,8 @@ public interface YggTypes {
       else if (type == ANNOTATION_MARK) {
         return new YggAnnotationMarkNode(node);
       }
-      else if (type == ARGUMENT) {
-        return new YggArgumentNode(node);
+      else if (type == EXPR) {
+        return new YggExprNode(node);
       }
       else if (type == FUNCTION_STATEMENT) {
         return new YggFunctionStatementNode(node);
@@ -129,6 +131,9 @@ public interface YggTypes {
       else if (type == KEY_SYMBOL) {
         return new YggKeySymbolNode(node);
       }
+      else if (type == MACRO_ARG) {
+        return new YggMacroArgNode(node);
+      }
       else if (type == MACRO_STATEMENT) {
         return new YggMacroStatementNode(node);
       }
@@ -150,14 +155,11 @@ public interface YggTypes {
       else if (type == REGEX_MODE) {
         return new YggRegexModeNode(node);
       }
+      else if (type == RULE_STATEMENT) {
+        return new YggRuleStatementNode(node);
+      }
       else if (type == RULE_SYMBOL) {
         return new YggRuleSymbolNode(node);
-      }
-      else if (type == SCOPE) {
-        return new YggScopeNode(node);
-      }
-      else if (type == SCOPE_MARK) {
-        return new YggScopeMarkNode(node);
       }
       else if (type == STRING) {
         return new YggStringNode(node);

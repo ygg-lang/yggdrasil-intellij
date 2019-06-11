@@ -27,6 +27,7 @@ enum class YggHighlightColor(
     INTEGER(keyof("color.literal.integer"), Default.NUMBER),
     STRING_HINT(keyof("color.settings.toml.string_hint"), Default.KEYWORD),
     STRING(OptionsBundle.messagePointer("options.language.defaults.string"), Default.STRING),
+    STRING_ESCAPE(OptionsBundle.messagePointer("options.language.defaults.string"), Default.VALID_STRING_ESCAPE),
     IDENTIFIER(OptionsBundle.messagePointer("options.language.defaults.identifier"), Default.IDENTIFIER),
 
     //
