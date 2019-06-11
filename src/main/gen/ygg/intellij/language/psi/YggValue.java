@@ -11,10 +11,10 @@ public interface YggValue extends PsiElement {
   YggNumberSuffix getNumberSuffix();
 
   @Nullable
-  YggRef getRef();
+  YggRegex getRegex();
 
   @Nullable
-  YggRegex getRegex();
+  YggRegexRange getRegexRange();
 
   @Nullable
   YggString getString();

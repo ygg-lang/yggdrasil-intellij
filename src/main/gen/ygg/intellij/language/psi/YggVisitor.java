@@ -7,14 +7,6 @@ import com.intellij.psi.PsiElement;
 
 public class YggVisitor extends PsiElementVisitor {
 
-  public void visitAnnotation(@NotNull YggAnnotation o) {
-    visitPsiElement(o);
-  }
-
-  public void visitAnnotationMark(@NotNull YggAnnotationMark o) {
-    visitPsiElement(o);
-  }
-
   public void visitCommentDoc(@NotNull YggCommentDoc o) {
     visitPsiElement(o);
   }
@@ -40,22 +32,6 @@ public class YggVisitor extends PsiElementVisitor {
   }
 
   public void visitImportStatement(@NotNull YggImportStatement o) {
-    visitPsiElement(o);
-  }
-
-  public void visitInsertDot(@NotNull YggInsertDot o) {
-    visitPsiElement(o);
-  }
-
-  public void visitInsertItem(@NotNull YggInsertItem o) {
-    visitPsiElement(o);
-  }
-
-  public void visitInsertPair(@NotNull YggInsertPair o) {
-    visitPsiElement(o);
-  }
-
-  public void visitInsertStar(@NotNull YggInsertStar o) {
     visitPsiElement(o);
   }
 
@@ -87,15 +63,15 @@ public class YggVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitRef(@NotNull YggRef o) {
-    visitPsiElement(o);
-  }
-
   public void visitRegex(@NotNull YggRegex o) {
     visitPsiElement(o);
   }
 
   public void visitRegexMode(@NotNull YggRegexMode o) {
+    visitPsiElement(o);
+  }
+
+  public void visitRegexRange(@NotNull YggRegexRange o) {
     visitPsiElement(o);
   }
 

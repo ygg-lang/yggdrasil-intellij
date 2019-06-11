@@ -5,9 +5,6 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface YggRef extends PsiElement {
-
-  @NotNull
-  YggSymbolPath getSymbolPath();
+public interface YggRegexRange extends PsiElement {
 
 }

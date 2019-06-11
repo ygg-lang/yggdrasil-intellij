@@ -25,6 +25,7 @@ public _YggLexer() {
 %state StringSQ
 %state StringDQ
 %state Regex
+%state RegexRange
 
 EOL=\R
 WHITE_SPACE=\s+
@@ -34,7 +35,6 @@ COMMENT_LINE=("//"|#)[^\r\n]*
 COMMENT_BLOCK=[/][*][^*]*[*]+([^/*][^*]*[*]+)*[/]
 BOOLEAN=true|false
 SYMBOL=[\p{XID_Start}_][\p{XID_Continue}_]*
-STRING=\"([^\"\\]|\\.)*\"
 BYTE=(0[bBoOxXfF][0-9A-Fa-f][0-9A-Fa-f_]*)
 INTEGER=(0|[1-9][0-9_]*)
 DECIMAL=([0-9]+\.[0-9]*([*][*][0-9]+)?)|(\.[0-9]+([Ee][0-9]+)?)
@@ -72,16 +72,15 @@ HEX = [0-9a-fA-F]
 	\~   { return SOFT_CONNECT;}
 	\|   { return CHOOSE;}
 	\!   { return NOT;}
-	\"   { return QUOTATION; }
 	\\   { return ESCAPE; }
-	\$   { return CITE; }
+	\$   { return DOLLAR; }
 	\.   { return DOT; }
 
 	\?   { return OPTIONAL;}
 	\+   { return MANY1; }
 	\*   { return MANY; }
 }
-<YYINITIAL> [\^$@]]*= {
+<YYINITIAL> [\^\]$@]*= {
 	return EQ;
 }
 <YYINITIAL> {
@@ -92,20 +91,15 @@ HEX = [0-9a-fA-F]
 	// literal
 	{BOOLEAN} { return BOOLEAN; }
 	{SYMBOL}  { return SYMBOL; }
-	{STRING}  { return STRING; }
 	{BYTE}    { return BYTE; }
 	{INTEGER} { return INTEGER; }
 	{DECIMAL} { return DECIMAL; }
 	{SIGN}    { return SIGN; }
 }
 // String Mode =========================================================================================================
-<YYINITIAL> \' {
-	yybegin(StringSQ);
-	return STRING_QUOTE;
-}
-<YYINITIAL> \" {
-	yybegin(StringDQ);
-	return STRING_QUOTE;
+<YYINITIAL> {
+	\' {yybegin(StringSQ);return STRING_SQ;}
+	\" {yybegin(StringDQ);return STRING_DQ;}
 }
 <StringSQ, StringDQ, YYINITIAL> {ESCAPE_SPECIAL} {
 	return ESCAPE_SPECIAL;
@@ -115,11 +109,11 @@ HEX = [0-9a-fA-F]
 }
 <StringSQ> {
 	[^\\\'] {return CHARACTER;}
-	\' {yybegin(YYINITIAL);return STRING_QUOTE;}
+	\' {yybegin(YYINITIAL);return STRING_SQ;}
 }
 <StringDQ> {
 	[^\\\"] {return CHARACTER;}
-	\" {yybegin(YYINITIAL);return STRING_QUOTE;}
+	\" {yybegin(YYINITIAL);return STRING_DQ;}
 }
 // Regex Mode ==========================================================================================================
 <YYINITIAL> \/ {
@@ -129,6 +123,14 @@ HEX = [0-9a-fA-F]
 <Regex> {
 	[^\\\/] {return CHARACTER;}
 	\/ {yybegin(YYINITIAL);return REGEX_QUOTE;}
+}
+<YYINITIAL> \[ {
+	yybegin(RegexRange);
+	return REGEX_RANGE_L;
+}
+<RegexRange> {
+	[^\\\[\]] {return REGEX_CHARACTER;}
+	\] {yybegin(YYINITIAL);return REGEX_RANGE_R;}
 }
 // Otherwisw ===========================================================================================================
 [^] { return BAD_CHARACTER; }

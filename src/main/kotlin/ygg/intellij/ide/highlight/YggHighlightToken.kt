@@ -22,7 +22,7 @@ class YggHighlightToken : SyntaxHighlighterBase() {
         return when (tokenType) {
             //
             IMPORT, GRAMMAR, IGNORE, AS -> Color.KEYWORD
-            ANNOTATION, ANNOTATION_MARK -> Color.ANNOTATION
+            // ANNOTATION, ANNOTATION_MARK -> Color.ANNOTATION
             GRAMMAR, IGNORE, IMPORT -> Color.PREDEFINED
             OPTIONAL -> Color.KEYWORD
             MANY -> Color.MANY
@@ -31,7 +31,7 @@ class YggHighlightToken : SyntaxHighlighterBase() {
             NUMBER_SUFFIX -> Color.NUMBER_HINT
             TYPE_HINT -> Color.TYPE_HINT
             RULE_SYMBOL -> Color.SCOPE_SYMBOL
-            INSERT_DOT, INSERT_STAR -> Color.INSERT_MARK
+            // INSERT_DOT, INSERT_STAR -> Color.INSERT_MARK
             //
             PARENTHESIS_L, PARENTHESIS_R -> Color.PARENTHESES
             BRACKET_L, BRACKET_R -> Color.BRACKETS
@@ -41,7 +41,7 @@ class YggHighlightToken : SyntaxHighlighterBase() {
             // atom
             NULL -> Color.NULL
             BOOLEAN -> Color.BOOLEAN
-            STRING, STRING_QUOTE -> Color.STRING
+            STRING, STRING_SQ, STRING_DQ, CHARACTER -> Color.STRING
             ESCAPE_SPECIAL, ESCAPE_UNICODE -> Color.STRING_ESCAPE
             NUMBER_SUFFIX -> Color.NUMBER_HINT
             INTEGER -> Color.INTEGER

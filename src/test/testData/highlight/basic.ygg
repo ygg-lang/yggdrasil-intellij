@@ -1,4 +1,4 @@
-@grammar Ygg {"*.yg","*.ygg", "*.grammar"}
+@grammar Ygg {'*.yg',"*.ygg", "*.grammar"}
 
 // Import the predefined types,
 // Otherwise the `String` type of each language will be used directly to represent the atomic expression
@@ -106,10 +106,6 @@ identifier @= ("_" | XID_START) ~ XID_CONTINUE
 integer    @= _sign? _unsigned
 _unsigned   = 0 | [1-9] [0-9]*
 _sign       = [+-]
-// string
-string @=
-    | /'[^'\\]*(\\.[^'\\]*)*'/
-    | /"[^"\\]*(\\.[^"\\]*)*"/
 // regex
 regex_long ^= "/" ~ (item <- regex_item) ~ "/" ~ (mode: String <- regex_mode)?
 regex_mode @= [igm]
@@ -123,11 +119,11 @@ regex_range_item =
 regex_range_item_group =
     | $binary_left(10, regex_range_item, "-", regex_range_item)
 regex_set = "\\p" ~ "{" ~ (set <- /[_0-9a-zA-Z]+/) ~ "}"
-regex_repeats ^=
+regex_repeats =
     | "{" ~ (repeats <- integer) ~ "}"
     | "{" ~ (least <- integer?) ~ "," ~ (most <- integer?) ~ "}"
 // string
-string = string_inline;
+inline string = string_inline;
 string_inline = \" DQ_CHAR \" | \' SQ_CHAR \'
 SQ_CHAR = [^\\\'] | ESCAPE_SPECIAL | ESCAPE_UNICODE
 DQ_CHAR = [^\\\"] | ESCAPE_SPECIAL | ESCAPE_UNICODE
@@ -144,8 +140,7 @@ eos = ";"
 @syntax_type(identifier)
 
 
-@syntax_type(constant)
-bool @= "true" | "false"
+bool = "true" | "false"
 
 //! ====================== OVERRIDE ============================
 

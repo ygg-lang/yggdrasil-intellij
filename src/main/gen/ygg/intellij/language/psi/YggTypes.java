@@ -8,18 +8,12 @@ import ygg.intellij.language.psi_node.*;
 
 public interface YggTypes {
 
-  IElementType ANNOTATION = new YggElementType("ANNOTATION");
-  IElementType ANNOTATION_MARK = new YggElementType("ANNOTATION_MARK");
   IElementType EXPR = new YggElementType("EXPR");
   IElementType FUNCTION_STATEMENT = new YggElementType("FUNCTION_STATEMENT");
   IElementType GRAMMAR_STATEMENT = new YggElementType("GRAMMAR_STATEMENT");
   IElementType GRAMMAR_SYMBOL = new YggElementType("GRAMMAR_SYMBOL");
   IElementType IGNORE_STATEMENT = new YggElementType("IGNORE_STATEMENT");
   IElementType IMPORT_STATEMENT = new YggElementType("IMPORT_STATEMENT");
-  IElementType INSERT_DOT = new YggElementType("INSERT_DOT");
-  IElementType INSERT_ITEM = new YggElementType("INSERT_ITEM");
-  IElementType INSERT_PAIR = new YggElementType("INSERT_PAIR");
-  IElementType INSERT_STAR = new YggElementType("INSERT_STAR");
   IElementType KEY = new YggElementType("KEY");
   IElementType KEY_SYMBOL = new YggElementType("KEY_SYMBOL");
   IElementType MACRO_ARG = new YggElementType("MACRO_ARG");
@@ -27,9 +21,9 @@ public interface YggTypes {
   IElementType NUMBER_SUFFIX = new YggElementType("NUMBER_SUFFIX");
   IElementType PAIR = new YggElementType("PAIR");
   IElementType PARENTHESIS = new YggElementType("PARENTHESIS");
-  IElementType REF = new YggElementType("REF");
   IElementType REGEX = new YggElementType("REGEX");
   IElementType REGEX_MODE = new YggElementType("REGEX_MODE");
+  IElementType REGEX_RANGE = new YggElementType("REGEX_RANGE");
   IElementType RULE_STATEMENT = new YggElementType("RULE_STATEMENT");
   IElementType RULE_SYMBOL = new YggElementType("RULE_SYMBOL");
   IElementType STRING = new YggElementType("STRING");
@@ -51,7 +45,6 @@ public interface YggTypes {
   IElementType BYTE = new YggTokenType("BYTE");
   IElementType CHARACTER = new YggTokenType("CHARACTER");
   IElementType CHOOSE = new YggTokenType("|");
-  IElementType CITE = new YggTokenType("CITE");
   IElementType COLON = new YggTokenType(":");
   IElementType COMMA = new YggTokenType(",");
   IElementType COMMENT_BLOCK = new YggTokenType("COMMENT_BLOCK");
@@ -77,25 +70,22 @@ public interface YggTypes {
   IElementType PARENTHESIS_L = new YggTokenType("(");
   IElementType PARENTHESIS_R = new YggTokenType(")");
   IElementType QUOTATION = new YggTokenType("\"");
+  IElementType REGEX_CHARACTER = new YggTokenType("REGEX_CHARACTER");
   IElementType REGEX_QUOTE = new YggTokenType("REGEX_QUOTE");
+  IElementType REGEX_RANGE_L = new YggTokenType("REGEX_RANGE_L");
+  IElementType REGEX_RANGE_R = new YggTokenType("REGEX_RANGE_R");
   IElementType SEMICOLON = new YggTokenType(";");
   IElementType SIGN = new YggTokenType("SIGN");
   IElementType SOFT_CONNECT = new YggTokenType("~");
-  IElementType STAR = new YggTokenType("STAR");
-  IElementType STRING_QUOTE = new YggTokenType("STRING_QUOTE");
+  IElementType STRING_DQ = new YggTokenType("STRING_DQ");
+  IElementType STRING_SQ = new YggTokenType("STRING_SQ");
   IElementType SYMBOL = new YggTokenType("SYMBOL");
   IElementType TAGGED = new YggTokenType("<-");
 
   class Factory {
     public static PsiElement createElement(ASTNode node) {
       IElementType type = node.getElementType();
-      if (type == ANNOTATION) {
-        return new YggAnnotationNode(node);
-      }
-      else if (type == ANNOTATION_MARK) {
-        return new YggAnnotationMarkNode(node);
-      }
-      else if (type == EXPR) {
+      if (type == EXPR) {
         return new YggExprNode(node);
       }
       else if (type == FUNCTION_STATEMENT) {
@@ -112,18 +102,6 @@ public interface YggTypes {
       }
       else if (type == IMPORT_STATEMENT) {
         return new YggImportStatementNode(node);
-      }
-      else if (type == INSERT_DOT) {
-        return new YggInsertDotNode(node);
-      }
-      else if (type == INSERT_ITEM) {
-        return new YggInsertItemNode(node);
-      }
-      else if (type == INSERT_PAIR) {
-        return new YggInsertPairNode(node);
-      }
-      else if (type == INSERT_STAR) {
-        return new YggInsertStarNode(node);
       }
       else if (type == KEY) {
         return new YggKeyNode(node);
@@ -146,14 +124,14 @@ public interface YggTypes {
       else if (type == PARENTHESIS) {
         return new YggParenthesisNode(node);
       }
-      else if (type == REF) {
-        return new YggRefNode(node);
-      }
       else if (type == REGEX) {
         return new YggRegexNode(node);
       }
       else if (type == REGEX_MODE) {
         return new YggRegexModeNode(node);
+      }
+      else if (type == REGEX_RANGE) {
+        return new YggRegexRangeNode(node);
       }
       else if (type == RULE_STATEMENT) {
         return new YggRuleStatementNode(node);

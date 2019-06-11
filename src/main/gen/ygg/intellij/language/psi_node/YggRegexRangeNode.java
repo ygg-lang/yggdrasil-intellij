@@ -11,32 +11,20 @@ import static ygg.intellij.language.psi.YggTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import ygg.intellij.language.psi.*;
 
-public class YggInsertItemNode extends ASTWrapperPsiElement implements YggInsertItem {
+public class YggRegexRangeNode extends ASTWrapperPsiElement implements YggRegexRange {
 
-  public YggInsertItemNode(@NotNull ASTNode node) {
+  public YggRegexRangeNode(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull YggVisitor visitor) {
-    visitor.visitInsertItem(this);
+    visitor.visitRegexRange(this);
   }
 
   @Override
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof YggVisitor) accept((YggVisitor)visitor);
     else super.accept(visitor);
-  }
-
-  @Override
-  @NotNull
-  public YggInsertStar getInsertStar() {
-    return findNotNullChildByClass(YggInsertStar.class);
-  }
-
-  @Override
-  @NotNull
-  public YggValue getValue() {
-    return findNotNullChildByClass(YggValue.class);
   }
 
 }

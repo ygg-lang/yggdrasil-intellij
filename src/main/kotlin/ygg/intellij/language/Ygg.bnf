@@ -91,32 +91,24 @@ expr ::= function_statement | value;
 function_statement ::= DOLLAR rule_symbol <<parenthesis expr COMMA>>;
 rule_symbol ::= SYMBOL;
 // ---------------------------------------------------------------------------------------------------------------------
-value ::= NULL | BOOLEAN | num | ref | string | regex | table;
+value ::= NULL | BOOLEAN | num | string | regex | table | regex_range;
 type_hint ::= SYMBOL;
 number_suffix ::= SYMBOL;
 regex ::= REGEX_QUOTE char* REGEX_QUOTE regex_mode;
 regex_mode ::= SYMBOL;
+regex_range ::= REGEX_RANGE_L REGEX_CHARACTER* REGEX_RANGE_R;
 // ---------------------------------------------------------------------------------------------------------------------
 pair ::= symbol_path eq value;
 symbol_path ::= key (DOT key)*;
 key ::= string | key_symbol | INTEGER;
 private eq ::= EQ | COLON;
-insert_pair ::= [insert_dot] pair;
-insert_item ::= insert_star value;
-insert_dot ::= DOT;
-insert_star ::= STAR;
 key_symbol ::= SYMBOL;
 // ------------------------------------
 private num ::= [SIGN] (INTEGER | DECIMAL) [number_suffix] | [SIGN] BYTE;
 // ------------------------------------
-string ::= esc | STRING_QUOTE char* STRING_QUOTE;
+string ::= esc | STRING_SQ char* STRING_SQ | STRING_DQ char* STRING_DQ;
 private char ::= CHARACTER | esc;
 private esc ::= ESCAPE_UNICODE | ESCAPE_SPECIAL;
-// ------------------------------------
-ref ::= CITE symbol_path;
-// ------------------------------------
-annotation ::= annotation_mark <<paired table_inner>>;
-annotation_mark ::= AT SYMBOL;
 // ------------------------------------
 table ::= [type_hint] <<paired table_inner>>;
 private table_inner ::= [table_item (COMMA table_item)* [COMMA]];
