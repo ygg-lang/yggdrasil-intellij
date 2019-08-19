@@ -1,16 +1,12 @@
 package ygg.intellij.ide.codeStyle
 
-import ygg.intellij.YggLanguage
 import com.intellij.application.options.CodeStyleAbstractConfigurable
 import com.intellij.application.options.SmartIndentOptionsEditor
-import com.intellij.psi.codeStyle.CodeStyleConfigurable
-import com.intellij.psi.codeStyle.CodeStyleSettings
-import com.intellij.psi.codeStyle.CodeStyleSettingsCustomizable
-import com.intellij.psi.codeStyle.CommonCodeStyleSettings
+import com.intellij.psi.codeStyle.*
 import com.intellij.psi.codeStyle.LanguageCodeStyleSettingsProvider
 
-class VomlLanguageCodeStyleSettingsProvider : LanguageCodeStyleSettingsProvider() {
-    override fun getLanguage() = ygg.intellij.YggLanguage.INSTANCE
+class LanguageCodeStyleSettingsProvider : LanguageCodeStyleSettingsProvider() {
+    override fun getLanguage() = ygg.intellij.YggdrasilLanguage.INSTANCE
 
     override fun getIndentOptionsEditor() = SmartIndentOptionsEditor()
 
@@ -23,7 +19,8 @@ class VomlLanguageCodeStyleSettingsProvider : LanguageCodeStyleSettingsProvider(
             modelSettings,
             configurableDisplayName
         ) {
-            override fun createPanel(settings: CodeStyleSettings?) = VomlCodeStyleMainPanel(currentSettings, settings)
+            override fun createPanel(settings: CodeStyleSettings?) =
+                settings?.let { CodeStyleMainPanel(currentSettings, it) }
         }
     }
 
@@ -45,7 +42,7 @@ class VomlLanguageCodeStyleSettingsProvider : LanguageCodeStyleSettingsProvider(
             SettingsType.LANGUAGE_SPECIFIC -> {
                 consumer.showStandardOptions()
             }
-            else -> { }
+            else -> {}
         }
     }
 
@@ -63,7 +60,7 @@ class VomlLanguageCodeStyleSettingsProvider : LanguageCodeStyleSettingsProvider(
     }
 
     override fun getCodeSample(settingsType: SettingsType) =
-"""@inherit user;
+        """@inherit user;
 
 @include json "some/path/test.json" as json;
 @include "https://example.org/test.voml" {

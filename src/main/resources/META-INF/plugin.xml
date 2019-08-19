@@ -28,7 +28,7 @@
 		<additionalTextAttributes scheme="Darcula" file="colors/VomlDarcula.xml"/>
 		<!-- Formatter -->
 		<langCodeStyleSettingsProvider
-			implementation="ygg.intellij.ide.codeStyle.VomlLanguageCodeStyleSettingsProvider"
+			implementation="ygg.intellij.ide.codeStyle.LanguageCodeStyleSettingsProvider"
 		/>
 		<lang.commenter
 			language="YGG"

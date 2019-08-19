@@ -1,12 +1,10 @@
-@grammar Ygg {'*.yg',"*.ygg", "*.grammar"}
+@grammar(Ygg, '*.yg', "*.ygg", "*.grammar"}
 
 // Import the predefined types,
 // Otherwise the `String` type of each language will be used directly to represent the atomic expression
-@import "literal_types.toml"
-
-@ignore {NEWLINE, WHITESPACE, COMMENT}
-
-@export_if_exists("path")
+@import("path/literal_types.toml")
+@ignore(NEWLINE, WHITESPACE, COMMENT)
+@export("path", override = true)
 
 // right now, first rule will become entry point
 program = ^statement*

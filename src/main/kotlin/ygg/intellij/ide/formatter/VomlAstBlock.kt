@@ -1,7 +1,5 @@
 package ygg.intellij.ide.formatter
 
-import ygg.intellij.YggLanguage
-import ygg.intellij.language.psi.YggTypes
 import com.intellij.formatting.*
 import com.intellij.lang.ASTNode
 import com.intellij.openapi.util.TextRange
@@ -60,7 +58,7 @@ data class VomlFormatterContext(
 ) {
     companion object {
         fun create(settings: CodeStyleSettings): VomlFormatterContext {
-            val commonSettings = settings.getCommonSettings(ygg.intellij.YggLanguage.INSTANCE)
+            val commonSettings = settings.getCommonSettings(ygg.intellij.YggdrasilLanguage.INSTANCE)
             return VomlFormatterContext(commonSettings, createSpacingBuilder(commonSettings))
         }
     }

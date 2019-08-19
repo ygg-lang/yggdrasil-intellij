@@ -5,12 +5,12 @@ import com.intellij.ide.actions.CreateFileFromTemplateDialog
 import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiDirectory
 import ygg.intellij.YggBundle
-import ygg.intellij.YggLanguage
+import ygg.intellij.YggdrasilLanguage
 import ygg.intellij.ide.file_view.YggIconProvider
 
 class YggCreateFile : CreateFileFromTemplateAction(Name, Description, YggIconProvider.FILE) {
     companion object {
-        const val Name = YggLanguage.LanguageID
+        const val Name = YggdrasilLanguage.LanguageID
         const val TemplateName = "Voml File";
         val Description = YggBundle.message("action.create.description")
     }

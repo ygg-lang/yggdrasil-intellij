@@ -1,13 +1,13 @@
 package ygg.intellij.ide.braces
 
 
-import ygg.intellij.YggLanguage
+import ygg.intellij.YggdrasilLanguage
 import com.intellij.codeInsight.highlighting.PairedBraceMatcherAdapter
 import com.intellij.openapi.editor.highlighter.HighlighterIterator
 import com.intellij.openapi.fileTypes.FileType
 import ygg.intellij.ide.file_view.YggFileType
 
-class VomlBraceMatcher : PairedBraceMatcherAdapter(VomlBaseBraceMatcher(), YggLanguage.INSTANCE) {
+class VomlBraceMatcher : PairedBraceMatcherAdapter(VomlBaseBraceMatcher(), YggdrasilLanguage.INSTANCE) {
     override fun isLBraceToken(iterator: HighlighterIterator, fileText: CharSequence, fileType: FileType): Boolean =
         isBrace(iterator, fileText, fileType, true)
 

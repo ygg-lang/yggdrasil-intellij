@@ -1,6 +1,6 @@
 package ygg.intellij
 
-import ygg.intellij.YggLanguage.Companion.BundlePath
+import ygg.intellij.YggdrasilLanguage.Companion.BundlePath
 import com.intellij.DynamicBundle
 import org.jetbrains.annotations.Nls
 import org.jetbrains.annotations.PropertyKey
