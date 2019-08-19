@@ -6,13 +6,13 @@ import com.intellij.psi.codeStyle.CodeStyleSettings
 
 class CodeStyleMainPanel(currentSettings: CodeStyleSettings?, settings: CodeStyleSettings) :
     TabbedLanguageCodeStylePanel(
-        ygg.intellij.YggdrasilLanguage.INSTANCE,
+        ygg.intellij.YggdrasilLanguage,
         currentSettings,
         settings
     ) {
     override fun initTabs(settings: CodeStyleSettings) {
         addIndentOptionsTab(settings)
         addWrappingAndBracesTab(settings)
-        addTab(GenerationCodeStylePanel(settings, ygg.intellij.YggdrasilLanguage.INSTANCE))
+        addTab(GenerationCodeStylePanel(settings, ygg.intellij.YggdrasilLanguage))
     }
 }

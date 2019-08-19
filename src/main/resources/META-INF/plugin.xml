@@ -10,7 +10,7 @@
 			name="YGG"
 			language="YGG"
 			extensions="ygg"
-			implementationClass="ygg.intellij.ide.file_view.YggFileType"
+			implementationClass="ygg.intellij.language.file.YggFileType"
 			fieldName="INSTANCE"
 		/>
 		<lang.parserDefinition

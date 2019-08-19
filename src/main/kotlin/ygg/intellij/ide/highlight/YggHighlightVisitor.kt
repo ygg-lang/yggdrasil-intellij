@@ -6,7 +6,7 @@ import com.intellij.codeInsight.daemon.impl.HighlightVisitor
 import com.intellij.codeInsight.daemon.impl.analysis.HighlightInfoHolder
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
-import ygg.intellij.ide.file_view.YggFile
+import ygg.intellij.language.file.YggFile
 import ygg.intellij.language.psi.YggGrammarSymbol
 import ygg.intellij.language.psi.YggVisitor
 

@@ -1,4 +1,4 @@
-package ygg.intellij.ide.file_view
+package ygg.intellij.language.file
 
 import com.intellij.openapi.util.IconLoader
 

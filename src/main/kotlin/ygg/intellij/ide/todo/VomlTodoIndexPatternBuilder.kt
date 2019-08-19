@@ -5,9 +5,9 @@ import com.intellij.psi.PsiFile
 import com.intellij.psi.impl.search.IndexPatternBuilder
 import com.intellij.psi.tree.IElementType
 import com.intellij.psi.tree.TokenSet
-import ygg.intellij.ide.file_view.YggFile
 import ygg.intellij.language.YggLexerAdapter
 import ygg.intellij.language.YggParserDefinition
+import ygg.intellij.language.file.YggFile
 
 class VomlTodoIndexPatternBuilder : IndexPatternBuilder {
     override fun getIndexingLexer(file: PsiFile): Lexer? =

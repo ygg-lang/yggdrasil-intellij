@@ -1,18 +1,17 @@
 {
     parserClass = "ygg.intellij.language.parser.YggParser"
     parserUtilClass = "ygg.intellij.language.psi.YggParserExtension"
+    extends = "com.intellij.extapi.psi.ASTWrapperPsiElement"
 
     psiClassPrefix = "Ygg"
     psiImplClassSuffix = "Node"
     psiPackage = "ygg.intellij.language.psi"
     psiImplPackage = "ygg.intellij.language.psi_node"
-
-    elementTypeHolderClass = "ygg.intellij.language.psi.YggTypes"
-    elementTypeClass = "ygg.intellij.language.psi.YggElementType"
-    tokenTypeClass = "ygg.intellij.language.psi.YggTokenType"
-
     psiImplUtilClass = "ygg.intellij.language.psi_node.YggPsiExtension"
 
+    elementTypeHolderClass = "ygg.intellij.language.psi.YggTypes"
+    elementTypeClass = "ygg.intellij.language.psi.YElementType"
+    tokenTypeClass = "ygg.intellij.language.psi.YElementType"
     tokens = [
         GRAMMAR = '@grammar'
         FRAGMENT = '@fragment'
@@ -49,8 +48,6 @@
         MANY1 = '+'
         MANY = '*'
     ]
-
-    extends = "com.intellij.extapi.psi.ASTWrapperPsiElement"
 }
 
 Ygg ::= statements*;

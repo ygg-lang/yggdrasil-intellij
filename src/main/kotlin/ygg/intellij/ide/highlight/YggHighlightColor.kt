@@ -8,7 +8,7 @@ import com.intellij.openapi.options.colors.AttributesDescriptor
 import com.intellij.openapi.util.NlsContexts
 import java.util.function.Supplier
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors as Default
-import ygg.intellij.YggBundle.messagePointer as keyof
+import ygg.intellij.YggdrasilBundle.messagePointer as keyof
 
 
 enum class YggHighlightColor(
@@ -58,12 +58,16 @@ enum class YggHighlightColor(
     // 注释
     COMMENT_INLINE(OptionsBundle.messagePointer("options.language.defaults.line.comment"), Default.LINE_COMMENT),
     COMMENT_BLOCK(OptionsBundle.messagePointer("options.language.defaults.block.comment"), Default.BLOCK_COMMENT),
-    COMMENT_DOCUMENT(OptionsBundle.messagePointer("options.language.defaults.block.comment"),
-        Default.DOC_COMMENT_MARKUP),
+    COMMENT_DOCUMENT(
+        OptionsBundle.messagePointer("options.language.defaults.block.comment"),
+        Default.DOC_COMMENT_MARKUP
+    ),
 
     // 错误
-    BAD_CHARACTER(OptionsBundle.messagePointer("options.java.attribute.descriptor.bad.character"),
-        HighlighterColors.BAD_CHARACTER),
+    BAD_CHARACTER(
+        OptionsBundle.messagePointer("options.java.attribute.descriptor.bad.character"),
+        HighlighterColors.BAD_CHARACTER
+    ),
     ;
 
 

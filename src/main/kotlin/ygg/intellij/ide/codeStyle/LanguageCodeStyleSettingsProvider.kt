@@ -6,7 +6,7 @@ import com.intellij.psi.codeStyle.*
 import com.intellij.psi.codeStyle.LanguageCodeStyleSettingsProvider
 
 class LanguageCodeStyleSettingsProvider : LanguageCodeStyleSettingsProvider() {
-    override fun getLanguage() = ygg.intellij.YggdrasilLanguage.INSTANCE
+    override fun getLanguage() = ygg.intellij.YggdrasilLanguage
 
     override fun getIndentOptionsEditor() = SmartIndentOptionsEditor()
 

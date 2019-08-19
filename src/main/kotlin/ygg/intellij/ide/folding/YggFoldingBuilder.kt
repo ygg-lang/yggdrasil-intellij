@@ -9,7 +9,7 @@ import com.intellij.openapi.project.DumbAware
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
 import com.intellij.psi.util.PsiTreeUtil
-import ygg.intellij.ide.file_view.YggFile
+import ygg.intellij.language.file.YggFile
 
 class YggFoldingBuilder : CustomFoldingBuilder(), DumbAware {
     override fun buildLanguageFoldRegions(

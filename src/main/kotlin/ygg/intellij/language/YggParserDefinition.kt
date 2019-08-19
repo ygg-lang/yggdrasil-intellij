@@ -13,7 +13,7 @@ import com.intellij.psi.PsiFile
 import com.intellij.psi.tree.IFileElementType
 import com.intellij.psi.tree.TokenSet
 import ygg.intellij.YggdrasilLanguage
-import ygg.intellij.ide.file_view.YggFile
+import ygg.intellij.language.file.YggFile
 import ygg.intellij.language.parser.YggParser
 import ygg.intellij.language.psi.YggTypes.*
 
@@ -22,7 +22,7 @@ class YggParserDefinition : ParserDefinition {
     companion object {
         val COMMENTS = TokenSet.create(COMMENT_LINE, COMMENT_BLOCK, COMMENT_BLOCK)
         val STRING_LITERALS = TokenSet.create(STRING)
-        val FILE = IFileElementType(YggdrasilLanguage.INSTANCE)
+        val FILE = IFileElementType(YggdrasilLanguage)
     }
 
     override fun createLexer(project: Project): Lexer = YggLexerAdapter()

@@ -46,7 +46,7 @@ class VomlAstBlock(
         node.getChildren(null).any {
             it.elementType is PsiErrorElement
         }
-        || FormatterUtil.isIncomplete(node)
+                || FormatterUtil.isIncomplete(node)
     }
 
     private val mySubBlocks: List<Block> by lazy { buildChildren() }
@@ -58,7 +58,7 @@ data class VomlFormatterContext(
 ) {
     companion object {
         fun create(settings: CodeStyleSettings): VomlFormatterContext {
-            val commonSettings = settings.getCommonSettings(ygg.intellij.YggdrasilLanguage.INSTANCE)
+            val commonSettings = settings.getCommonSettings(ygg.intellij.YggdrasilLanguage)
             return VomlFormatterContext(commonSettings, createSpacingBuilder(commonSettings))
         }
     }
