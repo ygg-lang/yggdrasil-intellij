@@ -6,7 +6,7 @@ import com.intellij.psi.PsiElement
 import ygg.intellij.language.psi.YggRecursiveVisitor
 import ygg.intellij.language.psi.YggTypes
 
-class YggFoldingVisitor(private val descriptors: MutableList<FoldingDescriptor>) : YggRecursiveVisitor() {
+class YFoldingVisitor(private val descriptors: MutableList<FoldingDescriptor>) : YggRecursiveVisitor() {
 
 //    override fun visitObjectBody(o: VomlObjectBody) {
 //        if (o.objectEntryList.isNotEmpty()) {

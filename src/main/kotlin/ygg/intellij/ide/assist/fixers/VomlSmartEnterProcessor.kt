@@ -6,7 +6,7 @@ import com.intellij.openapi.editor.Editor
 import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
-import ygg.intellij.language.file.YggFile
+import ygg.intellij.language.file.YggdrasilFileNode
 
 class VomlSmartEnterProcessor : SmartEnterProcessorWithFixers() {
     init {
@@ -28,7 +28,7 @@ class VomlSmartEnterProcessor : SmartEnterProcessorWithFixers() {
 
     private class PlainEnterProcessor : FixEnterProcessor() {
         override fun doEnter(atCaret: PsiElement, file: PsiFile, editor: Editor, modified: Boolean): Boolean {
-            if (file !is YggFile) return false
+            if (file !is YggdrasilFileNode) return false
             plainEnter(editor)
             return true
         }

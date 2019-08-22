@@ -1,10 +1,12 @@
-@grammar(Ygg, '*.yg', "*.ygg", "*.grammar"}
+@grammar Ygg {
+    file = ['*.yg', "*.ygg", "*.grammar"]
+}
+@export "path.rs" {override = true}
 
 // Import the predefined types,
 // Otherwise the `String` type of each language will be used directly to represent the atomic expression
-@import("path/literal_types.toml")
-@ignore(NEWLINE, WHITESPACE, COMMENT)
-@export("path", override = true)
+@import "path/literal_types.toml"
+@ignore [NEWLINE, WHITESPACE, COMMENT]
 
 // right now, first rule will become entry point
 program = ^statement*
@@ -99,10 +101,10 @@ macro_call =
 // Identifier
 @alias(id)
 @syntax_type(identifier)
-identifier @= ("_" | XID_START) ~ XID_CONTINUE
+identifier = ("_" | XID_START) XID_CONTINUE
 // The bare 0 will be considered as the string "0"
-integer    @= _sign? _unsigned
-_unsigned   = 0 | [1-9] [0-9]*
+integer    = _sign? _unsigned
+_unsigned  = 0 | [1-9] [0-9]*
 _sign       = [+-]
 // regex
 regex_long ^= "/" ~ (item <- regex_item) ~ "/" ~ (mode: String <- regex_mode)?
@@ -153,7 +155,7 @@ comment_block = "//+" ~ "//-"
 //! ===================== HOOK AREA ============================
 
 // All elements defined next will warp with `@token`
-@define_hook(token)
+@define_hook(keyword)
 // All elements defined next will be marked as `keyword`
 fragment = "fragment!"
 grammar  = "grammar!"
@@ -166,17 +168,3 @@ as       = "as"
 @define_hook()
 // clean all hook
 @clear_hook()
-//! Syntax Token Definition ======================================
-@syntax {
-    grammar, fragment, ignore, macro,
-    import, as
-        -> Keywords
-    //
-    COMMENT_INLINE -> Comment
-    //
-    WHITESPACE: WhiteSpace,
-}
-
-@color_theme {
-    Common::WhiteSpace :
-}

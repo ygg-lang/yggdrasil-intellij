@@ -13,7 +13,7 @@ import com.intellij.psi.PsiFile
 import com.intellij.psi.tree.IFileElementType
 import com.intellij.psi.tree.TokenSet
 import ygg.intellij.YggdrasilLanguage
-import ygg.intellij.language.file.YggFile
+import ygg.intellij.language.file.YggdrasilFileNode
 import ygg.intellij.language.parser.YggParser
 import ygg.intellij.language.psi.YggTypes.*
 
@@ -37,7 +37,7 @@ class YggParserDefinition : ParserDefinition {
 
     override fun createElement(node: ASTNode): PsiElement = Factory.createElement(node)
 
-    override fun createFile(viewProvider: FileViewProvider): PsiFile = YggFile(viewProvider)
+    override fun createFile(viewProvider: FileViewProvider): PsiFile = YggdrasilFileNode(viewProvider)
 
     override fun spaceExistenceTypeBetweenTokens(left: ASTNode, right: ASTNode): SpaceRequirements {
         return SpaceRequirements.MAY

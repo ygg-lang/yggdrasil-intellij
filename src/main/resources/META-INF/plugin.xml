@@ -10,7 +10,7 @@
 			name="YGG"
 			language="YGG"
 			extensions="ygg"
-			implementationClass="ygg.intellij.language.file.YggFileType"
+			implementationClass="ygg.intellij.language.file.YggdrasilFileType"
 			fieldName="INSTANCE"
 		/>
 		<lang.parserDefinition
@@ -45,7 +45,7 @@
 		<!-- Structure View -->
 		<lang.foldingBuilder
 			language="YGG"
-			implementationClass="ygg.intellij.ide.folding.YggFoldingBuilder"
+			implementationClass="ygg.intellij.ide.folding.YFoldingBuilder"
 		/>
 		<indexPatternBuilder
 			implementation="ygg.intellij.ide.todo.VomlTodoIndexPatternBuilder"
@@ -56,7 +56,7 @@
 		/>
 		<completion.contributor
 			language="YGG"
-			implementationClass="ygg.intellij.ide.completion.VomlOptionCompletionContributor"
+			implementationClass="ygg.intellij.ide.completion.YCompletionContributor"
 		/>
 		<annotator
 			language="YGG"

@@ -9,17 +9,17 @@ import com.intellij.openapi.project.DumbAware
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
 import com.intellij.psi.util.PsiTreeUtil
-import ygg.intellij.language.file.YggFile
+import ygg.intellij.language.file.YggdrasilFileNode
 
-class YggFoldingBuilder : CustomFoldingBuilder(), DumbAware {
+class YFoldingBuilder : CustomFoldingBuilder(), DumbAware {
     override fun buildLanguageFoldRegions(
         descriptors: MutableList<FoldingDescriptor>,
         root: PsiElement,
         document: Document,
         quick: Boolean,
     ) {
-        if (root !is YggFile) return
-        val visitor = YggFoldingVisitor(descriptors)
+        if (root !is YggdrasilFileNode) return
+        val visitor = YFoldingVisitor(descriptors)
         PsiTreeUtil.processElements(root) {
             it.accept(visitor);
             true

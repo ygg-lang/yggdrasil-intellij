@@ -3,7 +3,8 @@ package ygg.intellij.ide.highlight
 
 import com.intellij.openapi.options.colors.ColorDescriptor
 import com.intellij.openapi.options.colors.ColorSettingsPage
-import ygg.intellij.language.file.YggIconProvider
+import ygg.intellij.language.file.YggdrasilBundle
+import ygg.intellij.language.file.YggdrasilIcon
 
 class YggHighlightSettingPage : ColorSettingsPage {
     private val attrs = YggHighlightColor
@@ -19,9 +20,9 @@ class YggHighlightSettingPage : ColorSettingsPage {
 
     override fun getColorDescriptors(): Array<ColorDescriptor> = ColorDescriptor.EMPTY_ARRAY
 
-    override fun getDisplayName() = ygg.intellij.YggdrasilBundle.message("filetype.name")
+    override fun getDisplayName() = YggdrasilBundle.message("filetype.name")
 
-    override fun getIcon() = YggIconProvider.FILE
+    override fun getIcon() = YggdrasilIcon.FILE
 
     override fun getHighlighter() = YggHighlightToken()
 

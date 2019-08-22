@@ -1,4 +1,4 @@
-package ygg.intellij
+package ygg.intellij.language.file
 
 import com.intellij.DynamicBundle
 import org.jetbrains.annotations.PropertyKey

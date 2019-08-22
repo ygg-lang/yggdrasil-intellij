@@ -6,7 +6,7 @@ import com.intellij.codeInsight.daemon.impl.HighlightVisitor
 import com.intellij.codeInsight.daemon.impl.analysis.HighlightInfoHolder
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
-import ygg.intellij.language.file.YggFile
+import ygg.intellij.language.file.YggdrasilFileNode
 import ygg.intellij.language.psi.YggGrammarSymbol
 import ygg.intellij.language.psi.YggVisitor
 
@@ -15,7 +15,7 @@ class YggHighlightVisitor : YggVisitor(), HighlightVisitor {
 
     override fun clone(): HighlightVisitor = YggHighlightVisitor()
 
-    override fun suitableForFile(file: PsiFile): Boolean = file is YggFile
+    override fun suitableForFile(file: PsiFile): Boolean = file is YggdrasilFileNode
 
     override fun visit(element: PsiElement) = element.accept(this)
 

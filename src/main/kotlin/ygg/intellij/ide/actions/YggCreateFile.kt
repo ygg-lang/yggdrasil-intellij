@@ -4,11 +4,11 @@ import com.intellij.ide.actions.CreateFileFromTemplateAction
 import com.intellij.ide.actions.CreateFileFromTemplateDialog
 import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiDirectory
-import ygg.intellij.YggdrasilBundle
 import ygg.intellij.YggdrasilLanguage
-import ygg.intellij.language.file.YggIconProvider
+import ygg.intellij.language.file.YggdrasilBundle
+import ygg.intellij.language.file.YggdrasilIcon
 
-class YggCreateFile : CreateFileFromTemplateAction(Name, Description, YggIconProvider.FILE) {
+class YggCreateFile : CreateFileFromTemplateAction(Name, Description, YggdrasilIcon.FILE) {
     companion object {
         val Name = YggdrasilLanguage.id
         const val TemplateName = "Voml File";
@@ -16,7 +16,7 @@ class YggCreateFile : CreateFileFromTemplateAction(Name, Description, YggIconPro
     }
 
     override fun buildDialog(project: Project, directory: PsiDirectory, builder: CreateFileFromTemplateDialog.Builder) {
-        builder.setTitle(Name).addKind("Empty file", YggIconProvider.FILE, TemplateName)
+        builder.setTitle(Name).addKind("Empty file", YggdrasilIcon.FILE, TemplateName)
     }
 
     override fun getActionName(directory: PsiDirectory, newName: String, templateName: String): String = Name

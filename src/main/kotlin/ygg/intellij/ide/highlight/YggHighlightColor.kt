@@ -8,7 +8,7 @@ import com.intellij.openapi.options.colors.AttributesDescriptor
 import com.intellij.openapi.util.NlsContexts
 import java.util.function.Supplier
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors as Default
-import ygg.intellij.YggdrasilBundle.messagePointer as keyof
+import ygg.intellij.language.file.YggdrasilBundle.messagePointer as keyof
 
 
 enum class YggHighlightColor(

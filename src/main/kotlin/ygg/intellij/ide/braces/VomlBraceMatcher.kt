@@ -5,7 +5,7 @@ import com.intellij.codeInsight.highlighting.PairedBraceMatcherAdapter
 import com.intellij.openapi.editor.highlighter.HighlighterIterator
 import com.intellij.openapi.fileTypes.FileType
 import ygg.intellij.YggdrasilLanguage
-import ygg.intellij.language.file.YggFileType
+import ygg.intellij.language.file.YggdrasilFileType
 
 class VomlBraceMatcher : PairedBraceMatcherAdapter(VomlBaseBraceMatcher(), YggdrasilLanguage) {
     override fun isLBraceToken(iterator: HighlighterIterator, fileText: CharSequence, fileType: FileType): Boolean =
@@ -20,7 +20,7 @@ class VomlBraceMatcher : PairedBraceMatcherAdapter(VomlBaseBraceMatcher(), Yggdr
         fileType: FileType,
         left: Boolean
     ): Boolean {
-        if (fileType != YggFileType.INSTANCE) return false
+        if (fileType != YggdrasilFileType) return false
         val pair = findPair(left, iterator, fileText, fileType)
         return pair != null
     }
