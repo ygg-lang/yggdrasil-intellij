@@ -29,14 +29,14 @@ public class YggFunctionStatementNode extends ASTWrapperPsiElement implements Yg
 
   @Override
   @NotNull
-  public YggParenthesis getParenthesis() {
-    return findNotNullChildByClass(YggParenthesis.class);
+  public YggIdentifier getIdentifier() {
+    return findNotNullChildByClass(YggIdentifier.class);
   }
 
   @Override
   @NotNull
-  public YggRuleSymbol getRuleSymbol() {
-    return findNotNullChildByClass(YggRuleSymbol.class);
+  public YggParenthesis getParenthesis() {
+    return findNotNullChildByClass(YggParenthesis.class);
   }
 
 }

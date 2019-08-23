@@ -1,22 +1,19 @@
 {
     parserClass = "ygg.intellij.language.parser.YggParser"
     parserUtilClass = "ygg.intellij.language.psi.YggParserExtension"
-    extends = "com.intellij.extapi.psi.ASTWrapperPsiElement"
 
     psiClassPrefix = "Ygg"
     psiImplClassSuffix = "Node"
     psiPackage = "ygg.intellij.language.psi"
     psiImplPackage = "ygg.intellij.language.psi_node"
-    psiImplUtilClass = "ygg.intellij.language.psi_node.YggPsiExtension"
 
     elementTypeHolderClass = "ygg.intellij.language.psi.YggTypes"
-    elementTypeClass = "ygg.intellij.language.psi.YElementType"
-    tokenTypeClass = "ygg.intellij.language.psi.YElementType"
+    elementTypeClass = "ygg.intellij.language.psi.YggElementType"
+    tokenTypeClass = "ygg.intellij.language.psi.YggTokenType"
+
+    psiImplUtilClass = "ygg.intellij.language.psi_node.YggPsiExtension"
+
     tokens = [
-        GRAMMAR = '@grammar'
-        FRAGMENT = '@fragment'
-        IMPORT = '@import'
-        IGNORE = '@ignore'
         AS = "as"
 
         PARENTHESIS_L = '('
@@ -48,6 +45,8 @@
         MANY1 = '+'
         MANY = '*'
     ]
+
+    extends = "com.intellij.extapi.psi.ASTWrapperPsiElement"
 }
 
 Ygg ::= statements*;
@@ -64,34 +63,37 @@ private statements ::=
     | rule_statement
     | SEMICOLON;
 // =====================================================================================================================
-ignore_statement ::= IGNORE (rule_symbol | <<paired ignore_inner>>);
-private ignore_inner ::= [rule_symbol (COMMA rule_symbol)* [COMMA]];
+ignore_statement ::= IGNORE (identifier | <<paired ignore_inner>>);
+private ignore_inner ::= [identifier (COMMA identifier)* [COMMA]];
 // ---------------------------------------------------------------------------------------------------------------------
 // @grammar ygg {"*.yg","*.ygg", "*.grammar"}
 // @grammar ygg;
-grammar_statement ::= GRAMMAR grammar_symbol [<<paired grammar_inner>>];
+grammar_statement ::= "grammar" identifier [<<paired grammar_inner>>];
 private grammar_inner ::= string (COMMA string)* [COMMA];
-grammar_symbol ::= SYMBOL;
 // ---------------------------------------------------------------------------------------------------------------------
 // @import
-import_statement ::= IMPORT string [rule_symbol | <<paired include_inner>>];
-private include_inner ::= [rule_symbol (COMMA rule_symbol)* [COMMA]];
+import_statement ::= "import" string [identifier | <<paired include_inner>>];
+private include_inner ::= [identifier (COMMA identifier)* [COMMA]];
 // ---------------------------------------------------------------------------------------------------------------------
 // @macro("path")
 macro_statement ::= AT SYMBOL <<parenthesis macro_arg COMMA>>;
 macro_arg ::= value | macro_statement;
 // =====================================================================================================================
-rule_statement ::= SYMBOL EQ expr
-expr ::= function_statement | value;
+// def modifiers rule
+rule_statement ::= "def" modifiers SYMBOL [rule_argument] [rule_type] BRACKET_L expr BRACKET_R;
+rule_argument ::= PARENTHESIS_L PARENTHESIS_R;
+rule_type     ::= (COLON | ARROW) identifier;
+expr ::= function_statement | value | branch_mark;
 // ---------------------------------------------------------------------------------------------------------------------
-// $function("path")
-function_statement ::= DOLLAR rule_symbol <<parenthesis expr COMMA>>;
-rule_symbol ::= SYMBOL;
+// @function("path")
+function_statement ::= AT identifier <<parenthesis expr COMMA>>;
 // ---------------------------------------------------------------------------------------------------------------------
-value ::= NULL | BOOLEAN | num | string | regex | table | regex_range;
-type_hint ::= SYMBOL;
-number_suffix ::= SYMBOL;
-regex ::= REGEX_QUOTE char* REGEX_QUOTE regex_mode;
+branch_mark ::= HASH identifier;
+// ---------------------------------------------------------------------------------------------------------------------
+value ::= NULL | BOOLEAN | num | string | table | namespace;
+type_hint ::= identifier;
+number_suffix ::= identifier;
+charset ::= REGEX_QUOTE char* REGEX_QUOTE regex_mode;
 regex_mode ::= SYMBOL;
 regex_range ::= REGEX_RANGE_L REGEX_CHARACTER* REGEX_RANGE_R;
 // ---------------------------------------------------------------------------------------------------------------------
@@ -100,17 +102,21 @@ symbol_path ::= key (DOT key)*;
 key ::= string | key_symbol | INTEGER;
 private eq ::= EQ | COLON;
 key_symbol ::= SYMBOL;
-// ------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------
 private num ::= [SIGN] (INTEGER | DECIMAL) [number_suffix] | [SIGN] BYTE;
-// ------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------
 string ::= esc | STRING_SQ char* STRING_SQ | STRING_DQ char* STRING_DQ;
 private char ::= CHARACTER | esc;
 private esc ::= ESCAPE_UNICODE | ESCAPE_SPECIAL;
-// ------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------
 table ::= [type_hint] <<paired table_inner>>;
 private table_inner ::= [table_item (COMMA table_item)* [COMMA]];
 private table_item ::= pair | value;
-// ------------------------------------
+// ---------------------------------------------------------------------------------------------------------------------
+modifiers ::= (identifier !('('|'{'|'-'|':'))*;
+identifier ::= SYMBOL;
+namespace ::= identifier (DOUBLE_COLON identifier)*
+// ---------------------------------------------------------------------------------------------------------------------
 meta parenthesis ::= PARENTHESIS_L [<<item>> (<<delimiter>> <<item>>)* [<<delimiter>>]] PARENTHESIS_R;
 
 private meta paired ::=

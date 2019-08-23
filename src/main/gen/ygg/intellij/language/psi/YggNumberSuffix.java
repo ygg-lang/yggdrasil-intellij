@@ -7,4 +7,7 @@ import com.intellij.psi.PsiElement;
 
 public interface YggNumberSuffix extends PsiElement {
 
+  @NotNull
+  YggIdentifier getIdentifier();
+
 }

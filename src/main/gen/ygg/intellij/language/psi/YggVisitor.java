@@ -7,6 +7,14 @@ import com.intellij.psi.PsiElement;
 
 public class YggVisitor extends PsiElementVisitor {
 
+  public void visitBranchMark(@NotNull YggBranchMark o) {
+    visitPsiElement(o);
+  }
+
+  public void visitCharset(@NotNull YggCharset o) {
+    visitPsiElement(o);
+  }
+
   public void visitCommentDoc(@NotNull YggCommentDoc o) {
     visitPsiElement(o);
   }
@@ -23,7 +31,7 @@ public class YggVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitGrammarSymbol(@NotNull YggGrammarSymbol o) {
+  public void visitIdentifier(@NotNull YggIdentifier o) {
     visitPsiElement(o);
   }
 
@@ -51,6 +59,14 @@ public class YggVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitModifiers(@NotNull YggModifiers o) {
+    visitPsiElement(o);
+  }
+
+  public void visitNamespace(@NotNull YggNamespace o) {
+    visitPsiElement(o);
+  }
+
   public void visitNumberSuffix(@NotNull YggNumberSuffix o) {
     visitPsiElement(o);
   }
@@ -63,10 +79,6 @@ public class YggVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitRegex(@NotNull YggRegex o) {
-    visitPsiElement(o);
-  }
-
   public void visitRegexMode(@NotNull YggRegexMode o) {
     visitPsiElement(o);
   }
@@ -75,11 +87,15 @@ public class YggVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitRuleArgument(@NotNull YggRuleArgument o) {
+    visitPsiElement(o);
+  }
+
   public void visitRuleStatement(@NotNull YggRuleStatement o) {
     visitPsiElement(o);
   }
 
-  public void visitRuleSymbol(@NotNull YggRuleSymbol o) {
+  public void visitRuleType(@NotNull YggRuleType o) {
     visitPsiElement(o);
   }
 

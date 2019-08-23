@@ -27,4 +27,10 @@ public class YggTypeHintNode extends ASTWrapperPsiElement implements YggTypeHint
     else super.accept(visitor);
   }
 
+  @Override
+  @NotNull
+  public YggIdentifier getIdentifier() {
+    return findNotNullChildByClass(YggIdentifier.class);
+  }
+
 }

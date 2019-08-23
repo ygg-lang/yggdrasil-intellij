@@ -8,13 +8,10 @@ import com.intellij.psi.PsiElement;
 public interface YggValue extends PsiElement {
 
   @Nullable
+  YggNamespace getNamespace();
+
+  @Nullable
   YggNumberSuffix getNumberSuffix();
-
-  @Nullable
-  YggRegex getRegex();
-
-  @Nullable
-  YggRegexRange getRegexRange();
 
   @Nullable
   YggString getString();

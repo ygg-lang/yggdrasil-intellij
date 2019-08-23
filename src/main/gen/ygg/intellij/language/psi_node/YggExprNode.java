@@ -29,6 +29,12 @@ public class YggExprNode extends ASTWrapperPsiElement implements YggExpr {
 
   @Override
   @Nullable
+  public YggBranchMark getBranchMark() {
+    return findChildByClass(YggBranchMark.class);
+  }
+
+  @Override
+  @Nullable
   public YggFunctionStatement getFunctionStatement() {
     return findChildByClass(YggFunctionStatement.class);
   }

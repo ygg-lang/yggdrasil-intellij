@@ -5,6 +5,9 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface YggRuleSymbol extends PsiElement {
+public interface YggCharset extends PsiElement {
+
+  @NotNull
+  YggRegexMode getRegexMode();
 
 }

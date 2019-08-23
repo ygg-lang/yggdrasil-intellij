@@ -29,20 +29,14 @@ public class YggValueNode extends ASTWrapperPsiElement implements YggValue {
 
   @Override
   @Nullable
+  public YggNamespace getNamespace() {
+    return findChildByClass(YggNamespace.class);
+  }
+
+  @Override
+  @Nullable
   public YggNumberSuffix getNumberSuffix() {
     return findChildByClass(YggNumberSuffix.class);
-  }
-
-  @Override
-  @Nullable
-  public YggRegex getRegex() {
-    return findChildByClass(YggRegex.class);
-  }
-
-  @Override
-  @Nullable
-  public YggRegexRange getRegexRange() {
-    return findChildByClass(YggRegexRange.class);
   }
 
   @Override

@@ -8,9 +8,9 @@ import com.intellij.psi.PsiElement;
 public interface YggFunctionStatement extends PsiElement {
 
   @NotNull
-  YggParenthesis getParenthesis();
+  YggIdentifier getIdentifier();
 
   @NotNull
-  YggRuleSymbol getRuleSymbol();
+  YggParenthesis getParenthesis();
 
 }

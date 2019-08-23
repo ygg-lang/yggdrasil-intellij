@@ -5,12 +5,9 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface YggImportStatement extends PsiElement {
+public interface YggNamespace extends PsiElement {
 
   @NotNull
   List<YggIdentifier> getIdentifierList();
-
-  @NotNull
-  YggString getString();
 
 }

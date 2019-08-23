@@ -1,45 +1,64 @@
-@grammar Ygg {
-    file = ['*.yg', "*.ygg", "*.grammar"]
+grammar Ygg {
+    file_pattern: ['*.yg', "*.ygg", "*.grammar"],
+    ignore: [NEWLINE, WHITESPACE, COMMENT],
+    suffix: "Node"
 }
-@export "path.rs" {override = true}
+export "path.rs" {
+    override: true
+}
 
 // Import the predefined types,
 // Otherwise the `String` type of each language will be used directly to represent the atomic expression
-@import "path/literal_types.toml"
-@ignore [NEWLINE, WHITESPACE, COMMENT]
+import "path/literal_types.toml"
+
 
 // right now, first rule will become entry point
-program = ^statement*
+def main program {
+    statement*
+}
 
 
 // `#` will generate named bindings for languages that do not support union type, such as rust
 // Union type will be used directly in other languages that support union type, such as ts, scala
 // Note that compared to ANTLR, this is not mandatory, but the same name is also forbidden.
 // If not specified, a name like `AuxVariant1` will be generated.
-statement =
+def statement {
     | grammar_statement   #Grammar
     | fragment_statement  #Fragment
     | ignore_statement    #Ignore
     | import_statement    #Import
     | assign_statement    #Assign
+}
+
 
 //* grammar tsg
 //* grammar tsg {"*.tsg", }
-grammar_statement  = grammar ~ id ~ _grammar_exts? ~ eos?
-_grammar_exts      = "{" ~ $join(extensions <- string, ",", trailing = true)? ~ "}"
-
+def grammar_statement {
+    grammar ~ id ~ _grammar_exts? ~ eos?
+}
+def _grammar_exts {
+    "{" ~ @interval(extensions:string, ",", trailing = true)? ~ "}"
+}
 
 //? `fragment` means that this file cannot build as grammar, it can only be imported.
 //? `id` represents the default name when importing, which can be changed by `as`.
 //* fragment ascii
-fragment_statement = fragment ~ id ~ eos?
+def fragment_statement {
+    fragment ~ id ~ eos?
+}
 
 
-import_statement ^=
+def import_statement {
     | import ~ (path <- string) ~ (as ~ ^id)?       #FromPath
     | import ~ (path <- string) ~ _import_selected  #FromPathItems
-_import_selected  = "{" ~ $join(item <- import_item, ",", trailing = 1)? ~ "}"
-import_item       = (id <- id) ~ as ~ (alias <- id)
+}
+
+def _import_selected {
+    "{" ~ $join(item <- import_item, ",", trailing = 1)? ~ "}"
+}
+def import_item {
+    id:id ("as" alias:id)?
+}
 
 
 

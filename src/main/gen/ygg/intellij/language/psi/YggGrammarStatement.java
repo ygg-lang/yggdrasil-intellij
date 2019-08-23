@@ -8,7 +8,7 @@ import com.intellij.psi.PsiElement;
 public interface YggGrammarStatement extends PsiElement {
 
   @NotNull
-  YggGrammarSymbol getGrammarSymbol();
+  YggIdentifier getIdentifier();
 
   @NotNull
   List<YggString> getStringList();

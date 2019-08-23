@@ -8,6 +8,9 @@ import com.intellij.psi.PsiElement;
 public interface YggExpr extends PsiElement {
 
   @Nullable
+  YggBranchMark getBranchMark();
+
+  @Nullable
   YggFunctionStatement getFunctionStatement();
 
   @Nullable

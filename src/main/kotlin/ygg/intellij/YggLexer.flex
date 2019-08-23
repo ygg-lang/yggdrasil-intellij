@@ -30,8 +30,8 @@ public _YggLexer() {
 EOL=\R
 WHITE_SPACE=\s+
 
-COMMENT_DOC=("///"|#)[^\r\n]*
-COMMENT_LINE=("//"|#)[^\r\n]*
+COMMENT_DOC=("///")[^\r\n]*
+COMMENT_LINE=("//")[^\r\n]*
 COMMENT_BLOCK=[/][*][^*]*[*]+([^/*][^*]*[*]+)*[/]
 BOOLEAN=true|false
 SYMBOL=[\p{XID_Start}_][\p{XID_Continue}_]*
@@ -64,10 +64,12 @@ HEX = [0-9a-fA-F]
 	"<"  { return ANGLE_L; }
 	">"  { return ANGLE_R; }
 	//
+	::   { return DOUBLE_COLON; }
 	:    { return COLON; }
 	;    { return SEMICOLON; }
 	,    { return COMMA; }
 	@    { return AT; }
+	#    { return HASH; }
 	\^   { return ACCENT; }
 	\~   { return SOFT_CONNECT;}
 	\|   { return CHOOSE;}
@@ -84,10 +86,6 @@ HEX = [0-9a-fA-F]
 	return EQ;
 }
 <YYINITIAL> {
-	@import {return IMPORT;}
-	@ignore {return IGNORE;}
-	@grammar {return GRAMMAR;}
-
 	// literal
 	{BOOLEAN} { return BOOLEAN; }
 	{SYMBOL}  { return SYMBOL; }

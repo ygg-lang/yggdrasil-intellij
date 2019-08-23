@@ -8,84 +8,94 @@ import ygg.intellij.language.psi_node.*;
 
 public interface YggTypes {
 
-  IElementType EXPR = new YElementType("EXPR");
-  IElementType FUNCTION_STATEMENT = new YElementType("FUNCTION_STATEMENT");
-  IElementType GRAMMAR_STATEMENT = new YElementType("GRAMMAR_STATEMENT");
-  IElementType GRAMMAR_SYMBOL = new YElementType("GRAMMAR_SYMBOL");
-  IElementType IGNORE_STATEMENT = new YElementType("IGNORE_STATEMENT");
-  IElementType IMPORT_STATEMENT = new YElementType("IMPORT_STATEMENT");
-  IElementType KEY = new YElementType("KEY");
-  IElementType KEY_SYMBOL = new YElementType("KEY_SYMBOL");
-  IElementType MACRO_ARG = new YElementType("MACRO_ARG");
-  IElementType MACRO_STATEMENT = new YElementType("MACRO_STATEMENT");
-  IElementType NUMBER_SUFFIX = new YElementType("NUMBER_SUFFIX");
-  IElementType PAIR = new YElementType("PAIR");
-  IElementType PARENTHESIS = new YElementType("PARENTHESIS");
-  IElementType REGEX = new YElementType("REGEX");
-  IElementType REGEX_MODE = new YElementType("REGEX_MODE");
-  IElementType REGEX_RANGE = new YElementType("REGEX_RANGE");
-  IElementType RULE_STATEMENT = new YElementType("RULE_STATEMENT");
-  IElementType RULE_SYMBOL = new YElementType("RULE_SYMBOL");
-  IElementType STRING = new YElementType("STRING");
-  IElementType SYMBOL_PATH = new YElementType("SYMBOL_PATH");
-  IElementType TABLE = new YElementType("TABLE");
-  IElementType TYPE_HINT = new YElementType("TYPE_HINT");
-  IElementType VALUE = new YElementType("VALUE");
+  IElementType BRANCH_MARK = new YggElementType("BRANCH_MARK");
+  IElementType CHARSET = new YggElementType("CHARSET");
+  IElementType EXPR = new YggElementType("EXPR");
+  IElementType FUNCTION_STATEMENT = new YggElementType("FUNCTION_STATEMENT");
+  IElementType GRAMMAR_STATEMENT = new YggElementType("GRAMMAR_STATEMENT");
+  IElementType IDENTIFIER = new YggElementType("IDENTIFIER");
+  IElementType IGNORE_STATEMENT = new YggElementType("IGNORE_STATEMENT");
+  IElementType IMPORT_STATEMENT = new YggElementType("IMPORT_STATEMENT");
+  IElementType KEY = new YggElementType("KEY");
+  IElementType KEY_SYMBOL = new YggElementType("KEY_SYMBOL");
+  IElementType MACRO_ARG = new YggElementType("MACRO_ARG");
+  IElementType MACRO_STATEMENT = new YggElementType("MACRO_STATEMENT");
+  IElementType MODIFIERS = new YggElementType("MODIFIERS");
+  IElementType NAMESPACE = new YggElementType("NAMESPACE");
+  IElementType NUMBER_SUFFIX = new YggElementType("NUMBER_SUFFIX");
+  IElementType PAIR = new YggElementType("PAIR");
+  IElementType PARENTHESIS = new YggElementType("PARENTHESIS");
+  IElementType REGEX_MODE = new YggElementType("REGEX_MODE");
+  IElementType REGEX_RANGE = new YggElementType("REGEX_RANGE");
+  IElementType RULE_ARGUMENT = new YggElementType("RULE_ARGUMENT");
+  IElementType RULE_STATEMENT = new YggElementType("RULE_STATEMENT");
+  IElementType RULE_TYPE = new YggElementType("RULE_TYPE");
+  IElementType STRING = new YggElementType("STRING");
+  IElementType SYMBOL_PATH = new YggElementType("SYMBOL_PATH");
+  IElementType TABLE = new YggElementType("TABLE");
+  IElementType TYPE_HINT = new YggElementType("TYPE_HINT");
+  IElementType VALUE = new YggElementType("VALUE");
 
-  IElementType ACCENT = new YElementType("^");
-  IElementType ANGLE_L = new YElementType("<");
-  IElementType ANGLE_R = new YElementType(">");
-  IElementType AS = new YElementType("as");
-  IElementType AT = new YElementType("@");
-  IElementType BOOLEAN = new YElementType("BOOLEAN");
-  IElementType BRACE_L = new YElementType("{");
-  IElementType BRACE_R = new YElementType("}");
-  IElementType BRACKET_L = new YElementType("[");
-  IElementType BRACKET_R = new YElementType("]");
-  IElementType BYTE = new YElementType("BYTE");
-  IElementType CHARACTER = new YElementType("CHARACTER");
-  IElementType CHOOSE = new YElementType("|");
-  IElementType COLON = new YElementType(":");
-  IElementType COMMA = new YElementType(",");
-  IElementType COMMENT_BLOCK = new YElementType("COMMENT_BLOCK");
-  IElementType COMMENT_DOC = new YElementType("COMMENT_DOC");
-  IElementType COMMENT_LINE = new YElementType("COMMENT_LINE");
-  IElementType DECIMAL = new YElementType("DECIMAL");
-  IElementType DOLLAR = new YElementType("$");
-  IElementType DOT = new YElementType(".");
-  IElementType EQ = new YElementType("=");
-  IElementType ESCAPE = new YElementType("\\");
-  IElementType ESCAPE_SPECIAL = new YElementType("ESCAPE_SPECIAL");
-  IElementType ESCAPE_UNICODE = new YElementType("ESCAPE_UNICODE");
-  IElementType FRAGMENT = new YElementType("@fragment");
-  IElementType GRAMMAR = new YElementType("@grammar");
-  IElementType IGNORE = new YElementType("@ignore");
-  IElementType IMPORT = new YElementType("@import");
-  IElementType INTEGER = new YElementType("INTEGER");
-  IElementType MANY = new YElementType("*");
-  IElementType MANY1 = new YElementType("+");
-  IElementType NOT = new YElementType("!");
-  IElementType NULL = new YElementType("NULL");
-  IElementType OPTIONAL = new YElementType("?");
-  IElementType PARENTHESIS_L = new YElementType("(");
-  IElementType PARENTHESIS_R = new YElementType(")");
-  IElementType QUOTATION = new YElementType("\"");
-  IElementType REGEX_CHARACTER = new YElementType("REGEX_CHARACTER");
-  IElementType REGEX_QUOTE = new YElementType("REGEX_QUOTE");
-  IElementType REGEX_RANGE_L = new YElementType("REGEX_RANGE_L");
-  IElementType REGEX_RANGE_R = new YElementType("REGEX_RANGE_R");
-  IElementType SEMICOLON = new YElementType(";");
-  IElementType SIGN = new YElementType("SIGN");
-  IElementType SOFT_CONNECT = new YElementType("~");
-  IElementType STRING_DQ = new YElementType("STRING_DQ");
-  IElementType STRING_SQ = new YElementType("STRING_SQ");
-  IElementType SYMBOL = new YElementType("SYMBOL");
-  IElementType TAGGED = new YElementType("<-");
+  IElementType ACCENT = new YggTokenType("^");
+  IElementType ANGLE_L = new YggTokenType("<");
+  IElementType ANGLE_R = new YggTokenType(">");
+  IElementType ARROW = new YggTokenType("ARROW");
+  IElementType AS = new YggTokenType("as");
+  IElementType AT = new YggTokenType("@");
+  IElementType BOOLEAN = new YggTokenType("BOOLEAN");
+  IElementType BRACE_L = new YggTokenType("{");
+  IElementType BRACE_R = new YggTokenType("}");
+  IElementType BRACKET_L = new YggTokenType("[");
+  IElementType BRACKET_R = new YggTokenType("]");
+  IElementType BYTE = new YggTokenType("BYTE");
+  IElementType CHARACTER = new YggTokenType("CHARACTER");
+  IElementType CHOOSE = new YggTokenType("|");
+  IElementType COLON = new YggTokenType(":");
+  IElementType COMMA = new YggTokenType(",");
+  IElementType COMMENT_BLOCK = new YggTokenType("COMMENT_BLOCK");
+  IElementType COMMENT_DOC = new YggTokenType("COMMENT_DOC");
+  IElementType COMMENT_LINE = new YggTokenType("COMMENT_LINE");
+  IElementType DECIMAL = new YggTokenType("DECIMAL");
+  IElementType DOLLAR = new YggTokenType("$");
+  IElementType DOT = new YggTokenType(".");
+  IElementType DOUBLE_COLON = new YggTokenType("DOUBLE_COLON");
+  IElementType EQ = new YggTokenType("=");
+  IElementType ESCAPE = new YggTokenType("\\");
+  IElementType ESCAPE_SPECIAL = new YggTokenType("ESCAPE_SPECIAL");
+  IElementType ESCAPE_UNICODE = new YggTokenType("ESCAPE_UNICODE");
+  IElementType HASH = new YggTokenType("HASH");
+  IElementType IGNORE = new YggTokenType("IGNORE");
+  IElementType INTEGER = new YggTokenType("INTEGER");
+  IElementType MANY = new YggTokenType("*");
+  IElementType MANY1 = new YggTokenType("+");
+  IElementType NOT = new YggTokenType("!");
+  IElementType NULL = new YggTokenType("NULL");
+  IElementType OPTIONAL = new YggTokenType("?");
+  IElementType PARENTHESIS_L = new YggTokenType("(");
+  IElementType PARENTHESIS_R = new YggTokenType(")");
+  IElementType QUOTATION = new YggTokenType("\"");
+  IElementType REGEX_CHARACTER = new YggTokenType("REGEX_CHARACTER");
+  IElementType REGEX_QUOTE = new YggTokenType("REGEX_QUOTE");
+  IElementType REGEX_RANGE_L = new YggTokenType("REGEX_RANGE_L");
+  IElementType REGEX_RANGE_R = new YggTokenType("REGEX_RANGE_R");
+  IElementType SEMICOLON = new YggTokenType(";");
+  IElementType SIGN = new YggTokenType("SIGN");
+  IElementType SOFT_CONNECT = new YggTokenType("~");
+  IElementType STRING_DQ = new YggTokenType("STRING_DQ");
+  IElementType STRING_SQ = new YggTokenType("STRING_SQ");
+  IElementType SYMBOL = new YggTokenType("SYMBOL");
+  IElementType TAGGED = new YggTokenType("<-");
 
   class Factory {
     public static PsiElement createElement(ASTNode node) {
       IElementType type = node.getElementType();
-      if (type == EXPR) {
+      if (type == BRANCH_MARK) {
+        return new YggBranchMarkNode(node);
+      }
+      else if (type == CHARSET) {
+        return new YggCharsetNode(node);
+      }
+      else if (type == EXPR) {
         return new YggExprNode(node);
       }
       else if (type == FUNCTION_STATEMENT) {
@@ -94,8 +104,8 @@ public interface YggTypes {
       else if (type == GRAMMAR_STATEMENT) {
         return new YggGrammarStatementNode(node);
       }
-      else if (type == GRAMMAR_SYMBOL) {
-        return new YggGrammarSymbolNode(node);
+      else if (type == IDENTIFIER) {
+        return new YggIdentifierNode(node);
       }
       else if (type == IGNORE_STATEMENT) {
         return new YggIgnoreStatementNode(node);
@@ -115,6 +125,12 @@ public interface YggTypes {
       else if (type == MACRO_STATEMENT) {
         return new YggMacroStatementNode(node);
       }
+      else if (type == MODIFIERS) {
+        return new YggModifiersNode(node);
+      }
+      else if (type == NAMESPACE) {
+        return new YggNamespaceNode(node);
+      }
       else if (type == NUMBER_SUFFIX) {
         return new YggNumberSuffixNode(node);
       }
@@ -124,20 +140,20 @@ public interface YggTypes {
       else if (type == PARENTHESIS) {
         return new YggParenthesisNode(node);
       }
-      else if (type == REGEX) {
-        return new YggRegexNode(node);
-      }
       else if (type == REGEX_MODE) {
         return new YggRegexModeNode(node);
       }
       else if (type == REGEX_RANGE) {
         return new YggRegexRangeNode(node);
       }
+      else if (type == RULE_ARGUMENT) {
+        return new YggRuleArgumentNode(node);
+      }
       else if (type == RULE_STATEMENT) {
         return new YggRuleStatementNode(node);
       }
-      else if (type == RULE_SYMBOL) {
-        return new YggRuleSymbolNode(node);
+      else if (type == RULE_TYPE) {
+        return new YggRuleTypeNode(node);
       }
       else if (type == STRING) {
         return new YggStringNode(node);

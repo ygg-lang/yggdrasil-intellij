@@ -8,6 +8,6 @@ import com.intellij.psi.PsiElement;
 public interface YggIgnoreStatement extends PsiElement {
 
   @NotNull
-  List<YggRuleSymbol> getRuleSymbolList();
+  List<YggIdentifier> getIdentifierList();
 
 }

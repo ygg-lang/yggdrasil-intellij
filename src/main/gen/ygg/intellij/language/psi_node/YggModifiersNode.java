@@ -11,20 +11,26 @@ import static ygg.intellij.language.psi.YggTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import ygg.intellij.language.psi.*;
 
-public class YggGrammarSymbolNode extends ASTWrapperPsiElement implements YggGrammarSymbol {
+public class YggModifiersNode extends ASTWrapperPsiElement implements YggModifiers {
 
-  public YggGrammarSymbolNode(@NotNull ASTNode node) {
+  public YggModifiersNode(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull YggVisitor visitor) {
-    visitor.visitGrammarSymbol(this);
+    visitor.visitModifiers(this);
   }
 
   @Override
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof YggVisitor) accept((YggVisitor)visitor);
     else super.accept(visitor);
+  }
+
+  @Override
+  @NotNull
+  public List<YggIdentifier> getIdentifierList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, YggIdentifier.class);
   }
 
 }

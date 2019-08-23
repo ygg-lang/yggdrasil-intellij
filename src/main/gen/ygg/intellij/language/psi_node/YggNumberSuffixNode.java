@@ -27,4 +27,10 @@ public class YggNumberSuffixNode extends ASTWrapperPsiElement implements YggNumb
     else super.accept(visitor);
   }
 
+  @Override
+  @NotNull
+  public YggIdentifier getIdentifier() {
+    return findNotNullChildByClass(YggIdentifier.class);
+  }
+
 }

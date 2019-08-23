@@ -10,4 +10,13 @@ public interface YggRuleStatement extends PsiElement {
   @NotNull
   YggExpr getExpr();
 
+  @NotNull
+  YggModifiers getModifiers();
+
+  @Nullable
+  YggRuleArgument getRuleArgument();
+
+  @Nullable
+  YggRuleType getRuleType();
+
 }

@@ -29,8 +29,8 @@ public class YggImportStatementNode extends ASTWrapperPsiElement implements YggI
 
   @Override
   @NotNull
-  public List<YggRuleSymbol> getRuleSymbolList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, YggRuleSymbol.class);
+  public List<YggIdentifier> getIdentifierList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, YggIdentifier.class);
   }
 
   @Override
