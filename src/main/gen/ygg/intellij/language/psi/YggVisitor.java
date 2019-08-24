@@ -67,6 +67,10 @@ public class YggVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitNegative(@NotNull YggNegative o) {
+    visitPsiElement(o);
+  }
+
   public void visitNumberSuffix(@NotNull YggNumberSuffix o) {
     visitPsiElement(o);
   }

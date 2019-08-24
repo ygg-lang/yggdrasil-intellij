@@ -28,6 +28,12 @@ public class YggCharsetNode extends ASTWrapperPsiElement implements YggCharset {
   }
 
   @Override
+  @Nullable
+  public YggNegative getNegative() {
+    return findChildByClass(YggNegative.class);
+  }
+
+  @Override
   @NotNull
   public YggRegexMode getRegexMode() {
     return findNotNullChildByClass(YggRegexMode.class);

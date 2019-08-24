@@ -9,7 +9,7 @@
 
     elementTypeHolderClass = "ygg.intellij.language.psi.YggTypes"
     elementTypeClass = "ygg.intellij.language.psi.YggElementType"
-    tokenTypeClass = "ygg.intellij.language.psi.YggTokenType"
+    tokenTypeClass = "ygg.intellij.language.psi.YggElementType"
 
     psiImplUtilClass = "ygg.intellij.language.psi_node.YggPsiExtension"
 
@@ -90,15 +90,16 @@ function_statement ::= AT identifier <<parenthesis expr COMMA>>;
 // ---------------------------------------------------------------------------------------------------------------------
 branch_mark ::= HASH identifier;
 // ---------------------------------------------------------------------------------------------------------------------
-value ::= NULL | BOOLEAN | num | string | table | namespace;
+value ::= NULL | BOOLEAN | num | string | table | namespace | charset;
 type_hint ::= identifier;
 number_suffix ::= identifier;
-charset ::= REGEX_QUOTE char* REGEX_QUOTE regex_mode;
+charset ::= REGEX_QUOTE [negative] char* REGEX_QUOTE regex_mode;
 regex_mode ::= SYMBOL;
 regex_range ::= REGEX_RANGE_L REGEX_CHARACTER* REGEX_RANGE_R;
+negative ::= ACCENT;
 // ---------------------------------------------------------------------------------------------------------------------
 pair ::= symbol_path eq value;
-symbol_path ::= key (DOT key)*;
+symbol_path ::= key (DOT key)*
 key ::= string | key_symbol | INTEGER;
 private eq ::= EQ | COLON;
 key_symbol ::= SYMBOL;

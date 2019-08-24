@@ -1,8 +1,10 @@
 package ygg.intellij.ide.codeStyle
 
 import com.intellij.application.options.CodeStyleAbstractConfigurable
+import com.intellij.application.options.CodeStyleAbstractPanel
 import com.intellij.application.options.SmartIndentOptionsEditor
 import com.intellij.psi.codeStyle.*
+import com.intellij.psi.codeStyle.CodeStyleSettings
 import com.intellij.psi.codeStyle.LanguageCodeStyleSettingsProvider
 
 class LanguageCodeStyleSettingsProvider : LanguageCodeStyleSettingsProvider() {
@@ -19,8 +21,9 @@ class LanguageCodeStyleSettingsProvider : LanguageCodeStyleSettingsProvider() {
             modelSettings,
             configurableDisplayName
         ) {
-            override fun createPanel(settings: CodeStyleSettings?) =
-                settings?.let { CodeStyleMainPanel(currentSettings, it) }
+            override fun createPanel(settings: CodeStyleSettings): CodeStyleAbstractPanel {
+                return CodeStyleMainPanel(currentSettings, settings)
+            }
         }
     }
 
@@ -33,15 +36,18 @@ class LanguageCodeStyleSettingsProvider : LanguageCodeStyleSettingsProvider() {
                     CodeStyleSettingsCustomizable.CommenterOption.LINE_COMMENT_AT_FIRST_COLUMN.name
                 )
             }
+
             SettingsType.WRAPPING_AND_BRACES_SETTINGS -> {
                 consumer.showStandardOptions(
                     CodeStyleSettingsCustomizable.WrappingOrBraceOption.RIGHT_MARGIN.name,
                     CodeStyleSettingsCustomizable.WrappingOrBraceOption.KEEP_LINE_BREAKS.name
                 )
             }
+
             SettingsType.LANGUAGE_SPECIFIC -> {
                 consumer.showStandardOptions()
             }
+
             else -> {}
         }
     }

@@ -8,6 +8,9 @@ import com.intellij.psi.PsiElement;
 public interface YggValue extends PsiElement {
 
   @Nullable
+  YggCharset getCharset();
+
+  @Nullable
   YggNamespace getNamespace();
 
   @Nullable

@@ -21,16 +21,14 @@ class YggHighlightToken : SyntaxHighlighterBase() {
     private fun getTokenColor(tokenType: IElementType): Color? {
         return when (tokenType) {
             //
-            IMPORT, GRAMMAR, IGNORE, AS -> Color.KEYWORD
+            AS -> Color.KEYWORD
             // ANNOTATION, ANNOTATION_MARK -> Color.ANNOTATION
-            GRAMMAR, IGNORE, IMPORT -> Color.PREDEFINED
             OPTIONAL -> Color.KEYWORD
             MANY -> Color.MANY
             MANY1 -> Color.MANY1
             //
             NUMBER_SUFFIX -> Color.NUMBER_HINT
             TYPE_HINT -> Color.TYPE_HINT
-            RULE_SYMBOL -> Color.SCOPE_SYMBOL
             // INSERT_DOT, INSERT_STAR -> Color.INSERT_MARK
             //
             PARENTHESIS_L, PARENTHESIS_R -> Color.PARENTHESES

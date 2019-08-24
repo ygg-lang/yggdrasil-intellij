@@ -7,7 +7,7 @@ import com.intellij.codeInsight.daemon.impl.analysis.HighlightInfoHolder
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import ygg.intellij.language.file.YggdrasilFileNode
-import ygg.intellij.language.psi.YggGrammarSymbol
+import ygg.intellij.language.psi.YggRuleStatement
 import ygg.intellij.language.psi.YggVisitor
 
 class YggHighlightVisitor : YggVisitor(), HighlightVisitor {
@@ -18,6 +18,10 @@ class YggHighlightVisitor : YggVisitor(), HighlightVisitor {
     override fun suitableForFile(file: PsiFile): Boolean = file is YggdrasilFileNode
 
     override fun visit(element: PsiElement) = element.accept(this)
+
+    override fun visitRuleStatement(o: YggRuleStatement) {
+        highlight(o.firstChild, YggHighlightColor.KEYWORD)
+    }
 
     override fun analyze(
         file: PsiFile,
@@ -38,7 +42,4 @@ class YggHighlightVisitor : YggVisitor(), HighlightVisitor {
         infoHolder?.add(builder.create())
     }
 
-    override fun visitGrammarSymbol(o: YggGrammarSymbol) {
-        highlight(o, YggHighlightColor.PREDEFINED)
-    }
 }

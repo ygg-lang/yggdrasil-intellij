@@ -22,6 +22,7 @@ public interface YggTypes {
   IElementType MACRO_STATEMENT = new YggElementType("MACRO_STATEMENT");
   IElementType MODIFIERS = new YggElementType("MODIFIERS");
   IElementType NAMESPACE = new YggElementType("NAMESPACE");
+  IElementType NEGATIVE = new YggElementType("NEGATIVE");
   IElementType NUMBER_SUFFIX = new YggElementType("NUMBER_SUFFIX");
   IElementType PAIR = new YggElementType("PAIR");
   IElementType PARENTHESIS = new YggElementType("PARENTHESIS");
@@ -36,55 +37,55 @@ public interface YggTypes {
   IElementType TYPE_HINT = new YggElementType("TYPE_HINT");
   IElementType VALUE = new YggElementType("VALUE");
 
-  IElementType ACCENT = new YggTokenType("^");
-  IElementType ANGLE_L = new YggTokenType("<");
-  IElementType ANGLE_R = new YggTokenType(">");
-  IElementType ARROW = new YggTokenType("ARROW");
-  IElementType AS = new YggTokenType("as");
-  IElementType AT = new YggTokenType("@");
-  IElementType BOOLEAN = new YggTokenType("BOOLEAN");
-  IElementType BRACE_L = new YggTokenType("{");
-  IElementType BRACE_R = new YggTokenType("}");
-  IElementType BRACKET_L = new YggTokenType("[");
-  IElementType BRACKET_R = new YggTokenType("]");
-  IElementType BYTE = new YggTokenType("BYTE");
-  IElementType CHARACTER = new YggTokenType("CHARACTER");
-  IElementType CHOOSE = new YggTokenType("|");
-  IElementType COLON = new YggTokenType(":");
-  IElementType COMMA = new YggTokenType(",");
-  IElementType COMMENT_BLOCK = new YggTokenType("COMMENT_BLOCK");
-  IElementType COMMENT_DOC = new YggTokenType("COMMENT_DOC");
-  IElementType COMMENT_LINE = new YggTokenType("COMMENT_LINE");
-  IElementType DECIMAL = new YggTokenType("DECIMAL");
-  IElementType DOLLAR = new YggTokenType("$");
-  IElementType DOT = new YggTokenType(".");
-  IElementType DOUBLE_COLON = new YggTokenType("DOUBLE_COLON");
-  IElementType EQ = new YggTokenType("=");
-  IElementType ESCAPE = new YggTokenType("\\");
-  IElementType ESCAPE_SPECIAL = new YggTokenType("ESCAPE_SPECIAL");
-  IElementType ESCAPE_UNICODE = new YggTokenType("ESCAPE_UNICODE");
-  IElementType HASH = new YggTokenType("HASH");
-  IElementType IGNORE = new YggTokenType("IGNORE");
-  IElementType INTEGER = new YggTokenType("INTEGER");
-  IElementType MANY = new YggTokenType("*");
-  IElementType MANY1 = new YggTokenType("+");
-  IElementType NOT = new YggTokenType("!");
-  IElementType NULL = new YggTokenType("NULL");
-  IElementType OPTIONAL = new YggTokenType("?");
-  IElementType PARENTHESIS_L = new YggTokenType("(");
-  IElementType PARENTHESIS_R = new YggTokenType(")");
-  IElementType QUOTATION = new YggTokenType("\"");
-  IElementType REGEX_CHARACTER = new YggTokenType("REGEX_CHARACTER");
-  IElementType REGEX_QUOTE = new YggTokenType("REGEX_QUOTE");
-  IElementType REGEX_RANGE_L = new YggTokenType("REGEX_RANGE_L");
-  IElementType REGEX_RANGE_R = new YggTokenType("REGEX_RANGE_R");
-  IElementType SEMICOLON = new YggTokenType(";");
-  IElementType SIGN = new YggTokenType("SIGN");
-  IElementType SOFT_CONNECT = new YggTokenType("~");
-  IElementType STRING_DQ = new YggTokenType("STRING_DQ");
-  IElementType STRING_SQ = new YggTokenType("STRING_SQ");
-  IElementType SYMBOL = new YggTokenType("SYMBOL");
-  IElementType TAGGED = new YggTokenType("<-");
+  IElementType ACCENT = new YggElementType("^");
+  IElementType ANGLE_L = new YggElementType("<");
+  IElementType ANGLE_R = new YggElementType(">");
+  IElementType ARROW = new YggElementType("ARROW");
+  IElementType AS = new YggElementType("as");
+  IElementType AT = new YggElementType("@");
+  IElementType BOOLEAN = new YggElementType("BOOLEAN");
+  IElementType BRACE_L = new YggElementType("{");
+  IElementType BRACE_R = new YggElementType("}");
+  IElementType BRACKET_L = new YggElementType("[");
+  IElementType BRACKET_R = new YggElementType("]");
+  IElementType BYTE = new YggElementType("BYTE");
+  IElementType CHARACTER = new YggElementType("CHARACTER");
+  IElementType CHOOSE = new YggElementType("|");
+  IElementType COLON = new YggElementType(":");
+  IElementType COMMA = new YggElementType(",");
+  IElementType COMMENT_BLOCK = new YggElementType("COMMENT_BLOCK");
+  IElementType COMMENT_DOC = new YggElementType("COMMENT_DOC");
+  IElementType COMMENT_LINE = new YggElementType("COMMENT_LINE");
+  IElementType DECIMAL = new YggElementType("DECIMAL");
+  IElementType DOLLAR = new YggElementType("$");
+  IElementType DOT = new YggElementType(".");
+  IElementType DOUBLE_COLON = new YggElementType("DOUBLE_COLON");
+  IElementType EQ = new YggElementType("=");
+  IElementType ESCAPE = new YggElementType("\\");
+  IElementType ESCAPE_SPECIAL = new YggElementType("ESCAPE_SPECIAL");
+  IElementType ESCAPE_UNICODE = new YggElementType("ESCAPE_UNICODE");
+  IElementType HASH = new YggElementType("HASH");
+  IElementType IGNORE = new YggElementType("IGNORE");
+  IElementType INTEGER = new YggElementType("INTEGER");
+  IElementType MANY = new YggElementType("*");
+  IElementType MANY1 = new YggElementType("+");
+  IElementType NOT = new YggElementType("!");
+  IElementType NULL = new YggElementType("NULL");
+  IElementType OPTIONAL = new YggElementType("?");
+  IElementType PARENTHESIS_L = new YggElementType("(");
+  IElementType PARENTHESIS_R = new YggElementType(")");
+  IElementType QUOTATION = new YggElementType("\"");
+  IElementType REGEX_CHARACTER = new YggElementType("REGEX_CHARACTER");
+  IElementType REGEX_QUOTE = new YggElementType("REGEX_QUOTE");
+  IElementType REGEX_RANGE_L = new YggElementType("REGEX_RANGE_L");
+  IElementType REGEX_RANGE_R = new YggElementType("REGEX_RANGE_R");
+  IElementType SEMICOLON = new YggElementType(";");
+  IElementType SIGN = new YggElementType("SIGN");
+  IElementType SOFT_CONNECT = new YggElementType("~");
+  IElementType STRING_DQ = new YggElementType("STRING_DQ");
+  IElementType STRING_SQ = new YggElementType("STRING_SQ");
+  IElementType SYMBOL = new YggElementType("SYMBOL");
+  IElementType TAGGED = new YggElementType("<-");
 
   class Factory {
     public static PsiElement createElement(ASTNode node) {
@@ -130,6 +131,9 @@ public interface YggTypes {
       }
       else if (type == NAMESPACE) {
         return new YggNamespaceNode(node);
+      }
+      else if (type == NEGATIVE) {
+        return new YggNegativeNode(node);
       }
       else if (type == NUMBER_SUFFIX) {
         return new YggNumberSuffixNode(node);

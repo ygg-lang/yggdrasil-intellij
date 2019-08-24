@@ -7,6 +7,9 @@ import com.intellij.psi.PsiElement;
 
 public interface YggCharset extends PsiElement {
 
+  @Nullable
+  YggNegative getNegative();
+
   @NotNull
   YggRegexMode getRegexMode();
 
