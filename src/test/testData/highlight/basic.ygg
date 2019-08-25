@@ -1,15 +1,15 @@
-grammar Ygg {
-    file_pattern: ['*.yg', "*.ygg", "*.grammar"],
-    ignore: [NEWLINE, WHITESPACE, COMMENT],
-    suffix: "Node"
-}
-export "path.rs" {
-    override: true
-}
+// grammar Ygg {
+//     file_pattern: ['*.yg', "*.ygg", "*.grammar"],
+//     ignore: [NEWLINE, WHITESPACE, COMMENT],
+//     suffix: "Node"
+// }
+// export "path.rs" {
+//     override: true
+// }
 
 // Import the predefined types,
 // Otherwise the `String` type of each language will be used directly to represent the atomic expression
-import "path/literal_types.toml"
+// import "path/literal_types.toml"
 
 
 // right now, first rule will become entry point

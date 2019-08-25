@@ -8,19 +8,19 @@
 	<extensions defaultExtensionNs="com.intellij">
 		<fileType
 			name="YGG"
-			language="YGG"
+			language="Yggdrasil"
 			extensions="ygg"
 			implementationClass="ygg.intellij.language.file.YggdrasilFileType"
 			fieldName="INSTANCE"
 		/>
 		<lang.parserDefinition
-			language="YGG"
+			language="Yggdrasil"
 			implementationClass="ygg.intellij.language.YggParserDefinition"
 		/>
 		<!-- Highlighter -->
 		<colorSettingsPage implementation="ygg.intellij.ide.highlight.YggHighlightSettingPage"/>
 		<lang.syntaxHighlighter
-			language="YGG"
+			language="Yggdrasil"
 			implementationClass="ygg.intellij.ide.highlight.YggHighlightToken"
 		/>
 		<highlightVisitor implementation="ygg.intellij.ide.highlight.YggHighlightVisitor"/>
@@ -31,52 +31,52 @@
 			implementation="ygg.intellij.ide.codeStyle.LanguageCodeStyleSettingsProvider"
 		/>
 		<lang.commenter
-			language="YGG"
+			language="Yggdrasil"
 			implementationClass="ygg.intellij.ide.VomlCommenter"
 		/>
 		<lang.braceMatcher
-			language="YGG"
+			language="Yggdrasil"
 			implementationClass="ygg.intellij.ide.braces.VomlBraceMatcher"
 		/>
 		<lang.quoteHandler
-			language="YGG"
+			language="Yggdrasil"
 			implementationClass="ygg.intellij.ide.YggQuoteHandler"
 		/>
 		<!-- Structure View -->
 		<lang.foldingBuilder
-			language="YGG"
+			language="Yggdrasil"
 			implementationClass="ygg.intellij.ide.folding.YFoldingBuilder"
 		/>
 		<indexPatternBuilder
 			implementation="ygg.intellij.ide.todo.VomlTodoIndexPatternBuilder"
 		/>
 		<todoIndexer
-			filetype="YGG"
+			filetype="Yggdrasil"
 			implementationClass="ygg.intellij.ide.todo.VomlTodoIndexer"
 		/>
 		<completion.contributor
-			language="YGG"
+			language="Yggdrasil"
 			implementationClass="ygg.intellij.ide.completion.YCompletionContributor"
 		/>
 		<annotator
-			language="YGG"
+			language="Yggdrasil"
 			implementationClass="ygg.intellij.ide.annotator.VomlHighlightingAnnotator"
 		/>
 		<annotator
-			language="YGG"
+			language="Yggdrasil"
 			implementationClass="ygg.intellij.ide.annotator.checkers.YggScopeCheckerAnnotator"
 		/>
 		<annotator
-			language="YGG"
+			language="Yggdrasil"
 			implementationClass="ygg.intellij.ide.annotator.checkers.YggTableCheckerAnnotator"
 		/>
 
 		<lang.formatter
-			language="YGG"
+			language="Yggdrasil"
 			implementationClass="ygg.intellij.ide.formatter.VomlFormattingModelBuilder"
 		/>
 		<lang.smartEnterProcessor
-			language="YGG"
+			language="Yggdrasil"
 			implementationClass="ygg.intellij.ide.assist.fixers.VomlSmartEnterProcessor"
 		/>
 	</extensions>

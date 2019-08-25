@@ -4,7 +4,7 @@ package ygg.intellij.language.parser;
 import com.intellij.lang.PsiBuilder;
 import com.intellij.lang.PsiBuilder.Marker;
 import static ygg.intellij.language.psi.YggTypes.*;
-import static ygg.intellij.language.psi.YggParserExtension.*;
+import static com.intellij.lang.parser.GeneratedParserUtilBase.*;
 import com.intellij.psi.tree.IElementType;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.tree.TokenSet;

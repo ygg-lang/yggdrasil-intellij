@@ -5,9 +5,6 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface YggRegex extends PsiElement {
-
-  @NotNull
-  YggRegexMode getRegexMode();
+public interface YggNegative extends PsiElement {
 
 }

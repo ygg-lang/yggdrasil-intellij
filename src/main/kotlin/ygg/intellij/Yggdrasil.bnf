@@ -1,6 +1,6 @@
 {
     parserClass = "ygg.intellij.language.parser.YggParser"
-    parserUtilClass = "ygg.intellij.language.psi.YggParserExtension"
+    parserUtilClass = "com.intellij.lang.parser.GeneratedParserUtilBase"
 
     psiClassPrefix = "Ygg"
     psiImplClassSuffix = "Node"

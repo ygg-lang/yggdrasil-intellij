@@ -2,6 +2,10 @@
 charset = utf-8
 end_of_line = lf
 
+[*.java]
+charset = GBK
+indent_style = space
+
 [*.bnf]
 indent_style = space
 indent_size = 4
