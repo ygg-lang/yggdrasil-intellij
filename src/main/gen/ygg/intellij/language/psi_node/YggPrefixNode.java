@@ -11,14 +11,14 @@ import static ygg.intellij.language.psi.YggTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import ygg.intellij.language.psi.*;
 
-public class YggNegativeNode extends ASTWrapperPsiElement implements YggNegative {
+public class YggPrefixNode extends ASTWrapperPsiElement implements YggPrefix {
 
-  public YggNegativeNode(@NotNull ASTNode node) {
+  public YggPrefixNode(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull YggVisitor visitor) {
-    visitor.visitNegative(this);
+    visitor.visitPrefix(this);
   }
 
   @Override

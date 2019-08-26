@@ -13,6 +13,8 @@ public interface YggTypes {
   IElementType CHARSET = new YggElementType("CHARSET");
   IElementType DEFINE = new YggElementType("DEFINE");
   IElementType EXPR = new YggElementType("EXPR");
+  IElementType FIELD_MARK = new YggElementType("FIELD_MARK");
+  IElementType FIELD_RHS = new YggElementType("FIELD_RHS");
   IElementType FUNCTION_CALL = new YggElementType("FUNCTION_CALL");
   IElementType GRAMMAR_STATEMENT = new YggElementType("GRAMMAR_STATEMENT");
   IElementType IDENTIFIER = new YggElementType("IDENTIFIER");
@@ -26,13 +28,10 @@ public interface YggTypes {
   IElementType MACRO_STATEMENT = new YggElementType("MACRO_STATEMENT");
   IElementType MODIFIERS = new YggElementType("MODIFIERS");
   IElementType NAMESPACE = new YggElementType("NAMESPACE");
-  IElementType NEGATIVE = new YggElementType("NEGATIVE");
   IElementType NUMBER_SUFFIX = new YggElementType("NUMBER_SUFFIX");
   IElementType PAIR = new YggElementType("PAIR");
   IElementType PARENTHESIS = new YggElementType("PARENTHESIS");
   IElementType PREFIX = new YggElementType("PREFIX");
-  IElementType REGEX_MODE = new YggElementType("REGEX_MODE");
-  IElementType REGEX_RANGE = new YggElementType("REGEX_RANGE");
   IElementType RULE_ARGUMENT = new YggElementType("RULE_ARGUMENT");
   IElementType RULE_STATEMENT = new YggElementType("RULE_STATEMENT");
   IElementType RULE_TYPE = new YggElementType("RULE_TYPE");
@@ -72,6 +71,7 @@ public interface YggTypes {
   IElementType ESCAPE_SPECIAL = new YggElementType("ESCAPE_SPECIAL");
   IElementType ESCAPE_UNICODE = new YggElementType("ESCAPE_UNICODE");
   IElementType HASH = new YggElementType("HASH");
+  IElementType HYPHEN = new YggElementType("-");
   IElementType IGNORE = new YggElementType("IGNORE");
   IElementType INTEGER = new YggElementType("INTEGER");
   IElementType MANY = new YggElementType("*");
@@ -82,10 +82,7 @@ public interface YggTypes {
   IElementType PARENTHESIS_L = new YggElementType("(");
   IElementType PARENTHESIS_R = new YggElementType(")");
   IElementType QUOTATION = new YggElementType("\"");
-  IElementType REGEX_CHARACTER = new YggElementType("REGEX_CHARACTER");
-  IElementType REGEX_QUOTE = new YggElementType("REGEX_QUOTE");
-  IElementType REGEX_RANGE_L = new YggElementType("REGEX_RANGE_L");
-  IElementType REGEX_RANGE_R = new YggElementType("REGEX_RANGE_R");
+  IElementType REGEX_RANGE = new YggElementType("REGEX_RANGE");
   IElementType SEMICOLON = new YggElementType(";");
   IElementType SIGN = new YggElementType("SIGN");
   IElementType SOFT_CONNECT = new YggElementType("~");
@@ -111,6 +108,12 @@ public interface YggTypes {
       }
       else if (type == EXPR) {
         return new YggExprNode(node);
+      }
+      else if (type == FIELD_MARK) {
+        return new YggFieldMarkNode(node);
+      }
+      else if (type == FIELD_RHS) {
+        return new YggFieldRhsNode(node);
       }
       else if (type == FUNCTION_CALL) {
         return new YggFunctionCallNode(node);
@@ -151,9 +154,6 @@ public interface YggTypes {
       else if (type == NAMESPACE) {
         return new YggNamespaceNode(node);
       }
-      else if (type == NEGATIVE) {
-        return new YggNegativeNode(node);
-      }
       else if (type == NUMBER_SUFFIX) {
         return new YggNumberSuffixNode(node);
       }
@@ -165,12 +165,6 @@ public interface YggTypes {
       }
       else if (type == PREFIX) {
         return new YggPrefixNode(node);
-      }
-      else if (type == REGEX_MODE) {
-        return new YggRegexModeNode(node);
-      }
-      else if (type == REGEX_RANGE) {
-        return new YggRegexRangeNode(node);
       }
       else if (type == RULE_ARGUMENT) {
         return new YggRuleArgumentNode(node);

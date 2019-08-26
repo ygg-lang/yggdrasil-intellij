@@ -38,6 +38,10 @@ class HighlightAST : YggVisitor(), HighlightVisitor {
         highlight(o.identifier, HighlightColor.FUNCTION_SYMBOL)
     }
 
+    override fun visitFieldMark(o: YggFieldMark) {
+        highlight(o.firstChild, HighlightColor.FIELD_MARK)
+    }
+
 
     override fun visitBranchMark(o: YggBranchMark) {
         highlight(o, HighlightColor.BRANCH_MARK)

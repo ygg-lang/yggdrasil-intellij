@@ -33,13 +33,13 @@ WHITE_SPACE=\s+
 COMMENT_DOC=("///")[^\r\n]*
 COMMENT_LINE=("//")[^\r\n]*
 COMMENT_BLOCK=[/][*][^*]*[*]+([^/*][^*]*[*]+)*[/]
-BOOLEAN=true|false
+BOOLEAN=true|false|null
 SYMBOL=[\p{XID_Start}_][\p{XID_Continue}_]*
 BYTE=(0[bBoOxXfF][0-9A-Fa-f][0-9A-Fa-f_]*)
 INTEGER=(0|[1-9][0-9_]*)
 DECIMAL=([0-9]+\.[0-9]*([*][*][0-9]+)?)|(\.[0-9]+([Ee][0-9]+)?)
 SIGN=[+-]
-
+REGEX_RANGE = \[(\\[^\x{00}]|[^\]])*\]
 ESCAPE_SPECIAL = \\[^xuU]
 ESCAPE_UNICODE = \\(x{HEX}{2}|u{HEX}{4}|U\{{HEX}+\})
 HEX = [0-9a-fA-F]
@@ -60,7 +60,7 @@ HEX = [0-9a-fA-F]
 	"]"  { return BRACKET_R; }
 	"{"  { return BRACE_L; }
 	"}"  { return BRACE_R; }
-	"<-" { return TAGGED; }
+	"->" { return ARROW; }
 	"<"  { return ANGLE_L; }
 	">"  { return ANGLE_R; }
 	//
@@ -80,6 +80,7 @@ HEX = [0-9a-fA-F]
 
 	\?   { return OPTIONAL;}
 	\+   { return MANY1; }
+	\-   { return HYPHEN; }
 	\*   { return MANY; }
 }
 <YYINITIAL> [\^\]$@]*= {
@@ -87,12 +88,13 @@ HEX = [0-9a-fA-F]
 }
 <YYINITIAL> {
 	// literal
-	{BOOLEAN} { return BOOLEAN; }
-	{SYMBOL}  { return SYMBOL; }
-	{BYTE}    { return BYTE; }
-	{INTEGER} { return INTEGER; }
-	{DECIMAL} { return DECIMAL; }
-	{SIGN}    { return SIGN; }
+	{REGEX_RANGE} { return REGEX_RANGE; }
+	{BOOLEAN}     { return BOOLEAN; }
+	{SYMBOL}      { return SYMBOL; }
+	{BYTE}        { return BYTE; }
+	{INTEGER}     { return INTEGER; }
+	{DECIMAL}     { return DECIMAL; }
+	{SIGN}        { return SIGN; }
 }
 // String Mode =========================================================================================================
 <YYINITIAL> {
@@ -114,21 +116,21 @@ HEX = [0-9a-fA-F]
 	\" {yybegin(YYINITIAL);return STRING_DQ;}
 }
 // Regex Mode ==========================================================================================================
-<YYINITIAL> \/ {
-	yybegin(Regex);
-	return REGEX_QUOTE;
-}
-<Regex> {
-	[^\\\/] {return CHARACTER;}
-	\/ {yybegin(YYINITIAL);return REGEX_QUOTE;}
-}
-<YYINITIAL> \[ {
-	yybegin(RegexRange);
-	return REGEX_RANGE_L;
-}
-<RegexRange> {
-	[^\\\[\]] {return REGEX_CHARACTER;}
-	\] {yybegin(YYINITIAL);return REGEX_RANGE_R;}
-}
+//<YYINITIAL> \/ {
+//	yybegin(Regex);
+//	return REGEX_QUOTE;
+//}
+//<Regex> {
+//	[^\\\/] {return CHARACTER;}
+//	\/ {yybegin(YYINITIAL);return REGEX_QUOTE;}
+//}
+//<YYINITIAL> \[ {
+//	yybegin(RegexRange);
+//	return REGEX_RANGE_L;
+//}
+//<RegexRange> {
+//	[^\\\[\]] {return REGEX_CHARACTER;}
+//	\] {yybegin(YYINITIAL);return REGEX_RANGE_R;}
+//}
 // Otherwisw ===========================================================================================================
 [^] { return BAD_CHARACTER; }

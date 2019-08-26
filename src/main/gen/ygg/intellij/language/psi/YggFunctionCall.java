@@ -5,6 +5,12 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface YggCharset extends PsiElement {
+public interface YggFunctionCall extends PsiElement {
+
+  @NotNull
+  YggIdentifier getIdentifier();
+
+  @NotNull
+  YggParenthesis getParenthesis();
 
 }

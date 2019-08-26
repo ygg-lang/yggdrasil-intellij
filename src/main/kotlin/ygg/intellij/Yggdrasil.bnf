@@ -39,7 +39,7 @@
         DOLLAR = '$'
         DOT = '.'
         AT = '@'
-
+        HYPHEN = '-'
         NOT='!'
         OPTIONAL='?'
         MANY1 = '+'
@@ -81,18 +81,23 @@ macro_statement ::= AT SYMBOL <<parenthesis macro_arg COMMA>>;
 macro_arg ::= value | macro_statement;
 // =====================================================================================================================
 // def modifiers rule
-rule_statement ::= define modifiers identifier [rule_argument] [rule_type] BRACE_L [CHOOSE] expr BRACE_R;
+rule_statement ::= define modifiers identifier [rule_argument] [rule_type] BRACE_L [CHOOSE] [expr] BRACE_R {
+    pin = identifier
+    recoverWhile = BRACE_R
+};
 rule_argument ::= PARENTHESIS_L PARENTHESIS_R;
 rule_type     ::= (COLON | ARROW) identifier;
-define ::= "def" | "class" | "struct" | "rule" | "enum";
-expr ::= term (infix term)*;
-term ::= (prefix)* atom+ (suffix)*
-atom ::= '(' expr ')' | branch_mark | function_call | value;
-infix ::= CHOOSE | SOFT_CONNECT | COLON;
+define ::= "def" | "class" | "struct" | "rule" | "enum" | "union" | "function" | "fun";
+expr ::= term (infix term | term)*;
+term ::= (prefix)* atom (suffix)*
+atom ::= '(' [CHOOSE] expr ')' | field_mark | branch_mark | function_call | value;
+infix ::= CHOOSE | SOFT_CONNECT;
 prefix ::= ACCENT;
 suffix ::= OPTIONAL | MANY | MANY1;
 // ---------------------------------------------------------------------------------------------------------------------
 branch_mark ::= HASH identifier;
+field_mark ::= identifier COLON field_rhs;
+field_rhs  ::= identifier | charset | string;
 // ---------------------------------------------------------------------------------------------------------------------
 // @function("path")
 function_call ::= AT identifier <<parenthesis expr COMMA>>;
@@ -102,10 +107,7 @@ macro_call  ::= HASH identifier;
 value ::= NULL | BOOLEAN | num | string | table | namespace | charset;
 type_hint ::= identifier;
 number_suffix ::= identifier;
-charset ::= REGEX_QUOTE [negative] char* REGEX_QUOTE regex_mode;
-regex_mode ::= SYMBOL;
-regex_range ::= REGEX_RANGE_L REGEX_CHARACTER* REGEX_RANGE_R;
-negative ::= ACCENT;
+charset ::= REGEX_RANGE;
 // ---------------------------------------------------------------------------------------------------------------------
 pair ::= symbol_path eq value;
 symbol_path ::= key (DOT key)*
@@ -123,7 +125,7 @@ table ::= [type_hint] <<paired table_inner>>;
 private table_inner ::= [table_item (COMMA table_item)* [COMMA]];
 private table_item ::= pair | value;
 // ---------------------------------------------------------------------------------------------------------------------
-modifiers ::= (identifier !('('|'{'|'-'|':'))*;
+modifiers ::= (identifier !('('|'{'|ARROW|':'))*;
 identifier ::= SYMBOL;
 namespace ::= identifier (DOUBLE_COLON identifier)*
 // ---------------------------------------------------------------------------------------------------------------------

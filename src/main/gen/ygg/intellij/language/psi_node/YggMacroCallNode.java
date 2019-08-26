@@ -11,20 +11,26 @@ import static ygg.intellij.language.psi.YggTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import ygg.intellij.language.psi.*;
 
-public class YggRegexRangeNode extends ASTWrapperPsiElement implements YggRegexRange {
+public class YggMacroCallNode extends ASTWrapperPsiElement implements YggMacroCall {
 
-  public YggRegexRangeNode(@NotNull ASTNode node) {
+  public YggMacroCallNode(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull YggVisitor visitor) {
-    visitor.visitRegexRange(this);
+    visitor.visitMacroCall(this);
   }
 
   @Override
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof YggVisitor) accept((YggVisitor)visitor);
     else super.accept(visitor);
+  }
+
+  @Override
+  @NotNull
+  public YggIdentifier getIdentifier() {
+    return findNotNullChildByClass(YggIdentifier.class);
   }
 
 }

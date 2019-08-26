@@ -5,12 +5,6 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface YggFunctionStatement extends PsiElement {
-
-  @NotNull
-  YggIdentifier getIdentifier();
-
-  @NotNull
-  YggParenthesis getParenthesis();
+public interface YggDefine extends PsiElement {
 
 }

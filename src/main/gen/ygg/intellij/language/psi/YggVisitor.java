@@ -31,6 +31,14 @@ public class YggVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitFieldMark(@NotNull YggFieldMark o) {
+    visitPsiElement(o);
+  }
+
+  public void visitFieldRhs(@NotNull YggFieldRhs o) {
+    visitPsiElement(o);
+  }
+
   public void visitFunctionCall(@NotNull YggFunctionCall o) {
     visitPsiElement(o);
   }
@@ -83,10 +91,6 @@ public class YggVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitNegative(@NotNull YggNegative o) {
-    visitPsiElement(o);
-  }
-
   public void visitNumberSuffix(@NotNull YggNumberSuffix o) {
     visitPsiElement(o);
   }
@@ -100,14 +104,6 @@ public class YggVisitor extends PsiElementVisitor {
   }
 
   public void visitPrefix(@NotNull YggPrefix o) {
-    visitPsiElement(o);
-  }
-
-  public void visitRegexMode(@NotNull YggRegexMode o) {
-    visitPsiElement(o);
-  }
-
-  public void visitRegexRange(@NotNull YggRegexRange o) {
     visitPsiElement(o);
   }
 

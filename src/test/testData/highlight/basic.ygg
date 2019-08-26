@@ -1,21 +1,21 @@
-// grammar Ygg {
-//     file_pattern: ['*.yg', "*.ygg", "*.grammar"],
-//     ignore: [NEWLINE, WHITESPACE, COMMENT],
-//     suffix: "Node"
-// }
-// export "path.rs" {
-//     override: true
-// }
+grammar Ygg {
+    file_pattern: ['*.yg', "*.ygg", "*.grammar"],
+    suffix: "Node"
+}
+codegen rust {
+    path: "path.rs"
+    override: true
+}
 
-// Import the predefined types,
+// Import the preclassined types,
 // Otherwise the `String` type of each language will be used directly to represent the atomic expression
-// import "path/literal_types.toml"
+import "path/literal_types.toml"
 
 
 // right now, first rule will become entry point
 #main
-struct Program {
-Statement*
+class Program {
+    Statement*
 }
 
 
@@ -23,7 +23,7 @@ Statement*
 // Union type will be used directly in other languages that support union type, such as ts, scala
 // Note that compared to ANTLR, this is not mandatory, but the same name is also forbidden.
 // If not specified, a name like `AuxVariant1` will be generated.
-struct Statement {
+union Statement {
     | GrammarStatement   #Grammar
     | FragmentStatement  #Fragment
     | IgnoreStatement    #Ignore
@@ -34,148 +34,64 @@ struct Statement {
 
 //* grammar tsg
 //* grammar tsg {"*.tsg", }
-struct GrammarStatement {
-    grammar id _grammar_exts? eos?
+class GrammarStatement {
+    "grammar" Identifier _grammar_exts? eos?
 }
 
-struct _grammar_exts {
-    "{" @interval(extensions:string, ",", true)? "}"
+class _grammar_exts {
+    "{" @interval(extensions:String, ",", true)? "}"
 }
 
-//? `fragment` means that this file cannot build as grammar, it can only be imported.
-//? `id` represents the default name when importing, which can be changed by `as`.
-//* fragment ascii
-struct fragment_statement {
-    fragment id eos?
+class ImportStatement {
+    | "import" (path:StringLiteral) ("as" id)?       #FromPath
+    | "import" (path:StringLiteral) _ImportSelected  #FromPathItems
 }
 
-
-struct import_statement {
-    | import (path:string) (as ^id)?       #FromPath
-    | import (path:string) _import_selected  #FromPathItems
+class _ImportSelected {
+    '{' @join(items:ImportItem, ',')? '}'
+}
+class ImportItem {
+    symbol:Identifier (@case_insensitive("as") alias:Identifier)?
 }
 
-struct _import_selected {
-    "{" @join(item:import_item, ",", trailing = 1)? "}"
-}
-struct import_item {
-    id:id ("as" alias:id)?
-}
-
-//* ignores /\/
-//* ignores [comment, comment_inline]
-struct ignores_statement {
-    | ignores id
-    | ignores "{"  @join(id, ",", trailing = 1)? "}";
+#priority
+union Expression {
+    | x:Self y:Self       #Concat
+    | x:Self '~' y:Self   #ConcatSoft
+    | x:Self '|' y:Self   #Choice
+    | '(' '|'? x:Self ')' #Group
+    | x:_Atom             #Prefix
 }
 
-
-enum expression {
-    | priority          #Priority
-    | data              #Data
-    | unary_suffix      #Suffix
-    | unary_prefix      #Prefix
-    | concat_expression #Concat
-    | or_expression     #Or
+class _TagName {
+    "#" (name:id) (mode:[!_^]) (name:id)
 }
-
-_priority = "(" ("|" | "/")? expression ")"
-variant_tag =  @precedence_left(100, ^expression _tag_name? )
-_tag_name = "#" (name:id) (mode:/[!_^]?/) (name:id)
-
-_prefix_ops @=
-    | "^"
-_suffix_ops @=
-    | "?"
-    | "*"
-    | "+"
-
 
 // `_` inline a item even if it not mark as automatic inline
-data = _atom
-atom =
+union _Atom {
     | id
-    | string
+    | String
     | unsigned    #Integer
     | regex
     | macro_call
+}
 
 
+class Boolean -> String {
+    "true" | "false"
+}
 
-// `f(a, b)`  vs `f (a | b) `
-// `f!(a, b)` vs `f !(a | b)`
-macro_call =
-      (name: @token("@", id))
-    "("  @join(Expression, ",", trailing = 1) ")"
+#atomic
+class Identifier -> String {
+    ("_" | XID_START) XID_CONTINUE*
+}
 
+#check
+def WHITESPACE {
 
-// Identifier
-@alias(id)
-@syntax_type(identifier)
-identifier = ("_" | XID_START) XID_CONTINUE
-// The bare 0 will be considered as the string "0"
-integer    = _sign? _unsigned
-_unsigned  = 0 | [1-9] [0-9]*
-_sign       = [+-]
-// regex
-regex_long ^= "/" (item:regex_item) "/" (mode: String:regex_mode)?
-regex_mode @= [igm]
-regex_item  =
-    | i
-regex_range = (mode:"[" | "[^")  regex_range_item* "]"
-regex_range_item =
-    | regex_set
-    | regex_range_item_group
-    | /[^\]]/
-regex_range_item_group =
-    |  @binary_left(10, regex_range_item, "-", regex_range_item)
-regex_set = "\\p" "{" (set:/[_0-9a-zA-Z]+/) "}"
-regex_repeats =
-    | "{" (repeats:integer) "}"
-    | "{" (least:integer?) "," (most:integer?) "}"
-// string
-inline string = string_inline;
-string_inline = \" DQ_CHAR \" | \' SQ_CHAR \'
-SQ_CHAR = [^\\\'] | ESCAPE_SPECIAL | ESCAPE_UNICODE
-DQ_CHAR = [^\\\"] | ESCAPE_SPECIAL | ESCAPE_UNICODE
-ESCAPE_SPECIAL = \\[^xuU]
-ESCAPE_UNICODE = \\("x" HEX{2} | "u"{HEX}{4} | "U"\{HEX+\})
-HEX = [0-9a-fA-F]
+}
 
-// end of statement
-eos = ";"
+#check
+def COMMENT {
 
-
-
-
-@syntax_type(identifier)
-
-
-bool = "true" | "false"
-
-//! ====================== OVERRIDE ============================
-
-COMMENT =
-    | comment_inline
-    | comment_multiline
-@syntax_type_hook(comment)
-comment_inline = "//!"
-comment_block = "//+" "//-"
-@syntax_type_hook()
-
-//! ===================== HOOK AREA ============================
-
-// All elements defined next will warp with `@token`
-@define_hook(keyword)
-// All elements defined next will be marked as `keyword`
-fragment = "fragment!"
-grammar  = "grammar!"
-ignore   = "ignore!"
-import   = "import!"
-macro    = "macro!"
-as       = "as"
-// clean warp broadcast
-// clean syntax type broadcast
-@define_hook()
-// clean all hook
-@clear_hook()
+}

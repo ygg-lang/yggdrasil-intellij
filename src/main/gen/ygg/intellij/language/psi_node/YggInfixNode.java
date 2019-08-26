@@ -11,14 +11,14 @@ import static ygg.intellij.language.psi.YggTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import ygg.intellij.language.psi.*;
 
-public class YggCharsetNode extends ASTWrapperPsiElement implements YggCharset {
+public class YggInfixNode extends ASTWrapperPsiElement implements YggInfix {
 
-  public YggCharsetNode(@NotNull ASTNode node) {
+  public YggInfixNode(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull YggVisitor visitor) {
-    visitor.visitCharset(this);
+    visitor.visitInfix(this);
   }
 
   @Override

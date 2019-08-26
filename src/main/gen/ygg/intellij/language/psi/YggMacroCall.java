@@ -5,6 +5,9 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface YggRegexRange extends PsiElement {
+public interface YggMacroCall extends PsiElement {
+
+  @NotNull
+  YggIdentifier getIdentifier();
 
 }

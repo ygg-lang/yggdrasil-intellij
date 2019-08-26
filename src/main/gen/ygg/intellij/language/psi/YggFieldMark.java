@@ -5,6 +5,12 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface YggRegexMode extends PsiElement {
+public interface YggFieldMark extends PsiElement {
+
+  @NotNull
+  YggFieldRhs getFieldRhs();
+
+  @NotNull
+  YggIdentifier getIdentifier();
 
 }
