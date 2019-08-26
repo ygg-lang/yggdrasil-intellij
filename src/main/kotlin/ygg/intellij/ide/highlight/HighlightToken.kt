@@ -7,9 +7,9 @@ import com.intellij.psi.TokenType
 import com.intellij.psi.tree.IElementType
 import ygg.intellij.language.YggLexerAdapter
 import ygg.intellij.language.psi.YggTypes.*
-import ygg.intellij.ide.highlight.YggHighlightColor as Color
+import ygg.intellij.ide.highlight.HighlightColor as Color
 
-class YggHighlightToken : SyntaxHighlighterBase() {
+class HighlightToken : SyntaxHighlighterBase() {
     override fun getHighlightingLexer(): Lexer {
         return YggLexerAdapter()
     }

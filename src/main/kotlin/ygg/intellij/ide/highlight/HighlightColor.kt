@@ -11,7 +11,7 @@ import com.intellij.openapi.editor.DefaultLanguageHighlighterColors as Default
 import ygg.intellij.language.file.YggdrasilBundle.messagePointer as keyof
 
 
-enum class YggHighlightColor(
+enum class HighlightColor(
     humanName: Supplier<@NlsContexts.AttributeDescriptor String>,
     default: TextAttributesKey? = null,
 ) {
@@ -37,12 +37,17 @@ enum class YggHighlightColor(
     MANY1(keyof("color.token.many1"), KEYWORD.textAttributesKey),
     TAGGED(keyof("color.token.tagged"), OPERATION.textAttributesKey),
 
-    INSERT_MARK(keyof("color.settings.voml.insert_mark"), KEYWORD.textAttributesKey),
+    FIELD_MARK(keyof("color.mark.field"), Default.INSTANCE_FIELD),
+    BRANCH_MARK(keyof("color.mark.branch"), Default.STATIC_FIELD),
+
     ANNOTATION(OptionsBundle.messagePointer("options.java.attribute.descriptor.annotation.name"), Default.METADATA),
     PREDEFINED(OptionsBundle.messagePointer("options.language.defaults.predefined"), Default.PREDEFINED_SYMBOL),
     TYPE_HINT(keyof("color.settings.toml.type_hint"), Default.CLASS_NAME),
+
+    FUNCTION_SYMBOL(keyof("color.symbol.function"), Default.STATIC_METHOD),
+    MACRO_SYMBOL(OptionsBundle.messagePointer("options.java.attribute.descriptor.annotation.name"), Default.METADATA),
+    RULE_SYMBOL(keyof("color.symbol.rule"), Default.CLASS_NAME),
     KEY_SYMBOL(keyof("color.symbol.builtin"), Default.STATIC_FIELD),
-    SCOPE_SYMBOL(keyof("color.symbol.scope"), Default.STATIC_METHOD),
 
     // 标点符号
     PARENTHESES(OptionsBundle.messagePointer("options.language.defaults.parentheses"), Default.PARENTHESES),

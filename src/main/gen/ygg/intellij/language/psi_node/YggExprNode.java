@@ -28,21 +28,15 @@ public class YggExprNode extends ASTWrapperPsiElement implements YggExpr {
   }
 
   @Override
-  @Nullable
-  public YggBranchMark getBranchMark() {
-    return findChildByClass(YggBranchMark.class);
+  @NotNull
+  public List<YggInfix> getInfixList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, YggInfix.class);
   }
 
   @Override
-  @Nullable
-  public YggFunctionStatement getFunctionStatement() {
-    return findChildByClass(YggFunctionStatement.class);
-  }
-
-  @Override
-  @Nullable
-  public YggValue getValue() {
-    return findChildByClass(YggValue.class);
+  @NotNull
+  public List<YggTerm> getTermList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, YggTerm.class);
   }
 
 }

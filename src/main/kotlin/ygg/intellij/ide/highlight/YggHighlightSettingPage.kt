@@ -7,12 +7,12 @@ import ygg.intellij.language.file.YggdrasilBundle
 import ygg.intellij.language.file.YggdrasilIcon
 
 class YggHighlightSettingPage : ColorSettingsPage {
-    private val attrs = YggHighlightColor
+    private val attrs = HighlightColor
         .values()
         .map { it.attributesDescriptor }
         .toTypedArray()
 
-    private val annotatorTags = YggHighlightColor
+    private val annotatorTags = HighlightColor
         .values()
         .associateBy({ it.name }, { it.textAttributesKey })
 
@@ -24,7 +24,7 @@ class YggHighlightSettingPage : ColorSettingsPage {
 
     override fun getIcon() = YggdrasilIcon.FILE
 
-    override fun getHighlighter() = YggHighlightToken()
+    override fun getHighlighter() = HighlightToken()
 
     override fun getDemoText() =
         """@grammar <PREDEFINED>ygg</PREDEFINED> {"*.yg","*.ygg", "*.grammar"};

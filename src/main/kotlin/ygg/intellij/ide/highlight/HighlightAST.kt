@@ -7,21 +7,42 @@ import com.intellij.codeInsight.daemon.impl.analysis.HighlightInfoHolder
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import ygg.intellij.language.file.YggdrasilFileNode
-import ygg.intellij.language.psi.YggRuleStatement
-import ygg.intellij.language.psi.YggVisitor
+import ygg.intellij.language.psi.*
 
-class YggHighlightVisitor : YggVisitor(), HighlightVisitor {
+class HighlightAST : YggVisitor(), HighlightVisitor {
     private var infoHolder: HighlightInfoHolder? = null
 
-    override fun clone(): HighlightVisitor = YggHighlightVisitor()
+    override fun clone(): HighlightVisitor = HighlightAST()
 
     override fun suitableForFile(file: PsiFile): Boolean = file is YggdrasilFileNode
 
     override fun visit(element: PsiElement) = element.accept(this)
 
     override fun visitRuleStatement(o: YggRuleStatement) {
-        highlight(o.firstChild, YggHighlightColor.KEYWORD)
+        highlight(o.define, HighlightColor.KEYWORD)
+        if (o.ruleArgument == null) {
+            highlight(o.identifier, HighlightColor.RULE_SYMBOL)
+        }
+        else {
+            highlight(o.identifier, HighlightColor.FUNCTION_SYMBOL)
+        }
     }
+
+    override fun visitMacroCall(o: YggMacroCall) {
+        highlight(o.firstChild, HighlightColor.MACRO_SYMBOL)
+        highlight(o.identifier, HighlightColor.MACRO_SYMBOL)
+    }
+
+    override fun visitFunctionCall(o: YggFunctionCall) {
+        highlight(o.firstChild, HighlightColor.FUNCTION_SYMBOL)
+        highlight(o.identifier, HighlightColor.FUNCTION_SYMBOL)
+    }
+
+
+    override fun visitBranchMark(o: YggBranchMark) {
+        highlight(o, HighlightColor.BRANCH_MARK)
+    }
+
 
     override fun analyze(
         file: PsiFile,
@@ -35,7 +56,7 @@ class YggHighlightVisitor : YggVisitor(), HighlightVisitor {
         return true
     }
 
-    private fun highlight(element: PsiElement, color: YggHighlightColor) {
+    private fun highlight(element: PsiElement, color: HighlightColor) {
         val builder = HighlightInfo.newHighlightInfo(HighlightInfoType.INFORMATION)
         builder.textAttributes(color.textAttributesKey)
         builder.range(element)

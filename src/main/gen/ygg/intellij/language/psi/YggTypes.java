@@ -8,17 +8,21 @@ import ygg.intellij.language.psi_node.*;
 
 public interface YggTypes {
 
+  IElementType ATOM = new YggElementType("ATOM");
   IElementType BRANCH_MARK = new YggElementType("BRANCH_MARK");
   IElementType CHARSET = new YggElementType("CHARSET");
+  IElementType DEFINE = new YggElementType("DEFINE");
   IElementType EXPR = new YggElementType("EXPR");
-  IElementType FUNCTION_STATEMENT = new YggElementType("FUNCTION_STATEMENT");
+  IElementType FUNCTION_CALL = new YggElementType("FUNCTION_CALL");
   IElementType GRAMMAR_STATEMENT = new YggElementType("GRAMMAR_STATEMENT");
   IElementType IDENTIFIER = new YggElementType("IDENTIFIER");
   IElementType IGNORE_STATEMENT = new YggElementType("IGNORE_STATEMENT");
   IElementType IMPORT_STATEMENT = new YggElementType("IMPORT_STATEMENT");
+  IElementType INFIX = new YggElementType("INFIX");
   IElementType KEY = new YggElementType("KEY");
   IElementType KEY_SYMBOL = new YggElementType("KEY_SYMBOL");
   IElementType MACRO_ARG = new YggElementType("MACRO_ARG");
+  IElementType MACRO_CALL = new YggElementType("MACRO_CALL");
   IElementType MACRO_STATEMENT = new YggElementType("MACRO_STATEMENT");
   IElementType MODIFIERS = new YggElementType("MODIFIERS");
   IElementType NAMESPACE = new YggElementType("NAMESPACE");
@@ -26,14 +30,17 @@ public interface YggTypes {
   IElementType NUMBER_SUFFIX = new YggElementType("NUMBER_SUFFIX");
   IElementType PAIR = new YggElementType("PAIR");
   IElementType PARENTHESIS = new YggElementType("PARENTHESIS");
+  IElementType PREFIX = new YggElementType("PREFIX");
   IElementType REGEX_MODE = new YggElementType("REGEX_MODE");
   IElementType REGEX_RANGE = new YggElementType("REGEX_RANGE");
   IElementType RULE_ARGUMENT = new YggElementType("RULE_ARGUMENT");
   IElementType RULE_STATEMENT = new YggElementType("RULE_STATEMENT");
   IElementType RULE_TYPE = new YggElementType("RULE_TYPE");
   IElementType STRING = new YggElementType("STRING");
+  IElementType SUFFIX = new YggElementType("SUFFIX");
   IElementType SYMBOL_PATH = new YggElementType("SYMBOL_PATH");
   IElementType TABLE = new YggElementType("TABLE");
+  IElementType TERM = new YggElementType("TERM");
   IElementType TYPE_HINT = new YggElementType("TYPE_HINT");
   IElementType VALUE = new YggElementType("VALUE");
 
@@ -90,17 +97,23 @@ public interface YggTypes {
   class Factory {
     public static PsiElement createElement(ASTNode node) {
       IElementType type = node.getElementType();
-      if (type == BRANCH_MARK) {
+      if (type == ATOM) {
+        return new YggAtomNode(node);
+      }
+      else if (type == BRANCH_MARK) {
         return new YggBranchMarkNode(node);
       }
       else if (type == CHARSET) {
         return new YggCharsetNode(node);
       }
+      else if (type == DEFINE) {
+        return new YggDefineNode(node);
+      }
       else if (type == EXPR) {
         return new YggExprNode(node);
       }
-      else if (type == FUNCTION_STATEMENT) {
-        return new YggFunctionStatementNode(node);
+      else if (type == FUNCTION_CALL) {
+        return new YggFunctionCallNode(node);
       }
       else if (type == GRAMMAR_STATEMENT) {
         return new YggGrammarStatementNode(node);
@@ -114,6 +127,9 @@ public interface YggTypes {
       else if (type == IMPORT_STATEMENT) {
         return new YggImportStatementNode(node);
       }
+      else if (type == INFIX) {
+        return new YggInfixNode(node);
+      }
       else if (type == KEY) {
         return new YggKeyNode(node);
       }
@@ -122,6 +138,9 @@ public interface YggTypes {
       }
       else if (type == MACRO_ARG) {
         return new YggMacroArgNode(node);
+      }
+      else if (type == MACRO_CALL) {
+        return new YggMacroCallNode(node);
       }
       else if (type == MACRO_STATEMENT) {
         return new YggMacroStatementNode(node);
@@ -144,6 +163,9 @@ public interface YggTypes {
       else if (type == PARENTHESIS) {
         return new YggParenthesisNode(node);
       }
+      else if (type == PREFIX) {
+        return new YggPrefixNode(node);
+      }
       else if (type == REGEX_MODE) {
         return new YggRegexModeNode(node);
       }
@@ -162,11 +184,17 @@ public interface YggTypes {
       else if (type == STRING) {
         return new YggStringNode(node);
       }
+      else if (type == SUFFIX) {
+        return new YggSuffixNode(node);
+      }
       else if (type == SYMBOL_PATH) {
         return new YggSymbolPathNode(node);
       }
       else if (type == TABLE) {
         return new YggTableNode(node);
+      }
+      else if (type == TERM) {
+        return new YggTermNode(node);
       }
       else if (type == TYPE_HINT) {
         return new YggTypeHintNode(node);

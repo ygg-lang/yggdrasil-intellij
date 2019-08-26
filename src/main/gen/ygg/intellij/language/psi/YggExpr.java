@@ -7,13 +7,10 @@ import com.intellij.psi.PsiElement;
 
 public interface YggExpr extends PsiElement {
 
-  @Nullable
-  YggBranchMark getBranchMark();
+  @NotNull
+  List<YggInfix> getInfixList();
 
-  @Nullable
-  YggFunctionStatement getFunctionStatement();
-
-  @Nullable
-  YggValue getValue();
+  @NotNull
+  List<YggTerm> getTermList();
 
 }

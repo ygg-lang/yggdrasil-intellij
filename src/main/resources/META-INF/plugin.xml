@@ -7,7 +7,7 @@
 	<resource-bundle>messages.YggBundle</resource-bundle>
 	<extensions defaultExtensionNs="com.intellij">
 		<fileType
-			name="YGG"
+			name="Yggdrasil"
 			language="Yggdrasil"
 			extensions="ygg"
 			implementationClass="ygg.intellij.language.file.YggdrasilFileType"
@@ -21,9 +21,9 @@
 		<colorSettingsPage implementation="ygg.intellij.ide.highlight.YggHighlightSettingPage"/>
 		<lang.syntaxHighlighter
 			language="Yggdrasil"
-			implementationClass="ygg.intellij.ide.highlight.YggHighlightToken"
+			implementationClass="ygg.intellij.ide.highlight.HighlightToken"
 		/>
-		<highlightVisitor implementation="ygg.intellij.ide.highlight.YggHighlightVisitor"/>
+		<highlightVisitor implementation="ygg.intellij.ide.highlight.HighlightAST"/>
 		<additionalTextAttributes scheme="Default" file="colors/VomlDefault.xml"/>
 		<additionalTextAttributes scheme="Darcula" file="colors/VomlDarcula.xml"/>
 		<!-- Formatter -->

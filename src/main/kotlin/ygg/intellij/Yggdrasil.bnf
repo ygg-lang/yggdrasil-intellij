@@ -60,6 +60,7 @@ private statements ::=
     | ignore_statement
     | import_statement
     | macro_statement
+    | macro_call
     | rule_statement
     | SEMICOLON;
 // =====================================================================================================================
@@ -80,15 +81,23 @@ macro_statement ::= AT SYMBOL <<parenthesis macro_arg COMMA>>;
 macro_arg ::= value | macro_statement;
 // =====================================================================================================================
 // def modifiers rule
-rule_statement ::= "def" modifiers SYMBOL [rule_argument] [rule_type] BRACKET_L expr BRACKET_R;
+rule_statement ::= define modifiers identifier [rule_argument] [rule_type] BRACE_L [CHOOSE] expr BRACE_R;
 rule_argument ::= PARENTHESIS_L PARENTHESIS_R;
 rule_type     ::= (COLON | ARROW) identifier;
-expr ::= function_statement | value | branch_mark;
-// ---------------------------------------------------------------------------------------------------------------------
-// @function("path")
-function_statement ::= AT identifier <<parenthesis expr COMMA>>;
+define ::= "def" | "class" | "struct" | "rule" | "enum";
+expr ::= term (infix term)*;
+term ::= (prefix)* atom+ (suffix)*
+atom ::= '(' expr ')' | branch_mark | function_call | value;
+infix ::= CHOOSE | SOFT_CONNECT | COLON;
+prefix ::= ACCENT;
+suffix ::= OPTIONAL | MANY | MANY1;
 // ---------------------------------------------------------------------------------------------------------------------
 branch_mark ::= HASH identifier;
+// ---------------------------------------------------------------------------------------------------------------------
+// @function("path")
+function_call ::= AT identifier <<parenthesis expr COMMA>>;
+// ---------------------------------------------------------------------------------------------------------------------
+macro_call  ::= HASH identifier;
 // ---------------------------------------------------------------------------------------------------------------------
 value ::= NULL | BOOLEAN | num | string | table | namespace | charset;
 type_hint ::= identifier;

@@ -29,8 +29,20 @@ public class YggRuleStatementNode extends ASTWrapperPsiElement implements YggRul
 
   @Override
   @NotNull
+  public YggDefine getDefine() {
+    return findNotNullChildByClass(YggDefine.class);
+  }
+
+  @Override
+  @NotNull
   public YggExpr getExpr() {
     return findNotNullChildByClass(YggExpr.class);
+  }
+
+  @Override
+  @NotNull
+  public YggIdentifier getIdentifier() {
+    return findNotNullChildByClass(YggIdentifier.class);
   }
 
   @Override

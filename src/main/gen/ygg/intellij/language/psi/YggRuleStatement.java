@@ -8,7 +8,13 @@ import com.intellij.psi.PsiElement;
 public interface YggRuleStatement extends PsiElement {
 
   @NotNull
+  YggDefine getDefine();
+
+  @NotNull
   YggExpr getExpr();
+
+  @NotNull
+  YggIdentifier getIdentifier();
 
   @NotNull
   YggModifiers getModifiers();
