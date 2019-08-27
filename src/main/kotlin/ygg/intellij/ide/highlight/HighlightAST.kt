@@ -18,6 +18,20 @@ class HighlightAST : YggVisitor(), HighlightVisitor {
 
     override fun visit(element: PsiElement) = element.accept(this)
 
+    override fun visitGrammarStatement(o: YggGrammarStatement) {
+        highlight(o.firstChild, HighlightColor.KEYWORD)
+        highlight(o.identifier, HighlightColor.MACRO_SYMBOL)
+    }
+
+    override fun visitExportStatement(o: YggExportStatement) {
+        highlight(o.firstChild, HighlightColor.KEYWORD)
+        highlight(o.identifier, HighlightColor.MACRO_SYMBOL)
+    }
+
+    override fun visitImportStatement(o: YggImportStatement) {
+        highlight(o.firstChild, HighlightColor.KEYWORD)
+    }
+
     override fun visitRuleStatement(o: YggRuleStatement) {
         highlight(o.define, HighlightColor.KEYWORD)
         if (o.ruleArgument == null) {
@@ -25,6 +39,9 @@ class HighlightAST : YggVisitor(), HighlightVisitor {
         }
         else {
             highlight(o.identifier, HighlightColor.FUNCTION_SYMBOL)
+        }
+        o.ruleType?.let {
+            highlight(it.identifier, HighlightColor.RULE_SYMBOL)
         }
     }
 
@@ -38,13 +55,20 @@ class HighlightAST : YggVisitor(), HighlightVisitor {
         highlight(o.identifier, HighlightColor.FUNCTION_SYMBOL)
     }
 
+    override fun visitBranchMark(o: YggBranchMark) {
+        highlight(o, HighlightColor.BRANCH_MARK)
+    }
+
     override fun visitFieldMark(o: YggFieldMark) {
         highlight(o.firstChild, HighlightColor.FIELD_MARK)
     }
 
+    override fun visitObjectKey(o: YggObjectKey) {
+        highlight(o, HighlightColor.FIELD_MARK)
+    }
 
-    override fun visitBranchMark(o: YggBranchMark) {
-        highlight(o, HighlightColor.BRANCH_MARK)
+    override fun visitIdentifier(o: YggIdentifier) {
+
     }
 
 
@@ -56,7 +80,6 @@ class HighlightAST : YggVisitor(), HighlightVisitor {
     ): Boolean {
         infoHolder = holder
         action.run()
-
         return true
     }
 

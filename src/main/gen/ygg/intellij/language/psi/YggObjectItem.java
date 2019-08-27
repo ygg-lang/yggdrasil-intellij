@@ -5,15 +5,12 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface YggFieldRhs extends PsiElement {
+public interface YggObjectItem extends PsiElement {
 
-  @Nullable
-  YggCharset getCharset();
+  @NotNull
+  YggObjectKey getObjectKey();
 
-  @Nullable
-  YggIdentifier getIdentifier();
-
-  @Nullable
-  YggStringLiteral getStringLiteral();
+  @NotNull
+  YggValue getValue();
 
 }

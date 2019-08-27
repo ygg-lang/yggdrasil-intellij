@@ -57,24 +57,27 @@ private comment ::= COMMENT_LINE | COMMENT_BLOCK | COMMENT_DOC;
 
 private statements ::=
       grammar_statement
-    | ignore_statement
+    | export_statement
     | import_statement
     | macro_statement
     | macro_call
     | rule_statement
     | SEMICOLON;
-// =====================================================================================================================
-ignore_statement ::= IGNORE (identifier | <<paired ignore_inner>>);
-private ignore_inner ::= [identifier (COMMA identifier)* [COMMA]];
 // ---------------------------------------------------------------------------------------------------------------------
 // @grammar ygg {"*.yg","*.ygg", "*.grammar"}
 // @grammar ygg;
-grammar_statement ::= "grammar" identifier [<<paired grammar_inner>>];
-private grammar_inner ::= string (COMMA string)* [COMMA];
+grammar_statement ::= "grammar" identifier object {
+    pin = identifier
+    recoverWhile = BRACE_R
+};
 // ---------------------------------------------------------------------------------------------------------------------
 // @import
-import_statement ::= "import" string [identifier | <<paired include_inner>>];
-private include_inner ::= [identifier (COMMA identifier)* [COMMA]];
+export_statement ::= "codegen" identifier object {
+    pin = identifier
+    recoverWhile = BRACE_R
+}
+import_statement ::= "import" string_literal [BRACE_L import_inner BRACE_R];
+private import_inner ::= [identifier (COMMA identifier)* [COMMA]];
 // ---------------------------------------------------------------------------------------------------------------------
 // @macro("path")
 macro_statement ::= AT SYMBOL <<parenthesis macro_arg COMMA>>;
@@ -97,27 +100,27 @@ suffix ::= OPTIONAL | MANY | MANY1;
 // ---------------------------------------------------------------------------------------------------------------------
 branch_mark ::= HASH identifier;
 field_mark ::= identifier COLON field_rhs;
-field_rhs  ::= identifier | charset | string;
+field_rhs  ::= identifier | charset | string_literal;
 // ---------------------------------------------------------------------------------------------------------------------
 // @function("path")
 function_call ::= AT identifier <<parenthesis expr COMMA>>;
 // ---------------------------------------------------------------------------------------------------------------------
 macro_call  ::= HASH identifier;
 // ---------------------------------------------------------------------------------------------------------------------
-value ::= NULL | BOOLEAN | num | string | table | namespace | charset;
+value ::= NULL | BOOLEAN | num | string_literal | table | namespace | charset;
 type_hint ::= identifier;
 number_suffix ::= identifier;
 charset ::= REGEX_RANGE;
 // ---------------------------------------------------------------------------------------------------------------------
 pair ::= symbol_path eq value;
 symbol_path ::= key (DOT key)*
-key ::= string | key_symbol | INTEGER;
+key ::= string_literal | key_symbol | INTEGER;
 private eq ::= EQ | COLON;
 key_symbol ::= SYMBOL;
 // ---------------------------------------------------------------------------------------------------------------------
 private num ::= [SIGN] (INTEGER | DECIMAL) [number_suffix] | [SIGN] BYTE;
 // ---------------------------------------------------------------------------------------------------------------------
-string ::= esc | STRING_SQ char* STRING_SQ | STRING_DQ char* STRING_DQ;
+string_literal ::= esc | STRING_SQ char* STRING_SQ | STRING_DQ char* STRING_DQ;
 private char ::= CHARACTER | esc;
 private esc ::= ESCAPE_UNICODE | ESCAPE_SPECIAL;
 // ---------------------------------------------------------------------------------------------------------------------
@@ -125,9 +128,15 @@ table ::= [type_hint] <<paired table_inner>>;
 private table_inner ::= [table_item (COMMA table_item)* [COMMA]];
 private table_item ::= pair | value;
 // ---------------------------------------------------------------------------------------------------------------------
+object ::= BRACE_L (object_item [COMMA|SEMICOLON])* BRACE_R
+object_item ::= object_key COLON value;
+object_key ::= identifier | string_literal;
+// ---------------------------------------------------------------------------------------------------------------------
 modifiers ::= (identifier !('('|'{'|ARROW|':'))*;
-identifier ::= SYMBOL;
 namespace ::= identifier (DOUBLE_COLON identifier)*
+identifier ::= SYMBOL {
+    mixin = "ygg.intellij.language.mixin.MixinIdentifier"
+}
 // ---------------------------------------------------------------------------------------------------------------------
 meta parenthesis ::= PARENTHESIS_L [<<item>> (<<delimiter>> <<item>>)* [<<delimiter>>]] PARENTHESIS_R;
 

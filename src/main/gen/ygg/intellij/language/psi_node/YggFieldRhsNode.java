@@ -41,8 +41,8 @@ public class YggFieldRhsNode extends ASTWrapperPsiElement implements YggFieldRhs
 
   @Override
   @Nullable
-  public YggString getString() {
-    return findChildByClass(YggString.class);
+  public YggStringLiteral getStringLiteral() {
+    return findChildByClass(YggStringLiteral.class);
   }
 
 }

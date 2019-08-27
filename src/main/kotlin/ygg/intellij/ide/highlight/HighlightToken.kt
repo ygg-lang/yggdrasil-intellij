@@ -39,7 +39,7 @@ class HighlightToken : SyntaxHighlighterBase() {
             // atom
             NULL -> Color.NULL
             BOOLEAN -> Color.BOOLEAN
-            STRING, STRING_SQ, STRING_DQ, CHARACTER -> Color.STRING
+            STRING_LITERAL, STRING_SQ, STRING_DQ, CHARACTER -> Color.STRING
             ESCAPE_SPECIAL, ESCAPE_UNICODE -> Color.STRING_ESCAPE
             NUMBER_SUFFIX -> Color.NUMBER_HINT
             INTEGER -> Color.INTEGER

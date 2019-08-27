@@ -34,9 +34,9 @@ public class YggGrammarStatementNode extends ASTWrapperPsiElement implements Ygg
   }
 
   @Override
-  @NotNull
-  public List<YggString> getStringList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, YggString.class);
+  @Nullable
+  public YggObject getObject() {
+    return findChildByClass(YggObject.class);
   }
 
 }

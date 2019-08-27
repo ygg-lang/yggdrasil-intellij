@@ -35,8 +35,8 @@ public class YggKeyNode extends ASTWrapperPsiElement implements YggKey {
 
   @Override
   @Nullable
-  public YggString getString() {
-    return findChildByClass(YggString.class);
+  public YggStringLiteral getStringLiteral() {
+    return findChildByClass(YggStringLiteral.class);
   }
 
 }

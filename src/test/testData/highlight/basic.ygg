@@ -9,7 +9,9 @@ codegen rust {
 
 // Import the preclassined types,
 // Otherwise the `String` type of each language will be used directly to represent the atomic expression
-import "path/literal_types.toml"
+import "path/literal_types.toml" {
+
+}
 
 
 // right now, first rule will become entry point
@@ -38,7 +40,7 @@ class GrammarStatement {
     "grammar" Identifier _grammar_exts? eos?
 }
 
-class _grammar_exts {
+class _GrammarExts {
     "{" @interval(extensions:String, ",", true)? "}"
 }
 
@@ -50,6 +52,7 @@ class ImportStatement {
 class _ImportSelected {
     '{' @join(items:ImportItem, ',')? '}'
 }
+
 class ImportItem {
     symbol:Identifier (@case_insensitive("as") alias:Identifier)?
 }
@@ -60,16 +63,16 @@ union Expression {
     | x:Self '~' y:Self   #ConcatSoft
     | x:Self '|' y:Self   #Choice
     | '(' '|'? x:Self ')' #Group
-    | x:_Atom             #Prefix
+    | x:_Atom             #Atom
 }
 
 class _TagName {
-    "#" (name:id) (mode:[!_^]) (name:id)
+    "#" (name:Identifier) (mode:[!_^]) (name:id)
 }
 
 // `_` inline a item even if it not mark as automatic inline
 union _Atom {
-    | id
+    | Identifier
     | String
     | unsigned    #Integer
     | regex

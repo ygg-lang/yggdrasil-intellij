@@ -10,7 +10,7 @@ public interface YggGrammarStatement extends PsiElement {
   @NotNull
   YggIdentifier getIdentifier();
 
-  @NotNull
-  List<YggString> getStringList();
+  @Nullable
+  YggObject getObject();
 
 }

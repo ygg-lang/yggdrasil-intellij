@@ -11,6 +11,6 @@ public interface YggKey extends PsiElement {
   YggKeySymbol getKeySymbol();
 
   @Nullable
-  YggString getString();
+  YggStringLiteral getStringLiteral();
 
 }

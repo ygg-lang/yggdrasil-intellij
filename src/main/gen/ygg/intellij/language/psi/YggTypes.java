@@ -12,13 +12,13 @@ public interface YggTypes {
   IElementType BRANCH_MARK = new YggElementType("BRANCH_MARK");
   IElementType CHARSET = new YggElementType("CHARSET");
   IElementType DEFINE = new YggElementType("DEFINE");
+  IElementType EXPORT_STATEMENT = new YggElementType("EXPORT_STATEMENT");
   IElementType EXPR = new YggElementType("EXPR");
   IElementType FIELD_MARK = new YggElementType("FIELD_MARK");
   IElementType FIELD_RHS = new YggElementType("FIELD_RHS");
   IElementType FUNCTION_CALL = new YggElementType("FUNCTION_CALL");
   IElementType GRAMMAR_STATEMENT = new YggElementType("GRAMMAR_STATEMENT");
   IElementType IDENTIFIER = new YggElementType("IDENTIFIER");
-  IElementType IGNORE_STATEMENT = new YggElementType("IGNORE_STATEMENT");
   IElementType IMPORT_STATEMENT = new YggElementType("IMPORT_STATEMENT");
   IElementType INFIX = new YggElementType("INFIX");
   IElementType KEY = new YggElementType("KEY");
@@ -29,13 +29,16 @@ public interface YggTypes {
   IElementType MODIFIERS = new YggElementType("MODIFIERS");
   IElementType NAMESPACE = new YggElementType("NAMESPACE");
   IElementType NUMBER_SUFFIX = new YggElementType("NUMBER_SUFFIX");
+  IElementType OBJECT = new YggElementType("OBJECT");
+  IElementType OBJECT_ITEM = new YggElementType("OBJECT_ITEM");
+  IElementType OBJECT_KEY = new YggElementType("OBJECT_KEY");
   IElementType PAIR = new YggElementType("PAIR");
   IElementType PARENTHESIS = new YggElementType("PARENTHESIS");
   IElementType PREFIX = new YggElementType("PREFIX");
   IElementType RULE_ARGUMENT = new YggElementType("RULE_ARGUMENT");
   IElementType RULE_STATEMENT = new YggElementType("RULE_STATEMENT");
   IElementType RULE_TYPE = new YggElementType("RULE_TYPE");
-  IElementType STRING = new YggElementType("STRING");
+  IElementType STRING_LITERAL = new YggElementType("STRING_LITERAL");
   IElementType SUFFIX = new YggElementType("SUFFIX");
   IElementType SYMBOL_PATH = new YggElementType("SYMBOL_PATH");
   IElementType TABLE = new YggElementType("TABLE");
@@ -72,7 +75,6 @@ public interface YggTypes {
   IElementType ESCAPE_UNICODE = new YggElementType("ESCAPE_UNICODE");
   IElementType HASH = new YggElementType("HASH");
   IElementType HYPHEN = new YggElementType("-");
-  IElementType IGNORE = new YggElementType("IGNORE");
   IElementType INTEGER = new YggElementType("INTEGER");
   IElementType MANY = new YggElementType("*");
   IElementType MANY1 = new YggElementType("+");
@@ -106,6 +108,9 @@ public interface YggTypes {
       else if (type == DEFINE) {
         return new YggDefineNode(node);
       }
+      else if (type == EXPORT_STATEMENT) {
+        return new YggExportStatementNode(node);
+      }
       else if (type == EXPR) {
         return new YggExprNode(node);
       }
@@ -123,9 +128,6 @@ public interface YggTypes {
       }
       else if (type == IDENTIFIER) {
         return new YggIdentifierNode(node);
-      }
-      else if (type == IGNORE_STATEMENT) {
-        return new YggIgnoreStatementNode(node);
       }
       else if (type == IMPORT_STATEMENT) {
         return new YggImportStatementNode(node);
@@ -157,6 +159,15 @@ public interface YggTypes {
       else if (type == NUMBER_SUFFIX) {
         return new YggNumberSuffixNode(node);
       }
+      else if (type == OBJECT) {
+        return new YggObjectNode(node);
+      }
+      else if (type == OBJECT_ITEM) {
+        return new YggObjectItemNode(node);
+      }
+      else if (type == OBJECT_KEY) {
+        return new YggObjectKeyNode(node);
+      }
       else if (type == PAIR) {
         return new YggPairNode(node);
       }
@@ -175,8 +186,8 @@ public interface YggTypes {
       else if (type == RULE_TYPE) {
         return new YggRuleTypeNode(node);
       }
-      else if (type == STRING) {
-        return new YggStringNode(node);
+      else if (type == STRING_LITERAL) {
+        return new YggStringLiteralNode(node);
       }
       else if (type == SUFFIX) {
         return new YggSuffixNode(node);
