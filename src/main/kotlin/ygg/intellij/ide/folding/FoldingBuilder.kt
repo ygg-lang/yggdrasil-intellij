@@ -11,7 +11,7 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.util.PsiTreeUtil
 import ygg.intellij.language.file.YggdrasilFileNode
 
-class YFoldingBuilder : CustomFoldingBuilder(), DumbAware {
+class FoldingBuilder : CustomFoldingBuilder(), DumbAware {
     override fun buildLanguageFoldRegions(
         descriptors: MutableList<FoldingDescriptor>,
         root: PsiElement,
@@ -19,7 +19,7 @@ class YFoldingBuilder : CustomFoldingBuilder(), DumbAware {
         quick: Boolean,
     ) {
         if (root !is YggdrasilFileNode) return
-        val visitor = YFoldingVisitor(descriptors)
+        val visitor = FoldingVisitor(descriptors)
         PsiTreeUtil.processElements(root) {
             it.accept(visitor);
             true

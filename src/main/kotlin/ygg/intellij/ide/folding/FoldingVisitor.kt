@@ -3,10 +3,17 @@ package ygg.intellij.ide.folding
 import com.intellij.lang.folding.FoldingDescriptor
 import com.intellij.psi.PsiComment
 import com.intellij.psi.PsiElement
+import ygg.intellij.language.psi.YggObject
 import ygg.intellij.language.psi.YggRecursiveVisitor
 import ygg.intellij.language.psi.YggTypes
 
-class YFoldingVisitor(private val descriptors: MutableList<FoldingDescriptor>) : YggRecursiveVisitor() {
+class FoldingVisitor(private val descriptors: MutableList<FoldingDescriptor>) : YggRecursiveVisitor() {
+
+    override fun visitObject(o: YggObject) {
+        if (o.objectItemList.isNotEmpty()) {
+            fold(o)
+        }
+    }
 
 //    override fun visitObjectBody(o: VomlObjectBody) {
 //        if (o.objectEntryList.isNotEmpty()) {

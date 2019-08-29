@@ -45,7 +45,7 @@
 		<!-- Structure View -->
 		<lang.foldingBuilder
 			language="Yggdrasil"
-			implementationClass="ygg.intellij.ide.folding.YFoldingBuilder"
+			implementationClass="ygg.intellij.ide.folding.FoldingBuilder"
 		/>
 		<indexPatternBuilder
 			implementation="ygg.intellij.ide.todo.VomlTodoIndexPatternBuilder"
@@ -73,7 +73,7 @@
 
 		<lang.formatter
 			language="Yggdrasil"
-			implementationClass="ygg.intellij.ide.formatter.VomlFormattingModelBuilder"
+			implementationClass="ygg.intellij.ide.formatter.FormatModel"
 		/>
 		<lang.smartEnterProcessor
 			language="Yggdrasil"
