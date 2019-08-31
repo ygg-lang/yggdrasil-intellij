@@ -1,9 +1,9 @@
 grammar Ygg {
-    file_pattern: ['*.yg', "*.ygg", "*.grammar"],
+    file_pattern: {'*.yg', "*.ygg", "*.grammar"},
     suffix: "Node"
 }
 codegen rust {
-    path: "path.rs"
+    output: "path.rs"
     override: true
 }
 

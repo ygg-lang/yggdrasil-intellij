@@ -10,9 +10,6 @@ public interface YggRuleStatement extends PsiElement {
   @NotNull
   YggDefine getDefine();
 
-  @Nullable
-  YggExpr getExpr();
-
   @NotNull
   YggIdentifier getIdentifier();
 
@@ -21,6 +18,9 @@ public interface YggRuleStatement extends PsiElement {
 
   @Nullable
   YggRuleArgument getRuleArgument();
+
+  @Nullable
+  YggRuleBody getRuleBody();
 
   @Nullable
   YggRuleType getRuleType();

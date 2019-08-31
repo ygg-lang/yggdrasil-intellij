@@ -55,6 +55,10 @@ public class YggVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitImportBody(@NotNull YggImportBody o) {
+    visitPsiElement(o);
+  }
+
   public void visitImportStatement(@NotNull YggImportStatement o) {
     visitPsiElement(o);
   }
@@ -120,6 +124,10 @@ public class YggVisitor extends PsiElementVisitor {
   }
 
   public void visitRuleArgument(@NotNull YggRuleArgument o) {
+    visitPsiElement(o);
+  }
+
+  public void visitRuleBody(@NotNull YggRuleBody o) {
     visitPsiElement(o);
   }
 

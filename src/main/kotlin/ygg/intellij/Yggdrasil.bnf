@@ -76,18 +76,19 @@ export_statement ::= "codegen" identifier object {
     pin = identifier
     recoverWhile = BRACE_R
 }
-import_statement ::= "import" string_literal [BRACE_L import_inner BRACE_R];
-private import_inner ::= [identifier (COMMA identifier)* [COMMA]];
+import_statement ::= "import" string_literal [import_body];
+import_body      ::= BRACE_L [identifier (COMMA identifier)* [COMMA]] BRACE_R;
 // ---------------------------------------------------------------------------------------------------------------------
 // @macro("path")
 macro_statement ::= AT SYMBOL <<parenthesis macro_arg COMMA>>;
 macro_arg ::= value | macro_statement;
 // =====================================================================================================================
 // def modifiers rule
-rule_statement ::= define modifiers identifier [rule_argument] [rule_type] BRACE_L [CHOOSE] [expr] BRACE_R {
+rule_statement ::= define modifiers identifier [rule_argument] [rule_type] rule_body {
     pin = identifier
     recoverWhile = BRACE_R
 };
+rule_body     ::= BRACE_L [CHOOSE] [expr] BRACE_R;
 rule_argument ::= PARENTHESIS_L PARENTHESIS_R;
 rule_type     ::= (COLON | ARROW) identifier;
 define ::= "def" | "class" | "struct" | "rule" | "enum" | "union" | "function" | "fun";

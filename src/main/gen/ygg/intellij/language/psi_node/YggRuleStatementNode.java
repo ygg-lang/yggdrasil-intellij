@@ -34,12 +34,6 @@ public class YggRuleStatementNode extends ASTWrapperPsiElement implements YggRul
   }
 
   @Override
-  @Nullable
-  public YggExpr getExpr() {
-    return findChildByClass(YggExpr.class);
-  }
-
-  @Override
   @NotNull
   public YggIdentifier getIdentifier() {
     return findNotNullChildByClass(YggIdentifier.class);
@@ -55,6 +49,12 @@ public class YggRuleStatementNode extends ASTWrapperPsiElement implements YggRul
   @Nullable
   public YggRuleArgument getRuleArgument() {
     return findChildByClass(YggRuleArgument.class);
+  }
+
+  @Override
+  @Nullable
+  public YggRuleBody getRuleBody() {
+    return findChildByClass(YggRuleBody.class);
   }
 
   @Override

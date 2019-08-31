@@ -19,6 +19,7 @@ public interface YggTypes {
   IElementType FUNCTION_CALL = new YggElementType("FUNCTION_CALL");
   IElementType GRAMMAR_STATEMENT = new YggElementType("GRAMMAR_STATEMENT");
   IElementType IDENTIFIER = new YggElementType("IDENTIFIER");
+  IElementType IMPORT_BODY = new YggElementType("IMPORT_BODY");
   IElementType IMPORT_STATEMENT = new YggElementType("IMPORT_STATEMENT");
   IElementType INFIX = new YggElementType("INFIX");
   IElementType KEY = new YggElementType("KEY");
@@ -36,6 +37,7 @@ public interface YggTypes {
   IElementType PARENTHESIS = new YggElementType("PARENTHESIS");
   IElementType PREFIX = new YggElementType("PREFIX");
   IElementType RULE_ARGUMENT = new YggElementType("RULE_ARGUMENT");
+  IElementType RULE_BODY = new YggElementType("RULE_BODY");
   IElementType RULE_STATEMENT = new YggElementType("RULE_STATEMENT");
   IElementType RULE_TYPE = new YggElementType("RULE_TYPE");
   IElementType STRING_LITERAL = new YggElementType("STRING_LITERAL");
@@ -129,6 +131,9 @@ public interface YggTypes {
       else if (type == IDENTIFIER) {
         return new YggIdentifierNode(node);
       }
+      else if (type == IMPORT_BODY) {
+        return new YggImportBodyNode(node);
+      }
       else if (type == IMPORT_STATEMENT) {
         return new YggImportStatementNode(node);
       }
@@ -179,6 +184,9 @@ public interface YggTypes {
       }
       else if (type == RULE_ARGUMENT) {
         return new YggRuleArgumentNode(node);
+      }
+      else if (type == RULE_BODY) {
+        return new YggRuleBodyNode(node);
       }
       else if (type == RULE_STATEMENT) {
         return new YggRuleStatementNode(node);
