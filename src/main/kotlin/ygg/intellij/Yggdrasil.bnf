@@ -68,15 +68,19 @@ private statements ::=
 // @grammar ygg;
 grammar_statement ::= "grammar" identifier object {
     pin = identifier
-    recoverWhile = BRACE_R
+    recoverWhile = end_brace
 };
+private end_brace ::= BRACE_R;
 // ---------------------------------------------------------------------------------------------------------------------
 // @import
 export_statement ::= "codegen" identifier object {
     pin = identifier
-    recoverWhile = BRACE_R
+    recoverWhile = end_brace
 }
-import_statement ::= "import" string_literal [import_body];
+import_statement ::= "import" string_literal [import_body] {
+    pin = string_literal
+    recoverWhile = end_brace
+}
 import_body      ::= BRACE_L [identifier (COMMA identifier)* [COMMA]] BRACE_R;
 // ---------------------------------------------------------------------------------------------------------------------
 // @macro("path")
@@ -86,7 +90,7 @@ macro_arg ::= value | macro_statement;
 // def modifiers rule
 rule_statement ::= define modifiers identifier [rule_argument] [rule_type] rule_body {
     pin = identifier
-    recoverWhile = BRACE_R
+    recoverWhile = end_brace
 };
 rule_body     ::= BRACE_L [CHOOSE] [expr] BRACE_R;
 rule_argument ::= PARENTHESIS_L PARENTHESIS_R;

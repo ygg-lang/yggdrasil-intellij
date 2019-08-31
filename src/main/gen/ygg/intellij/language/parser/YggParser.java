@@ -147,6 +147,12 @@ public class YggParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // BRACE_R
+  static boolean end_brace(PsiBuilder b, int l) {
+    return consumeToken(b, BRACE_R);
+  }
+
+  /* ********************************************************** */
   // EQ | COLON
   static boolean eq(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "eq")) return false;
@@ -178,7 +184,7 @@ public class YggParser implements PsiParser, LightPsiParser {
     r = r && identifier(b, l + 1);
     p = r; // pin = identifier
     r = r && object(b, l + 1);
-    exit_section_(b, l, m, r, p, null);
+    exit_section_(b, l, m, r, p, YggParser::end_brace);
     return r || p;
   }
 
@@ -278,7 +284,7 @@ public class YggParser implements PsiParser, LightPsiParser {
     r = r && identifier(b, l + 1);
     p = r; // pin = identifier
     r = r && object(b, l + 1);
-    exit_section_(b, l, m, r, p, null);
+    exit_section_(b, l, m, r, p, YggParser::end_brace);
     return r || p;
   }
 
@@ -360,13 +366,14 @@ public class YggParser implements PsiParser, LightPsiParser {
   // "import" string_literal [import_body]
   public static boolean import_statement(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "import_statement")) return false;
-    boolean r;
+    boolean r, p;
     Marker m = enter_section_(b, l, _NONE_, IMPORT_STATEMENT, "<import statement>");
     r = consumeToken(b, "import");
     r = r && string_literal(b, l + 1);
+    p = r; // pin = string_literal
     r = r && import_statement_2(b, l + 1);
-    exit_section_(b, l, m, r, false, null);
-    return r;
+    exit_section_(b, l, m, r, p, YggParser::end_brace);
+    return r || p;
   }
 
   // [import_body]
@@ -879,7 +886,7 @@ public class YggParser implements PsiParser, LightPsiParser {
     r = r && report_error_(b, rule_statement_3(b, l + 1));
     r = p && report_error_(b, rule_statement_4(b, l + 1)) && r;
     r = p && rule_body(b, l + 1) && r;
-    exit_section_(b, l, m, r, p, null);
+    exit_section_(b, l, m, r, p, YggParser::end_brace);
     return r || p;
   }
 
