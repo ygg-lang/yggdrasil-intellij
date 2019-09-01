@@ -11,6 +11,7 @@
     elementTypeClass = "ygg.intellij.language.psi.YggElementType"
     tokenTypeClass = "ygg.intellij.language.psi.YggElementType"
 
+    extends = "com.intellij.extapi.psi.ASTWrapperPsiElement"
     psiImplUtilClass = "ygg.intellij.language.psi_node.YggPsiExtension"
 
     tokens = [
@@ -28,6 +29,7 @@
         QUOTATION = '"'
         ESCAPE = '\'
         TAGGED = '<-'
+        TO = '->'
 
         SOFT_CONNECT = '~'
         CHOOSE='|'
@@ -45,8 +47,6 @@
         MANY1 = '+'
         MANY = '*'
     ]
-
-    extends = "com.intellij.extapi.psi.ASTWrapperPsiElement"
 }
 
 Ygg ::= statements*;
@@ -77,11 +77,12 @@ export_statement ::= "codegen" identifier object {
     pin = identifier
     recoverWhile = end_brace
 }
-import_statement ::= "import" string_literal [import_body] {
+import_statement ::= kw_import string_literal [import_body] {
     pin = string_literal
     recoverWhile = end_brace
 }
 import_body      ::= BRACE_L [identifier (COMMA identifier)* [COMMA]] BRACE_R;
+kw_import        ::= "import" | "use" | "using";
 // ---------------------------------------------------------------------------------------------------------------------
 // @macro("path")
 macro_statement ::= AT SYMBOL <<parenthesis macro_arg COMMA>>;
