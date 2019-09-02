@@ -12,27 +12,16 @@ import "path/literal_types.toml" {
 
 
 // right now, first rule will become entry point
-#main
+#macro
 class Program {
     Statement*
 }
 
-
-// `#` will generate named bindings for languages that do not support union type, such as rust
-// Union type will be used directly in other languages that support union type, such as ts, scala
-// Note that compared to ANTLR, this is not mandatory, but the same name is also forbidden.
-// If not specified, a name like `AuxVariant1` will be generated.
 union Statement {
     | GrammarStatement   #Grammar
     | FragmentStatement  #Fragment
-    | IgnoreStatement    #Ignore
-    | ImportStatement    #Import
-    | AssignStatement    #Assign
 }
 
-
-//* grammar tsg
-//* grammar tsg {"*.tsg", }
 class GrammarStatement {
     "grammar" Identifier _grammar_exts? eos?
 }

@@ -14,6 +14,6 @@ indent_size = 4
 indent_style = tab
 indent_size = 4
 
-[*.ygg]
+[*.{ygg, json, json5}]
 indent_style = space
 indent_size = 4

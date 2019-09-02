@@ -26,15 +26,7 @@ class YggHighlightSettingPage : ColorSettingsPage {
 
     override fun getHighlighter() = HighlightToken()
 
-    override fun getDemoText() =
-        """@grammar <PREDEFINED>ygg</PREDEFINED> {"*.yg","*.ygg", "*.grammar"};
-
-// Import the predefined types,
-// Otherwise the `String` type of each language will be used directly to represent the atomic expression
-@import "literal_types.toml";
-
-@ignore {NEWLINE, WHITESPACE, COMMENT}
-"""
+    override fun getDemoText() = javaClass.getResource("/fileTemplates/demoColor.ygg")!!.readText()
 
     override fun getAdditionalHighlightingTagToDescriptorMap() = annotatorTags
 }

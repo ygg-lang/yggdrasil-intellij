@@ -1,0 +1,8 @@
+{
+    // a
+    file_pattern: [
+        '*.yg',
+        "*.ygg",
+        "*.grammar"
+    ],
+}
