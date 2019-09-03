@@ -7,7 +7,6 @@ class VomlHighlightingAnnotator : AnnotatorBase() {
     override fun annotateInternal(element: PsiElement, holder: AnnotationHolder) {
         val parent = element.parent
         if (holder.isBatchMode || parent == null) return
-
         when (parent) {
 //            is VomlExt -> if (parent.ident != element) {
 //                holder

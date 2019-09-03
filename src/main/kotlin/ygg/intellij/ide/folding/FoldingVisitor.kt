@@ -42,8 +42,8 @@ class FoldingVisitor(private val descriptors: MutableList<FoldingDescriptor>) : 
     }
 
     private fun foldInner(element: PsiElement, left: IElementType, right: IElementType) {
-        val start = element.childrenWithLeaves.filter { it.elementType == left }.map { it.endOffset }.firstOrNull();
-        val end = element.childrenWithLeaves.filter { it.elementType == right }.map { it.startOffset }.firstOrNull();
+        val start = element.childrenWithLeaves.filter { it.elementType == left }.map { it.endOffset }.firstOrNull()
+        val end = element.childrenWithLeaves.filter { it.elementType == right }.map { it.startOffset }.firstOrNull()
         if (start != null && end != null && start < end) {
             val range = TextRange(start, end)
             descriptors += FoldingDescriptor(element.node, range)

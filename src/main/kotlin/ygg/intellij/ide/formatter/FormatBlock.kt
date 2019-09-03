@@ -67,7 +67,7 @@ fun createSpacingBuilder(commonSettings: CommonCodeStyleSettings): SpacingBuilde
         .after(YggTypes.PARENTHESIS_L).spaceIf(false)
         .before(YggTypes.PARENTHESIS_R).spaceIf(false)
 
-private fun Block.computeSpacing(child1: Block?, child2: Block, ctx: FormatContext): Spacing? {
+private fun Block.computeSpacing(child1: Block?, child2: Block, ctx: FormatContext): Spacing {
     return ctx.spacingBuilder.getSpacing(this, child1, child2)
 }
 

@@ -36,7 +36,7 @@ public class _YggLexer implements FlexLexer {
    *                  at the beginning of a line
    * l is of the form l = 2*k, k a non negative integer
    */
-  private static final int ZZ_LEXSTATE[] = { 
+  private static final int[] ZZ_LEXSTATE = {
      0,  0,  1,  1,  2,  2,  3,  3,  3, 3
   };
 
@@ -50,7 +50,7 @@ public class _YggLexer implements FlexLexer {
   }
 
   /* The ZZ_CMAP_Z table has 2176 entries */
-  static final char ZZ_CMAP_Z[] = zzUnpackCMap(
+  static final char[] ZZ_CMAP_Z = zzUnpackCMap(
     "\1\0\1\1\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1\14\1\15\1\16\1\17\1"+
     "\20\5\21\1\22\1\21\1\23\1\21\14\24\1\25\50\24\1\26\2\24\1\27\1\30\1\31\1\32"+
     "\25\24\1\33\20\21\1\34\1\35\1\36\1\37\1\40\1\41\1\42\1\43\1\44\1\45\1\46\1"+
@@ -61,7 +61,7 @@ public class _YggLexer implements FlexLexer {
     "\21\1\105\u017f\21");
 
   /* The ZZ_CMAP_Y table has 4480 entries */
-  static final char ZZ_CMAP_Y[] = zzUnpackCMap(
+  static final char[] ZZ_CMAP_Y = zzUnpackCMap(
     "\1\0\1\1\2\0\1\2\1\3\1\4\1\5\1\6\1\7\1\10\1\11\1\12\1\13\1\14\1\15\1\16\3"+
     "\0\1\17\1\20\1\21\1\20\2\22\1\23\3\22\1\23\71\22\1\24\1\22\1\25\1\0\1\26\1"+
     "\27\2\0\16\30\1\31\1\32\1\33\1\34\2\22\1\35\11\22\1\36\21\22\1\37\1\40\24"+
@@ -150,7 +150,7 @@ public class _YggLexer implements FlexLexer {
     "\53\0\3\22\1\72\134\0\36\30\2\0");
 
   /* The ZZ_CMAP_A table has 1832 entries */
-  static final char ZZ_CMAP_A[] = zzUnpackCMap(
+  static final char[] ZZ_CMAP_A = zzUnpackCMap(
     "\11\0\1\1\1\2\2\1\1\2\2\0\1\1\1\55\1\62\1\51\1\56\2\0\1\61\1\40\1\41\1\4\1"+
     "\30\1\47\1\42\1\26\1\3\1\20\11\23\1\45\1\46\1\44\1\60\1\43\1\57\1\50\1\22"+
     "\1\24\2\22\1\27\1\24\10\16\1\21\5\16\1\36\2\16\1\21\2\16\1\31\1\32\1\35\1"+
@@ -382,7 +382,7 @@ public class _YggLexer implements FlexLexer {
   }
 
   /** the input device */
-  private java.io.Reader zzReader;
+  private final java.io.Reader zzReader;
 
   /** the current state of the DFA */
   private int zzState;
@@ -420,7 +420,7 @@ public class _YggLexer implements FlexLexer {
 
   /* user code: */
 public _YggLexer() {
-	this((java.io.Reader)null);
+	this(null);
 }
 
 

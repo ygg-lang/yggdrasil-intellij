@@ -11,7 +11,7 @@ import ygg.intellij.language.file.YggdrasilIcon
 class YggCreateFile : CreateFileFromTemplateAction(Name, Description, YggdrasilIcon.FILE) {
     companion object {
         val Name = YggdrasilLanguage.id
-        const val TemplateName = "Voml File";
+        const val TemplateName = "Voml File"
         val Description = YggdrasilBundle.message("action.create.description")
     }
 

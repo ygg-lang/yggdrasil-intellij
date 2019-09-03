@@ -11,12 +11,12 @@ class YggTableCheckerAnnotator : CheckerAnnotator() {
             CheckerAnnotatorResult.Ok
         } else {
             when (element) {
-                is ygg.intellij.language.psi.YggPair -> checkPair(element)
+                is YggPair -> checkPair(element)
                 else -> CheckerAnnotatorResult.Ok
             }
         }
 
-    private fun checkPair(mapEntry: ygg.intellij.language.psi.YggPair): CheckerAnnotatorResult {
+    private fun checkPair(mapEntry: YggPair): CheckerAnnotatorResult {
 //        val filteredEntries = (mapEntry.parent as YggMap)
 //            .mapEntryList
 //            .asSequence()

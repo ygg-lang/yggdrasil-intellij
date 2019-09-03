@@ -21,7 +21,7 @@ class FoldingBuilder : CustomFoldingBuilder(), DumbAware {
         if (root !is YggdrasilFileNode) return
         val visitor = FoldingVisitor(descriptors)
         PsiTreeUtil.processElements(root) {
-            it.accept(visitor);
+            it.accept(visitor)
             true
         }
     }

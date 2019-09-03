@@ -1,1 +1,1 @@
-rootProject.name = "ygg-intellij"
+rootProject.name = "Yggdrasil Intellij"

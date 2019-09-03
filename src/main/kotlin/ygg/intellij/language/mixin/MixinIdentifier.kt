@@ -14,9 +14,9 @@ enum class IdentifierKind {
 }
 
 open class MixinIdentifier(node: ASTNode) : ASTWrapperPsiElement(node) {
-    override fun getOriginalElement(): YggIdentifierNode = this as YggIdentifierNode;
+    override fun getOriginalElement(): YggIdentifierNode = this as YggIdentifierNode
 
-    fun getRuleStatement(): YggRuleStatementNode? {
+    fun getRuleStatement(): YggRuleStatementNode {
         return this.ancestors
             .filter { it is YggRuleStatementNode }
             .map { it as YggRuleStatementNode }
