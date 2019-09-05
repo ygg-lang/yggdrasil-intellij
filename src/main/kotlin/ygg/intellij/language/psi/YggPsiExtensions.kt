@@ -7,21 +7,12 @@ import com.intellij.openapi.vfs.VirtualFile
 import com.intellij.psi.*
 import com.intellij.psi.impl.source.PsiFileImpl
 import com.intellij.psi.stubs.StubElement
+import com.intellij.psi.tree.IElementType
 import com.intellij.psi.util.PsiTreeUtil
+import com.intellij.psi.util.elementType
 import com.intellij.psi.util.prevLeaf
 
-//val VomlK?.keyText get() = this?.namedField?.ident?.text
-//
-//
-//val VomlObjectEntry?.keyText get() = this?.namedField?.ident?.text
-//fun VomlObjectEntry?.keyTextMatches(other: CharSequence?) =
-//    other != null && this?.namedField?.ident?.textMatches(other) ?: false
-//val VomlMapEntry?.keyAsText get() = this?.mapKey?.text
-//fun VomlMapEntry?.keyAsTextMatches(other: CharSequence?) =
-//    other != null && this?.mapKey?.textMatches(other) ?: false
-//val VomlObjectEntry?.isTuple get() = this?.namedField == null
-
-val PsiFileSystemItem.sourceRoot: VirtualFile
+val PsiFileSystemItem.sourceRoot: VirtualFile?
     get() = virtualFile.let { ProjectRootManager.getInstance(project).fileIndex.getSourceRootForFile(it) }
 
 val PsiElement.ancestors: Sequence<PsiElement>
@@ -39,7 +30,7 @@ val PsiElement.contexts: Sequence<PsiElement>
         if (it is PsiFile) null else it.context
     }
 
-fun PsiElement.superParent(level: Int): PsiElement {
+fun PsiElement.superParent(level: Int): PsiElement? {
     require(level > 0)
     return ancestors.drop(level).firstOrNull()
 }
@@ -74,66 +65,71 @@ val PsiElement.leftSiblings: Sequence<PsiElement>
 val PsiElement.childrenWithLeaves: Sequence<PsiElement>
     get() = generateSequence(this.firstChild) { it.nextSibling }
 
-inline fun <reified T : PsiElement> PsiElement.ancestorStrict(): T =
+fun PsiElement?.childElement(vararg target: IElementType): PsiElement? {
+    if (this == null) return null
+    for (child in this.childrenWithLeaves) {
+        if (target.contains(child.elementType)) {
+            return child
+        }
+    }
+    return null
+}
+
+inline fun <reified T : PsiElement> PsiElement.ancestorStrict(): T? =
     PsiTreeUtil.getParentOfType(this, T::class.java, /* strict */ true)
 
-inline fun <reified T : PsiElement> PsiElement.ancestorStrict(stopAt: Class<out PsiElement>): T =
+inline fun <reified T : PsiElement> PsiElement.ancestorStrict(stopAt: Class<out PsiElement>): T? =
     PsiTreeUtil.getParentOfType(this, T::class.java, /* strict */ true, stopAt)
 
-inline fun <reified T : PsiElement> PsiElement.ancestorOrSelf(): T =
+inline fun <reified T : PsiElement> PsiElement.ancestorOrSelf(): T? =
     PsiTreeUtil.getParentOfType(this, T::class.java, /* strict */ false)
 
-inline fun <reified T : PsiElement> PsiElement.ancestorOrSelf(stopAt: Class<out PsiElement>): T =
+inline fun <reified T : PsiElement> PsiElement.ancestorOrSelf(stopAt: Class<out PsiElement>): T? =
     PsiTreeUtil.getParentOfType(this, T::class.java, /* strict */ false, stopAt)
 
-inline fun <reified T : PsiElement> PsiElement.stubAncestorStrict(): T =
+inline fun <reified T : PsiElement> PsiElement.stubAncestorStrict(): T? =
     PsiTreeUtil.getStubOrPsiParentOfType(this, T::class.java)
 
 /**
  * Same as [ancestorStrict], but with "fake" parent links. See [org.rust.lang.core.macros.RsExpandedElement].
  */
-inline fun <reified T : PsiElement> PsiElement.contextStrict(): T =
+inline fun <reified T : PsiElement> PsiElement.contextStrict(): T? =
     PsiTreeUtil.getContextOfType(this, T::class.java, /* strict */ true)
 
 /**
  * Same as [ancestorOrSelf], but with "fake" parent links. See [org.rust.lang.core.macros.RsExpandedElement].
  */
-inline fun <reified T : PsiElement> PsiElement.contextOrSelf(): T =
+inline fun <reified T : PsiElement> PsiElement.contextOrSelf(): T? =
     PsiTreeUtil.getContextOfType(this, T::class.java, /* strict */ false)
 
 
-inline fun <reified T : PsiElement> PsiElement.childOfType(): T =
-    PsiTreeUtil.getChildOfType(this, T::class.java)
+inline fun <reified T : PsiElement> PsiElement.childOfType(): T? = PsiTreeUtil.getChildOfType(this, T::class.java)
 
 inline fun <reified T : PsiElement> PsiElement.childrenOfType(): List<T> =
     PsiTreeUtil.getChildrenOfTypeAsList(this, T::class.java)
 
 inline fun <reified T : PsiElement> PsiElement.stubChildrenOfType(): List<T> {
     return if (this is PsiFileImpl) {
-        stub?.childrenStubs?.mapNotNull { it.psi } ?: return childrenOfType()
-    } else {
+        stub?.childrenStubs?.mapNotNull { it.psi as? T } ?: return childrenOfType()
+    }
+    else {
         PsiTreeUtil.getStubChildrenOfTypeAsList(this, T::class.java)
     }
 }
 
 /** Finds first sibling that is neither comment, nor whitespace before given element */
-fun PsiElement?.getPrevNonCommentSibling(): PsiElement =
-    PsiTreeUtil.skipWhitespacesAndCommentsBackward(this)
+fun PsiElement?.getPrevNonCommentSibling(): PsiElement? = PsiTreeUtil.skipWhitespacesAndCommentsBackward(this)
 
 /** Finds first sibling that is neither comment, nor whitespace after given element */
-fun PsiElement?.getNextNonCommentSibling(): PsiElement =
-    PsiTreeUtil.skipWhitespacesAndCommentsForward(this)
+fun PsiElement?.getNextNonCommentSibling(): PsiElement? = PsiTreeUtil.skipWhitespacesAndCommentsForward(this)
 
 /** Finds first sibling that is not whitespace before given element */
-fun PsiElement?.getPrevNonWhitespaceSibling(): PsiElement =
-    PsiTreeUtil.skipWhitespacesBackward(this)
+fun PsiElement?.getPrevNonWhitespaceSibling(): PsiElement? = PsiTreeUtil.skipWhitespacesBackward(this)
 
 /** Finds first sibling that is not whitespace after given element */
-fun PsiElement?.getNextNonWhitespaceSibling(): PsiElement =
-    PsiTreeUtil.skipWhitespacesForward(this)
+fun PsiElement?.getNextNonWhitespaceSibling(): PsiElement? = PsiTreeUtil.skipWhitespacesForward(this)
 
-fun PsiElement.isAncestorOf(child: PsiElement): Boolean =
-    child.ancestors.contains(this)
+fun PsiElement.isAncestorOf(child: PsiElement): Boolean = child.ancestors.contains(this)
 
 val PsiElement.startOffset: Int
     get() = textRange.startOffset

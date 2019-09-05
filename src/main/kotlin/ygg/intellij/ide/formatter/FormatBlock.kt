@@ -67,7 +67,7 @@ fun createSpacingBuilder(commonSettings: CommonCodeStyleSettings): SpacingBuilde
         .after(YggTypes.PARENTHESIS_L).spaceIf(false)
         .before(YggTypes.PARENTHESIS_R).spaceIf(false)
 
-private fun Block.computeSpacing(child1: Block?, child2: Block, ctx: FormatContext): Spacing {
+private fun Block.computeSpacing(child1: Block?, child2: Block, ctx: FormatContext): Spacing? {
     return ctx.spacingBuilder.getSpacing(this, child1, child2)
 }
 
@@ -78,6 +78,14 @@ private fun FormatBlock.computeIndent(child: ASTNode): Indent? {
     return when (node.elementType) {
         YggTypes.TABLE -> when {
             isCornerChild || child.elementType == YggTypes.COMMA -> Indent.getNoneIndent()
+            else -> Indent.getNormalIndent()
+        }
+        YggTypes.OBJECT -> when {
+            isCornerChild -> Indent.getNoneIndent()
+            else -> Indent.getNormalIndent()
+        }
+        YggTypes.RULE_BODY -> when {
+            isCornerChild -> Indent.getNoneIndent()
             else -> Indent.getNormalIndent()
         }
         else -> Indent.getNoneIndent()

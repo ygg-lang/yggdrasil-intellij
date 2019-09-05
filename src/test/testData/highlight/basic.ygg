@@ -1,9 +1,3 @@
-codegen rust {
-    output: "path.rs"
-    suffix: "Node"
-    override: true
-}
-
 // Import the preclassined types,
 // Otherwise the `String` type of each language will be used directly to represent the atomic expression
 import "path/literal_types.toml" {

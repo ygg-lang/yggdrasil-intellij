@@ -5,4 +5,11 @@
         "*.ygg",
         "*.grammar"
     ],
+    codegen: {
+        rust: {
+            output: "path.rs",
+            suffix: "Node",
+            override: true
+        }
+    }
 }
