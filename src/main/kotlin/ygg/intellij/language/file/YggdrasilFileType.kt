@@ -1,7 +1,7 @@
 package ygg.intellij.language.file
 
 import com.intellij.openapi.fileTypes.LanguageFileType
-import ygg.intellij.YggdrasilLanguage
+import ygg.intellij.language.YggdrasilLanguage
 import javax.swing.Icon
 
 object YggdrasilFileType : LanguageFileType(YggdrasilLanguage) {

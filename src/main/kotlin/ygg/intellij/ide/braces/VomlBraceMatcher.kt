@@ -4,7 +4,7 @@ package ygg.intellij.ide.braces
 import com.intellij.codeInsight.highlighting.PairedBraceMatcherAdapter
 import com.intellij.openapi.editor.highlighter.HighlighterIterator
 import com.intellij.openapi.fileTypes.FileType
-import ygg.intellij.YggdrasilLanguage
+import ygg.intellij.language.YggdrasilLanguage
 import ygg.intellij.language.file.YggdrasilFileType
 
 class VomlBraceMatcher : PairedBraceMatcherAdapter(VomlBaseBraceMatcher(), YggdrasilLanguage) {

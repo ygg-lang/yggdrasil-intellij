@@ -1,4 +1,4 @@
-package ygg.intellij
+package ygg.intellij.language
 
 import com.intellij.lang.Language
 

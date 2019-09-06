@@ -4,7 +4,7 @@ import com.intellij.extapi.psi.PsiFileBase
 import com.intellij.navigation.ItemPresentation
 import com.intellij.openapi.fileTypes.FileType
 import com.intellij.psi.FileViewProvider
-import ygg.intellij.YggdrasilLanguage
+import ygg.intellij.language.YggdrasilLanguage
 import javax.swing.Icon
 
 class YggdrasilFileNode(viewProvider: FileViewProvider) : PsiFileBase(viewProvider, YggdrasilLanguage),

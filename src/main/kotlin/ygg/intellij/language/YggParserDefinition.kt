@@ -12,7 +12,6 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import com.intellij.psi.tree.IFileElementType
 import com.intellij.psi.tree.TokenSet
-import ygg.intellij.YggdrasilLanguage
 import ygg.intellij.language.file.YggdrasilFileNode
 import ygg.intellij.language.parser.YggParser
 import ygg.intellij.language.psi.YggTypes.*

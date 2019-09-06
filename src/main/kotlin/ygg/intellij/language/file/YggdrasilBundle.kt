@@ -2,7 +2,7 @@ package ygg.intellij.language.file
 
 import com.intellij.DynamicBundle
 import org.jetbrains.annotations.PropertyKey
-import ygg.intellij.YggdrasilLanguage.Bundle
+import ygg.intellij.language.YggdrasilLanguage.Bundle
 import java.util.function.Supplier
 
 object YggdrasilBundle : DynamicBundle(Bundle) {

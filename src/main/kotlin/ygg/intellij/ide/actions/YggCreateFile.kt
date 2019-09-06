@@ -4,7 +4,7 @@ import com.intellij.ide.actions.CreateFileFromTemplateAction
 import com.intellij.ide.actions.CreateFileFromTemplateDialog
 import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiDirectory
-import ygg.intellij.YggdrasilLanguage
+import ygg.intellij.language.YggdrasilLanguage
 import ygg.intellij.language.file.YggdrasilBundle
 import ygg.intellij.language.file.YggdrasilIcon
 

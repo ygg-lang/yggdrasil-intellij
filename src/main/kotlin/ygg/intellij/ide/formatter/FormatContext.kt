@@ -3,7 +3,7 @@ package ygg.intellij.ide.formatter
 import com.intellij.formatting.SpacingBuilder
 import com.intellij.psi.codeStyle.CodeStyleSettings
 import com.intellij.psi.codeStyle.CommonCodeStyleSettings
-import ygg.intellij.YggdrasilLanguage
+import ygg.intellij.language.YggdrasilLanguage
 
 data class FormatContext(val commonSettings: CommonCodeStyleSettings, val spacingBuilder: SpacingBuilder) {
     companion object {

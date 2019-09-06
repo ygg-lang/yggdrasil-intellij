@@ -6,9 +6,10 @@ import com.intellij.application.options.SmartIndentOptionsEditor
 import com.intellij.psi.codeStyle.*
 import com.intellij.psi.codeStyle.CodeStyleSettings
 import com.intellij.psi.codeStyle.LanguageCodeStyleSettingsProvider
+import ygg.intellij.language.YggdrasilLanguage
 
 class LanguageCodeStyleSettingsProvider : LanguageCodeStyleSettingsProvider() {
-    override fun getLanguage() = ygg.intellij.YggdrasilLanguage
+    override fun getLanguage() = YggdrasilLanguage
 
     override fun getIndentOptionsEditor() = SmartIndentOptionsEditor()
 
