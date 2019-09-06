@@ -11,26 +11,13 @@ class SymbolCompletionProvider : CompletionProvider<CompletionParameters>() {
     override fun addCompletions(
         parameters: CompletionParameters,
         context: ProcessingContext,
-        resultSet: CompletionResultSet
+        resultSet: CompletionResultSet,
     ) {
-        resultSet.addElement(
-            LookupElementBuilder.create("@include")
-                .withInsertHandler { ctx, _ ->
-                    EditorModificationUtil.moveCaretRelatively(ctx.editor, -1)
-                }
-        )
-        resultSet.addElement(
-            LookupElementBuilder.create("@inherit")
-                .withInsertHandler { ctx, _ ->
-                    EditorModificationUtil.moveCaretRelatively(ctx.editor, -1)
-                }
-        )
-        resultSet.addElement(
-            LookupElementBuilder.create("Some()")
-                .withInsertHandler { ctx, _ ->
-                    EditorModificationUtil.moveCaretRelatively(ctx.editor, -1)
-                }
-        )
-        resultSet.addElement(LookupElementBuilder.create("None()"))
+        resultSet.addElement(LookupElementBuilder.create("struct").withInsertHandler { ctx, _ ->
+                EditorModificationUtil.moveCaretRelatively(ctx.editor, -1)
+            })
+        resultSet.addElement(LookupElementBuilder.create("class").withInsertHandler { ctx, _ ->
+                EditorModificationUtil.moveCaretRelatively(ctx.editor, -1)
+            })
     }
 }

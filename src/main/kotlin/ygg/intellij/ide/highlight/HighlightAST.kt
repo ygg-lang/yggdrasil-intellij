@@ -68,7 +68,12 @@ class HighlightAST : YggVisitor(), HighlightVisitor {
     }
 
     override fun visitIdentifier(o: YggIdentifier) {
-
+        when (o.text) {
+            "Self" -> {
+                highlight(o, HighlightColor.KEYWORD)
+            }
+            else -> {}
+        }
     }
 
 

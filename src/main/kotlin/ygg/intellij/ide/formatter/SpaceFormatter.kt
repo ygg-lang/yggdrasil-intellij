@@ -2,7 +2,12 @@ package ygg.intellij.ide.formatter
 
 import com.intellij.formatting.SpacingBuilder
 import com.intellij.psi.codeStyle.CommonCodeStyleSettings
+import com.intellij.psi.tree.TokenSet
 import ygg.intellij.language.psi.YggTypes
+
+private val prefix = TokenSet.create(YggTypes.AT) //  OPTIONAL | MANY | MANY1
+
+private val suffix = TokenSet.create(YggTypes.SUFFIX) //  OPTIONAL | MANY | MANY1
 
 fun createSpacingBuilder(commonSettings: CommonCodeStyleSettings): SpacingBuilder {
     return SpacingBuilder(commonSettings)
@@ -20,5 +25,8 @@ fun createSpacingBuilder(commonSettings: CommonCodeStyleSettings): SpacingBuilde
         .before(YggTypes.PARENTHESIS_R).spaceIf(false)
         // |
         .around(YggTypes.CHOOSE).spaceIf(true)
+        //
+        .before(suffix).spaceIf(false)
+        .after(prefix).spaceIf(false)
 }
 

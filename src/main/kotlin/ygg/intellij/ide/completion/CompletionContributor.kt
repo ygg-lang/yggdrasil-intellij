@@ -5,7 +5,7 @@ import com.intellij.codeInsight.completion.CompletionType
 import com.intellij.patterns.PlatformPatterns
 import ygg.intellij.language.psi.YggTypes
 
-class YCompletionContributor : CompletionContributor() {
+class CompletionContributor : CompletionContributor() {
     init {
         extend(
             CompletionType.BASIC,

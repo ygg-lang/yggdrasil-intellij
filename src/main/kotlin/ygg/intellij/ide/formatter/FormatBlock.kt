@@ -51,7 +51,6 @@ class FormatBlock(
     private val mySubBlocks: List<Block> by lazy { buildChildren() }
 }
 
-private fun ASTNode?.isWhitespaceOrEmpty() = this == null || textLength == 0 || elementType == TokenType.WHITE_SPACE
 
 private fun FormatBlock.buildChildren(): List<Block> {
     return node.getChildren(null)
@@ -66,3 +65,5 @@ private fun FormatBlock.buildChildren(): List<Block> {
             )
         }
 }
+
+private fun ASTNode?.isWhitespaceOrEmpty() = this == null || textLength == 0 || elementType == TokenType.WHITE_SPACE

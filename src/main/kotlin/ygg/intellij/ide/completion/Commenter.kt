@@ -1,8 +1,8 @@
-package ygg.intellij.ide
+package ygg.intellij.ide.completion
 
 import com.intellij.lang.Commenter
 
-class VomlCommenter : Commenter {
+class Commenter : Commenter {
     override fun getLineCommentPrefix(): String = "//"
 
     override fun getBlockCommentPrefix(): String = "/*"

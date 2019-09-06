@@ -6,21 +6,12 @@ import com.intellij.openapi.options.colors.ColorSettingsPage
 import ygg.intellij.language.file.YggdrasilBundle
 import ygg.intellij.language.file.YggdrasilIcon
 
-class YggHighlightSettingPage : ColorSettingsPage {
-    private val attrs = HighlightColor
-        .values()
-        .map { it.attributesDescriptor }
-        .toTypedArray()
-
-    private val annotatorTags = HighlightColor
-        .values()
-        .associateBy({ it.name }, { it.textAttributesKey })
-
-    override fun getAttributeDescriptors() = attrs
+class HighlightSettingPage : ColorSettingsPage {
+    override fun getAttributeDescriptors() = HighlightColor.values().map { it.attributesDescriptor }.toTypedArray()
 
     override fun getColorDescriptors(): Array<ColorDescriptor> = ColorDescriptor.EMPTY_ARRAY
 
-    override fun getDisplayName() = YggdrasilBundle.message("filetype.name")
+    override fun getDisplayName() = "Yggdrasil"
 
     override fun getIcon() = YggdrasilIcon.FILE
 
@@ -28,5 +19,6 @@ class YggHighlightSettingPage : ColorSettingsPage {
 
     override fun getDemoText() = javaClass.getResource("/fileTemplates/demoColor.ygg")!!.readText()
 
-    override fun getAdditionalHighlightingTagToDescriptorMap() = annotatorTags
+    override fun getAdditionalHighlightingTagToDescriptorMap() =
+        HighlightColor.values().associateBy({ it.name }, { it.textAttributesKey })
 }
