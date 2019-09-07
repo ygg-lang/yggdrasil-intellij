@@ -9,7 +9,7 @@ import ygg.intellij.language.YggLexerAdapter
 import ygg.intellij.language.YggParserDefinition
 import ygg.intellij.language.file.YggdrasilFileNode
 
-class VomlTodoIndexPatternBuilder : IndexPatternBuilder {
+class TodoIndexPatternBuilder : IndexPatternBuilder {
     override fun getIndexingLexer(file: PsiFile): Lexer? =
         if (file is YggdrasilFileNode) YggLexerAdapter() else null
 

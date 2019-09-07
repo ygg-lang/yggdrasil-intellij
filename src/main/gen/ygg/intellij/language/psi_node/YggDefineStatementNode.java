@@ -11,14 +11,14 @@ import static ygg.intellij.language.psi.YggTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import ygg.intellij.language.psi.*;
 
-public class YggImportStatementNode extends ASTWrapperPsiElement implements YggImportStatement {
+public class YggDefineStatementNode extends ASTWrapperPsiElement implements YggDefineStatement {
 
-  public YggImportStatementNode(@NotNull ASTNode node) {
+  public YggDefineStatementNode(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull YggVisitor visitor) {
-    visitor.visitImportStatement(this);
+    visitor.visitDefineStatement(this);
   }
 
   @Override
@@ -28,21 +28,33 @@ public class YggImportStatementNode extends ASTWrapperPsiElement implements YggI
   }
 
   @Override
+  @NotNull
+  public YggIdentifier getIdentifier() {
+    return findNotNullChildByClass(YggIdentifier.class);
+  }
+
+  @Override
+  @NotNull
+  public YggModifiers getModifiers() {
+    return findNotNullChildByClass(YggModifiers.class);
+  }
+
+  @Override
   @Nullable
-  public YggImportBody getImportBody() {
-    return findChildByClass(YggImportBody.class);
+  public YggRuleArgument getRuleArgument() {
+    return findChildByClass(YggRuleArgument.class);
   }
 
   @Override
-  @NotNull
-  public YggKwImport getKwImport() {
-    return findNotNullChildByClass(YggKwImport.class);
+  @Nullable
+  public YggRuleBody getRuleBody() {
+    return findChildByClass(YggRuleBody.class);
   }
 
   @Override
-  @NotNull
-  public YggStringLiteral getStringLiteral() {
-    return findNotNullChildByClass(YggStringLiteral.class);
+  @Nullable
+  public YggRuleType getRuleType() {
+    return findChildByClass(YggRuleType.class);
   }
 
 }

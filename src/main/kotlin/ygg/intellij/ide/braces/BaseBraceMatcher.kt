@@ -10,7 +10,7 @@ import com.intellij.psi.tree.TokenSet
 import ygg.intellij.language.YggParserDefinition
 import ygg.intellij.language.psi.YggTypes.*
 
-class VomlBaseBraceMatcher : PairedBraceMatcher {
+class BaseBraceMatcher : PairedBraceMatcher {
     override fun getPairs(): Array<BracePair> = PAIRS
 
     override fun isPairedBracesAllowedBeforeType(lbraceType: IElementType, next: IElementType?): Boolean =

@@ -5,15 +5,18 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface YggImportStatement extends PsiElement {
+public interface YggRuleItem extends PsiElement {
 
   @Nullable
-  YggImportBody getImportBody();
+  YggCharset getCharset();
 
-  @NotNull
-  YggKwImport getKwImport();
+  @Nullable
+  YggNamespace getNamespace();
 
-  @NotNull
+  @Nullable
+  YggNumberSuffix getNumberSuffix();
+
+  @Nullable
   YggStringLiteral getStringLiteral();
 
 }

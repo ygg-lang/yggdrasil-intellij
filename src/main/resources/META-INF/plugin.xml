@@ -36,7 +36,7 @@
 		/>
 		<lang.braceMatcher
 			language="Yggdrasil"
-			implementationClass="ygg.intellij.ide.braces.VomlBraceMatcher"
+			implementationClass="ygg.intellij.ide.braces.BraceMatcher"
 		/>
 		<lang.quoteHandler
 			language="Yggdrasil"
@@ -48,11 +48,11 @@
 			implementationClass="ygg.intellij.ide.folding.FoldingBuilder"
 		/>
 		<indexPatternBuilder
-			implementation="ygg.intellij.ide.todo.VomlTodoIndexPatternBuilder"
+			implementation="ygg.intellij.ide.todo.TodoIndexPatternBuilder"
 		/>
 		<todoIndexer
 			filetype="Yggdrasil"
-			implementationClass="ygg.intellij.ide.todo.VomlTodoIndexer"
+			implementationClass="ygg.intellij.ide.todo.TodoIndexer"
 		/>
 		<completion.contributor
 			language="Yggdrasil"

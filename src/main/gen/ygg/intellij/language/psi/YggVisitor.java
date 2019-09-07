@@ -7,10 +7,6 @@ import com.intellij.psi.PsiElement;
 
 public class YggVisitor extends PsiElementVisitor {
 
-  public void visitAtom(@NotNull YggAtom o) {
-    visitPsiElement(o);
-  }
-
   public void visitBranchMark(@NotNull YggBranchMark o) {
     visitPsiElement(o);
   }
@@ -19,19 +15,19 @@ public class YggVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitClassStatement(@NotNull YggClassStatement o) {
+    visitPsiElement(o);
+  }
+
   public void visitCommentDoc(@NotNull YggCommentDoc o) {
     visitPsiElement(o);
   }
 
-  public void visitDefine(@NotNull YggDefine o) {
+  public void visitDefineStatement(@NotNull YggDefineStatement o) {
     visitPsiElement(o);
   }
 
   public void visitExportStatement(@NotNull YggExportStatement o) {
-    visitPsiElement(o);
-  }
-
-  public void visitExpr(@NotNull YggExpr o) {
     visitPsiElement(o);
   }
 
@@ -72,6 +68,10 @@ public class YggVisitor extends PsiElementVisitor {
   }
 
   public void visitKeySymbol(@NotNull YggKeySymbol o) {
+    visitPsiElement(o);
+  }
+
+  public void visitKwImport(@NotNull YggKwImport o) {
     visitPsiElement(o);
   }
 
@@ -127,11 +127,23 @@ public class YggVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitRuleAtom(@NotNull YggRuleAtom o) {
+    visitPsiElement(o);
+  }
+
   public void visitRuleBody(@NotNull YggRuleBody o) {
     visitPsiElement(o);
   }
 
-  public void visitRuleStatement(@NotNull YggRuleStatement o) {
+  public void visitRuleExpr(@NotNull YggRuleExpr o) {
+    visitPsiElement(o);
+  }
+
+  public void visitRuleItem(@NotNull YggRuleItem o) {
+    visitPsiElement(o);
+  }
+
+  public void visitRuleTerm(@NotNull YggRuleTerm o) {
     visitPsiElement(o);
   }
 
@@ -155,11 +167,11 @@ public class YggVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitTerm(@NotNull YggTerm o) {
+  public void visitTypeHint(@NotNull YggTypeHint o) {
     visitPsiElement(o);
   }
 
-  public void visitTypeHint(@NotNull YggTypeHint o) {
+  public void visitUnionStatement(@NotNull YggUnionStatement o) {
     visitPsiElement(o);
   }
 

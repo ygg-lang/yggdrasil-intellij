@@ -61,7 +61,9 @@ private statements ::=
     | import_statement
     | macro_statement
     | macro_call
-    | rule_statement
+    | class_statement
+    | union_statement
+    | define_statement
     | SEMICOLON;
 // ---------------------------------------------------------------------------------------------------------------------
 // @grammar ygg {"*.yg","*.ygg", "*.grammar"}
@@ -89,17 +91,28 @@ macro_statement ::= AT SYMBOL <<parenthesis macro_arg COMMA>>;
 macro_arg ::= value | macro_statement;
 // =====================================================================================================================
 // def modifiers rule
-rule_statement ::= define modifiers identifier [rule_argument] [rule_type] rule_body {
+class_statement ::= KW_CLASS modifiers identifier [rule_argument] [rule_type] rule_body {
     pin = identifier
     recoverWhile = end_brace
 };
-rule_body     ::= BRACE_L [CHOOSE] [expr] BRACE_R;
+rule_body     ::= BRACE_L [CHOOSE] [rule_expr] BRACE_R;
 rule_argument ::= PARENTHESIS_L PARENTHESIS_R;
 rule_type     ::= (COLON | ARROW) identifier;
-define ::= "def" | "class" | "struct" | "rule" | "enum" | "union" | "function" | "fun" | "fn";
-expr ::= term (infix term | term)*;
-term ::= (prefix)* atom (suffix)*
-atom ::= '(' [CHOOSE] expr ')' | field_mark | branch_mark | function_call | value;
+// =====================================================================================================================
+union_statement ::= KW_UNION modifiers identifier [rule_argument] [rule_type] rule_body {
+    pin = identifier
+    recoverWhile = end_brace
+};
+// =====================================================================================================================
+define_statement ::= KW_DEFINE modifiers identifier [rule_argument] [rule_type] rule_body {
+    pin = identifier
+    recoverWhile = end_brace
+};
+// =====================================================================================================================
+rule_expr ::= rule_term (infix rule_term | rule_term)*;
+rule_term ::= (prefix)* rule_atom (suffix)*
+rule_atom ::= '(' [CHOOSE] rule_expr ')' | field_mark | branch_mark | function_call | rule_item;
+rule_item ::= num | string_literal | namespace | charset;
 infix ::= CHOOSE | SOFT_CONNECT;
 prefix ::= ACCENT;
 suffix ::= OPTIONAL | MANY | MANY1;
@@ -109,7 +122,7 @@ field_mark ::= identifier COLON field_rhs;
 field_rhs  ::= identifier | charset | string_literal;
 // ---------------------------------------------------------------------------------------------------------------------
 // @function("path")
-function_call ::= AT identifier <<parenthesis expr COMMA>>;
+function_call ::= AT identifier <<parenthesis rule_expr COMMA>>;
 // ---------------------------------------------------------------------------------------------------------------------
 macro_call  ::= HASH identifier;
 // ---------------------------------------------------------------------------------------------------------------------

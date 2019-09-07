@@ -1,0 +1,18 @@
+
+
+
+
+
+
+
+union Repeats {
+    | Once
+    | Many*
+    | ManyRnage {0,} // same as {}
+    | Many1+
+    | Many1Range {1,}
+    | Exact2 {2}
+    | AtLeast2 {2,}
+    | AtMost2 {,2}
+    | Between02 {0,2}
+}

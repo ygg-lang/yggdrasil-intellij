@@ -3,7 +3,6 @@ package ygg.intellij.ide.highlight
 
 import com.intellij.openapi.options.colors.ColorDescriptor
 import com.intellij.openapi.options.colors.ColorSettingsPage
-import ygg.intellij.language.file.YggdrasilBundle
 import ygg.intellij.language.file.YggdrasilIcon
 
 class HighlightSettingPage : ColorSettingsPage {
@@ -17,7 +16,7 @@ class HighlightSettingPage : ColorSettingsPage {
 
     override fun getHighlighter() = HighlightToken()
 
-    override fun getDemoText() = javaClass.getResource("/fileTemplates/demoColor.ygg")!!.readText()
+    override fun getDemoText() = javaClass.getResource("/fileTemplates/demoColor.rmb")!!.readText()
 
     override fun getAdditionalHighlightingTagToDescriptorMap() =
         HighlightColor.values().associateBy({ it.name }, { it.textAttributesKey })

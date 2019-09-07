@@ -44,12 +44,22 @@ ESCAPE_SPECIAL = \\[^xuU]
 ESCAPE_UNICODE = \\(x{HEX}{2}|u{HEX}{4}|U\{{HEX}+\})
 HEX = [0-9a-fA-F]
 
+KW_CLASS = class|struct|rule
+KW_UNION = union|enum
+KW_DEFINE = define|def|function|fun|fn
+
 %%
 <YYINITIAL> {
 	{WHITE_SPACE}   { return WHITE_SPACE; }
 	{COMMENT_DOC}   { return COMMENT_DOC; }
 	{COMMENT_LINE}  { return COMMENT_LINE; }
 	{COMMENT_BLOCK} { return COMMENT_BLOCK; }
+}
+
+<YYINITIAL> {
+	{KW_CLASS}   { return KW_CLASS; }
+	{KW_UNION}   { return KW_UNION; }
+	{KW_DEFINE}  { return KW_DEFINE; }
 }
 
 <YYINITIAL> {

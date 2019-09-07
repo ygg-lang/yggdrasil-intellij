@@ -28,7 +28,6 @@ union Statement {
     | AssignStatement    #Assign
 }
 
-
 //* grammar tsg
 //* grammar tsg {"*.tsg", }
 class GrammarStatement {
@@ -45,7 +44,7 @@ class ImportStatement {
 }
 
 class _ImportSelected {
-    '{' @join(items:ImportItem, ',')? '}'
+    '{' @join(items:  ImportItem, ',')? '}'
 }
 
 class ImportItem {

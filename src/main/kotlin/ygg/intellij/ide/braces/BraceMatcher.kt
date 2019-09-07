@@ -7,7 +7,7 @@ import com.intellij.openapi.fileTypes.FileType
 import ygg.intellij.language.YggdrasilLanguage
 import ygg.intellij.language.file.YggdrasilFileType
 
-class VomlBraceMatcher : PairedBraceMatcherAdapter(VomlBaseBraceMatcher(), YggdrasilLanguage) {
+class BraceMatcher : PairedBraceMatcherAdapter(BaseBraceMatcher(), YggdrasilLanguage) {
     override fun isLBraceToken(iterator: HighlighterIterator, fileText: CharSequence, fileType: FileType): Boolean =
         isBrace(iterator, fileText, fileType, true)
 

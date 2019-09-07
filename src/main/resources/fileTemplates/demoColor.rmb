@@ -13,8 +13,11 @@ import "path/literal_types.toml" {
 
 // right now, first rule will become entry point
 #macro
-class Program {
-    Statement*
+class Range {
+    | Pattern{1}
+    | Pattern{1}
+    | Pattern{1}
+    | Pattern{1}
 }
 
 union Statement {

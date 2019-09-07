@@ -32,18 +32,22 @@ class HighlightAST : YggVisitor(), HighlightVisitor {
         highlight(o.firstChild, HighlightColor.KEYWORD)
     }
 
-    override fun visitRuleStatement(o: YggRuleStatement) {
-        highlight(o.define, HighlightColor.KEYWORD)
-        if (o.ruleArgument == null) {
-            highlight(o.identifier, HighlightColor.RULE_SYMBOL)
-        }
-        else {
-            highlight(o.identifier, HighlightColor.FUNCTION_SYMBOL)
-        }
-        o.ruleType?.let {
-            highlight(it.identifier, HighlightColor.RULE_SYMBOL)
-        }
+    override fun visitClassStatement(o: YggClassStatement) {
+        super.visitClassStatement(o)
     }
+
+//    override fun visitRuleStatement(o: YggRuleStatement) {
+//        highlight(o.define, HighlightColor.KEYWORD)
+//        if (o.ruleArgument == null) {
+//            highlight(o.identifier, HighlightColor.RULE_SYMBOL)
+//        }
+//        else {
+//            highlight(o.identifier, HighlightColor.FUNCTION_SYMBOL)
+//        }
+//        o.ruleType?.let {
+//            highlight(it.identifier, HighlightColor.RULE_SYMBOL)
+//        }
+//    }
 
     override fun visitMacroCall(o: YggMacroCall) {
         highlight(o.firstChild, HighlightColor.MACRO_SYMBOL)

@@ -8,12 +8,11 @@ import ygg.intellij.language.psi_node.*;
 
 public interface YggTypes {
 
-  IElementType ATOM = new YggElementType("ATOM");
   IElementType BRANCH_MARK = new YggElementType("BRANCH_MARK");
   IElementType CHARSET = new YggElementType("CHARSET");
-  IElementType DEFINE = new YggElementType("DEFINE");
+  IElementType CLASS_STATEMENT = new YggElementType("CLASS_STATEMENT");
+  IElementType DEFINE_STATEMENT = new YggElementType("DEFINE_STATEMENT");
   IElementType EXPORT_STATEMENT = new YggElementType("EXPORT_STATEMENT");
-  IElementType EXPR = new YggElementType("EXPR");
   IElementType FIELD_MARK = new YggElementType("FIELD_MARK");
   IElementType FIELD_RHS = new YggElementType("FIELD_RHS");
   IElementType FUNCTION_CALL = new YggElementType("FUNCTION_CALL");
@@ -24,6 +23,7 @@ public interface YggTypes {
   IElementType INFIX = new YggElementType("INFIX");
   IElementType KEY = new YggElementType("KEY");
   IElementType KEY_SYMBOL = new YggElementType("KEY_SYMBOL");
+  IElementType KW_IMPORT = new YggElementType("KW_IMPORT");
   IElementType MACRO_ARG = new YggElementType("MACRO_ARG");
   IElementType MACRO_CALL = new YggElementType("MACRO_CALL");
   IElementType MACRO_STATEMENT = new YggElementType("MACRO_STATEMENT");
@@ -37,15 +37,18 @@ public interface YggTypes {
   IElementType PARENTHESIS = new YggElementType("PARENTHESIS");
   IElementType PREFIX = new YggElementType("PREFIX");
   IElementType RULE_ARGUMENT = new YggElementType("RULE_ARGUMENT");
+  IElementType RULE_ATOM = new YggElementType("RULE_ATOM");
   IElementType RULE_BODY = new YggElementType("RULE_BODY");
-  IElementType RULE_STATEMENT = new YggElementType("RULE_STATEMENT");
+  IElementType RULE_EXPR = new YggElementType("RULE_EXPR");
+  IElementType RULE_ITEM = new YggElementType("RULE_ITEM");
+  IElementType RULE_TERM = new YggElementType("RULE_TERM");
   IElementType RULE_TYPE = new YggElementType("RULE_TYPE");
   IElementType STRING_LITERAL = new YggElementType("STRING_LITERAL");
   IElementType SUFFIX = new YggElementType("SUFFIX");
   IElementType SYMBOL_PATH = new YggElementType("SYMBOL_PATH");
   IElementType TABLE = new YggElementType("TABLE");
-  IElementType TERM = new YggElementType("TERM");
   IElementType TYPE_HINT = new YggElementType("TYPE_HINT");
+  IElementType UNION_STATEMENT = new YggElementType("UNION_STATEMENT");
   IElementType VALUE = new YggElementType("VALUE");
 
   IElementType ACCENT = new YggElementType("^");
@@ -78,6 +81,9 @@ public interface YggTypes {
   IElementType HASH = new YggElementType("HASH");
   IElementType HYPHEN = new YggElementType("-");
   IElementType INTEGER = new YggElementType("INTEGER");
+  IElementType KW_CLASS = new YggElementType("KW_CLASS");
+  IElementType KW_DEFINE = new YggElementType("KW_DEFINE");
+  IElementType KW_UNION = new YggElementType("KW_UNION");
   IElementType MANY = new YggElementType("*");
   IElementType MANY1 = new YggElementType("+");
   IElementType NOT = new YggElementType("!");
@@ -94,27 +100,25 @@ public interface YggTypes {
   IElementType STRING_SQ = new YggElementType("STRING_SQ");
   IElementType SYMBOL = new YggElementType("SYMBOL");
   IElementType TAGGED = new YggElementType("<-");
+  IElementType TO = new YggElementType("->");
 
   class Factory {
     public static PsiElement createElement(ASTNode node) {
       IElementType type = node.getElementType();
-      if (type == ATOM) {
-        return new YggAtomNode(node);
-      }
-      else if (type == BRANCH_MARK) {
+      if (type == BRANCH_MARK) {
         return new YggBranchMarkNode(node);
       }
       else if (type == CHARSET) {
         return new YggCharsetNode(node);
       }
-      else if (type == DEFINE) {
-        return new YggDefineNode(node);
+      else if (type == CLASS_STATEMENT) {
+        return new YggClassStatementNode(node);
+      }
+      else if (type == DEFINE_STATEMENT) {
+        return new YggDefineStatementNode(node);
       }
       else if (type == EXPORT_STATEMENT) {
         return new YggExportStatementNode(node);
-      }
-      else if (type == EXPR) {
-        return new YggExprNode(node);
       }
       else if (type == FIELD_MARK) {
         return new YggFieldMarkNode(node);
@@ -145,6 +149,9 @@ public interface YggTypes {
       }
       else if (type == KEY_SYMBOL) {
         return new YggKeySymbolNode(node);
+      }
+      else if (type == KW_IMPORT) {
+        return new YggKwImportNode(node);
       }
       else if (type == MACRO_ARG) {
         return new YggMacroArgNode(node);
@@ -185,11 +192,20 @@ public interface YggTypes {
       else if (type == RULE_ARGUMENT) {
         return new YggRuleArgumentNode(node);
       }
+      else if (type == RULE_ATOM) {
+        return new YggRuleAtomNode(node);
+      }
       else if (type == RULE_BODY) {
         return new YggRuleBodyNode(node);
       }
-      else if (type == RULE_STATEMENT) {
-        return new YggRuleStatementNode(node);
+      else if (type == RULE_EXPR) {
+        return new YggRuleExprNode(node);
+      }
+      else if (type == RULE_ITEM) {
+        return new YggRuleItemNode(node);
+      }
+      else if (type == RULE_TERM) {
+        return new YggRuleTermNode(node);
       }
       else if (type == RULE_TYPE) {
         return new YggRuleTypeNode(node);
@@ -206,11 +222,11 @@ public interface YggTypes {
       else if (type == TABLE) {
         return new YggTableNode(node);
       }
-      else if (type == TERM) {
-        return new YggTermNode(node);
-      }
       else if (type == TYPE_HINT) {
         return new YggTypeHintNode(node);
+      }
+      else if (type == UNION_STATEMENT) {
+        return new YggUnionStatementNode(node);
       }
       else if (type == VALUE) {
         return new YggValueNode(node);

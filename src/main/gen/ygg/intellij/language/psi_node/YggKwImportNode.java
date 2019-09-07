@@ -11,26 +11,20 @@ import static ygg.intellij.language.psi.YggTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import ygg.intellij.language.psi.*;
 
-public class YggRuleBodyNode extends ASTWrapperPsiElement implements YggRuleBody {
+public class YggKwImportNode extends ASTWrapperPsiElement implements YggKwImport {
 
-  public YggRuleBodyNode(@NotNull ASTNode node) {
+  public YggKwImportNode(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull YggVisitor visitor) {
-    visitor.visitRuleBody(this);
+    visitor.visitKwImport(this);
   }
 
   @Override
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof YggVisitor) accept((YggVisitor)visitor);
     else super.accept(visitor);
-  }
-
-  @Override
-  @Nullable
-  public YggRuleExpr getRuleExpr() {
-    return findChildByClass(YggRuleExpr.class);
   }
 
 }

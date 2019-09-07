@@ -10,7 +10,7 @@ import ygg.intellij.language.YggLexerAdapter
 import ygg.intellij.language.YggParserDefinition
 
 
-class VomlTodoIndexer : LexerBasedTodoIndexer() {
+class TodoIndexer : LexerBasedTodoIndexer() {
     override fun createLexer(consumer: OccurrenceConsumer): Lexer {
         return object : BaseFilterLexer(YggLexerAdapter(), consumer) {
             override fun advance() {

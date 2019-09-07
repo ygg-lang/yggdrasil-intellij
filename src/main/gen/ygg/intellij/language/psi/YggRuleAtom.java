@@ -5,9 +5,21 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface YggRuleBody extends PsiElement {
+public interface YggRuleAtom extends PsiElement {
+
+  @Nullable
+  YggBranchMark getBranchMark();
+
+  @Nullable
+  YggFieldMark getFieldMark();
+
+  @Nullable
+  YggFunctionCall getFunctionCall();
 
   @Nullable
   YggRuleExpr getRuleExpr();
+
+  @Nullable
+  YggRuleItem getRuleItem();
 
 }
