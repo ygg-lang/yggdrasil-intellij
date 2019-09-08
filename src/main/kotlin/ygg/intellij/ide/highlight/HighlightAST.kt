@@ -20,12 +20,12 @@ class HighlightAST : YggVisitor(), HighlightVisitor {
 
     override fun visitGrammarStatement(o: YggGrammarStatement) {
         highlight(o.firstChild, HighlightColor.KEYWORD)
-        highlight(o.identifier, HighlightColor.MACRO_SYMBOL)
+        highlight(o.identifier, HighlightColor.SYM_MACRO)
     }
 
     override fun visitExportStatement(o: YggExportStatement) {
         highlight(o.firstChild, HighlightColor.KEYWORD)
-        highlight(o.identifier, HighlightColor.MACRO_SYMBOL)
+        highlight(o.identifier, HighlightColor.SYM_MACRO)
     }
 
     override fun visitImportStatement(o: YggImportStatement) {
@@ -33,30 +33,25 @@ class HighlightAST : YggVisitor(), HighlightVisitor {
     }
 
     override fun visitClassStatement(o: YggClassStatement) {
-        super.visitClassStatement(o)
+        highlight(o.identifier, HighlightColor.SYM_CLASS)
     }
 
-//    override fun visitRuleStatement(o: YggRuleStatement) {
-//        highlight(o.define, HighlightColor.KEYWORD)
-//        if (o.ruleArgument == null) {
-//            highlight(o.identifier, HighlightColor.RULE_SYMBOL)
-//        }
-//        else {
-//            highlight(o.identifier, HighlightColor.FUNCTION_SYMBOL)
-//        }
-//        o.ruleType?.let {
-//            highlight(it.identifier, HighlightColor.RULE_SYMBOL)
-//        }
-//    }
+    override fun visitUnionStatement(o: YggUnionStatement) {
+        highlight(o.identifier, HighlightColor.SYM_UNION)
+    }
+
+    override fun visitDefineStatement(o: YggDefineStatement) {
+        highlight(o.identifier, HighlightColor.SYM_FUNCTION)
+    }
 
     override fun visitMacroCall(o: YggMacroCall) {
-        highlight(o.firstChild, HighlightColor.MACRO_SYMBOL)
-        highlight(o.identifier, HighlightColor.MACRO_SYMBOL)
+        highlight(o.firstChild, HighlightColor.SYM_MACRO)
+        highlight(o.identifier, HighlightColor.SYM_MACRO)
     }
 
     override fun visitFunctionCall(o: YggFunctionCall) {
-        highlight(o.firstChild, HighlightColor.FUNCTION_SYMBOL)
-        highlight(o.identifier, HighlightColor.FUNCTION_SYMBOL)
+        highlight(o.firstChild, HighlightColor.SYM_FUNCTION)
+        highlight(o.identifier, HighlightColor.SYM_FUNCTION)
     }
 
     override fun visitBranchMark(o: YggBranchMark) {

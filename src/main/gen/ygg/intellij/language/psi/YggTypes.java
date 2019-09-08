@@ -8,11 +8,13 @@ import ygg.intellij.language.psi_node.*;
 
 public interface YggTypes {
 
+  IElementType ATOM = new YggElementType("ATOM");
   IElementType BRANCH_MARK = new YggElementType("BRANCH_MARK");
   IElementType CHARSET = new YggElementType("CHARSET");
   IElementType CLASS_STATEMENT = new YggElementType("CLASS_STATEMENT");
   IElementType DEFINE_STATEMENT = new YggElementType("DEFINE_STATEMENT");
   IElementType EXPORT_STATEMENT = new YggElementType("EXPORT_STATEMENT");
+  IElementType EXPR = new YggElementType("EXPR");
   IElementType FIELD_MARK = new YggElementType("FIELD_MARK");
   IElementType FIELD_RHS = new YggElementType("FIELD_RHS");
   IElementType FUNCTION_CALL = new YggElementType("FUNCTION_CALL");
@@ -36,6 +38,9 @@ public interface YggTypes {
   IElementType PAIR = new YggElementType("PAIR");
   IElementType PARENTHESIS = new YggElementType("PARENTHESIS");
   IElementType PREFIX = new YggElementType("PREFIX");
+  IElementType RANGE = new YggElementType("RANGE");
+  IElementType RANGE_END = new YggElementType("RANGE_END");
+  IElementType RANGE_START = new YggElementType("RANGE_START");
   IElementType RULE_ARGUMENT = new YggElementType("RULE_ARGUMENT");
   IElementType RULE_ATOM = new YggElementType("RULE_ATOM");
   IElementType RULE_BODY = new YggElementType("RULE_BODY");
@@ -47,6 +52,7 @@ public interface YggTypes {
   IElementType SUFFIX = new YggElementType("SUFFIX");
   IElementType SYMBOL_PATH = new YggElementType("SYMBOL_PATH");
   IElementType TABLE = new YggElementType("TABLE");
+  IElementType TERM = new YggElementType("TERM");
   IElementType TYPE_HINT = new YggElementType("TYPE_HINT");
   IElementType UNION_STATEMENT = new YggElementType("UNION_STATEMENT");
   IElementType VALUE = new YggElementType("VALUE");
@@ -105,7 +111,10 @@ public interface YggTypes {
   class Factory {
     public static PsiElement createElement(ASTNode node) {
       IElementType type = node.getElementType();
-      if (type == BRANCH_MARK) {
+      if (type == ATOM) {
+        return new YggAtomNode(node);
+      }
+      else if (type == BRANCH_MARK) {
         return new YggBranchMarkNode(node);
       }
       else if (type == CHARSET) {
@@ -119,6 +128,9 @@ public interface YggTypes {
       }
       else if (type == EXPORT_STATEMENT) {
         return new YggExportStatementNode(node);
+      }
+      else if (type == EXPR) {
+        return new YggExprNode(node);
       }
       else if (type == FIELD_MARK) {
         return new YggFieldMarkNode(node);
@@ -189,6 +201,15 @@ public interface YggTypes {
       else if (type == PREFIX) {
         return new YggPrefixNode(node);
       }
+      else if (type == RANGE) {
+        return new YggRangeNode(node);
+      }
+      else if (type == RANGE_END) {
+        return new YggRangeEndNode(node);
+      }
+      else if (type == RANGE_START) {
+        return new YggRangeStartNode(node);
+      }
       else if (type == RULE_ARGUMENT) {
         return new YggRuleArgumentNode(node);
       }
@@ -221,6 +242,9 @@ public interface YggTypes {
       }
       else if (type == TABLE) {
         return new YggTableNode(node);
+      }
+      else if (type == TERM) {
+        return new YggTermNode(node);
       }
       else if (type == TYPE_HINT) {
         return new YggTypeHintNode(node);

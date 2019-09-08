@@ -14,9 +14,6 @@ public interface YggUnionStatement extends PsiElement {
   YggModifiers getModifiers();
 
   @Nullable
-  YggRuleArgument getRuleArgument();
-
-  @Nullable
   YggRuleBody getRuleBody();
 
   @Nullable

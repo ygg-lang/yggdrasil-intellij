@@ -27,4 +27,10 @@ public class YggSuffixNode extends ASTWrapperPsiElement implements YggSuffix {
     else super.accept(visitor);
   }
 
+  @Override
+  @Nullable
+  public YggRange getRange() {
+    return findChildByClass(YggRange.class);
+  }
+
 }

@@ -41,12 +41,6 @@ public class YggUnionStatementNode extends ASTWrapperPsiElement implements YggUn
 
   @Override
   @Nullable
-  public YggRuleArgument getRuleArgument() {
-    return findChildByClass(YggRuleArgument.class);
-  }
-
-  @Override
-  @Nullable
   public YggRuleBody getRuleBody() {
     return findChildByClass(YggRuleBody.class);
   }

@@ -33,7 +33,7 @@ WHITE_SPACE=\s+
 COMMENT_DOC=("///")[^\r\n]*
 COMMENT_LINE=("//")[^\r\n]*
 COMMENT_BLOCK=[/][*][^*]*[*]+([^/*][^*]*[*]+)*[/]
-BOOLEAN=true|false|null
+BOOLEAN=true|false
 SYMBOL=[\p{XID_Start}_][\p{XID_Continue}_]*
 BYTE=(0[bBoOxXfF][0-9A-Fa-f][0-9A-Fa-f_]*)
 INTEGER=(0|[1-9][0-9_]*)
@@ -46,7 +46,7 @@ HEX = [0-9a-fA-F]
 
 KW_CLASS = class|struct|rule
 KW_UNION = union|enum
-KW_DEFINE = define|def|function|fun|fn
+KW_DEFINE = define|def|function|fun|fn|macro
 
 %%
 <YYINITIAL> {

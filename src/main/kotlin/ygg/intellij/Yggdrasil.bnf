@@ -91,42 +91,49 @@ macro_statement ::= AT SYMBOL <<parenthesis macro_arg COMMA>>;
 macro_arg ::= value | macro_statement;
 // =====================================================================================================================
 // def modifiers rule
-class_statement ::= KW_CLASS modifiers identifier [rule_argument] [rule_type] rule_body {
+class_statement ::= KW_CLASS modifiers identifier [rule_type] rule_body {
     pin = identifier
     recoverWhile = end_brace
 };
 rule_body     ::= BRACE_L [CHOOSE] [rule_expr] BRACE_R;
-rule_argument ::= PARENTHESIS_L PARENTHESIS_R;
 rule_type     ::= (COLON | ARROW) identifier;
 // =====================================================================================================================
-union_statement ::= KW_UNION modifiers identifier [rule_argument] [rule_type] rule_body {
+union_statement ::= KW_UNION modifiers identifier [rule_type] rule_body {
     pin = identifier
     recoverWhile = end_brace
 };
 // =====================================================================================================================
-define_statement ::= KW_DEFINE modifiers identifier [rule_argument] [rule_type] rule_body {
+define_statement ::= KW_DEFINE modifiers identifier rule_argument [rule_type] rule_body {
     pin = identifier
     recoverWhile = end_brace
 };
+rule_argument ::= PARENTHESIS_L PARENTHESIS_R;
 // =====================================================================================================================
 rule_expr ::= rule_term (infix rule_term | rule_term)*;
 rule_term ::= (prefix)* rule_atom (suffix)*
-rule_atom ::= '(' [CHOOSE] rule_expr ')' | field_mark | branch_mark | function_call | rule_item;
+rule_atom ::= PARENTHESIS_L [CHOOSE] rule_expr PARENTHESIS_R | field_mark | branch_mark | function_call | rule_item;
 rule_item ::= num | string_literal | namespace | charset;
 infix ::= CHOOSE | SOFT_CONNECT;
 prefix ::= ACCENT;
-suffix ::= OPTIONAL | MANY | MANY1;
+suffix ::= OPTIONAL | MANY | MANY1 | range;
+// =====================================================================================================================
+range ::= '{' range_start? ','? range_end? '}';
+range_start ::= num;
+range_end ::= num;
 // ---------------------------------------------------------------------------------------------------------------------
 branch_mark ::= HASH identifier;
 field_mark ::= identifier COLON field_rhs;
 field_rhs  ::= identifier | charset | string_literal;
 // ---------------------------------------------------------------------------------------------------------------------
 // @function("path")
-function_call ::= AT identifier <<parenthesis rule_expr COMMA>>;
+function_call ::= AT identifier <<parenthesis expr COMMA>>;
+expr ::= rule_term (infix term | term)*;
+term ::= (prefix)* atom (suffix)*
+atom ::= PARENTHESIS_L [CHOOSE] expr PARENTHESIS_R | field_mark | function_call | value;
 // ---------------------------------------------------------------------------------------------------------------------
 macro_call  ::= HASH identifier;
 // ---------------------------------------------------------------------------------------------------------------------
-value ::= NULL | BOOLEAN | num | string_literal | table | namespace | charset;
+value ::= BOOLEAN | num | string_literal | table | namespace | charset;
 type_hint ::= identifier;
 number_suffix ::= identifier;
 charset ::= REGEX_RANGE;
@@ -157,7 +164,7 @@ identifier ::= SYMBOL {
     mixin = "ygg.intellij.language.mixin.MixinIdentifier"
 }
 // ---------------------------------------------------------------------------------------------------------------------
-meta parenthesis ::= PARENTHESIS_L [<<item>> (<<delimiter>> <<item>>)* [<<delimiter>>]] PARENTHESIS_R;
+meta parenthesis ::= PARENTHESIS_L [<<item>> (<<delimiter>> <<item>>)* <<delimiter>>?] PARENTHESIS_R;
 
 private meta paired ::=
     PARENTHESIS_L <<param>> PARENTHESIS_R

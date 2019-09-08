@@ -5,9 +5,9 @@ import com.intellij.psi.codeStyle.CommonCodeStyleSettings
 import com.intellij.psi.tree.TokenSet
 import ygg.intellij.language.psi.YggTypes
 
-private val prefix = TokenSet.create(YggTypes.AT, YggTypes.HASH) //  OPTIONAL | MANY | MANY1
+private val prefix = TokenSet.create(YggTypes.AT, YggTypes.HASH)
 
-private val suffix = TokenSet.create(YggTypes.SUFFIX) //  OPTIONAL | MANY | MANY1
+private val suffix = TokenSet.create(YggTypes.OPTIONAL, YggTypes.MANY, YggTypes.MANY1)
 
 fun createSpacingBuilder(commonSettings: CommonCodeStyleSettings): SpacingBuilder {
     return SpacingBuilder(commonSettings)

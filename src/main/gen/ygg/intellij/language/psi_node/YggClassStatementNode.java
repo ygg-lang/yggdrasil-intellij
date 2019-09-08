@@ -41,12 +41,6 @@ public class YggClassStatementNode extends ASTWrapperPsiElement implements YggCl
 
   @Override
   @Nullable
-  public YggRuleArgument getRuleArgument() {
-    return findChildByClass(YggRuleArgument.class);
-  }
-
-  @Override
-  @Nullable
   public YggRuleBody getRuleBody() {
     return findChildByClass(YggRuleBody.class);
   }

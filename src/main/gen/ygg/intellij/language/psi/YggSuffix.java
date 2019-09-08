@@ -7,4 +7,7 @@ import com.intellij.psi.PsiElement;
 
 public interface YggSuffix extends PsiElement {
 
+  @Nullable
+  YggRange getRange();
+
 }

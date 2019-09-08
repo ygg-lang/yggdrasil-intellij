@@ -5,18 +5,12 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface YggClassStatement extends PsiElement {
-
-  @NotNull
-  YggIdentifier getIdentifier();
-
-  @NotNull
-  YggModifiers getModifiers();
+public interface YggRange extends PsiElement {
 
   @Nullable
-  YggRuleBody getRuleBody();
+  YggRangeEnd getRangeEnd();
 
   @Nullable
-  YggRuleType getRuleType();
+  YggRangeStart getRangeStart();
 
 }

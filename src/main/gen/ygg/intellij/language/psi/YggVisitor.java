@@ -7,6 +7,10 @@ import com.intellij.psi.PsiElement;
 
 public class YggVisitor extends PsiElementVisitor {
 
+  public void visitAtom(@NotNull YggAtom o) {
+    visitPsiElement(o);
+  }
+
   public void visitBranchMark(@NotNull YggBranchMark o) {
     visitPsiElement(o);
   }
@@ -28,6 +32,10 @@ public class YggVisitor extends PsiElementVisitor {
   }
 
   public void visitExportStatement(@NotNull YggExportStatement o) {
+    visitPsiElement(o);
+  }
+
+  public void visitExpr(@NotNull YggExpr o) {
     visitPsiElement(o);
   }
 
@@ -123,6 +131,18 @@ public class YggVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitRange(@NotNull YggRange o) {
+    visitPsiElement(o);
+  }
+
+  public void visitRangeEnd(@NotNull YggRangeEnd o) {
+    visitPsiElement(o);
+  }
+
+  public void visitRangeStart(@NotNull YggRangeStart o) {
+    visitPsiElement(o);
+  }
+
   public void visitRuleArgument(@NotNull YggRuleArgument o) {
     visitPsiElement(o);
   }
@@ -164,6 +184,10 @@ public class YggVisitor extends PsiElementVisitor {
   }
 
   public void visitTable(@NotNull YggTable o) {
+    visitPsiElement(o);
+  }
+
+  public void visitTerm(@NotNull YggTerm o) {
     visitPsiElement(o);
   }
 

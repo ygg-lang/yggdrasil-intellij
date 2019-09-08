@@ -43,10 +43,11 @@ enum class HighlightColor(
     PREDEFINED(OptionsBundle.messagePointer("options.language.defaults.predefined"), Default.PREDEFINED_SYMBOL),
     TYPE_HINT(keyof("color.settings.toml.type_hint"), Default.CLASS_NAME),
 
-    FUNCTION_SYMBOL(keyof("color.symbol.function"), Default.STATIC_METHOD),
-    MACRO_SYMBOL(OptionsBundle.messagePointer("options.java.attribute.descriptor.annotation.name"), Default.METADATA),
-    RULE_SYMBOL(keyof("color.symbol.rule"), Default.CLASS_NAME),
-    KEY_SYMBOL(keyof("color.symbol.builtin"), Default.STATIC_FIELD),
+    SYM_FUNCTION(keyof("color.symbol.function"), Default.STATIC_METHOD),
+    SYM_MACRO(OptionsBundle.messagePointer("options.java.attribute.descriptor.annotation.name"), Default.METADATA),
+    SYM_CLASS(keyof("color.symbol.rule"), Default.CLASS_NAME),
+    SYM_UNION(keyof("color.symbol.rule"), Default.INTERFACE_NAME),
+    SYM_KEY(keyof("color.symbol.builtin"), Default.STATIC_FIELD),
 
     // 标点符号
     PARENTHESES(OptionsBundle.messagePointer("options.language.defaults.parentheses"), Default.PARENTHESES),

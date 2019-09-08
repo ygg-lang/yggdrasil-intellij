@@ -5,18 +5,9 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface YggAtom extends PsiElement {
+public interface YggRangeEnd extends PsiElement {
 
   @Nullable
-  YggExpr getExpr();
-
-  @Nullable
-  YggFieldMark getFieldMark();
-
-  @Nullable
-  YggFunctionCall getFunctionCall();
-
-  @Nullable
-  YggValue getValue();
+  YggNumberSuffix getNumberSuffix();
 
 }
