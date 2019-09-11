@@ -127,7 +127,7 @@ field_rhs  ::= identifier | charset | string_literal;
 // ---------------------------------------------------------------------------------------------------------------------
 // @function("path")
 function_call ::= AT identifier <<parenthesis expr COMMA>>;
-expr ::= rule_term (infix term | term)*;
+expr ::= term (infix term | term)*;
 term ::= (prefix)* atom (suffix)*
 atom ::= PARENTHESIS_L [CHOOSE] expr PARENTHESIS_R | field_mark | function_call | value;
 // ---------------------------------------------------------------------------------------------------------------------

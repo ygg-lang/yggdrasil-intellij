@@ -25,6 +25,8 @@ fun createSpacingBuilder(commonSettings: CommonCodeStyleSettings): SpacingBuilde
         .before(YggTypes.PARENTHESIS_R).spaceIf(false)
         // |
         .around(YggTypes.CHOOSE).spaceIf(true)
+        // a:b
+        .aroundInside(YggTypes.COLON, YggTypes.FIELD_MARK).spaceIf(false)
         //
         .before(suffix).spaceIf(false)
         .after(prefix).spaceIf(false)

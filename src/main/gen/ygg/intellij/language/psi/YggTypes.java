@@ -93,7 +93,6 @@ public interface YggTypes {
   IElementType MANY = new YggElementType("*");
   IElementType MANY1 = new YggElementType("+");
   IElementType NOT = new YggElementType("!");
-  IElementType NULL = new YggElementType("NULL");
   IElementType OPTIONAL = new YggElementType("?");
   IElementType PARENTHESIS_L = new YggElementType("(");
   IElementType PARENTHESIS_R = new YggElementType(")");

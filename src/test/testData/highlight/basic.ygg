@@ -44,7 +44,7 @@ class ImportStatement {
 }
 
 class _ImportSelected {
-    '{' @join(items:  ImportItem, ',')? '}'
+    '{' @join(items:ImportItem, ',')? '}'
 }
 
 class ImportItem {
@@ -84,11 +84,11 @@ class Identifier -> String {
 }
 
 #check
-def WHITESPACE {
+class WHITESPACE {
 
 }
 
 #check
-def COMMENT {
+class COMMENT {
 
 }

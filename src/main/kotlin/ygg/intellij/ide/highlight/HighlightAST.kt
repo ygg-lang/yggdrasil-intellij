@@ -1,5 +1,6 @@
 package ygg.intellij.ide.highlight
 
+import ai.grazie.utils.isUppercase
 import com.intellij.codeInsight.daemon.impl.HighlightInfo
 import com.intellij.codeInsight.daemon.impl.HighlightInfoType
 import com.intellij.codeInsight.daemon.impl.HighlightVisitor
@@ -67,6 +68,17 @@ class HighlightAST : YggVisitor(), HighlightVisitor {
     }
 
     override fun visitIdentifier(o: YggIdentifier) {
+        var const = true
+        for (char in o.text) {
+            if (char.isLowerCase()) {
+                const = false;
+                break
+            }
+        }
+        if (const) {
+            highlight(o, HighlightColor.SYM_CONSTANT);
+            return
+        }
         when (o.text) {
             "Self" -> {
                 highlight(o, HighlightColor.KEYWORD)

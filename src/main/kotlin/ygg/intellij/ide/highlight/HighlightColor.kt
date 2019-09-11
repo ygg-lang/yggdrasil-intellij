@@ -44,9 +44,10 @@ enum class HighlightColor(
     TYPE_HINT(keyof("color.settings.toml.type_hint"), Default.CLASS_NAME),
 
     SYM_FUNCTION(keyof("color.symbol.function"), Default.STATIC_METHOD),
+    SYM_CONSTANT(keyof("color.symbol.constant"), Default.CONSTANT),
     SYM_MACRO(OptionsBundle.messagePointer("options.java.attribute.descriptor.annotation.name"), Default.METADATA),
-    SYM_CLASS(keyof("color.symbol.rule"), Default.CLASS_NAME),
-    SYM_UNION(keyof("color.symbol.rule"), Default.INTERFACE_NAME),
+    SYM_CLASS(keyof("color.symbol.class"), Default.CLASS_NAME),
+    SYM_UNION(keyof("color.symbol.union"), Default.INTERFACE_NAME),
     SYM_KEY(keyof("color.symbol.builtin"), Default.STATIC_FIELD),
 
     // 标点符号

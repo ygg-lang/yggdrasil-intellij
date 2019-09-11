@@ -35,12 +35,6 @@ public class YggExprNode extends ASTWrapperPsiElement implements YggExpr {
 
   @Override
   @NotNull
-  public YggRuleTerm getRuleTerm() {
-    return findNotNullChildByClass(YggRuleTerm.class);
-  }
-
-  @Override
-  @NotNull
   public List<YggTerm> getTermList() {
     return PsiTreeUtil.getChildrenOfTypeAsList(this, YggTerm.class);
   }

@@ -15,6 +15,6 @@ union Repeats {
     | Between02 {0, 2}
 }
 
-macro Rule() {
-
+class Constants {
+    Any | ASCII_HEX | XID_START | XID_CONTINUE
 }

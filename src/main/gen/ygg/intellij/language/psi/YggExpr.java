@@ -11,9 +11,6 @@ public interface YggExpr extends PsiElement {
   List<YggInfix> getInfixList();
 
   @NotNull
-  YggRuleTerm getRuleTerm();
-
-  @NotNull
   List<YggTerm> getTermList();
 
 }

@@ -217,12 +217,12 @@ public class YggParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // rule_term (infix term | term)*
+  // term (infix term | term)*
   public static boolean expr(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "expr")) return false;
     boolean r;
     Marker m = enter_section_(b, l, _NONE_, EXPR, "<expr>");
-    r = rule_term(b, l + 1);
+    r = term(b, l + 1);
     r = r && expr_1(b, l + 1);
     exit_section_(b, l, m, r, false, null);
     return r;
@@ -1447,13 +1447,12 @@ public class YggParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // NULL | BOOLEAN | num | string_literal | table | namespace | charset
+  // BOOLEAN | num | string_literal | table | namespace | charset
   public static boolean value(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "value")) return false;
     boolean r;
     Marker m = enter_section_(b, l, _NONE_, VALUE, "<value>");
-    r = consumeToken(b, NULL);
-    if (!r) r = consumeToken(b, BOOLEAN);
+    r = consumeToken(b, BOOLEAN);
     if (!r) r = num(b, l + 1);
     if (!r) r = string_literal(b, l + 1);
     if (!r) r = table(b, l + 1);
