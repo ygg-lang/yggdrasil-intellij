@@ -20,7 +20,6 @@ enum class HighlightColor(
     EXTENSION(OptionsBundle.messagePointer("options.language.defaults.metadata"), Default.METADATA),
 
     // 字面量
-    NULL(keyof("color.token.null"), Default.KEYWORD),
     BOOLEAN(keyof("color.token.boolean"), Default.KEYWORD),
     NUMBER_HINT(keyof("color.settings.toml.number_hint"), Default.METADATA),
     DECIMAL(keyof("color.literal.decimal"), Default.NUMBER),
@@ -45,7 +44,8 @@ enum class HighlightColor(
 
     SYM_FUNCTION(keyof("color.symbol.function"), Default.STATIC_METHOD),
     SYM_CONSTANT(keyof("color.symbol.constant"), Default.CONSTANT),
-    SYM_MACRO(OptionsBundle.messagePointer("options.java.attribute.descriptor.annotation.name"), Default.METADATA),
+    SYM_MODIFIER(keyof("color.symbol.modifier"), Default.KEYWORD),
+    SYM_MACRO(keyof("color.symbol.macro"), Default.METADATA),
     SYM_CLASS(keyof("color.symbol.class"), Default.CLASS_NAME),
     SYM_UNION(keyof("color.symbol.union"), Default.INTERFACE_NAME),
     SYM_KEY(keyof("color.symbol.builtin"), Default.STATIC_FIELD),

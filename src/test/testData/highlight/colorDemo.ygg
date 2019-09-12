@@ -1,20 +1,18 @@
-class Terminal {
+#main
+class  Terminal {
 
 }
 
 
 union Repeats {
-    | Once
-    | Many*
-    | ManyRnage {0, } // same as {}
-    | Many1+
-    | Many1Range {1, }
-    | Exact2 {2}
-    | AtLeast2 {2, }
-    | AtMost2 {, 2}
-    | Between02 {0, 2}
+    | Any                                   // 1
+    | Any* | Any {} | Any {, } | Any {0, }  // 0 ~ ∞
+    | Any+ | Any {1, }                      // 1 ~ ∞
+    | Any {2}                               // 2
+    | Any {2, }                             // 2 ~ ∞
+    | Any {, 2} | Any {0, 2}                // 0 ~ 2
 }
 
-class Constants {
+class atomic Constants {
     Any | ASCII_HEX | XID_START | XID_CONTINUE
 }

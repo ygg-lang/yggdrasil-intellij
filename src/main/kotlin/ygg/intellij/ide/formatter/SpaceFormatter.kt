@@ -12,8 +12,10 @@ private val suffix = TokenSet.create(YggTypes.OPTIONAL, YggTypes.MANY, YggTypes.
 fun createSpacingBuilder(commonSettings: CommonCodeStyleSettings): SpacingBuilder {
     return SpacingBuilder(commonSettings)
         // ,
-        .after(YggTypes.COMMA).spacing(1, 1, 0, true, 0)
-        .before(YggTypes.COMMA).spaceIf(false)
+//        .after(YggTypes.COMMA).spacing(1, 1, 0, true, 0)
+//        .before(YggTypes.COMMA).spaceIf(false)
+        // {1,2}
+        .aroundInside(YggTypes.COMMA, YggTypes.RANGE).spaceIf(false)
         // [ ]
         .after(YggTypes.BRACKET_L).spaceIf(false)
         .before(YggTypes.BRACKET_R).spaceIf(false)
