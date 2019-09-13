@@ -1,5 +1,6 @@
 package ygg.intellij.language.file
 
+import com.intellij.icons.AllIcons
 import com.intellij.ide.IconProvider
 import com.intellij.openapi.util.IconLoader
 import com.intellij.psi.PsiElement
@@ -12,5 +13,6 @@ class YggdrasilIcon : IconProvider() {
 
     companion object {
         val FILE = IconLoader.getIcon("/icons/vomlIcon.svg", YggdrasilIcon::class.java)
+        val CONSTANT = AllIcons.Nodes.Constant
     }
 }
