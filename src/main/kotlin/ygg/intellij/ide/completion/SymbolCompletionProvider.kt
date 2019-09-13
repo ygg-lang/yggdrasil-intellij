@@ -18,6 +18,8 @@ class SymbolCompletionProvider : CompletionProvider<CompletionParameters>() {
         resultSet.addElement(LookupElementBuilder.create("struct").withInsertHandler { ctx, _ ->
             EditorModificationUtil.moveCaretRelatively(ctx.editor, -1)
         })
+        resultSet.addKeywords("Any", "Self")
+        resultSet.addKeywords("true", "false")
         resultSet.addConstants("ASCII_BIN", "ASCII_OCT", "ASCII_DEC", "ASCII_HEX")
         resultSet.addConstants("XID_START", "XID_CONTINUE")
         resultSet.addConstants("EMOJI")
@@ -37,6 +39,17 @@ private fun CompletionResultSet.addConstants(vararg set: String, namespace: Stri
     }
 }
 
+private fun CompletionResultSet.addKeywords(vararg set: String) {
+    for (keyword in set) {
+        val e = LookupElementBuilder.create(keyword)
+            .withCaseSensitivity(false)
+            .withIcon(YggdrasilIcon.KEYWORD)
+            .withPresentableText(keyword)
+            .withTypeText("keyword", YggdrasilIcon.KEYWORD, true)
+            .withInsertHandler { context, _ -> textReplacer(context, "$keyword ", 0) }
+        this.addElement(e)
+    }
+}
 
 private fun textReplacer(context: InsertionContext, text: String, offset: Int) {
     val document = context.document
