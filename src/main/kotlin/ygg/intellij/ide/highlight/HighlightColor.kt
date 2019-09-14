@@ -21,10 +21,8 @@ enum class HighlightColor(
 
     // 字面量
     BOOLEAN(keyof("color.token.boolean"), Default.KEYWORD),
-    NUMBER_HINT(keyof("color.settings.toml.number_hint"), Default.METADATA),
     DECIMAL(keyof("color.literal.decimal"), Default.NUMBER),
     INTEGER(keyof("color.literal.integer"), Default.NUMBER),
-    STRING_HINT(keyof("color.settings.toml.string_hint"), Default.KEYWORD),
     STRING(OptionsBundle.messagePointer("options.language.defaults.string"), Default.STRING),
     STRING_ESCAPE(OptionsBundle.messagePointer("options.language.defaults.string"), Default.VALID_STRING_ESCAPE),
     IDENTIFIER(OptionsBundle.messagePointer("options.language.defaults.identifier"), Default.IDENTIFIER),
@@ -40,8 +38,9 @@ enum class HighlightColor(
     BRANCH_MARK(keyof("color.mark.branch"), Default.STATIC_FIELD),
 
     PREDEFINED(OptionsBundle.messagePointer("options.language.defaults.predefined"), Default.PREDEFINED_SYMBOL),
-    TYPE_HINT(keyof("color.settings.toml.type_hint"), Default.CLASS_NAME),
 
+
+    SYM_PARAMETER(keyof("color.symbol.parameter"), Default.PARAMETER),
     SYM_FUNCTION(keyof("color.symbol.function"), Default.STATIC_METHOD),
     SYM_CONSTANT(keyof("color.symbol.constant"), Default.CONSTANT),
     SYM_MODIFIER(keyof("color.symbol.modifier"), Default.KEYWORD),

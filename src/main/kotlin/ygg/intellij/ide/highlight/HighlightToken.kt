@@ -28,8 +28,6 @@ class HighlightToken : SyntaxHighlighterBase() {
             MANY -> Color.MANY
             MANY1 -> Color.MANY1
             //
-            NUMBER_SUFFIX -> Color.NUMBER_HINT
-            TYPE_HINT -> Color.TYPE_HINT
             // INSERT_DOT, INSERT_STAR -> Color.INSERT_MARK
             //
             PARENTHESIS_L, PARENTHESIS_R -> Color.PARENTHESES
@@ -41,7 +39,6 @@ class HighlightToken : SyntaxHighlighterBase() {
             BOOLEAN -> Color.BOOLEAN
             STRING_LITERAL, STRING_SQ, STRING_DQ, CHARACTER -> Color.STRING
             ESCAPE_SPECIAL, ESCAPE_UNICODE -> Color.STRING_ESCAPE
-            NUMBER_SUFFIX -> Color.NUMBER_HINT
             INTEGER -> Color.INTEGER
             DECIMAL -> Color.DECIMAL
 
