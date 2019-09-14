@@ -10,7 +10,7 @@ public interface YggDefinePair extends PsiElement {
   @Nullable
   YggExpr getExpr();
 
-  @Nullable
+  @NotNull
   YggIdentifier getIdentifier();
 
 }

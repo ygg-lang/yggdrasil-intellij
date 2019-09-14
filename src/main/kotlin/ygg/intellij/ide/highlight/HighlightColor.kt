@@ -16,7 +16,7 @@ enum class HighlightColor(
     default: TextAttributesKey? = null,
 ) {
     // 特殊关键词
-    KEYWORD(keyof("color.settings.toml.keyword"), Default.KEYWORD),
+    KEYWORD(keyof("color.token.keyword"), Default.KEYWORD),
     EXTENSION(OptionsBundle.messagePointer("options.language.defaults.metadata"), Default.METADATA),
 
     // 字面量

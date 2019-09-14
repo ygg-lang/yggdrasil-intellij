@@ -8,10 +8,10 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static ygg.intellij.language.psi.YggTypes.*;
-import com.intellij.extapi.psi.ASTWrapperPsiElement;
+import ygg.intellij.language.mixin.MixinRuleBody;
 import ygg.intellij.language.psi.*;
 
-public class YggRuleBodyNode extends ASTWrapperPsiElement implements YggRuleBody {
+public class YggRuleBodyNode extends MixinRuleBody implements YggRuleBody {
 
   public YggRuleBodyNode(@NotNull ASTNode node) {
     super(node);

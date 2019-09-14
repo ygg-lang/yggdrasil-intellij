@@ -8,10 +8,10 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static ygg.intellij.language.psi.YggTypes.*;
-import com.intellij.extapi.psi.ASTWrapperPsiElement;
+import ygg.intellij.language.mixin.MixinDefineStatement;
 import ygg.intellij.language.psi.*;
 
-public class YggDefineStatementNode extends ASTWrapperPsiElement implements YggDefineStatement {
+public class YggDefineStatementNode extends MixinDefineStatement implements YggDefineStatement {
 
   public YggDefineStatementNode(@NotNull ASTNode node) {
     super(node);
@@ -29,8 +29,8 @@ public class YggDefineStatementNode extends ASTWrapperPsiElement implements YggD
 
   @Override
   @Nullable
-  public YggDefineArgument getDefineArgument() {
-    return findChildByClass(YggDefineArgument.class);
+  public YggDefineParameters getDefineParameters() {
+    return findChildByClass(YggDefineParameters.class);
   }
 
   @Override

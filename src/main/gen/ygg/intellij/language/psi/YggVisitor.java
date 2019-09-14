@@ -27,11 +27,11 @@ public class YggVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitDefineArgument(@NotNull YggDefineArgument o) {
+  public void visitDefinePair(@NotNull YggDefinePair o) {
     visitPsiElement(o);
   }
 
-  public void visitDefinePair(@NotNull YggDefinePair o) {
+  public void visitDefineParameters(@NotNull YggDefineParameters o) {
     visitPsiElement(o);
   }
 

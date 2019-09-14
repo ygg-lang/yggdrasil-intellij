@@ -8,7 +8,7 @@ import com.intellij.psi.PsiElement;
 public interface YggDefineStatement extends PsiElement {
 
   @Nullable
-  YggDefineArgument getDefineArgument();
+  YggDefineParameters getDefineParameters();
 
   @NotNull
   YggIdentifier getIdentifier();

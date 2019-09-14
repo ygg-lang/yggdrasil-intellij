@@ -8,6 +8,7 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import ygg.intellij.language.file.YggdrasilFileNode
 import ygg.intellij.language.psi.*
+import ygg.intellij.language.psi_node.YggDefineStatementNode
 
 class HighlightAST : YggVisitor(), HighlightVisitor {
     private var infoHolder: HighlightInfoHolder? = null
@@ -47,7 +48,11 @@ class HighlightAST : YggVisitor(), HighlightVisitor {
     }
 
     override fun visitDefineStatement(o: YggDefineStatement) {
+        o as YggDefineStatementNode
         highlight(o.identifier, HighlightColor.SYM_FUNCTION)
+        for (node in o.parameterNodes) {
+            highlight(node, HighlightColor.SYM_PARAMETER)
+        }
     }
 
     override fun visitMacroCall(o: YggMacroCall) {
@@ -88,6 +93,7 @@ class HighlightAST : YggVisitor(), HighlightVisitor {
             "Self", "Any" -> {
                 highlight(o, HighlightColor.KEYWORD)
             }
+
             else -> {}
         }
     }

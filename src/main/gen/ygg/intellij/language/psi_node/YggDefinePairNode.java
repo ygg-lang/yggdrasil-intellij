@@ -34,9 +34,9 @@ public class YggDefinePairNode extends ASTWrapperPsiElement implements YggDefine
   }
 
   @Override
-  @Nullable
+  @NotNull
   public YggIdentifier getIdentifier() {
-    return findChildByClass(YggIdentifier.class);
+    return findNotNullChildByClass(YggIdentifier.class);
   }
 
 }

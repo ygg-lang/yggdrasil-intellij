@@ -12,8 +12,8 @@ public interface YggTypes {
   IElementType BRANCH_MARK = new YggElementType("BRANCH_MARK");
   IElementType CHARSET = new YggElementType("CHARSET");
   IElementType CLASS_STATEMENT = new YggElementType("CLASS_STATEMENT");
-  IElementType DEFINE_ARGUMENT = new YggElementType("DEFINE_ARGUMENT");
   IElementType DEFINE_PAIR = new YggElementType("DEFINE_PAIR");
+  IElementType DEFINE_PARAMETERS = new YggElementType("DEFINE_PARAMETERS");
   IElementType DEFINE_STATEMENT = new YggElementType("DEFINE_STATEMENT");
   IElementType EXPORT_STATEMENT = new YggElementType("EXPORT_STATEMENT");
   IElementType EXPR = new YggElementType("EXPR");
@@ -123,11 +123,11 @@ public interface YggTypes {
       else if (type == CLASS_STATEMENT) {
         return new YggClassStatementNode(node);
       }
-      else if (type == DEFINE_ARGUMENT) {
-        return new YggDefineArgumentNode(node);
-      }
       else if (type == DEFINE_PAIR) {
         return new YggDefinePairNode(node);
+      }
+      else if (type == DEFINE_PARAMETERS) {
+        return new YggDefineParametersNode(node);
       }
       else if (type == DEFINE_STATEMENT) {
         return new YggDefineStatementNode(node);
