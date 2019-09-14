@@ -7,14 +7,14 @@ import com.intellij.psi.PsiElement;
 
 public interface YggDefineStatement extends PsiElement {
 
+  @Nullable
+  YggDefineArgument getDefineArgument();
+
   @NotNull
   YggIdentifier getIdentifier();
 
   @NotNull
   YggModifiers getModifiers();
-
-  @Nullable
-  YggRuleArgument getRuleArgument();
 
   @Nullable
   YggRuleBody getRuleBody();

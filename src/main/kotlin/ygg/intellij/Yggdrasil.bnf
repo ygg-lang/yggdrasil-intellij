@@ -103,11 +103,12 @@ union_statement ::= KW_UNION modifiers identifier [rule_type] rule_body {
     recoverWhile = end_brace
 };
 // =====================================================================================================================
-define_statement ::= KW_DEFINE modifiers identifier rule_argument [rule_type] rule_body {
+define_statement ::= KW_DEFINE modifiers identifier define_argument [rule_type] rule_body {
     pin = identifier
     recoverWhile = end_brace
 };
-rule_argument ::= PARENTHESIS_L PARENTHESIS_R;
+define_argument ::= <<parenthesis define_pair COMMA>>;
+define_pair ::= identifier COLON expr? | expr;
 // =====================================================================================================================
 rule_expr ::= rule_term (infix rule_term | rule_term)*;
 rule_term ::= (prefix)* rule_atom (suffix)*

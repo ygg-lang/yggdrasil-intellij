@@ -3,8 +3,13 @@ class Terminal {
 
 }
 
+class atomic Constants {
+    | ASCII_HEX | ASCII_DEC
+    | XID_START | XID_CONTINUE
+    | EMOJI
+}
 
-union Repeats {
+union atomic Repeats {
     | Any                                // 1
     | Any* | Any {} | Any {,} | Any {0,} // 0 ~ ∞
     | Any+ | Any {1,}                    // 1 ~ ∞
@@ -13,8 +18,7 @@ union Repeats {
     | Any {,2} | Any {0,2}               // 0 ~ 2
 }
 
-class atomic Constants {
-    | ASCII_HEX | ASCII_DEC
-    | XID_START | XID_CONTINUE
-    | EMOJI 
+macro paired(item, delimiter) {
+    | '(' ')'
+    | '(' item (delimiter item)* delimiter? ')'
 }

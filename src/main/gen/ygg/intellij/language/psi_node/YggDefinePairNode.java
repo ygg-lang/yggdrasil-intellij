@@ -11,14 +11,14 @@ import static ygg.intellij.language.psi.YggTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import ygg.intellij.language.psi.*;
 
-public class YggDefineStatementNode extends ASTWrapperPsiElement implements YggDefineStatement {
+public class YggDefinePairNode extends ASTWrapperPsiElement implements YggDefinePair {
 
-  public YggDefineStatementNode(@NotNull ASTNode node) {
+  public YggDefinePairNode(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull YggVisitor visitor) {
-    visitor.visitDefineStatement(this);
+    visitor.visitDefinePair(this);
   }
 
   @Override
@@ -29,32 +29,14 @@ public class YggDefineStatementNode extends ASTWrapperPsiElement implements YggD
 
   @Override
   @Nullable
-  public YggDefineArgument getDefineArgument() {
-    return findChildByClass(YggDefineArgument.class);
+  public YggExpr getExpr() {
+    return findChildByClass(YggExpr.class);
   }
 
   @Override
-  @NotNull
+  @Nullable
   public YggIdentifier getIdentifier() {
-    return findNotNullChildByClass(YggIdentifier.class);
-  }
-
-  @Override
-  @NotNull
-  public YggModifiers getModifiers() {
-    return findNotNullChildByClass(YggModifiers.class);
-  }
-
-  @Override
-  @Nullable
-  public YggRuleBody getRuleBody() {
-    return findChildByClass(YggRuleBody.class);
-  }
-
-  @Override
-  @Nullable
-  public YggRuleType getRuleType() {
-    return findChildByClass(YggRuleType.class);
+    return findChildByClass(YggIdentifier.class);
   }
 
 }

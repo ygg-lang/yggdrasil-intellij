@@ -34,7 +34,7 @@ private fun CompletionResultSet.addConstants(vararg set: String, namespace: Stri
             .withIcon(YggdrasilIcon.CONSTANT)
             .withPresentableText(upper)
             .withTailText(" ($namespace)", true)
-            .withInsertHandler { context, _ -> textReplacer(context, "$upper ", 0) }
+            .withInsertHandler { context, _ -> textReplacer(context, upper, 0) }
         this.addElement(e)
     }
 }
@@ -45,8 +45,8 @@ private fun CompletionResultSet.addKeywords(vararg set: String) {
             .withCaseSensitivity(false)
             .withIcon(YggdrasilIcon.KEYWORD)
             .withPresentableText(keyword)
-            .withTypeText("keyword", YggdrasilIcon.KEYWORD, true)
-            .withInsertHandler { context, _ -> textReplacer(context, "$keyword ", 0) }
+            .withTypeText("keyword", true)
+            .withInsertHandler { context, _ -> textReplacer(context, keyword, 0) }
         this.addElement(e)
     }
 }

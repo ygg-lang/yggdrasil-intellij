@@ -27,6 +27,14 @@ public class YggVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitDefineArgument(@NotNull YggDefineArgument o) {
+    visitPsiElement(o);
+  }
+
+  public void visitDefinePair(@NotNull YggDefinePair o) {
+    visitPsiElement(o);
+  }
+
   public void visitDefineStatement(@NotNull YggDefineStatement o) {
     visitPsiElement(o);
   }
@@ -140,10 +148,6 @@ public class YggVisitor extends PsiElementVisitor {
   }
 
   public void visitRangeStart(@NotNull YggRangeStart o) {
-    visitPsiElement(o);
-  }
-
-  public void visitRuleArgument(@NotNull YggRuleArgument o) {
     visitPsiElement(o);
   }
 
