@@ -46,7 +46,6 @@ public interface YggTypes {
   IElementType RULE_ATOM = new YggElementType("RULE_ATOM");
   IElementType RULE_BODY = new YggElementType("RULE_BODY");
   IElementType RULE_EXPR = new YggElementType("RULE_EXPR");
-  IElementType RULE_ITEM = new YggElementType("RULE_ITEM");
   IElementType RULE_TERM = new YggElementType("RULE_TERM");
   IElementType RULE_TYPE = new YggElementType("RULE_TYPE");
   IElementType STRING_LITERAL = new YggElementType("STRING_LITERAL");
@@ -224,9 +223,6 @@ public interface YggTypes {
       }
       else if (type == RULE_EXPR) {
         return new YggRuleExprNode(node);
-      }
-      else if (type == RULE_ITEM) {
-        return new YggRuleItemNode(node);
       }
       else if (type == RULE_TERM) {
         return new YggRuleTermNode(node);

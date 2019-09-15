@@ -35,6 +35,12 @@ public class YggRuleAtomNode extends ASTWrapperPsiElement implements YggRuleAtom
 
   @Override
   @Nullable
+  public YggCharset getCharset() {
+    return findChildByClass(YggCharset.class);
+  }
+
+  @Override
+  @Nullable
   public YggFieldMark getFieldMark() {
     return findChildByClass(YggFieldMark.class);
   }
@@ -47,14 +53,26 @@ public class YggRuleAtomNode extends ASTWrapperPsiElement implements YggRuleAtom
 
   @Override
   @Nullable
+  public YggNamespace getNamespace() {
+    return findChildByClass(YggNamespace.class);
+  }
+
+  @Override
+  @Nullable
+  public YggNumberSuffix getNumberSuffix() {
+    return findChildByClass(YggNumberSuffix.class);
+  }
+
+  @Override
+  @Nullable
   public YggRuleExpr getRuleExpr() {
     return findChildByClass(YggRuleExpr.class);
   }
 
   @Override
   @Nullable
-  public YggRuleItem getRuleItem() {
-    return findChildByClass(YggRuleItem.class);
+  public YggStringLiteral getStringLiteral() {
+    return findChildByClass(YggStringLiteral.class);
   }
 
 }

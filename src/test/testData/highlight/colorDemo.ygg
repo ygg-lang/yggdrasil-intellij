@@ -4,7 +4,7 @@ class Terminal {
 }
 
 class atomic Constants {
-    | ASCII_HEX | ASCII_DEC
+    | ASCII_HEX ~ ASCII_DEC
     | XID_START | XID_CONTINUE
     | EMOJI
 }

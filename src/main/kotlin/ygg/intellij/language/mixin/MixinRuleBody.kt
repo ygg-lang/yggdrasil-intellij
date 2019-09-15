@@ -2,11 +2,10 @@ package ygg.intellij.language.mixin
 
 import com.intellij.extapi.psi.ASTWrapperPsiElement
 import com.intellij.lang.ASTNode
-import ygg.intellij.language.psi.YggIdentifier
+import ygg.intellij.language.psi.YggNamespace
 import ygg.intellij.language.psi.YggRuleExpr
 import ygg.intellij.language.psi_node.YggIdentifierNode
 import ygg.intellij.language.psi_node.YggRuleBodyNode
-
 
 
 open class MixinRuleBody(node: ASTNode) : ASTWrapperPsiElement(node) {
@@ -23,8 +22,14 @@ open class MixinRuleBody(node: ASTNode) : ASTWrapperPsiElement(node) {
 private fun YggRuleExpr?.visitIdentifier(list: MutableList<YggIdentifierNode>) {
     if (this == null) return
     for (term in this.ruleTermList) {
-        when (term.ruleAtom) {
-            is YggIdentifier -> list.add(term.ruleAtom as YggIdentifierNode)
+        when (val child = term.ruleAtom) {
+            is YggRuleExpr -> child.visitIdentifier(list)
+            is YggNamespace -> {
+                val path = child.identifierList;
+                if (path.size == 1) {
+                    list.add(path.first() as YggIdentifierNode)
+                }
+            }
         }
     }
 }

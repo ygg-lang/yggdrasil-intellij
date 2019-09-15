@@ -11,6 +11,9 @@ public interface YggRuleTerm extends PsiElement {
   List<YggPrefix> getPrefixList();
 
   @NotNull
+  List<YggRange> getRangeList();
+
+  @NotNull
   YggRuleAtom getRuleAtom();
 
   @NotNull

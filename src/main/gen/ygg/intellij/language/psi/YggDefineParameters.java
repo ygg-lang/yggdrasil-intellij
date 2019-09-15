@@ -5,6 +5,9 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface YggSuffix extends PsiElement {
+public interface YggDefineParameters extends PsiElement {
+
+  @NotNull
+  List<YggDefinePair> getDefinePairList();
 
 }

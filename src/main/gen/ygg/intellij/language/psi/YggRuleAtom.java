@@ -11,15 +11,24 @@ public interface YggRuleAtom extends PsiElement {
   YggBranchMark getBranchMark();
 
   @Nullable
+  YggCharset getCharset();
+
+  @Nullable
   YggFieldMark getFieldMark();
 
   @Nullable
   YggFunctionCall getFunctionCall();
 
   @Nullable
+  YggNamespace getNamespace();
+
+  @Nullable
+  YggNumberSuffix getNumberSuffix();
+
+  @Nullable
   YggRuleExpr getRuleExpr();
 
   @Nullable
-  YggRuleItem getRuleItem();
+  YggStringLiteral getStringLiteral();
 
 }

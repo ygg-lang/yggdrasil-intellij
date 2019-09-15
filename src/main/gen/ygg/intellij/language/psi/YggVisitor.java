@@ -163,10 +163,6 @@ public class YggVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitRuleItem(@NotNull YggRuleItem o) {
-    visitPsiElement(o);
-  }
-
   public void visitRuleTerm(@NotNull YggRuleTerm o) {
     visitPsiElement(o);
   }

@@ -11,14 +11,14 @@ import static ygg.intellij.language.psi.YggTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import ygg.intellij.language.psi.*;
 
-public class YggRuleTermNode extends ASTWrapperPsiElement implements YggRuleTerm {
+public class YggDefineParametersNode extends ASTWrapperPsiElement implements YggDefineParameters {
 
-  public YggRuleTermNode(@NotNull ASTNode node) {
+  public YggDefineParametersNode(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull YggVisitor visitor) {
-    visitor.visitRuleTerm(this);
+    visitor.visitDefineParameters(this);
   }
 
   @Override
@@ -29,26 +29,8 @@ public class YggRuleTermNode extends ASTWrapperPsiElement implements YggRuleTerm
 
   @Override
   @NotNull
-  public List<YggPrefix> getPrefixList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, YggPrefix.class);
-  }
-
-  @Override
-  @NotNull
-  public List<YggRange> getRangeList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, YggRange.class);
-  }
-
-  @Override
-  @NotNull
-  public YggRuleAtom getRuleAtom() {
-    return findNotNullChildByClass(YggRuleAtom.class);
-  }
-
-  @Override
-  @NotNull
-  public List<YggSuffix> getSuffixList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, YggSuffix.class);
+  public List<YggDefinePair> getDefinePairList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, YggDefinePair.class);
   }
 
 }

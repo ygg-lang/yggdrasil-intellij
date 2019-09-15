@@ -94,6 +94,7 @@ macro_arg ::= value | macro_statement;
 class_statement ::= KW_CLASS modifiers identifier [rule_type] rule_body {
     pin = identifier
     recoverWhile = end_brace
+    mixin = "ygg.intellij.language.mixin.MixinClassStatement"
 };
 rule_body     ::= BRACE_L [CHOOSE] [rule_expr] BRACE_R {
     mixin = "ygg.intellij.language.mixin.MixinRuleBody"
@@ -103,6 +104,7 @@ rule_type     ::= (COLON | ARROW) identifier;
 union_statement ::= KW_UNION modifiers identifier [rule_type] rule_body {
     pin = identifier
     recoverWhile = end_brace
+    mixin = "ygg.intellij.language.mixin.MixinUnionStatement"
 };
 // =====================================================================================================================
 define_statement ::= KW_DEFINE modifiers identifier define_parameters [rule_type] rule_body {
@@ -110,16 +112,17 @@ define_statement ::= KW_DEFINE modifiers identifier define_parameters [rule_type
     recoverWhile = end_brace
     mixin = "ygg.intellij.language.mixin.MixinDefineStatement"
 };
-define_parameters ::= PARENTHESIS_L [define_pair (define_pair COMMA)* COMMA?] PARENTHESIS_R;
+define_parameters ::= PARENTHESIS_L [define_pair (COMMA define_pair)* COMMA?] PARENTHESIS_R;
 define_pair ::= identifier [EQ expr];
 // =====================================================================================================================
 rule_expr ::= rule_term (infix rule_term | rule_term)*;
-rule_term ::= (prefix)* rule_atom (suffix)*
-rule_atom ::= PARENTHESIS_L [CHOOSE] rule_expr PARENTHESIS_R | field_mark | branch_mark | function_call | rule_item;
-rule_item ::= num | string_literal | namespace | charset;
+rule_term ::= (prefix)* rule_atom (suffix| range)*
+rule_atom ::=
+    PARENTHESIS_L [CHOOSE] rule_expr PARENTHESIS_R | field_mark | branch_mark | function_call |
+    num | string_literal | namespace | charset;
 infix ::= CHOOSE | SOFT_CONNECT;
 prefix ::= ACCENT;
-suffix ::= OPTIONAL | MANY | MANY1 | range;
+suffix ::= OPTIONAL | MANY | MANY1;
 // =====================================================================================================================
 range ::= '{' range_start? ','? range_end? '}';
 range_start ::= num;
