@@ -35,12 +35,6 @@ public class YggImportStatementNode extends ASTWrapperPsiElement implements YggI
 
   @Override
   @NotNull
-  public YggKwImport getKwImport() {
-    return findNotNullChildByClass(YggKwImport.class);
-  }
-
-  @Override
-  @NotNull
   public YggStringLiteral getStringLiteral() {
     return findNotNullChildByClass(YggStringLiteral.class);
   }

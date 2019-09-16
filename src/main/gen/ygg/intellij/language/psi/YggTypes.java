@@ -27,7 +27,6 @@ public interface YggTypes {
   IElementType INFIX = new YggElementType("INFIX");
   IElementType KEY = new YggElementType("KEY");
   IElementType KEY_SYMBOL = new YggElementType("KEY_SYMBOL");
-  IElementType KW_IMPORT = new YggElementType("KW_IMPORT");
   IElementType MACRO_ARG = new YggElementType("MACRO_ARG");
   IElementType MACRO_CALL = new YggElementType("MACRO_CALL");
   IElementType MACRO_STATEMENT = new YggElementType("MACRO_STATEMENT");
@@ -89,6 +88,7 @@ public interface YggTypes {
   IElementType INTEGER = new YggElementType("INTEGER");
   IElementType KW_CLASS = new YggElementType("KW_CLASS");
   IElementType KW_DEFINE = new YggElementType("KW_DEFINE");
+  IElementType KW_IMPORT = new YggElementType("KW_IMPORT");
   IElementType KW_UNION = new YggElementType("KW_UNION");
   IElementType MANY = new YggElementType("*");
   IElementType MANY1 = new YggElementType("+");
@@ -166,9 +166,6 @@ public interface YggTypes {
       }
       else if (type == KEY_SYMBOL) {
         return new YggKeySymbolNode(node);
-      }
-      else if (type == KW_IMPORT) {
-        return new YggKwImportNode(node);
       }
       else if (type == MACRO_ARG) {
         return new YggMacroArgNode(node);

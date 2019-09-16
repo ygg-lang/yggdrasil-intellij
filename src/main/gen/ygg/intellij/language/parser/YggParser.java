@@ -484,12 +484,12 @@ public class YggParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // kw_import string_literal [import_body]
+  // KW_IMPORT string_literal [import_body]
   public static boolean import_statement(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "import_statement")) return false;
     boolean r, p;
     Marker m = enter_section_(b, l, _NONE_, IMPORT_STATEMENT, "<import statement>");
-    r = kw_import(b, l + 1);
+    r = consumeToken(b, KW_IMPORT);
     r = r && string_literal(b, l + 1);
     p = r; // pin = string_literal
     r = r && import_statement_2(b, l + 1);
@@ -539,19 +539,6 @@ public class YggParser implements PsiParser, LightPsiParser {
     Marker m = enter_section_(b);
     r = consumeToken(b, SYMBOL);
     exit_section_(b, m, KEY_SYMBOL, r);
-    return r;
-  }
-
-  /* ********************************************************** */
-  // "import" | "use" | "using"
-  public static boolean kw_import(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "kw_import")) return false;
-    boolean r;
-    Marker m = enter_section_(b, l, _NONE_, KW_IMPORT, "<kw import>");
-    r = consumeToken(b, "import");
-    if (!r) r = consumeToken(b, "use");
-    if (!r) r = consumeToken(b, "using");
-    exit_section_(b, l, m, r, false, null);
     return r;
   }
 

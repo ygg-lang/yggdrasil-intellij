@@ -79,12 +79,11 @@ export_statement ::= "codegen" identifier object {
     pin = identifier
     recoverWhile = end_brace
 }
-import_statement ::= kw_import string_literal [import_body] {
+import_statement ::= KW_IMPORT string_literal [import_body] {
     pin = string_literal
     recoverWhile = end_brace
 }
 import_body      ::= BRACE_L [identifier (COMMA identifier)* [COMMA]] BRACE_R;
-kw_import        ::= "import" | "use" | "using";
 // ---------------------------------------------------------------------------------------------------------------------
 // @macro("path")
 macro_statement ::= AT SYMBOL <<parenthesis macro_arg COMMA>>;

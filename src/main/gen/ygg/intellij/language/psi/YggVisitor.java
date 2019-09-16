@@ -87,10 +87,6 @@ public class YggVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitKwImport(@NotNull YggKwImport o) {
-    visitPsiElement(o);
-  }
-
   public void visitMacroArg(@NotNull YggMacroArg o) {
     visitPsiElement(o);
   }

@@ -47,6 +47,7 @@ HEX = [0-9a-fA-F]
 KW_CLASS = class|struct|rule
 KW_UNION = union|enum
 KW_DEFINE = define|def|function|fun|fn|macro
+KW_IMPORT = import|using
 
 %%
 <YYINITIAL> {
@@ -60,6 +61,7 @@ KW_DEFINE = define|def|function|fun|fn|macro
 	{KW_CLASS}   { return KW_CLASS; }
 	{KW_UNION}   { return KW_UNION; }
 	{KW_DEFINE}  { return KW_DEFINE; }
+	{KW_IMPORT}  { return KW_IMPORT; }
 }
 
 <YYINITIAL> {

@@ -11,9 +11,6 @@ public interface YggImportStatement extends PsiElement {
   YggImportBody getImportBody();
 
   @NotNull
-  YggKwImport getKwImport();
-
-  @NotNull
   YggStringLiteral getStringLiteral();
 
 }
