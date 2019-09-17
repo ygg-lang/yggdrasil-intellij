@@ -1,7 +1,6 @@
 package ygg.intellij.ide.formatter
 
 import com.intellij.formatting.*
-import com.intellij.formatting.FormattingModel
 import com.intellij.lang.ASTNode
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiFile

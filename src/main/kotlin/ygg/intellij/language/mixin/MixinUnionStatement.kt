@@ -3,9 +3,7 @@ package ygg.intellij.language.mixin
 import com.intellij.lang.ASTNode
 import com.intellij.psi.PsiElement
 import ygg.intellij.language.file.YggdrasilIcon
-import ygg.intellij.language.psi_node.YggDefineStatementNode
 import ygg.intellij.language.psi_node.YggIdentifierNode
-import ygg.intellij.language.psi_node.YggRuleBodyNode
 import ygg.intellij.language.psi_node.YggUnionStatementNode
 
 open class MixinUnionStatement(node: ASTNode) : DeclareNode(node) {

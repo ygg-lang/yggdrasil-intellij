@@ -1,8 +1,8 @@
 package ygg.intellij.ide.annotator.checkers
 
-import ygg.intellij.language.psi.YggPair
 import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.psi.PsiElement
+import ygg.intellij.language.psi.YggPair
 
 
 class YggTableCheckerAnnotator : CheckerAnnotator() {
