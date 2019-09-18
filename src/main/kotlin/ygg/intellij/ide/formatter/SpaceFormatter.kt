@@ -37,6 +37,9 @@ fun createSpacingBuilder(commonSettings: CommonCodeStyleSettings): SpacingBuilde
         .before(YggTypes.PARENTHESIS_R).spaceIf(false)
         // a:b
         .aroundInside(YggTypes.COLON, YggTypes.FIELD_MARK).spaceIf(false)
+        .afterInside(YggTypes.COLON, YggTypes.RULE_TYPE).spaceIf(true)
+        .beforeInside(YggTypes.ARROW, YggTypes.RULE_TYPE).spaceIf(true)
+//        .before(YggTypes.RULE_TYPE).spaceIf(false)
         //
         .after(YggTypes.PREFIX).spaceIf(false)
         .around(YggTypes.INFIX).spaceIf(true)

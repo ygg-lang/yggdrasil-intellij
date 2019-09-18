@@ -7,11 +7,12 @@
 
 <!-- Plugin description -->
 
-Intellij plugin for [Yggdrasil](https://github.com/voml), support all IDEs.
+Intellij plugin for [Yggdrasil](https://github.com/ygg-lang/project-yggdrasil), support all IDEs.
 
 ## Features
 - [Syntax Highlight]()
 - [Braces Matcher]()
+- [File Formatter]()
 
 <!-- Plugin description end -->
 

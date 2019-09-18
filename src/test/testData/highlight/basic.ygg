@@ -74,7 +74,7 @@ union _Atom {
 }
 
 
-class Boolean -> String {
+class Boolean: String {
     "true" | "false"
 }
 

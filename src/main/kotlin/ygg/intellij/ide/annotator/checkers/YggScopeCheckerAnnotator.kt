@@ -5,15 +5,8 @@ import com.intellij.psi.PsiElement
 
 
 class YggScopeCheckerAnnotator : CheckerAnnotator() {
-    override fun check(element: PsiElement, holder: AnnotationHolder): CheckerAnnotatorResult =
-        if (holder.isBatchMode) {
-            CheckerAnnotatorResult.Ok
-        }
-        else {
-            when (element) {
-//                is YggRegex -> checkScope(element)
-                else -> CheckerAnnotatorResult.Ok
-            }
-        }
+    override fun check(element: PsiElement, holder: AnnotationHolder): CheckerAnnotatorResult {
+        return CheckerAnnotatorResult.Ok
+    }
 }
 

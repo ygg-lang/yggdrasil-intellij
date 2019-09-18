@@ -60,7 +60,7 @@
 		/>
 		<annotator
 			language="Yggdrasil"
-			implementationClass="ygg.intellij.ide.annotator.VomlHighlightingAnnotator"
+			implementationClass="ygg.intellij.ide.annotator.HighlightingAnnotator"
 		/>
 		<annotator
 			language="Yggdrasil"
@@ -82,10 +82,10 @@
 	</extensions>
 	<actions>
 		<action
-			id="ygg.intellij.ide.actions.YggCreateFile"
-			class="ygg.intellij.ide.actions.YggCreateFile"
-			text="Voml File"
-			description="Create new Voml file"
+			id="ygg.intellij.ide.actions.CreateFile"
+			class="ygg.intellij.ide.actions.CreateFile"
+			text="Yggdrasil File"
+			description="Create new Yggdrasil file"
 		>
 			<add-to-group group-id="NewGroup" anchor="after" relative-to-action="NewFile"/>
 		</action>
