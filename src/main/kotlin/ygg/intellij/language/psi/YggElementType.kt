@@ -6,3 +6,5 @@ import ygg.intellij.language.YggdrasilLanguage
 class YggElementType(debugName: String) : IElementType(debugName, YggdrasilLanguage) {
     override fun toString(): String = "Yggdrasil.${super.toString()}"
 }
+
+
