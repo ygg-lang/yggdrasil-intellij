@@ -7,8 +7,12 @@ import com.intellij.codeInsight.daemon.impl.analysis.HighlightInfoHolder
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import ygg.intellij.language.file.YggdrasilFileNode
+import ygg.intellij.language.mixin.IdentifierKind
 import ygg.intellij.language.psi.*
+import ygg.intellij.language.psi_node.YggClassStatementNode
 import ygg.intellij.language.psi_node.YggDefineStatementNode
+import ygg.intellij.language.psi_node.YggIdentifierNode
+import ygg.intellij.language.psi_node.YggUnionStatementNode
 
 class HighlightAST : YggVisitor(), HighlightVisitor {
     private var infoHolder: HighlightInfoHolder? = null
@@ -78,24 +82,7 @@ class HighlightAST : YggVisitor(), HighlightVisitor {
     }
 
     override fun visitIdentifier(o: YggIdentifier) {
-        var const = true
-        for (char in o.text) {
-            if (char.isLowerCase()) {
-                const = false;
-                break
-            }
-        }
-        if (const) {
-            highlight(o, HighlightColor.SYM_CONSTANT);
-            return
-        }
-        when (o.text) {
-            "Self", "Any" -> {
-                highlight(o, HighlightColor.KEYWORD)
-            }
-
-            else -> {}
-        }
+        IdentifierKind.getKind(o).getColor()?.let { highlight(o, it) }
     }
 
 

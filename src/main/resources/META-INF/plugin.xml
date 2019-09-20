@@ -11,18 +11,15 @@
 			language="Yggdrasil"
 			extensions="ygg"
 			implementationClass="ygg.intellij.language.file.YggdrasilFileType"
-			fieldName="INSTANCE"
-		/>
+			fieldName="INSTANCE"/>
 		<lang.parserDefinition
 			language="Yggdrasil"
-			implementationClass="ygg.intellij.language.YggParserDefinition"
-		/>
+			implementationClass="ygg.intellij.language.YggParserDefinition"/>
 		<!-- Highlighter -->
 		<colorSettingsPage implementation="ygg.intellij.ide.highlight.HighlightSettingPage"/>
 		<lang.syntaxHighlighter
 			language="Yggdrasil"
-			implementationClass="ygg.intellij.ide.highlight.HighlightToken"
-		/>
+			implementationClass="ygg.intellij.ide.highlight.HighlightToken"/>
 		<highlightVisitor implementation="ygg.intellij.ide.highlight.HighlightAST"/>
 		<additionalTextAttributes scheme="Default" file="colors/VomlDefault.xml"/>
 		<additionalTextAttributes scheme="Darcula" file="colors/VomlDarcula.xml"/>
@@ -32,53 +29,42 @@
 		/>
 		<lang.commenter
 			language="Yggdrasil"
-			implementationClass="ygg.intellij.ide.completion.Commenter"
-		/>
+			implementationClass="ygg.intellij.ide.completion.Commenter"/>
 		<lang.braceMatcher
 			language="Yggdrasil"
-			implementationClass="ygg.intellij.ide.braces.BraceMatcher"
-		/>
+			implementationClass="ygg.intellij.ide.braces.BraceMatcher"/>
 		<lang.quoteHandler
 			language="Yggdrasil"
-			implementationClass="ygg.intellij.ide.QuoteHandler"
-		/>
+			implementationClass="ygg.intellij.ide.QuoteHandler"/>
 		<!-- Structure View -->
 		<lang.foldingBuilder
 			language="Yggdrasil"
-			implementationClass="ygg.intellij.ide.folding.FoldingBuilder"
-		/>
+			implementationClass="ygg.intellij.ide.folding.FoldingBuilder"/>
 		<indexPatternBuilder
-			implementation="ygg.intellij.ide.todo.TodoIndexPatternBuilder"
-		/>
+			implementation="ygg.intellij.ide.todo.TodoIndexPatternBuilder"/>
 		<todoIndexer
 			filetype="Yggdrasil"
-			implementationClass="ygg.intellij.ide.todo.TodoIndexer"
-		/>
+			implementationClass="ygg.intellij.ide.todo.TodoIndexer"/>
 		<completion.contributor
 			language="Yggdrasil"
-			implementationClass="ygg.intellij.ide.completion.CompletionContributor"
-		/>
+			implementationClass="ygg.intellij.ide.completion.CompletionContributor"/>
 		<annotator
 			language="Yggdrasil"
-			implementationClass="ygg.intellij.ide.annotator.HighlightingAnnotator"
-		/>
+			implementationClass="ygg.intellij.ide.annotator.HighlightingAnnotator"/>
 		<annotator
 			language="Yggdrasil"
-			implementationClass="ygg.intellij.ide.annotator.checkers.YggScopeCheckerAnnotator"
-		/>
+			implementationClass="ygg.intellij.ide.annotator.checkers.YggScopeCheckerAnnotator"/>
 		<annotator
 			language="Yggdrasil"
-			implementationClass="ygg.intellij.ide.annotator.checkers.YggTableCheckerAnnotator"
-		/>
+			implementationClass="ygg.intellij.ide.annotator.checkers.YggTableCheckerAnnotator"/>
 
 		<lang.formatter
 			language="Yggdrasil"
-			implementationClass="ygg.intellij.ide.formatter.FormatModel"
-		/>
+			implementationClass="ygg.intellij.ide.formatter.FormatModel"/>
 		<lang.smartEnterProcessor
 			language="Yggdrasil"
-			implementationClass="ygg.intellij.ide.assist.fixers.VomlSmartEnterProcessor"
-		/>
+			implementationClass="ygg.intellij.ide.assist.fixers.VomlSmartEnterProcessor"/>
+		<usages.usageReferenceClassProvider implementation="ygg.intellij.ide.navigation.usageReferenceClassProvider"/>
 	</extensions>
 	<actions>
 		<action
