@@ -6,6 +6,7 @@ import com.intellij.lang.ASTNode
 import com.intellij.navigation.ItemPresentation
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNameIdentifierOwner
+import ygg.intellij.language.file.YggdrasilFactory
 import javax.swing.Icon
 
 
@@ -17,6 +18,9 @@ abstract class DeclareNode(node: ASTNode) : ASTWrapperPsiElement(node), PsiNameI
     abstract override fun getIcon(flags: Int): Icon
     override fun getElementIcon(flags: Int): Icon = this.getIcon(flags)
     override fun getName(): String = this.nameIdentifier.name ?: "[UNKNOWN]"
+    override fun setName(name: String): PsiElement {
+        return nameIdentifier.replace(YggdrasilFactory(this).createIdentifier(name))
+    }
     override fun getNavigationElement(): PsiElement = this.nameIdentifier
     override fun getTextOffset(): Int = this.nameIdentifier.textOffset
     override fun getPresentation(): ItemPresentation {

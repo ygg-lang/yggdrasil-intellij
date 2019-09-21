@@ -4,6 +4,7 @@ import com.intellij.extapi.psi.ASTWrapperPsiElement
 import com.intellij.lang.ASTNode
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiReference
+import com.intellij.psi.search.SearchScope
 import ygg.intellij.language.file.YggdrasilFileNode
 import ygg.intellij.language.psi.YggIdentifier
 import ygg.intellij.language.psi.YggdrasilSymbol
@@ -43,4 +44,7 @@ open class MixinIdentifier(node: ASTNode) : ASTWrapperPsiElement(node) {
         }
     }
 
+    override fun getUseScope(): SearchScope {
+        return super.getUseScope()
+    }
 }

@@ -14,10 +14,6 @@ open class MixinDefineStatement(node: ASTNode) : DeclareNode(node) {
 
     override fun getIcon(flags: Int) = YggdrasilIcon.KEYWORD
 
-    override fun setName(name: String): PsiElement {
-        TODO("Not yet implemented")
-    }
-
     val parameterNodes: Array<YggIdentifierNode>
         get() {
             val list = mutableListOf<YggIdentifierNode>();
