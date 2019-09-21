@@ -30,7 +30,7 @@ union Statement {
 //* grammar tsg
 //* grammar tsg {"*.tsg", }
 class GrammarStatement {
-    "grammar" Identifier _grammar_exts? eos?
+    "grammar" Identifier _GrammarExts? EOS?
 }
 
 
@@ -77,8 +77,11 @@ class Boolean: String {
     "true" | "false"
 }
 
-#atomic
-class Identifier -> String {
+class String {
+    ASCII_BIN
+}
+
+class atomic Identifier -> String {
     ("_" | XID_START) XID_CONTINUE*
 }
 
@@ -90,12 +93,11 @@ class ignored COMMENT {
 
 }
 
-#check
-class WHITESPACE {
+class ignored WHITESPACE {
 
 }
 
 #check
-class COMMENT {
+class ignored COMMENT {
 
 }

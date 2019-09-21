@@ -57,14 +57,15 @@
 		<annotator
 			language="Yggdrasil"
 			implementationClass="ygg.intellij.ide.annotator.checkers.YggTableCheckerAnnotator"/>
-
 		<lang.formatter
 			language="Yggdrasil"
 			implementationClass="ygg.intellij.ide.formatter.FormatModel"/>
-		<lang.smartEnterProcessor
+<!--		<lang.smartEnterProcessor-->
+<!--			language="Yggdrasil"-->
+<!--			implementationClass="ygg.intellij.ide.assist.fixers.VomlSmartEnterProcessor"/>-->
+		<lang.findUsagesProvider
 			language="Yggdrasil"
-			implementationClass="ygg.intellij.ide.assist.fixers.VomlSmartEnterProcessor"/>
-		<usages.usageReferenceClassProvider implementation="ygg.intellij.ide.navigation.usageReferenceClassProvider"/>
+			implementationClass="ygg.intellij.ide.navigation.YggdrasilUsageProvider"/>
 	</extensions>
 	<actions>
 		<action
