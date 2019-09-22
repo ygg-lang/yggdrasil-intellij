@@ -11,14 +11,14 @@ import static ygg.intellij.language.psi.YggTypes.*;
 import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import ygg.intellij.language.psi.*;
 
-public class YggMacroCallNode extends ASTWrapperPsiElement implements YggMacroCall {
+public class YggNamepathNode extends ASTWrapperPsiElement implements YggNamepath {
 
-  public YggMacroCallNode(@NotNull ASTNode node) {
+  public YggNamepathNode(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull YggVisitor visitor) {
-    visitor.visitMacroCall(this);
+    visitor.visitNamepath(this);
   }
 
   @Override
@@ -29,14 +29,8 @@ public class YggMacroCallNode extends ASTWrapperPsiElement implements YggMacroCa
 
   @Override
   @NotNull
-  public YggIdentifier getIdentifier() {
-    return findNotNullChildByClass(YggIdentifier.class);
-  }
-
-  @Override
-  @Nullable
-  public YggParenthesis getParenthesis() {
-    return findChildByClass(YggParenthesis.class);
+  public List<YggIdentifier> getIdentifierList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, YggIdentifier.class);
   }
 
 }

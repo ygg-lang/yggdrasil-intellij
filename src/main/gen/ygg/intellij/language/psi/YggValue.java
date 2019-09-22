@@ -11,7 +11,7 @@ public interface YggValue extends PsiElement {
   YggCharset getCharset();
 
   @Nullable
-  YggNamespace getNamespace();
+  YggNamepath getNamepath();
 
   @Nullable
   YggNumberSuffix getNumberSuffix();

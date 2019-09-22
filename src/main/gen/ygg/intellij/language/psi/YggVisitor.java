@@ -23,6 +23,10 @@ public class YggVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitClimbStatement(@NotNull YggClimbStatement o) {
+    visitPsiElement(o);
+  }
+
   public void visitCommentDoc(@NotNull YggCommentDoc o) {
     visitPsiElement(o);
   }
@@ -103,7 +107,7 @@ public class YggVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitNamespace(@NotNull YggNamespace o) {
+  public void visitNamepath(@NotNull YggNamepath o) {
     visitPsiElement(o);
   }
 

@@ -13,7 +13,7 @@ public interface YggUnionStatement extends PsiElement {
   @NotNull
   YggModifiers getModifiers();
 
-  @Nullable
+  @NotNull
   YggRuleBody getRuleBody();
 
   @Nullable

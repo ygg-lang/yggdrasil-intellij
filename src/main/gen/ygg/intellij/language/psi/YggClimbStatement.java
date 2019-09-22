@@ -5,12 +5,18 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface YggMacroCall extends PsiElement {
+public interface YggClimbStatement extends PsiElement {
 
   @NotNull
   YggIdentifier getIdentifier();
 
+  @NotNull
+  YggModifiers getModifiers();
+
+  @NotNull
+  YggRuleBody getRuleBody();
+
   @Nullable
-  YggParenthesis getParenthesis();
+  YggRuleType getRuleType();
 
 }

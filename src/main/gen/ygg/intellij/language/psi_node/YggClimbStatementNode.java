@@ -8,29 +8,23 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static ygg.intellij.language.psi.YggTypes.*;
-import ygg.intellij.language.mixin.MixinDefineStatement;
+import com.intellij.extapi.psi.ASTWrapperPsiElement;
 import ygg.intellij.language.psi.*;
 
-public class YggDefineStatementNode extends MixinDefineStatement implements YggDefineStatement {
+public class YggClimbStatementNode extends ASTWrapperPsiElement implements YggClimbStatement {
 
-  public YggDefineStatementNode(@NotNull ASTNode node) {
+  public YggClimbStatementNode(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull YggVisitor visitor) {
-    visitor.visitDefineStatement(this);
+    visitor.visitClimbStatement(this);
   }
 
   @Override
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof YggVisitor) accept((YggVisitor)visitor);
     else super.accept(visitor);
-  }
-
-  @Override
-  @NotNull
-  public YggDefineParameters getDefineParameters() {
-    return findNotNullChildByClass(YggDefineParameters.class);
   }
 
   @Override

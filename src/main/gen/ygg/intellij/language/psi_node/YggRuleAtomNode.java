@@ -53,8 +53,8 @@ public class YggRuleAtomNode extends ASTWrapperPsiElement implements YggRuleAtom
 
   @Override
   @Nullable
-  public YggNamespace getNamespace() {
-    return findChildByClass(YggNamespace.class);
+  public YggNamepath getNamepath() {
+    return findChildByClass(YggNamepath.class);
   }
 
   @Override

@@ -5,12 +5,9 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface YggMacroCall extends PsiElement {
+public interface YggNamepath extends PsiElement {
 
   @NotNull
-  YggIdentifier getIdentifier();
-
-  @Nullable
-  YggParenthesis getParenthesis();
+  List<YggIdentifier> getIdentifierList();
 
 }

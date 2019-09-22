@@ -40,9 +40,9 @@ public class YggUnionStatementNode extends MixinUnionStatement implements YggUni
   }
 
   @Override
-  @Nullable
+  @NotNull
   public YggRuleBody getRuleBody() {
-    return findChildByClass(YggRuleBody.class);
+    return findNotNullChildByClass(YggRuleBody.class);
   }
 
   @Override

@@ -63,6 +63,7 @@ private statements ::=
     | macro_call
     | class_statement
     | union_statement
+    | climb_statement
     | define_statement
     | SEMICOLON;
 // ---------------------------------------------------------------------------------------------------------------------
@@ -90,9 +91,9 @@ macro_statement ::= AT SYMBOL <<parenthesis macro_arg COMMA>>;
 macro_arg ::= value | macro_statement;
 // =====================================================================================================================
 // def modifiers rule
-class_statement ::= KW_CLASS modifiers identifier [rule_type] rule_body {
-    pin = identifier
-    recoverWhile = end_brace
+class_statement ::= modifiers KW_CLASS identifier [rule_type] rule_body {
+//    pin = identifier
+//    recoverWhile = end_brace
     mixin = "ygg.intellij.language.mixin.MixinClassStatement"
 };
 rule_body     ::= BRACE_L [CHOOSE] [rule_expr] BRACE_R {
@@ -100,15 +101,21 @@ rule_body     ::= BRACE_L [CHOOSE] [rule_expr] BRACE_R {
 }
 rule_type     ::= (COLON | ARROW) identifier;
 // =====================================================================================================================
-union_statement ::= KW_UNION modifiers identifier [rule_type] rule_body {
-    pin = identifier
-    recoverWhile = end_brace
+union_statement ::= modifiers KW_UNION identifier [rule_type] rule_body {
+//    pin = identifier
+//    recoverWhile = end_brace
     mixin = "ygg.intellij.language.mixin.MixinUnionStatement"
 };
 // =====================================================================================================================
-define_statement ::= KW_DEFINE modifiers identifier define_parameters [rule_type] rule_body {
-    pin = identifier
-    recoverWhile = end_brace
+climb_statement ::= modifiers KW_CLIMB identifier [rule_type] rule_body {
+//    pin = identifier
+//    recoverWhile = end_brace
+//    mixin = "ygg.intellij.language.mixin.MixinUnionStatement"
+};
+// =====================================================================================================================
+define_statement ::= modifiers KW_DEFINE identifier define_parameters [rule_type] rule_body {
+//    pin = identifier
+//    recoverWhile = end_brace
     mixin = "ygg.intellij.language.mixin.MixinDefineStatement"
 };
 define_parameters ::= PARENTHESIS_L [define_pair (COMMA define_pair)* COMMA?] PARENTHESIS_R;
@@ -118,9 +125,9 @@ rule_expr ::= rule_term (infix rule_term | rule_term)*;
 rule_term ::= (prefix)* rule_atom (suffix| range)*
 rule_atom ::=
     PARENTHESIS_L [CHOOSE] rule_expr PARENTHESIS_R | field_mark | branch_mark | function_call |
-    num | string_literal | namespace | charset;
+    num | string_literal | namepath | charset;
 infix ::= CHOOSE | SOFT_CONNECT;
-prefix ::= ACCENT;
+prefix ::= ACCENT | NOT;
 suffix ::= OPTIONAL | MANY | MANY1;
 // =====================================================================================================================
 range ::= '{' range_start? ','? range_end? '}';
@@ -137,9 +144,9 @@ expr ::= term (infix term | term)*;
 term ::= (prefix)* atom (suffix)*
 atom ::= PARENTHESIS_L [CHOOSE] expr PARENTHESIS_R | field_mark | function_call | value;
 // ---------------------------------------------------------------------------------------------------------------------
-macro_call  ::= HASH identifier;
+macro_call  ::= HASH identifier [<<parenthesis atom COMMA>>];
 // ---------------------------------------------------------------------------------------------------------------------
-value ::= BOOLEAN | num | string_literal | table | namespace | charset;
+value ::= BOOLEAN | num | string_literal | table | namepath | charset;
 type_hint ::= identifier;
 number_suffix ::= identifier;
 charset ::= REGEX_RANGE;
@@ -164,8 +171,8 @@ object ::= BRACE_L (object_item [COMMA|SEMICOLON])* BRACE_R
 object_item ::= object_key COLON value;
 object_key ::= identifier | string_literal;
 // ---------------------------------------------------------------------------------------------------------------------
-modifiers ::= (identifier !('('|'{'|ARROW|':'))*;
-namespace ::= identifier (DOUBLE_COLON identifier)*
+modifiers  ::= identifier*;
+namepath   ::= identifier ((DOUBLE_COLON|DOT) identifier)*
 identifier ::= SYMBOL {
     mixin = "ygg.intellij.language.mixin.MixinIdentifier"
 }

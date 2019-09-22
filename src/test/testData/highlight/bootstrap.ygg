@@ -1,0 +1,156 @@
+entry class Program {
+    Statement*
+}
+
+union Statement {
+    | ClassStatement #Class
+    | UnionStatement #Union
+    | MacroStatement #Macro
+}
+// =================================================================================================
+class GrammarStatement {
+    Identifier
+}
+class KW_GRAMMAR {
+    "grammar"
+}
+// =================================================================================================
+class KW_IMPORT {
+    "import" | "using"
+}
+// =================================================================================================
+class ClassStatement {
+    Modifiers ^KW_CLASS Identifier OutType? RuleBody
+}
+class KW_CLASS {
+    "class" | "struct" | "rule"
+}
+class RuleBody {
+    '{' ('|'? RuleExpression)? '}'
+}
+// =================================================================================================
+class UnionStatement {
+    Modifiers ^KW_UNION Identifier OutType? RuleBody
+}
+#string
+class KW_UNION {
+    "union" | "enum"
+}
+class OutType {
+    "->" Namepath
+}
+// =================================================================================================
+class MacroStatement {
+    KW_MACRO
+}
+class KW_MACRO {
+    "define" | "def" | "function" | "fun" | "fn" | "macro"
+}
+// =================================================================================================
+class RuleExpression {
+
+}
+class RuleTerm {
+
+}
+// =================================================================================================
+atomic class EOS {
+    ";"
+}
+
+class ImportStatement {
+    | "import" (path:StringLiteral) ("as" id)?       #FromPath
+    | "import" (path:StringLiteral) _ImportSelected  #FromPathItems
+}
+
+class _ImportSelected {
+    '{' @join(items:ImportItem, ',')? '}'
+}
+
+class ImportItem {
+    symbol:Identifier (@insensitive("as") alias:Identifier)?
+}
+// =================================================================================================
+#rewrite
+climb Expr {
+    | x:Self xm:BranchMark? '|' y:Self ym:BranchMark?  #Choice
+    | x:Self '~' y:Self                                #ConcatSoft
+    | x:Self y:Self                                    #Concat
+    | x:Self '?'                                       #Optional
+    | x:Self '*'                                       #Repeats
+    | x:Self '+'                                       #Repeat1
+    | x:Self '{' s:Integer? ',' e:Integer? '}'         #Range
+    | '^' x:Self                                       #Remark
+    | '!' x:Self                                       #Negative
+    | '(' '|'? x:Self ')'                              #Group
+    | x:Atom                                           #Atom
+}
+// =================================================================================================
+class BranchMark {
+    '#' Identifier RightAssociate?
+}
+class RightAssociate {
+    '>'
+}
+// `_` inline a item even if it not mark as automatic inline
+union Atom {
+    | Identifier
+    | String
+    | Integer
+    | Decimal
+    | Regex
+    | MacroCall
+}
+
+#string
+class Boolean {
+    "true" | "false"
+}
+
+class Regex {
+    '/' '/'
+}
+
+class MacroCall {
+    '@' Identifier
+}
+
+
+class String {
+
+}
+// =================================================================================================
+class Integer {
+
+}
+class Decimal {
+
+}
+// =================================================================================================
+class Modifiers {
+    (!(KW_CLASS) Identifier)*
+}
+
+#string
+atomic class Identifier {
+    ("_" | XID_START) XID_CONTINUE*
+}
+
+// =================================================================================================
+ignore class Whitespace {
+
+}
+
+ignore class WhiteSpace {
+    UNICODE_WHITESPACE
+}
+
+ignore class CommentLine {
+    "//" (!\n ANY)*
+}
+
+#parser(crate::utils::comment_block)
+ignore class CommentBlock {
+
+}
+

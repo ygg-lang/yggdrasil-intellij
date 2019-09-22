@@ -48,6 +48,8 @@ KW_CLASS = class|struct|rule
 KW_UNION = union|enum
 KW_DEFINE = define|def|function|fun|fn|macro
 KW_IMPORT = import|using
+KW_CLIMB = climb|precedence
+//KW_REGEX = regex|regexp
 
 %%
 <YYINITIAL> {
@@ -61,6 +63,8 @@ KW_IMPORT = import|using
 	{KW_CLASS}   { return KW_CLASS; }
 	{KW_UNION}   { return KW_UNION; }
 	{KW_DEFINE}  { return KW_DEFINE; }
+    {KW_CLIMB}   { return KW_CLIMB; }
+
 	{KW_IMPORT}  { return KW_IMPORT; }
 }
 

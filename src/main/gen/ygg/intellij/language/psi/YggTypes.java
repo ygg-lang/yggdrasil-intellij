@@ -12,6 +12,7 @@ public interface YggTypes {
   IElementType BRANCH_MARK = new YggElementType("BRANCH_MARK");
   IElementType CHARSET = new YggElementType("CHARSET");
   IElementType CLASS_STATEMENT = new YggElementType("CLASS_STATEMENT");
+  IElementType CLIMB_STATEMENT = new YggElementType("CLIMB_STATEMENT");
   IElementType DEFINE_PAIR = new YggElementType("DEFINE_PAIR");
   IElementType DEFINE_PARAMETERS = new YggElementType("DEFINE_PARAMETERS");
   IElementType DEFINE_STATEMENT = new YggElementType("DEFINE_STATEMENT");
@@ -31,7 +32,7 @@ public interface YggTypes {
   IElementType MACRO_CALL = new YggElementType("MACRO_CALL");
   IElementType MACRO_STATEMENT = new YggElementType("MACRO_STATEMENT");
   IElementType MODIFIERS = new YggElementType("MODIFIERS");
-  IElementType NAMESPACE = new YggElementType("NAMESPACE");
+  IElementType NAMEPATH = new YggElementType("NAMEPATH");
   IElementType NUMBER_SUFFIX = new YggElementType("NUMBER_SUFFIX");
   IElementType OBJECT = new YggElementType("OBJECT");
   IElementType OBJECT_ITEM = new YggElementType("OBJECT_ITEM");
@@ -87,6 +88,7 @@ public interface YggTypes {
   IElementType HYPHEN = new YggElementType("-");
   IElementType INTEGER = new YggElementType("INTEGER");
   IElementType KW_CLASS = new YggElementType("KW_CLASS");
+  IElementType KW_CLIMB = new YggElementType("KW_CLIMB");
   IElementType KW_DEFINE = new YggElementType("KW_DEFINE");
   IElementType KW_IMPORT = new YggElementType("KW_IMPORT");
   IElementType KW_UNION = new YggElementType("KW_UNION");
@@ -121,6 +123,9 @@ public interface YggTypes {
       }
       else if (type == CLASS_STATEMENT) {
         return new YggClassStatementNode(node);
+      }
+      else if (type == CLIMB_STATEMENT) {
+        return new YggClimbStatementNode(node);
       }
       else if (type == DEFINE_PAIR) {
         return new YggDefinePairNode(node);
@@ -179,8 +184,8 @@ public interface YggTypes {
       else if (type == MODIFIERS) {
         return new YggModifiersNode(node);
       }
-      else if (type == NAMESPACE) {
-        return new YggNamespaceNode(node);
+      else if (type == NAMEPATH) {
+        return new YggNamepathNode(node);
       }
       else if (type == NUMBER_SUFFIX) {
         return new YggNumberSuffixNode(node);

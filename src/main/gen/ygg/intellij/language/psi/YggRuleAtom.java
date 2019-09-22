@@ -20,7 +20,7 @@ public interface YggRuleAtom extends PsiElement {
   YggFunctionCall getFunctionCall();
 
   @Nullable
-  YggNamespace getNamespace();
+  YggNamepath getNamepath();
 
   @Nullable
   YggNumberSuffix getNumberSuffix();

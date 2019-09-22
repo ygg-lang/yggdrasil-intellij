@@ -40,9 +40,9 @@ public class YggClassStatementNode extends MixinClassStatement implements YggCla
   }
 
   @Override
-  @Nullable
+  @NotNull
   public YggRuleBody getRuleBody() {
-    return findChildByClass(YggRuleBody.class);
+    return findNotNullChildByClass(YggRuleBody.class);
   }
 
   @Override
