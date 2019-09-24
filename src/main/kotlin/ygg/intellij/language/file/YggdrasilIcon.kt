@@ -6,14 +6,15 @@ import com.intellij.openapi.util.IconLoader
 import com.intellij.psi.PsiElement
 import javax.swing.Icon
 
-class YggdrasilIcon : IconProvider() {
+object YggdrasilIcon : IconProvider() {
+    val FILE = IconLoader.getIcon("/icons/fileIcon.svg", YggdrasilIcon::class.java)
+    val CONSTANT = AllIcons.Nodes.Constant
+    val KEYWORD = AllIcons.Nodes.Bookmark
+    val Class = AllIcons.Nodes.Class
+    val Union = AllIcons.Nodes.Enum
+    val Macro = AllIcons.Nodes.Method
+
     override fun getIcon(element: PsiElement, flags: Int): Icon? {
         return null
-    }
-
-    companion object {
-        val FILE = IconLoader.getIcon("/icons/fileIcon.svg", YggdrasilIcon::class.java)
-        val CONSTANT = AllIcons.Nodes.Constant
-        val KEYWORD = AllIcons.Nodes.Bookmark
     }
 }

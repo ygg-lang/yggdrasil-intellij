@@ -6,23 +6,64 @@ import com.intellij.codeInsight.completion.CompletionResultSet
 import com.intellij.codeInsight.completion.InsertionContext
 import com.intellij.codeInsight.lookup.LookupElementBuilder
 import com.intellij.openapi.editor.EditorModificationUtil
+import com.intellij.psi.PsiElement
 import com.intellij.util.ProcessingContext
+import ygg.intellij.language.file.YggdrasilFileNode
 import ygg.intellij.language.file.YggdrasilIcon
+import ygg.intellij.language.psi_node.YggClassStatementNode
+import ygg.intellij.language.psi_node.YggClimbStatementNode
+import ygg.intellij.language.psi_node.YggDefineStatementNode
+import ygg.intellij.language.psi_node.YggUnionStatementNode
 
-class SymbolCompletionProvider : CompletionProvider<CompletionParameters>() {
+class BodyCompletionProvider : CompletionProvider<CompletionParameters>() {
     override fun addCompletions(
         parameters: CompletionParameters,
         context: ProcessingContext,
         resultSet: CompletionResultSet,
     ) {
-        resultSet.addElement(LookupElementBuilder.create("struct").withInsertHandler { ctx, _ ->
-            EditorModificationUtil.moveCaretRelatively(ctx.editor, -1)
-        })
+        val file = parameters.originalFile as YggdrasilFileNode;
+        resultSet.addDeclare(file.children)
         resultSet.addKeywords("Any", "Self")
         resultSet.addKeywords("true", "false")
         resultSet.addConstants("ASCII_BIN", "ASCII_OCT", "ASCII_DEC", "ASCII_HEX")
         resultSet.addConstants("XID_START", "XID_CONTINUE")
         resultSet.addConstants("EMOJI")
+    }
+}
+
+private fun CompletionResultSet.addDeclare(set: Array<PsiElement>) {
+    for (psi in set) {
+        when (psi) {
+            is YggClassStatementNode -> {
+                val e = LookupElementBuilder.create(psi.name)
+                    .withCaseSensitivity(false)
+                    .withIcon(YggdrasilIcon.Class)
+                    .withPresentableText(psi.name)
+                    .withTypeText("class", true)
+                    .withInsertHandler { context, _ -> textReplacer(context, psi.name, 0) }
+                this.addElement(e)
+            }
+
+            is YggUnionStatementNode -> {
+                val e = LookupElementBuilder.create(psi.name)
+                    .withCaseSensitivity(false)
+                    .withIcon(YggdrasilIcon.Union)
+                    .withPresentableText(psi.name)
+                    .withTypeText("union", true)
+                    .withInsertHandler { context, _ -> textReplacer(context, psi.name, 0) }
+                this.addElement(e)
+            }
+
+            is YggDefineStatementNode -> {
+                val e = LookupElementBuilder.create(psi.name)
+                    .withCaseSensitivity(false)
+                    .withIcon(YggdrasilIcon.Macro)
+                    .withPresentableText(psi.name)
+                    .withTypeText("macro", true)
+                    .withInsertHandler { context, _ -> textReplacer(context, psi.name, 0) }
+                this.addElement(e)
+            }
+        }
     }
 }
 

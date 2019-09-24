@@ -26,7 +26,7 @@ class KW_CLASS {
     "class" | "struct" | "rule"
 }
 class RuleBody {
-    '{' ('|'? RuleExpression)? '}'
+    '{' ('|'? Expr)? '}'
 }
 // =================================================================================================
 class UnionStatement {
@@ -36,6 +36,7 @@ class UnionStatement {
 class KW_UNION {
     "union" | "enum"
 }
+
 class OutType {
     "->" Namepath
 }
@@ -47,19 +48,12 @@ class KW_MACRO {
     "define" | "def" | "function" | "fun" | "fn" | "macro"
 }
 // =================================================================================================
-class RuleExpression {
-
-}
-class RuleTerm {
-
-}
-// =================================================================================================
 atomic class EOS {
     ";"
 }
 
 class ImportStatement {
-    | "import" (path:StringLiteral) ("as" id)?       #FromPath
+    | "import" (path:StringLiteral) ("as" Identifier)?       #FromPath
     | "import" (path:StringLiteral) _ImportSelected  #FromPathItems
 }
 
@@ -68,7 +62,7 @@ class _ImportSelected {
 }
 
 class ImportItem {
-    symbol:Identifier (@insensitive("as") alias:Identifier)?
+    symbol:Identifier ("as" alias:Identifier)?
 }
 // =================================================================================================
 #rewrite
@@ -115,7 +109,6 @@ class MacroCall {
     '@' Identifier
 }
 
-
 class String {
 
 }
@@ -130,7 +123,9 @@ class Decimal {
 class Modifiers {
     (!(KW_CLASS) Identifier)*
 }
-
+class Namepath {
+    Identifier (("::"|".") Identifier)*
+}
 #string
 atomic class Identifier {
     ("_" | XID_START) XID_CONTINUE*
