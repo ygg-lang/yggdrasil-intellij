@@ -41,6 +41,10 @@ class OutType {
     "->" Namepath
 }
 // =================================================================================================
+class KW_CLIMB {
+    "climb"
+}
+// =================================================================================================
 class MacroStatement {
     KW_MACRO
 }
@@ -121,10 +125,10 @@ class Decimal {
 }
 // =================================================================================================
 class Modifiers {
-    (!(KW_CLASS) Identifier)*
+    (!(KW_CLASS|KW_UNION|KW_MACRO|KW_CLIMB) Identifier)*
 }
 class Namepath {
-    Identifier (("::"|".") Identifier)*
+    Identifier (("::" | ".") Identifier)*
 }
 #string
 atomic class Identifier {
@@ -132,16 +136,15 @@ atomic class Identifier {
 }
 
 // =================================================================================================
-ignore class Whitespace {
-
-}
-
 ignore class WhiteSpace {
     UNICODE_WHITESPACE
 }
 
-ignore class CommentLine {
-    "//" (!\n ANY)*
+ignore atomic class CommentLine {
+    (!"///" "//") (!\n ANY)*
+}
+atomic class CommentDocument {
+    "///" (!\n ANY)*
 }
 
 #parser(crate::utils::comment_block)
