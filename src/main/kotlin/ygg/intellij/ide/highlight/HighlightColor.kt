@@ -46,7 +46,7 @@ enum class HighlightColor(
     SYM_MODIFIER(keyof("color.symbol.modifier"), Default.KEYWORD),
     SYM_MACRO(keyof("color.symbol.macro"), Default.METADATA),
     SYM_CLASS(keyof("color.symbol.class"), Default.CLASS_NAME),
-    SYM_UNION(keyof("color.symbol.union"), Default.INTERFACE_NAME),
+    SYM_UNION(keyof("color.symbol.union"), Default.CLASS_NAME),
     SYM_KEY(keyof("color.symbol.builtin"), Default.STATIC_FIELD),
 
     // 标点符号

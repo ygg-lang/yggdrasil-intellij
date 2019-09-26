@@ -110,7 +110,7 @@ union_statement ::= modifiers KW_UNION identifier [rule_type] rule_body {
 climb_statement ::= modifiers KW_CLIMB identifier [rule_type] rule_body {
 //    pin = identifier
 //    recoverWhile = end_brace
-//    mixin = "ygg.intellij.language.mixin.MixinUnionStatement"
+    mixin = "ygg.intellij.language.mixin.MixinClimbStatement"
 };
 // =====================================================================================================================
 define_statement ::= modifiers KW_DEFINE identifier define_parameters [rule_type] rule_body {

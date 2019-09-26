@@ -140,11 +140,7 @@ public class YggParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // modifiers KW_CLIMB identifier [rule_type] rule_body {
-  // //    pin = identifier
-  // //    recoverWhile = end_brace
-  // //    mixin = "ygg.intellij.language.mixin.MixinUnionStatement"
-  // }
+  // modifiers KW_CLIMB identifier [rule_type] rule_body
   public static boolean climb_statement(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "climb_statement")) return false;
     if (!nextTokenIs(b, "<climb statement>", KW_CLIMB, SYMBOL)) return false;
@@ -155,7 +151,6 @@ public class YggParser implements PsiParser, LightPsiParser {
     r = r && identifier(b, l + 1);
     r = r && climb_statement_3(b, l + 1);
     r = r && rule_body(b, l + 1);
-    r = r && climb_statement_5(b, l + 1);
     exit_section_(b, l, m, r, false, null);
     return r;
   }
@@ -164,15 +159,6 @@ public class YggParser implements PsiParser, LightPsiParser {
   private static boolean climb_statement_3(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "climb_statement_3")) return false;
     rule_type(b, l + 1);
-    return true;
-  }
-
-  // {
-  // //    pin = identifier
-  // //    recoverWhile = end_brace
-  // //    mixin = "ygg.intellij.language.mixin.MixinUnionStatement"
-  // }
-  private static boolean climb_statement_5(PsiBuilder b, int l) {
     return true;
   }
 
@@ -1230,9 +1216,9 @@ public class YggParser implements PsiParser, LightPsiParser {
   //     | import_statement
   //     | macro_statement
   //     | macro_call
+  //     | class_statement
   //     | union_statement
   //     | climb_statement
-  //     | class_statement
   //     | define_statement
   //     | SEMICOLON
   static boolean statements(PsiBuilder b, int l) {
@@ -1244,9 +1230,9 @@ public class YggParser implements PsiParser, LightPsiParser {
     if (!r) r = import_statement(b, l + 1);
     if (!r) r = macro_statement(b, l + 1);
     if (!r) r = macro_call(b, l + 1);
+    if (!r) r = class_statement(b, l + 1);
     if (!r) r = union_statement(b, l + 1);
     if (!r) r = climb_statement(b, l + 1);
-    if (!r) r = class_statement(b, l + 1);
     if (!r) r = define_statement(b, l + 1);
     if (!r) r = consumeToken(b, SEMICOLON);
     exit_section_(b, m, null, r);

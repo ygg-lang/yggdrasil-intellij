@@ -124,11 +124,11 @@ KW_CLIMB = climb|precedence
 	return ESCAPE_UNICODE;
 }
 <StringSQ> {
-	[^\\\'] {return CHARACTER;}
+	[^\\\']+ {return CHARACTER;}
 	\' {yybegin(YYINITIAL);return STRING_SQ;}
 }
 <StringDQ> {
-	[^\\\"] {return CHARACTER;}
+	[^\\\"]+ {return CHARACTER;}
 	\" {yybegin(YYINITIAL);return STRING_DQ;}
 }
 // Regex Mode ==========================================================================================================

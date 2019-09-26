@@ -57,6 +57,9 @@
 		<annotator
 			language="Yggdrasil"
 			implementationClass="ygg.intellij.ide.annotator.checkers.YggTableCheckerAnnotator"/>
+		<languageInjectionContributor
+			language="Yggdrasil"
+			implementationClass="ygg.intellij.ide.annotator.YggdrasilInjection"/>
 		<lang.formatter
 			language="Yggdrasil"
 			implementationClass="ygg.intellij.ide.formatter.FormatModel"/>

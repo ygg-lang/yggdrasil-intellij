@@ -51,6 +51,10 @@ class HighlightAST : YggVisitor(), HighlightVisitor {
         highlight(o.identifier, HighlightColor.SYM_UNION)
     }
 
+    override fun visitClimbStatement(o: YggClimbStatement) {
+        highlight(o.identifier, HighlightColor.SYM_UNION)
+    }
+
     override fun visitDefineStatement(o: YggDefineStatement) {
         o as YggDefineStatementNode
         highlight(o.identifier, HighlightColor.SYM_FUNCTION)

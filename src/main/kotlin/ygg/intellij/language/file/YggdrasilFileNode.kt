@@ -7,6 +7,7 @@ import com.intellij.psi.FileViewProvider
 import com.intellij.psi.PsiElement
 import ygg.intellij.language.YggdrasilLanguage
 import ygg.intellij.language.psi_node.YggClassStatementNode
+import ygg.intellij.language.psi_node.YggClimbStatementNode
 import ygg.intellij.language.psi_node.YggDefineStatementNode
 import ygg.intellij.language.psi_node.YggUnionStatementNode
 import javax.swing.Icon
@@ -29,6 +30,7 @@ class YggdrasilFileNode(viewProvider: FileViewProvider) : PsiFileBase(viewProvid
                 when (child) {
                     is YggClassStatementNode -> result[child.name] = child
                     is YggUnionStatementNode -> result[child.name] = child
+                    is YggClimbStatementNode -> result[child.name] = child
                     is YggDefineStatementNode -> result[child.name] = child
                 }
             }

@@ -4,12 +4,13 @@ import com.intellij.lang.cacheBuilder.WordsScanner
 import com.intellij.lang.findUsages.FindUsagesProvider
 import com.intellij.psi.PsiElement
 import ygg.intellij.language.psi_node.YggClassStatementNode
+import ygg.intellij.language.psi_node.YggClimbStatementNode
 import ygg.intellij.language.psi_node.YggUnionStatementNode
 
 class YggdrasilUsageProvider : FindUsagesProvider {
     override fun canFindUsagesFor(psiElement: PsiElement): Boolean {
         return when (psiElement) {
-            is YggClassStatementNode, is YggUnionStatementNode -> true
+            is YggClassStatementNode, is YggUnionStatementNode, is YggClimbStatementNode -> true
             else -> {
                 println("canFindUsagesFor($psiElement)")
                 false
@@ -25,6 +26,7 @@ class YggdrasilUsageProvider : FindUsagesProvider {
         return when (element) {
             is YggClassStatementNode -> "class"
             is YggUnionStatementNode -> "union"
+            is YggClimbStatementNode -> "climb"
             else -> {
                 println("getType($element)")
                 ""

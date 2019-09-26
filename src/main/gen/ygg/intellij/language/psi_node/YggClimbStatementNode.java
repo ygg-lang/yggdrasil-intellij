@@ -8,10 +8,10 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static ygg.intellij.language.psi.YggTypes.*;
-import com.intellij.extapi.psi.ASTWrapperPsiElement;
+import ygg.intellij.language.mixin.MixinClimbStatement;
 import ygg.intellij.language.psi.*;
 
-public class YggClimbStatementNode extends ASTWrapperPsiElement implements YggClimbStatement {
+public class YggClimbStatementNode extends MixinClimbStatement implements YggClimbStatement {
 
   public YggClimbStatementNode(@NotNull ASTNode node) {
     super(node);

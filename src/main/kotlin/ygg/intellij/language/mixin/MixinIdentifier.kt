@@ -2,13 +2,9 @@ package ygg.intellij.language.mixin
 
 import com.intellij.extapi.psi.ASTWrapperPsiElement
 import com.intellij.lang.ASTNode
-import com.intellij.model.psi.PsiSymbolDeclaration
-import com.intellij.model.psi.PsiSymbolReference
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiReference
-import com.intellij.psi.search.SearchScope
 import ygg.intellij.language.file.YggdrasilFileNode
-import ygg.intellij.language.psi.YggIdentifier
 import ygg.intellij.language.psi.YggdrasilSymbol
 import ygg.intellij.language.psi.ancestors
 import ygg.intellij.language.psi_node.*
@@ -23,7 +19,7 @@ open class MixinIdentifier(node: ASTNode) : ASTWrapperPsiElement(node) {
     override fun getContext(): PsiElement? {
         for (node in this.ancestors) {
             when (node) {
-                is YggClassStatementNode, is YggUnionStatementNode, is YggDefineStatementNode -> {
+                is YggClassStatementNode, is YggUnionStatementNode, is YggClimbStatementNode, is YggDefineStatementNode -> {
                     return node
                 }
             }
@@ -40,7 +36,7 @@ open class MixinIdentifier(node: ASTNode) : ASTWrapperPsiElement(node) {
             return YggdrasilSymbol(this, this.context)
         }
         return when (parent) {
-            is YggClassStatementNode, is YggUnionStatementNode, is YggDefineStatementNode -> null
+            is YggClassStatementNode, is YggUnionStatementNode, is YggClimbStatementNode, is YggDefineStatementNode -> null
             is YggBranchMarkNode -> null;
             else -> YggdrasilSymbol(this, containingFile.definitions[name])
         }
