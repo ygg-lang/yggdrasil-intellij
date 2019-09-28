@@ -134,7 +134,7 @@ range ::= '{' range_start? ','? range_end? '}';
 range_start ::= num;
 range_end ::= num;
 // ---------------------------------------------------------------------------------------------------------------------
-branch_mark ::= HASH identifier;
+branch_mark ::= HASH identifier ANGLE_R?;
 field_mark ::= identifier COLON field_rhs;
 field_rhs  ::= identifier | charset | string_literal;
 // ---------------------------------------------------------------------------------------------------------------------

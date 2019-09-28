@@ -82,7 +82,7 @@ public class YggParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // HASH identifier
+  // HASH identifier ANGLE_R?
   public static boolean branch_mark(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "branch_mark")) return false;
     if (!nextTokenIs(b, HASH)) return false;
@@ -90,8 +90,16 @@ public class YggParser implements PsiParser, LightPsiParser {
     Marker m = enter_section_(b);
     r = consumeToken(b, HASH);
     r = r && identifier(b, l + 1);
+    r = r && branch_mark_2(b, l + 1);
     exit_section_(b, m, BRANCH_MARK, r);
     return r;
+  }
+
+  // ANGLE_R?
+  private static boolean branch_mark_2(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "branch_mark_2")) return false;
+    consumeToken(b, ANGLE_R);
+    return true;
   }
 
   /* ********************************************************** */

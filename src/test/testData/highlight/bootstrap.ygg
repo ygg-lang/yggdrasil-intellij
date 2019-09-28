@@ -71,17 +71,17 @@ class ImportItem {
 // =================================================================================================
 #rewrite
 climb Expr {
-    | x:Self xm:BranchMark? '|' y:Self ym:BranchMark?  #Choice
-    | x:Self '~' y:Self                                #ConcatSoft
-    | x:Self y:Self                                    #Concat
-    | x:Self '?'                                       #Optional
-    | x:Self '*'                                       #Repeats
-    | x:Self '+'                                       #Repeat1
-    | x:Self '{' s:Integer? ',' e:Integer? '}'         #Range
-    | '^' x:Self                                       #Remark
-    | '!' x:Self                                       #Negative
+    | Atom                                             #Atom
     | '(' '|'? x:Self ')'                              #Group
-    | x:Atom                                           #Atom
+    | '!' x:Self                                       #Negative
+    | '^' x:Self                                       #Remark
+    | x:Self '{' s:Integer? ',' e:Integer? '}'         #Range
+    | x:Self '+'                                       #Repeat1
+    | x:Self '*'                                       #Repeats
+    | x:Self '?'                                       #Optional
+    | x:Self y:Self                                    #Concat
+    | x:Self '~' y:Self                                #ConcatSoft
+    | x:Self xm:BranchMark? '|' y:Self ym:BranchMark?  #Choice
 }
 // =================================================================================================
 class BranchMark {
