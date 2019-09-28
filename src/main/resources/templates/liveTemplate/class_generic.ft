@@ -1,0 +1,10 @@
+#derive(Default, Debug, Serde)
+class $Class$⟨$Generic$⟩ {
+    $fields$
+}
+generic $Generic$ {
+
+}
+extends $Class$⟨$Generic$⟩ {
+    $functions$
+}

@@ -2,18 +2,19 @@
 charset = utf-8
 end_of_line = lf
 
-[*.java]
-charset = GBK
+[*.{kt,kts}]
 indent_style = space
+indent_size = 4
+max_line_length = 144
 
-[*.bnf]
+[*.{json,json5,proto}]
 indent_style = space
 indent_size = 4
 
-[*.xml]
+[*.{bnf,flex,toml}]
+indent_style = space
+indent_size = 4
+
+[*.{xml,yaml}]
 indent_style = tab
-indent_size = 4
-
-[*.{ygg, json, json5}]
-indent_style = space
 indent_size = 4

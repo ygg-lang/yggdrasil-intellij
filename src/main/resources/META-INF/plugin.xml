@@ -1,83 +1,167 @@
 <idea-plugin>
-	<id>Yggdrasil</id>
-	<name>Yggdrasil Support</name>
-	<vendor>Yggdrasil</vendor>
+	<id>Valkyrie</id>
+	<name>Valkyrie Language</name>
+	<vendor>voml</vendor>
 	<depends>com.intellij.modules.platform</depends>
-	<!--	<depends optional="true" config-file="plugin-with-rust.xml">org.rust.lang</depends>-->
-	<resource-bundle>messages.YggBundle</resource-bundle>
+	<depends optional="true" config-file="plugin-with-rust.xml">com.jetbrains.rust</depends>
+	<depends optional="true" config-file="plugin-with-markdown.xml">org.intellij.plugins.markdown</depends>
+	<resource-bundle>messages.NexusBundle</resource-bundle>
 	<extensions defaultExtensionNs="com.intellij">
 		<fileType
-			name="Yggdrasil"
-			language="Yggdrasil"
-			extensions="ygg"
-			implementationClass="ygg.intellij.language.file.YggdrasilFileType"
+			name="Nexus"
+			language="Nexus"
+			extensions="ne;nexus;"
+			implementationClass="nexus.language.file.NexusFileType"
 			fieldName="INSTANCE"/>
 		<lang.parserDefinition
-			language="Yggdrasil"
-			implementationClass="ygg.intellij.language.YggParserDefinition"/>
-		<!-- Highlighter -->
-		<colorSettingsPage implementation="ygg.intellij.ide.highlight.HighlightSettingPage"/>
+			language="Nexus"
+			implementationClass="nexus.antlr.NexusParserDefinition"/>
+		<multiHostInjector implementation="valkyrie.ide.matcher.LanguageInjector"/>
+		<!-- Project -->
+		<projectNameProvider implementation="valkyrie.ide.project.ValkyrieProjectName"/>
+		<primaryModuleManager implementation="valkyrie.ide.project.ValkyriePrimaryPackage"/>
+		<vfs.asyncListener implementation="valkyrie.ide.project.crate.CrateUpdateListener"/>
+		<!-- Project Library -->
+		<packageDependencies.visitor
+			language="Nexus"
+			implementationClass="valkyrie.ide.project.ValkyrieDependencyResolver"/>
+		<additionalLibraryRootsProvider implementation="valkyrie.ide.project.library.LibraryRootsProvider"/>
+		<!-- Project Namespace -->
+		<iconProvider implementation="nexus.language.file.NexusIconProvider"/>
+		<projectViewNestingRulesProvider implementation="nexus.language.file.NexusFileGroup"/>
+		<treeStructureProvider implementation="valkyrie.ide.view.VStructureProvider"/>
+		<!--		<lang.structureViewExtension implementation="valkyrie.ide.view.VStructureViewExtension"/>-->
+		<lang.psiStructureViewFactory
+			language="Nexus"
+			implementationClass="valkyrie.ide.view.ValkyrieStructureView"/>
+		<typeHierarchyProvider
+			language="Nexus"
+			implementationClass="valkyrie.ide.view.hierarchy.TypeHierarchyProvider"/>
+		<methodHierarchyProvider
+			language="Nexus"
+			implementationClass="valkyrie.ide.view.hierarchy.MethodHierarchyProvider"/>
+		<callHierarchyProvider
+			language="Nexus"
+			implementationClass="valkyrie.ide.view.hierarchy.CallHierarchyProvider"/>
+		<!-- Highlight -->
+		<colorSettingsPage implementation="valkyrie.ide.highlight.HighlightSetting"/>
+		<highlightVisitor implementation="valkyrie.ide.highlight.NexusHighlighterVisitor"/>
 		<lang.syntaxHighlighter
-			language="Yggdrasil"
-			implementationClass="ygg.intellij.ide.highlight.HighlightToken"/>
-		<highlightVisitor implementation="ygg.intellij.ide.highlight.HighlightAST"/>
-		<additionalTextAttributes scheme="Default" file="colors/VomlDefault.xml"/>
-		<additionalTextAttributes scheme="Darcula" file="colors/VomlDarcula.xml"/>
-		<!-- Formatter -->
-		<langCodeStyleSettingsProvider
-			implementation="ygg.intellij.ide.codeStyle.LanguageCodeStyleSettingsProvider"
+			language="Nexus"
+			implementationClass="valkyrie.ide.highlight.TokenHighlighter"
 		/>
-		<lang.commenter
-			language="Yggdrasil"
-			implementationClass="ygg.intellij.ide.completion.Commenter"/>
-		<lang.braceMatcher
-			language="Yggdrasil"
-			implementationClass="ygg.intellij.ide.braces.BraceMatcher"/>
-		<lang.quoteHandler
-			language="Yggdrasil"
-			implementationClass="ygg.intellij.ide.QuoteHandler"/>
-		<!-- Structure View -->
-		<lang.foldingBuilder
-			language="Yggdrasil"
-			implementationClass="ygg.intellij.ide.folding.FoldingBuilder"/>
-		<indexPatternBuilder
-			implementation="ygg.intellij.ide.todo.TodoIndexPatternBuilder"/>
-		<todoIndexer
-			filetype="Yggdrasil"
-			implementationClass="ygg.intellij.ide.todo.TodoIndexer"/>
-		<completion.contributor
-			language="Yggdrasil"
-			implementationClass="ygg.intellij.ide.completion.CompletionContributor"/>
-		<annotator
-			language="Yggdrasil"
-			implementationClass="ygg.intellij.ide.annotator.HighlightingAnnotator"/>
-		<annotator
-			language="Yggdrasil"
-			implementationClass="ygg.intellij.ide.annotator.checkers.YggScopeCheckerAnnotator"/>
-		<annotator
-			language="Yggdrasil"
-			implementationClass="ygg.intellij.ide.annotator.checkers.YggTableCheckerAnnotator"/>
-		<languageInjectionContributor
-			language="Yggdrasil"
-			implementationClass="ygg.intellij.ide.annotator.YggdrasilInjection"/>
-		<lang.formatter
-			language="Yggdrasil"
-			implementationClass="ygg.intellij.ide.formatter.FormatModel"/>
-<!--		<lang.smartEnterProcessor-->
-<!--			language="Yggdrasil"-->
-<!--			implementationClass="ygg.intellij.ide.assist.fixers.VomlSmartEnterProcessor"/>-->
+		<!-- Formatter -->
+		<langCodeStyleSettingsProvider implementation="valkyrie.ide.codeStyle.ValkyrieCodeStyleProvider"/>
+		<formattingService implementation="valkyrie.ide.formatter.ValkyrieNativeFormat"/>
+		<preFormatProcessor implementation="valkyrie.ide.formatter.ValkyrieBeforeFormat"/>
+		<lang.formatter language="Nexus" implementationClass="valkyrie.ide.formatter.FormatBuilder"/>
+		<postFormatProcessor implementation="valkyrie.ide.formatter.ValkyrieAfterFormat"/>
+		<lang.smartEnterProcessor language="Nexus" implementationClass="valkyrie.ide.formatter.SmartEnter"/>
+		<!-- Tests -->
+		<!--		<configurationType implementation="valkyrie.ide.runner.ValkyrieConfigurationType"/>-->
+		<runConfigurationsSettings implementation="valkyrie.ide.runner.ValkyrieRunnerSettings"/>
+		<runConfigurationProducer implementation="valkyrie.ide.runner.ValkyrieRunConfigurationProducer"/>
+		<runConfigurationTemplateProvider implementation="valkyrie.ide.runner.ValkyrieRunningTemplateProvider"/>
+		<!-- Debugger -->
+		<!--		<xdebugger.breakpointType implementation="valkyrie.ide.runner.breakpointType"/>-->
+		<!--		<xdebugger.breakpointGroupingRule implementation="valkyrie.ide.runner.breakpointGroupingRule"/>-->
+		<xdebugger.attachDebuggerProvider implementation="valkyrie.ide.runner.attachDebuggerProvider"/>
+		<xdebugger.attachHostProvider implementation="valkyrie.ide.runner.ValkyrieAttachProvider"/>
+		<xdebugger.attachHostSettingsProvider implementation="valkyrie.ide.runner.attachHostSettingsProvider"/>
+		<!-- Goto -->
+		<breadcrumbsInfoProvider implementation="valkyrie.ide.navigation.ValkyrieBreadcrumbsProvider"/>
+		<breadcrumbsPresentationProvider implementation="valkyrie.ide.navigation.ValkyrieBreadcrumbsPresentation"/>
+		<symbolNavigation
+			forClass="nexus.language.symbol.ValkyrieSymbolTemplate"
+			implementationClass="valkyrie.ide.goto.VSymbolNavigationProvider"/>
+		<codeInsight.gotoSuper language="Nexus" implementationClass="valkyrie.ide.navigation.GotoSuper"/>
+		<importFilteringRule implementation="valkyrie.ide.navigation.ValkyrieImportFilter"/>
+		<usageFilteringRuleProvider implementation="valkyrie.ide.navigation.usageFiltering"/>
+		<!--		<bookmarkProvider implementation="valkyrie.ide.goto.ValkyrieBookmark"/>-->
+		<!--		<bookmarksListProvider implementation="valkyrie.ide.goto.ValkyrieBookmarkList"/>-->
+		<!-- Hint -->
+		<codeInsight.inlayProvider
+			language="Nexus"
+			implementationClass="valkyrie.ide.hint.TypeInlayProvider"/>
+		<codeInsight.typeInfo language="Nexus" implementationClass="valkyrie.ide.hint.TypeInfoHint"/>
+		<codeInsight.parameterInfo language="Nexus" implementationClass="valkyrie.ide.hint.ParameterInfoHint"/>
+		<codeInsight.parameterInfo.listener implementation="valkyrie.ide.hint.ParameterInfoListener"/>
+		<codeInsight.parameterNameHints language="Nexus"
+		                                implementationClass="valkyrie.ide.hint.ParameterInlayProvider"/>
+		<codeInsight.lineMarkerProvider
+			language="Nexus"
+			implementationClass="valkyrie.ide.hint.ValkyrieLineMarkerProvider"/>
+		<runLineMarkerContributor
+			language="Nexus"
+			implementationClass="valkyrie.ide.runner.ValkyrieRunner"/>
+		<vcs.codeVisionLanguageContext
+			language="Nexus"
+			implementationClass="valkyrie.ide.hint.AuthorAbove"/>
+
+		<!--		<psi.fileReferenceHelper implementation="valkyrie.ide.reference.ValkyrieFileReference"/>-->
+		<psi.treeChangeListener implementation="valkyrie.ide.project.crate.ValkyrieFileListener"/>
+		<psi.referenceContributor
+			language="Nexus"
+			implementation="valkyrie.ide.reference.ValkyrieReferenceContributor"/>
+		<!--		<psi.referenceProvider language="Valkyrie" providerClass="valkyrie.ide.reference.ValkyrieReferenceProvider"/>-->
+		<!--		<psi.symbolReferenceProvider-->
+		<!--			anyReferenceClass="true"-->
+		<!--			implementationClass="valkyrie.ide.reference.ValkyrieReferenceProvider"-->
+		<!--			hostLanguage="Valkyrie"-->
+		<!--			hostElementClass="com.intellij.psi.xml.XmlAttributeValue"-->
+		<!--			targetClass="valkyrie.language.symbol.ValkyrieSymbolTemplate"/>-->
+		<!-- Lint -->
+		<lang.namesValidator language="Nexus" implementationClass="valkyrie.ide.lint.ValkyrieNameValidator"/>
+		<qualifiedNameProvider implementation="valkyrie.ide.lint.ValkyrieNameQualifier"/>
+		<annotator language="Nexus" implementationClass="valkyrie.ide.annotator.NamepathChecker"/>
+		<annotator language="Nexus" implementationClass="valkyrie.ide.annotator.MarkImplicitTypes"/>
+		<annotator language="Nexus" implementationClass="valkyrie.ide.annotator.MarkLegacyExpression"/>
+		<!-- Declaration -->
+		<findUsagesHandlerFactory implementation="valkyrie.ide.usages.ValkyrieUsagesFactory"/>
 		<lang.findUsagesProvider
-			language="Yggdrasil"
-			implementationClass="ygg.intellij.ide.navigation.YggdrasilUsageProvider"/>
+			language="Nexus"
+			implementationClass="valkyrie.ide.usages.ValkyrieUsagesProvider"/>
+		<!-- Completion -->
+		<typedHandler implementation="valkyrie.ide.completion.AutoInsertBrace"/>
+		<backspaceHandlerDelegate implementation="valkyrie.ide.completion.AutoDeleteBrace"/>
+		<!--		<lookup.charFilter implementation="valkyrie.ide.completion.CompletionInterrupter"/>-->
+		<lang.commenter language="Nexus" implementationClass="valkyrie.ide.formatter.ValkyrieCommenter"/>
+		<lang.braceMatcher
+			language="Nexus"
+			implementationClass="valkyrie.ide.matcher.BraceMatchAdapter"/>
+		<lang.quoteHandler
+			language="Nexus"
+			implementationClass="valkyrie.ide.matcher.ValkyrieQuoteHandler"/>
+		<codeCompletionConfigurable instance="valkyrie.ide.completion.CompletionConfig"/>
+		<completion.contributor
+			language="Nexus"
+			implementationClass="valkyrie.ide.completion.CompletionRegistrar"/>
+		<nameSuggestionProvider implementation="valkyrie.ide.completion.CompletionSuggestion"/>
+		<lang.foldingBuilder
+			language="Nexus"
+			implementationClass="valkyrie.ide.folding.ValkyrieFoldingBuilder"/>
+		<codeBlockProvider language="Nexus" implementationClass="valkyrie.ide.matcher.ValkyrieCodeBlockProvider"/>
+		<codeFoldingOptionsProvider instance="valkyrie.ide.folding.ValkyrieFoldingOptions"/>
+		<referenceImporter implementation="valkyrie.ide.completion.ValkyrieImportInsert"/>
+		<lang.importOptimizer
+			language="Nexus"
+			implementationClass="valkyrie.ide.completion.ValkyrieImportOptimizer"/>
+		<!-- Document -->
+		<lang.documentationProvider
+			language="Nexus"
+			implementationClass="valkyrie.ide.doc.DocumentationProvider"/>
 	</extensions>
 	<actions>
-		<action
-			id="ygg.intellij.ide.actions.CreateFile"
-			class="ygg.intellij.ide.actions.CreateFile"
-			text="Yggdrasil File"
-			description="Create new Yggdrasil file"
-		>
-			<add-to-group group-id="NewGroup" anchor="after" relative-to-action="NewFile"/>
+		<action id="valkyrie.create.file" class="valkyrie.ide.actions.file_transform.ValkyrieCreateFile">
+			<add-to-group group-id="NewGroup" anchor="before" relative-to-action="NewHtmlFile"/>
+		</action>
+		<action id="jss.JssConvertJson" class="valkyrie.ide.actions.FluentConvertMo"/>
+		<action id="valkyrie.macro.expand-to-file" class="valkyrie.ide.actions.ExpandMacroToFile">
+			<keyboard-shortcut keymap="$default" first-keystroke="control shift G"/>
+		</action>
+		<!-- Generated	-->
+		<action id="valkyrie.macro.expand" class="valkyrie.ide.codegen.ExpandTemplate">
+			<add-to-group group-id="GenerateGroup" anchor="last"/>
 		</action>
 	</actions>
 </idea-plugin>
