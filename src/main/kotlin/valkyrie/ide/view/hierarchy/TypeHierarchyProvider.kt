@@ -6,7 +6,7 @@ import com.intellij.openapi.actionSystem.DataContext
 import com.intellij.openapi.actionSystem.LangDataKeys
 import com.intellij.psi.PsiElement
 import com.intellij.psi.util.parents
-import nexus.language.ast.classes.NexusClassStatement
+import yggdrasil.language.ast.classes.NexusClassStatement
 import java.text.MessageFormat
 import java.util.*
 import javax.swing.JPanel

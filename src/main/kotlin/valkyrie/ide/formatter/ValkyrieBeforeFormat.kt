@@ -6,8 +6,8 @@ import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiDocumentManager
 import com.intellij.psi.impl.source.codeStyle.PreFormatProcessor
 import com.intellij.util.DocumentUtil
-import nexus.antlr.traversal
-import nexus.language.psi.ValkyrieRewritableElement
+import yggdrasil.antlr.traversal
+import yggdrasil.language.psi.ValkyrieRewritableElement
 import valkyrie.ide.codeStyle.ValkyrieCodeStyleSettings
 
 //import nexus.language.psi_node.ValkyrieClassStatementNode
@@ -16,7 +16,7 @@ import valkyrie.ide.codeStyle.ValkyrieCodeStyleSettings
 class ValkyrieBeforeFormat : PreFormatProcessor {
     override fun process(element: ASTNode, range: TextRange): TextRange {
         val psiRoot = element.psi
-        if (psiRoot.language !is nexus.language.NexusLanguage) {
+        if (psiRoot.language !is yggdrasil.language.YggdrasilLanguage) {
             return range
         }
         val settings = CodeStyle.getCustomSettings(

@@ -5,8 +5,8 @@ import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.Annotator
 import com.intellij.lang.annotation.HighlightSeverity
 import com.intellij.psi.PsiElement
-import nexus.language.ast.NexusIdentifierNode
-import nexus.language.ast.classes.NexusClassStatement
+import yggdrasil.language.ast.NexusIdentifierNode
+import yggdrasil.language.ast.classes.NexusClassStatement
 
 //import nexus.language.psi_node.ValkyrieUnionStatementNode
 

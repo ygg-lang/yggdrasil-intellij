@@ -3,7 +3,7 @@ package valkyrie.ide.matcher.escaper
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.LiteralTextEscaper
 import com.intellij.psi.PsiLanguageInjectionHost
-import nexus.language.ast.NexusStringNode
+import yggdrasil.language.ast.NexusStringNode
 
 //import nexus.language.psi_node.ValkyrieStringNode
 

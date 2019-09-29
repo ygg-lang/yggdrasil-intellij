@@ -10,11 +10,11 @@ import com.intellij.openapi.ui.Messages
 class RunClass(val classPath: List<String>, private val full: Boolean) : AnAction() {
     init {
         if (full) {
-            templatePresentation.text = nexus.language.NexusBundle.message("action.run.class.full.name")
-            templatePresentation.description = nexus.language.NexusBundle.message("action.run.class.full.help")
+            templatePresentation.text = yggdrasil.language.NexusBundle.message("action.run.class.full.name")
+            templatePresentation.description = yggdrasil.language.NexusBundle.message("action.run.class.full.help")
         } else {
-            templatePresentation.text = nexus.language.NexusBundle.message("action.run.class.part.name")
-            templatePresentation.description = nexus.language.NexusBundle.message("action.run.class.part.help")
+            templatePresentation.text = yggdrasil.language.NexusBundle.message("action.run.class.part.name")
+            templatePresentation.description = yggdrasil.language.NexusBundle.message("action.run.class.part.help")
         }
         templatePresentation.icon = AllIcons.RunConfigurations.TestState.Run_run
     }

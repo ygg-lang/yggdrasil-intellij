@@ -2,7 +2,7 @@ package valkyrie.ide.view
 
 import com.intellij.navigation.ColoredItemPresentation
 import com.intellij.openapi.editor.colors.TextAttributesKey
-import nexus.language.ast.NexusNamepathNode
+import yggdrasil.language.ast.NexusNamepathNode
 import valkyrie.ide.highlight.NexusHighlightColor
 import javax.swing.Icon
 

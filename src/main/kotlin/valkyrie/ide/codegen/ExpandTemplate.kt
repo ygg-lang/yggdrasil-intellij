@@ -7,8 +7,8 @@ import com.intellij.psi.PsiDirectory
 import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiFileFactory
 
-private val name = nexus.language.NexusBundle.message("action.macro.expand_file")
-private val description = nexus.language.NexusBundle.message("action.convert_prop.description")
+private val name = yggdrasil.language.NexusBundle.message("action.macro.expand_file")
+private val description = yggdrasil.language.NexusBundle.message("action.convert_prop.description")
 
 class ExpandTemplate : AnAction(name, description, ExpUiIcons.Actions.GroupByMethod) {
     override fun actionPerformed(e: AnActionEvent) {
@@ -36,7 +36,7 @@ class ExpandTemplate : AnAction(name, description, ExpUiIcons.Actions.GroupByMet
                 break
             }
         }
-        val file = builder.createFileFromText(fileName, nexus.language.NexusLanguage, text)
+        val file = builder.createFileFromText(fileName, yggdrasil.language.YggdrasilLanguage, text)
         dir.add(file)
         return file;
     }

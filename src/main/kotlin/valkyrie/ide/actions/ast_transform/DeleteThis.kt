@@ -32,11 +32,11 @@ class DeleteThis(element: PsiElement, vararg rest: PsiElement?) : LocalQuickFixA
     }
 
     override fun getText(): String {
-        return nexus.language.NexusBundle.message("action.delete.node.name")
+        return yggdrasil.language.NexusBundle.message("action.delete.node.name")
     }
 
     fun getDescription(): String {
-        return nexus.language.NexusBundle.message("action.delete.node.help")
+        return yggdrasil.language.NexusBundle.message("action.delete.node.help")
     }
 
     override fun invoke(project: Project, file: PsiFile, editor: Editor?, startElement: PsiElement, endElement: PsiElement) {

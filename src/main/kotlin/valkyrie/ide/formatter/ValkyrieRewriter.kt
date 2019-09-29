@@ -8,8 +8,8 @@ import com.intellij.psi.util.elementType
 import com.intellij.psi.util.nextLeaf
 import com.intellij.refactoring.suggested.endOffset
 import com.intellij.refactoring.suggested.startOffset
-import nexus.antlr.NexusLexer
-import nexus.antlr.childrenWithLeaves
+import yggdrasil.antlr.NexusLexer
+import yggdrasil.antlr.childrenWithLeaves
 import valkyrie.ide.codeStyle.ValkyrieCodeStyleSettings
 
 class ValkyrieRewriter {

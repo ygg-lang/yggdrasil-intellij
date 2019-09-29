@@ -5,7 +5,7 @@ import com.intellij.openapi.vfs.AsyncFileListener
 import com.intellij.openapi.vfs.AsyncFileListener.ChangeApplier
 import com.intellij.openapi.vfs.newvfs.events.VFileEvent
 import com.intellij.psi.PsiManager
-import nexus.language.file.NexusFileNode
+import yggdrasil.language.file.NexusFileNode
 
 
 class CrateUpdateListener : AsyncFileListener {

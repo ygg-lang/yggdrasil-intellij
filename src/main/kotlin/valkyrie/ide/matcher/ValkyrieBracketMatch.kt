@@ -6,7 +6,7 @@ import com.intellij.psi.PsiFile
 import com.intellij.psi.TokenType
 import com.intellij.psi.tree.IElementType
 import com.intellij.psi.tree.TokenSet
-import nexus.antlr.NexusLexer
+import yggdrasil.antlr.NexusLexer
 import org.antlr.intellij.adaptor.lexer.TokenIElementType
 import yggdrasil.antlr.YggdrasilAntlrLexer
 
@@ -34,15 +34,15 @@ class ValkyrieBracketMatch : PairedBraceMatcher {
     override fun getCodeConstructStart(file: PsiFile?, openingBraceOffset: Int): Int = openingBraceOffset
 
     object Instance {
-        val ParenthesisL = TokenIElementType(YggdrasilAntlrLexer.PARENTHESES_L, ")", nexus.language.NexusLanguage);
-        val ParenthesisR = TokenIElementType(YggdrasilAntlrLexer.PARENTHESES_R, "(", nexus.language.NexusLanguage);
-        val BracketL = TokenIElementType(YggdrasilAntlrLexer.BRACKET_L, "[", nexus.language.NexusLanguage);
-        val BracketR = TokenIElementType(YggdrasilAntlrLexer.BRACKET_R, "]", nexus.language.NexusLanguage);
-        val BraceL = TokenIElementType(YggdrasilAntlrLexer.BRACE_L, "{", nexus.language.NexusLanguage);
-        val BraceR = TokenIElementType(YggdrasilAntlrLexer.BRACE_R, "}", nexus.language.NexusLanguage);
+        val ParenthesisL = TokenIElementType(YggdrasilAntlrLexer.PARENTHESES_L, ")", yggdrasil.language.YggdrasilLanguage);
+        val ParenthesisR = TokenIElementType(YggdrasilAntlrLexer.PARENTHESES_R, "(", yggdrasil.language.YggdrasilLanguage);
+        val BracketL = TokenIElementType(YggdrasilAntlrLexer.BRACKET_L, "[", yggdrasil.language.YggdrasilLanguage);
+        val BracketR = TokenIElementType(YggdrasilAntlrLexer.BRACKET_R, "]", yggdrasil.language.YggdrasilLanguage);
+        val BraceL = TokenIElementType(YggdrasilAntlrLexer.BRACE_L, "{", yggdrasil.language.YggdrasilLanguage);
+        val BraceR = TokenIElementType(YggdrasilAntlrLexer.BRACE_R, "}", yggdrasil.language.YggdrasilLanguage);
 
-        val GenericL = TokenIElementType(YggdrasilAntlrLexer.GENERIC_L, "<", nexus.language.NexusLanguage);
-        val GenericR = TokenIElementType(YggdrasilAntlrLexer.GENERIC_R, ">", nexus.language.NexusLanguage);
+        val GenericL = TokenIElementType(YggdrasilAntlrLexer.GENERIC_L, "<", yggdrasil.language.YggdrasilLanguage);
+        val GenericR = TokenIElementType(YggdrasilAntlrLexer.GENERIC_R, ">", yggdrasil.language.YggdrasilLanguage);
 
         val Left = TokenSet.create(
             ParenthesisL, BracketL, BraceL, GenericL

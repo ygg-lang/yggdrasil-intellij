@@ -7,8 +7,8 @@ import com.intellij.openapi.project.Project
 import com.intellij.openapi.util.Iconable
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
-import nexus.language.ast.NexusFunctionParameter
-import nexus.language.file.NexusIconProvider
+import yggdrasil.language.ast.NexusFunctionParameter
+import yggdrasil.language.file.NexusIconProvider
 //import nexus.language.psi_node.ValkyrieDefineItemNode
 import javax.swing.Icon
 

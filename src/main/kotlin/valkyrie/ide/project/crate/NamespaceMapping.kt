@@ -1,7 +1,7 @@
 package valkyrie.ide.project.crate
 
 import com.intellij.openapi.vfs.AsyncFileListener
-import nexus.language.file.NexusFileNode
+import yggdrasil.language.file.NexusFileNode
 
 class NamespaceMapping(private val changes: Array<NexusFileNode>) : AsyncFileListener.ChangeApplier {
     override fun afterVfsChange() {

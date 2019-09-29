@@ -6,8 +6,8 @@ import com.intellij.openapi.editor.Editor
 import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiFile
 import com.intellij.psi.util.elementType
-import nexus.antlr.childrenWithLeaves
-import nexus.language.ast.NexusLetStatement
+import yggdrasil.antlr.childrenWithLeaves
+import yggdrasil.language.ast.NexusLetStatement
 
 //import nexus.language.psi_node.ValkyrieLetStatementNode
 

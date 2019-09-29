@@ -4,9 +4,9 @@ import com.intellij.lang.annotation.AnnotationHolder
 import com.intellij.lang.annotation.Annotator
 import com.intellij.lang.annotation.HighlightSeverity
 import com.intellij.psi.PsiElement
-import nexus.language.ast.NexusFunctionParameter
-import nexus.language.ast.NexusLetStatement
-import nexus.language.ast.classes.NexusClassFieldNode
+import yggdrasil.language.ast.NexusFunctionParameter
+import yggdrasil.language.ast.NexusLetStatement
+import yggdrasil.language.ast.classes.NexusClassFieldNode
 import valkyrie.ide.actions.InferClassFieldType
 import valkyrie.ide.actions.InferDefineItemType
 

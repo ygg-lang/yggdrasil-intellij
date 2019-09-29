@@ -6,8 +6,8 @@ import com.intellij.openapi.util.TextRange
 import com.intellij.psi.*
 import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.psi.util.elementType
-import nexus.antlr.NexusLexer
-import nexus.language.ast.ValkyrieCommentDocument
+import yggdrasil.antlr.NexusLexer
+import yggdrasil.language.ast.ValkyrieCommentDocument
 import java.net.ConnectException
 import java.util.function.Consumer
 

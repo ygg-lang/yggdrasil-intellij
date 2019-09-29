@@ -3,9 +3,9 @@ package valkyrie.ide.matcher
 import com.intellij.codeInsight.highlighting.PairedBraceMatcherAdapter
 import com.intellij.openapi.editor.highlighter.HighlighterIterator
 import com.intellij.openapi.fileTypes.FileType
-import nexus.language.file.NexusFileType
+import yggdrasil.language.file.YggdrasilFileType
 
-class BraceMatchAdapter : PairedBraceMatcherAdapter(ValkyrieBracketMatch(), nexus.language.NexusLanguage) {
+class BraceMatchAdapter : PairedBraceMatcherAdapter(ValkyrieBracketMatch(), yggdrasil.language.YggdrasilLanguage) {
     override fun isLBraceToken(iterator: HighlighterIterator, fileText: CharSequence, fileType: FileType): Boolean {
         return isBrace(iterator, fileText, fileType, true)
     }
@@ -15,7 +15,7 @@ class BraceMatchAdapter : PairedBraceMatcherAdapter(ValkyrieBracketMatch(), nexu
     }
 
     private fun isBrace(iterator: HighlighterIterator, fileText: CharSequence, fileType: FileType, left: Boolean): Boolean {
-        if (fileType != NexusFileType) return false
+        if (fileType != YggdrasilFileType) return false
         val pair = findPair(left, iterator, fileText, fileType)
         return pair != null
     }

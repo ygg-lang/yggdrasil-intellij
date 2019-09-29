@@ -7,9 +7,9 @@ import com.intellij.openapi.editor.Document
 import com.intellij.openapi.project.DumbAware
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
-import nexus.antlr.traversal
-import nexus.language.file.NexusFileNode
-import nexus.language.psi.ValkyrieFoldableElement
+import yggdrasil.antlr.traversal
+import yggdrasil.language.file.NexusFileNode
+import yggdrasil.language.psi.ValkyrieFoldableElement
 
 class ValkyrieFoldingBuilder : CustomFoldingBuilder(), DumbAware {
     override fun buildLanguageFoldRegions(descriptors: MutableList<FoldingDescriptor>, root: PsiElement, document: Document, quick: Boolean) {

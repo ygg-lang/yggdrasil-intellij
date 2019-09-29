@@ -3,7 +3,7 @@ package valkyrie.ide.reference.declaration
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiReferenceBase
-import nexus.language.ast.NexusIdentifierNode
+import yggdrasil.language.ast.NexusIdentifierNode
 
 abstract class ValkyrieReference(element: NexusIdentifierNode, private val definition: PsiElement) :
     PsiReferenceBase<NexusIdentifierNode>(element, TextRange(0, element.text.length)) {

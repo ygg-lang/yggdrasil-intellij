@@ -9,7 +9,7 @@ import com.intellij.execution.runners.ExecutionEnvironment
 import com.intellij.openapi.options.SettingsEditor
 import com.intellij.openapi.project.Project
 import com.intellij.ui.dsl.builder.panel
-import nexus.language.file.NexusIconProvider
+import yggdrasil.language.file.NexusIconProvider
 import org.jdom.Element
 import javax.swing.Icon
 

@@ -6,5 +6,5 @@ import com.intellij.psi.impl.source.tree.LeafPsiElement
 
 
 private fun triggerCondition(): PsiElementPattern.Capture<LeafPsiElement> {
-    return PlatformPatterns.psiElement(LeafPsiElement::class.java).withLanguage(nexus.language.NexusLanguage);
+    return PlatformPatterns.psiElement(LeafPsiElement::class.java).withLanguage(yggdrasil.language.YggdrasilLanguage);
 }

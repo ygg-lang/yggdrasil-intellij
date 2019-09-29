@@ -10,8 +10,8 @@ class RunFunction : AnAction() {
     private var path: String = "";
 
     init {
-        templatePresentation.text = nexus.language.NexusBundle.message("action.run.class.full.name")
-        templatePresentation.description = nexus.language.NexusBundle.message("action.run.class.full.help")
+        templatePresentation.text = yggdrasil.language.NexusBundle.message("action.run.class.full.name")
+        templatePresentation.description = yggdrasil.language.NexusBundle.message("action.run.class.full.help")
     }
 
     companion object {

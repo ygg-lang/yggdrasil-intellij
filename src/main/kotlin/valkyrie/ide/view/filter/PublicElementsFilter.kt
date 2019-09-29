@@ -16,7 +16,7 @@ class PublicElementsFilter : Filter {
 
     override fun isReverted() = false
     override fun getPresentation(): ActionPresentation = ActionPresentationData(
-        nexus.language.NexusBundle.message(name),
+        yggdrasil.language.NexusBundle.message(name),
         null,
         AllIcons.Nodes.Public
     )

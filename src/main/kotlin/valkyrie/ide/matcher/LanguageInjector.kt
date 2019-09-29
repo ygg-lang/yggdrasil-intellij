@@ -4,7 +4,7 @@ package valkyrie.ide.matcher
 import com.intellij.lang.injection.MultiHostInjector
 import com.intellij.lang.injection.MultiHostRegistrar
 import com.intellij.psi.PsiElement
-import nexus.language.ast.NexusStringNode
+import yggdrasil.language.ast.NexusStringNode
 
 //import nexus.language.psi_node.ValkyrieStringNode
 

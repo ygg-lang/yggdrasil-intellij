@@ -4,7 +4,7 @@ import com.intellij.codeInsight.daemon.impl.HighlightInfo
 import com.intellij.codeInsight.daemon.impl.HighlightInfoType
 import com.intellij.codeInsight.daemon.impl.analysis.HighlightInfoHolder
 import com.intellij.psi.PsiElement
-import nexus.language.ast.NexusIdentifierNode
+import yggdrasil.language.ast.NexusIdentifierNode
 
 @Suppress("FunctionName")
 class NodeHighlighter(private val info: HighlightInfoHolder?) {

@@ -3,7 +3,7 @@ package valkyrie.ide.hint
 import com.intellij.codeInsight.daemon.LineMarkerInfo
 import com.intellij.codeInsight.daemon.LineMarkerProvider
 import com.intellij.psi.PsiElement
-import nexus.language.psi.ValkyrieLineMarkElement
+import yggdrasil.language.psi.ValkyrieLineMarkElement
 
 //import nexus.language.psi_node.ValkyrieClassFieldNode
 //import nexus.language.psi_node.ValkyrieClassMethodNode

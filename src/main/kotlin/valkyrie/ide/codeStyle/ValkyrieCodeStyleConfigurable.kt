@@ -8,7 +8,7 @@ import com.intellij.psi.codeStyle.CodeStyleSettings
 import javax.swing.JComponent
 
 class ValkyrieCodeStyleConfigurable(settings: CodeStyleSettings, modelSettings: CodeStyleSettings) :
-    CodeStyleAbstractConfigurable(settings, modelSettings, nexus.language.NexusLanguage.displayName) {
+    CodeStyleAbstractConfigurable(settings, modelSettings, yggdrasil.language.YggdrasilLanguage.displayName) {
     override fun getDisplayName(): String {
         return super.getDisplayName()
     }
@@ -23,10 +23,10 @@ class ValkyrieCodeStyleConfigurable(settings: CodeStyleSettings, modelSettings: 
 }
 
 private class ValkyrieCodeStyleMainPanel(currentSettings: CodeStyleSettings?, settings: CodeStyleSettings) :
-    TabbedLanguageCodeStylePanel(nexus.language.NexusLanguage, currentSettings, settings) {
+    TabbedLanguageCodeStylePanel(yggdrasil.language.YggdrasilLanguage, currentSettings, settings) {
     override fun initTabs(settings: CodeStyleSettings) {
 //        addIndentOptionsTab(settings)
 //        addWrappingAndBracesTab(settings)
-        addTab(GenerationCodeStylePanel(settings, nexus.language.NexusLanguage))
+        addTab(GenerationCodeStylePanel(settings, yggdrasil.language.YggdrasilLanguage))
     }
 }

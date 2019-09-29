@@ -7,6 +7,7 @@ COMMA: ',';
 
 KW_IMPORT: 'using';
 KW_CLASS:  'class';
+KW_UNION: 'union';
 KW_AS:     'as';
 KW_IN:     'in';
 

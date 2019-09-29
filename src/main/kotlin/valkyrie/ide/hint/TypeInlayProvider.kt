@@ -22,7 +22,7 @@ class TypeInlayProvider : InlayHintsProvider<InlayTypeSetting> {
 
     private val rootKey = "v.type.hints";
 
-    override val name: String = nexus.language.NexusBundle.message("inlay.type.group.name")
+    override val name: String = yggdrasil.language.NexusBundle.message("inlay.type.group.name")
     override val group: InlayGroup = InlayGroup.TYPES_GROUP
     override val key: SettingsKey<InlayTypeSetting>
         get() {
@@ -57,25 +57,25 @@ class TypeInlayProvider : InlayHintsProvider<InlayTypeSetting> {
                         "Obvious types",
                         "hints.type.obvious",
                         settings::show_obvious_type,
-                        nexus.language.NexusBundle.message("view.PropertiesGrouper")
+                        yggdrasil.language.NexusBundle.message("view.PropertiesGrouper")
                     ),
                     ImmediateConfigurable.Case(
                         "For loop types",
                         "hints.type.for",
                         settings::showForLoopType,
-                        nexus.language.NexusBundle.message("view.PropertiesGrouper")
+                        yggdrasil.language.NexusBundle.message("view.PropertiesGrouper")
                     ),
                     ImmediateConfigurable.Case(
                         "Define return types",
                         "hints.type.define",
                         settings::showDefineReturnType,
-                        nexus.language.NexusBundle.message("view.PropertiesGrouper")
+                        yggdrasil.language.NexusBundle.message("view.PropertiesGrouper")
                     ),
                     ImmediateConfigurable.Case(
                         "Bitflag types",
                         "hints.type.bitflag",
                         settings::showBitFlagType,
-                        nexus.language.NexusBundle.message("view.PropertiesGrouper")
+                        yggdrasil.language.NexusBundle.message("view.PropertiesGrouper")
                     ),
                 )
 

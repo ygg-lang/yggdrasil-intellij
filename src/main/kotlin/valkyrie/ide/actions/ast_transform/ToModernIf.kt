@@ -9,7 +9,7 @@ import com.intellij.openapi.project.Project
 import com.intellij.openapi.util.Iconable
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
-import nexus.language.ast.ValkyrieIfStatementNode
+import yggdrasil.language.ast.ValkyrieIfStatementNode
 import javax.swing.Icon
 
 class ToModernIf(element: ValkyrieIfStatementNode) : LocalQuickFixAndIntentionActionOnPsiElement(element), PriorityAction, Iconable {
@@ -22,11 +22,11 @@ class ToModernIf(element: ValkyrieIfStatementNode) : LocalQuickFixAndIntentionAc
     }
 
     override fun getText(): String {
-        return nexus.language.NexusBundle.message("action.convert.modern_if.name")
+        return yggdrasil.language.NexusBundle.message("action.convert.modern_if.name")
     }
 
     fun getDescription(): String {
-        return nexus.language.NexusBundle.message("action.convert.modern_if.help")
+        return yggdrasil.language.NexusBundle.message("action.convert.modern_if.help")
     }
 
     override fun invoke(project: Project, file: PsiFile, editor: Editor?, startElement: PsiElement, endElement: PsiElement) {

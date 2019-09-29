@@ -20,6 +20,6 @@ class ValkyrieInlaySettingsProvider : InlaySettingsProvider {
     }
 
     override fun getSupportedLanguages(project: Project): Collection<Language> {
-        return listOf(nexus.language.NexusLanguage)
+        return listOf(yggdrasil.language.YggdrasilLanguage)
     }
 }

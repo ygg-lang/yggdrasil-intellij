@@ -7,9 +7,9 @@ import com.intellij.codeInsight.hints.VcsCodeVisionLanguageContext
 import com.intellij.openapi.editor.Editor
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
-import nexus.language.ast.NexusFunctionStatement
-import nexus.language.ast.classes.NexusClassMethodNode
-import nexus.language.ast.classes.NexusClassStatement
+import yggdrasil.language.ast.NexusFunctionStatement
+import yggdrasil.language.ast.classes.NexusClassMethodNode
+import yggdrasil.language.ast.classes.NexusClassStatement
 import java.awt.event.MouseEvent
 
 @Suppress("UnstableApiUsage")

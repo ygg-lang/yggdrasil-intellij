@@ -5,17 +5,17 @@
 	<depends>com.intellij.modules.platform</depends>
 	<depends optional="true" config-file="plugin-with-rust.xml">com.jetbrains.rust</depends>
 	<depends optional="true" config-file="plugin-with-markdown.xml">org.intellij.plugins.markdown</depends>
-	<resource-bundle>messages.NexusBundle</resource-bundle>
+	<resource-bundle>messages.YggdrasilBundle</resource-bundle>
 	<extensions defaultExtensionNs="com.intellij">
 		<fileType
 			name="Nexus"
-			language="Nexus"
-			extensions="ne;nexus;"
-			implementationClass="nexus.language.file.NexusFileType"
+			language="Yggdrasil"
+			extensions="ygg;yggdrasil;"
+			implementationClass="yggdrasil.language.file.YggdrasilFileType"
 			fieldName="INSTANCE"/>
 		<lang.parserDefinition
-			language="Nexus"
-			implementationClass="nexus.antlr.NexusParserDefinition"/>
+			language="Yggdrasil"
+			implementationClass="yggdrasil.antlr.NexusParserDefinition"/>
 		<multiHostInjector implementation="valkyrie.ide.matcher.LanguageInjector"/>
 		<!-- Project -->
 		<projectNameProvider implementation="valkyrie.ide.project.ValkyrieProjectName"/>
@@ -23,40 +23,40 @@
 		<vfs.asyncListener implementation="valkyrie.ide.project.crate.CrateUpdateListener"/>
 		<!-- Project Library -->
 		<packageDependencies.visitor
-			language="Nexus"
+			language="Yggdrasil"
 			implementationClass="valkyrie.ide.project.ValkyrieDependencyResolver"/>
 		<additionalLibraryRootsProvider implementation="valkyrie.ide.project.library.LibraryRootsProvider"/>
 		<!-- Project Namespace -->
-		<iconProvider implementation="nexus.language.file.NexusIconProvider"/>
-		<projectViewNestingRulesProvider implementation="nexus.language.file.NexusFileGroup"/>
+		<iconProvider implementation="yggdrasil.language.file.NexusIconProvider"/>
+		<projectViewNestingRulesProvider implementation="yggdrasil.language.file.NexusFileGroup"/>
 		<treeStructureProvider implementation="valkyrie.ide.view.VStructureProvider"/>
 		<!--		<lang.structureViewExtension implementation="valkyrie.ide.view.VStructureViewExtension"/>-->
 		<lang.psiStructureViewFactory
-			language="Nexus"
+			language="Yggdrasil"
 			implementationClass="valkyrie.ide.view.ValkyrieStructureView"/>
 		<typeHierarchyProvider
-			language="Nexus"
+			language="Yggdrasil"
 			implementationClass="valkyrie.ide.view.hierarchy.TypeHierarchyProvider"/>
 		<methodHierarchyProvider
-			language="Nexus"
+			language="Yggdrasil"
 			implementationClass="valkyrie.ide.view.hierarchy.MethodHierarchyProvider"/>
 		<callHierarchyProvider
-			language="Nexus"
+			language="Yggdrasil"
 			implementationClass="valkyrie.ide.view.hierarchy.CallHierarchyProvider"/>
 		<!-- Highlight -->
 		<colorSettingsPage implementation="valkyrie.ide.highlight.HighlightSetting"/>
 		<highlightVisitor implementation="valkyrie.ide.highlight.NexusHighlighterVisitor"/>
 		<lang.syntaxHighlighter
-			language="Nexus"
+			language="Yggdrasil"
 			implementationClass="valkyrie.ide.highlight.TokenHighlighter"
 		/>
 		<!-- Formatter -->
 		<langCodeStyleSettingsProvider implementation="valkyrie.ide.codeStyle.ValkyrieCodeStyleProvider"/>
 		<formattingService implementation="valkyrie.ide.formatter.ValkyrieNativeFormat"/>
 		<preFormatProcessor implementation="valkyrie.ide.formatter.ValkyrieBeforeFormat"/>
-		<lang.formatter language="Nexus" implementationClass="valkyrie.ide.formatter.FormatBuilder"/>
+		<lang.formatter language="Yggdrasil" implementationClass="valkyrie.ide.formatter.FormatBuilder"/>
 		<postFormatProcessor implementation="valkyrie.ide.formatter.ValkyrieAfterFormat"/>
-		<lang.smartEnterProcessor language="Nexus" implementationClass="valkyrie.ide.formatter.SmartEnter"/>
+		<lang.smartEnterProcessor language="Yggdrasil" implementationClass="valkyrie.ide.formatter.SmartEnter"/>
 		<!-- Tests -->
 		<!--		<configurationType implementation="valkyrie.ide.runner.ValkyrieConfigurationType"/>-->
 		<runConfigurationsSettings implementation="valkyrie.ide.runner.ValkyrieRunnerSettings"/>
@@ -72,36 +72,36 @@
 		<breadcrumbsInfoProvider implementation="valkyrie.ide.navigation.ValkyrieBreadcrumbsProvider"/>
 		<breadcrumbsPresentationProvider implementation="valkyrie.ide.navigation.ValkyrieBreadcrumbsPresentation"/>
 		<symbolNavigation
-			forClass="nexus.language.symbol.ValkyrieSymbolTemplate"
+			forClass="yggdrasil.language.symbol.ValkyrieSymbolTemplate"
 			implementationClass="valkyrie.ide.goto.VSymbolNavigationProvider"/>
-		<codeInsight.gotoSuper language="Nexus" implementationClass="valkyrie.ide.navigation.GotoSuper"/>
+		<codeInsight.gotoSuper language="Yggdrasil" implementationClass="valkyrie.ide.navigation.GotoSuper"/>
 		<importFilteringRule implementation="valkyrie.ide.navigation.ValkyrieImportFilter"/>
 		<usageFilteringRuleProvider implementation="valkyrie.ide.navigation.usageFiltering"/>
 		<!--		<bookmarkProvider implementation="valkyrie.ide.goto.ValkyrieBookmark"/>-->
 		<!--		<bookmarksListProvider implementation="valkyrie.ide.goto.ValkyrieBookmarkList"/>-->
 		<!-- Hint -->
 		<codeInsight.inlayProvider
-			language="Nexus"
+			language="Yggdrasil"
 			implementationClass="valkyrie.ide.hint.TypeInlayProvider"/>
-		<codeInsight.typeInfo language="Nexus" implementationClass="valkyrie.ide.hint.TypeInfoHint"/>
-		<codeInsight.parameterInfo language="Nexus" implementationClass="valkyrie.ide.hint.ParameterInfoHint"/>
+		<codeInsight.typeInfo language="Yggdrasil" implementationClass="valkyrie.ide.hint.TypeInfoHint"/>
+		<codeInsight.parameterInfo language="Yggdrasil" implementationClass="valkyrie.ide.hint.ParameterInfoHint"/>
 		<codeInsight.parameterInfo.listener implementation="valkyrie.ide.hint.ParameterInfoListener"/>
-		<codeInsight.parameterNameHints language="Nexus"
+		<codeInsight.parameterNameHints language="Yggdrasil"
 		                                implementationClass="valkyrie.ide.hint.ParameterInlayProvider"/>
 		<codeInsight.lineMarkerProvider
-			language="Nexus"
+			language="Yggdrasil"
 			implementationClass="valkyrie.ide.hint.ValkyrieLineMarkerProvider"/>
 		<runLineMarkerContributor
-			language="Nexus"
+			language="Yggdrasil"
 			implementationClass="valkyrie.ide.runner.ValkyrieRunner"/>
 		<vcs.codeVisionLanguageContext
-			language="Nexus"
+			language="Yggdrasil"
 			implementationClass="valkyrie.ide.hint.AuthorAbove"/>
 
 		<!--		<psi.fileReferenceHelper implementation="valkyrie.ide.reference.ValkyrieFileReference"/>-->
 		<psi.treeChangeListener implementation="valkyrie.ide.project.crate.ValkyrieFileListener"/>
 		<psi.referenceContributor
-			language="Nexus"
+			language="Yggdrasil"
 			implementation="valkyrie.ide.reference.ValkyrieReferenceContributor"/>
 		<!--		<psi.referenceProvider language="Valkyrie" providerClass="valkyrie.ide.reference.ValkyrieReferenceProvider"/>-->
 		<!--		<psi.symbolReferenceProvider-->
@@ -111,44 +111,44 @@
 		<!--			hostElementClass="com.intellij.psi.xml.XmlAttributeValue"-->
 		<!--			targetClass="valkyrie.language.symbol.ValkyrieSymbolTemplate"/>-->
 		<!-- Lint -->
-		<lang.namesValidator language="Nexus" implementationClass="valkyrie.ide.lint.ValkyrieNameValidator"/>
+		<lang.namesValidator language="Yggdrasil" implementationClass="valkyrie.ide.lint.ValkyrieNameValidator"/>
 		<qualifiedNameProvider implementation="valkyrie.ide.lint.ValkyrieNameQualifier"/>
-		<annotator language="Nexus" implementationClass="valkyrie.ide.annotator.NamepathChecker"/>
-		<annotator language="Nexus" implementationClass="valkyrie.ide.annotator.MarkImplicitTypes"/>
-		<annotator language="Nexus" implementationClass="valkyrie.ide.annotator.MarkLegacyExpression"/>
+		<annotator language="Yggdrasil" implementationClass="valkyrie.ide.annotator.NamepathChecker"/>
+		<annotator language="Yggdrasil" implementationClass="valkyrie.ide.annotator.MarkImplicitTypes"/>
+		<annotator language="Yggdrasil" implementationClass="valkyrie.ide.annotator.MarkLegacyExpression"/>
 		<!-- Declaration -->
 		<findUsagesHandlerFactory implementation="valkyrie.ide.usages.ValkyrieUsagesFactory"/>
 		<lang.findUsagesProvider
-			language="Nexus"
+			language="Yggdrasil"
 			implementationClass="valkyrie.ide.usages.ValkyrieUsagesProvider"/>
 		<!-- Completion -->
 		<typedHandler implementation="valkyrie.ide.completion.AutoInsertBrace"/>
 		<backspaceHandlerDelegate implementation="valkyrie.ide.completion.AutoDeleteBrace"/>
 		<!--		<lookup.charFilter implementation="valkyrie.ide.completion.CompletionInterrupter"/>-->
-		<lang.commenter language="Nexus" implementationClass="valkyrie.ide.formatter.ValkyrieCommenter"/>
+		<lang.commenter language="Yggdrasil" implementationClass="valkyrie.ide.formatter.ValkyrieCommenter"/>
 		<lang.braceMatcher
-			language="Nexus"
+			language="Yggdrasil"
 			implementationClass="valkyrie.ide.matcher.BraceMatchAdapter"/>
 		<lang.quoteHandler
-			language="Nexus"
+			language="Yggdrasil"
 			implementationClass="valkyrie.ide.matcher.ValkyrieQuoteHandler"/>
 		<codeCompletionConfigurable instance="valkyrie.ide.completion.CompletionConfig"/>
 		<completion.contributor
-			language="Nexus"
+			language="Yggdrasil"
 			implementationClass="valkyrie.ide.completion.CompletionRegistrar"/>
 		<nameSuggestionProvider implementation="valkyrie.ide.completion.CompletionSuggestion"/>
 		<lang.foldingBuilder
-			language="Nexus"
+			language="Yggdrasil"
 			implementationClass="valkyrie.ide.folding.ValkyrieFoldingBuilder"/>
-		<codeBlockProvider language="Nexus" implementationClass="valkyrie.ide.matcher.ValkyrieCodeBlockProvider"/>
+		<codeBlockProvider language="Yggdrasil" implementationClass="valkyrie.ide.matcher.ValkyrieCodeBlockProvider"/>
 		<codeFoldingOptionsProvider instance="valkyrie.ide.folding.ValkyrieFoldingOptions"/>
 		<referenceImporter implementation="valkyrie.ide.completion.ValkyrieImportInsert"/>
 		<lang.importOptimizer
-			language="Nexus"
+			language="Yggdrasil"
 			implementationClass="valkyrie.ide.completion.ValkyrieImportOptimizer"/>
 		<!-- Document -->
 		<lang.documentationProvider
-			language="Nexus"
+			language="Yggdrasil"
 			implementationClass="valkyrie.ide.doc.DocumentationProvider"/>
 	</extensions>
 	<actions>

@@ -8,8 +8,8 @@ import com.intellij.openapi.progress.ProgressManager
 import com.intellij.psi.util.elementType
 import com.intellij.psi.util.parents
 import com.intellij.util.ProcessingContext
-import nexus.antlr.NexusLexer
-import nexus.language.file.NexusFileNode
+import yggdrasil.antlr.NexusLexer
+import yggdrasil.language.file.NexusFileNode
 
 
 class CompletionRegistrar : CompletionContributor() {

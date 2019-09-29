@@ -7,13 +7,13 @@ import com.intellij.util.PlatformIcons
 
 object PropertiesGrouper : Grouper {
     override fun getPresentation(): ActionPresentation = ActionPresentationData(
-        nexus.language.NexusBundle.message("view.PropertiesGrouper"),
+        yggdrasil.language.NexusBundle.message("view.PropertiesGrouper"),
         "GGGGG",
         PlatformIcons.ABSTRACT_CLASS_ICON
     )
 
     override fun getName(): String {
-        return nexus.language.NexusBundle.message("view.PropertiesGrouper")
+        return yggdrasil.language.NexusBundle.message("view.PropertiesGrouper")
     }
 
     override fun group(

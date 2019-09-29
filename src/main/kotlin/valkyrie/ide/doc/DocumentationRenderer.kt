@@ -5,21 +5,19 @@ package valkyrie.ide.doc
 import com.intellij.openapi.editor.colors.EditorColorsManager
 import com.intellij.openapi.editor.richcopy.HtmlSyntaxInfoUtil
 import com.intellij.psi.PsiElement
-import com.intellij.psi.util.elementType
 import com.intellij.ui.ColorUtil
-import nexus.antlr.NexusLexer
-import nexus.language.ast.classes.NexusClassStatement
+import yggdrasil.language.ast.classes.NexusClassStatement
 import valkyrie.ide.highlight.NexusHighlightColor
 import valkyrie.ide.highlight.NexusHighlightColor.KEYWORD
 import valkyrie.ide.highlight.NexusHighlightColor.SYM_CLASS
-import valkyrie.lsp.RequestDocument
+
 
 class DocumentationRenderer(var element: PsiElement, private var original: PsiElement?) {
     private val doc = StringBuilder()
     fun onHover(): String {
         when {
-            NexusLexer.Keywords.contains(element.elementType) -> return RequestDocument.keyword(element.text).send()
-            NexusLexer.Operators.contains(element.elementType) -> return RequestDocument.operator(element.text).send()
+//            NexusLexer.Keywords.contains(element.elementType) -> return RequestDocument.keyword(element.text).send()
+//            NexusLexer.Operators.contains(element.elementType) -> return RequestDocument.operator(element.text).send()
             else -> {}
         }
         when (element) {
@@ -75,7 +73,7 @@ class DocumentationRenderer(var element: PsiElement, private var original: PsiEl
         HtmlSyntaxInfoUtil.appendHighlightedByLexerAndEncodedAsHtmlCodeSnippet(
             doc,
             element.project,
-            nexus.language.NexusLanguage,
+            yggdrasil.language.YggdrasilLanguage,
             code.trimIndent(),
             1.0f,
         )

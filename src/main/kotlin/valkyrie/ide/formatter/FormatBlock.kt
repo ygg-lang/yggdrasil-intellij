@@ -5,9 +5,9 @@ import com.intellij.lang.ASTNode
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiErrorElement
 import com.intellij.psi.formatter.FormatterUtil
-import nexus.antlr.isWhitespaceOrEmpty
-import nexus.language.psi.ValkyrieAlignmentElement
-import nexus.language.psi.ValkyrieIndentElement
+import yggdrasil.antlr.isWhitespaceOrEmpty
+import yggdrasil.language.psi.ValkyrieAlignmentElement
+import yggdrasil.language.psi.ValkyrieIndentElement
 
 //import nexus.language.psi.ValkyrieTokenType
 

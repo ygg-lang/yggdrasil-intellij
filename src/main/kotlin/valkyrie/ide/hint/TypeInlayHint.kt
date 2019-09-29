@@ -5,7 +5,7 @@ import com.intellij.codeInsight.hints.InlayHintsSink
 import com.intellij.codeInsight.hints.presentation.PresentationFactory
 import com.intellij.openapi.editor.Editor
 import com.intellij.psi.PsiElement
-import nexus.language.psi.ValkyrieInlayElement
+import yggdrasil.language.psi.ValkyrieInlayElement
 import valkyrie.ide.hint.TypeInlayProvider.InlayTypeSetting
 
 @Suppress("UnstableApiUsage")

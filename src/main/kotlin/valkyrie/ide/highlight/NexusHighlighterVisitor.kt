@@ -7,8 +7,8 @@ import com.intellij.codeInsight.daemon.impl.analysis.HighlightInfoHolder
 import com.intellij.openapi.progress.ProgressManager
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
-import nexus.antlr.traversal
-import nexus.language.file.NexusFileNode
+import yggdrasil.antlr.traversal
+import yggdrasil.language.file.NexusFileNode
 
 class NexusHighlighterVisitor : HighlightVisitor {
     private var _info: HighlightInfoHolder? = null

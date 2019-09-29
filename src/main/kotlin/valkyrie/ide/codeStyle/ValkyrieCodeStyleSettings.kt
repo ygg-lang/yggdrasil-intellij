@@ -4,7 +4,7 @@ import com.intellij.psi.codeStyle.CodeStyleSettings
 import com.intellij.psi.codeStyle.CustomCodeStyleSettings
 
 @Suppress("PropertyName")
-class ValkyrieCodeStyleSettings(container: CodeStyleSettings) : CustomCodeStyleSettings(nexus.language.NexusLanguage.id, container) {
+class ValkyrieCodeStyleSettings(container: CodeStyleSettings) : CustomCodeStyleSettings(yggdrasil.language.YggdrasilLanguage.id, container) {
     val class_field_trailing: CommaOrSemicolon = CommaOrSemicolon.Comma
     val flags_trailing: CommaOrSemicolon = CommaOrSemicolon.Comma
     val variant_trailing: CommaOrSemicolon = CommaOrSemicolon.Comma

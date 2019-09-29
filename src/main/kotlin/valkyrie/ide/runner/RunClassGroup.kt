@@ -7,7 +7,7 @@ import com.intellij.openapi.actionSystem.ActionGroup
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.psi.PsiElement
-import nexus.language.ast.classes.NexusClassStatement
+import yggdrasil.language.ast.classes.NexusClassStatement
 
 
 class RunClassGroup : ActionGroup() {
@@ -16,8 +16,8 @@ class RunClassGroup : ActionGroup() {
     init {
         templatePresentation.isPopupGroup = false
         templatePresentation.icon = AllIcons.RunConfigurations.TestState.Run_run
-        templatePresentation.text = nexus.language.NexusBundle.message("action.run.class.group.name")
-        templatePresentation.description = nexus.language.NexusBundle.message("action.run.class.group.help")
+        templatePresentation.text = yggdrasil.language.NexusBundle.message("action.run.class.group.name")
+        templatePresentation.description = yggdrasil.language.NexusBundle.message("action.run.class.group.help")
     }
 
     companion object {

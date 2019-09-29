@@ -7,8 +7,8 @@ import com.intellij.util.containers.toMutableSmartList
 import valkyrie.ide.project.crate.ValkyrieModuleFilter
 import valkyrie.ide.project.crate.ValkyrieModuleTree
 import valkyrie.ide.project.`package`.ValkyrieLibraryType
-import valkyrie.lsp.LanguageClient
-import valkyrie.lsp.RequestDependencies
+//import valkyrie.lsp.LanguageClient
+//import valkyrie.lsp.RequestDependencies
 import java.io.File
 
 
@@ -24,16 +24,11 @@ class DependenceLibrary : SyntheticLibrary, ItemPresentation {
     }
 
 
-    constructor(info: RequestDependencies.DependenciesInfo) {
-        id = info.name;
-        version = info.version;
-//        path = File(info.path).toVirtualFileUrl();
-    }
-
     override fun isShowInExternalLibrariesNode() = true;
     override fun getSourceRoots(): MutableCollection<VirtualFile> {
-        val iter = File(LanguageClient.libraryPath).listFiles(ValkyrieModuleFilter()) ?: return mutableListOf();
-        return iter.map { ValkyrieModuleTree(it.name) }.toMutableSmartList()
+//        val iter = File(LanguageClient.libraryPath).listFiles(ValkyrieModuleFilter()) ?: return mutableListOf();
+//        return iter.map { ValkyrieModuleTree(it.name) }.toMutableSmartList()
+        return mutableListOf()
     }
 
     override fun getBinaryRoots(): MutableCollection<VirtualFile> {

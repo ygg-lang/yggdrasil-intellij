@@ -5,7 +5,7 @@ import com.intellij.model.Symbol
 import com.intellij.navigation.SymbolNavigationProvider
 import com.intellij.openapi.project.Project
 import com.intellij.platform.backend.navigation.NavigationTarget
-import nexus.language.symbol.ValkyrieSymbolTemplate
+import yggdrasil.language.symbol.ValkyrieSymbolTemplate
 
 @Suppress("UnstableApiUsage")
 class VSymbolNavigationProvider : SymbolNavigationProvider {
