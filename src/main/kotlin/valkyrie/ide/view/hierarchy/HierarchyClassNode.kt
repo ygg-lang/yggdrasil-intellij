@@ -4,12 +4,12 @@ import com.intellij.ide.hierarchy.HierarchyNodeDescriptor
 import com.intellij.ide.util.treeView.NodeDescriptor
 import com.intellij.openapi.roots.ui.util.CompositeAppearance
 import com.intellij.ui.SimpleTextAttributes
-import yggdrasil.language.ast.classes.NexusClassStatement
+import yggdrasil.language.ast.classes.YggdrasilClassStatement
 
 class HierarchyClassNode : HierarchyNodeDescriptor {
-    val node: NexusClassStatement
+    val node: YggdrasilClassStatement
 
-    constructor(node: NexusClassStatement) : super(node.project, null, node, false) {
+    constructor(node: YggdrasilClassStatement) : super(node.project, null, node, false) {
         this.node = node
         cachedChildren = arrayOf(this, this)
     }

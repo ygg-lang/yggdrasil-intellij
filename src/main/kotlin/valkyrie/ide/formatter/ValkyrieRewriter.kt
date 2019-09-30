@@ -8,7 +8,7 @@ import com.intellij.psi.util.elementType
 import com.intellij.psi.util.nextLeaf
 import com.intellij.refactoring.suggested.endOffset
 import com.intellij.refactoring.suggested.startOffset
-import yggdrasil.antlr.NexusLexer
+import yggdrasil.antlr.YggdrasilLexer
 import yggdrasil.antlr.childrenWithLeaves
 import valkyrie.ide.codeStyle.ValkyrieCodeStyleSettings
 
@@ -43,7 +43,7 @@ class ValkyrieRewriter {
     }
 
     fun deleteDelimiterAfter(node: PsiElement) {
-        val both = TokenSet.orSet(NexusLexer.Comma, NexusLexer.Semicolon);
+        val both = TokenSet.orSet(YggdrasilLexer.Comma, YggdrasilLexer.Semicolon);
         var leaf = PsiTreeUtil.skipWhitespacesForward(node)
         while (true) {
             when {
@@ -86,7 +86,7 @@ class ValkyrieRewriter {
 
     fun fixDelimiter(element: PsiElement, config: ValkyrieCodeStyleSettings.CommaOrSemicolon) {
         val delimiter = element.nextLeaf(true) ?: return;
-        val both = TokenSet.orSet(NexusLexer.Comma, NexusLexer.Semicolon);
+        val both = TokenSet.orSet(YggdrasilLexer.Comma, YggdrasilLexer.Semicolon);
 
         when (config) {
             ValkyrieCodeStyleSettings.CommaOrSemicolon.Ignore -> return
@@ -97,13 +97,13 @@ class ValkyrieRewriter {
             }
 
             ValkyrieCodeStyleSettings.CommaOrSemicolon.Comma -> when {
-                NexusLexer.Semicolon.contains(delimiter.elementType) -> replaceNode(delimiter, ",")
-                !NexusLexer.Comma.contains(delimiter.elementType) -> insertAfter(element, ",")
+                YggdrasilLexer.Semicolon.contains(delimiter.elementType) -> replaceNode(delimiter, ",")
+                !YggdrasilLexer.Comma.contains(delimiter.elementType) -> insertAfter(element, ",")
             }
 
             ValkyrieCodeStyleSettings.CommaOrSemicolon.Semicolon -> when {
-                NexusLexer.Comma.contains(delimiter.elementType) -> replaceNode(delimiter, ";")
-                !NexusLexer.Semicolon.contains(delimiter.elementType) -> insertAfter(element, ";")
+                YggdrasilLexer.Comma.contains(delimiter.elementType) -> replaceNode(delimiter, ";")
+                !YggdrasilLexer.Semicolon.contains(delimiter.elementType) -> insertAfter(element, ";")
             }
         }
         deleteDelimiterAfter(delimiter)

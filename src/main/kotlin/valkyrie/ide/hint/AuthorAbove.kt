@@ -9,7 +9,7 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import yggdrasil.language.ast.NexusFunctionStatement
 import yggdrasil.language.ast.classes.NexusClassMethodNode
-import yggdrasil.language.ast.classes.NexusClassStatement
+import yggdrasil.language.ast.classes.YggdrasilClassStatement
 import java.awt.event.MouseEvent
 
 @Suppress("UnstableApiUsage")
@@ -21,7 +21,7 @@ class AuthorAbove : VcsCodeVisionLanguageContext {
     }
 
     override fun isAccepted(element: PsiElement): Boolean {
-        return element is NexusClassStatement
+        return element is YggdrasilClassStatement
             || element is NexusFunctionStatement
             || element is NexusClassMethodNode
     }

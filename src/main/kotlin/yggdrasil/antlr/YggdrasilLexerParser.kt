@@ -13,9 +13,12 @@ import org.antlr.intellij.adaptor.parser.ANTLRParseTreeToPSIConverter
 import org.antlr.intellij.adaptor.parser.ANTLRParserAdaptor
 import org.antlr.v4.runtime.Parser
 import org.antlr.v4.runtime.tree.ParseTree
+import yggdrasil.antlr.YggdrasilAntlrParser.*
+import yggdrasil.language.YggdrasilLanguage
+import yggdrasil.language.ast.classes.YggdrasilClassStatement
 
 
-class NexusParser(parser: YggdrasilAntlrParser) : ANTLRParserAdaptor(yggdrasil.language.YggdrasilLanguage, parser) {
+class YggdrasilLexerParser(parser: YggdrasilAntlrParser) : ANTLRParserAdaptor(YggdrasilLanguage, parser) {
     override fun parse(parser: Parser, root: IElementType): ParseTree {
         return (parser as YggdrasilAntlrParser).program()
     }
@@ -43,7 +46,7 @@ class NexusParser(parser: YggdrasilAntlrParser) : ANTLRParserAdaptor(yggdrasil.l
 //                RULE_annotation -> ValkyrieAnnotation(node)
 //                RULE_annotation_call_item -> ValkyrieAnnotationItem(node)
 //                // class
-//                RULE_define_class -> NexusClassStatement(node)
+                RULE_define_class -> YggdrasilClassStatement(node)
 //                RULE_define_generic -> ValkyrieGenericStatement(node)
 //                RULE_class_block -> ValkyrieBlockNode(node, ValkyrieBlockType.Brace)
 //                RULE_class_field -> ValkyrieClassFieldNode(node)

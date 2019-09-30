@@ -18,7 +18,7 @@ fun ASTNode?.isWhitespaceOrEmpty(): Boolean {
 }
 
 fun extractExpression(node: CompositeElement): ASTWrapperPsiElement {
-    val infix = node.findPsiChildByType(NexusLexer.OperatorInfix);
+    val infix = node.findPsiChildByType(YggdrasilLexer.OperatorInfix);
     return if (infix == null) {
 //        println("extractExpression: ${node.elementType} ${node.text}")
         ASTWrapperPsiElement(node)

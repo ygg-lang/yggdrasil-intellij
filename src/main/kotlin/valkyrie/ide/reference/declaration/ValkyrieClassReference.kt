@@ -1,9 +1,9 @@
 package valkyrie.ide.reference.declaration
 
 import yggdrasil.language.ast.NexusIdentifierNode
-import yggdrasil.language.ast.classes.NexusClassStatement
+import yggdrasil.language.ast.classes.YggdrasilClassStatement
 
-class ValkyrieClassReference(definition: NexusClassStatement, element: NexusIdentifierNode) : ValkyrieReference(element, definition) {
+class ValkyrieClassReference(definition: YggdrasilClassStatement, element: NexusIdentifierNode) : ValkyrieReference(element, definition) {
 
 }
 

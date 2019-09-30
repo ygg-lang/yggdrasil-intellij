@@ -6,7 +6,7 @@ import com.intellij.openapi.editor.colors.EditorColorsManager
 import com.intellij.openapi.editor.richcopy.HtmlSyntaxInfoUtil
 import com.intellij.psi.PsiElement
 import com.intellij.ui.ColorUtil
-import yggdrasil.language.ast.classes.NexusClassStatement
+import yggdrasil.language.ast.classes.YggdrasilClassStatement
 import valkyrie.ide.highlight.NexusHighlightColor
 import valkyrie.ide.highlight.NexusHighlightColor.KEYWORD
 import valkyrie.ide.highlight.NexusHighlightColor.SYM_CLASS
@@ -21,7 +21,7 @@ class DocumentationRenderer(var element: PsiElement, private var original: PsiEl
             else -> {}
         }
         when (element) {
-            is NexusClassStatement -> buildShort(element as NexusClassStatement)
+            is YggdrasilClassStatement -> buildShort(element as YggdrasilClassStatement)
             else -> {
                 doc.append(element)
                 doc.append("<br/>")
@@ -33,7 +33,7 @@ class DocumentationRenderer(var element: PsiElement, private var original: PsiEl
         return doc.toString()
     }
 
-    private fun buildShort(element: NexusClassStatement) {
+    private fun buildShort(element: YggdrasilClassStatement) {
         append(KEYWORD, "crate ")
         appendNamespace()
         doc.append("<br/>")

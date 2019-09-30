@@ -6,16 +6,16 @@ import com.intellij.lang.cacheBuilder.WordsScanner
 import com.intellij.lang.findUsages.FindUsagesProvider
 import com.intellij.psi.PsiElement
 import com.intellij.psi.tree.TokenSet
-import yggdrasil.antlr.NexusLexer
+import yggdrasil.antlr.YggdrasilLexer
 
 class ValkyrieUsagesProvider : FindUsagesProvider {
     override fun getWordsScanner(): WordsScanner {
 
         return DefaultWordsScanner(
-            NexusLexer(),
-            NexusLexer.Identifiers,
-            NexusLexer.Identifiers,
-            NexusLexer.Comments,
+            YggdrasilLexer(),
+            YggdrasilLexer.Identifiers,
+            YggdrasilLexer.Identifiers,
+            YggdrasilLexer.Comments,
             TokenSet.EMPTY
         )
     }

@@ -22,7 +22,7 @@ import valkyrie.ide.view.NamepathPresentation
 import javax.swing.Icon
 
 
-class NexusClassStatement(node: CompositeElement) : ValkyrieScopeNode(node), PsiNameIdentifierOwner, ValkyrieLineMarkElement,
+class YggdrasilClassStatement(node: CompositeElement) : ValkyrieScopeNode(node), PsiNameIdentifierOwner, ValkyrieLineMarkElement,
     NexusHighlightElement {
     private val _path by lazy { NexusNamepathNode.find(this)!! }
 

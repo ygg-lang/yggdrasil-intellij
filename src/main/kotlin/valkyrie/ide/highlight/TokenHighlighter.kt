@@ -7,14 +7,14 @@ import com.intellij.openapi.editor.colors.TextAttributesKey
 import com.intellij.openapi.fileTypes.SyntaxHighlighter
 import com.intellij.psi.TokenType
 import com.intellij.psi.tree.IElementType
-import yggdrasil.antlr.NexusLexer
+import yggdrasil.antlr.YggdrasilLexer
 import org.antlr.intellij.adaptor.lexer.PSIElementTypeFactory
 import valkyrie.ide.matcher.ValkyrieBracketMatch
 
 
 class TokenHighlighter : SyntaxHighlighter {
     override fun getHighlightingLexer(): Lexer {
-        return NexusLexer()
+        return YggdrasilLexer()
     }
 
     override fun getTokenHighlights(tokenType: IElementType): Array<TextAttributesKey> {
@@ -29,17 +29,17 @@ class TokenHighlighter : SyntaxHighlighter {
     private fun getTokenColor(tokenType: IElementType): TextAttributesKey? {
         val hash = PSIElementTypeFactory.createTokenSet(yggdrasil.language.YggdrasilLanguage);
         return when {
-            NexusLexer.Keywords.contains(tokenType) -> NexusHighlightColor.KEYWORD.textAttributesKey
-            NexusLexer.Operators.contains(tokenType) -> DefaultLanguageHighlighterColors.OPERATION_SIGN
-            NexusLexer.MacroOperators.contains(tokenType) -> NexusHighlightColor.SYM_MACRO.textAttributesKey
-            NexusLexer.Integers.contains(tokenType) -> NexusHighlightColor.INTEGER.textAttributesKey
-            NexusLexer.Decimals.contains(tokenType) -> NexusHighlightColor.DECIMAL.textAttributesKey
-            NexusLexer.Strings.contains(tokenType) -> NexusHighlightColor.STRING.textAttributesKey
-            NexusLexer.Comments.contains(tokenType) -> DefaultLanguageHighlighterColors.LINE_COMMENT
+            YggdrasilLexer.Keywords.contains(tokenType) -> NexusHighlightColor.KEYWORD.textAttributesKey
+            YggdrasilLexer.Operators.contains(tokenType) -> DefaultLanguageHighlighterColors.OPERATION_SIGN
+            YggdrasilLexer.MacroOperators.contains(tokenType) -> NexusHighlightColor.SYM_MACRO.textAttributesKey
+            YggdrasilLexer.Integers.contains(tokenType) -> NexusHighlightColor.INTEGER.textAttributesKey
+            YggdrasilLexer.Decimals.contains(tokenType) -> NexusHighlightColor.DECIMAL.textAttributesKey
+            YggdrasilLexer.Strings.contains(tokenType) -> NexusHighlightColor.STRING.textAttributesKey
+            YggdrasilLexer.Comments.contains(tokenType) -> DefaultLanguageHighlighterColors.LINE_COMMENT
             // inherit
-            NexusLexer.Comma.contains(tokenType) -> DefaultLanguageHighlighterColors.COMMA
-            NexusLexer.Semicolon.contains(tokenType) -> DefaultLanguageHighlighterColors.SEMICOLON
-            NexusLexer.Escapes.contains(tokenType) -> NexusHighlightColor.STRING_ESCAPED.textAttributesKey
+            YggdrasilLexer.Comma.contains(tokenType) -> DefaultLanguageHighlighterColors.COMMA
+            YggdrasilLexer.Semicolon.contains(tokenType) -> DefaultLanguageHighlighterColors.SEMICOLON
+            YggdrasilLexer.Escapes.contains(tokenType) -> NexusHighlightColor.STRING_ESCAPED.textAttributesKey
 
             else -> {
                 when (tokenType) {

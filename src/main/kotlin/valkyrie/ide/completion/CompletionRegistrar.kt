@@ -8,7 +8,7 @@ import com.intellij.openapi.progress.ProgressManager
 import com.intellij.psi.util.elementType
 import com.intellij.psi.util.parents
 import com.intellij.util.ProcessingContext
-import yggdrasil.antlr.NexusLexer
+import yggdrasil.antlr.YggdrasilLexer
 import yggdrasil.language.file.NexusFileNode
 
 
@@ -27,7 +27,7 @@ class CompletionRegistrar : CompletionContributor() {
         val context = ProcessingContext()
         val element = parameters.originalPosition ?: return
         println("CompletionRegistrar: ${element.elementType}")
-        if (NexusLexer.CompletionWords.contains(element.elementType)) {
+        if (YggdrasilLexer.CompletionWords.contains(element.elementType)) {
             for (node in element.parents(false)) {
                 if (result.isStopped) {
                     return

@@ -7,13 +7,14 @@ import com.intellij.psi.tree.TokenSet
 import org.antlr.intellij.adaptor.lexer.ANTLRLexerAdaptor
 import org.antlr.intellij.adaptor.lexer.PSIElementTypeFactory
 import yggdrasil.antlr.YggdrasilAntlrLexer.*
+import yggdrasil.language.YggdrasilLanguage
 
-class NexusLexer : Lexer() {
+class YggdrasilLexer : Lexer() {
     private var adaptor: ANTLRLexerAdaptor
 
     init {
         val lexer = YggdrasilAntlrLexer(null)
-        this.adaptor = ANTLRLexerAdaptor(yggdrasil.language.YggdrasilLanguage, lexer)
+        this.adaptor = ANTLRLexerAdaptor(YggdrasilLanguage, lexer)
     }
 
     override fun start(buffer: CharSequence, startOffset: Int, endOffset: Int, initialState: Int) {
@@ -58,7 +59,7 @@ class NexusLexer : Lexer() {
 
     companion object {
         val Keywords: TokenSet = PSIElementTypeFactory.createTokenSet(
-            yggdrasil.language.YggdrasilLanguage,
+            YggdrasilLanguage,
             // declare keywords
             KW_IMPORT, KW_AS, KW_IN,
             KW_CLASS,
@@ -77,34 +78,34 @@ class NexusLexer : Lexer() {
 
         )
         val OperatorPrefix: TokenSet = PSIElementTypeFactory.createTokenSet(
-            yggdrasil.language.YggdrasilLanguage,
+            YggdrasilLanguage,
 
         )
         val OperatorInfix: TokenSet = PSIElementTypeFactory.createTokenSet(
-            yggdrasil.language.YggdrasilLanguage,
+            YggdrasilLanguage,
 
 
             )
         val OperatorSuffix: TokenSet = PSIElementTypeFactory.createTokenSet(
-            yggdrasil.language.YggdrasilLanguage,
+            YggdrasilLanguage,
         )
         val Operators = TokenSet.orSet(
             OperatorPrefix,
             OperatorInfix,
             OperatorSuffix
         );
-        val MacroOperators = PSIElementTypeFactory.createTokenSet(yggdrasil.language.YggdrasilLanguage);
-        val Escapes: TokenSet = PSIElementTypeFactory.createTokenSet(yggdrasil.language.YggdrasilLanguage);
-        val Comma: TokenSet = PSIElementTypeFactory.createTokenSet(yggdrasil.language.YggdrasilLanguage);
-        val Semicolon: TokenSet = PSIElementTypeFactory.createTokenSet(yggdrasil.language.YggdrasilLanguage);
-        val Integers: TokenSet = PSIElementTypeFactory.createTokenSet(yggdrasil.language.YggdrasilLanguage);
-        val Decimals: TokenSet = PSIElementTypeFactory.createTokenSet(yggdrasil.language.YggdrasilLanguage);
-        val Strings: TokenSet = PSIElementTypeFactory.createTokenSet(yggdrasil.language.YggdrasilLanguage);
-        val Identifiers: TokenSet = PSIElementTypeFactory.createTokenSet(yggdrasil.language.YggdrasilLanguage);
+        val MacroOperators = PSIElementTypeFactory.createTokenSet(YggdrasilLanguage);
+        val Escapes: TokenSet = PSIElementTypeFactory.createTokenSet(YggdrasilLanguage);
+        val Comma: TokenSet = PSIElementTypeFactory.createTokenSet(YggdrasilLanguage);
+        val Semicolon: TokenSet = PSIElementTypeFactory.createTokenSet(YggdrasilLanguage);
+        val Integers: TokenSet = PSIElementTypeFactory.createTokenSet(YggdrasilLanguage);
+        val Decimals: TokenSet = PSIElementTypeFactory.createTokenSet(YggdrasilLanguage);
+        val Strings: TokenSet = PSIElementTypeFactory.createTokenSet(YggdrasilLanguage);
+        val Identifiers: TokenSet = PSIElementTypeFactory.createTokenSet(YggdrasilLanguage);
 
-        val Comments: TokenSet = PSIElementTypeFactory.createTokenSet(yggdrasil.language.YggdrasilLanguage);
+        val Comments: TokenSet = PSIElementTypeFactory.createTokenSet(YggdrasilLanguage);
         val CompletionWords: TokenSet = PSIElementTypeFactory.createTokenSet(
-            yggdrasil.language.YggdrasilLanguage,
+            YggdrasilLanguage,
 
             )
     }

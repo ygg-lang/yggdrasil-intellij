@@ -6,7 +6,7 @@ import com.intellij.model.Symbol
 import com.intellij.model.psi.PsiSymbolDeclaration
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
-import yggdrasil.language.ast.classes.NexusClassStatement
+import yggdrasil.language.ast.classes.YggdrasilClassStatement
 
 //import nexus.language.psi_node.ValkyrieExtendsStatementNode
 
@@ -31,7 +31,7 @@ object WorkspaceManager {
         return packageManager?.findDefinition(symbol)
     }
 
-    fun defineClass(target: NexusClassStatement, packageName: String, namespace: String) {
+    fun defineClass(target: YggdrasilClassStatement, packageName: String, namespace: String) {
         val packageManager = packages.getOrPut(packageName) { PackageManager() }
         val namespaceManager = packageManager.namespace.getOrPut(namespace) { NamespaceManager() }
         val define = namespaceManager.classes[target.name];
@@ -65,14 +65,14 @@ class ValkyrieClassDeclare : PsiSymbolDeclaration {
     var mySymbol: ValkyrieSymbol;
     var myDefine: PsiElement;
 
-    constructor(classNode: NexusClassStatement, packageName: String, namespace: String) {
+    constructor(classNode: YggdrasilClassStatement, packageName: String, namespace: String) {
         mySymbol = ValkyrieSymbol(packageName, namespace, classNode.name ?: "[Missing]")
         myDefine = classNode
     }
 
 
-    override fun getDeclaringElement(): NexusClassStatement {
-        return myDefine as NexusClassStatement
+    override fun getDeclaringElement(): YggdrasilClassStatement {
+        return myDefine as YggdrasilClassStatement
     }
 
     override fun getRangeInDeclaringElement(): TextRange {

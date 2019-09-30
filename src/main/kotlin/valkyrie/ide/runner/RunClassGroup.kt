@@ -7,7 +7,7 @@ import com.intellij.openapi.actionSystem.ActionGroup
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.psi.PsiElement
-import yggdrasil.language.ast.classes.NexusClassStatement
+import yggdrasil.language.ast.classes.YggdrasilClassStatement
 
 
 class RunClassGroup : ActionGroup() {
@@ -22,7 +22,7 @@ class RunClassGroup : ActionGroup() {
 
     companion object {
         fun markClass(element: PsiElement): Info? {
-            if (element !is NexusClassStatement) return null;
+            if (element !is YggdrasilClassStatement) return null;
             return Info(RunClass(listOf("element"), false))
         }
 
