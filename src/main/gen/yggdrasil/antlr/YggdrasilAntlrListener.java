@@ -58,6 +58,30 @@ public interface YggdrasilAntlrListener extends ParseTreeListener {
 	 */
 	void exitRule_block(YggdrasilAntlrParser.Rule_blockContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code Untag}
+	 * labeled alternative in {@link YggdrasilAntlrParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterUntag(YggdrasilAntlrParser.UntagContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Untag}
+	 * labeled alternative in {@link YggdrasilAntlrParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitUntag(YggdrasilAntlrParser.UntagContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code EIdentifier}
+	 * labeled alternative in {@link YggdrasilAntlrParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterEIdentifier(YggdrasilAntlrParser.EIdentifierContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code EIdentifier}
+	 * labeled alternative in {@link YggdrasilAntlrParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitEIdentifier(YggdrasilAntlrParser.EIdentifierContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code Group}
 	 * labeled alternative in {@link YggdrasilAntlrParser#expression}.
 	 * @param ctx the parse tree
@@ -69,18 +93,6 @@ public interface YggdrasilAntlrListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitGroup(YggdrasilAntlrParser.GroupContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code Named}
-	 * labeled alternative in {@link YggdrasilAntlrParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterNamed(YggdrasilAntlrParser.NamedContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code Named}
-	 * labeled alternative in {@link YggdrasilAntlrParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitNamed(YggdrasilAntlrParser.NamedContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code Pattern}
 	 * labeled alternative in {@link YggdrasilAntlrParser#expression}.
@@ -118,6 +130,30 @@ public interface YggdrasilAntlrListener extends ParseTreeListener {
 	 */
 	void exitOptional(YggdrasilAntlrParser.OptionalContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code BranchTag}
+	 * labeled alternative in {@link YggdrasilAntlrParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterBranchTag(YggdrasilAntlrParser.BranchTagContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code BranchTag}
+	 * labeled alternative in {@link YggdrasilAntlrParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitBranchTag(YggdrasilAntlrParser.BranchTagContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code NodeTag}
+	 * labeled alternative in {@link YggdrasilAntlrParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterNodeTag(YggdrasilAntlrParser.NodeTagContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code NodeTag}
+	 * labeled alternative in {@link YggdrasilAntlrParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitNodeTag(YggdrasilAntlrParser.NodeTagContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code Hard}
 	 * labeled alternative in {@link YggdrasilAntlrParser#expression}.
 	 * @param ctx the parse tree
@@ -129,18 +165,6 @@ public interface YggdrasilAntlrListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitHard(YggdrasilAntlrParser.HardContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code TAG}
-	 * labeled alternative in {@link YggdrasilAntlrParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterTAG(YggdrasilAntlrParser.TAGContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code TAG}
-	 * labeled alternative in {@link YggdrasilAntlrParser#expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitTAG(YggdrasilAntlrParser.TAGContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code Many}
 	 * labeled alternative in {@link YggdrasilAntlrParser#expression}.
@@ -165,6 +189,28 @@ public interface YggdrasilAntlrListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitSoft(YggdrasilAntlrParser.SoftContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code EString}
+	 * labeled alternative in {@link YggdrasilAntlrParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterEString(YggdrasilAntlrParser.EStringContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code EString}
+	 * labeled alternative in {@link YggdrasilAntlrParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitEString(YggdrasilAntlrParser.EStringContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link YggdrasilAntlrParser#string}.
+	 * @param ctx the parse tree
+	 */
+	void enterString(YggdrasilAntlrParser.StringContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link YggdrasilAntlrParser#string}.
+	 * @param ctx the parse tree
+	 */
+	void exitString(YggdrasilAntlrParser.StringContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link YggdrasilAntlrParser#identifier}.
 	 * @param ctx the parse tree

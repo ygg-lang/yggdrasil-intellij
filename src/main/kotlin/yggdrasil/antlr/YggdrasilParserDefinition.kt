@@ -16,8 +16,9 @@ import yggdrasil.language.file.NexusFileNode
 import org.antlr.intellij.adaptor.lexer.PSIElementTypeFactory
 import org.antlr.intellij.adaptor.parser.ANTLRParserAdaptor
 import org.antlr.intellij.adaptor.psi.ANTLRPsiNode
+import yggdrasil.language.YggdrasilLanguage
 
-class NexusParserDefinition : ParserDefinition {
+class YggdrasilParserDefinition : ParserDefinition {
     override fun createLexer(project: Project): Lexer {
         return YggdrasilLexer()
     }
@@ -31,7 +32,7 @@ class NexusParserDefinition : ParserDefinition {
      * "Tokens of those types are automatically skipped by PsiBuilder."
      */
     override fun getWhitespaceTokens(): TokenSet {
-        return PSIElementTypeFactory.createTokenSet(yggdrasil.language.YggdrasilLanguage, YggdrasilAntlrLexer.WHITE_SPACE)
+        return PSIElementTypeFactory.createTokenSet(YggdrasilLanguage, YggdrasilAntlrLexer.WHITE_SPACE)
     }
 
     override fun getCommentTokens(): TokenSet {
@@ -48,7 +49,7 @@ class NexusParserDefinition : ParserDefinition {
      * is called from [.createFile] at least.
      */
     override fun getFileNodeType(): IFileElementType {
-        return IFileElementType(yggdrasil.language.YggdrasilLanguage)
+        return IFileElementType(YggdrasilLanguage)
     }
 
     /**
@@ -108,7 +109,7 @@ class NexusParserDefinition : ParserDefinition {
     companion object {
         init {
             PSIElementTypeFactory.defineLanguageIElementTypes(
-                yggdrasil.language.YggdrasilLanguage, YggdrasilAntlrParser.tokenNames, YggdrasilAntlrParser.ruleNames
+                YggdrasilLanguage, YggdrasilAntlrParser.tokenNames, YggdrasilAntlrParser.ruleNames
             )
         }
     }

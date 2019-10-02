@@ -41,19 +41,26 @@ public interface YggdrasilAntlrVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitRule_block(YggdrasilAntlrParser.Rule_blockContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code Untag}
+	 * labeled alternative in {@link YggdrasilAntlrParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitUntag(YggdrasilAntlrParser.UntagContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code EIdentifier}
+	 * labeled alternative in {@link YggdrasilAntlrParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEIdentifier(YggdrasilAntlrParser.EIdentifierContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code Group}
 	 * labeled alternative in {@link YggdrasilAntlrParser#expression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitGroup(YggdrasilAntlrParser.GroupContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code Named}
-	 * labeled alternative in {@link YggdrasilAntlrParser#expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitNamed(YggdrasilAntlrParser.NamedContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code Pattern}
 	 * labeled alternative in {@link YggdrasilAntlrParser#expression}.
@@ -76,19 +83,26 @@ public interface YggdrasilAntlrVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitOptional(YggdrasilAntlrParser.OptionalContext ctx);
 	/**
+	 * Visit a parse tree produced by the {@code BranchTag}
+	 * labeled alternative in {@link YggdrasilAntlrParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitBranchTag(YggdrasilAntlrParser.BranchTagContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code NodeTag}
+	 * labeled alternative in {@link YggdrasilAntlrParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNodeTag(YggdrasilAntlrParser.NodeTagContext ctx);
+	/**
 	 * Visit a parse tree produced by the {@code Hard}
 	 * labeled alternative in {@link YggdrasilAntlrParser#expression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitHard(YggdrasilAntlrParser.HardContext ctx);
-	/**
-	 * Visit a parse tree produced by the {@code TAG}
-	 * labeled alternative in {@link YggdrasilAntlrParser#expression}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitTAG(YggdrasilAntlrParser.TAGContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code Many}
 	 * labeled alternative in {@link YggdrasilAntlrParser#expression}.
@@ -103,6 +117,19 @@ public interface YggdrasilAntlrVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitSoft(YggdrasilAntlrParser.SoftContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code EString}
+	 * labeled alternative in {@link YggdrasilAntlrParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEString(YggdrasilAntlrParser.EStringContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link YggdrasilAntlrParser#string}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitString(YggdrasilAntlrParser.StringContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link YggdrasilAntlrParser#identifier}.
 	 * @param ctx the parse tree

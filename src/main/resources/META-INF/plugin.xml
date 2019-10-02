@@ -15,7 +15,7 @@
 			fieldName="INSTANCE"/>
 		<lang.parserDefinition
 			language="Yggdrasil"
-			implementationClass="yggdrasil.antlr.NexusParserDefinition"/>
+			implementationClass="yggdrasil.antlr.YggdrasilParserDefinition"/>
 		<multiHostInjector implementation="valkyrie.ide.matcher.LanguageInjector"/>
 		<!-- Project -->
 		<projectNameProvider implementation="valkyrie.ide.project.ValkyrieProjectName"/>
@@ -125,7 +125,7 @@
 		<typedHandler implementation="valkyrie.ide.completion.AutoInsertBrace"/>
 		<backspaceHandlerDelegate implementation="valkyrie.ide.completion.AutoDeleteBrace"/>
 		<!--		<lookup.charFilter implementation="valkyrie.ide.completion.CompletionInterrupter"/>-->
-		<lang.commenter language="Yggdrasil" implementationClass="valkyrie.ide.formatter.ValkyrieCommenter"/>
+		<lang.commenter language="Yggdrasil" implementationClass="valkyrie.ide.formatter.YggdrasilCommenter"/>
 		<lang.braceMatcher
 			language="Yggdrasil"
 			implementationClass="valkyrie.ide.matcher.BraceMatchAdapter"/>

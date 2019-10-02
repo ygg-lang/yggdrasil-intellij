@@ -100,10 +100,10 @@ class YggdrasilLexer : Lexer() {
         val Semicolon: TokenSet = PSIElementTypeFactory.createTokenSet(YggdrasilLanguage);
         val Integers: TokenSet = PSIElementTypeFactory.createTokenSet(YggdrasilLanguage);
         val Decimals: TokenSet = PSIElementTypeFactory.createTokenSet(YggdrasilLanguage);
-        val Strings: TokenSet = PSIElementTypeFactory.createTokenSet(YggdrasilLanguage);
+        val Strings: TokenSet = PSIElementTypeFactory.createTokenSet(YggdrasilLanguage, STRING_SINGLE, STRING_DOUBLE);
         val Identifiers: TokenSet = PSIElementTypeFactory.createTokenSet(YggdrasilLanguage);
 
-        val Comments: TokenSet = PSIElementTypeFactory.createTokenSet(YggdrasilLanguage);
+        val Comments: TokenSet = PSIElementTypeFactory.createTokenSet(YggdrasilLanguage, LINE_COMMENT, BLOCK_COMMENT);
         val CompletionWords: TokenSet = PSIElementTypeFactory.createTokenSet(
             YggdrasilLanguage,
 
