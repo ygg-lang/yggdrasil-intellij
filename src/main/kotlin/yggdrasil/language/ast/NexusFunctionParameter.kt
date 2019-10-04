@@ -21,7 +21,7 @@ class NexusFunctionParameter(node: ASTNode) : ASTWrapperPsiElement(node), PsiNam
         TODO("Not yet implemented")
     }
 
-    override fun getNameIdentifier(): NexusIdentifierNode {
+    override fun getNameIdentifier(): YggdrasilIdentifierNode {
         return this.parameter
     }
 

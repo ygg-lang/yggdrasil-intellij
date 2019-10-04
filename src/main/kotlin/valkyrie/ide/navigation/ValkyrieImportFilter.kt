@@ -5,7 +5,7 @@ import com.intellij.usages.UsageTarget
 import com.intellij.usages.rules.ImportFilteringRule
 import com.intellij.usages.rules.PsiElementUsage
 import yggdrasil.antlr.ancestors
-import yggdrasil.language.ast.NexusIdentifierNode
+import yggdrasil.language.ast.YggdrasilIdentifierNode
 
 //import nexus.language.psi_node.ValkyrieIdentifierNode
 //import nexus.language.psi_node.ValkyrieImportStatementNode
@@ -25,7 +25,7 @@ class ValkyrieImportFilter : ImportFilteringRule() {
     override fun isVisible(usage: Usage): Boolean {
         if (usage is PsiElementUsage) {
             when (val element = usage.element) {
-                is NexusIdentifierNode -> {
+                is YggdrasilIdentifierNode -> {
                     return !inImport(element)
                 }
 
@@ -35,7 +35,7 @@ class ValkyrieImportFilter : ImportFilteringRule() {
         return true
     }
 
-    private fun inImport(id: NexusIdentifierNode): Boolean {
+    private fun inImport(id: YggdrasilIdentifierNode): Boolean {
         for (node in id.ancestors) {
 //            if (node is ValkyrieImportStatementNode) {
 //                return true

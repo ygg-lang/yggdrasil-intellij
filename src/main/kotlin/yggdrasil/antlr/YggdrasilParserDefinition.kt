@@ -25,7 +25,7 @@ class YggdrasilParserDefinition : ParserDefinition {
 
 
     override fun createParser(project: Project): PsiParser {
-        return YggdrasilLexerParser(YggdrasilAntlrParser(null))
+        return YggdrasilParser(YggdrasilAntlrParser(null))
     }
 
     /**
@@ -94,7 +94,7 @@ class YggdrasilParserDefinition : ParserDefinition {
      */
     override fun createElement(node: ASTNode): PsiElement {
         return if (node is CompositeElement) {
-            YggdrasilLexerParser.extractCompositeNode(node)
+            YggdrasilParser.extractCompositeNode(node)
         } else {
             println("create element of ${node.javaClass.name}: ${node.elementType}(${node.text})")
             ASTWrapperPsiElement(node)

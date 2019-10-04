@@ -9,8 +9,7 @@ import com.intellij.openapi.editor.markup.GutterIconRenderer
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNameIdentifierOwner
 import com.intellij.psi.impl.source.tree.CompositeElement
-import yggdrasil.language.ast.NexusIdentifierNode
-import yggdrasil.language.ast.NexusNamepathNode
+import yggdrasil.language.ast.YggdrasilIdentifierNode
 import yggdrasil.language.file.NexusFileNode
 import yggdrasil.language.file.NexusIconProvider
 import yggdrasil.language.psi.ValkyrieLineMarkElement
@@ -18,24 +17,28 @@ import yggdrasil.language.psi.ValkyrieScopeNode
 import valkyrie.ide.highlight.NexusHighlightColor
 import valkyrie.ide.highlight.NexusHighlightElement
 import valkyrie.ide.highlight.NodeHighlighter
+import valkyrie.ide.view.IdentifierPresentation
 import valkyrie.ide.view.NamepathPresentation
+import yggdrasil.antlr.YggdrasilParser
 import javax.swing.Icon
 
 
 class YggdrasilClassStatement(node: CompositeElement) : ValkyrieScopeNode(node), PsiNameIdentifierOwner, ValkyrieLineMarkElement,
     NexusHighlightElement {
-    private val _path by lazy { NexusNamepathNode.find(this)!! }
+    private val _all by lazy {
+        YggdrasilParser.getChildrenOfType<YggdrasilIdentifierNode>(this)
+    }
 
-    override fun getName(): String {
-        return nameIdentifier.text;
+    override fun getName(): String? {
+        return nameIdentifier?.text;
     }
 
     override fun setName(name: String): PsiElement {
         TODO("Not yet implemented")
     }
 
-    override fun getNameIdentifier(): NexusIdentifierNode {
-        return _path.nameIdentifier;
+    override fun getNameIdentifier(): YggdrasilIdentifierNode? {
+        return _all.lastOrNull();
     }
 
     override fun getBaseIcon(): Icon {
@@ -47,11 +50,11 @@ class YggdrasilClassStatement(node: CompositeElement) : ValkyrieScopeNode(node),
     }
 
     override fun getPresentation(): ItemPresentation {
-        return NamepathPresentation(_path, this.baseIcon)
+        return IdentifierPresentation(nameIdentifier!!, this.baseIcon)
     }
 
     override fun on_highlight(e: NodeHighlighter) {
-        val lang = NexusIdentifierNode.find(this)
+        val lang = YggdrasilIdentifierNode.find(this)
         if (lang != null) {
             e.register(lang, NexusHighlightColor.SYM_LANGUAGE)
         }
@@ -60,15 +63,15 @@ class YggdrasilClassStatement(node: CompositeElement) : ValkyrieScopeNode(node),
     }
 
     override fun on_line_mark(e: MutableCollection<in LineMarkerInfo<*>>) {
-        val info = RelatedItemLineMarkerInfo(
-            nameIdentifier.firstChild,
-            nameIdentifier.textRange,
-            AllIcons.Gutter.OverridenMethod,
-            null,
-            null,
-            GutterIconRenderer.Alignment.RIGHT // 上
-        ) { mutableListOf(GotoRelatedItem(this)) }
-        e.add(info)
+//        val info = RelatedItemLineMarkerInfo(
+//            nameIdentifier.firstChild,
+//            nameIdentifier.textRange,
+//            AllIcons.Gutter.OverridenMethod,
+//            null,
+//            null,
+//            GutterIconRenderer.Alignment.RIGHT // 上
+//        ) { mutableListOf(GotoRelatedItem(this)) }
+//        e.add(info)
     }
 }
 

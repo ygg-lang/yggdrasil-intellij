@@ -9,7 +9,7 @@ import valkyrie.ide.highlight.NodeHighlighter
 
 class NexusNumberNode(node: ASTNode) : ANTLRPsiNode(node), NexusHighlightElement {
     val handler by lazy {
-        PsiTreeUtil.getChildOfType(this, NexusIdentifierNode::class.java)
+        PsiTreeUtil.getChildOfType(this, YggdrasilIdentifierNode::class.java)
     }
 
     override fun on_highlight(e: NodeHighlighter) {

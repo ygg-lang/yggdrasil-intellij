@@ -19,7 +19,7 @@ import valkyrie.ide.matcher.escaper.StringEscape
 
 class NexusStringNode(node: ASTNode) : ASTWrapperPsiElement(node), PsiLanguageInjectionHost, NexusHighlightElement {
     val handler by lazy {
-        PsiTreeUtil.getChildOfType(this, NexusIdentifierNode::class.java)
+        PsiTreeUtil.getChildOfType(this, YggdrasilIdentifierNode::class.java)
     }
 
     //    private val _text by lazy {

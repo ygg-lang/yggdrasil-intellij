@@ -7,7 +7,7 @@ import com.intellij.psi.PsiNamedElement
 import com.intellij.psi.PsiReference
 import com.intellij.psi.util.PsiTreeUtil
 
-class NexusIdentifierNode(node: ASTNode) : ASTWrapperPsiElement(node), PsiNamedElement {
+class YggdrasilIdentifierNode(node: ASTNode) : ASTWrapperPsiElement(node), PsiNamedElement {
     override fun getName(): String {
         return text.trim('`')
     }
@@ -34,12 +34,12 @@ class NexusIdentifierNode(node: ASTNode) : ASTWrapperPsiElement(node), PsiNamedE
     }
 
     companion object {
-        fun find(node: PsiElement): NexusIdentifierNode? {
-            return PsiTreeUtil.getChildOfType(node, NexusIdentifierNode::class.java)
+        fun find(node: PsiElement): YggdrasilIdentifierNode? {
+            return PsiTreeUtil.getChildOfType(node, YggdrasilIdentifierNode::class.java)
         }
 
-        fun findMany(node: PsiElement): Array<NexusIdentifierNode> {
-            return PsiTreeUtil.getChildrenOfType(node, NexusIdentifierNode::class.java) ?: arrayOf()
+        fun findMany(node: PsiElement): Array<YggdrasilIdentifierNode> {
+            return PsiTreeUtil.getChildrenOfType(node, YggdrasilIdentifierNode::class.java) ?: arrayOf()
         }
     }
 }

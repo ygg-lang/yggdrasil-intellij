@@ -13,15 +13,15 @@ import valkyrie.ide.highlight.NodeHighlighter
 
 class NexusNamepathNode(node: ASTNode, type: IElementType, val free: Boolean = false) : IdentifierDefSubtree(node, type),
     NexusHighlightElement {
-    val identifiers = findChildrenByClass(NexusIdentifierNode::class.java)
-    val parentIdentifier: Array<NexusIdentifierNode> = identifiers.dropLast(1).toTypedArray()
+    val identifiers = findChildrenByClass(YggdrasilIdentifierNode::class.java)
+    val parentIdentifier: Array<YggdrasilIdentifierNode> = identifiers.dropLast(1).toTypedArray()
     val namespace: String = parentIdentifier.joinToString(".") { it.text }
 
     override fun getName(): String {
         return nameIdentifier.name
     }
 
-    override fun getNameIdentifier(): NexusIdentifierNode {
+    override fun getNameIdentifier(): YggdrasilIdentifierNode {
         return identifiers.last()
     }
 
@@ -38,7 +38,7 @@ class NexusNamepathNode(node: ASTNode, type: IElementType, val free: Boolean = f
 }
 
 
-private fun fakeTypeColor(info: NodeHighlighter, psi: NexusIdentifierNode) {
+private fun fakeTypeColor(info: NodeHighlighter, psi: YggdrasilIdentifierNode) {
     val name = psi.name
     if (keywords.contains(name)) {
         info.register(psi, NexusHighlightColor.KEYWORD)

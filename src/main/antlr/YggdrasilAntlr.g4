@@ -7,9 +7,15 @@ program: (import_statement | define_class | define_union | SEMICOLON)* EOF;
 
 import_statement: KW_IMPORT identifier;
 
-define_class: (mods += identifier)* KW_CLASS name = identifier rule_block;
-define_union: (mods += identifier)* KW_UNION name = identifier rule_block;
+define_class: macro_call* (mods += identifier)* KW_CLASS name = identifier rule_block;
+define_union: macro_call* (mods += identifier)* KW_UNION name = identifier rule_block;
 rule_block:   BRACE_L OP_OR? expression* BRACE_R;
+
+
+macro_call: (OP_HASH|OP_AT) identifier tuple_block? ;
+
+function_call: OP_AT identifier tuple_block?;
+tuple_block:PARENTHESES_L (expression (COMMA expression)* COMMA?)? PARENTHESES_R;
 
 expression
     : expression MATCH_OPTIONAL                     # Optional
@@ -21,7 +27,8 @@ expression
     | expression expression                         # Soft
     | expression OP_OR expression                   # Pattern
     | PARENTHESES_L OP_OR? expression PARENTHESES_R # Group
-    | TAG_BRANCH identifier                         # BranchTag
+    | OP_HASH identifier                         # BranchTag
+    | function_call #Call
     | string                                        # EString
     | identifier                                    # EIdentifier
     ;

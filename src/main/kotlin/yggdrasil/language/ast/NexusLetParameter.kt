@@ -25,7 +25,7 @@ class NexusLetParameter(node: CompositeElement) : ASTWrapperPsiElement(node), Ps
         TODO("Not yet implemented")
     }
 
-    override fun getNameIdentifier(): NexusIdentifierNode {
+    override fun getNameIdentifier(): YggdrasilIdentifierNode {
         return _identifier
     }
 
@@ -37,14 +37,14 @@ class NexusLetParameter(node: CompositeElement) : ASTWrapperPsiElement(node), Ps
         return IdentifierPresentation(_identifier, this.getIcon(0))
     }
 
-    private fun findModifiers(): List<NexusIdentifierNode> {
-        val all = PsiTreeUtil.getChildrenOfTypeAsList(this, NexusIdentifierNode::class.java);
+    private fun findModifiers(): List<YggdrasilIdentifierNode> {
+        val all = PsiTreeUtil.getChildrenOfTypeAsList(this, YggdrasilIdentifierNode::class.java);
         return all.dropLast(1);
     }
 
     // Need to be lazy, otherwise it will be an infinite loop
-    private fun findIdentifier(): NexusIdentifierNode {
-        val all = PsiTreeUtil.getChildrenOfTypeAsList(this, NexusIdentifierNode::class.java);
+    private fun findIdentifier(): YggdrasilIdentifierNode {
+        val all = PsiTreeUtil.getChildrenOfTypeAsList(this, YggdrasilIdentifierNode::class.java);
         return all.last()
     }
 

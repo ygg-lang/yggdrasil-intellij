@@ -4,7 +4,7 @@ import com.intellij.codeInsight.daemon.impl.HighlightInfo
 import com.intellij.codeInsight.daemon.impl.HighlightInfoType
 import com.intellij.codeInsight.daemon.impl.analysis.HighlightInfoHolder
 import com.intellij.psi.PsiElement
-import yggdrasil.language.ast.NexusIdentifierNode
+import yggdrasil.language.ast.YggdrasilIdentifierNode
 
 @Suppress("FunctionName")
 class NodeHighlighter(private val info: HighlightInfoHolder?) {
@@ -16,7 +16,7 @@ class NodeHighlighter(private val info: HighlightInfoHolder?) {
         this.info?.add(builder.create())
     }
 
-    fun register_modifiers(modifiers: Collection<NexusIdentifierNode>) {
+    fun register_modifiers(modifiers: Collection<YggdrasilIdentifierNode>) {
         for (mod in modifiers) {
             this.register(mod, NexusHighlightColor.MODIFIER)
         }

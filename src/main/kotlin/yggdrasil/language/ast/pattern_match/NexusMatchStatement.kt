@@ -4,7 +4,7 @@ import com.intellij.icons.AllIcons
 import com.intellij.ide.projectView.PresentationData
 import com.intellij.navigation.ItemPresentation
 import com.intellij.psi.impl.source.tree.CompositeElement
-import yggdrasil.language.ast.NexusIdentifierNode
+import yggdrasil.language.ast.YggdrasilIdentifierNode
 import yggdrasil.language.psi.ValkyrieScopeNode
 import valkyrie.ide.highlight.NexusHighlightColor
 import valkyrie.ide.highlight.NexusHighlightElement
@@ -12,7 +12,7 @@ import valkyrie.ide.highlight.NodeHighlighter
 import javax.swing.Icon
 
 class NexusMatchStatement(node: CompositeElement) : ValkyrieScopeNode(node), NexusHighlightElement {
-    val bind by lazy { NexusIdentifierNode.find(this) }
+    val bind by lazy { YggdrasilIdentifierNode.find(this) }
     override fun on_highlight(e: NodeHighlighter) {
         if (bind != null) {
             // maybe mutable

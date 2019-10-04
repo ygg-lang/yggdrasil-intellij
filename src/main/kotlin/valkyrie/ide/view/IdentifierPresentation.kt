@@ -2,11 +2,11 @@ package valkyrie.ide.view
 
 import com.intellij.navigation.ColoredItemPresentation
 import com.intellij.openapi.editor.colors.TextAttributesKey
-import yggdrasil.language.ast.NexusIdentifierNode
+import yggdrasil.language.ast.YggdrasilIdentifierNode
 import valkyrie.ide.highlight.NexusHighlightColor
 import javax.swing.Icon
 
-class IdentifierPresentation(val name: NexusIdentifierNode?, private val icon: Icon) : ColoredItemPresentation {
+class IdentifierPresentation(val name: YggdrasilIdentifierNode?, private val icon: Icon) : ColoredItemPresentation {
     override fun getPresentableText(): String {
         return name?.name ?: "[Missing]"
     }

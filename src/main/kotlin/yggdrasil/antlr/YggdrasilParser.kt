@@ -18,7 +18,7 @@ import yggdrasil.language.YggdrasilLanguage
 import yggdrasil.language.ast.classes.YggdrasilClassStatement
 
 
-class YggdrasilLexerParser(parser: YggdrasilAntlrParser) : ANTLRParserAdaptor(YggdrasilLanguage, parser) {
+class YggdrasilParser(parser: YggdrasilAntlrParser) : ANTLRParserAdaptor(YggdrasilLanguage, parser) {
     override fun parse(parser: Parser, root: IElementType): ParseTree {
         return (parser as YggdrasilAntlrParser).program()
     }

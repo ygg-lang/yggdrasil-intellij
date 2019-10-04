@@ -77,6 +77,42 @@ public class YggdrasilAntlrBaseListener implements YggdrasilAntlrListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterMacro_call(YggdrasilAntlrParser.Macro_callContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMacro_call(YggdrasilAntlrParser.Macro_callContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterFunction_call(YggdrasilAntlrParser.Function_callContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFunction_call(YggdrasilAntlrParser.Function_callContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterTuple_block(YggdrasilAntlrParser.Tuple_blockContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTuple_block(YggdrasilAntlrParser.Tuple_blockContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterUntag(YggdrasilAntlrParser.UntagContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -89,18 +125,6 @@ public class YggdrasilAntlrBaseListener implements YggdrasilAntlrListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterEIdentifier(YggdrasilAntlrParser.EIdentifierContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitEIdentifier(YggdrasilAntlrParser.EIdentifierContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterGroup(YggdrasilAntlrParser.GroupContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -108,6 +132,18 @@ public class YggdrasilAntlrBaseListener implements YggdrasilAntlrListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitGroup(YggdrasilAntlrParser.GroupContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterCall(YggdrasilAntlrParser.CallContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCall(YggdrasilAntlrParser.CallContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -161,18 +197,6 @@ public class YggdrasilAntlrBaseListener implements YggdrasilAntlrListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterNodeTag(YggdrasilAntlrParser.NodeTagContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitNodeTag(YggdrasilAntlrParser.NodeTagContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterHard(YggdrasilAntlrParser.HardContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -185,18 +209,6 @@ public class YggdrasilAntlrBaseListener implements YggdrasilAntlrListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterMany(YggdrasilAntlrParser.ManyContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitMany(YggdrasilAntlrParser.ManyContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
 	@Override public void enterSoft(YggdrasilAntlrParser.SoftContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -204,6 +216,42 @@ public class YggdrasilAntlrBaseListener implements YggdrasilAntlrListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitSoft(YggdrasilAntlrParser.SoftContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterEIdentifier(YggdrasilAntlrParser.EIdentifierContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitEIdentifier(YggdrasilAntlrParser.EIdentifierContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterNodeTag(YggdrasilAntlrParser.NodeTagContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitNodeTag(YggdrasilAntlrParser.NodeTagContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterMany(YggdrasilAntlrParser.ManyContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitMany(YggdrasilAntlrParser.ManyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

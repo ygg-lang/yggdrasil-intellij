@@ -9,7 +9,7 @@ import com.intellij.openapi.editor.markup.GutterIconRenderer
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNameIdentifierOwner
 import com.intellij.psi.impl.source.tree.CompositeElement
-import yggdrasil.language.ast.NexusIdentifierNode
+import yggdrasil.language.ast.YggdrasilIdentifierNode
 import yggdrasil.language.ast.NexusModifiedNode
 import yggdrasil.language.file.NexusIconProvider
 import yggdrasil.language.psi.ValkyrieInlayElement
@@ -36,7 +36,7 @@ class NexusClassFieldNode(node: CompositeElement) : ValkyrieScopeNode(node), Psi
         TODO("Not yet implemented")
     }
 
-    override fun getNameIdentifier(): NexusIdentifierNode {
+    override fun getNameIdentifier(): YggdrasilIdentifierNode {
         return field
     }
 

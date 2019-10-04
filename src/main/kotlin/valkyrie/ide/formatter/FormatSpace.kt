@@ -31,7 +31,7 @@ private val removeSpaceNewlineAfter = TokenSet.orSet(
 
 // 左右插入一个空格
 private val spaceAroundOperator = TokenSet.orSet(
-    createTokenSet(yggdrasil.language.YggdrasilLanguage, YggdrasilAntlrLexer.KW_IN),
+    createTokenSet(yggdrasil.language.YggdrasilLanguage),
     YggdrasilLexer.OperatorInfix
 )
 

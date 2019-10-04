@@ -1,9 +1,9 @@
 package yggdrasil.language.symbol
 
-import yggdrasil.language.ast.NexusIdentifierNode
+import yggdrasil.language.ast.YggdrasilIdentifierNode
 import valkyrie.ide.highlight.NexusHighlightColor
 
 data class ValkyrieVariableKind(
-    val identifier: NexusIdentifierNode,
+    val identifier: YggdrasilIdentifierNode,
     val color: NexusHighlightColor,
 )

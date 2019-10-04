@@ -8,7 +8,7 @@ import valkyrie.ide.highlight.NodeHighlighter
 
 
 class NexusCallArgument(node: CompositeElement) : ASTWrapperPsiElement(node), NexusHighlightElement {
-    val key by lazy { NexusIdentifierNode.find(this) }
+    val key by lazy { YggdrasilIdentifierNode.find(this) }
 
     override fun on_highlight(e: NodeHighlighter) {
         e.register(key, NexusHighlightColor.SYM_ARG)

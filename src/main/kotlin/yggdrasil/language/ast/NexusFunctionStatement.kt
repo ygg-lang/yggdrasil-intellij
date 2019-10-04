@@ -24,7 +24,7 @@ class NexusFunctionStatement(node: CompositeElement) : ValkyrieScopeNode(node), 
         TODO("Not yet implemented")
     }
 
-    override fun getNameIdentifier(): NexusIdentifierNode? {
+    override fun getNameIdentifier(): YggdrasilIdentifierNode? {
         return namepath?.nameIdentifier
     }
 
