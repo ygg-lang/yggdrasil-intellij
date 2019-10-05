@@ -35,6 +35,12 @@ public interface YggdrasilAntlrVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitDefine_union(YggdrasilAntlrParser.Define_unionContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link YggdrasilAntlrParser#define_climb}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDefine_climb(YggdrasilAntlrParser.Define_climbContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link YggdrasilAntlrParser#rule_block}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -122,12 +128,19 @@ public interface YggdrasilAntlrVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSoft(YggdrasilAntlrParser.SoftContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code EIdentifier}
+	 * Visit a parse tree produced by the {@code Atom}
 	 * labeled alternative in {@link YggdrasilAntlrParser#expression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitEIdentifier(YggdrasilAntlrParser.EIdentifierContext ctx);
+	T visitAtom(YggdrasilAntlrParser.AtomContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code Not}
+	 * labeled alternative in {@link YggdrasilAntlrParser#expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNot(YggdrasilAntlrParser.NotContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code NodeTag}
 	 * labeled alternative in {@link YggdrasilAntlrParser#expression}.
@@ -143,12 +156,23 @@ public interface YggdrasilAntlrVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitMany(YggdrasilAntlrParser.ManyContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code EString}
-	 * labeled alternative in {@link YggdrasilAntlrParser#expression}.
+	 * Visit a parse tree produced by {@link YggdrasilAntlrParser#atomic}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitEString(YggdrasilAntlrParser.EStringContext ctx);
+	T visitAtomic(YggdrasilAntlrParser.AtomicContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link YggdrasilAntlrParser#regex}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitRegex(YggdrasilAntlrParser.RegexContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link YggdrasilAntlrParser#namepath}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitNamepath(YggdrasilAntlrParser.NamepathContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link YggdrasilAntlrParser#string}.
 	 * @param ctx the parse tree

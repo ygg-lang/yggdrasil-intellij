@@ -10,16 +10,19 @@ MATCH_MAYBE:    '*';
 MATCH_MANY:     '+';
 MATCH_OPTIONAL: '?';
 
+OP_NOT:    '!';
 OP_AT:     '@';
 OP_HASH:   '#';
 OP_CONCAT: '~';
 OP_OR:     '|';
+
 OP_UNTAG:  '^';
 TAG_NODE:  ':';
 
 KW_IMPORT: 'using';
 KW_CLASS:  'class';
 KW_UNION:  'union';
+KW_CLIMB:  'climb';
 KW_AS:     'as';
 
 OP_PROPORTION: '::';
@@ -32,6 +35,12 @@ BRACE_L:       '{';
 BRACE_R:       '}';
 GENERIC_L:     '⟨';
 GENERIC_R:     '⟩';
+
+INTEGER: '0' | [1-9][0-9]*;
+SPECIAL: [Tt][Rr][Uu][Ee] | [Ff][Aa][Ll][Ss][Ee] | [Aa][Nn][Yy];
+ESCAPED: '\\' .;
+REGEX_RANGE: '[' ~[\]]* ']';
+REGEX_FREE: '/' ~[/]* '/';
 
 STRING_SINGLE: '\'' ~[']* '\'';
 STRING_DOUBLE: '"' ~["]* '"';

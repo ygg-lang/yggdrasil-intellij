@@ -94,8 +94,8 @@ class YggdrasilLexer : Lexer() {
             OperatorInfix,
             OperatorSuffix
         );
-        val MacroOperators = PSIElementTypeFactory.createTokenSet(YggdrasilLanguage);
-        val Escapes: TokenSet = PSIElementTypeFactory.createTokenSet(YggdrasilLanguage);
+        val MacroOperators: TokenSet = PSIElementTypeFactory.createTokenSet(YggdrasilLanguage, OP_HASH, OP_AT);
+        val Escapes: TokenSet = PSIElementTypeFactory.createTokenSet(YggdrasilLanguage, ESCAPED);
         val Comma: TokenSet = PSIElementTypeFactory.createTokenSet(YggdrasilLanguage);
         val Semicolon: TokenSet = PSIElementTypeFactory.createTokenSet(YggdrasilLanguage);
         val Integers: TokenSet = PSIElementTypeFactory.createTokenSet(YggdrasilLanguage);

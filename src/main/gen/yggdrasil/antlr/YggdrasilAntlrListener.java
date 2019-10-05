@@ -48,6 +48,16 @@ public interface YggdrasilAntlrListener extends ParseTreeListener {
 	 */
 	void exitDefine_union(YggdrasilAntlrParser.Define_unionContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link YggdrasilAntlrParser#define_climb}.
+	 * @param ctx the parse tree
+	 */
+	void enterDefine_climb(YggdrasilAntlrParser.Define_climbContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link YggdrasilAntlrParser#define_climb}.
+	 * @param ctx the parse tree
+	 */
+	void exitDefine_climb(YggdrasilAntlrParser.Define_climbContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link YggdrasilAntlrParser#rule_block}.
 	 * @param ctx the parse tree
 	 */
@@ -196,17 +206,29 @@ public interface YggdrasilAntlrListener extends ParseTreeListener {
 	 */
 	void exitSoft(YggdrasilAntlrParser.SoftContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code EIdentifier}
+	 * Enter a parse tree produced by the {@code Atom}
 	 * labeled alternative in {@link YggdrasilAntlrParser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void enterEIdentifier(YggdrasilAntlrParser.EIdentifierContext ctx);
+	void enterAtom(YggdrasilAntlrParser.AtomContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code EIdentifier}
+	 * Exit a parse tree produced by the {@code Atom}
 	 * labeled alternative in {@link YggdrasilAntlrParser#expression}.
 	 * @param ctx the parse tree
 	 */
-	void exitEIdentifier(YggdrasilAntlrParser.EIdentifierContext ctx);
+	void exitAtom(YggdrasilAntlrParser.AtomContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code Not}
+	 * labeled alternative in {@link YggdrasilAntlrParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterNot(YggdrasilAntlrParser.NotContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code Not}
+	 * labeled alternative in {@link YggdrasilAntlrParser#expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitNot(YggdrasilAntlrParser.NotContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code NodeTag}
 	 * labeled alternative in {@link YggdrasilAntlrParser#expression}.
@@ -232,17 +254,35 @@ public interface YggdrasilAntlrListener extends ParseTreeListener {
 	 */
 	void exitMany(YggdrasilAntlrParser.ManyContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code EString}
-	 * labeled alternative in {@link YggdrasilAntlrParser#expression}.
+	 * Enter a parse tree produced by {@link YggdrasilAntlrParser#atomic}.
 	 * @param ctx the parse tree
 	 */
-	void enterEString(YggdrasilAntlrParser.EStringContext ctx);
+	void enterAtomic(YggdrasilAntlrParser.AtomicContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code EString}
-	 * labeled alternative in {@link YggdrasilAntlrParser#expression}.
+	 * Exit a parse tree produced by {@link YggdrasilAntlrParser#atomic}.
 	 * @param ctx the parse tree
 	 */
-	void exitEString(YggdrasilAntlrParser.EStringContext ctx);
+	void exitAtomic(YggdrasilAntlrParser.AtomicContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link YggdrasilAntlrParser#regex}.
+	 * @param ctx the parse tree
+	 */
+	void enterRegex(YggdrasilAntlrParser.RegexContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link YggdrasilAntlrParser#regex}.
+	 * @param ctx the parse tree
+	 */
+	void exitRegex(YggdrasilAntlrParser.RegexContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link YggdrasilAntlrParser#namepath}.
+	 * @param ctx the parse tree
+	 */
+	void enterNamepath(YggdrasilAntlrParser.NamepathContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link YggdrasilAntlrParser#namepath}.
+	 * @param ctx the parse tree
+	 */
+	void exitNamepath(YggdrasilAntlrParser.NamepathContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link YggdrasilAntlrParser#string}.
 	 * @param ctx the parse tree

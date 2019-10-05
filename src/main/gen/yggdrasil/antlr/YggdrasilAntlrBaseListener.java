@@ -65,6 +65,18 @@ public class YggdrasilAntlrBaseListener implements YggdrasilAntlrListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterDefine_climb(YggdrasilAntlrParser.Define_climbContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDefine_climb(YggdrasilAntlrParser.Define_climbContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterRule_block(YggdrasilAntlrParser.Rule_blockContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -221,13 +233,25 @@ public class YggdrasilAntlrBaseListener implements YggdrasilAntlrListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterEIdentifier(YggdrasilAntlrParser.EIdentifierContext ctx) { }
+	@Override public void enterAtom(YggdrasilAntlrParser.AtomContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitEIdentifier(YggdrasilAntlrParser.EIdentifierContext ctx) { }
+	@Override public void exitAtom(YggdrasilAntlrParser.AtomContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterNot(YggdrasilAntlrParser.NotContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitNot(YggdrasilAntlrParser.NotContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -257,13 +281,37 @@ public class YggdrasilAntlrBaseListener implements YggdrasilAntlrListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterEString(YggdrasilAntlrParser.EStringContext ctx) { }
+	@Override public void enterAtomic(YggdrasilAntlrParser.AtomicContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitEString(YggdrasilAntlrParser.EStringContext ctx) { }
+	@Override public void exitAtomic(YggdrasilAntlrParser.AtomicContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterRegex(YggdrasilAntlrParser.RegexContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitRegex(YggdrasilAntlrParser.RegexContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterNamepath(YggdrasilAntlrParser.NamepathContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitNamepath(YggdrasilAntlrParser.NamepathContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
