@@ -6,11 +6,11 @@ import com.intellij.openapi.editor.Editor
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.util.Iconable
 import com.intellij.psi.PsiFile
-import yggdrasil.language.ast.classes.NexusClassFieldNode
+import yggdrasil.language.ast.classes.YggdrasilClassFieldNode
 import yggdrasil.language.file.NexusIconProvider
 import javax.swing.Icon
 
-class InferClassFieldType(private val element: NexusClassFieldNode) : HintAction, Iconable {
+class InferClassFieldType(private val element: YggdrasilClassFieldNode) : HintAction, Iconable {
     override fun startInWriteAction(): Boolean {
         return true
     }

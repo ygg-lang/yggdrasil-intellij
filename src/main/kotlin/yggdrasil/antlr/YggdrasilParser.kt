@@ -15,7 +15,10 @@ import org.antlr.v4.runtime.Parser
 import org.antlr.v4.runtime.tree.ParseTree
 import yggdrasil.antlr.YggdrasilAntlrParser.*
 import yggdrasil.language.YggdrasilLanguage
+import yggdrasil.language.ast.YggdrasilTokenPair
+import yggdrasil.language.ast.YggdrasilBlockNode
 import yggdrasil.language.ast.classes.YggdrasilClassStatement
+import yggdrasil.language.psi.types.ValkyrieBlockType
 
 
 class YggdrasilParser(parser: YggdrasilAntlrParser) : ANTLRParserAdaptor(YggdrasilLanguage, parser) {
@@ -48,18 +51,16 @@ class YggdrasilParser(parser: YggdrasilAntlrParser) : ANTLRParserAdaptor(Yggdras
 //                // class
                 RULE_define_class -> YggdrasilClassStatement(node)
 //                RULE_define_generic -> ValkyrieGenericStatement(node)
-//                RULE_class_block -> ValkyrieBlockNode(node, ValkyrieBlockType.Brace)
-//                RULE_class_field -> ValkyrieClassFieldNode(node)
-//                RULE_class_method -> ValkyrieClassMethodNode(node)
-//                RULE_class_dsl -> ValkyrieClassCustomNode(node)
+                RULE_rule_block -> YggdrasilBlockNode(node, ValkyrieBlockType.Brace)
+                RULE_tuple_block -> YggdrasilBlockNode(node, ValkyrieBlockType.Parenthesis)
 //                // function
 //                RULE_define_function -> ValkyrieFunctionStatement(node)
 //                RULE_function_parameters -> ValkyrieBlockNode(node, ValkyrieBlockType.Parenthesis)
 //                RULE_parameter_item -> ValkyrieFunctionParameter(node)
 //                RULE_function_block -> ValkyrieBlockNode(node, ValkyrieBlockType.Brace)
-//                // variable
-//                RULE_let_binding -> ValkyrieLetStatement(node)
-//                RULE_let_pattern -> ValkyrieLetPattern(node)
+//                // token rule
+                RULE_token_block -> YggdrasilBlockNode(node, ValkyrieBlockType.Brace)
+                RULE_token_pair -> YggdrasilTokenPair(node)
 //                RULE_let_pattern_item -> ValkyrieLetPatternItem(node)
 //                // control
 ////                RULE_for_statement -> ValkyrieForStatement(node)

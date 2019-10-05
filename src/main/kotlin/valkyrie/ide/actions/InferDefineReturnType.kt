@@ -5,13 +5,13 @@ import com.intellij.openapi.editor.Editor
 import com.intellij.openapi.project.Project
 import com.intellij.openapi.util.Iconable
 import com.intellij.psi.PsiFile
-import yggdrasil.language.ast.NexusFunctionParameter
+import yggdrasil.language.ast.YggdrasilFunctionParameter
 import yggdrasil.language.file.NexusIconProvider
 //import nexus.language.psi_node.ValkyrieDefineItemNode
 import javax.swing.Icon
 
 /// Add or fix return type
-class InferDefineReturnType(private val element: NexusFunctionParameter) : HintAction, Iconable {
+class InferDefineReturnType(private val element: YggdrasilFunctionParameter) : HintAction, Iconable {
     override fun startInWriteAction(): Boolean {
         return true
     }

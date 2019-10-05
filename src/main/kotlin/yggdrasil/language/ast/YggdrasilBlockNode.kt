@@ -7,13 +7,13 @@ import com.intellij.psi.impl.source.tree.CompositeElement
 import com.intellij.refactoring.suggested.endOffset
 import com.intellij.refactoring.suggested.startOffset
 import yggdrasil.antlr.childrenWithLeaves
-import yggdrasil.language.psi.ValkyrieFoldableElement
-import yggdrasil.language.psi.ValkyrieIndentElement
+import yggdrasil.language.psi.YggdrasilFoldableElement
+import yggdrasil.language.psi.YggdrasilIndentElement
 import yggdrasil.language.psi.types.ValkyrieBlockType
 import valkyrie.ide.folding.ValkyrieNodeFolder
 
 
-class ValkyrieBlockNode : ASTWrapperPsiElement, ValkyrieFoldableElement, ValkyrieIndentElement {
+class YggdrasilBlockNode : ASTWrapperPsiElement, YggdrasilFoldableElement, YggdrasilIndentElement {
     val kind: ValkyrieBlockType
 
     constructor(node: CompositeElement, kind: ValkyrieBlockType) : super(node) {

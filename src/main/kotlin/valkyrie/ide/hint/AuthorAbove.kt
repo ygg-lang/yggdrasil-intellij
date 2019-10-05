@@ -7,8 +7,8 @@ import com.intellij.codeInsight.hints.VcsCodeVisionLanguageContext
 import com.intellij.openapi.editor.Editor
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
-import yggdrasil.language.ast.NexusFunctionStatement
-import yggdrasil.language.ast.classes.NexusClassMethodNode
+import yggdrasil.language.ast.YggdrasilFunctionStatement
+import yggdrasil.language.ast.classes.YggdrasilClassMethodNode
 import yggdrasil.language.ast.classes.YggdrasilClassStatement
 import java.awt.event.MouseEvent
 
@@ -22,8 +22,8 @@ class AuthorAbove : VcsCodeVisionLanguageContext {
 
     override fun isAccepted(element: PsiElement): Boolean {
         return element is YggdrasilClassStatement
-            || element is NexusFunctionStatement
-            || element is NexusClassMethodNode
+            || element is YggdrasilFunctionStatement
+            || element is YggdrasilClassMethodNode
     }
 
     override fun isCustomFileAccepted(file: PsiFile): Boolean {

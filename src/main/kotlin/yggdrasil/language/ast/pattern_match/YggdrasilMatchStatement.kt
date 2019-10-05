@@ -7,11 +7,11 @@ import com.intellij.psi.impl.source.tree.CompositeElement
 import yggdrasil.language.ast.YggdrasilIdentifierNode
 import yggdrasil.language.psi.ValkyrieScopeNode
 import valkyrie.ide.highlight.NexusHighlightColor
-import valkyrie.ide.highlight.NexusHighlightElement
+import valkyrie.ide.highlight.YggdrasilHighlightElement
 import valkyrie.ide.highlight.NodeHighlighter
 import javax.swing.Icon
 
-class NexusMatchStatement(node: CompositeElement) : ValkyrieScopeNode(node), NexusHighlightElement {
+class YggdrasilMatchStatement(node: CompositeElement) : ValkyrieScopeNode(node), YggdrasilHighlightElement {
     val bind by lazy { YggdrasilIdentifierNode.find(this) }
     override fun on_highlight(e: NodeHighlighter) {
         if (bind != null) {

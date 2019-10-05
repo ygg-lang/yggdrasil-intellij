@@ -3,10 +3,10 @@ package yggdrasil.language.ast
 import com.intellij.extapi.psi.ASTWrapperPsiElement
 import com.intellij.psi.impl.source.tree.CompositeElement
 import valkyrie.ide.highlight.NexusHighlightColor
-import valkyrie.ide.highlight.NexusHighlightElement
+import valkyrie.ide.highlight.YggdrasilHighlightElement
 import valkyrie.ide.highlight.NodeHighlighter
 
-class NexusLambdaSlot : ASTWrapperPsiElement, NexusHighlightElement {
+class YggdrasilLambdaSlot : ASTWrapperPsiElement, YggdrasilHighlightElement {
 
     constructor(node: CompositeElement) : super(node) {
 

@@ -16,14 +16,14 @@ import yggdrasil.language.psi.ValkyrieInlayElement
 import yggdrasil.language.psi.ValkyrieLineMarkElement
 import yggdrasil.language.psi.ValkyrieScopeNode
 import valkyrie.ide.highlight.NexusHighlightColor
-import valkyrie.ide.highlight.NexusHighlightElement
+import valkyrie.ide.highlight.YggdrasilHighlightElement
 import valkyrie.ide.highlight.NodeHighlighter
 import valkyrie.ide.hint.TypeInlayHint
 import valkyrie.ide.view.IdentifierPresentation
 import javax.swing.Icon
 
 
-class NexusClassFieldNode(node: CompositeElement) : ValkyrieScopeNode(node), PsiNameIdentifierOwner, NexusHighlightElement,
+class YggdrasilClassFieldNode(node: CompositeElement) : ValkyrieScopeNode(node), PsiNameIdentifierOwner, YggdrasilHighlightElement,
     ValkyrieLineMarkElement, ValkyrieInlayElement {
     val field by lazy { NexusModifiedNode.findIdentifier(this)!! }
     val modifiers by lazy { NexusModifiedNode.findModifiers(this) };

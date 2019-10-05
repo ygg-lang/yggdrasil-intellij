@@ -7,12 +7,12 @@ import com.intellij.openapi.project.Project
 import com.intellij.openapi.util.Iconable
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
-import yggdrasil.language.ast.NexusFunctionParameter
+import yggdrasil.language.ast.YggdrasilFunctionParameter
 import yggdrasil.language.file.NexusIconProvider
 //import nexus.language.psi_node.ValkyrieDefineItemNode
 import javax.swing.Icon
 
-class InferDefineItemType(element: NexusFunctionParameter) : LocalQuickFixAndIntentionActionOnPsiElement(element), PriorityAction, Iconable {
+class InferDefineItemType(element: YggdrasilFunctionParameter) : LocalQuickFixAndIntentionActionOnPsiElement(element), PriorityAction, Iconable {
     override fun startInWriteAction(): Boolean {
         return true
     }

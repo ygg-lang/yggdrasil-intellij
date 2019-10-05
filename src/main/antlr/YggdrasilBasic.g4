@@ -17,12 +17,13 @@ OP_CONCAT: '~';
 OP_OR:     '|';
 
 OP_UNTAG:  '^';
-TAG_NODE:  ':';
+COLON:  ':';
 
 KW_IMPORT: 'using';
 KW_CLASS:  'class';
 KW_UNION:  'union';
 KW_CLIMB:  'climb';
+KW_TOKEN: 'token';
 KW_AS:     'as';
 
 OP_PROPORTION: '::';

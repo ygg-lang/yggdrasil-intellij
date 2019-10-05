@@ -3,11 +3,11 @@ package valkyrie.ide.matcher.escaper
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.LiteralTextEscaper
 import com.intellij.psi.PsiLanguageInjectionHost
-import yggdrasil.language.ast.NexusStringNode
+import yggdrasil.language.ast.YggdrasilStringNode
 
 //import nexus.language.psi_node.ValkyrieStringNode
 
-class LiteralNoEscape(private val host: NexusStringNode) : LiteralTextEscaper<PsiLanguageInjectionHost>(host) {
+class LiteralNoEscape(private val host: YggdrasilStringNode) : LiteralTextEscaper<PsiLanguageInjectionHost>(host) {
     override fun decode(rangeInsideHost: TextRange, outChars: StringBuilder): Boolean {
         outChars.append(myHost!!.text, rangeInsideHost.startOffset, rangeInsideHost.endOffset)
         return true

@@ -8,12 +8,12 @@ import com.intellij.psi.PsiNameIdentifierOwner
 import com.intellij.psi.impl.source.tree.CompositeElement
 import com.intellij.psi.util.PsiTreeUtil
 import valkyrie.ide.highlight.NexusHighlightColor
-import valkyrie.ide.highlight.NexusHighlightElement
+import valkyrie.ide.highlight.YggdrasilHighlightElement
 import valkyrie.ide.highlight.NodeHighlighter
 import valkyrie.ide.view.IdentifierPresentation
 import javax.swing.Icon
 
-class NexusLetParameter(node: CompositeElement) : ASTWrapperPsiElement(node), PsiNameIdentifierOwner, NexusHighlightElement {
+class YggdrasilLetParameter(node: CompositeElement) : ASTWrapperPsiElement(node), PsiNameIdentifierOwner, YggdrasilHighlightElement {
     private val _identifier by lazy { findIdentifier() }
     val modifiers by lazy { findModifiers() };
     val mutable by lazy { isMutable() };

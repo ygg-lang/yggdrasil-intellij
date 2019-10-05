@@ -2,7 +2,7 @@ package yggdrasil.language.psi
 
 import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiElement
-import yggdrasil.language.ast.NexusNumberNode
+import yggdrasil.language.ast.YggdrasilNumberNode
 
 class ValkyrieFactory {
     private val project: Project
@@ -16,7 +16,7 @@ class ValkyrieFactory {
         this.project = element.project
     }
 
-    fun createNumberLiteral(number: String, unit: String?): NexusNumberNode {
+    fun createNumberLiteral(number: String, unit: String?): YggdrasilNumberNode {
 //        return letDefineAtom(number)!!.number as ValkyrieNumberNode
         throw Exception("unreachable: ValkyrieFactory::createNumberLiteral")
     }

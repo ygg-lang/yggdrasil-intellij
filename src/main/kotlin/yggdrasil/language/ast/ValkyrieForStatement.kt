@@ -19,7 +19,7 @@ class ValkyrieForStatement(node: CompositeElement) : ValkyrieScopeNode(node) {
         return PresentationData("for", null, this.baseIcon, null)
     }
 
-    private fun findParameters(): @Unmodifiable MutableList<NexusLetParameter> {
+    private fun findParameters(): @Unmodifiable MutableList<YggdrasilLetParameter> {
 //        val pattern = ValkyrieParser.getChildOfType(this, NexusAntlrParser.RULE_for_pattern);
 //        return PsiTreeUtil.getChildrenOfTypeAsList(pattern, ValkyrieLetParameter::class.java);
         return mutableListOf()

@@ -19,7 +19,7 @@ class NexusHighlighterVisitor : HighlightVisitor {
     override fun visit(element: PsiElement) {
         val writer = NodeHighlighter(_info);
         element.traversal {
-            if (it is NexusHighlightElement) {
+            if (it is YggdrasilHighlightElement) {
                 it.on_highlight(writer)
             }
             ProgressManager.checkCanceled()

@@ -62,8 +62,10 @@ class YggdrasilLexer : Lexer() {
             YggdrasilLanguage,
             // declare keywords
             KW_IMPORT, KW_AS,
-            KW_CLASS,
+            KW_CLASS, KW_UNION, KW_CLIMB,
             //
+
+            KW_TOKEN,
 
             // conditional
 
@@ -73,7 +75,7 @@ class YggdrasilLexer : Lexer() {
             // which/match/catch
 
             // control keywords
-
+            SPECIAL
             //
 
         )

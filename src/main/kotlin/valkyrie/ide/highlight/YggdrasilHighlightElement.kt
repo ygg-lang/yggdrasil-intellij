@@ -1,6 +1,6 @@
 package valkyrie.ide.highlight
 
-interface NexusHighlightElement {
+interface YggdrasilHighlightElement {
     @Suppress("FunctionName")
     fun on_highlight(e: NodeHighlighter);
 }

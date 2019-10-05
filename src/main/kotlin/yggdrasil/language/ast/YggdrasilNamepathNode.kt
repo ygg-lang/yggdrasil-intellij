@@ -7,12 +7,12 @@ import com.intellij.psi.tree.IElementType
 import com.intellij.psi.util.PsiTreeUtil
 import org.antlr.intellij.adaptor.psi.IdentifierDefSubtree
 import valkyrie.ide.highlight.NexusHighlightColor
-import valkyrie.ide.highlight.NexusHighlightElement
+import valkyrie.ide.highlight.YggdrasilHighlightElement
 import valkyrie.ide.highlight.NodeHighlighter
 
 
-class NexusNamepathNode(node: ASTNode, type: IElementType, val free: Boolean = false) : IdentifierDefSubtree(node, type),
-    NexusHighlightElement {
+class YggdrasilNamepathNode(node: ASTNode, type: IElementType, val free: Boolean = false) : IdentifierDefSubtree(node, type),
+    YggdrasilHighlightElement {
     val identifiers = findChildrenByClass(YggdrasilIdentifierNode::class.java)
     val parentIdentifier: Array<YggdrasilIdentifierNode> = identifiers.dropLast(1).toTypedArray()
     val namespace: String = parentIdentifier.joinToString(".") { it.text }
@@ -27,8 +27,8 @@ class NexusNamepathNode(node: ASTNode, type: IElementType, val free: Boolean = f
 
 
     companion object {
-        fun find(node: PsiElement): NexusNamepathNode? {
-            return PsiTreeUtil.getChildOfType(node, NexusNamepathNode::class.java)
+        fun find(node: PsiElement): YggdrasilNamepathNode? {
+            return PsiTreeUtil.getChildOfType(node, YggdrasilNamepathNode::class.java)
         }
     }
 

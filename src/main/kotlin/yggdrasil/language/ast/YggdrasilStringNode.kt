@@ -13,11 +13,11 @@ import com.intellij.psi.PsiLanguageInjectionHost
 import com.intellij.psi.util.PsiTreeUtil
 import org.intellij.lang.regexp.RegExpLanguage
 import valkyrie.ide.highlight.NexusHighlightColor
-import valkyrie.ide.highlight.NexusHighlightElement
+import valkyrie.ide.highlight.YggdrasilHighlightElement
 import valkyrie.ide.highlight.NodeHighlighter
 import valkyrie.ide.matcher.escaper.StringEscape
 
-class NexusStringNode(node: ASTNode) : ASTWrapperPsiElement(node), PsiLanguageInjectionHost, NexusHighlightElement {
+class YggdrasilStringNode(node: ASTNode) : ASTWrapperPsiElement(node), PsiLanguageInjectionHost, YggdrasilHighlightElement {
     val handler by lazy {
         PsiTreeUtil.getChildOfType(this, YggdrasilIdentifierNode::class.java)
     }

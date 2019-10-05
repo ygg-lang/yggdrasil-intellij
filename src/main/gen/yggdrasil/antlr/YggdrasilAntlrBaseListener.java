@@ -77,6 +77,18 @@ public class YggdrasilAntlrBaseListener implements YggdrasilAntlrListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterDefine_token(YggdrasilAntlrParser.Define_tokenContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitDefine_token(YggdrasilAntlrParser.Define_tokenContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterRule_block(YggdrasilAntlrParser.Rule_blockContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -84,6 +96,54 @@ public class YggdrasilAntlrBaseListener implements YggdrasilAntlrListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitRule_block(YggdrasilAntlrParser.Rule_blockContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterToken_block(YggdrasilAntlrParser.Token_blockContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitToken_block(YggdrasilAntlrParser.Token_blockContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterToken_pair(YggdrasilAntlrParser.Token_pairContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitToken_pair(YggdrasilAntlrParser.Token_pairContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterTOr(YggdrasilAntlrParser.TOrContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTOr(YggdrasilAntlrParser.TOrContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterTAtom(YggdrasilAntlrParser.TAtomContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTAtom(YggdrasilAntlrParser.TAtomContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

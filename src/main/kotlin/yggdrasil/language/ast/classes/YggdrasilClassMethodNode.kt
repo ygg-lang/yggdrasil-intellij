@@ -15,7 +15,7 @@ import yggdrasil.language.psi.ValkyrieInlayElement
 import yggdrasil.language.psi.ValkyrieLineMarkElement
 import yggdrasil.language.psi.ValkyrieScopeNode
 import valkyrie.ide.highlight.NexusHighlightColor
-import valkyrie.ide.highlight.NexusHighlightElement
+import valkyrie.ide.highlight.YggdrasilHighlightElement
 import valkyrie.ide.highlight.NodeHighlighter
 import valkyrie.ide.hint.ParameterInlayHint
 import valkyrie.ide.hint.TypeInlayHint
@@ -23,8 +23,8 @@ import valkyrie.ide.view.IdentifierPresentation
 import javax.swing.Icon
 
 
-class NexusClassMethodNode(node: CompositeElement) : ValkyrieScopeNode(node), PsiNameIdentifierOwner, ValkyrieLineMarkElement,
-    NexusHighlightElement, ValkyrieInlayElement {
+class YggdrasilClassMethodNode(node: CompositeElement) : ValkyrieScopeNode(node), PsiNameIdentifierOwner, ValkyrieLineMarkElement,
+    YggdrasilHighlightElement, ValkyrieInlayElement {
     val method by lazy { NexusModifiedNode.findIdentifier(this)!! }
     val modifiers by lazy { NexusModifiedNode.findModifiers(this) };
     override fun getName(): String {

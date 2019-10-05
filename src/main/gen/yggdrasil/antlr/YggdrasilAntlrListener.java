@@ -58,6 +58,16 @@ public interface YggdrasilAntlrListener extends ParseTreeListener {
 	 */
 	void exitDefine_climb(YggdrasilAntlrParser.Define_climbContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link YggdrasilAntlrParser#define_token}.
+	 * @param ctx the parse tree
+	 */
+	void enterDefine_token(YggdrasilAntlrParser.Define_tokenContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link YggdrasilAntlrParser#define_token}.
+	 * @param ctx the parse tree
+	 */
+	void exitDefine_token(YggdrasilAntlrParser.Define_tokenContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link YggdrasilAntlrParser#rule_block}.
 	 * @param ctx the parse tree
 	 */
@@ -67,6 +77,50 @@ public interface YggdrasilAntlrListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitRule_block(YggdrasilAntlrParser.Rule_blockContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link YggdrasilAntlrParser#token_block}.
+	 * @param ctx the parse tree
+	 */
+	void enterToken_block(YggdrasilAntlrParser.Token_blockContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link YggdrasilAntlrParser#token_block}.
+	 * @param ctx the parse tree
+	 */
+	void exitToken_block(YggdrasilAntlrParser.Token_blockContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link YggdrasilAntlrParser#token_pair}.
+	 * @param ctx the parse tree
+	 */
+	void enterToken_pair(YggdrasilAntlrParser.Token_pairContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link YggdrasilAntlrParser#token_pair}.
+	 * @param ctx the parse tree
+	 */
+	void exitToken_pair(YggdrasilAntlrParser.Token_pairContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code TOr}
+	 * labeled alternative in {@link YggdrasilAntlrParser#token_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterTOr(YggdrasilAntlrParser.TOrContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code TOr}
+	 * labeled alternative in {@link YggdrasilAntlrParser#token_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitTOr(YggdrasilAntlrParser.TOrContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code TAtom}
+	 * labeled alternative in {@link YggdrasilAntlrParser#token_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterTAtom(YggdrasilAntlrParser.TAtomContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code TAtom}
+	 * labeled alternative in {@link YggdrasilAntlrParser#token_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitTAtom(YggdrasilAntlrParser.TAtomContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link YggdrasilAntlrParser#macro_call}.
 	 * @param ctx the parse tree

@@ -9,14 +9,14 @@ import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
 import yggdrasil.antlr.traversal
 import yggdrasil.language.file.NexusFileNode
-import yggdrasil.language.psi.ValkyrieFoldableElement
+import yggdrasil.language.psi.YggdrasilFoldableElement
 
 class ValkyrieFoldingBuilder : CustomFoldingBuilder(), DumbAware {
     override fun buildLanguageFoldRegions(descriptors: MutableList<FoldingDescriptor>, root: PsiElement, document: Document, quick: Boolean) {
         if (root !is NexusFileNode) return
         val visitor = ValkyrieNodeFolder(descriptors)
         root.traversal {
-            if (it is ValkyrieFoldableElement) {
+            if (it is YggdrasilFoldableElement) {
                 it.on_fold(visitor)
             }
             true

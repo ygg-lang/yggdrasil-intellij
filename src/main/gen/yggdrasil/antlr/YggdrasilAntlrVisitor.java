@@ -41,11 +41,43 @@ public interface YggdrasilAntlrVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitDefine_climb(YggdrasilAntlrParser.Define_climbContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link YggdrasilAntlrParser#define_token}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDefine_token(YggdrasilAntlrParser.Define_tokenContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link YggdrasilAntlrParser#rule_block}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitRule_block(YggdrasilAntlrParser.Rule_blockContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link YggdrasilAntlrParser#token_block}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitToken_block(YggdrasilAntlrParser.Token_blockContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link YggdrasilAntlrParser#token_pair}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitToken_pair(YggdrasilAntlrParser.Token_pairContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code TOr}
+	 * labeled alternative in {@link YggdrasilAntlrParser#token_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTOr(YggdrasilAntlrParser.TOrContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code TAtom}
+	 * labeled alternative in {@link YggdrasilAntlrParser#token_expression}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTAtom(YggdrasilAntlrParser.TAtomContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link YggdrasilAntlrParser#macro_call}.
 	 * @param ctx the parse tree

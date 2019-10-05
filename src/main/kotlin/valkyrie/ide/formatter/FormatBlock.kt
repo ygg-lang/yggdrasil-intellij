@@ -7,7 +7,7 @@ import com.intellij.psi.PsiErrorElement
 import com.intellij.psi.formatter.FormatterUtil
 import yggdrasil.antlr.isWhitespaceOrEmpty
 import yggdrasil.language.psi.ValkyrieAlignmentElement
-import yggdrasil.language.psi.ValkyrieIndentElement
+import yggdrasil.language.psi.YggdrasilIndentElement
 
 //import nexus.language.psi.ValkyrieTokenType
 
@@ -83,7 +83,7 @@ class FormatBlock : ASTBlock {
 
     private fun computeIndent(child: ASTNode): Indent? {
         val psi = _node.psi;
-        if (psi is ValkyrieIndentElement) {
+        if (psi is YggdrasilIndentElement) {
             return psi.on_indent(child)
         }
         return Indent.getNoneIndent()

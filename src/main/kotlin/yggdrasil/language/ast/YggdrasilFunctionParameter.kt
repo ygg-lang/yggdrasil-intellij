@@ -5,11 +5,11 @@ import com.intellij.lang.ASTNode
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNameIdentifierOwner
 import valkyrie.ide.highlight.NexusHighlightColor
-import valkyrie.ide.highlight.NexusHighlightElement
+import valkyrie.ide.highlight.YggdrasilHighlightElement
 import valkyrie.ide.highlight.NodeHighlighter
 
 
-class NexusFunctionParameter(node: ASTNode) : ASTWrapperPsiElement(node), PsiNameIdentifierOwner, NexusHighlightElement {
+class YggdrasilFunctionParameter(node: ASTNode) : ASTWrapperPsiElement(node), PsiNameIdentifierOwner, YggdrasilHighlightElement {
     val parameter by lazy { NexusModifiedNode.findIdentifier(this)!! }
     val modifiers by lazy { NexusModifiedNode.findModifiers(this) };
 

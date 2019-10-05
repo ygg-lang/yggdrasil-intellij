@@ -2,12 +2,12 @@ package valkyrie.ide.view
 
 import com.intellij.navigation.ColoredItemPresentation
 import com.intellij.openapi.editor.colors.TextAttributesKey
-import yggdrasil.language.ast.NexusNamepathNode
+import yggdrasil.language.ast.YggdrasilNamepathNode
 import valkyrie.ide.highlight.NexusHighlightColor
 import javax.swing.Icon
 
 
-class NamepathPresentation(val name: NexusNamepathNode, private val icon: Icon) : ColoredItemPresentation {
+class NamepathPresentation(val name: YggdrasilNamepathNode, private val icon: Icon) : ColoredItemPresentation {
     override fun getPresentableText(): String {
         return name.name
     }

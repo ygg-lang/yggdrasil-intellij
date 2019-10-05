@@ -1,11 +1,7 @@
 package yggdrasil.language.ast.classes
 
 import com.intellij.codeInsight.daemon.LineMarkerInfo
-import com.intellij.codeInsight.daemon.RelatedItemLineMarkerInfo
-import com.intellij.icons.AllIcons
-import com.intellij.navigation.GotoRelatedItem
 import com.intellij.navigation.ItemPresentation
-import com.intellij.openapi.editor.markup.GutterIconRenderer
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNameIdentifierOwner
 import com.intellij.psi.impl.source.tree.CompositeElement
@@ -15,16 +11,15 @@ import yggdrasil.language.file.NexusIconProvider
 import yggdrasil.language.psi.ValkyrieLineMarkElement
 import yggdrasil.language.psi.ValkyrieScopeNode
 import valkyrie.ide.highlight.NexusHighlightColor
-import valkyrie.ide.highlight.NexusHighlightElement
+import valkyrie.ide.highlight.YggdrasilHighlightElement
 import valkyrie.ide.highlight.NodeHighlighter
 import valkyrie.ide.view.IdentifierPresentation
-import valkyrie.ide.view.NamepathPresentation
 import yggdrasil.antlr.YggdrasilParser
 import javax.swing.Icon
 
 
 class YggdrasilClassStatement(node: CompositeElement) : ValkyrieScopeNode(node), PsiNameIdentifierOwner, ValkyrieLineMarkElement,
-    NexusHighlightElement {
+    YggdrasilHighlightElement {
     private val _all by lazy {
         YggdrasilParser.getChildrenOfType<YggdrasilIdentifierNode>(this)
     }
@@ -54,10 +49,10 @@ class YggdrasilClassStatement(node: CompositeElement) : ValkyrieScopeNode(node),
     }
 
     override fun on_highlight(e: NodeHighlighter) {
-        val lang = YggdrasilIdentifierNode.find(this)
-        if (lang != null) {
-            e.register(lang, NexusHighlightColor.SYM_LANGUAGE)
-        }
+//        val lang = YggdrasilIdentifierNode.find(this)
+//        if (lang != null) {
+//            e.register(lang, NexusHighlightColor.SYM_LANGUAGE)
+//        }
 
         e.register(nameIdentifier, NexusHighlightColor.SYM_CLASS)
     }

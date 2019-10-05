@@ -6,8 +6,8 @@ import com.intellij.ide.util.treeView.smartTree.ActionPresentation
 import com.intellij.ide.util.treeView.smartTree.ActionPresentationData
 import com.intellij.ide.util.treeView.smartTree.Filter
 import com.intellij.ide.util.treeView.smartTree.TreeElement
-import yggdrasil.language.ast.classes.NexusClassFieldNode
-import yggdrasil.language.ast.classes.NexusClassMethodNode
+import yggdrasil.language.ast.classes.YggdrasilClassFieldNode
+import yggdrasil.language.ast.classes.YggdrasilClassMethodNode
 import yggdrasil.language.ast.classes.YggdrasilClassStatement
 import valkyrie.ide.view.ValkyrieStructureItem
 
@@ -27,8 +27,8 @@ class MainInfoFilter : Filter {
             when (node.node) {
                 // class
                 is YggdrasilClassStatement -> return true
-                is NexusClassFieldNode -> return true
-                is NexusClassMethodNode -> return true
+                is YggdrasilClassFieldNode -> return true
+                is YggdrasilClassMethodNode -> return true
             }
         }
         return false;
