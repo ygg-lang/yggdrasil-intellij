@@ -9,11 +9,9 @@ import valkyrie.ide.highlight.NodeHighlighter
 import valkyrie.ide.highlight.YggdrasilHighlightElement
 import yggdrasil.antlr.YggdrasilAntlrParser
 import yggdrasil.antlr.YggdrasilParser
+import javax.swing.Icon
 
-class YggdrasilTokenPair : ASTWrapperPsiElement, PsiNameIdentifierOwner, YggdrasilHighlightElement {
-    constructor(node: CompositeElement) : super(node) {
-
-    }
+class YggdrasilNodeTag(node: CompositeElement) : ASTWrapperPsiElement(node), PsiNameIdentifierOwner, YggdrasilHighlightElement {
 
     override fun getName(): String? {
         return super.getName()
@@ -23,13 +21,17 @@ class YggdrasilTokenPair : ASTWrapperPsiElement, PsiNameIdentifierOwner, Yggdras
         TODO("Not yet implemented")
     }
 
+    override fun getBaseIcon(): Icon? {
+        return super.getBaseIcon()
+    }
+
     override fun getNameIdentifier(): PsiElement? {
         return YggdrasilParser.getChildOfType(this, YggdrasilAntlrParser.RULE_identifier)
     }
 
     override fun on_highlight(e: NodeHighlighter) {
         if (nameIdentifier != null) {
-            e.register(nameIdentifier, NexusHighlightColor.SYM_CONSTANT)
+            e.register(nameIdentifier, NexusHighlightColor.SYM_ARG)
         }
     }
 }

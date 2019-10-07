@@ -7,7 +7,7 @@ import javax.swing.Icon
 
 class ValkyrieConfigurationType : ConfigurationType {
     override fun getDisplayName(): String {
-        return yggdrasil.language.NexusBundle.message("running.group.name")
+        return yggdrasil.language.YggdrasilBundle.message("running.group.name")
     }
 
     override fun getConfigurationTypeDescription(): String {

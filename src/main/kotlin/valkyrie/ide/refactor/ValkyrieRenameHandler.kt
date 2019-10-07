@@ -23,7 +23,7 @@ class ValkyrieRenameHandler : RenameHandler {
         editor.scrollingModel.scrollToCaret(ScrollType.MAKE_VISIBLE)
         val element = file.findElementAt(offset) ?: return
         if (YggdrasilLexer.Keywords.contains(element.elementType)) {
-            val message = yggdrasil.language.NexusBundle.message("rename.invalid.keyword", element.elementType!!)
+            val message = yggdrasil.language.YggdrasilBundle.message("rename.invalid.keyword", element.elementType!!)
             CommonRefactoringUtil.showErrorHint(project, editor, message, "getTitle", "getHelpId")
         } else if (YggdrasilLexer.Identifiers.contains(element.elementType)) {
             invoke(project, arrayOf(element), dataContext)

@@ -13,8 +13,8 @@ class RunNamespaceGroup(element: PsiElement) : ActionGroup() {
 //            throw IllegalArgumentException("element must be a ValkyrieNamespaceStatementNode")
 //        }
         templatePresentation.icon = AllIcons.RunConfigurations.TestState.Run_run
-        templatePresentation.text = yggdrasil.language.NexusBundle.message("action.run.namespace.group.name")
-        templatePresentation.description = yggdrasil.language.NexusBundle.message("action.run.namespace.group.help")
+        templatePresentation.text = yggdrasil.language.YggdrasilBundle.message("action.run.namespace.group.name")
+        templatePresentation.description = yggdrasil.language.YggdrasilBundle.message("action.run.namespace.group.help")
     }
 
     override fun actionPerformed(event: AnActionEvent) {

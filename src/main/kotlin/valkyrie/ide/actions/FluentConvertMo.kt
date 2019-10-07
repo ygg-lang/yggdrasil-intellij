@@ -10,8 +10,8 @@ import yggdrasil.language.file.NexusIconProvider
 
 class FluentConvertMo : CreateFileAction(name, description, NexusIconProvider.Instance.Valkyrie) {
     companion object {
-        private val name = yggdrasil.language.NexusBundle.message("action.convert_prop")
-        private val description = yggdrasil.language.NexusBundle.message("action.convert_prop.description")
+        private val name = yggdrasil.language.YggdrasilBundle.message("action.convert_prop")
+        private val description = yggdrasil.language.YggdrasilBundle.message("action.convert_prop.description")
     }
 
     private var sourceFile: PsiFile? = null;

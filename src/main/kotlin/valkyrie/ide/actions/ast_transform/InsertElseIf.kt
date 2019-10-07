@@ -21,11 +21,11 @@ class InsertElseIf(element: PsiElement, private val above: Boolean) : LocalQuick
     }
 
     override fun getText(): String {
-        return if (above) yggdrasil.language.NexusBundle.message("action.insert.else_if.above.name") else yggdrasil.language.NexusBundle.message("action.insert.else_if.below.name")
+        return if (above) yggdrasil.language.YggdrasilBundle.message("action.insert.else_if.above.name") else yggdrasil.language.YggdrasilBundle.message("action.insert.else_if.below.name")
     }
 
     fun getDescription(): String {
-        return if (above) yggdrasil.language.NexusBundle.message("action.insert.else_if.above.help") else yggdrasil.language.NexusBundle.message("action.insert.else_if.below.help")
+        return if (above) yggdrasil.language.YggdrasilBundle.message("action.insert.else_if.above.help") else yggdrasil.language.YggdrasilBundle.message("action.insert.else_if.below.help")
     }
 
     override fun invoke(project: Project, file: PsiFile, editor: Editor?, startElement: PsiElement, endElement: PsiElement) {

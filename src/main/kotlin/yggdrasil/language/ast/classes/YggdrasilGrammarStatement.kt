@@ -1,24 +1,21 @@
-package yggdrasil.language.ast
+package yggdrasil.language.ast.classes
 
 import com.intellij.extapi.psi.ASTWrapperPsiElement
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNameIdentifierOwner
 import com.intellij.psi.impl.source.tree.CompositeElement
+import yggdrasil.language.psi.ValkyrieRewritableElement
+import valkyrie.ide.formatter.ValkyrieRewriter
 import valkyrie.ide.highlight.NexusHighlightColor
 import valkyrie.ide.highlight.NodeHighlighter
 import valkyrie.ide.highlight.YggdrasilHighlightElement
 import yggdrasil.antlr.YggdrasilAntlrParser
 import yggdrasil.antlr.YggdrasilParser
 
-class YggdrasilTokenPair : ASTWrapperPsiElement, PsiNameIdentifierOwner, YggdrasilHighlightElement {
-    constructor(node: CompositeElement) : super(node) {
-
-    }
-
+class YggdrasilGrammarStatement(node: CompositeElement) : ASTWrapperPsiElement(node), PsiNameIdentifierOwner, YggdrasilHighlightElement {
     override fun getName(): String? {
         return super.getName()
     }
-
     override fun setName(p0: String): PsiElement {
         TODO("Not yet implemented")
     }
@@ -29,8 +26,7 @@ class YggdrasilTokenPair : ASTWrapperPsiElement, PsiNameIdentifierOwner, Yggdras
 
     override fun on_highlight(e: NodeHighlighter) {
         if (nameIdentifier != null) {
-            e.register(nameIdentifier, NexusHighlightColor.SYM_CONSTANT)
+            e.register(nameIdentifier, NexusHighlightColor.SYM_MACRO)
         }
     }
 }
-

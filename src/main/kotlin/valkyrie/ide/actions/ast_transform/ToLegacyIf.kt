@@ -21,11 +21,11 @@ class ToLegacyIf(element: ValkyrieWhichStatement) : LocalQuickFixAndIntentionAct
     }
 
     override fun getText(): String {
-        return yggdrasil.language.NexusBundle.message("action.convert.legacy_if.name")
+        return yggdrasil.language.YggdrasilBundle.message("action.convert.legacy_if.name")
     }
 
     fun getDescription(): String {
-        return yggdrasil.language.NexusBundle.message("action.convert.legacy_if.help")
+        return yggdrasil.language.YggdrasilBundle.message("action.convert.legacy_if.help")
     }
 
     override fun invoke(project: Project, file: PsiFile, editor: Editor?, startElement: PsiElement, endElement: PsiElement) {

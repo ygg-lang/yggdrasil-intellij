@@ -7,8 +7,8 @@ import com.intellij.psi.PsiDirectory
 import com.intellij.psi.PsiFile
 import com.intellij.psi.PsiFileFactory
 
-private val name = yggdrasil.language.NexusBundle.message("action.macro.expand_file")
-private val description = yggdrasil.language.NexusBundle.message("action.convert_prop.description")
+private val name = yggdrasil.language.YggdrasilBundle.message("action.macro.expand_file")
+private val description = yggdrasil.language.YggdrasilBundle.message("action.convert_prop.description")
 
 class ExpandMacroToFile : AnAction(name, description, AllIcons.Actions.Preview) {
     override fun actionPerformed(e: AnActionEvent) {

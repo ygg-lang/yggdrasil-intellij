@@ -22,11 +22,11 @@ class CreateNamespace(private val element: NexusFileNode) : LocalQuickFixAndInte
     }
 
     override fun getText(): String {
-        return yggdrasil.language.NexusBundle.message("action.create.namespace.name")
+        return yggdrasil.language.YggdrasilBundle.message("action.create.namespace.name")
     }
 
     fun getDescription(): String {
-        return yggdrasil.language.NexusBundle.message("action.create.namespace.help")
+        return yggdrasil.language.YggdrasilBundle.message("action.create.namespace.help")
     }
 
     override fun invoke(project: Project, file: PsiFile, editor: Editor?, startElement: PsiElement, endElement: PsiElement) {

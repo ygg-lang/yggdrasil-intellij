@@ -16,7 +16,7 @@ class HighlightSetting : ColorSettingsPage {
 
     override fun getColorDescriptors(): Array<ColorDescriptor> = ColorDescriptor.EMPTY_ARRAY
 
-    override fun getDisplayName() = yggdrasil.language.NexusBundle.message("filetype.name")
+    override fun getDisplayName() = yggdrasil.language.YggdrasilBundle.message("filetype.name")
 
     override fun getIcon() = NexusIconProvider.Instance.Valkyrie
 

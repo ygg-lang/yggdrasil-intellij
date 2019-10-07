@@ -17,7 +17,7 @@ class MainInfoFilter : Filter {
 
     override fun isReverted() = false
     override fun getPresentation(): ActionPresentation = ActionPresentationData(
-        yggdrasil.language.NexusBundle.message(this.name),
+        yggdrasil.language.YggdrasilBundle.message(this.name),
         null,
         AllIcons.Nodes.Favorite
     )

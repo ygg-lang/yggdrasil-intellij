@@ -32,6 +32,13 @@ public class YggdrasilAntlrBaseVisitor<T> extends AbstractParseTreeVisitor<T> im
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitDefine_grammar(YggdrasilAntlrParser.Define_grammarContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitDefine_class(YggdrasilAntlrParser.Define_classContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
@@ -53,14 +60,14 @@ public class YggdrasilAntlrBaseVisitor<T> extends AbstractParseTreeVisitor<T> im
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitDefine_token(YggdrasilAntlrParser.Define_tokenContext ctx) { return visitChildren(ctx); }
+	@Override public T visitRule_block(YggdrasilAntlrParser.Rule_blockContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitRule_block(YggdrasilAntlrParser.Rule_blockContext ctx) { return visitChildren(ctx); }
+	@Override public T visitDefine_token(YggdrasilAntlrParser.Define_tokenContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -95,6 +102,13 @@ public class YggdrasilAntlrBaseVisitor<T> extends AbstractParseTreeVisitor<T> im
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitTag_pair(YggdrasilAntlrParser.Tag_pairContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitMacro_call(YggdrasilAntlrParser.Macro_callContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
@@ -102,7 +116,7 @@ public class YggdrasilAntlrBaseVisitor<T> extends AbstractParseTreeVisitor<T> im
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitFunction_call(YggdrasilAntlrParser.Function_callContext ctx) { return visitChildren(ctx); }
+	@Override public T visitTuple_call(YggdrasilAntlrParser.Tuple_callContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -193,7 +207,7 @@ public class YggdrasilAntlrBaseVisitor<T> extends AbstractParseTreeVisitor<T> im
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
-	@Override public T visitNodeTag(YggdrasilAntlrParser.NodeTagContext ctx) { return visitChildren(ctx); }
+	@Override public T visitETag(YggdrasilAntlrParser.ETagContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *

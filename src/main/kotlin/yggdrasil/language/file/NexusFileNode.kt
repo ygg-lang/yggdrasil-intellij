@@ -16,7 +16,7 @@ ValkyrieFile 是个 PsiElement
 class NexusFileNode(viewProvider: FileViewProvider) : PsiFileBase(viewProvider, yggdrasil.language.YggdrasilLanguage) {
     override fun getFileType(): FileType = YggdrasilFileType
 
-    override fun toString(): String = yggdrasil.language.NexusBundle.message("action.create_file")
+    override fun toString(): String = yggdrasil.language.YggdrasilBundle.message("action.create_file")
 
     fun updateCache() {
 

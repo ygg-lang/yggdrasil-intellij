@@ -19,6 +19,8 @@ OP_OR:     '|';
 OP_UNTAG:  '^';
 COLON:  ':';
 
+KW_GRAMMAR: 'grammar';
+
 KW_IMPORT: 'using';
 KW_CLASS:  'class';
 KW_UNION:  'union';

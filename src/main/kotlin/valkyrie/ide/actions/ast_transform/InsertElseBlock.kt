@@ -20,11 +20,11 @@ class InsertElseBlock(element: PsiElement) : LocalQuickFixAndIntentionActionOnPs
     }
 
     override fun getText(): String {
-        return yggdrasil.language.NexusBundle.message("action.insert.else.name")
+        return yggdrasil.language.YggdrasilBundle.message("action.insert.else.name")
     }
 
     fun getDescription(): String {
-        return yggdrasil.language.NexusBundle.message("action.insert.else.help")
+        return yggdrasil.language.YggdrasilBundle.message("action.insert.else.help")
     }
 
     override fun invoke(project: Project, file: PsiFile, editor: Editor?, startElement: PsiElement, endElement: PsiElement) {

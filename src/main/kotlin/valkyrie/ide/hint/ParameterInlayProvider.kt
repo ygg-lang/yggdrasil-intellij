@@ -56,8 +56,8 @@ class ParameterInlayProvider : InlayParameterHintsProvider {
     /// Editor > Inlay Hints > Parameter Names > Valkyrie
     override fun getSupportedOptions(): MutableList<Option> {
         return mutableListOf(
-            Option("getSupportedOptions1", yggdrasil.language.NexusBundle.messagePointer("color.token.null"), true),
-            Option("getSupportedOptions2", yggdrasil.language.NexusBundle.messagePointer("color.token.boolean"), true)
+            Option("getSupportedOptions1", yggdrasil.language.YggdrasilBundle.messagePointer("color.token.null"), true),
+            Option("getSupportedOptions2", yggdrasil.language.YggdrasilBundle.messagePointer("color.token.boolean"), true)
         )
     }
 }

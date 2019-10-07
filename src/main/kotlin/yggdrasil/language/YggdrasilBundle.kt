@@ -7,7 +7,7 @@ import java.util.function.Supplier
 
 private const val Bundle = "messages.YggdrasilBundle"
 
-object NexusBundle : DynamicBundle(yggdrasil.language.Bundle) {
+object YggdrasilBundle : DynamicBundle(yggdrasil.language.Bundle) {
 
     @Suppress("SpreadOperator")
     @JvmStatic

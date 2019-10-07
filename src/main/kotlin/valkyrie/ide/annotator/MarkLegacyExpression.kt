@@ -5,7 +5,7 @@ import com.intellij.lang.annotation.Annotator
 import com.intellij.lang.annotation.HighlightSeverity
 import com.intellij.openapi.editor.colors.CodeInsightColors
 import com.intellij.psi.PsiElement
-import yggdrasil.language.ast.ValkyrieForStatement
+import yggdrasil.language.ast.YggdrasilNodeTag
 import yggdrasil.language.ast.ValkyrieIfStatementNode
 import yggdrasil.language.ast.ValkyrieWhichStatement
 import valkyrie.ide.actions.ast_transform.*
@@ -93,7 +93,7 @@ class MarkLegacyExpression : Annotator {
             .create()
     }
 
-    private fun insertElseBlock(element: ValkyrieForStatement, holder: AnnotationHolder) {
+    private fun insertElseBlock(element: YggdrasilNodeTag, holder: AnnotationHolder) {
         val fixer = InsertElseBlock(element);
         holder.newAnnotation(HighlightSeverity.INFORMATION, fixer.getDescription())
             .range(element.firstChild.textRange)

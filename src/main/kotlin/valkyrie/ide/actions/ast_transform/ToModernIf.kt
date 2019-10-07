@@ -22,11 +22,11 @@ class ToModernIf(element: ValkyrieIfStatementNode) : LocalQuickFixAndIntentionAc
     }
 
     override fun getText(): String {
-        return yggdrasil.language.NexusBundle.message("action.convert.modern_if.name")
+        return yggdrasil.language.YggdrasilBundle.message("action.convert.modern_if.name")
     }
 
     fun getDescription(): String {
-        return yggdrasil.language.NexusBundle.message("action.convert.modern_if.help")
+        return yggdrasil.language.YggdrasilBundle.message("action.convert.modern_if.help")
     }
 
     override fun invoke(project: Project, file: PsiFile, editor: Editor?, startElement: PsiElement, endElement: PsiElement) {

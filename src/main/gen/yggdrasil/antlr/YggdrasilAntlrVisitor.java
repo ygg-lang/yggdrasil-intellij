@@ -23,6 +23,12 @@ public interface YggdrasilAntlrVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitImport_statement(YggdrasilAntlrParser.Import_statementContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link YggdrasilAntlrParser#define_grammar}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDefine_grammar(YggdrasilAntlrParser.Define_grammarContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link YggdrasilAntlrParser#define_class}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -41,17 +47,17 @@ public interface YggdrasilAntlrVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitDefine_climb(YggdrasilAntlrParser.Define_climbContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link YggdrasilAntlrParser#define_token}.
-	 * @param ctx the parse tree
-	 * @return the visitor result
-	 */
-	T visitDefine_token(YggdrasilAntlrParser.Define_tokenContext ctx);
-	/**
 	 * Visit a parse tree produced by {@link YggdrasilAntlrParser#rule_block}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitRule_block(YggdrasilAntlrParser.Rule_blockContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link YggdrasilAntlrParser#define_token}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitDefine_token(YggdrasilAntlrParser.Define_tokenContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link YggdrasilAntlrParser#token_block}.
 	 * @param ctx the parse tree
@@ -79,17 +85,23 @@ public interface YggdrasilAntlrVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitTAtom(YggdrasilAntlrParser.TAtomContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link YggdrasilAntlrParser#tag_pair}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitTag_pair(YggdrasilAntlrParser.Tag_pairContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link YggdrasilAntlrParser#macro_call}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
 	T visitMacro_call(YggdrasilAntlrParser.Macro_callContext ctx);
 	/**
-	 * Visit a parse tree produced by {@link YggdrasilAntlrParser#function_call}.
+	 * Visit a parse tree produced by {@link YggdrasilAntlrParser#tuple_call}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitFunction_call(YggdrasilAntlrParser.Function_callContext ctx);
+	T visitTuple_call(YggdrasilAntlrParser.Tuple_callContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link YggdrasilAntlrParser#tuple_block}.
 	 * @param ctx the parse tree
@@ -174,12 +186,12 @@ public interface YggdrasilAntlrVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitNot(YggdrasilAntlrParser.NotContext ctx);
 	/**
-	 * Visit a parse tree produced by the {@code NodeTag}
+	 * Visit a parse tree produced by the {@code ETag}
 	 * labeled alternative in {@link YggdrasilAntlrParser#expression}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
 	 */
-	T visitNodeTag(YggdrasilAntlrParser.NodeTagContext ctx);
+	T visitETag(YggdrasilAntlrParser.ETagContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code Many}
 	 * labeled alternative in {@link YggdrasilAntlrParser#expression}.

@@ -15,8 +15,10 @@ import org.antlr.v4.runtime.Parser
 import org.antlr.v4.runtime.tree.ParseTree
 import yggdrasil.antlr.YggdrasilAntlrParser.*
 import yggdrasil.language.YggdrasilLanguage
+import yggdrasil.language.ast.YggdrasilNodeTag
 import yggdrasil.language.ast.YggdrasilTokenPair
 import yggdrasil.language.ast.YggdrasilBlockNode
+import yggdrasil.language.ast.classes.YggdrasilGrammarStatement
 import yggdrasil.language.ast.classes.YggdrasilClassStatement
 import yggdrasil.language.psi.types.ValkyrieBlockType
 
@@ -50,7 +52,7 @@ class YggdrasilParser(parser: YggdrasilAntlrParser) : ANTLRParserAdaptor(Yggdras
 //                RULE_annotation_call_item -> ValkyrieAnnotationItem(node)
 //                // class
                 RULE_define_class -> YggdrasilClassStatement(node)
-//                RULE_define_generic -> ValkyrieGenericStatement(node)
+                RULE_define_grammar -> YggdrasilGrammarStatement(node)
                 RULE_rule_block -> YggdrasilBlockNode(node, ValkyrieBlockType.Brace)
                 RULE_tuple_block -> YggdrasilBlockNode(node, ValkyrieBlockType.Parenthesis)
 //                // function
@@ -63,7 +65,7 @@ class YggdrasilParser(parser: YggdrasilAntlrParser) : ANTLRParserAdaptor(Yggdras
                 RULE_token_pair -> YggdrasilTokenPair(node)
 //                RULE_let_pattern_item -> ValkyrieLetPatternItem(node)
 //                // control
-////                RULE_for_statement -> ValkyrieForStatement(node)
+                RULE_tag_pair -> YggdrasilNodeTag(node)
 ////                RULE_while_statement -> ValkyrieWhileStatement(node)
 //                // pattern match
 //                RULE_match_statement -> {
