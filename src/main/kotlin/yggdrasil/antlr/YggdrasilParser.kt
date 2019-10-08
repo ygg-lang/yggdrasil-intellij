@@ -15,6 +15,7 @@ import org.antlr.v4.runtime.Parser
 import org.antlr.v4.runtime.tree.ParseTree
 import yggdrasil.antlr.YggdrasilAntlrParser.*
 import yggdrasil.language.YggdrasilLanguage
+import yggdrasil.language.ast.YggdrasilUnionStatement
 import yggdrasil.language.ast.YggdrasilNodeTag
 import yggdrasil.language.ast.YggdrasilTokenPair
 import yggdrasil.language.ast.YggdrasilBlockNode
@@ -41,6 +42,7 @@ class YggdrasilParser(parser: YggdrasilAntlrParser) : ANTLRParserAdaptor(Yggdras
         fun extractCompositeNode(node: CompositeElement): PsiElement {
             val type: RuleIElementType = node.elementType as RuleIElementType;
             return when (type.ruleIndex) {
+                RULE_define_grammar -> YggdrasilGrammarStatement(node)
 //                RULE_import_statement -> ValkyrieImportStatement(node)
 //                // annotations
 //                RULE_modifiers -> NexusModifiedNode(node, ValkyrieModifiedType.Pure)
@@ -52,10 +54,11 @@ class YggdrasilParser(parser: YggdrasilAntlrParser) : ANTLRParserAdaptor(Yggdras
 //                RULE_annotation_call_item -> ValkyrieAnnotationItem(node)
 //                // class
                 RULE_define_class -> YggdrasilClassStatement(node)
-                RULE_define_grammar -> YggdrasilGrammarStatement(node)
-                RULE_rule_block -> YggdrasilBlockNode(node, ValkyrieBlockType.Brace)
+                RULE_class_block -> YggdrasilBlockNode(node, ValkyrieBlockType.Brace)
                 RULE_tuple_block -> YggdrasilBlockNode(node, ValkyrieBlockType.Parenthesis)
 //                // function
+                RULE_define_union -> YggdrasilUnionStatement(node)
+                RULE_union_block -> YggdrasilBlockNode(node, ValkyrieBlockType.Brace)
 //                RULE_define_function -> ValkyrieFunctionStatement(node)
 //                RULE_function_parameters -> ValkyrieBlockNode(node, ValkyrieBlockType.Parenthesis)
 //                RULE_parameter_item -> ValkyrieFunctionParameter(node)
@@ -63,7 +66,6 @@ class YggdrasilParser(parser: YggdrasilAntlrParser) : ANTLRParserAdaptor(Yggdras
 //                // token rule
                 RULE_token_block -> YggdrasilBlockNode(node, ValkyrieBlockType.Brace)
                 RULE_token_pair -> YggdrasilTokenPair(node)
-//                RULE_let_pattern_item -> ValkyrieLetPatternItem(node)
 //                // control
                 RULE_tag_pair -> YggdrasilNodeTag(node)
 ////                RULE_while_statement -> ValkyrieWhileStatement(node)

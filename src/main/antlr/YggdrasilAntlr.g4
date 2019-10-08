@@ -19,10 +19,37 @@ import_statement: KW_IMPORT identifier;
 // =================================================================================================
 define_grammar: KW_GRAMMAR identifier BRACE_L BRACE_R;
 // =================================================================================================
-define_class: macro_call* (mods += identifier)* KW_CLASS name = identifier rule_block;
-define_union: macro_call* (mods += identifier)* KW_UNION name = identifier rule_block;
-define_climb: macro_call* (mods += identifier)* KW_CLIMB name = identifier rule_block;
-rule_block:   BRACE_L OP_OR? expression* BRACE_R;
+define_class: macro_call* (mods += identifier)* KW_CLASS name = identifier class_block;
+class_block:  BRACE_L OP_OR? class_expression* BRACE_R;
+class_expression
+    : class_expression suffix                             # CSuffix
+    | tag_pair                                            # CETag
+    | OP_UNTAG class_expression                           # CUntag
+    | OP_NOT class_expression                             # CNot
+    | class_expression OP_CONCAT class_expression         # CHard
+    | class_expression class_expression                   # CSoft
+    | class_expression OP_OR class_expression             # CPattern
+    | PARENTHESES_L OP_OR? class_expression PARENTHESES_R # CGroup
+    | tuple_call                                          # CCall
+    | atomic                                              # Atom
+    ;
+// =================================================================================================
+define_union: macro_call* (mods += identifier)* KW_UNION name = identifier union_block;
+union_block:  BRACE_L union_term* BRACE_R;
+union_term:   OP_OR union_expression* OP_HASH identifier;
+union_expression
+    : class_expression suffix                             # USuffix
+    | tag_pair                                            # UETag
+    | OP_UNTAG class_expression                           # UUntag
+    | OP_NOT class_expression                             # UNot
+    | class_expression OP_CONCAT class_expression         # UHard
+    | class_expression class_expression                   # USoft
+    | PARENTHESES_L OP_OR? class_expression PARENTHESES_R # UGroup
+    | tuple_call                                          # UCall
+    | atomic                                              # Utom
+    ;
+// =================================================================================================
+define_climb: macro_call* (mods += identifier)* KW_CLIMB name = identifier union_block;
 // =================================================================================================
 define_token: macro_call* (mods += identifier)* KW_TOKEN name = identifier? token_block;
 token_block:  BRACE_L (token_pair | SEMICOLON)* BRACE_R;
@@ -30,27 +57,19 @@ token_pair:   identifier COLON token_expression;
 
 token_expression: token_expression OP_OR token_expression # TOr | atomic # TAtom;
 // =================================================================================================
-tag_pair: identifier COLON expression;
+tag_pair: identifier COLON identifier MATCH_OPTIONAL?;
 // =================================================================================================
 macro_call: (OP_HASH | OP_AT) namepath tuple_block?;
 // =================================================================================================
 tuple_call:  OP_AT namepath tuple_block?;
-tuple_block: PARENTHESES_L (expression (COMMA expression)* COMMA?)? PARENTHESES_R;
+tuple_block: PARENTHESES_L (class_expression (COMMA class_expression)* COMMA?)? PARENTHESES_R;
 // =================================================================================================
-expression
-    : expression MATCH_OPTIONAL                     # Optional
-    | expression MATCH_MAYBE MATCH_OPTIONAL?        # Maybe
-    | expression MATCH_MANY MATCH_OPTIONAL?         # Many
-    | OP_UNTAG expression                           # Untag
-    | OP_NOT expression                             # Not
-    | expression OP_CONCAT expression               # Hard
-    | expression expression                         # Soft
-    | expression OP_OR expression                   # Pattern
-    | PARENTHESES_L OP_OR? expression PARENTHESES_R # Group
-    | OP_HASH identifier                            # BranchTag
-    | tuple_call                                    # Call
-    | tag_pair                                      # ETag
-    | atomic                                        # Atom
+suffix
+    : MATCH_OPTIONAL             # Optional
+    | MATCH_MAYBE                # MaybeGreedy
+    | MATCH_MAYBE MATCH_OPTIONAL # Maybe
+    | MATCH_MANY                 # ManyGreedy
+    | MATCH_MANY MATCH_OPTIONAL  # Many
     ;
 // =================================================================================================
 atomic:     tuple_call | string | namepath | regex | INTEGER | SPECIAL | ESCAPED;

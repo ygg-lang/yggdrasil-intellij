@@ -7,7 +7,7 @@ import com.intellij.navigation.ItemPresentation
 import com.intellij.psi.impl.source.tree.CompositeElement
 import javax.swing.Icon
 
-class ValkyrieWhileStatement(node: CompositeElement) : ASTWrapperPsiElement(node) {
+class YggdrasilUnionStatement(node: CompositeElement) : ASTWrapperPsiElement(node) {
     override fun getBaseIcon(): Icon {
         return AllIcons.Actions.InlayRenameInNoCodeFilesActive
     }
