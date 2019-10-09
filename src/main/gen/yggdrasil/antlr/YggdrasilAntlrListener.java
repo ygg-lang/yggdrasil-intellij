@@ -28,6 +28,16 @@ public interface YggdrasilAntlrListener extends ParseTreeListener {
 	 */
 	void exitImport_statement(YggdrasilAntlrParser.Import_statementContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link YggdrasilAntlrParser#import_block}.
+	 * @param ctx the parse tree
+	 */
+	void enterImport_block(YggdrasilAntlrParser.Import_blockContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link YggdrasilAntlrParser#import_block}.
+	 * @param ctx the parse tree
+	 */
+	void exitImport_block(YggdrasilAntlrParser.Import_blockContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link YggdrasilAntlrParser#define_grammar}.
 	 * @param ctx the parse tree
 	 */
@@ -37,6 +47,16 @@ public interface YggdrasilAntlrListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitDefine_grammar(YggdrasilAntlrParser.Define_grammarContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link YggdrasilAntlrParser#grammar_block}.
+	 * @param ctx the parse tree
+	 */
+	void enterGrammar_block(YggdrasilAntlrParser.Grammar_blockContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link YggdrasilAntlrParser#grammar_block}.
+	 * @param ctx the parse tree
+	 */
+	void exitGrammar_block(YggdrasilAntlrParser.Grammar_blockContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link YggdrasilAntlrParser#define_class}.
 	 * @param ctx the parse tree
@@ -58,6 +78,18 @@ public interface YggdrasilAntlrListener extends ParseTreeListener {
 	 */
 	void exitClass_block(YggdrasilAntlrParser.Class_blockContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code CSuffix}
+	 * labeled alternative in {@link YggdrasilAntlrParser#class_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterCSuffix(YggdrasilAntlrParser.CSuffixContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code CSuffix}
+	 * labeled alternative in {@link YggdrasilAntlrParser#class_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitCSuffix(YggdrasilAntlrParser.CSuffixContext ctx);
+	/**
 	 * Enter a parse tree produced by the {@code CCall}
 	 * labeled alternative in {@link YggdrasilAntlrParser#class_expression}.
 	 * @param ctx the parse tree
@@ -69,18 +101,6 @@ public interface YggdrasilAntlrListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitCCall(YggdrasilAntlrParser.CCallContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code CMany}
-	 * labeled alternative in {@link YggdrasilAntlrParser#class_expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterCMany(YggdrasilAntlrParser.CManyContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code CMany}
-	 * labeled alternative in {@link YggdrasilAntlrParser#class_expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitCMany(YggdrasilAntlrParser.CManyContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code CETag}
 	 * labeled alternative in {@link YggdrasilAntlrParser#class_expression}.
@@ -208,29 +228,17 @@ public interface YggdrasilAntlrListener extends ParseTreeListener {
 	 */
 	void exitUnion_term(YggdrasilAntlrParser.Union_termContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code UMany}
+	 * Enter a parse tree produced by the {@code UHard}
 	 * labeled alternative in {@link YggdrasilAntlrParser#union_expression}.
 	 * @param ctx the parse tree
 	 */
-	void enterUMany(YggdrasilAntlrParser.UManyContext ctx);
+	void enterUHard(YggdrasilAntlrParser.UHardContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code UMany}
+	 * Exit a parse tree produced by the {@code UHard}
 	 * labeled alternative in {@link YggdrasilAntlrParser#union_expression}.
 	 * @param ctx the parse tree
 	 */
-	void exitUMany(YggdrasilAntlrParser.UManyContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code UETag}
-	 * labeled alternative in {@link YggdrasilAntlrParser#union_expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterUETag(YggdrasilAntlrParser.UETagContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code UETag}
-	 * labeled alternative in {@link YggdrasilAntlrParser#union_expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitUETag(YggdrasilAntlrParser.UETagContext ctx);
+	void exitUHard(YggdrasilAntlrParser.UHardContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code UUntag}
 	 * labeled alternative in {@link YggdrasilAntlrParser#union_expression}.
@@ -244,41 +252,17 @@ public interface YggdrasilAntlrListener extends ParseTreeListener {
 	 */
 	void exitUUntag(YggdrasilAntlrParser.UUntagContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code UNot}
+	 * Enter a parse tree produced by the {@code USuffix}
 	 * labeled alternative in {@link YggdrasilAntlrParser#union_expression}.
 	 * @param ctx the parse tree
 	 */
-	void enterUNot(YggdrasilAntlrParser.UNotContext ctx);
+	void enterUSuffix(YggdrasilAntlrParser.USuffixContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code UNot}
+	 * Exit a parse tree produced by the {@code USuffix}
 	 * labeled alternative in {@link YggdrasilAntlrParser#union_expression}.
 	 * @param ctx the parse tree
 	 */
-	void exitUNot(YggdrasilAntlrParser.UNotContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code UHard}
-	 * labeled alternative in {@link YggdrasilAntlrParser#union_expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterUHard(YggdrasilAntlrParser.UHardContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code UHard}
-	 * labeled alternative in {@link YggdrasilAntlrParser#union_expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitUHard(YggdrasilAntlrParser.UHardContext ctx);
-	/**
-	 * Enter a parse tree produced by the {@code USoft}
-	 * labeled alternative in {@link YggdrasilAntlrParser#union_expression}.
-	 * @param ctx the parse tree
-	 */
-	void enterUSoft(YggdrasilAntlrParser.USoftContext ctx);
-	/**
-	 * Exit a parse tree produced by the {@code USoft}
-	 * labeled alternative in {@link YggdrasilAntlrParser#union_expression}.
-	 * @param ctx the parse tree
-	 */
-	void exitUSoft(YggdrasilAntlrParser.USoftContext ctx);
+	void exitUSuffix(YggdrasilAntlrParser.USuffixContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code UGroup}
 	 * labeled alternative in {@link YggdrasilAntlrParser#union_expression}.
@@ -292,17 +276,17 @@ public interface YggdrasilAntlrListener extends ParseTreeListener {
 	 */
 	void exitUGroup(YggdrasilAntlrParser.UGroupContext ctx);
 	/**
-	 * Enter a parse tree produced by the {@code UCall}
+	 * Enter a parse tree produced by the {@code UETag}
 	 * labeled alternative in {@link YggdrasilAntlrParser#union_expression}.
 	 * @param ctx the parse tree
 	 */
-	void enterUCall(YggdrasilAntlrParser.UCallContext ctx);
+	void enterUETag(YggdrasilAntlrParser.UETagContext ctx);
 	/**
-	 * Exit a parse tree produced by the {@code UCall}
+	 * Exit a parse tree produced by the {@code UETag}
 	 * labeled alternative in {@link YggdrasilAntlrParser#union_expression}.
 	 * @param ctx the parse tree
 	 */
-	void exitUCall(YggdrasilAntlrParser.UCallContext ctx);
+	void exitUETag(YggdrasilAntlrParser.UETagContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code Utom}
 	 * labeled alternative in {@link YggdrasilAntlrParser#union_expression}.
@@ -316,6 +300,42 @@ public interface YggdrasilAntlrListener extends ParseTreeListener {
 	 */
 	void exitUtom(YggdrasilAntlrParser.UtomContext ctx);
 	/**
+	 * Enter a parse tree produced by the {@code UNot}
+	 * labeled alternative in {@link YggdrasilAntlrParser#union_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterUNot(YggdrasilAntlrParser.UNotContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code UNot}
+	 * labeled alternative in {@link YggdrasilAntlrParser#union_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitUNot(YggdrasilAntlrParser.UNotContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code USoft}
+	 * labeled alternative in {@link YggdrasilAntlrParser#union_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterUSoft(YggdrasilAntlrParser.USoftContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code USoft}
+	 * labeled alternative in {@link YggdrasilAntlrParser#union_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitUSoft(YggdrasilAntlrParser.USoftContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code UCall}
+	 * labeled alternative in {@link YggdrasilAntlrParser#union_expression}.
+	 * @param ctx the parse tree
+	 */
+	void enterUCall(YggdrasilAntlrParser.UCallContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code UCall}
+	 * labeled alternative in {@link YggdrasilAntlrParser#union_expression}.
+	 * @param ctx the parse tree
+	 */
+	void exitUCall(YggdrasilAntlrParser.UCallContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link YggdrasilAntlrParser#define_climb}.
 	 * @param ctx the parse tree
 	 */
@@ -325,6 +345,26 @@ public interface YggdrasilAntlrListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitDefine_climb(YggdrasilAntlrParser.Define_climbContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link YggdrasilAntlrParser#tag_pair}.
+	 * @param ctx the parse tree
+	 */
+	void enterTag_pair(YggdrasilAntlrParser.Tag_pairContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link YggdrasilAntlrParser#tag_pair}.
+	 * @param ctx the parse tree
+	 */
+	void exitTag_pair(YggdrasilAntlrParser.Tag_pairContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link YggdrasilAntlrParser#tag_branch}.
+	 * @param ctx the parse tree
+	 */
+	void enterTag_branch(YggdrasilAntlrParser.Tag_branchContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link YggdrasilAntlrParser#tag_branch}.
+	 * @param ctx the parse tree
+	 */
+	void exitTag_branch(YggdrasilAntlrParser.Tag_branchContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link YggdrasilAntlrParser#define_token}.
 	 * @param ctx the parse tree
@@ -379,16 +419,6 @@ public interface YggdrasilAntlrListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitTAtom(YggdrasilAntlrParser.TAtomContext ctx);
-	/**
-	 * Enter a parse tree produced by {@link YggdrasilAntlrParser#tag_pair}.
-	 * @param ctx the parse tree
-	 */
-	void enterTag_pair(YggdrasilAntlrParser.Tag_pairContext ctx);
-	/**
-	 * Exit a parse tree produced by {@link YggdrasilAntlrParser#tag_pair}.
-	 * @param ctx the parse tree
-	 */
-	void exitTag_pair(YggdrasilAntlrParser.Tag_pairContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link YggdrasilAntlrParser#macro_call}.
 	 * @param ctx the parse tree

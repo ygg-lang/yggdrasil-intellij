@@ -41,6 +41,18 @@ public class YggdrasilAntlrBaseListener implements YggdrasilAntlrListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterImport_block(YggdrasilAntlrParser.Import_blockContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitImport_block(YggdrasilAntlrParser.Import_blockContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterDefine_grammar(YggdrasilAntlrParser.Define_grammarContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -48,6 +60,18 @@ public class YggdrasilAntlrBaseListener implements YggdrasilAntlrListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitDefine_grammar(YggdrasilAntlrParser.Define_grammarContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterGrammar_block(YggdrasilAntlrParser.Grammar_blockContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitGrammar_block(YggdrasilAntlrParser.Grammar_blockContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -77,6 +101,18 @@ public class YggdrasilAntlrBaseListener implements YggdrasilAntlrListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterCSuffix(YggdrasilAntlrParser.CSuffixContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitCSuffix(YggdrasilAntlrParser.CSuffixContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterCCall(YggdrasilAntlrParser.CCallContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -84,18 +120,6 @@ public class YggdrasilAntlrBaseListener implements YggdrasilAntlrListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitCCall(YggdrasilAntlrParser.CCallContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterCMany(YggdrasilAntlrParser.CManyContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitCMany(YggdrasilAntlrParser.CManyContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -233,25 +257,13 @@ public class YggdrasilAntlrBaseListener implements YggdrasilAntlrListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterUMany(YggdrasilAntlrParser.UManyContext ctx) { }
+	@Override public void enterUHard(YggdrasilAntlrParser.UHardContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitUMany(YggdrasilAntlrParser.UManyContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterUETag(YggdrasilAntlrParser.UETagContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitUETag(YggdrasilAntlrParser.UETagContext ctx) { }
+	@Override public void exitUHard(YggdrasilAntlrParser.UHardContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -269,37 +281,13 @@ public class YggdrasilAntlrBaseListener implements YggdrasilAntlrListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterUNot(YggdrasilAntlrParser.UNotContext ctx) { }
+	@Override public void enterUSuffix(YggdrasilAntlrParser.USuffixContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitUNot(YggdrasilAntlrParser.UNotContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterUHard(YggdrasilAntlrParser.UHardContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitUHard(YggdrasilAntlrParser.UHardContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterUSoft(YggdrasilAntlrParser.USoftContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitUSoft(YggdrasilAntlrParser.USoftContext ctx) { }
+	@Override public void exitUSuffix(YggdrasilAntlrParser.USuffixContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -317,13 +305,13 @@ public class YggdrasilAntlrBaseListener implements YggdrasilAntlrListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void enterUCall(YggdrasilAntlrParser.UCallContext ctx) { }
+	@Override public void enterUETag(YggdrasilAntlrParser.UETagContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
-	@Override public void exitUCall(YggdrasilAntlrParser.UCallContext ctx) { }
+	@Override public void exitUETag(YggdrasilAntlrParser.UETagContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -341,6 +329,42 @@ public class YggdrasilAntlrBaseListener implements YggdrasilAntlrListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterUNot(YggdrasilAntlrParser.UNotContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitUNot(YggdrasilAntlrParser.UNotContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterUSoft(YggdrasilAntlrParser.USoftContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitUSoft(YggdrasilAntlrParser.USoftContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterUCall(YggdrasilAntlrParser.UCallContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitUCall(YggdrasilAntlrParser.UCallContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterDefine_climb(YggdrasilAntlrParser.Define_climbContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -348,6 +372,30 @@ public class YggdrasilAntlrBaseListener implements YggdrasilAntlrListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitDefine_climb(YggdrasilAntlrParser.Define_climbContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterTag_pair(YggdrasilAntlrParser.Tag_pairContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTag_pair(YggdrasilAntlrParser.Tag_pairContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterTag_branch(YggdrasilAntlrParser.Tag_branchContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitTag_branch(YggdrasilAntlrParser.Tag_branchContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -408,18 +456,6 @@ public class YggdrasilAntlrBaseListener implements YggdrasilAntlrListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitTAtom(YggdrasilAntlrParser.TAtomContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void enterTag_pair(YggdrasilAntlrParser.Tag_pairContext ctx) { }
-	/**
-	 * {@inheritDoc}
-	 *
-	 * <p>The default implementation does nothing.</p>
-	 */
-	@Override public void exitTag_pair(YggdrasilAntlrParser.Tag_pairContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
