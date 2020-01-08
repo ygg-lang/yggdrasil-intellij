@@ -7,6 +7,7 @@ fun properties(key: String) = project.findProperty(key).toString()
 plugins {
     idea
     java
+    antlr
     kotlin("jvm") version "1.9.10"
     kotlin("plugin.serialization") version "1.9.10"
     id("org.jetbrains.intellij") version "1.16.0"
@@ -15,7 +16,7 @@ plugins {
 
 dependencies {
 //    implementation(kotlin("stdlib-jdk8"))
-    implementation("org.antlr:antlr4:${properties("antlrVersion")}") {
+    antlr("org.antlr:antlr4:${properties("antlrVersion")}") {
         exclude(group = "com.ibm.icu", module = "icu4j")
     }
     implementation("org.antlr:antlr4-intellij-adaptor:0.1")
@@ -63,7 +64,16 @@ tasks {
     wrapper {
         gradleVersion = properties("gradleVersion")
     }
-
+    generateGrammarSource {
+        maxHeapSize = "64m"
+        arguments = arguments + listOf(
+            "-listener",
+            "-visitor",
+            "-long-messages",
+            "-encoding", "utf8",
+            "-package", "yggdrasil.antlr"
+        )
+    }
     patchPluginXml {
         version.set(properties("pluginVersion"))
         sinceBuild.set(properties("pluginSinceBuild"))
@@ -119,7 +129,7 @@ val compileKotlin: KotlinCompile by tasks
 compileKotlin.kotlinOptions {
     jvmTarget = "17"
 }
-
+compileKotlin.dependsOn("generateGrammarSource")
 val compileTestKotlin: KotlinCompile by tasks
 compileTestKotlin.kotlinOptions {
     jvmTarget = "17"

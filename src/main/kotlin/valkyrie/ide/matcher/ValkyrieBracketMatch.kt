@@ -16,7 +16,6 @@ class ValkyrieBracketMatch : PairedBraceMatcher {
         BracePair(Instance.BraceL, Instance.BraceR, true),
         BracePair(Instance.BracketL, Instance.BracketR, true),
         BracePair(Instance.ParenthesisL, Instance.ParenthesisR, true),
-        BracePair(Instance.GenericL, Instance.GenericR, true),
 //        BracePair(STRING_START, STRING_END, true),
     )
 
@@ -41,14 +40,11 @@ class ValkyrieBracketMatch : PairedBraceMatcher {
         val BraceL = TokenIElementType(YggdrasilAntlrLexer.BRACE_L, "{", yggdrasil.language.YggdrasilLanguage);
         val BraceR = TokenIElementType(YggdrasilAntlrLexer.BRACE_R, "}", yggdrasil.language.YggdrasilLanguage);
 
-        val GenericL = TokenIElementType(YggdrasilAntlrLexer.GENERIC_L, "<", yggdrasil.language.YggdrasilLanguage);
-        val GenericR = TokenIElementType(YggdrasilAntlrLexer.GENERIC_R, ">", yggdrasil.language.YggdrasilLanguage);
-
         val Left = TokenSet.create(
-            ParenthesisL, BracketL, BraceL, GenericL
+            ParenthesisL, BracketL, BraceL,
         )
         val Right = TokenSet.create(
-            ParenthesisR, BracketR, BraceR, GenericR
+            ParenthesisR, BracketR, BraceR,
         )
     }
 }

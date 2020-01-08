@@ -100,7 +100,7 @@ class YggdrasilLexer : Lexer() {
         val Escapes: TokenSet = PSIElementTypeFactory.createTokenSet(YggdrasilLanguage, ESCAPED);
         val Comma: TokenSet = PSIElementTypeFactory.createTokenSet(YggdrasilLanguage);
         val Semicolon: TokenSet = PSIElementTypeFactory.createTokenSet(YggdrasilLanguage);
-        val Integers: TokenSet = PSIElementTypeFactory.createTokenSet(YggdrasilLanguage);
+        val Integers: TokenSet = PSIElementTypeFactory.createTokenSet(YggdrasilLanguage, INTEGER);
         val Decimals: TokenSet = PSIElementTypeFactory.createTokenSet(YggdrasilLanguage);
         val Strings: TokenSet = PSIElementTypeFactory.createTokenSet(YggdrasilLanguage, STRING_SINGLE, STRING_DOUBLE);
         val Identifiers: TokenSet = PSIElementTypeFactory.createTokenSet(YggdrasilLanguage);

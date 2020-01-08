@@ -64,7 +64,7 @@ class YggdrasilParser(parser: YggdrasilAntlrParser) : ANTLRParserAdaptor(Yggdras
                 RULE_token_block -> YggdrasilBlockNode(node, ValkyrieBlockType.Brace)
                 RULE_token_pair -> YggdrasilTokenPair(node)
 //                // control
-                RULE_tag_pair -> YggdrasilNodeTag(node)
+//                RULE_tag_pair -> YggdrasilNodeTag(node)
 ////                RULE_while_statement -> ValkyrieWhileStatement(node)
 //                // pattern match
 //                RULE_match_statement -> {
