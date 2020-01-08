@@ -15,7 +15,7 @@ import yggdrasil.language.file.NexusIconProvider
 import yggdrasil.language.psi.ValkyrieInlayElement
 import yggdrasil.language.psi.ValkyrieLineMarkElement
 import yggdrasil.language.psi.ValkyrieScopeNode
-import valkyrie.ide.highlight.NexusHighlightColor
+import valkyrie.ide.highlight.YggdrasilHighlightColor
 import valkyrie.ide.highlight.YggdrasilHighlightElement
 import valkyrie.ide.highlight.NodeHighlighter
 import valkyrie.ide.hint.TypeInlayHint
@@ -59,7 +59,7 @@ class YggdrasilClassFieldNode(node: CompositeElement) : ValkyrieScopeNode(node),
 
 
     override fun on_highlight(e: NodeHighlighter) {
-        e.register(nameIdentifier, NexusHighlightColor.SYM_FIELD)
+        e.register(nameIdentifier, YggdrasilHighlightColor.SYM_FIELD)
         e.register_modifiers(modifiers)
     }
 

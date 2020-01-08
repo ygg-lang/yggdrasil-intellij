@@ -4,6 +4,7 @@ package valkyrie.ide.matcher
 import com.intellij.lang.injection.MultiHostInjector
 import com.intellij.lang.injection.MultiHostRegistrar
 import com.intellij.psi.PsiElement
+import yggdrasil.language.ast.YggdrasilRegex
 import yggdrasil.language.ast.YggdrasilStringNode
 
 //import nexus.language.psi_node.ValkyrieStringNode
@@ -11,6 +12,7 @@ import yggdrasil.language.ast.YggdrasilStringNode
 class LanguageInjector : MultiHostInjector {
     override fun getLanguagesToInject(registrar: MultiHostRegistrar, context: PsiElement) {
         when (context) {
+            is YggdrasilRegex -> context.injectPerform(registrar)
             is YggdrasilStringNode -> context.injectPerform(registrar)
         }
     }

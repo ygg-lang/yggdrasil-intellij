@@ -8,7 +8,7 @@ import yggdrasil.language.ast.YggdrasilIdentifierNode
 
 @Suppress("FunctionName")
 class NodeHighlighter(private val info: HighlightInfoHolder?) {
-    fun register(element: PsiElement?, color: NexusHighlightColor) {
+    fun register(element: PsiElement?, color: YggdrasilHighlightColor) {
         if (element == null) return
         val builder = HighlightInfo.newHighlightInfo(HighlightInfoType.INFORMATION)
         builder.textAttributes(color.textAttributesKey)
@@ -18,11 +18,11 @@ class NodeHighlighter(private val info: HighlightInfoHolder?) {
 
     fun register_modifiers(modifiers: Collection<YggdrasilIdentifierNode>) {
         for (mod in modifiers) {
-            this.register(mod, NexusHighlightColor.MODIFIER)
+            this.register(mod, YggdrasilHighlightColor.MODIFIER)
         }
     }
 
     fun register_macro(annotation: PsiElement) {
-        this.register(annotation, NexusHighlightColor.SYM_MACRO)
+        this.register(annotation, YggdrasilHighlightColor.SYM_MACRO)
     }
 }

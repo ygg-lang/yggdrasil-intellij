@@ -7,7 +7,7 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNameIdentifierOwner
 import com.intellij.psi.impl.source.tree.CompositeElement
 import com.intellij.psi.util.PsiTreeUtil
-import valkyrie.ide.highlight.NexusHighlightColor
+import valkyrie.ide.highlight.YggdrasilHighlightColor
 import valkyrie.ide.highlight.YggdrasilHighlightElement
 import valkyrie.ide.highlight.NodeHighlighter
 import valkyrie.ide.view.IdentifierPresentation
@@ -60,9 +60,9 @@ class YggdrasilLetParameter(node: CompositeElement) : ASTWrapperPsiElement(node)
 
     override fun on_highlight(e: NodeHighlighter) {
         if (mutable) {
-            e.register(nameIdentifier, NexusHighlightColor.SYM_LOCAL_MUT)
+            e.register(nameIdentifier, YggdrasilHighlightColor.SYM_LOCAL_MUT)
         } else {
-            e.register(nameIdentifier, NexusHighlightColor.SYM_LOCAL)
+            e.register(nameIdentifier, YggdrasilHighlightColor.SYM_LOCAL)
         }
         e.register_modifiers(modifiers)
     }

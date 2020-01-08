@@ -7,9 +7,9 @@ import com.intellij.openapi.editor.richcopy.HtmlSyntaxInfoUtil
 import com.intellij.psi.PsiElement
 import com.intellij.ui.ColorUtil
 import yggdrasil.language.ast.classes.YggdrasilClassStatement
-import valkyrie.ide.highlight.NexusHighlightColor
-import valkyrie.ide.highlight.NexusHighlightColor.KEYWORD
-import valkyrie.ide.highlight.NexusHighlightColor.SYM_CLASS
+import valkyrie.ide.highlight.YggdrasilHighlightColor
+import valkyrie.ide.highlight.YggdrasilHighlightColor.KEYWORD
+import valkyrie.ide.highlight.YggdrasilHighlightColor.SYM_CLASS
 
 
 class DocumentationRenderer(var element: PsiElement, private var original: PsiElement?) {
@@ -62,7 +62,7 @@ class DocumentationRenderer(var element: PsiElement, private var original: PsiEl
         doc.append("<span>${text}</span>")
     }
 
-    fun append(key: NexusHighlightColor, text: String) {
+    fun append(key: YggdrasilHighlightColor, text: String) {
         // HtmlSyntaxInfoUtil.getStyledSpan(key.textAttributesKey, text, 1.0f)
         val attr = EditorColorsManager.getInstance().globalScheme.getAttributes(key.textAttributesKey)
         val color = ColorUtil.toHtmlColor(attr.foregroundColor)

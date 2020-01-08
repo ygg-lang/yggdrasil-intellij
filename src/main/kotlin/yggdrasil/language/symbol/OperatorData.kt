@@ -3,7 +3,7 @@ package yggdrasil.language.symbol
 import com.intellij.psi.PsiElement
 import com.intellij.psi.util.elementType
 import valkyrie.ide.doc.DocumentationRenderer
-import valkyrie.ide.highlight.NexusHighlightColor
+import valkyrie.ide.highlight.YggdrasilHighlightColor
 
 //import nexus.language.psi.ValkyrieTypes
 
@@ -16,16 +16,16 @@ class OperatorData(
     val priority: Int = 100,
 ) {
     fun documentation(doc: DocumentationRenderer) {
-        doc.append(NexusHighlightColor.KEYWORD, "operator ")
-        doc.append(NexusHighlightColor.SYM_MACRO, symbol)
-        doc.append(NexusHighlightColor.KEYWORD, " de-sugars ")
-        doc.append(NexusHighlightColor.SYM_FUNCTION_FREE, name)
+        doc.append(YggdrasilHighlightColor.KEYWORD, "operator ")
+        doc.append(YggdrasilHighlightColor.SYM_MACRO, symbol)
+        doc.append(YggdrasilHighlightColor.KEYWORD, " de-sugars ")
+        doc.append(YggdrasilHighlightColor.SYM_FUNCTION_FREE, name)
         doc.append("<br/>")
-        doc.append(NexusHighlightColor.KEYWORD, "associative ")
-        doc.append(NexusHighlightColor.SYM_MACRO, associative.toString())
+        doc.append(YggdrasilHighlightColor.KEYWORD, "associative ")
+        doc.append(YggdrasilHighlightColor.SYM_MACRO, associative.toString())
         doc.append("<br/>")
-        doc.append(NexusHighlightColor.KEYWORD, "priority ")
-        doc.append(NexusHighlightColor.SYM_CONSTANT, priority.toString())
+        doc.append(YggdrasilHighlightColor.KEYWORD, "priority ")
+        doc.append(YggdrasilHighlightColor.SYM_CONSTANT, priority.toString())
         doc.append("<hr/>")
         doc.append(detail)
     }

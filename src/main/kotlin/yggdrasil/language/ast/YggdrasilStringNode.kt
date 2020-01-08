@@ -12,10 +12,11 @@ import com.intellij.psi.LiteralTextEscaper
 import com.intellij.psi.PsiLanguageInjectionHost
 import com.intellij.psi.util.PsiTreeUtil
 import org.intellij.lang.regexp.RegExpLanguage
-import valkyrie.ide.highlight.NexusHighlightColor
-import valkyrie.ide.highlight.YggdrasilHighlightElement
+import valkyrie.ide.highlight.YggdrasilHighlightColor
 import valkyrie.ide.highlight.NodeHighlighter
+import valkyrie.ide.highlight.YggdrasilHighlightElement
 import valkyrie.ide.matcher.escaper.StringEscape
+
 
 class YggdrasilStringNode(node: ASTNode) : ASTWrapperPsiElement(node), PsiLanguageInjectionHost, YggdrasilHighlightElement {
     val handler by lazy {
@@ -76,6 +77,6 @@ class YggdrasilStringNode(node: ASTNode) : ASTWrapperPsiElement(node), PsiLangua
 
 
     override fun on_highlight(e: NodeHighlighter) {
-        e.register(handler, NexusHighlightColor.SYM_MACRO)
+        e.register(handler, YggdrasilHighlightColor.SYM_MACRO)
     }
 }

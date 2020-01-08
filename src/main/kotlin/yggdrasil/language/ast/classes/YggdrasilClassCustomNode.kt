@@ -10,7 +10,7 @@ import com.intellij.openapi.editor.markup.GutterIconRenderer
 import com.intellij.psi.impl.source.tree.CompositeElement
 import yggdrasil.language.ast.NexusModifiedNode
 import yggdrasil.language.psi.ValkyrieLineMarkElement
-import valkyrie.ide.highlight.NexusHighlightColor
+import valkyrie.ide.highlight.YggdrasilHighlightColor
 import valkyrie.ide.highlight.YggdrasilHighlightElement
 import valkyrie.ide.highlight.NodeHighlighter
 import valkyrie.ide.view.IdentifierPresentation
@@ -20,7 +20,7 @@ class YggdrasilClassCustomNode(node: CompositeElement) : ASTWrapperPsiElement(no
     val custom by lazy { NexusModifiedNode.findIdentifier(this)!! };
     val modifiers by lazy { NexusModifiedNode.findModifiers(this) };
     override fun on_highlight(e: NodeHighlighter) {
-        e.register(custom, NexusHighlightColor.SYM_MACRO)
+        e.register(custom, YggdrasilHighlightColor.SYM_MACRO)
         e.register_modifiers(modifiers)
     }
 

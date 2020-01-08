@@ -10,7 +10,7 @@ import java.util.function.Supplier
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors as Default
 
 
-enum class NexusHighlightColor(humanName: Supplier<@AttributeDescriptor String>, default: TextAttributesKey? = null) {
+enum class YggdrasilHighlightColor(humanName: Supplier<@AttributeDescriptor String>, default: TextAttributesKey? = null) {
     // 特殊关键词
     KEYWORD(OptionsBundle.messagePointer("options.language.defaults.keyword"), Default.KEYWORD),
     MODIFIER(YggdrasilBundle.messagePointer("valkyrie.highlight.modifier"), Default.KEYWORD),
@@ -29,7 +29,6 @@ enum class NexusHighlightColor(humanName: Supplier<@AttributeDescriptor String>,
     // 标识符
     IDENTIFIER(OptionsBundle.messagePointer("options.language.defaults.identifier"), Default.IDENTIFIER),
     SYM_TYPE(YggdrasilBundle.messagePointer("color.token.symbol.trait"), Default.CLASS_REFERENCE),
-    SYM_GENERIC(YggdrasilBundle.messagePointer("color.token.symbol.trait"), Default.METADATA),
     SYM_LANGUAGE(YggdrasilBundle.messagePointer("color.token.symbol.trait"), Default.INTERFACE_NAME),
     SYM_CLASS(YggdrasilBundle.messagePointer("color.token.symbol.class"), Default.CLASS_NAME),
     SYM_VARIANT(YggdrasilBundle.messagePointer("color.token.symbol.variant"), Default.STATIC_FIELD),
@@ -38,7 +37,8 @@ enum class NexusHighlightColor(humanName: Supplier<@AttributeDescriptor String>,
     SYM_LOCAL_MUT(YggdrasilBundle.messagePointer("color.token.symbol.local.mutable"), Default.REASSIGNED_LOCAL_VARIABLE),
     SYM_GLOBAL(YggdrasilBundle.messagePointer("color.token.symbol.global"), Default.GLOBAL_VARIABLE),
     SYM_GLOBAL_MUT(YggdrasilBundle.messagePointer("color.token.symbol.global.mut"), Default.GLOBAL_VARIABLE),
-    SYM_ARG(YggdrasilBundle.messagePointer("color.token.symbol.parameter"), Default.PARAMETER),
+    TAG_NODE(YggdrasilBundle.messagePointer("color.token.symbol.parameter"), Default.PARAMETER),
+    TAG_BRANCH(YggdrasilBundle.messagePointer("color.token.symbol.parameter"), Default.PARAMETER),
     SYM_FIELD(YggdrasilBundle.messagePointer("color.token.symbol.field"), Default.INSTANCE_FIELD),
     SYM_CONSTANT(YggdrasilBundle.messagePointer("color.token.symbol.constant"), Default.CONSTANT),
     SYM_BUILTIN(YggdrasilBundle.messagePointer("color.token.symbol.built.in"), Default.CONSTANT),

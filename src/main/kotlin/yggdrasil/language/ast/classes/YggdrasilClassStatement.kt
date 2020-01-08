@@ -10,7 +10,7 @@ import yggdrasil.language.file.NexusFileNode
 import yggdrasil.language.file.NexusIconProvider
 import yggdrasil.language.psi.ValkyrieLineMarkElement
 import yggdrasil.language.psi.ValkyrieScopeNode
-import valkyrie.ide.highlight.NexusHighlightColor
+import valkyrie.ide.highlight.YggdrasilHighlightColor
 import valkyrie.ide.highlight.YggdrasilHighlightElement
 import valkyrie.ide.highlight.NodeHighlighter
 import valkyrie.ide.view.IdentifierPresentation
@@ -54,7 +54,7 @@ class YggdrasilClassStatement(node: CompositeElement) : ValkyrieScopeNode(node),
 //            e.register(lang, NexusHighlightColor.SYM_LANGUAGE)
 //        }
 
-        e.register(nameIdentifier, NexusHighlightColor.SYM_CLASS)
+        e.register(nameIdentifier, YggdrasilHighlightColor.SYM_CLASS)
     }
 
     override fun on_line_mark(e: MutableCollection<in LineMarkerInfo<*>>) {

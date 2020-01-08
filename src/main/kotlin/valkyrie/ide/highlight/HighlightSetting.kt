@@ -5,11 +5,11 @@ import com.intellij.openapi.options.colors.ColorSettingsPage
 import yggdrasil.language.file.NexusIconProvider
 
 class HighlightSetting : ColorSettingsPage {
-    private val annotatorTags = NexusHighlightColor
+    private val annotatorTags = YggdrasilHighlightColor
         .values()
         .associateBy({ it.name }, { it.textAttributesKey })
 
-    override fun getAttributeDescriptors() = NexusHighlightColor
+    override fun getAttributeDescriptors() = YggdrasilHighlightColor
         .values()
         .map { it.attributesDescriptor }
         .toTypedArray()

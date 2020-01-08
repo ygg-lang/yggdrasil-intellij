@@ -29,17 +29,17 @@ class TokenHighlighter : SyntaxHighlighter {
     private fun getTokenColor(tokenType: IElementType): TextAttributesKey? {
         val hash = PSIElementTypeFactory.createTokenSet(yggdrasil.language.YggdrasilLanguage);
         return when {
-            YggdrasilLexer.Keywords.contains(tokenType) -> NexusHighlightColor.KEYWORD.textAttributesKey
+            YggdrasilLexer.Keywords.contains(tokenType) -> YggdrasilHighlightColor.KEYWORD.textAttributesKey
             YggdrasilLexer.Operators.contains(tokenType) -> DefaultLanguageHighlighterColors.OPERATION_SIGN
-            YggdrasilLexer.MacroOperators.contains(tokenType) -> NexusHighlightColor.SYM_MACRO.textAttributesKey
-            YggdrasilLexer.Integers.contains(tokenType) -> NexusHighlightColor.INTEGER.textAttributesKey
-            YggdrasilLexer.Decimals.contains(tokenType) -> NexusHighlightColor.DECIMAL.textAttributesKey
-            YggdrasilLexer.Strings.contains(tokenType) -> NexusHighlightColor.STRING.textAttributesKey
+            YggdrasilLexer.MacroOperators.contains(tokenType) -> YggdrasilHighlightColor.SYM_MACRO.textAttributesKey
+            YggdrasilLexer.Integers.contains(tokenType) -> YggdrasilHighlightColor.INTEGER.textAttributesKey
+            YggdrasilLexer.Decimals.contains(tokenType) -> YggdrasilHighlightColor.DECIMAL.textAttributesKey
+            YggdrasilLexer.Strings.contains(tokenType) -> YggdrasilHighlightColor.STRING.textAttributesKey
             YggdrasilLexer.Comments.contains(tokenType) -> DefaultLanguageHighlighterColors.LINE_COMMENT
             // inherit
             YggdrasilLexer.Comma.contains(tokenType) -> DefaultLanguageHighlighterColors.COMMA
             YggdrasilLexer.Semicolon.contains(tokenType) -> DefaultLanguageHighlighterColors.SEMICOLON
-            YggdrasilLexer.Escapes.contains(tokenType) -> NexusHighlightColor.STRING_ESCAPED.textAttributesKey
+            YggdrasilLexer.Escapes.contains(tokenType) -> YggdrasilHighlightColor.STRING_ESCAPED.textAttributesKey
 
             else -> {
                 when (tokenType) {

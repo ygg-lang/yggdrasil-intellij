@@ -5,7 +5,7 @@ package yggdrasil.language.symbol
 
 import com.intellij.psi.PsiElement
 import valkyrie.ide.doc.DocumentationRenderer
-import valkyrie.ide.highlight.NexusHighlightColor
+import valkyrie.ide.highlight.YggdrasilHighlightColor
 
 
 class ModifierData(
@@ -14,12 +14,12 @@ class ModifierData(
     val detail: String = "",
 ) {
     fun documentation(doc: DocumentationRenderer) {
-        doc.append(NexusHighlightColor.KEYWORD, "modifier ")
+        doc.append(YggdrasilHighlightColor.KEYWORD, "modifier ")
         for (item in namespace) {
             doc.append(item)
             doc.append("::")
         }
-        doc.append(NexusHighlightColor.SYM_MACRO, name)
+        doc.append(YggdrasilHighlightColor.SYM_MACRO, name)
         doc.append("<hr/>")
         doc.append(detail)
     }

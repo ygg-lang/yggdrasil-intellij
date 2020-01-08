@@ -4,7 +4,7 @@ import com.intellij.extapi.psi.ASTWrapperPsiElement
 import com.intellij.lang.ASTNode
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNameIdentifierOwner
-import valkyrie.ide.highlight.NexusHighlightColor
+import valkyrie.ide.highlight.YggdrasilHighlightColor
 import valkyrie.ide.highlight.YggdrasilHighlightElement
 import valkyrie.ide.highlight.NodeHighlighter
 
@@ -26,7 +26,7 @@ class YggdrasilFunctionParameter(node: ASTNode) : ASTWrapperPsiElement(node), Ps
     }
 
     override fun on_highlight(e: NodeHighlighter) {
-        e.register(nameIdentifier, NexusHighlightColor.SYM_ARG)
+        e.register(nameIdentifier, YggdrasilHighlightColor.TAG_BRANCH)
         e.register_modifiers(modifiers)
     }
 

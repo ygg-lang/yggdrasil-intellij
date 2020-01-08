@@ -7,7 +7,7 @@ import com.intellij.psi.PsiNameIdentifierOwner
 import com.intellij.psi.impl.source.tree.CompositeElement
 import yggdrasil.language.file.NexusIconProvider
 import yggdrasil.language.psi.ValkyrieScopeNode
-import valkyrie.ide.highlight.NexusHighlightColor
+import valkyrie.ide.highlight.YggdrasilHighlightColor
 import valkyrie.ide.highlight.YggdrasilHighlightElement
 import valkyrie.ide.highlight.NodeHighlighter
 import valkyrie.ide.view.IdentifierPresentation
@@ -38,7 +38,7 @@ class YggdrasilFunctionStatement(node: CompositeElement) : ValkyrieScopeNode(nod
 
 
     override fun on_highlight(e: NodeHighlighter) {
-        e.register(nameIdentifier, NexusHighlightColor.SYM_FUNCTION_FREE)
+        e.register(nameIdentifier, YggdrasilHighlightColor.SYM_FUNCTION_FREE)
         e.register_modifiers(modifiers)
     }
 }

@@ -14,7 +14,7 @@ import yggdrasil.language.file.NexusIconProvider
 import yggdrasil.language.psi.ValkyrieInlayElement
 import yggdrasil.language.psi.ValkyrieLineMarkElement
 import yggdrasil.language.psi.ValkyrieScopeNode
-import valkyrie.ide.highlight.NexusHighlightColor
+import valkyrie.ide.highlight.YggdrasilHighlightColor
 import valkyrie.ide.highlight.YggdrasilHighlightElement
 import valkyrie.ide.highlight.NodeHighlighter
 import valkyrie.ide.hint.ParameterInlayHint
@@ -60,9 +60,9 @@ class YggdrasilClassMethodNode(node: CompositeElement) : ValkyrieScopeNode(node)
 
     override fun on_highlight(e: NodeHighlighter) {
         if (method.name == "constructor") {
-            e.register(nameIdentifier, NexusHighlightColor.KEYWORD)
+            e.register(nameIdentifier, YggdrasilHighlightColor.KEYWORD)
         } else {
-            e.register(nameIdentifier, NexusHighlightColor.SYM_FUNCTION_SELF)
+            e.register(nameIdentifier, YggdrasilHighlightColor.SYM_FUNCTION_SELF)
         }
         e.register_modifiers(modifiers)
     }

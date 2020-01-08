@@ -6,7 +6,7 @@ import com.intellij.navigation.ItemPresentation
 import com.intellij.psi.impl.source.tree.CompositeElement
 import yggdrasil.language.ast.YggdrasilIdentifierNode
 import yggdrasil.language.psi.ValkyrieScopeNode
-import valkyrie.ide.highlight.NexusHighlightColor
+import valkyrie.ide.highlight.YggdrasilHighlightColor
 import valkyrie.ide.highlight.YggdrasilHighlightElement
 import valkyrie.ide.highlight.NodeHighlighter
 import javax.swing.Icon
@@ -16,7 +16,7 @@ class YggdrasilMatchStatement(node: CompositeElement) : ValkyrieScopeNode(node),
     override fun on_highlight(e: NodeHighlighter) {
         if (bind != null) {
             // maybe mutable
-            e.register(bind, NexusHighlightColor.SYM_LOCAL)
+            e.register(bind, YggdrasilHighlightColor.SYM_LOCAL)
         }
     }
 
