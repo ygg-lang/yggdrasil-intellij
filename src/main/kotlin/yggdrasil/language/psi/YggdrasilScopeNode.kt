@@ -22,14 +22,14 @@ import javax.swing.Icon
  * a node, it looks upward in the PSI tree for a node that
  * implements ScopeNode.
  */
-abstract class ValkyrieScopeNode(node: CompositeElement) : ASTWrapperPsiElement(node) {
+abstract class YggdrasilScopeNode(node: CompositeElement) : ASTWrapperPsiElement(node) {
     override fun getContainingFile(): NexusFileNode {
         return SharedImplUtil.getContainingFile(node) as NexusFileNode
     }
 
-    override fun getContext(): ValkyrieScopeNode? {
+    override fun getContext(): YggdrasilScopeNode? {
         for (parent in this.parents(false)) {
-            if (parent is ValkyrieScopeNode) {
+            if (parent is YggdrasilScopeNode) {
                 return parent
             }
         }

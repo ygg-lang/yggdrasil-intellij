@@ -16,6 +16,7 @@ import org.antlr.v4.runtime.tree.ParseTree
 import yggdrasil.antlr.YggdrasilAntlrParser.*
 import yggdrasil.language.YggdrasilLanguage
 import yggdrasil.language.ast.*
+import yggdrasil.language.ast.calls.unions.YggdrasilUnionStatement
 import yggdrasil.language.ast.classes.YggdrasilGrammarStatement
 import yggdrasil.language.ast.classes.YggdrasilClassStatement
 import yggdrasil.language.psi.types.ValkyrieBlockType
@@ -75,8 +76,13 @@ class YggdrasilParser(parser: YggdrasilAntlrParser) : ANTLRParserAdaptor(Yggdras
 ////                RULE_match_call -> {
 ////                    ValkyrieMatchCall(node)
 ////                }
-//
+
+                // identifier
+                RULE_identifier -> YggdrasilIdentifierNode(node)
+//                RULE_namepath_free -> NexusNamepathNode(node, type, true)
+//                RULE_namepath -> NexusNamepathNode(node, type)
                 RULE_tag_branch -> YggdrasilTagBranch(node)
+                // regex
                 RULE_regex -> YggdrasilRegex(node)
 //
 //
@@ -93,8 +99,7 @@ class YggdrasilParser(parser: YggdrasilAntlrParser) : ANTLRParserAdaptor(Yggdras
 //                RULE_expression -> extractExpression(node)
 //                RULE_function_call -> ValkyrieCallFunction(node)
 //                // atomic
-//                RULE_namepath_free -> NexusNamepathNode(node, type, true)
-//                RULE_namepath -> NexusNamepathNode(node, type)
+
 //                RULE_identifier -> NexusIdentifierNode(node)
 //                RULE_string_literal -> ValkyrieStringNode(node)
 //                RULE_number -> ValkyrieNumberNode(node)

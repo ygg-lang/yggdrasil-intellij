@@ -1,7 +1,6 @@
 package valkyrie.ide.doc
 
-//import nexus.language.psi_node.ValkyrieClassStatementNode
-//import nexus.language.psi_node.ValkyrieTraitStatementNode
+
 import com.intellij.openapi.editor.colors.EditorColorsManager
 import com.intellij.openapi.editor.richcopy.HtmlSyntaxInfoUtil
 import com.intellij.psi.PsiElement
@@ -9,7 +8,7 @@ import com.intellij.ui.ColorUtil
 import yggdrasil.language.ast.classes.YggdrasilClassStatement
 import valkyrie.ide.highlight.YggdrasilHighlightColor
 import valkyrie.ide.highlight.YggdrasilHighlightColor.KEYWORD
-import valkyrie.ide.highlight.YggdrasilHighlightColor.SYM_CLASS
+import valkyrie.ide.highlight.YggdrasilHighlightColor.RULE_CLASS
 
 
 class DocumentationRenderer(var element: PsiElement, private var original: PsiElement?) {
@@ -40,7 +39,7 @@ class DocumentationRenderer(var element: PsiElement, private var original: PsiEl
         append(KEYWORD, "public ")
         append(KEYWORD, "native ")
         append(KEYWORD, "class ")
-        append(SYM_CLASS, element.name ?: "[Unknown]")
+        append(RULE_CLASS, element.name ?: "[Unknown]")
 //        appendNewline()
 //        append(KEYWORD, "implements ")
 //        append(SYM_TRAIT, "Eq")

@@ -13,7 +13,7 @@ import yggdrasil.language.ast.NexusModifiedNode
 import yggdrasil.language.file.NexusIconProvider
 import yggdrasil.language.psi.ValkyrieInlayElement
 import yggdrasil.language.psi.ValkyrieLineMarkElement
-import yggdrasil.language.psi.ValkyrieScopeNode
+import yggdrasil.language.psi.YggdrasilScopeNode
 import valkyrie.ide.highlight.YggdrasilHighlightColor
 import valkyrie.ide.highlight.YggdrasilHighlightElement
 import valkyrie.ide.highlight.NodeHighlighter
@@ -23,7 +23,7 @@ import valkyrie.ide.view.IdentifierPresentation
 import javax.swing.Icon
 
 
-class YggdrasilClassMethodNode(node: CompositeElement) : ValkyrieScopeNode(node), PsiNameIdentifierOwner, ValkyrieLineMarkElement,
+class YggdrasilClassMethodNode(node: CompositeElement) : YggdrasilScopeNode(node), PsiNameIdentifierOwner, ValkyrieLineMarkElement,
     YggdrasilHighlightElement, ValkyrieInlayElement {
     val method by lazy { NexusModifiedNode.findIdentifier(this)!! }
     val modifiers by lazy { NexusModifiedNode.findModifiers(this) };

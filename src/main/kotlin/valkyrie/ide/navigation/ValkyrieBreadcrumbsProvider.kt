@@ -6,7 +6,7 @@ import com.intellij.lang.Language
 import com.intellij.navigation.NavigationItem
 import com.intellij.psi.PsiElement
 import com.intellij.ui.breadcrumbs.BreadcrumbsProvider
-import yggdrasil.language.psi.ValkyrieScopeNode
+import yggdrasil.language.psi.YggdrasilScopeNode
 import javax.swing.Action
 import javax.swing.Icon
 
@@ -16,7 +16,7 @@ class ValkyrieBreadcrumbsProvider : BreadcrumbsProvider {
     }
 
     override fun acceptElement(element: PsiElement): Boolean {
-        return element is ValkyrieScopeNode
+        return element is YggdrasilScopeNode
     }
 
     override fun getElementInfo(element: PsiElement): String {

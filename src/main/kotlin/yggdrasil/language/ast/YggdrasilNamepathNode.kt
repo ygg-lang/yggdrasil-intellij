@@ -1,12 +1,10 @@
 package yggdrasil.language.ast
 
-import ai.grazie.utils.isUppercase
 import com.intellij.lang.ASTNode
 import com.intellij.psi.PsiElement
 import com.intellij.psi.tree.IElementType
 import com.intellij.psi.util.PsiTreeUtil
 import org.antlr.intellij.adaptor.psi.IdentifierDefSubtree
-import valkyrie.ide.highlight.YggdrasilHighlightColor
 import valkyrie.ide.highlight.YggdrasilHighlightElement
 import valkyrie.ide.highlight.NodeHighlighter
 

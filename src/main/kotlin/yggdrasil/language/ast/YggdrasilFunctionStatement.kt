@@ -6,14 +6,14 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNameIdentifierOwner
 import com.intellij.psi.impl.source.tree.CompositeElement
 import yggdrasil.language.file.NexusIconProvider
-import yggdrasil.language.psi.ValkyrieScopeNode
+import yggdrasil.language.psi.YggdrasilScopeNode
 import valkyrie.ide.highlight.YggdrasilHighlightColor
 import valkyrie.ide.highlight.YggdrasilHighlightElement
 import valkyrie.ide.highlight.NodeHighlighter
 import valkyrie.ide.view.IdentifierPresentation
 import javax.swing.Icon
 
-class YggdrasilFunctionStatement(node: CompositeElement) : ValkyrieScopeNode(node), PsiNameIdentifierOwner, YggdrasilHighlightElement {
+class YggdrasilFunctionStatement(node: CompositeElement) : YggdrasilScopeNode(node), PsiNameIdentifierOwner, YggdrasilHighlightElement {
     val namepath by lazy { YggdrasilNamepathNode.find(this) }
     val modifiers by lazy { NexusModifiedNode.findModifiers(this) };
     override fun getName(): String {

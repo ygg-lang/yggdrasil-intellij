@@ -5,13 +5,13 @@ import com.intellij.ide.projectView.PresentationData
 import com.intellij.navigation.ItemPresentation
 import com.intellij.psi.impl.source.tree.CompositeElement
 import yggdrasil.language.ast.YggdrasilIdentifierNode
-import yggdrasil.language.psi.ValkyrieScopeNode
+import yggdrasil.language.psi.YggdrasilScopeNode
 import valkyrie.ide.highlight.YggdrasilHighlightColor
 import valkyrie.ide.highlight.YggdrasilHighlightElement
 import valkyrie.ide.highlight.NodeHighlighter
 import javax.swing.Icon
 
-class YggdrasilMatchStatement(node: CompositeElement) : ValkyrieScopeNode(node), YggdrasilHighlightElement {
+class YggdrasilMatchStatement(node: CompositeElement) : YggdrasilScopeNode(node), YggdrasilHighlightElement {
     val bind by lazy { YggdrasilIdentifierNode.find(this) }
     override fun on_highlight(e: NodeHighlighter) {
         if (bind != null) {
