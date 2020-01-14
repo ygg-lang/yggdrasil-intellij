@@ -19,7 +19,7 @@ class OperatorData(
         doc.append(YggdrasilHighlightColor.KEYWORD, "operator ")
         doc.append(YggdrasilHighlightColor.SYM_MACRO, symbol)
         doc.append(YggdrasilHighlightColor.KEYWORD, " de-sugars ")
-        doc.append(YggdrasilHighlightColor.SYM_FUNCTION_FREE, name)
+        doc.append(YggdrasilHighlightColor.SYM_FUNCTION, name)
         doc.append("<br/>")
         doc.append(YggdrasilHighlightColor.KEYWORD, "associative ")
         doc.append(YggdrasilHighlightColor.SYM_MACRO, associative.toString())

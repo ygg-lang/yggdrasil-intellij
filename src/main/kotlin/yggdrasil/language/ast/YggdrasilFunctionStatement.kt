@@ -16,29 +16,28 @@ import javax.swing.Icon
 class YggdrasilFunctionStatement(node: CompositeElement) : YggdrasilScopeNode(node), PsiNameIdentifierOwner, YggdrasilHighlightElement {
     val namepath by lazy { YggdrasilNamepathNode.find(this) }
     val modifiers by lazy { NexusModifiedNode.findModifiers(this) };
-    override fun getName(): String {
-        return namepath?.nameIdentifier?.name ?: "[Unknown Function]"
-    }
+
 
     override fun setName(name: String): PsiElement {
         TODO("Not yet implemented")
     }
 
-    override fun getNameIdentifier(): YggdrasilIdentifierNode? {
-        return namepath?.nameIdentifier
+    override fun getNameIdentifier(): PsiElement? {
+        TODO("Not yet implemented")
     }
+
 
     override fun getBaseIcon(): Icon {
         return NexusIconProvider.Instance.Function
     }
 
     override fun getPresentation(): ItemPresentation {
-        return IdentifierPresentation(namepath?.nameIdentifier, this.baseIcon)
+        TODO("Not yet implemented")
     }
 
 
     override fun on_highlight(e: NodeHighlighter) {
-        e.register(nameIdentifier, YggdrasilHighlightColor.SYM_FUNCTION_FREE)
+        e.register_function(nameIdentifier)
         e.register_modifiers(modifiers)
     }
 }

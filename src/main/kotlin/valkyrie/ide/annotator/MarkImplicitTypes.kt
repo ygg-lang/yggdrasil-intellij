@@ -5,7 +5,7 @@ import com.intellij.lang.annotation.Annotator
 import com.intellij.lang.annotation.HighlightSeverity
 import com.intellij.psi.PsiElement
 import yggdrasil.language.ast.YggdrasilFunctionParameter
-import yggdrasil.language.ast.YggdrasilLetStatement
+import yggdrasil.language.ast.external.YggdrasilLetStatement
 import yggdrasil.language.ast.classes.YggdrasilClassFieldNode
 import valkyrie.ide.actions.InferClassFieldType
 import valkyrie.ide.actions.InferDefineItemType

@@ -62,7 +62,7 @@ class YggdrasilLexer : Lexer() {
             YggdrasilLanguage,
             // declare keywords
             KW_GRAMMAR, KW_TOKEN, KW_CLASS, KW_UNION, KW_CLIMB,
-            KW_EXTERNAL,
+            KW_EXTERNAL, KW_INSPECTOR,
             // import keywords
             KW_IMPORT, KW_AS,
             // tok

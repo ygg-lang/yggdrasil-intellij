@@ -16,6 +16,9 @@ import org.antlr.v4.runtime.tree.ParseTree
 import yggdrasil.antlr.YggdrasilAntlrParser.*
 import yggdrasil.language.YggdrasilLanguage
 import yggdrasil.language.ast.*
+import yggdrasil.language.ast.external.YggdrasilExternalNode
+import yggdrasil.language.ast.external.YggdrasilExternalPair
+import yggdrasil.language.ast.external.YggdrasilInspectorNode
 import yggdrasil.language.ast.calls.unions.YggdrasilUnionStatement
 import yggdrasil.language.ast.classes.YggdrasilGrammarStatement
 import yggdrasil.language.ast.classes.YggdrasilClassStatement
@@ -64,6 +67,13 @@ class YggdrasilParser(parser: YggdrasilAntlrParser) : ANTLRParserAdaptor(Yggdras
 //                // token rule
                 RULE_token_block -> YggdrasilBlockNode(node, ValkyrieBlockType.Brace)
                 RULE_token_pair -> YggdrasilTokenPair(node)
+                // externals
+                RULE_define_inspector -> YggdrasilInspectorNode(node)
+                RULE_define_external -> YggdrasilExternalNode(node)
+                RULE_external_block -> YggdrasilBlockNode(node, ValkyrieBlockType.Brace)
+                RULE_external_pair -> YggdrasilExternalPair(node)
+
+
 //                // control
 //                RULE_tag_pair -> YggdrasilNodeTag(node)
 ////                RULE_while_statement -> ValkyrieWhileStatement(node)
@@ -78,16 +88,15 @@ class YggdrasilParser(parser: YggdrasilAntlrParser) : ANTLRParserAdaptor(Yggdras
 ////                }
 
                 // identifier
+                RULE_namepath -> YggdrasilNamepathNode(node)
                 RULE_identifier -> YggdrasilIdentifierNode(node)
-//                RULE_namepath_free -> NexusNamepathNode(node, type, true)
-//                RULE_namepath -> NexusNamepathNode(node, type)
                 RULE_tag_branch -> YggdrasilTagBranch(node)
                 // regex
                 RULE_regex -> YggdrasilRegex(node)
 //
 //
-//                RULE_match_block -> ValkyrieBlockNode(node, ValkyrieBlockType.Brace)
-//                RULE_match_case_block -> ValkyrieBlockNode(node, ValkyrieBlockType.Indent)
+
+
 //                // expression
 //                RULE_macro_call -> ValkyrieCallMacro(node)
 //                RULE_generic_call -> ValkyrieGenericCall(node, true)
@@ -108,6 +117,13 @@ class YggdrasilParser(parser: YggdrasilAntlrParser) : ANTLRParserAdaptor(Yggdras
 
                 else -> ASTWrapperPsiElement(node)
             }
+        }
+
+        inline fun <reified T> getChildOfType(psi: PsiElement?): T? where T : PsiElement {
+            if (psi != null) {
+                return PsiTreeUtil.getChildOfType(psi, T::class.java)
+            }
+            return null
         }
 
         fun getChildOfType(psi: PsiElement?, parserRule: Int): PsiElement? {

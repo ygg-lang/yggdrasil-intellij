@@ -1,28 +1,25 @@
 package yggdrasil.language.ast
 
-import com.intellij.lang.ASTNode
+import com.intellij.extapi.psi.ASTWrapperPsiElement
 import com.intellij.psi.PsiElement
-import com.intellij.psi.tree.IElementType
+import com.intellij.psi.impl.source.tree.CompositeElement
 import com.intellij.psi.util.PsiTreeUtil
-import org.antlr.intellij.adaptor.psi.IdentifierDefSubtree
 import valkyrie.ide.highlight.YggdrasilHighlightElement
 import valkyrie.ide.highlight.NodeHighlighter
+import yggdrasil.antlr.YggdrasilParser
 
 
-class YggdrasilNamepathNode(node: ASTNode, type: IElementType, val free: Boolean = false) : IdentifierDefSubtree(node, type),
+class YggdrasilNamepathNode(node: CompositeElement) : ASTWrapperPsiElement(node),
     YggdrasilHighlightElement {
-    val identifiers = findChildrenByClass(YggdrasilIdentifierNode::class.java)
-    val parentIdentifier: Array<YggdrasilIdentifierNode> = identifiers.dropLast(1).toTypedArray()
-    val namespace: String = parentIdentifier.joinToString(".") { it.text }
-
-    override fun getName(): String {
-        return nameIdentifier.name
+    private val _identifiers by lazy {
+        YggdrasilParser.getChildrenOfType<YggdrasilIdentifierNode>(this)
     }
+    val identifier = _identifiers.last()
+    val namespace: List<YggdrasilIdentifierNode> = _identifiers.dropLast(1)
 
-    override fun getNameIdentifier(): YggdrasilIdentifierNode {
-        return identifiers.last()
+    override fun getName(): String? {
+        return super.getName()
     }
-
 
     companion object {
         fun find(node: PsiElement): YggdrasilNamepathNode? {

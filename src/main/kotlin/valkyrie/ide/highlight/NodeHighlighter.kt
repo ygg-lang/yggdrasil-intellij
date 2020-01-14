@@ -21,7 +21,15 @@ class NodeHighlighter(private val info: HighlightInfoHolder?) {
             this.register(mod, YggdrasilHighlightColor.MODIFIER)
         }
     }
-
+    fun register_keyword(annotation: PsiElement?) {
+        this.register(annotation, YggdrasilHighlightColor.KEYWORD)
+    }
+    fun register_language(annotation: PsiElement?) {
+        this.register(annotation, YggdrasilHighlightColor.SYM_LANGUAGE)
+    }
+    fun register_function(annotation: PsiElement?) {
+        this.register(annotation, YggdrasilHighlightColor.SYM_FUNCTION)
+    }
     fun register_macro(annotation: PsiElement) {
         this.register(annotation, YggdrasilHighlightColor.SYM_MACRO)
     }

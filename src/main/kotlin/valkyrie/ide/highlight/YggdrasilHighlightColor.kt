@@ -29,10 +29,10 @@ enum class YggdrasilHighlightColor(humanName: Supplier<@AttributeDescriptor Stri
     // 标识符
     IDENTIFIER(OptionsBundle.messagePointer("options.language.defaults.identifier"), Default.IDENTIFIER),
     SYM_TYPE(YggdrasilBundle.messagePointer("color.token.symbol.trait"), Default.CLASS_REFERENCE),
-    SYM_LANGUAGE(YggdrasilBundle.messagePointer("color.token.symbol.trait"), Default.INTERFACE_NAME),
     RULE_CLASS(YggdrasilBundle.messagePointer("color.token.symbol.class"), Default.CLASS_NAME),
     RULE_UNION(YggdrasilBundle.messagePointer("color.token.symbol.variant"), Default.INTERFACE_NAME),
     SYM_MACRO(YggdrasilBundle.messagePointer("color.token.symbol.macro"), Default.METADATA),
+    SYM_LANGUAGE(YggdrasilBundle.messagePointer("color.token.symbol.macro"), Default.METADATA),
     SYM_LOCAL(YggdrasilBundle.messagePointer("color.token.symbol.local"), Default.LOCAL_VARIABLE),
     SYM_LOCAL_MUT(YggdrasilBundle.messagePointer("color.token.symbol.local.mutable"), Default.REASSIGNED_LOCAL_VARIABLE),
     SYM_GLOBAL(YggdrasilBundle.messagePointer("color.token.symbol.global"), Default.GLOBAL_VARIABLE),
@@ -42,8 +42,7 @@ enum class YggdrasilHighlightColor(humanName: Supplier<@AttributeDescriptor Stri
     SYM_FIELD(YggdrasilBundle.messagePointer("color.token.symbol.field"), Default.INSTANCE_FIELD),
     SYM_CONSTANT(YggdrasilBundle.messagePointer("color.token.symbol.constant"), Default.CONSTANT),
     SYM_BUILTIN(YggdrasilBundle.messagePointer("color.token.symbol.built.in"), Default.CONSTANT),
-    SYM_FUNCTION_SELF(YggdrasilBundle.messagePointer("color.token.symbol.function.self"), Default.INSTANCE_METHOD),
-    SYM_FUNCTION_FREE(YggdrasilBundle.messagePointer("color.token.symbol.function.free"), Default.STATIC_METHOD),
+    SYM_FUNCTION(YggdrasilBundle.messagePointer("color.token.symbol.function.self"), Default.INSTANCE_METHOD),
 
     //
     TYPE_HINT(YggdrasilBundle.messagePointer("color.token.symbol.type"), Default.CLASS_NAME),

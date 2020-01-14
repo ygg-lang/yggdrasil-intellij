@@ -62,7 +62,7 @@ class YggdrasilClassMethodNode(node: CompositeElement) : YggdrasilScopeNode(node
         if (method.name == "constructor") {
             e.register(nameIdentifier, YggdrasilHighlightColor.KEYWORD)
         } else {
-            e.register(nameIdentifier, YggdrasilHighlightColor.SYM_FUNCTION_SELF)
+            e.register(nameIdentifier, YggdrasilHighlightColor.SYM_FUNCTION)
         }
         e.register_modifiers(modifiers)
     }

@@ -1,4 +1,4 @@
-package yggdrasil.language.ast.calls.tokens
+package yggdrasil.language.ast.external
 
 import com.intellij.extapi.psi.ASTWrapperPsiElement
 import com.intellij.psi.impl.source.tree.CompositeElement

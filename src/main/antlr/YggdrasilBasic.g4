@@ -30,7 +30,7 @@ KW_UNION: 'union';
 KW_CLIMB: 'climb';
 KW_TOKEN: 'token';
 KW_EXTERNAL: 'external';
-KW_CHECKER: 'chcker';
+KW_INSPECTOR: 'inspect'|'inspector';
 
 OP_PROPORTION: '::';
 
