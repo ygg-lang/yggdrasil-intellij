@@ -62,6 +62,7 @@ class YggdrasilLexer : Lexer() {
             YggdrasilLanguage,
             // declare keywords
             KW_GRAMMAR, KW_TOKEN, KW_CLASS, KW_UNION, KW_CLIMB,
+            KW_EXTERNAL,
             // import keywords
             KW_IMPORT, KW_AS,
             // tok
@@ -75,7 +76,7 @@ class YggdrasilLexer : Lexer() {
             // which/match/catch
 
             // control keywords
-            SPECIAL
+            BOOLEAN
             //
 
         )

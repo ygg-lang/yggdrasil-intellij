@@ -10,13 +10,13 @@ import com.intellij.psi.util.elementType
 import com.intellij.refactoring.rename.RenameHandler
 import com.intellij.refactoring.util.CommonRefactoringUtil
 import yggdrasil.antlr.YggdrasilLexer
-import yggdrasil.language.file.NexusFileNode
+import yggdrasil.language.file.YggdrasilFileNode
 
 //import nexus.language.psi.ValkyrieTypes
 
 class ValkyrieRenameHandler : RenameHandler {
     override fun invoke(project: Project, editor: Editor?, file: PsiFile?, dataContext: DataContext?) {
-        if (file !is NexusFileNode || editor == null) {
+        if (file !is YggdrasilFileNode || editor == null) {
             return
         }
         val offset = editor.caretModel.offset

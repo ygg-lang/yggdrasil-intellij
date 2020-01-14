@@ -6,14 +6,14 @@ import com.intellij.lang.annotation.HighlightSeverity
 import com.intellij.openapi.editor.colors.CodeInsightColors
 import com.intellij.psi.PsiElement
 import yggdrasil.language.ast.YggdrasilNodeTag
-import yggdrasil.language.ast.ValkyrieIfStatementNode
+import yggdrasil.language.ast.calls.tokens.YggdrasilExternalNode
 import yggdrasil.language.ast.ValkyrieWhichStatement
 import valkyrie.ide.actions.ast_transform.*
 
 class MarkLegacyExpression : Annotator {
     override fun annotate(element: PsiElement, holder: AnnotationHolder) {
         when (element) {
-            is ValkyrieIfStatementNode -> {
+            is YggdrasilExternalNode -> {
 //                if (element.elseStatement == null) {
 //                    insertElseBlock(element, holder)
 //                } else {
@@ -44,7 +44,7 @@ class MarkLegacyExpression : Annotator {
         }
     }
 
-    private fun toModernIf(element: ValkyrieIfStatementNode, holder: AnnotationHolder, warn: Boolean) {
+    private fun toModernIf(element: YggdrasilExternalNode, holder: AnnotationHolder, warn: Boolean) {
         val fixer = ToModernIf(element);
         if (warn) {
             holder.newAnnotation(HighlightSeverity.INFORMATION, fixer.getDescription())
@@ -84,7 +84,7 @@ class MarkLegacyExpression : Annotator {
             .create()
     }
 
-    private fun insertElseBlock(element: ValkyrieIfStatementNode, holder: AnnotationHolder) {
+    private fun insertElseBlock(element: YggdrasilExternalNode, holder: AnnotationHolder) {
         // 确保 if 末尾没有 else 语句
         val fixer = InsertElseBlock(element);
         holder.newAnnotation(HighlightSeverity.INFORMATION, fixer.getDescription())

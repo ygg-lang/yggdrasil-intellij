@@ -12,7 +12,7 @@ import com.intellij.psi.PsiFile
 import com.intellij.psi.impl.source.tree.CompositeElement
 import com.intellij.psi.tree.IFileElementType
 import com.intellij.psi.tree.TokenSet
-import yggdrasil.language.file.NexusFileNode
+import yggdrasil.language.file.YggdrasilFileNode
 import org.antlr.intellij.adaptor.lexer.PSIElementTypeFactory
 import org.antlr.intellij.adaptor.parser.ANTLRParserAdaptor
 import org.antlr.intellij.adaptor.psi.ANTLRPsiNode
@@ -67,7 +67,7 @@ class YggdrasilParserDefinition : ParserDefinition {
      * it back via: [PsiFile.getNode].
      */
     override fun createFile(viewProvider: FileViewProvider): PsiFile {
-        return NexusFileNode(viewProvider)
+        return YggdrasilFileNode(viewProvider)
     }
 
     /**

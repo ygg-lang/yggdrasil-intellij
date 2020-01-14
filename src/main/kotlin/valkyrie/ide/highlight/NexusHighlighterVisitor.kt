@@ -8,12 +8,12 @@ import com.intellij.openapi.progress.ProgressManager
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import yggdrasil.antlr.traversal
-import yggdrasil.language.file.NexusFileNode
+import yggdrasil.language.file.YggdrasilFileNode
 
 class NexusHighlighterVisitor : HighlightVisitor {
     private var _info: HighlightInfoHolder? = null
     override fun suitableForFile(file: PsiFile): Boolean {
-        return file is NexusFileNode
+        return file is YggdrasilFileNode
     }
 
     override fun visit(element: PsiElement) {

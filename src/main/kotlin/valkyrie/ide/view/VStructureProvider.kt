@@ -12,7 +12,7 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiWhiteSpace
 import com.intellij.psi.impl.source.tree.LeafPsiElement
 import com.intellij.psi.impl.source.tree.PsiWhiteSpaceImpl
-import yggdrasil.language.file.NexusFileNode
+import yggdrasil.language.file.YggdrasilFileNode
 
 
 class VStructureProvider : SelectableTreeStructureProvider, DumbAware {
@@ -34,7 +34,7 @@ class VStructureProvider : SelectableTreeStructureProvider, DumbAware {
             null
         }
 
-        is NexusFileNode -> {
+        is YggdrasilFileNode -> {
             null
         }
 
@@ -50,7 +50,7 @@ class VStructureProvider : SelectableTreeStructureProvider, DumbAware {
                     -9
                 }
 
-                file is NexusFileNode && file.isIndexFile() -> {
+                file is YggdrasilFileNode && file.isIndexFile() -> {
                     -8
                 }
 

@@ -1,12 +1,15 @@
 package yggdrasil.language.ast.classes
 
 import com.intellij.codeInsight.daemon.LineMarkerInfo
+import com.intellij.codeInsight.daemon.RelatedItemLineMarkerInfo
+import com.intellij.navigation.GotoRelatedItem
 import com.intellij.navigation.ItemPresentation
+import com.intellij.openapi.editor.markup.GutterIconRenderer
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNameIdentifierOwner
 import com.intellij.psi.impl.source.tree.CompositeElement
 import yggdrasil.language.ast.YggdrasilIdentifierNode
-import yggdrasil.language.file.NexusFileNode
+import yggdrasil.language.file.YggdrasilFileNode
 import yggdrasil.language.file.NexusIconProvider
 import yggdrasil.language.psi.ValkyrieLineMarkElement
 import yggdrasil.language.psi.YggdrasilScopeNode
@@ -41,8 +44,8 @@ class YggdrasilClassStatement(node: CompositeElement) : YggdrasilScopeNode(node)
         return NexusIconProvider.Instance.CLASS
     }
 
-    override fun getContainingFile(): NexusFileNode {
-        return super.getContainingFile() as NexusFileNode
+    override fun getContainingFile(): YggdrasilFileNode {
+        return super.getContainingFile() as YggdrasilFileNode
     }
 
     override fun getPresentation(): ItemPresentation {
@@ -55,15 +58,15 @@ class YggdrasilClassStatement(node: CompositeElement) : YggdrasilScopeNode(node)
     }
 
     override fun on_line_mark(e: MutableCollection<in LineMarkerInfo<*>>) {
-//        val info = RelatedItemLineMarkerInfo(
-//            nameIdentifier.firstChild,
-//            nameIdentifier.textRange,
-//            AllIcons.Gutter.OverridenMethod,
-//            null,
-//            null,
-//            GutterIconRenderer.Alignment.RIGHT // 上
-//        ) { mutableListOf(GotoRelatedItem(this)) }
-//        e.add(info)
+        val info = RelatedItemLineMarkerInfo(
+            nameIdentifier!!.firstChild,
+            nameIdentifier!!.firstChild.textRange,
+            baseIcon,
+            null,
+            null,
+            GutterIconRenderer.Alignment.RIGHT // 上
+        ) { mutableListOf(GotoRelatedItem(this)) }
+        e.add(info)
     }
 }
 

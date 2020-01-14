@@ -11,6 +11,7 @@ program
         | define_union
         | define_climb
         | define_token
+        | define_external
         | SEMICOLON
     )* EOF
     ;
@@ -60,6 +61,10 @@ token_pair:   macro_call* identifier COLON token_expression;
 
 token_expression: token_expression OP_OR token_expression # TOr | atomic # TAtom;
 // =================================================================================================
+define_external: macro_call* (mods += identifier)* KW_EXTERNAL name = identifier (OP_TO cast = identifier)? external_block;
+external_block: BRACE_L (external_pair | SEMICOLON)* BRACE_R;
+external_pair:   macro_call* identifier COLON namepath;
+// =================================================================================================
 macro_call: (OP_HASH | OP_AT) namepath tuple_block?;
 // =================================================================================================
 tuple_call:  OP_AT namepath tuple_block?;
@@ -79,7 +84,7 @@ atomic
     | identifier # AId
     | regex      # ARe
     | INTEGER    # AInt
-    | SPECIAL    # ASpecial
+    | BOOLEAN    # ABool
     | ESCAPED    # AChar
     ;
 regex:      REGEX_RANGE | REGEX_FREE;

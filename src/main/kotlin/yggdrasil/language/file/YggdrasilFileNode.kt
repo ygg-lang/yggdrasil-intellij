@@ -13,7 +13,7 @@ import com.intellij.psi.search.SearchScope
 ValkyrieFile 是个 PsiElement
  */
 @Suppress("UnstableApiUsage")
-class NexusFileNode(viewProvider: FileViewProvider) : PsiFileBase(viewProvider, yggdrasil.language.YggdrasilLanguage) {
+class YggdrasilFileNode(viewProvider: FileViewProvider) : PsiFileBase(viewProvider, yggdrasil.language.YggdrasilLanguage) {
     override fun getFileType(): FileType = YggdrasilFileType
 
     override fun toString(): String = yggdrasil.language.YggdrasilBundle.message("action.create_file")
@@ -49,7 +49,7 @@ class NexusFileNode(viewProvider: FileViewProvider) : PsiFileBase(viewProvider, 
     }
 
     fun isIndexFile(): Boolean {
-        return this.name == "index.vk"
+        return this.name == "index.ygg"
     }
 }
 

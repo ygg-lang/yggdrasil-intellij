@@ -9,7 +9,7 @@ import com.intellij.psi.util.elementType
 import com.intellij.psi.util.parents
 import com.intellij.util.ProcessingContext
 import yggdrasil.antlr.YggdrasilLexer
-import yggdrasil.language.file.NexusFileNode
+import yggdrasil.language.file.YggdrasilFileNode
 
 
 class CompletionRegistrar : CompletionContributor() {
@@ -33,7 +33,7 @@ class CompletionRegistrar : CompletionContributor() {
                     return
                 }
                 when (node) {
-                    is NexusFileNode -> {
+                    is YggdrasilFileNode -> {
                         println("ValkyrieFileNode: ${result.hashCode()}")
                         CompletionInFileScope().addCompletionVariants(parameters, context, result)
                         return

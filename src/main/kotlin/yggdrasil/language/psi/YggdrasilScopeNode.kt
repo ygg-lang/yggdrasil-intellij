@@ -8,7 +8,7 @@ import com.intellij.navigation.ItemPresentation
 import com.intellij.psi.impl.source.tree.CompositeElement
 import com.intellij.psi.impl.source.tree.SharedImplUtil
 import com.intellij.psi.util.parents
-import yggdrasil.language.file.NexusFileNode
+import yggdrasil.language.file.YggdrasilFileNode
 import javax.swing.Icon
 
 /**
@@ -23,8 +23,8 @@ import javax.swing.Icon
  * implements ScopeNode.
  */
 abstract class YggdrasilScopeNode(node: CompositeElement) : ASTWrapperPsiElement(node) {
-    override fun getContainingFile(): NexusFileNode {
-        return SharedImplUtil.getContainingFile(node) as NexusFileNode
+    override fun getContainingFile(): YggdrasilFileNode {
+        return SharedImplUtil.getContainingFile(node) as YggdrasilFileNode
     }
 
     override fun getContext(): YggdrasilScopeNode? {
