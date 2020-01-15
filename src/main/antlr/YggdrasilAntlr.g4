@@ -68,7 +68,7 @@ external_pair:   macro_call* identifier COLON namepath;
 // =================================================================================================
 define_inspector: macro_call* (mods += identifier)* KW_INSPECTOR name = identifier external_block;
 // =================================================================================================
-macro_call: (OP_HASH | OP_AT) namepath tuple_block?;
+macro_call: (OP_HASH | OP_AT) (KW_EXTERNAL|KW_INSPECTOR|namepath) tuple_block?;
 // =================================================================================================
 tuple_call:  OP_AT namepath tuple_block?;
 tuple_block: PARENTHESES_L (class_expression (COMMA class_expression)* COMMA?)? PARENTHESES_R;
