@@ -6,7 +6,6 @@ import com.intellij.codeInsight.hints.presentation.PresentationFactory
 import com.intellij.openapi.editor.Editor
 import com.intellij.psi.PsiElement
 import yggdrasil.language.psi.ValkyrieInlayElement
-import valkyrie.ide.hint.TypeInlayProvider.InlayTypeSetting
 
 @Suppress("UnstableApiUsage")
 class TypeInlayHint(val settings: InlayTypeSetting) : InlayHintsCollector {

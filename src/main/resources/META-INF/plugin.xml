@@ -38,7 +38,6 @@
 			implementationClass="valkyrie.ide.highlight.TokenHighlighter"
 		/>
 		<!-- Formatter -->
-		<langCodeStyleSettingsProvider implementation="valkyrie.ide.codeStyle.ValkyrieCodeStyleProvider"/>
 		<formattingService implementation="valkyrie.ide.formatter.ValkyrieNativeFormat"/>
 		<lang.formatter language="Yggdrasil" implementationClass="valkyrie.ide.formatter.FormatBuilder"/>
 		<lang.smartEnterProcessor language="Yggdrasil" implementationClass="valkyrie.ide.formatter.SmartEnter"/>
@@ -52,10 +51,7 @@
 		<importFilteringRule implementation="valkyrie.ide.navigation.ValkyrieImportFilter"/>
 		<usageFilteringRuleProvider implementation="valkyrie.ide.navigation.usageFiltering"/>
 		<!-- Hint -->
-		<codeInsight.inlayProvider language="Yggdrasil" implementationClass="valkyrie.ide.hint.TypeInlayProvider"/>
-		<codeInsight.typeInfo language="Yggdrasil" implementationClass="valkyrie.ide.hint.TypeInfoHint"/>
 		<codeInsight.parameterInfo language="Yggdrasil" implementationClass="valkyrie.ide.hint.ParameterInfoHint"/>
-		<codeInsight.parameterInfo.listener implementation="valkyrie.ide.hint.ParameterInfoListener"/>
 		<codeInsight.parameterNameHints language="Yggdrasil"
 		                                implementationClass="valkyrie.ide.hint.ParameterInlayProvider"/>
 		<codeInsight.lineMarkerProvider

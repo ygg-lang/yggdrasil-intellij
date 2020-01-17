@@ -1,2 +1,0 @@
-package valkyrie.ide.codeStyle
-
