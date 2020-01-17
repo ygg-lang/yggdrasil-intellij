@@ -18,6 +18,7 @@ import yggdrasil.language.YggdrasilLanguage
 import yggdrasil.language.ast.*
 import yggdrasil.language.ast.calls.YggdrasilAnnotation
 import yggdrasil.language.ast.calls.YggdrasilMacroCall
+import yggdrasil.language.ast.calls.YggdrasilModifiers
 import yggdrasil.language.ast.external.YggdrasilExternalNode
 import yggdrasil.language.ast.external.YggdrasilExternalPair
 import yggdrasil.language.ast.external.YggdrasilInspectorNode
@@ -101,6 +102,7 @@ class YggdrasilParser(parser: YggdrasilAntlrParser) : ANTLRParserAdaptor(Yggdras
 
 //                // expression
                 RULE_annotation -> YggdrasilAnnotation(node)
+                RULE_modifiers -> YggdrasilModifiers(node)
                 RULE_macro_call -> YggdrasilMacroCall(node)
 //                RULE_generic_call_in_type -> ValkyrieGenericCall(node, false)
 //                RULE_tuple_call_item -> ValkyrieCallArgument(node)

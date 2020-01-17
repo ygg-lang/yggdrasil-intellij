@@ -30,6 +30,7 @@ class YggdrasilAnnotation(node: CompositeElement) : ASTWrapperPsiElement(node), 
                 e.register_macro(child)
             }
         }
+        e.register_macro(this.firstChild)
         e.register_macro(namepath)
     }
 }

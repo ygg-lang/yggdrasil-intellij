@@ -1,4 +1,4 @@
-package yggdrasil.language.ast
+package yggdrasil.language.ast.calls
 
 import com.intellij.psi.tree.IElementType
 import org.antlr.intellij.adaptor.psi.ANTLRPsiLeafNode

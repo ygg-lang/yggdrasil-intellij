@@ -1,6 +1,6 @@
 <idea-plugin>
-	<id>Valkyrie</id>
-	<name>Valkyrie Language</name>
+	<id>Yggdrasil</id>
+	<name>Yggdrasil Language</name>
 	<vendor>voml</vendor>
 	<depends>com.intellij.modules.platform</depends>
 	<depends optional="true" config-file="plugin-with-rust.xml">com.jetbrains.rust</depends>
@@ -19,7 +19,6 @@
 		<multiHostInjector implementation="valkyrie.ide.matcher.LanguageInjector"/>
 		<!-- Project -->
 		<projectNameProvider implementation="valkyrie.ide.project.ValkyrieProjectName"/>
-		<primaryModuleManager implementation="valkyrie.ide.project.ValkyriePrimaryPackage"/>
 		<vfs.asyncListener implementation="valkyrie.ide.project.crate.CrateUpdateListener"/>
 		<!-- Project Library -->
 		<packageDependencies.visitor
@@ -58,16 +57,9 @@
 		<postFormatProcessor implementation="valkyrie.ide.formatter.ValkyrieAfterFormat"/>
 		<lang.smartEnterProcessor language="Yggdrasil" implementationClass="valkyrie.ide.formatter.SmartEnter"/>
 		<!-- Tests -->
-		<!--		<configurationType implementation="valkyrie.ide.runner.ValkyrieConfigurationType"/>-->
 		<runConfigurationsSettings implementation="valkyrie.ide.runner.ValkyrieRunnerSettings"/>
 		<runConfigurationProducer implementation="valkyrie.ide.runner.ValkyrieRunConfigurationProducer"/>
 		<runConfigurationTemplateProvider implementation="valkyrie.ide.runner.ValkyrieRunningTemplateProvider"/>
-		<!-- Debugger -->
-		<!--		<xdebugger.breakpointType implementation="valkyrie.ide.runner.breakpointType"/>-->
-		<!--		<xdebugger.breakpointGroupingRule implementation="valkyrie.ide.runner.breakpointGroupingRule"/>-->
-		<xdebugger.attachDebuggerProvider implementation="valkyrie.ide.runner.attachDebuggerProvider"/>
-		<xdebugger.attachHostProvider implementation="valkyrie.ide.runner.ValkyrieAttachProvider"/>
-		<xdebugger.attachHostSettingsProvider implementation="valkyrie.ide.runner.attachHostSettingsProvider"/>
 		<!-- Goto -->
 		<breadcrumbsInfoProvider implementation="valkyrie.ide.navigation.ValkyrieBreadcrumbsProvider"/>
 		<breadcrumbsPresentationProvider implementation="valkyrie.ide.navigation.ValkyrieBreadcrumbsPresentation"/>
@@ -115,7 +107,6 @@
 		<qualifiedNameProvider implementation="valkyrie.ide.lint.ValkyrieNameQualifier"/>
 		<annotator language="Yggdrasil" implementationClass="valkyrie.ide.annotator.NamepathChecker"/>
 		<annotator language="Yggdrasil" implementationClass="valkyrie.ide.annotator.MarkImplicitTypes"/>
-		<annotator language="Yggdrasil" implementationClass="valkyrie.ide.annotator.MarkLegacyExpression"/>
 		<!-- Declaration -->
 		<findUsagesHandlerFactory implementation="valkyrie.ide.usages.ValkyrieUsagesFactory"/>
 		<lang.findUsagesProvider

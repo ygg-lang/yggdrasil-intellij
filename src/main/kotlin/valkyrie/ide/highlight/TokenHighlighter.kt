@@ -31,7 +31,6 @@ class TokenHighlighter : SyntaxHighlighter {
         return when {
             YggdrasilLexer.Keywords.contains(tokenType) -> YggdrasilHighlightColor.KEYWORD.textAttributesKey
             YggdrasilLexer.Operators.contains(tokenType) -> DefaultLanguageHighlighterColors.OPERATION_SIGN
-            YggdrasilLexer.MacroOperators.contains(tokenType) -> YggdrasilHighlightColor.SYM_MACRO.textAttributesKey
             YggdrasilLexer.Integers.contains(tokenType) -> YggdrasilHighlightColor.INTEGER.textAttributesKey
             YggdrasilLexer.Decimals.contains(tokenType) -> YggdrasilHighlightColor.DECIMAL.textAttributesKey
             YggdrasilLexer.Strings.contains(tokenType) -> YggdrasilHighlightColor.STRING.textAttributesKey
