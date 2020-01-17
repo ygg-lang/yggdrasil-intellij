@@ -16,10 +16,12 @@ import org.antlr.v4.runtime.tree.ParseTree
 import yggdrasil.antlr.YggdrasilAntlrParser.*
 import yggdrasil.language.YggdrasilLanguage
 import yggdrasil.language.ast.*
+import yggdrasil.language.ast.calls.YggdrasilAnnotation
+import yggdrasil.language.ast.calls.YggdrasilMacroCall
 import yggdrasil.language.ast.external.YggdrasilExternalNode
 import yggdrasil.language.ast.external.YggdrasilExternalPair
 import yggdrasil.language.ast.external.YggdrasilInspectorNode
-import yggdrasil.language.ast.calls.unions.YggdrasilUnionStatement
+import yggdrasil.language.ast.unions.YggdrasilUnionStatement
 import yggdrasil.language.ast.classes.YggdrasilGrammarStatement
 import yggdrasil.language.ast.classes.YggdrasilClassStatement
 import yggdrasil.language.psi.types.ValkyrieBlockType
@@ -98,8 +100,8 @@ class YggdrasilParser(parser: YggdrasilAntlrParser) : ANTLRParserAdaptor(Yggdras
 
 
 //                // expression
-//                RULE_macro_call -> ValkyrieCallMacro(node)
-//                RULE_generic_call -> ValkyrieGenericCall(node, true)
+                RULE_annotation -> YggdrasilAnnotation(node)
+                RULE_macro_call -> YggdrasilMacroCall(node)
 //                RULE_generic_call_in_type -> ValkyrieGenericCall(node, false)
 //                RULE_tuple_call_item -> ValkyrieCallArgument(node)
 //                RULE_tuple_call_body -> ValkyrieBlockNode(node, ValkyrieBlockType.Parenthesis)

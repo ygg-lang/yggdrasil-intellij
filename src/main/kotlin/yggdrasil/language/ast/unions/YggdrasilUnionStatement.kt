@@ -1,4 +1,4 @@
-package yggdrasil.language.ast.calls.unions
+package yggdrasil.language.ast.unions
 
 import com.intellij.codeInsight.daemon.LineMarkerInfo
 import com.intellij.codeInsight.daemon.RelatedItemLineMarkerInfo
