@@ -17,9 +17,6 @@
 			language="Yggdrasil"
 			implementationClass="yggdrasil.antlr.YggdrasilParserDefinition"/>
 		<multiHostInjector implementation="valkyrie.ide.matcher.LanguageInjector"/>
-		<!-- Project -->
-		<projectNameProvider implementation="valkyrie.ide.project.ValkyrieProjectName"/>
-		<vfs.asyncListener implementation="valkyrie.ide.project.crate.CrateUpdateListener"/>
 		<!-- Project Library -->
 		<packageDependencies.visitor
 			language="Yggdrasil"
@@ -33,15 +30,6 @@
 		<lang.psiStructureViewFactory
 			language="Yggdrasil"
 			implementationClass="valkyrie.ide.view.ValkyrieStructureView"/>
-		<typeHierarchyProvider
-			language="Yggdrasil"
-			implementationClass="valkyrie.ide.view.hierarchy.TypeHierarchyProvider"/>
-		<methodHierarchyProvider
-			language="Yggdrasil"
-			implementationClass="valkyrie.ide.view.hierarchy.MethodHierarchyProvider"/>
-		<callHierarchyProvider
-			language="Yggdrasil"
-			implementationClass="valkyrie.ide.view.hierarchy.CallHierarchyProvider"/>
 		<!-- Highlight -->
 		<colorSettingsPage implementation="valkyrie.ide.highlight.HighlightSetting"/>
 		<highlightVisitor implementation="valkyrie.ide.highlight.NexusHighlighterVisitor"/>
@@ -52,14 +40,8 @@
 		<!-- Formatter -->
 		<langCodeStyleSettingsProvider implementation="valkyrie.ide.codeStyle.ValkyrieCodeStyleProvider"/>
 		<formattingService implementation="valkyrie.ide.formatter.ValkyrieNativeFormat"/>
-		<preFormatProcessor implementation="valkyrie.ide.formatter.ValkyrieBeforeFormat"/>
 		<lang.formatter language="Yggdrasil" implementationClass="valkyrie.ide.formatter.FormatBuilder"/>
-		<postFormatProcessor implementation="valkyrie.ide.formatter.ValkyrieAfterFormat"/>
 		<lang.smartEnterProcessor language="Yggdrasil" implementationClass="valkyrie.ide.formatter.SmartEnter"/>
-		<!-- Tests -->
-		<runConfigurationsSettings implementation="valkyrie.ide.runner.ValkyrieRunnerSettings"/>
-		<runConfigurationProducer implementation="valkyrie.ide.runner.ValkyrieRunConfigurationProducer"/>
-		<runConfigurationTemplateProvider implementation="valkyrie.ide.runner.ValkyrieRunningTemplateProvider"/>
 		<!-- Goto -->
 		<breadcrumbsInfoProvider implementation="valkyrie.ide.navigation.ValkyrieBreadcrumbsProvider"/>
 		<breadcrumbsPresentationProvider implementation="valkyrie.ide.navigation.ValkyrieBreadcrumbsPresentation"/>
@@ -69,12 +51,8 @@
 		<codeInsight.gotoSuper language="Yggdrasil" implementationClass="valkyrie.ide.navigation.GotoSuper"/>
 		<importFilteringRule implementation="valkyrie.ide.navigation.ValkyrieImportFilter"/>
 		<usageFilteringRuleProvider implementation="valkyrie.ide.navigation.usageFiltering"/>
-		<!--		<bookmarkProvider implementation="valkyrie.ide.goto.ValkyrieBookmark"/>-->
-		<!--		<bookmarksListProvider implementation="valkyrie.ide.goto.ValkyrieBookmarkList"/>-->
 		<!-- Hint -->
-		<codeInsight.inlayProvider
-			language="Yggdrasil"
-			implementationClass="valkyrie.ide.hint.TypeInlayProvider"/>
+		<codeInsight.inlayProvider language="Yggdrasil" implementationClass="valkyrie.ide.hint.TypeInlayProvider"/>
 		<codeInsight.typeInfo language="Yggdrasil" implementationClass="valkyrie.ide.hint.TypeInfoHint"/>
 		<codeInsight.parameterInfo language="Yggdrasil" implementationClass="valkyrie.ide.hint.ParameterInfoHint"/>
 		<codeInsight.parameterInfo.listener implementation="valkyrie.ide.hint.ParameterInfoListener"/>
@@ -83,9 +61,6 @@
 		<codeInsight.lineMarkerProvider
 			language="Yggdrasil"
 			implementationClass="valkyrie.ide.hint.ValkyrieLineMarkerProvider"/>
-		<runLineMarkerContributor
-			language="Yggdrasil"
-			implementationClass="valkyrie.ide.runner.ValkyrieRunner"/>
 		<vcs.codeVisionLanguageContext
 			language="Yggdrasil"
 			implementationClass="valkyrie.ide.hint.AuthorAbove"/>
@@ -104,8 +79,6 @@
 		<!--			targetClass="valkyrie.language.symbol.ValkyrieSymbolTemplate"/>-->
 		<!-- Lint -->
 		<lang.namesValidator language="Yggdrasil" implementationClass="valkyrie.ide.lint.ValkyrieNameValidator"/>
-		<qualifiedNameProvider implementation="valkyrie.ide.lint.ValkyrieNameQualifier"/>
-		<annotator language="Yggdrasil" implementationClass="valkyrie.ide.annotator.NamepathChecker"/>
 		<annotator language="Yggdrasil" implementationClass="valkyrie.ide.annotator.MarkImplicitTypes"/>
 		<!-- Declaration -->
 		<findUsagesHandlerFactory implementation="valkyrie.ide.usages.ValkyrieUsagesFactory"/>
