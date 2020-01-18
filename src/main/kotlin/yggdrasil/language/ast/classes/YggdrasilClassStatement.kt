@@ -10,7 +10,7 @@ import com.intellij.psi.PsiNameIdentifierOwner
 import com.intellij.psi.impl.source.tree.CompositeElement
 import yggdrasil.language.ast.YggdrasilIdentifierNode
 import yggdrasil.language.file.YggdrasilFileNode
-import yggdrasil.language.file.NexusIconProvider
+import yggdrasil.language.file.YggdrasilIconProvider
 import yggdrasil.language.psi.ValkyrieLineMarkElement
 import yggdrasil.language.psi.YggdrasilScopeNode
 import valkyrie.ide.highlight.YggdrasilHighlightColor
@@ -41,7 +41,7 @@ class YggdrasilClassStatement(node: CompositeElement) : YggdrasilScopeNode(node)
     }
 
     override fun getBaseIcon(): Icon {
-        return NexusIconProvider.Instance.CLASS
+        return YggdrasilIconProvider.Instance.CLASS
     }
 
     override fun getContainingFile(): YggdrasilFileNode {

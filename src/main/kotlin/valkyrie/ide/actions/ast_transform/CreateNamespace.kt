@@ -9,7 +9,7 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import com.intellij.psi.impl.CheckUtil
 import yggdrasil.language.file.YggdrasilFileNode
-import yggdrasil.language.file.NexusIconProvider
+import yggdrasil.language.file.YggdrasilIconProvider
 import javax.swing.Icon
 
 class CreateNamespace(private val element: YggdrasilFileNode) : LocalQuickFixAndIntentionActionOnPsiElement(element), PriorityAction, Iconable {
@@ -35,7 +35,7 @@ class CreateNamespace(private val element: YggdrasilFileNode) : LocalQuickFixAnd
     }
 
     override fun getIcon(flags: Int): Icon {
-        return NexusIconProvider.Instance.NAMESPACE
+        return YggdrasilIconProvider.Instance.NAMESPACE
     }
 
     override fun getPriority(): PriorityAction.Priority {

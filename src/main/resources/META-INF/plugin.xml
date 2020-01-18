@@ -23,9 +23,7 @@
 			implementationClass="valkyrie.ide.project.ValkyrieDependencyResolver"/>
 		<additionalLibraryRootsProvider implementation="valkyrie.ide.project.library.LibraryRootsProvider"/>
 		<!-- Project Namespace -->
-		<iconProvider implementation="yggdrasil.language.file.NexusIconProvider"/>
-		<projectViewNestingRulesProvider implementation="yggdrasil.language.file.NexusFileGroup"/>
-		<treeStructureProvider implementation="valkyrie.ide.view.VStructureProvider"/>
+		<iconProvider implementation="yggdrasil.language.file.YggdrasilIconProvider"/>
 		<!--		<lang.structureViewExtension implementation="valkyrie.ide.view.VStructureViewExtension"/>-->
 		<lang.psiStructureViewFactory
 			language="Yggdrasil"
@@ -40,10 +38,7 @@
 		<!-- Formatter -->
 		<formattingService implementation="valkyrie.ide.formatter.ValkyrieNativeFormat"/>
 		<lang.formatter language="Yggdrasil" implementationClass="valkyrie.ide.formatter.FormatBuilder"/>
-		<lang.smartEnterProcessor language="Yggdrasil" implementationClass="valkyrie.ide.formatter.SmartEnter"/>
 		<!-- Goto -->
-		<breadcrumbsInfoProvider implementation="valkyrie.ide.navigation.ValkyrieBreadcrumbsProvider"/>
-		<breadcrumbsPresentationProvider implementation="valkyrie.ide.navigation.ValkyrieBreadcrumbsPresentation"/>
 		<symbolNavigation
 			forClass="yggdrasil.language.symbol.ValkyrieSymbolTemplate"
 			implementationClass="valkyrie.ide.goto.VSymbolNavigationProvider"/>

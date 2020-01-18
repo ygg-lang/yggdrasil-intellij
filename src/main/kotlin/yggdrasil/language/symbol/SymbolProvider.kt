@@ -2,7 +2,7 @@ package yggdrasil.language.symbol
 
 import com.intellij.model.presentation.SymbolDeclarationPresentation
 import com.intellij.model.presentation.SymbolDeclarationPresentationProvider
-import yggdrasil.language.file.NexusIconProvider
+import yggdrasil.language.file.YggdrasilIconProvider
 import javax.swing.Icon
 
 object SymbolProvider : SymbolDeclarationPresentationProvider<ValkyrieDeclared> {
@@ -13,7 +13,7 @@ object SymbolProvider : SymbolDeclarationPresentationProvider<ValkyrieDeclared> 
             }
 
             override fun getIcon(unused: Boolean): Icon? {
-                return NexusIconProvider.Instance.Valkyrie
+                return YggdrasilIconProvider.Instance.File
             }
         }
     }

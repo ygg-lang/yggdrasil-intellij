@@ -1,6 +1,6 @@
 package valkyrie.ide.project.`package`
 
-import yggdrasil.language.file.NexusIconProvider
+import yggdrasil.language.file.YggdrasilIconProvider
 import javax.swing.Icon
 
 enum class ValkyrieLibraryType {
@@ -8,9 +8,9 @@ enum class ValkyrieLibraryType {
 
     fun getIcon(): Icon {
         return when (this) {
-            Core -> NexusIconProvider.Instance.Valkyrie
-            LIBRARY -> NexusIconProvider.Instance.NAMESPACE
-            NAMESPACE -> NexusIconProvider.Instance.NAMESPACE
+            Core -> YggdrasilIconProvider.Instance.File
+            LIBRARY -> YggdrasilIconProvider.Instance.NAMESPACE
+            NAMESPACE -> YggdrasilIconProvider.Instance.NAMESPACE
         }
     }
 }

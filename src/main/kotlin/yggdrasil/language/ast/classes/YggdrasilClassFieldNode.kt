@@ -11,14 +11,13 @@ import com.intellij.psi.PsiNameIdentifierOwner
 import com.intellij.psi.impl.source.tree.CompositeElement
 import yggdrasil.language.ast.YggdrasilIdentifierNode
 import yggdrasil.language.ast.NexusModifiedNode
-import yggdrasil.language.file.NexusIconProvider
+import yggdrasil.language.file.YggdrasilIconProvider
 import yggdrasil.language.psi.ValkyrieInlayElement
 import yggdrasil.language.psi.ValkyrieLineMarkElement
 import yggdrasil.language.psi.YggdrasilScopeNode
 import valkyrie.ide.highlight.YggdrasilHighlightColor
 import valkyrie.ide.highlight.YggdrasilHighlightElement
 import valkyrie.ide.highlight.NodeHighlighter
-import valkyrie.ide.hint.TypeInlayHint
 import valkyrie.ide.view.IdentifierPresentation
 import javax.swing.Icon
 
@@ -50,7 +49,7 @@ class YggdrasilClassFieldNode(node: CompositeElement) : YggdrasilScopeNode(node)
                 return AllIcons.Gutter.OverridingMethod
             }
         }
-        return NexusIconProvider.Instance.Field
+        return YggdrasilIconProvider.Instance.Field
     }
 
     override fun getPresentation(): ItemPresentation {
@@ -75,21 +74,5 @@ class YggdrasilClassFieldNode(node: CompositeElement) : YggdrasilScopeNode(node)
         e.add(item)
     }
 
-    override fun type_hint(inlay: TypeInlayHint): Boolean {
-//        val hint = NexusParser.getChildOfType(this, NexusAntlrParser.RULE_type_hint);
-//        val default = NexusParser.getChildOfType(this, NexusAntlrParser.RULE_parameter_default)
-//
-//        if (hint == null && default == null) {
-//            inlay.inline(field.endOffset, ": Any? = null")
-//            return true;
-//        } else if (hint == null) {
-//            inlay.inline(field.endOffset, ": Any?")
-//            return true;
-//        } else if (default == null) {
-//            inlay.inline(hint.endOffset, " = default")
-//            return true;
-//        }
-        return false;
-    }
 }
 

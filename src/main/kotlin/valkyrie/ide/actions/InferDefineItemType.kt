@@ -8,7 +8,7 @@ import com.intellij.openapi.util.Iconable
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import yggdrasil.language.ast.YggdrasilFunctionParameter
-import yggdrasil.language.file.NexusIconProvider
+import yggdrasil.language.file.YggdrasilIconProvider
 //import nexus.language.psi_node.ValkyrieDefineItemNode
 import javax.swing.Icon
 
@@ -30,7 +30,7 @@ class InferDefineItemType(element: YggdrasilFunctionParameter) : LocalQuickFixAn
     }
 
     override fun getIcon(flags: Int): Icon {
-        return NexusIconProvider.Instance.TYPE
+        return YggdrasilIconProvider.Instance.TYPE
     }
 
     override fun getPriority(): PriorityAction.Priority {

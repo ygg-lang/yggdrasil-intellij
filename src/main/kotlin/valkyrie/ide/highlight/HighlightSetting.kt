@@ -2,7 +2,7 @@ package valkyrie.ide.highlight
 
 import com.intellij.openapi.options.colors.ColorDescriptor
 import com.intellij.openapi.options.colors.ColorSettingsPage
-import yggdrasil.language.file.NexusIconProvider
+import yggdrasil.language.file.YggdrasilIconProvider
 
 class HighlightSetting : ColorSettingsPage {
     private val annotatorTags = YggdrasilHighlightColor
@@ -18,7 +18,7 @@ class HighlightSetting : ColorSettingsPage {
 
     override fun getDisplayName() = yggdrasil.language.YggdrasilBundle.message("filetype.name")
 
-    override fun getIcon() = NexusIconProvider.Instance.Valkyrie
+    override fun getIcon() = YggdrasilIconProvider.Instance.File
 
     override fun getHighlighter() = TokenHighlighter()
 

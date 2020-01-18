@@ -11,6 +11,6 @@ object YggdrasilFileType : LanguageFileType(YggdrasilLanguage) {
 
     override fun getDefaultExtension(): String = "ne;nexus;"
 
-    override fun getIcon(): Icon = NexusIconProvider.Instance.Valkyrie
+    override fun getIcon(): Icon = YggdrasilIconProvider.Instance.File
 
 }

@@ -6,12 +6,12 @@ import com.intellij.openapi.util.IconLoader
 import com.intellij.psi.PsiElement
 import javax.swing.Icon
 
-class NexusIconProvider : IconProvider() {
+class YggdrasilIconProvider : IconProvider() {
     override fun getIcon(psiElement: PsiElement, flags: Int): Icon? {
         val file = psiElement.containingFile
         return when {
-            file != null && file.name.endsWith(".vk") -> {
-                Instance.Valkyrie
+            file != null && file.name.endsWith(".ygg") -> {
+                Instance.File
             }
 
             else -> {
@@ -21,12 +21,11 @@ class NexusIconProvider : IconProvider() {
     }
 
     object Instance {
-        val Valkyrie = IconLoader.getIcon("/icons/vk.svg", NexusIconProvider::class.java)
+        val File = IconLoader.getIcon("/icons/ygg.svg", YggdrasilIconProvider::class.java)
 
         //
         val NAMESPACE = AllIcons.Nodes.Artifact
         val SNIPPET = AllIcons.Actions.MoreHorizontal
-        val Operator = IconLoader.getIcon("/icons/operator.svg", NexusIconProvider::class.java)
 
         // val IMPORT = AllIcons.Welcome.Import
         val IMPORT = AllIcons.Nodes.EntryPoints

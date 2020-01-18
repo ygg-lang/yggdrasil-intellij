@@ -15,7 +15,7 @@ import valkyrie.ide.view.IdentifierPresentation
 import yggdrasil.antlr.YggdrasilParser
 import yggdrasil.language.ast.YggdrasilIdentifierNode
 import yggdrasil.language.file.YggdrasilFileNode
-import yggdrasil.language.file.NexusIconProvider
+import yggdrasil.language.file.YggdrasilIconProvider
 import yggdrasil.language.psi.ValkyrieLineMarkElement
 import yggdrasil.language.psi.YggdrasilScopeNode
 import javax.swing.Icon
@@ -39,7 +39,7 @@ class YggdrasilUnionStatement(node: CompositeElement) : YggdrasilScopeNode(node)
     }
 
     override fun getBaseIcon(): Icon {
-        return NexusIconProvider.Instance.UNION
+        return YggdrasilIconProvider.Instance.UNION
     }
 
     override fun getContainingFile(): YggdrasilFileNode {

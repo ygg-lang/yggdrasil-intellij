@@ -10,7 +10,7 @@ import com.intellij.patterns.PsiElementPattern
 import com.intellij.psi.PsiElement
 import com.intellij.psi.impl.source.tree.LeafPsiElement
 import com.intellij.util.ProcessingContext
-import yggdrasil.language.file.NexusIconProvider
+import yggdrasil.language.file.YggdrasilIconProvider
 import valkyrie.ide.project.crate.NamespaceMapping
 import javax.swing.Icon
 
@@ -27,7 +27,7 @@ class CompletionInFileScope : CompletionProvider<CompletionParameters>() {
             for (path in classes.value) {
                 result.addElement(
                     LookupElementBuilder.create(path)
-                        .withIcon(NexusIconProvider.Instance.CLASS)
+                        .withIcon(YggdrasilIconProvider.Instance.CLASS)
                         .withLookupString(classes.key)
                 )
 
@@ -120,7 +120,7 @@ class CompletionInFileScope : CompletionProvider<CompletionParameters>() {
         val item = TemplateReplaceElement.snippetFromPath(element!!, id, file)
             .bold()
             .withLookupStrings(lookup)
-            .withIcon(NexusIconProvider.Instance.SNIPPET)
+            .withIcon(YggdrasilIconProvider.Instance.SNIPPET)
         addElement(item)
     }
 
@@ -140,8 +140,8 @@ class CompletionInFileScope : CompletionProvider<CompletionParameters>() {
 
         private fun CompletionResultSet.addLinkedTraitMethod(kind: String, trait: String, args: String = "") {
             val element = LookupElementBuilder.create(kind)
-                .withIcon(NexusIconProvider.Instance.Function)
-                .withTypeText(trait, NexusIconProvider.Instance.TRAIT, false)
+                .withIcon(YggdrasilIconProvider.Instance.Function)
+                .withTypeText(trait, YggdrasilIconProvider.Instance.TRAIT, false)
                 .withInsertHandler { context, _ ->
                     val document = context.document
                     document.replaceString(context.startOffset, context.tailOffset, "$kind($args) {}")

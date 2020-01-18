@@ -10,7 +10,7 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNameIdentifierOwner
 import com.intellij.psi.impl.source.tree.CompositeElement
 import yggdrasil.language.ast.NexusModifiedNode
-import yggdrasil.language.file.NexusIconProvider
+import yggdrasil.language.file.YggdrasilIconProvider
 import yggdrasil.language.psi.ValkyrieInlayElement
 import yggdrasil.language.psi.ValkyrieLineMarkElement
 import yggdrasil.language.psi.YggdrasilScopeNode
@@ -18,7 +18,6 @@ import valkyrie.ide.highlight.YggdrasilHighlightColor
 import valkyrie.ide.highlight.YggdrasilHighlightElement
 import valkyrie.ide.highlight.NodeHighlighter
 import valkyrie.ide.hint.ParameterInlayHint
-import valkyrie.ide.hint.TypeInlayHint
 import valkyrie.ide.view.IdentifierPresentation
 import javax.swing.Icon
 
@@ -45,7 +44,7 @@ class YggdrasilClassMethodNode(node: CompositeElement) : YggdrasilScopeNode(node
                 return AllIcons.Nodes.Property
             }
         }
-        return NexusIconProvider.Instance.Method
+        return YggdrasilIconProvider.Instance.Method
     }
 
 
@@ -80,14 +79,6 @@ class YggdrasilClassMethodNode(node: CompositeElement) : YggdrasilScopeNode(node
     }
 
 
-    override fun type_hint(inlay: TypeInlayHint): Boolean {
-//        val typeHint = NexusParser.getChildOfType(this, NexusAntlrParser.RULE_type_hint);
-//        val argument = NexusParser.getChildOfType(this, NexusAntlrParser.RULE_function_parameters)!!;
-//        if (typeHint == null) {
-//            inlay.inline(argument.endOffset, ": Any?")
-//        }
-        return true
-    }
 
     override fun parameter_hint(inlay: ParameterInlayHint): Boolean {
 //        val argument = NexusParser.getChildOfType(this, NexusAntlrParser.RULE_function_parameters)!!;

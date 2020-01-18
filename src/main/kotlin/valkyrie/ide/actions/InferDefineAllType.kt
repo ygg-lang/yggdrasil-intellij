@@ -6,7 +6,7 @@ import com.intellij.openapi.project.Project
 import com.intellij.openapi.util.Iconable
 import com.intellij.psi.PsiFile
 import yggdrasil.language.ast.YggdrasilFunctionParameter
-import yggdrasil.language.file.NexusIconProvider
+import yggdrasil.language.file.YggdrasilIconProvider
 //import nexus.language.psi_node.ValkyrieDefineItemNode
 import javax.swing.Icon
 
@@ -36,7 +36,7 @@ class InferDefineAllType(private val element: YggdrasilFunctionParameter) : Hint
     }
 
     override fun getIcon(flags: Int): Icon {
-        return NexusIconProvider.Instance.IMPORT
+        return YggdrasilIconProvider.Instance.IMPORT
     }
 }
 

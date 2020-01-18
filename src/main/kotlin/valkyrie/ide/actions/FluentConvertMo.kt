@@ -6,9 +6,9 @@ import com.intellij.openapi.actionSystem.LangDataKeys
 import com.intellij.psi.PsiDirectory
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
-import yggdrasil.language.file.NexusIconProvider
+import yggdrasil.language.file.YggdrasilIconProvider
 
-class FluentConvertMo : CreateFileAction(name, description, NexusIconProvider.Instance.Valkyrie) {
+class FluentConvertMo : CreateFileAction(name, description, YggdrasilIconProvider.Instance.File) {
     companion object {
         private val name = yggdrasil.language.YggdrasilBundle.message("action.convert_prop")
         private val description = yggdrasil.language.YggdrasilBundle.message("action.convert_prop.description")
