@@ -1,4 +1,4 @@
-package valkyrie.settings
+package yggdrasil.settings
 
 import com.intellij.openapi.components.PersistentStateComponent
 import com.intellij.openapi.components.State

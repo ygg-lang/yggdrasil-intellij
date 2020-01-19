@@ -11,7 +11,7 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.impl.source.tree.LeafPsiElement
 import com.intellij.util.ProcessingContext
 import yggdrasil.language.file.YggdrasilIconProvider
-import valkyrie.ide.project.crate.NamespaceMapping
+
 import javax.swing.Icon
 
 class CompletionInFileScope : CompletionProvider<CompletionParameters>() {
@@ -22,29 +22,9 @@ class CompletionInFileScope : CompletionProvider<CompletionParameters>() {
         keywordSnippet(result)
         addControlFlow(result)
 
-        for (classes in NamespaceMapping.Instance.ClassCache) {
-
-            for (path in classes.value) {
-                result.addElement(
-                    LookupElementBuilder.create(path)
-                        .withIcon(YggdrasilIconProvider.Instance.CLASS)
-                        .withLookupString(classes.key)
-                )
-
-
-            }
-
-
-        }
-
 //        println("已触发: ${parameters.position.text}")
     }
 
-    fun keywordFor(result: CompletionResultSet) {
-        result.addKeywordSnippet("for in", "for_in.ft")
-        result.addKeywordSnippet("for range", "for_range.ft")
-        result.addKeywordSnippet("for kv", "for_kv.ft")
-    }
 
     fun inClassBlock(parameters: CompletionParameters, context: ProcessingContext, result: CompletionResultSet) {
 

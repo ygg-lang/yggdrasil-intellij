@@ -7,9 +7,11 @@ import com.intellij.codeInsight.hints.VcsCodeVisionLanguageContext
 import com.intellij.openapi.editor.Editor
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
-import yggdrasil.language.ast.YggdrasilFunctionStatement
-import yggdrasil.language.ast.classes.YggdrasilClassMethodNode
 import yggdrasil.language.ast.classes.YggdrasilClassStatement
+import yggdrasil.language.ast.external.YggdrasilExternalNode
+import yggdrasil.language.ast.external.YggdrasilInspectorNode
+import yggdrasil.language.ast.unions.YggdrasilClimbStatement
+import yggdrasil.language.ast.unions.YggdrasilUnionStatement
 import java.awt.event.MouseEvent
 
 @Suppress("UnstableApiUsage")
@@ -22,8 +24,11 @@ class AuthorAbove : VcsCodeVisionLanguageContext {
 
     override fun isAccepted(element: PsiElement): Boolean {
         return element is YggdrasilClassStatement
-            || element is YggdrasilFunctionStatement
-            || element is YggdrasilClassMethodNode
+            || element is YggdrasilUnionStatement
+            || element is YggdrasilClimbStatement
+            || element is YggdrasilExternalNode
+            || element is YggdrasilInspectorNode
+
     }
 
     override fun isCustomFileAccepted(file: PsiFile): Boolean {
