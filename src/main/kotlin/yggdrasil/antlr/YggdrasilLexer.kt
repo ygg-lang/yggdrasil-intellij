@@ -69,7 +69,7 @@ class YggdrasilLexer : Lexer() {
 
 
             // conditional
-            MATCH_OPTIONAL, MATCH_MAYBE, MATCH_MANY,
+            MATCH_OPTIONAL, MATCH_MANY, MATCH_MANY1,
             // control flow
 
 

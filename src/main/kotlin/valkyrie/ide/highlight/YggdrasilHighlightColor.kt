@@ -43,9 +43,7 @@ enum class YggdrasilHighlightColor(humanName: Supplier<@AttributeDescriptor Stri
     SYM_CONSTANT(YggdrasilBundle.messagePointer("color.token.symbol.constant"), Default.CONSTANT),
     SYM_BUILTIN(YggdrasilBundle.messagePointer("color.token.symbol.built.in"), Default.CONSTANT),
     SYM_FUNCTION(YggdrasilBundle.messagePointer("color.token.symbol.function.self"), Default.INSTANCE_METHOD),
-
-    //
-    TYPE_HINT(YggdrasilBundle.messagePointer("color.token.symbol.type"), Default.CLASS_NAME),
+    SYM_ARGUMENT(YggdrasilBundle.messagePointer("color.token.symbol.type"), Default.PARAMETER),
 
     // 标点符号
     ASSIGN(YggdrasilBundle.messagePointer("color.token.set"), Default.OPERATION_SIGN),

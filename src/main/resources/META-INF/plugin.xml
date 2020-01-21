@@ -23,6 +23,7 @@
 		<lang.psiStructureViewFactory
 			language="Yggdrasil"
 			implementationClass="valkyrie.ide.view.ValkyrieStructureView"/>
+
 		<!-- Highlight -->
 		<colorSettingsPage implementation="valkyrie.ide.highlight.HighlightSetting"/>
 		<highlightVisitor implementation="valkyrie.ide.highlight.NexusHighlighterVisitor"/>
@@ -31,8 +32,8 @@
 			implementationClass="valkyrie.ide.highlight.TokenHighlighter"
 		/>
 		<!-- Formatter -->
-		<formattingService implementation="valkyrie.ide.formatter.ValkyrieNativeFormat"/>
 		<lang.formatter language="Yggdrasil" implementationClass="valkyrie.ide.formatter.FormatBuilder"/>
+		<langCodeStyleSettingsProvider implementation="yggdrasil.settings.YggdrasilCodeStyleSettings"/>
 		<!-- Goto -->
 		<symbolNavigation
 			forClass="yggdrasil.language.symbol.ValkyrieSymbolTemplate"
@@ -64,11 +65,6 @@
 		<!--			targetClass="valkyrie.language.symbol.ValkyrieSymbolTemplate"/>-->
 		<!-- Lint -->
 		<lang.namesValidator language="Yggdrasil" implementationClass="valkyrie.ide.lint.ValkyrieNameValidator"/>
-		<!-- Declaration -->
-		<findUsagesHandlerFactory implementation="valkyrie.ide.usages.ValkyrieUsagesFactory"/>
-		<lang.findUsagesProvider
-			language="Yggdrasil"
-			implementationClass="valkyrie.ide.usages.ValkyrieUsagesProvider"/>
 		<!-- Completion -->
 		<typedHandler implementation="valkyrie.ide.completion.AutoInsertBrace"/>
 		<backspaceHandlerDelegate implementation="valkyrie.ide.completion.AutoDeleteBrace"/>
@@ -102,10 +98,6 @@
 	<actions>
 		<action id="valkyrie.create.file" class="valkyrie.ide.actions.file_transform.ValkyrieCreateFile">
 			<add-to-group group-id="NewGroup" anchor="before" relative-to-action="NewHtmlFile"/>
-		</action>
-		<action id="jss.JssConvertJson" class="valkyrie.ide.actions.FluentConvertMo"/>
-		<action id="valkyrie.macro.expand-to-file" class="valkyrie.ide.actions.ExpandMacroToFile">
-			<keyboard-shortcut keymap="$default" first-keystroke="control shift G"/>
 		</action>
 		<!-- Generated	-->
 		<action id="valkyrie.macro.expand" class="valkyrie.ide.codegen.ExpandTemplate">
