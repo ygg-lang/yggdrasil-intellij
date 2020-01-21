@@ -33,8 +33,6 @@ class_expression
     | lhs = class_expression OP_CONCAT rhs = class_expression # CHard
     | lhs = class_expression rhs = class_expression           # CSoft
     | lhs = class_expression OP_OR rhs = class_expression     # CPattern
-    | PARENTHESES_L OP_OR? class_expression PARENTHESES_R     # CGroup
-    | macro_call                                              # CCall
     | atomic                                                  # Atom
     ;
 // =================================================================================================
@@ -48,18 +46,15 @@ union_expression
     | OP_NOT union_expression                                 # UNot
     | lhs = union_expression OP_CONCAT rhs = union_expression # UHard
     | lhs = union_expression rhs = union_expression           # USoft
-    | PARENTHESES_L OP_OR? class_expression PARENTHESES_R     # UGroup
-    | macro_call                                              # UCall
     | atomic                                                  # Utom
     ;
 // =================================================================================================
 define_climb: annotation* modifiers KW_CLIMB name = identifier union_block;
 tag_branch:   OP_HASH identifier OP_GT?;
 // =================================================================================================
-define_token: annotation* modifiers KW_TOKEN name = identifier? token_block;
-token_block:  BRACE_L (token_pair | SEMICOLON)* BRACE_R;
-token_pair:   annotation* identifier COLON token_expression;
-
+define_token:     annotation* modifiers KW_TOKEN name = identifier? token_block;
+token_block:      BRACE_L (token_pair | SEMICOLON)* BRACE_R;
+token_pair:       identifier COLON atomic;
 token_expression: token_expression OP_OR token_expression # TOr | atomic # TAtom;
 // =================================================================================================
 define_external: annotation* modifiers KW_EXTERNAL identifier external_block;
@@ -68,8 +63,8 @@ external_pair:   annotation* identifier COLON namepath;
 // =================================================================================================
 define_inspector: annotation* modifiers KW_INSPECTOR identifier external_block;
 // =================================================================================================
-annotation: (OP_HASH | OP_AT) (KW_EXTERNAL|KW_INSPECTOR|namepath) tuple_block?;
-modifiers: identifier*;
+annotation: (OP_HASH | OP_AT) (KW_EXTERNAL | KW_INSPECTOR | namepath) tuple_block?;
+modifiers:  identifier*;
 // =================================================================================================
 macro_call:  OP_AT namepath tuple_block?;
 tuple_block: PARENTHESES_L (class_expression (COMMA class_expression)* COMMA?)? PARENTHESES_R;
@@ -83,13 +78,14 @@ suffix
     ;
 // =================================================================================================
 atomic
-    : macro_call # ATuple
-    | string     # AString
-    | identifier # AId
-    | regex      # ARe
-    | INTEGER    # AInt
-    | BOOLEAN    # ABool
-    | ESCAPED    # AChar
+    : PARENTHESES_L OP_OR? class_expression PARENTHESES_R # AGroup
+    | macro_call                                          # ACall
+    | string                                              # AString
+    | identifier                                          # AId
+    | regex                                               # ARe
+    | INTEGER                                             # AInt
+    | BOOLEAN                                             # ABool
+    | ESCAPED                                             # AChar
     ;
 regex:      REGEX_RANGE | REGEX_FREE;
 namepath:   identifier ((OP_PROPORTION | DOT) identifier)*;
