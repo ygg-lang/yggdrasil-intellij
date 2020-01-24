@@ -27,7 +27,7 @@ import yggdrasil.language.ast.classes.YggdrasilGrammarStatement
 import yggdrasil.language.ast.classes.YggdrasilClassStatement
 import yggdrasil.language.ast.external.YggdrasilGrammarPair
 import yggdrasil.language.ast.literals.YggdrasilRegex
-import yggdrasil.language.ast.pattern_match.YggdrasilTagBranch
+import yggdrasil.language.ast.tagged.YggdrasilTagBranch
 import yggdrasil.language.ast.tagged.YggdrasilTagNode
 import yggdrasil.language.psi.types.ValkyrieBlockType
 
