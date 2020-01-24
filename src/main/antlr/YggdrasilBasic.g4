@@ -22,6 +22,7 @@ OP_TO:     '->';
 
 KW_GRAMMAR: 'grammar';
 
+KW_MACRO: 'macro';
 KW_IMPORT: 'using';
 KW_AS:     'as';
 
