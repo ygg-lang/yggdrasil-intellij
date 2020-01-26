@@ -19,6 +19,8 @@ OP_OR:     '|';
 OP_GT:     '>';
 OP_UNTAG:  '^';
 OP_TO:     '->';
+OP_SLICE: '..<' | '..=';
+OP_PEEK_ALL: '...';
 
 KW_GRAMMAR: 'grammar';
 
@@ -26,10 +28,11 @@ KW_MACRO: 'macro';
 KW_IMPORT: 'using';
 KW_AS:     'as';
 
+
 KW_CLASS:     'class' | 'struct';
 KW_UNION:     'union' | 'enum';
 KW_CLIMB:     'climb';
-KW_TOKEN:     'token';
+KW_GROUP:     'group';
 KW_EXTERNAL:  'parser' | 'external';
 KW_INSPECTOR: 'inspect' | 'inspector';
 
@@ -42,7 +45,15 @@ BRACKET_R:     ']';
 BRACE_L:       '{';
 BRACE_R:       '}';
 
+
+KW_PULL: 'PULL';
+KW_PUSH: 'PUSH';
+KW_PEEK: 'PEEK';
+KW_DROP: 'DROP';
+
+
 INTEGER:     '0' | [1-9][0-9]*;
+KW_ANY: 'ANY';
 BOOLEAN:     'true' | 'false';
 ESCAPED:     '\\' .;
 REGEX_RANGE: '[' ~[\]]* ']';

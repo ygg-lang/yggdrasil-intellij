@@ -10,7 +10,7 @@ program
         | define_class
         | define_union
         | define_climb
-        | define_token
+        | define_group
         | define_external
         | define_inspector
         | define_function
@@ -62,10 +62,10 @@ union_tag: identifier_free COLON union_expression;
 define_climb: annotation* modifiers KW_CLIMB name = identifier union_block;
 tag_branch:   OP_HASH identifier OP_GT?;
 // =================================================================================================
-define_token:     annotation* modifiers KW_TOKEN name = identifier? token_block;
-token_block:      BRACE_L (token_pair | SEMICOLON)* BRACE_R;
-token_pair:       annotation* modifiers identifier COLON atomic;
-token_expression: token_expression OP_OR token_expression # TOr | atomic # TAtom;
+define_group:     annotation* modifiers KW_GROUP name = identifier? group_block;
+group_block:      BRACE_L (group_pair | SEMICOLON)* BRACE_R;
+group_pair:       annotation* modifiers identifier COLON atomic;
+group_expression: group_expression OP_OR group_expression # TOr | atomic # TAtom;
 // =================================================================================================
 define_external: annotation* modifiers KW_EXTERNAL identifier external_block;
 external_block:  BRACE_L (external_pair | SEMICOLON)* BRACE_R;
@@ -82,22 +82,32 @@ modifiers:  identifier*;
 macro_call:  OP_AT namepath tuple_block?;
 tuple_block: PARENTHESES_L (class_expression (COMMA class_expression)* COMMA?)? PARENTHESES_R;
 // =================================================================================================
+
+// =================================================================================================
 suffix
     : MATCH_OPTIONAL                                          # Optional
-    | MATCH_MANY MATCH_OPTIONAL?                              # Many
-    | MATCH_MANY1 MATCH_OPTIONAL?                             # Many1
-    | BRACE_L INTEGER? BRACE_R MATCH_OPTIONAL?                # Index
-    | BRACE_L INTEGER? COMMA INTEGER? BRACE_R MATCH_OPTIONAL? # Range
+    | MATCH_MANY                               # Many
+    | MATCH_MANY1                              # Many1
+    | BRACE_L INTEGER? BRACE_R                 # Index
+    | BRACE_L INTEGER? COMMA INTEGER? BRACE_R  # Range
     ;
+// =================================================================================================
+push: KW_PUSH tuple_block;
+peek: KW_PEEK PARENTHESES_L INTEGER? OP_SLICE? INTEGER? PARENTHESES_R | KW_PEEK PARENTHESES_L OP_PEEK_ALL PARENTHESES_R;
 // =================================================================================================
 atomic
     : PARENTHESES_L OP_OR? class_expression PARENTHESES_R # AGroup
     | macro_call                                          # ACall
     | string                                              # AString
     | identifier                                          # AId
+    | KW_DROP                                             # ADrop
+    | KW_PULL                                             # APull
+    | push                                                # APush
+    | peek                                                # APeek
     | regex                                               # ARe
     | INTEGER                                             # AInt
     | BOOLEAN                                             # ABool
+    | KW_ANY                                              # AAny
     | ESCAPED                                             # AChar
     ;
 regex:           REGEX_RANGE | REGEX_FREE;

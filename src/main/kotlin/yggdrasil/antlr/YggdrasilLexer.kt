@@ -61,20 +61,17 @@ class YggdrasilLexer : Lexer() {
         val Keywords: TokenSet = PSIElementTypeFactory.createTokenSet(
             YggdrasilLanguage,
             // declare keywords
-            KW_GRAMMAR, KW_TOKEN, KW_CLASS, KW_UNION, KW_CLIMB,
+            KW_GRAMMAR, KW_GROUP, KW_CLASS, KW_UNION, KW_CLIMB,
             KW_EXTERNAL, KW_INSPECTOR,
             // import keywords
             KW_IMPORT, KW_AS,
             // tok
             KW_MACRO,
-            // conditional
-            MATCH_OPTIONAL, MATCH_MANY, MATCH_MANY1,
+            // special
+            KW_ANY, BOOLEAN,
+            OP_CONCAT,
             // control flow
-
-            // which/match/catch
-
-            // control keywords
-            BOOLEAN
+            KW_PUSH, KW_PEEK, KW_DROP, KW_PULL,
             //
 
         )
@@ -84,11 +81,13 @@ class YggdrasilLexer : Lexer() {
             )
         val OperatorInfix: TokenSet = PSIElementTypeFactory.createTokenSet(
             YggdrasilLanguage,
+            OP_PEEK_ALL, OP_SLICE
 
 
             )
         val OperatorSuffix: TokenSet = PSIElementTypeFactory.createTokenSet(
             YggdrasilLanguage,
+            MATCH_OPTIONAL, MATCH_MANY, MATCH_MANY1,
         )
         val Operators = TokenSet.orSet(
             OperatorPrefix,
