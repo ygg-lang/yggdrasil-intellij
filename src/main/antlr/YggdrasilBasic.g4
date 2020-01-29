@@ -19,6 +19,7 @@ OP_OR:     '|';
 OP_GT:     '>';
 OP_UNTAG:  '^';
 OP_TO:     '->';
+OP_ASSIGN: '=';
 OP_SLICE: '..<' | '..=';
 OP_PEEK_ALL: '...';
 
@@ -36,6 +37,7 @@ KW_GROUP:     'group';
 KW_EXTERNAL:  'parser' | 'external';
 KW_INSPECTOR: 'inspect' | 'inspector';
 
+OP_CATEGORY: '\\p';
 OP_PROPORTION: '::';
 
 PARENTHESES_L: '(';

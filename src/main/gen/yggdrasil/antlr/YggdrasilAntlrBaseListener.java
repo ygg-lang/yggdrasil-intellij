@@ -641,6 +641,18 @@ public class YggdrasilAntlrBaseListener implements YggdrasilAntlrListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterUcc(YggdrasilAntlrParser.UccContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitUcc(YggdrasilAntlrParser.UccContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterPush(YggdrasilAntlrParser.PushContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -768,6 +780,18 @@ public class YggdrasilAntlrBaseListener implements YggdrasilAntlrListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitARe(YggdrasilAntlrParser.AReContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterAUcc(YggdrasilAntlrParser.AUccContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitAUcc(YggdrasilAntlrParser.AUccContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

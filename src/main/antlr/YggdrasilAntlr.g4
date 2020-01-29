@@ -91,6 +91,8 @@ suffix
     | BRACE_L INTEGER? BRACE_R                 # Index
     | BRACE_L INTEGER? COMMA INTEGER? BRACE_R  # Range
     ;
+
+ucc: OP_CATEGORY BRACE_L (UNICODE_ID OP_ASSIGN)? UNICODE_ID BRACE_R;
 // =================================================================================================
 push: KW_PUSH tuple_block;
 peek: KW_PEEK PARENTHESES_L INTEGER? OP_SLICE? INTEGER? PARENTHESES_R | KW_PEEK PARENTHESES_L OP_PEEK_ALL PARENTHESES_R;
@@ -105,6 +107,7 @@ atomic
     | push                                                # APush
     | peek                                                # APeek
     | regex                                               # ARe
+    | ucc                                                 # AUcc
     | INTEGER                                             # AInt
     | BOOLEAN                                             # ABool
     | KW_ANY                                              # AAny

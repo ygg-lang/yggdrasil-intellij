@@ -382,6 +382,13 @@ public class YggdrasilAntlrBaseVisitor<T> extends AbstractParseTreeVisitor<T> im
 	 * <p>The default implementation returns the result of calling
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
+	@Override public T visitUcc(YggdrasilAntlrParser.UccContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
 	@Override public T visitPush(YggdrasilAntlrParser.PushContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
@@ -453,6 +460,13 @@ public class YggdrasilAntlrBaseVisitor<T> extends AbstractParseTreeVisitor<T> im
 	 * {@link #visitChildren} on {@code ctx}.</p>
 	 */
 	@Override public T visitARe(YggdrasilAntlrParser.AReContext ctx) { return visitChildren(ctx); }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation returns the result of calling
+	 * {@link #visitChildren} on {@code ctx}.</p>
+	 */
+	@Override public T visitAUcc(YggdrasilAntlrParser.AUccContext ctx) { return visitChildren(ctx); }
 	/**
 	 * {@inheritDoc}
 	 *
