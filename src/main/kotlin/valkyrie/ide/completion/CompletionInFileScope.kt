@@ -46,9 +46,9 @@ class CompletionInFileScope : CompletionProvider<CompletionParameters>() {
 
     private fun CompletionResultSet.addTopMacros() {
         addElement(annotationCall("@derive", "@derive()", 1))
-        addElement(macroCall("type_of", "@type_of[]", 1))
-        addElement(macroCall("name_of", "@name_of[]", 1))
-        addElement(macroCall("name_path_of", "@name_path_of[]", 1))
+        addElement(macroCall("@style", "@style()", 1))
+        addElement(macroCall("@railroad", "@railroad()", 1))
+        addElement(macroCall("@atomic", "@atomic", 1))
     }
 
     private fun macroCall(show: String, replace: String, offset: Int, lookup: Set<String> = setOf()): LookupElementBuilder {

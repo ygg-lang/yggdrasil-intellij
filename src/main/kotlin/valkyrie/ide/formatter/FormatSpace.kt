@@ -4,35 +4,35 @@ import com.intellij.formatting.SpacingBuilder
 import com.intellij.psi.codeStyle.CodeStyleSettings
 import com.intellij.psi.codeStyle.CommonCodeStyleSettings
 import com.intellij.psi.tree.TokenSet
-import yggdrasil.antlr.YggdrasilLexer
 import org.antlr.intellij.adaptor.lexer.PSIElementTypeFactory.createTokenSet
 import valkyrie.ide.matcher.ValkyrieBracketMatch
 import yggdrasil.antlr.YggdrasilAntlrLexer
+import yggdrasil.antlr.YggdrasilLexer
 import yggdrasil.language.YggdrasilLanguage
 
 
 private val removeSpaceBefore = TokenSet.orSet(
-    createTokenSet(YggdrasilLanguage),
+//    createTokenSet(YggdrasilLanguage),
     ValkyrieBracketMatch.Instance.Right,
 
     )
 
 private val removeSpaceNewlineBefore = TokenSet.orSet(
-    createTokenSet(YggdrasilLanguage)
+//    createTokenSet(YggdrasilLanguage)
 
 )
 
 private val removeSpaceAfter = TokenSet.orSet(
-    createTokenSet(YggdrasilLanguage)
+//    createTokenSet(YggdrasilLanguage)
 )
 
 private val removeSpaceNewlineAfter = TokenSet.orSet(
-    createTokenSet(YggdrasilLanguage)
+//    createTokenSet(YggdrasilLanguage)
 )
 
 // 左右插入一个空格
 private val spaceAroundOperator = TokenSet.orSet(
-    createTokenSet(YggdrasilLanguage),
+//    createTokenSet(YggdrasilLanguage),
     YggdrasilLexer.OperatorInfix
 )
 

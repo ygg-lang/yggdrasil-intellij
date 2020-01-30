@@ -12,11 +12,11 @@ import com.intellij.psi.PsiFile
 import com.intellij.psi.impl.source.tree.CompositeElement
 import com.intellij.psi.tree.IFileElementType
 import com.intellij.psi.tree.TokenSet
-import yggdrasil.language.file.YggdrasilFileNode
 import org.antlr.intellij.adaptor.lexer.PSIElementTypeFactory
 import org.antlr.intellij.adaptor.parser.ANTLRParserAdaptor
 import org.antlr.intellij.adaptor.psi.ANTLRPsiNode
 import yggdrasil.language.YggdrasilLanguage
+import yggdrasil.language.file.YggdrasilFileNode
 
 class YggdrasilParserDefinition : ParserDefinition {
     override fun createLexer(project: Project): Lexer {
@@ -25,7 +25,7 @@ class YggdrasilParserDefinition : ParserDefinition {
 
 
     override fun createParser(project: Project): PsiParser {
-        return YggdrasilParser(YggdrasilAntlrParser(null))
+        return YggdrasilParser(yggdrasil.antlr.YggdrasilAntlrParser(null))
     }
 
     /**
