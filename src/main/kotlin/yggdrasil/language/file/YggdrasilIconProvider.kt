@@ -22,24 +22,10 @@ class YggdrasilIconProvider : IconProvider() {
 
     object Instance {
         val File = IconLoader.getIcon("/icons/ygg.svg", YggdrasilIconProvider::class.java)
-
-        //
-        val NAMESPACE = AllIcons.Nodes.Artifact
         val SNIPPET = AllIcons.Actions.MoreHorizontal
-
-        // val IMPORT = AllIcons.Welcome.Import
-        val IMPORT = AllIcons.Nodes.EntryPoints
-        val MACRO = AllIcons.Gutter.ExtAnnotation
-        val ANNOTATION = AllIcons.Nodes.Annotationtype
-
-        //
-        val TYPE = AllIcons.Nodes.Type
         val CLASS = AllIcons.Nodes.Class
         val UNION = AllIcons.Nodes.Enum
-        val VARIANT = AllIcons.Nodes.AnonymousClass
         val TRAIT = AllIcons.Nodes.Interface
         val Function = AllIcons.Nodes.Function
-        val Field = AllIcons.Nodes.Field
-        val Method = AllIcons.Nodes.Method
     }
 }

@@ -1,6 +1,0 @@
-@derive(Default, Debug, Serde)]
-class $Tuple$($base$)
-
-extends $Tuple$ {
-    $block$
-}

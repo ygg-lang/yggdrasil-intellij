@@ -9,7 +9,7 @@ object YggdrasilFileType : LanguageFileType(YggdrasilLanguage) {
 
     override fun getDescription(): String = yggdrasil.language.YggdrasilBundle.message("filetype.description")
 
-    override fun getDefaultExtension(): String = "ne;nexus;"
+    override fun getDefaultExtension(): String = "ygg;yggdrasil;"
 
     override fun getIcon(): Icon = YggdrasilIconProvider.Instance.File
 

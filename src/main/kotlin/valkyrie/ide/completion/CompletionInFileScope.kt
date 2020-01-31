@@ -72,8 +72,8 @@ class CompletionInFileScope : CompletionProvider<CompletionParameters>() {
         result.addKeywordSnippet("type", "type.ft")
 
         result.addKeywordSnippet("class", "class.ft", setOf("cass", "struct"))
-        result.addKeywordSnippet("class inherit", "class_tuple.ft", setOf("class tuple"))
-        result.addKeywordSnippet("class generic", "class_generic.ft", setOf("class generic"))
+        result.addKeywordSnippet("inline class", "class_atomic.ft", setOf("class inline"))
+        result.addKeywordSnippet("atomic class", "class_inline.ft", setOf("class atomic"))
 
         result.addKeywordSnippet("union", "tagged.ft")
         result.addKeywordSnippet("flags", "bitset.ft")

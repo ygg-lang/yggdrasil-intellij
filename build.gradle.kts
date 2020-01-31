@@ -16,9 +16,11 @@ plugins {
 
 dependencies {
 //    implementation(kotlin("stdlib-jdk8"))
+    implementation(kotlin("stdlib-jdk8"))
     antlr("org.antlr:antlr4:${properties("antlrVersion")}") {
         exclude(group = "com.ibm.icu", module = "icu4j")
     }
+    implementation("org.antlr:antlr4-runtime:${properties("antlrVersion")}")
     implementation("org.antlr:antlr4-intellij-adaptor:0.1")
 }
 

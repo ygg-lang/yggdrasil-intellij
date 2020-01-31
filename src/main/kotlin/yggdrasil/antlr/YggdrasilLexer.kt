@@ -13,7 +13,7 @@ class YggdrasilLexer : Lexer() {
     private var adaptor: ANTLRLexerAdaptor
 
     init {
-        val lexer = yggdrasil.antlr.YggdrasilAntlrLexer(null)
+        val lexer = YggdrasilAntlrLexer(null)
         this.adaptor = ANTLRLexerAdaptor(YggdrasilLanguage, lexer)
     }
 
@@ -75,23 +75,22 @@ class YggdrasilLexer : Lexer() {
             //
 
         )
+        val OperatorPrefix: TokenSet = PSIElementTypeFactory.createTokenSet(
+            YggdrasilLanguage,
 
-        //        val OperatorPrefix: TokenSet = PSIElementTypeFactory.createTokenSet(
-//            YggdrasilLanguage,
-//
-//            )
+            )
         val OperatorInfix: TokenSet = PSIElementTypeFactory.createTokenSet(
             YggdrasilLanguage,
             OP_PEEK_ALL, OP_SLICE
 
 
-            )
+        )
         val OperatorSuffix: TokenSet = PSIElementTypeFactory.createTokenSet(
             YggdrasilLanguage,
             MATCH_OPTIONAL, MATCH_MANY, MATCH_MANY1,
         )
         val Operators = TokenSet.orSet(
-//            OperatorPrefix,
+            OperatorPrefix,
             OperatorInfix,
             OperatorSuffix
         );
