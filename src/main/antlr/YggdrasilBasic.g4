@@ -53,13 +53,12 @@ KW_PUSH: 'PUSH';
 KW_PEEK: 'PEEK';
 KW_DROP: 'DROP';
 
-
 INTEGER:     '0' | [1-9][0-9]*;
 KW_ANY: 'ANY';
 BOOLEAN:     'true' | 'false';
 ESCAPED:     '\\' .;
 REGEX_RANGE: '[' ~[\]]* ']';
-REGEX_FREE:  '/' ~[/]* '/';
+REGEX_FREE: '/' ('\\' . | ~[/\\])+ '/';
 
 STRING_SINGLE: '\'' ~[']* '\'';
 STRING_DOUBLE: '"' ~["]* '"';

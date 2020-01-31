@@ -130,7 +130,10 @@ private class RuleRewriter(language: Language, parser: Parser?, builder: PsiBuil
 
     private fun ignoreContext(ctx: ParserRuleContext?): Boolean {
         return when (ctx) {
-            is ProgramContext, is Program_statementContext,
+            is ProgramContext, is Program_itemContext,
+            is Grammar_itemContext,
+
+
 //            is Class_statemntsContext, is Flags_statementContext, is Union_statementsContext,
 //            is Trait_statementContext, is Extends_statementContext,
 //            is Function_statementContext, is Return_partContext,

@@ -23,7 +23,11 @@ class YggdrasilRegex(node: ASTNode) : ASTWrapperPsiElement(node), PsiLanguageInj
 
 
     fun injectPerform(r: MultiHostRegistrar) {
-        r.startInjecting(RegExpLanguage.INSTANCE).addPlace(null, null, this, innerRange()).doneInjecting()
+        if (text.startsWith('/')) {
+            r.startInjecting(RegExpLanguage.INSTANCE).addPlace("(?x)", null, this, innerRange()).doneInjecting()
+        } else {
+            r.startInjecting(RegExpLanguage.INSTANCE).addPlace(null, null, this, innerRange()).doneInjecting()
+        }
     }
 
     fun innerRange(): TextRange {

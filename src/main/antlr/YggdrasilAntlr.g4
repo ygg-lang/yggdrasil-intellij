@@ -4,9 +4,9 @@ import YggdrasilBasic;
 // $antlr-format useTab false, columnLimit 144
 // $antlr-format alignColons hanging, alignSemicolons hanging, alignFirstTokens true
 program
-    : program_statement* EOF
+    : program_item* EOF
     ;
-program_statement:
+program_item:
         define_grammar
         | import_statement
         | define_class
@@ -23,7 +23,8 @@ import_statement: KW_IMPORT (identifier | string) import_block?;
 import_block:     BRACE_L identifier* BRACE_R;
 // =================================================================================================
 define_grammar: KW_GRAMMAR identifier (COLON parent = identifier)? grammar_block;
-grammar_block:  BRACE_L (grammar_pair | SEMICOLON | COMMA)* BRACE_R;
+grammar_block:  BRACE_L grammar_item* BRACE_R;
+grammar_item:   grammar_pair | SEMICOLON | COMMA;
 grammar_pair:   grammar_key COLON grammar_value;
 grammar_key:    string | identifier;
 grammar_value:  string | namepath | BOOLEAN;
@@ -47,8 +48,8 @@ class_tag: identifier_free COLON class_expression;
 define_union
     : annotation* modifiers KW_UNION name = identifier (OP_TO cast = identifier)? OP_UNTAG? union_block
     ;
-union_block: BRACE_L union_term* BRACE_R;
-union_term:  OP_OR union_expression* tag_branch?;
+union_block: BRACE_L union_item* BRACE_R;
+union_item:  OP_OR union_expression* tag_branch?;
 union_expression
     : union_tag                                               # UETag
     | union_expression suffix                                 # USuffix
@@ -83,8 +84,6 @@ modifiers:  identifier*;
 macro_call:  OP_AT namepath tuple_block?;
 tuple_block: PARENTHESES_L (class_expression (COMMA class_expression)* COMMA?)? PARENTHESES_R;
 // =================================================================================================
-
-// =================================================================================================
 suffix
     : MATCH_OPTIONAL                                          # Optional
     | MATCH_MANY                               # Many
@@ -92,7 +91,6 @@ suffix
     | BRACE_L INTEGER? BRACE_R                 # Index
     | BRACE_L INTEGER? COMMA INTEGER? BRACE_R  # Range
     ;
-
 ucc: OP_CATEGORY BRACE_L (UNICODE_ID OP_ASSIGN)? UNICODE_ID BRACE_R;
 // =================================================================================================
 push: KW_PUSH tuple_block;
