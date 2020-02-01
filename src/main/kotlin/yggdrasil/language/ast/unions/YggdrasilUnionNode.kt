@@ -1,4 +1,4 @@
-package yggdrasil.language.ast.classes
+package yggdrasil.language.ast.unions
 
 import com.intellij.codeInsight.daemon.LineMarkerInfo
 import com.intellij.codeInsight.daemon.RelatedItemLineMarkerInfo
@@ -8,23 +8,21 @@ import com.intellij.openapi.editor.markup.GutterIconRenderer
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNameIdentifierOwner
 import com.intellij.psi.impl.source.tree.CompositeElement
+import valkyrie.ide.highlight.NodeHighlighter
+import valkyrie.ide.highlight.YggdrasilHighlightColor
+import valkyrie.ide.highlight.YggdrasilHighlightElement
+import valkyrie.ide.view.IdentifierPresentation
+import yggdrasil.antlr.YggdrasilParser
 import yggdrasil.language.ast.YggdrasilIdentifierNode
 import yggdrasil.language.file.YggdrasilFileNode
 import yggdrasil.language.file.YggdrasilIconProvider
 import yggdrasil.language.psi.ValkyrieLineMarkElement
 import yggdrasil.language.psi.YggdrasilScopeNode
-import valkyrie.ide.highlight.YggdrasilHighlightColor
-import valkyrie.ide.highlight.YggdrasilHighlightElement
-import valkyrie.ide.highlight.NodeHighlighter
-import valkyrie.ide.view.IdentifierPresentation
-import yggdrasil.antlr.YggdrasilParser
 import javax.swing.Icon
 
-
-class YggdrasilClassStatement(node: CompositeElement) : YggdrasilScopeNode(node), PsiNameIdentifierOwner, ValkyrieLineMarkElement,
+class YggdrasilUnionNode(node: CompositeElement) : YggdrasilScopeNode(node), PsiNameIdentifierOwner, ValkyrieLineMarkElement,
     YggdrasilHighlightElement {
     private val _all by lazy {
-
         YggdrasilParser.getChildrenOfType<YggdrasilIdentifierNode>(this)
     }
 
@@ -41,7 +39,7 @@ class YggdrasilClassStatement(node: CompositeElement) : YggdrasilScopeNode(node)
     }
 
     override fun getBaseIcon(): Icon {
-        return YggdrasilIconProvider.Instance.CLASS
+        return YggdrasilIconProvider.Instance.UNION
     }
 
     override fun getContainingFile(): YggdrasilFileNode {
@@ -54,7 +52,7 @@ class YggdrasilClassStatement(node: CompositeElement) : YggdrasilScopeNode(node)
 
     override fun on_highlight(e: NodeHighlighter) {
         e.register_modifiers(_all.dropLast(1))
-        e.register(nameIdentifier, YggdrasilHighlightColor.RULE_CLASS)
+        e.register(nameIdentifier, YggdrasilHighlightColor.RULE_UNION)
     }
 
     override fun on_line_mark(e: MutableCollection<in LineMarkerInfo<*>>) {
@@ -69,4 +67,3 @@ class YggdrasilClassStatement(node: CompositeElement) : YggdrasilScopeNode(node)
         e.add(info)
     }
 }
-

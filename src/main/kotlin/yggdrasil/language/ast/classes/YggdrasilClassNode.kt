@@ -1,4 +1,4 @@
-package yggdrasil.language.ast.unions
+package yggdrasil.language.ast.classes
 
 import com.intellij.codeInsight.daemon.LineMarkerInfo
 import com.intellij.codeInsight.daemon.RelatedItemLineMarkerInfo
@@ -20,7 +20,8 @@ import yggdrasil.language.psi.ValkyrieLineMarkElement
 import yggdrasil.language.psi.YggdrasilScopeNode
 import javax.swing.Icon
 
-class YggdrasilUnionStatement(node: CompositeElement) : YggdrasilScopeNode(node), PsiNameIdentifierOwner, ValkyrieLineMarkElement,
+
+class YggdrasilClassNode(node: CompositeElement) : YggdrasilScopeNode(node), PsiNameIdentifierOwner, ValkyrieLineMarkElement,
     YggdrasilHighlightElement {
     private val _all by lazy {
         YggdrasilParser.getChildrenOfType<YggdrasilIdentifierNode>(this)
@@ -39,7 +40,7 @@ class YggdrasilUnionStatement(node: CompositeElement) : YggdrasilScopeNode(node)
     }
 
     override fun getBaseIcon(): Icon {
-        return YggdrasilIconProvider.Instance.UNION
+        return YggdrasilIconProvider.Instance.CLASS
     }
 
     override fun getContainingFile(): YggdrasilFileNode {
@@ -52,7 +53,7 @@ class YggdrasilUnionStatement(node: CompositeElement) : YggdrasilScopeNode(node)
 
     override fun on_highlight(e: NodeHighlighter) {
         e.register_modifiers(_all.dropLast(1))
-        e.register(nameIdentifier, YggdrasilHighlightColor.RULE_UNION)
+        e.register(nameIdentifier, YggdrasilHighlightColor.RULE_CLASS)
     }
 
     override fun on_line_mark(e: MutableCollection<in LineMarkerInfo<*>>) {
@@ -67,3 +68,4 @@ class YggdrasilUnionStatement(node: CompositeElement) : YggdrasilScopeNode(node)
         e.add(info)
     }
 }
+

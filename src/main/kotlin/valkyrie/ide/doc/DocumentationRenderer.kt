@@ -5,10 +5,10 @@ import com.intellij.openapi.editor.colors.EditorColorsManager
 import com.intellij.openapi.editor.richcopy.HtmlSyntaxInfoUtil
 import com.intellij.psi.PsiElement
 import com.intellij.ui.ColorUtil
-import yggdrasil.language.ast.classes.YggdrasilClassStatement
 import valkyrie.ide.highlight.YggdrasilHighlightColor
 import valkyrie.ide.highlight.YggdrasilHighlightColor.KEYWORD
 import valkyrie.ide.highlight.YggdrasilHighlightColor.RULE_CLASS
+import yggdrasil.language.ast.classes.YggdrasilClassNode
 
 
 class DocumentationRenderer(var element: PsiElement, private var original: PsiElement?) {
@@ -20,7 +20,7 @@ class DocumentationRenderer(var element: PsiElement, private var original: PsiEl
             else -> {}
         }
         when (element) {
-            is YggdrasilClassStatement -> buildShort(element as YggdrasilClassStatement)
+            is YggdrasilClassNode -> buildShort(element as YggdrasilClassNode)
             else -> {
                 doc.append(element)
                 doc.append("<br/>")
@@ -32,7 +32,7 @@ class DocumentationRenderer(var element: PsiElement, private var original: PsiEl
         return doc.toString()
     }
 
-    private fun buildShort(element: YggdrasilClassStatement) {
+    private fun buildShort(element: YggdrasilClassNode) {
         append(KEYWORD, "crate ")
         appendNamespace()
         doc.append("<br/>")

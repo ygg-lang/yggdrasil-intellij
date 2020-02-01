@@ -4,8 +4,8 @@ import com.intellij.extapi.psi.ASTWrapperPsiElement
 import com.intellij.psi.PsiElement
 import com.intellij.psi.impl.source.tree.CompositeElement
 import com.intellij.psi.util.PsiTreeUtil
-import valkyrie.ide.highlight.YggdrasilHighlightElement
 import valkyrie.ide.highlight.NodeHighlighter
+import valkyrie.ide.highlight.YggdrasilHighlightElement
 import yggdrasil.antlr.YggdrasilParser
 
 
@@ -20,6 +20,7 @@ class YggdrasilNamepathNode(node: CompositeElement) : ASTWrapperPsiElement(node)
     override fun getName(): String? {
         return super.getName()
     }
+
 
     companion object {
         fun find(node: PsiElement): YggdrasilNamepathNode? {

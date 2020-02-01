@@ -12,7 +12,7 @@ import com.intellij.openapi.fileEditor.FileEditor
 import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiFile
 
-class ValkyrieStructureView : PsiStructureViewFactory {
+class YggdrasilStructureView : PsiStructureViewFactory {
     override fun getStructureViewBuilder(psiFile: PsiFile): Builder {
         return Builder(psiFile)
     }

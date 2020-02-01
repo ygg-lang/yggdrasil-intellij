@@ -24,8 +24,8 @@ import yggdrasil.language.ast.*
 import yggdrasil.language.ast.calls.YggdrasilAnnotation
 import yggdrasil.language.ast.calls.YggdrasilMacroCall
 import yggdrasil.language.ast.calls.YggdrasilModifiers
-import yggdrasil.language.ast.classes.YggdrasilClassStatement
-import yggdrasil.language.ast.classes.YggdrasilGrammarStatement
+import yggdrasil.language.ast.classes.YggdrasilClassNode
+import yggdrasil.language.ast.classes.YggdrasilGrammarNode
 import yggdrasil.language.ast.external.YggdrasilExternalNode
 import yggdrasil.language.ast.external.YggdrasilExternalPair
 import yggdrasil.language.ast.external.YggdrasilGrammarPair
@@ -33,7 +33,8 @@ import yggdrasil.language.ast.external.YggdrasilInspectorNode
 import yggdrasil.language.ast.literals.YggdrasilRegex
 import yggdrasil.language.ast.tagged.YggdrasilTagBranch
 import yggdrasil.language.ast.tagged.YggdrasilTagNode
-import yggdrasil.language.ast.unions.YggdrasilUnionStatement
+import yggdrasil.language.ast.unions.YggdrasilUnionNode
+import yggdrasil.language.ast.unions.YggdrasilVariantNode
 import yggdrasil.language.psi.types.ValkyrieBlockType
 
 
@@ -151,15 +152,16 @@ private class RuleRewriter(language: Language, parser: Parser?, builder: PsiBuil
         fun extract(node: CompositeElement): PsiElement {
             val type: RuleIElementType = node.elementType as RuleIElementType;
             return when (type.ruleIndex) {
-                RULE_define_grammar -> YggdrasilGrammarStatement(node)
+                RULE_define_grammar -> YggdrasilGrammarNode(node)
                 RULE_grammar_pair -> YggdrasilGrammarPair(node)
                 // class
-                RULE_define_class -> YggdrasilClassStatement(node)
+                RULE_define_class -> YggdrasilClassNode(node)
                 RULE_class_block -> YggdrasilBlockNode(node, ValkyrieBlockType.Brace)
                 RULE_tuple_block -> YggdrasilBlockNode(node, ValkyrieBlockType.Parenthesis)
                 // union
-                RULE_define_union -> YggdrasilUnionStatement(node)
+                RULE_define_union -> YggdrasilUnionNode(node)
                 RULE_union_block -> YggdrasilBlockNode(node, ValkyrieBlockType.Brace)
+                RULE_union_item -> YggdrasilVariantNode(node)
                 // function
                 RULE_define_function -> YggdrasilFunctionStatement(node)
 //                RULE_function_parameters -> ValkyrieBlockNode(node, ValkyrieBlockType.Parenthesis)

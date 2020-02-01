@@ -3,10 +3,6 @@ package yggdrasil.language.symbol
 //import nexus.language.psi_node.ValkyrieClassStatementNode
 import com.intellij.model.Pointer
 import com.intellij.model.Symbol
-import com.intellij.model.psi.PsiSymbolDeclaration
-import com.intellij.openapi.util.TextRange
-import com.intellij.psi.PsiElement
-import yggdrasil.language.ast.classes.YggdrasilClassStatement
 
 //import nexus.language.psi_node.ValkyrieExtendsStatementNode
 
