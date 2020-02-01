@@ -11,7 +11,7 @@ import valkyrie.ide.highlight.YggdrasilHighlightElement
 import valkyrie.ide.reference.declaration.ValkyrieReference
 import yggdrasil.language.ast.classes.YggdrasilClassNode
 import yggdrasil.language.ast.classes.YggdrasilGrammarNode
-import yggdrasil.language.ast.tagged.YggdrasilTagBranch
+import yggdrasil.language.ast.group.YggdrasilTagBranch
 import yggdrasil.language.ast.unions.YggdrasilUnionNode
 import yggdrasil.language.file.YggdrasilFileNode
 
