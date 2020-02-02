@@ -1,5 +1,6 @@
 package yggdrasil.language.ast.group
 
+import com.intellij.codeInsight.lookup.LookupElementBuilder
 import com.intellij.extapi.psi.ASTWrapperPsiElement
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNameIdentifierOwner
@@ -32,6 +33,17 @@ class YggdrasilGroupItem : ASTWrapperPsiElement, PsiNameIdentifierOwner, Yggdras
         if (nameIdentifier != null) {
             e.register(nameIdentifier, YggdrasilHighlightColor.SYM_CONSTANT)
         }
+    }
+
+    fun lookUp(): LookupElementBuilder {
+        return LookupElementBuilder.create(text).bold()
+            .withLookupStrings(listOf(text))
+            .withIcon(baseIcon)
+//            .withInsertHandler { context, _ ->
+//                val document = context.document
+//                document.replaceString(context.startOffset, context.tailOffset, replace)
+//                context.editor.caretModel.moveToOffset(context.tailOffset - offset)
+//            }
     }
 }
 

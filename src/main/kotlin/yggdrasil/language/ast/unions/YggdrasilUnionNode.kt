@@ -2,6 +2,7 @@ package yggdrasil.language.ast.unions
 
 import com.intellij.codeInsight.daemon.LineMarkerInfo
 import com.intellij.codeInsight.daemon.RelatedItemLineMarkerInfo
+import com.intellij.codeInsight.lookup.LookupElementBuilder
 import com.intellij.navigation.GotoRelatedItem
 import com.intellij.navigation.ItemPresentation
 import com.intellij.openapi.editor.markup.GutterIconRenderer
@@ -65,5 +66,16 @@ class YggdrasilUnionNode(node: CompositeElement) : YggdrasilScopeNode(node), Psi
             GutterIconRenderer.Alignment.RIGHT // 上
         ) { mutableListOf(GotoRelatedItem(this)) }
         e.add(info)
+    }
+
+    fun lookUp(): LookupElementBuilder {
+        return LookupElementBuilder.create(text).bold()
+            .withLookupStrings(listOf(text))
+            .withIcon(baseIcon)
+//            .withInsertHandler { context, _ ->
+//                val document = context.document
+//                document.replaceString(context.startOffset, context.tailOffset, replace)
+//                context.editor.caretModel.moveToOffset(context.tailOffset - offset)
+//            }
     }
 }
