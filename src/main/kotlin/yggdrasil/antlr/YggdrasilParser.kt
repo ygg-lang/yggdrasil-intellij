@@ -138,13 +138,7 @@ private class RuleRewriter(language: Language, parser: Parser?, builder: PsiBuil
         return when (ctx) {
             is ProgramContext, is Program_itemContext,
             is Grammar_itemContext,
-
-
-//            is Class_statemntsContext, is Flags_statementContext, is Union_statementsContext,
-//            is Trait_statementContext, is Extends_statementContext,
-//            is Function_statementContext, is Return_partContext,
-//            is LeadingContext,
-//            is NamejoinContext, is Namejoin_freeContext, is Range_joinContext,
+            is AtomicContext,
             -> true
 
             null -> true
@@ -176,6 +170,7 @@ private class RuleRewriter(language: Language, parser: Parser?, builder: PsiBuil
                 RULE_define_group -> YggdrasilGroupNode(node)
                 RULE_group_block -> YggdrasilBlockNode(node, ValkyrieBlockType.Brace)
                 RULE_group_pair -> YggdrasilGroupItem(node)
+                RULE_priority_block -> YggdrasilBlockNode(node, ValkyrieBlockType.Parenthesis)
                 // externals
                 RULE_define_inspector -> YggdrasilInspectorNode(node)
                 RULE_define_external -> YggdrasilExternalNode(node)

@@ -11,23 +11,26 @@ class YggdrasilFileCache(root: YggdrasilFileNode) {
 
     init {
         for (child in root.children) {
-            if (child is YggdrasilClassNode) {
-                val name = child.name;
-                if (name != null) {
-                    _cache[name] = child
-                }
-            }
-            if (child is YggdrasilUnionNode) {
-                val name = child.name;
-                if (name != null) {
-                    _cache[name] = child
-                }
-            }
-            if (child is YggdrasilGroupNode) {
-                for (item in child.items) {
-                    val name = item.name;
+            when (child) {
+                is YggdrasilClassNode -> {
+                    val name = child.name;
                     if (name != null) {
-                        _cache[name] = item
+                        _cache[name] = child
+                    }
+                }
+
+                is YggdrasilUnionNode -> {
+                    val name = child.name;
+                    if (name != null) {
+                        _cache[name] = child
+                    }
+                }
+
+                is YggdrasilGroupNode -> {
+                    println("YggdrasilGroupNode")
+                    for (item in child.findPairs()) {
+                        println("YggdrasilGroupNode: ${item.name}")
+                        _cache[item.name] = item
                     }
                 }
             }

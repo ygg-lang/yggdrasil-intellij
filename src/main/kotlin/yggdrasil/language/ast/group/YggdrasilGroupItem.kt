@@ -9,22 +9,23 @@ import valkyrie.ide.highlight.YggdrasilHighlightColor
 import valkyrie.ide.highlight.YggdrasilHighlightElement
 import yggdrasil.antlr.YggdrasilAntlrParser
 import yggdrasil.antlr.YggdrasilParser
+import yggdrasil.language.ast.YggdrasilIdentifierNode
 
 class YggdrasilGroupItem : ASTWrapperPsiElement, PsiNameIdentifierOwner, YggdrasilHighlightElement {
     constructor(node: CompositeElement) : super(node) {
 
     }
 
-    override fun getName(): String? {
-        return super.getName()
+    override fun getName(): String {
+        return nameIdentifier?.text ?: ""
     }
 
     override fun setName(p0: String): PsiElement {
         TODO("Not yet implemented")
     }
 
-    override fun getNameIdentifier(): PsiElement? {
-        return YggdrasilParser.getChildOfType(this, YggdrasilAntlrParser.RULE_identifier)
+    override fun getNameIdentifier(): YggdrasilIdentifierNode? {
+        return YggdrasilParser.getChildOfType(this, YggdrasilAntlrParser.RULE_identifier) as? YggdrasilIdentifierNode
     }
 
     override fun on_highlight(e: NodeHighlighter) {

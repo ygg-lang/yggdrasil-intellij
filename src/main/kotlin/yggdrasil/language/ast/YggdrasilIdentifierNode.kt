@@ -24,8 +24,8 @@ class YggdrasilIdentifierNode(node: ASTNode) : ASTWrapperPsiElement(node), PsiNa
         TODO("Not yet implemented")
     }
 
-    override fun getContainingFile(): YggdrasilFileNode {
-        return super.getContainingFile() as YggdrasilFileNode
+    override fun getContainingFile(): YggdrasilFileNode? {
+        return super.getContainingFile() as? YggdrasilFileNode
     }
 
     /** Create and return a PsiReference object associated with this ID
@@ -51,7 +51,7 @@ class YggdrasilIdentifierNode(node: ASTNode) : ASTWrapperPsiElement(node), PsiNa
 
             else -> {}
         }
-        val target = this.containingFile.Cache.find(this) ?: return null
+        val target = this.containingFile?.Cache?.find(this) ?: return null
         return ValkyrieReference(this, target)
     }
 
