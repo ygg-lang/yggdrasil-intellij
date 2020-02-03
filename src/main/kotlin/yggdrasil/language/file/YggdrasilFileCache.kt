@@ -16,20 +16,16 @@ class YggdrasilFileCache(root: YggdrasilFileNode) {
             when (child) {
                 is YggdrasilClassNode -> {
                     val name = child.name;
-                    if (name != null) {
-                        _cache[name] = child
-                        child.createLookup(completions)
-                    }
+                    _cache[name] = child
+                    child.createLookup(completions)
                 }
 
                 is YggdrasilUnionNode -> {
                     val name = child.name;
-                    if (name != null) {
-                        _cache[name] = child
-                        child.createLookup(completions)
+                    _cache[name] = child
+                    child.createLookup(completions)
 
 
-                    }
                 }
 
                 is YggdrasilGroupNode -> {

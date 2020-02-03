@@ -29,10 +29,7 @@ import yggdrasil.language.ast.calls.YggdrasilMacroCall
 import yggdrasil.language.ast.calls.YggdrasilModifiers
 import yggdrasil.language.ast.classes.YggdrasilClassNode
 import yggdrasil.language.ast.classes.YggdrasilGrammarNode
-import yggdrasil.language.ast.external.YggdrasilExternalNode
-import yggdrasil.language.ast.external.YggdrasilExternalPair
 import yggdrasil.language.ast.external.YggdrasilGrammarPair
-import yggdrasil.language.ast.external.YggdrasilInspectorNode
 import yggdrasil.language.ast.group.YggdrasilGroupItem
 import yggdrasil.language.ast.group.YggdrasilGroupNode
 import yggdrasil.language.ast.group.YggdrasilTagBranch
@@ -171,12 +168,6 @@ private class RuleRewriter(language: Language, parser: Parser?, builder: PsiBuil
                 RULE_group_block -> YggdrasilBlockNode(node, ValkyrieBlockType.Brace)
                 RULE_group_pair -> YggdrasilGroupItem(node)
                 RULE_priority_block -> YggdrasilBlockNode(node, ValkyrieBlockType.Parenthesis)
-                // externals
-                RULE_define_inspector -> YggdrasilInspectorNode(node)
-                RULE_define_external -> YggdrasilExternalNode(node)
-                RULE_external_block -> YggdrasilBlockNode(node, ValkyrieBlockType.Brace)
-                RULE_external_pair -> YggdrasilExternalPair(node)
-
 
 ////                RULE_while_statement -> ValkyrieWhileStatement(node)
 //                // pattern match

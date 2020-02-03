@@ -3,37 +3,35 @@ import YggdrasilBasic;
 
 // $antlr-format useTab false, columnLimit 144
 // $antlr-format alignColons hanging, alignSemicolons hanging, alignFirstTokens true
-program
-    : program_item* EOF
+program: program_item* EOF;
+program_item
+    : define_grammar
+    | import_statement
+    | define_class
+    | define_union
+    | define_climb
+    | define_group
+    | define_function
+    | SEMICOLON
     ;
-program_item:
-        define_grammar
-        | import_statement
-        | define_class
-        | define_union
-        | define_climb
-        | define_group
-        | define_external
-        | define_inspector
-        | define_function
-        | SEMICOLON;
-
 // =================================================================================================
 import_statement: KW_IMPORT (identifier | string) import_block?;
 import_block:     BRACE_L identifier* BRACE_R;
 // =================================================================================================
-define_grammar: KW_GRAMMAR identifier (COLON parent = identifier)? grammar_block;
-grammar_block:  BRACE_L grammar_item* BRACE_R;
+define_grammar: KW_GRAMMAR identifier (COLON parent = identifier)? dict_block;
 grammar_item:   grammar_pair | SEMICOLON | COMMA;
 grammar_pair:   grammar_key COLON grammar_value;
 grammar_key:    string | identifier;
-grammar_value:  string | namepath | BOOLEAN;
+grammar_value:  dict_block | list_block | string | namepath | BOOLEAN;
+// =================================================================================================
+dict_block: BRACE_L grammar_item* BRACE_R;
+list_block: PARENTHESES_L (grammar_value (COMMA grammar_value)* COMMA?)? PARENTHESES_R;
 // =================================================================================================
 define_class
     : annotation* modifiers KW_CLASS name = identifier class_redict? OP_UNTAG? class_block
     ;
 class_redict: OP_TO cast = identifier;
-class_block: BRACE_L OP_OR? class_expression* BRACE_R;
+class_block:  BRACE_L OP_OR? class_expression* BRACE_R;
 class_expression
     : class_tag                                               # CETag
     | class_expression suffix                                 # CSuffix
@@ -80,32 +78,37 @@ macro_call:  OP_AT namepath tuple_block?;
 tuple_block: PARENTHESES_L (class_expression (COMMA class_expression)* COMMA?)? PARENTHESES_R;
 // =================================================================================================
 suffix
-    : MATCH_OPTIONAL                                          # Optional
-    | MATCH_MANY                               # Many
-    | MATCH_MANY1                              # Many1
-    | BRACE_L INTEGER? BRACE_R                 # Index
-    | BRACE_L INTEGER? COMMA INTEGER? BRACE_R  # Range
+    : MATCH_OPTIONAL                          # Optional
+    | MATCH_MANY                              # Many
+    | MATCH_MANY1                             # Many1
+    | BRACE_L INTEGER? BRACE_R                # Index
+    | BRACE_L INTEGER? COMMA INTEGER? BRACE_R # Range
     ;
 ucc: OP_CATEGORY BRACE_L (UNICODE_ID OP_ASSIGN)? UNICODE_ID BRACE_R;
+
 // =================================================================================================
+
 push: KW_PUSH tuple_block;
-peek: KW_PEEK PARENTHESES_L INTEGER? OP_SLICE? INTEGER? PARENTHESES_R | KW_PEEK PARENTHESES_L OP_PEEK_ALL PARENTHESES_R;
+peek
+    : KW_PEEK PARENTHESES_L INTEGER? OP_SLICE? INTEGER? PARENTHESES_R
+    | KW_PEEK PARENTHESES_L OP_PEEK_ALL PARENTHESES_R
+    ;
 // =================================================================================================
 atomic
     : priority_block # AGroup
-    | macro_call                                          # ACall
-    | string                                              # AString
-    | identifier                                          # AId
-    | KW_DROP                                             # ADrop
-    | KW_PULL                                             # APull
-    | push                                                # APush
-    | peek                                                # APeek
-    | regex                                               # ARe
-    | ucc                                                 # AUcc
-    | INTEGER                                             # AInt
-    | BOOLEAN                                             # ABool
-    | KW_ANY                                              # AAny
-    | ESCAPED                                             # AChar
+    | macro_call     # ACall
+    | string         # AString
+    | identifier     # AId
+    | KW_DROP        # ADrop
+    | KW_PULL        # APull
+    | push           # APush
+    | peek           # APeek
+    | regex          # ARe
+    | ucc            # AUcc
+    | INTEGER        # AInt
+    | BOOLEAN        # ABool
+    | KW_ANY         # AAny
+    | ESCAPED        # AChar
     ;
 priority_block: PARENTHESES_L OP_OR? class_expression PARENTHESES_R;
 

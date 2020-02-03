@@ -29,8 +29,8 @@ class YggdrasilUnionNode(node: CompositeElement) : YggdrasilScopeNode(node), Psi
         YggdrasilParser.getChildrenOfType<YggdrasilIdentifierNode>(this)
     }
 
-    override fun getName(): String? {
-        return nameIdentifier?.text
+    override fun getName(): String {
+        return nameIdentifier?.text ?: ""
     }
 
     override fun setName(name: String): PsiElement {
@@ -71,10 +71,10 @@ class YggdrasilUnionNode(node: CompositeElement) : YggdrasilScopeNode(node), Psi
     }
 
     fun createLookup(list: MutableCollection<LookupElement>) {
-        if (name.isNullOrEmpty()) {
+        if (name.isEmpty()) {
             return
         }
-        val item = LookupElementBuilder.create(name!!).bold()
+        val item = LookupElementBuilder.create(name).bold()
             .withLookupStrings(listOf(name))
             .withTailText(previewText(), true)
             .withIcon(baseIcon)
