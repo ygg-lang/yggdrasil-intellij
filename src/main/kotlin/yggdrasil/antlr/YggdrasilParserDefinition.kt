@@ -32,7 +32,7 @@ class YggdrasilParserDefinition : ParserDefinition {
      * "Tokens of those types are automatically skipped by PsiBuilder."
      */
     override fun getWhitespaceTokens(): TokenSet {
-        return PSIElementTypeFactory.createTokenSet(YggdrasilLanguage, YggdrasilAntlrLexer.WHITE_SPACE)
+        return YggdrasilLanguage.createTokenSet(YggdrasilAntlrLexer.WHITE_SPACE)
     }
 
     override fun getCommentTokens(): TokenSet {

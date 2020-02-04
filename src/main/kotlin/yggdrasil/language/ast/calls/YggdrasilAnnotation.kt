@@ -3,7 +3,6 @@ package yggdrasil.language.ast.calls
 import com.intellij.extapi.psi.ASTWrapperPsiElement
 import com.intellij.psi.impl.source.tree.CompositeElement
 import com.intellij.psi.util.elementType
-import org.antlr.intellij.adaptor.lexer.PSIElementTypeFactory
 import valkyrie.ide.highlight.NodeHighlighter
 import valkyrie.ide.highlight.YggdrasilHighlightElement
 import yggdrasil.antlr.YggdrasilAntlrLexer
@@ -18,8 +17,7 @@ class YggdrasilAnnotation(node: CompositeElement) : ASTWrapperPsiElement(node), 
     }
 
     override fun on_highlight(e: NodeHighlighter) {
-        val dye = PSIElementTypeFactory.createTokenSet(
-            YggdrasilLanguage,
+        val dye = YggdrasilLanguage.createTokenSet(
             YggdrasilAntlrLexer.BRACKET_L,
             YggdrasilAntlrLexer.BRACKET_R,
         )

@@ -4,7 +4,6 @@ import com.intellij.formatting.SpacingBuilder
 import com.intellij.psi.codeStyle.CodeStyleSettings
 import com.intellij.psi.codeStyle.CommonCodeStyleSettings
 import com.intellij.psi.tree.TokenSet
-import org.antlr.intellij.adaptor.lexer.PSIElementTypeFactory.createTokenSet
 import valkyrie.ide.matcher.ValkyrieBracketMatch
 import yggdrasil.antlr.YggdrasilAntlrLexer
 import yggdrasil.antlr.YggdrasilLexer
@@ -37,7 +36,7 @@ private val spaceAroundOperator = TokenSet.orSet(
 )
 
 private val addSpaceAfter = TokenSet.orSet(
-    createTokenSet(YggdrasilLanguage, YggdrasilAntlrLexer.COMMA)
+    YggdrasilLanguage.createTokenSet(YggdrasilAntlrLexer.COMMA)
 )
 
 private val newlineIndentAfter = TokenSet.create()
