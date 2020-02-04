@@ -28,8 +28,8 @@ import yggdrasil.language.ast.calls.YggdrasilAnnotation
 import yggdrasil.language.ast.calls.YggdrasilMacroCall
 import yggdrasil.language.ast.calls.YggdrasilModifiers
 import yggdrasil.language.ast.classes.YggdrasilClassNode
-import yggdrasil.language.ast.classes.YggdrasilGrammarNode
-import yggdrasil.language.ast.external.YggdrasilGrammarPair
+import yggdrasil.language.ast.grammars.YggdrasilGrammarNode
+import yggdrasil.language.ast.grammars.YggdrasilGrammarPair
 import yggdrasil.language.ast.group.YggdrasilGroupItem
 import yggdrasil.language.ast.group.YggdrasilGroupNode
 import yggdrasil.language.ast.group.YggdrasilTagBranch
@@ -134,7 +134,7 @@ private class RuleRewriter(language: Language, parser: Parser?, builder: PsiBuil
     private fun ignoreContext(ctx: ParserRuleContext?): Boolean {
         return when (ctx) {
             is ProgramContext, is Program_itemContext,
-            is Grammar_itemContext,
+            is Grammar_itemContext, is Grammar_valueContext,
             is AtomicContext,
             -> true
 
@@ -149,6 +149,8 @@ private class RuleRewriter(language: Language, parser: Parser?, builder: PsiBuil
             val type: RuleIElementType = node.elementType as RuleIElementType;
             return when (type.ruleIndex) {
                 RULE_define_grammar -> YggdrasilGrammarNode(node)
+                RULE_dict_block -> YggdrasilBlockNode(node, ValkyrieBlockType.Brace)
+                RULE_list_block -> YggdrasilBlockNode(node, ValkyrieBlockType.Parenthesis)
                 RULE_grammar_pair -> YggdrasilGrammarPair(node)
                 // class
                 RULE_define_class -> YggdrasilClassNode(node)

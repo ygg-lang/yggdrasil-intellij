@@ -18,9 +18,8 @@ class YggdrasilFileNode(viewProvider: FileViewProvider) : PsiFileBase(viewProvid
 
     override fun toString(): String = yggdrasil.language.YggdrasilBundle.message("action.create_file")
 
-    val Cache by lazy {
-        YggdrasilFileCache(this)
-    }
+    val definitions = YggdrasilFileCache(this)
+
 
     override fun getOwnDeclarations(): MutableCollection<out PsiSymbolDeclaration> {
 //        val output = mutableListOf<PsiSymbolDeclaration>()

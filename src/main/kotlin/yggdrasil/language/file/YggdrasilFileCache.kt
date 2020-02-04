@@ -24,8 +24,6 @@ class YggdrasilFileCache(root: YggdrasilFileNode) {
                     val name = child.name;
                     _cache[name] = child
                     child.createLookup(completions)
-
-
                 }
 
                 is YggdrasilGroupNode -> {
@@ -38,9 +36,7 @@ class YggdrasilFileCache(root: YggdrasilFileNode) {
         }
     }
 
-    fun find(name: YggdrasilIdentifierNode): PsiNameIdentifierOwner? {
-        return _cache[name.text]
+    fun find(name: YggdrasilIdentifierNode?): PsiNameIdentifierOwner? {
+        return _cache[name?.text]
     }
-
-
 }

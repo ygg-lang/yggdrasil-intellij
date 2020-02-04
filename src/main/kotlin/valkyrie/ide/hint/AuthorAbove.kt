@@ -5,8 +5,7 @@ import com.intellij.openapi.editor.Editor
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import yggdrasil.language.ast.classes.YggdrasilClassNode
-import yggdrasil.language.ast.external.YggdrasilExternalNode
-import yggdrasil.language.ast.external.YggdrasilInspectorNode
+import yggdrasil.language.ast.grammars.YggdrasilGrammarNode
 import yggdrasil.language.ast.unions.YggdrasilClimbStatement
 import yggdrasil.language.ast.unions.YggdrasilUnionNode
 import java.awt.event.MouseEvent
@@ -23,9 +22,7 @@ class AuthorAbove : VcsCodeVisionLanguageContext {
         return element is YggdrasilClassNode
             || element is YggdrasilUnionNode
             || element is YggdrasilClimbStatement
-            || element is YggdrasilExternalNode
-            || element is YggdrasilInspectorNode
-
+            || element is YggdrasilGrammarNode
     }
 
     override fun isCustomFileAccepted(file: PsiFile): Boolean {
