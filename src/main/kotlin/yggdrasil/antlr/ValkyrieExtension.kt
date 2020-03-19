@@ -17,16 +17,6 @@ fun ASTNode?.isWhitespaceOrEmpty(): Boolean {
     return this == null || textLength == 0 || elementType == TokenType.WHITE_SPACE
 }
 
-fun extractExpression(node: CompositeElement): ASTWrapperPsiElement {
-    val infix = node.findPsiChildByType(YggdrasilLexer.OperatorInfix);
-    return if (infix == null) {
-//        println("extractExpression: ${node.elementType} ${node.text}")
-        ASTWrapperPsiElement(node)
-    } else {
-        ValkyrieBinaryExpression(node, infix)
-    }
-}
-
 fun HighlightInfoHolder.register(element: PsiElement?, color: YggdrasilHighlightColor) {
     if (element == null) return
     val builder = HighlightInfo.newHighlightInfo(HighlightInfoType.INFORMATION)
