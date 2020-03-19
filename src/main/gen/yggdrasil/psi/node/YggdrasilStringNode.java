@@ -8,10 +8,9 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static yggdrasil.psi.YggdrasilTypes.*;
-import yggdrasil.psi.YggdrasilElement;
-import yggdrasil.psi.*;
+import yggdrasil.psi.mixin.MixinString;
 
-public class YggdrasilStringNode extends YggdrasilElement implements YggdrasilString {
+public class YggdrasilStringNode extends MixinString implements YggdrasilString {
 
   public YggdrasilStringNode(@NotNull ASTNode node) {
     super(node);

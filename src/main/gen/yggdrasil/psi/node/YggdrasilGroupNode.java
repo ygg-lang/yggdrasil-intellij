@@ -8,16 +8,16 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static yggdrasil.psi.YggdrasilTypes.*;
-import yggdrasil.psi.YggdrasilElement;
+import yggdrasil.psi.mixin.MixinUnion;
 
-public class YggdrasilSemanticNumberNode extends YggdrasilElement implements YggdrasilSemanticNumber {
+public class YggdrasilGroupNode extends MixinUnion implements YggdrasilGroup {
 
-  public YggdrasilSemanticNumberNode(@NotNull ASTNode node) {
+  public YggdrasilGroupNode(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull YggdrasilVisitor visitor) {
-    visitor.visitSemanticNumber(this);
+    visitor.visitGroup(this);
   }
 
   @Override

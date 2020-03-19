@@ -7,7 +7,7 @@ import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import com.intellij.psi.util.PsiTreeUtil
-import yggdrasil.language.ast.classes.YggdrasilClassNode
+import yggdrasil.psi.node.YggdrasilClassNode
 
 //import nexus.language.psi_node.ValkyrieClassStatementNode
 //import nexus.language.psi_node.ValkyrieTraitStatementNode

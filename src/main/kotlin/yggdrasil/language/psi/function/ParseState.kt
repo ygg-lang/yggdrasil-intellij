@@ -1,9 +1,9 @@
 package yggdrasil.language.psi.function
 
 import com.intellij.execution.processTools.mapFlat
+import org.junit.Test
 import yggdrasil.language.psi.function.exceptions.MismatchCharacter
 import yggdrasil.language.psi.function.exceptions.MismatchString
-import org.junit.Test
 
 
 @Suppress("FunctionName", "PropertyName")

@@ -12,6 +12,7 @@ object YggdrasilLanguage : Language(LANGUAGE_ID) {
     override fun getID(): String {
         return LANGUAGE_ID
     }
+
     override fun getDisplayName(): String {
         return "Yggdrasil"
     }
@@ -19,6 +20,7 @@ object YggdrasilLanguage : Language(LANGUAGE_ID) {
     override fun getAssociatedFileType(): LanguageFileType? {
         return super.getAssociatedFileType()
     }
+
     override fun getMimeTypes(): Array<String> {
         return arrayOf("text/x-yggdrasil")
     }

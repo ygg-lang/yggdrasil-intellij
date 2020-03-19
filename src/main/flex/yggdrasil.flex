@@ -29,7 +29,9 @@ COMMENT_LINE     = [/]{2}[^\r\n]*
 COMMENT_BLOCK    = [/][*][^*]*[*]+([^/*][^*]*[*]+)*[/]
 
 SYMBOL=[\p{XID_Start}_][\p{XID_Continue}_]*
-BOOLEAN = true|false
+KW_BOOLEAN = true|false
+KW_ANY = any
+ESCAPED = \\.
 
 KW_GRAMMAR = grammar
 KW_GROUP = group
@@ -80,7 +82,10 @@ KW_MACRO = macro
     {KW_IMPORT} { return KW_IMPORT; }
     {KW_AS} { return KW_AS; }
     {KW_MACRO} { return KW_MACRO; }
-    {BOOLEAN} { return BOOLEAN; }
+    {KW_BOOLEAN} { return KW_BOOLEAN; }
+    {KW_ANY} { return KW_ANY; }
+
+    {ESCAPED} { return ESCAPED; }
     {SYMBOL}  { return SYMBOL; }
 }
 // =====================================================================================================================

@@ -6,7 +6,7 @@
 
     psiClassPrefix = "Yggdrasil"
     psiImplClassSuffix = "Node"
-    psiPackage = "yggdrasil.psi"
+    psiPackage = "yggdrasil.psi.node"
     psiImplPackage = "yggdrasil.psi.node"
 
     elementTypeHolderClass = "yggdrasil.psi.YggdrasilTypes"
@@ -23,13 +23,18 @@
         // literal
         URL = "Url"
         SYMBOL    = "Symbol"
+        ESCAPED   = "\escaped"
+        KW_BOOLEAN = "true|false"
+        KW_ANY = "any"
+
         REFERENCE = "$Symbol"
+
         STRING_QUOTE = "String Quote"
         STRING_CHAR = "String Character"
         STRING_ESCAPE = "String Escaped"
         SELECTION_LINE = "SELECTION_LINE"
 
-        BOOLEAN = "true|false"
+
         KW_GRAMMAR = "grammar"
         KW_GROUP = "group"
         KW_CLASS = "class"
@@ -70,16 +75,16 @@
 // https://github.com/bytecodealliance/fluent/blob/master/spec/fluent.ebnf
 wit ::= statements*
 private statements ::=
-    package
+    grammar
   | world
   | include
   | interface
   | SEMICOLON
 
 // package wasi:blobstore@0.2.0-draft;
-package ::= KW_PACKAGE package-name {
+grammar ::= KW_GRAMMAR identifier BRACE_L BRACE_R {
 	pin = 1
-    mixin = "yggdrasil.psi.mixin.MixinPackage"
+    mixin = "yggdrasil.psi.mixin.MixinGrammar"
 }
 
 
@@ -91,12 +96,25 @@ union  ::= KW_UNION SYMBOL {
     pin = 1
     mixin = "yggdrasil.psi.mixin.MixinUnion"
 }
-
+group  ::= KW_GROUP SYMBOL {
+    pin = 1
+    mixin = "yggdrasil.psi.mixin.MixinUnion"
+}
 regex ::= SYMBOL {
 
 }
-string ::= SYMBOL {
 
+pair ::= key COLON value;
+key ::= identifier;
+
+value ::= identifier | ESCAPED;
+
+
+number ::= SYMBOL {
+//    mixin = "yggdrasil.psi.mixin.MixinNumber"
+}
+string ::= SYMBOL {
+    mixin = "yggdrasil.psi.mixin.MixinString"
 }
 
 
@@ -108,4 +126,5 @@ module-name         ::= SYMBOL | ESCAPED;
 interface-name      ::= SYMBOL | ESCAPED;
 alias-name          ::= SYMBOL | ESCAPED;
 semantic-number     ::= SYMBOL | ESCAPED;
-identifier          ::= SYMBOL | ESCAPED;
+
+identifier          ::= SYMBOL;

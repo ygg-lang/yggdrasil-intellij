@@ -7,14 +7,13 @@ import com.intellij.navigation.ItemPresentation
 import com.intellij.psi.NavigatablePsiElement
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNameIdentifierOwner
-import yggdrasil.psi.node.YggdrasilClass
 import yggdrasil.psi.YggdrasilElement
+import yggdrasil.psi.node.YggdrasilUnion
 
-
-abstract class MixinClass(node: ASTNode) : YggdrasilElement(node),
+abstract class MixinUnion(node: ASTNode) : YggdrasilElement(node),
     NavigatablePsiElement,
     PsiNameIdentifierOwner,
-    YggdrasilClass {
+    YggdrasilUnion {
     override fun setName(name: String): PsiElement {
         TODO("Not yet implemented")
     }
@@ -27,4 +26,5 @@ abstract class MixinClass(node: ASTNode) : YggdrasilElement(node),
         return PresentationData("YggdrasilClass", "YggdrasilClass", AllIcons.Nodes.Class, null)
     }
 }
+
 

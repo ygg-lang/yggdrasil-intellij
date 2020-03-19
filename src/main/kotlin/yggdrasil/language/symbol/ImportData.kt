@@ -9,7 +9,7 @@ import com.intellij.model.psi.PsiCompletableReference
 import com.intellij.model.psi.PsiSymbolDeclaration
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
-import yggdrasil.language.ast.YggdrasilIdentifierNode
+import yggdrasil.psi.node.YggdrasilIdentifierNode
 
 
 class ImportData : Symbol, Pointer<ImportData>, PsiSymbolDeclaration, PsiCompletableReference {

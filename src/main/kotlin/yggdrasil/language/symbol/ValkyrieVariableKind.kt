@@ -1,7 +1,7 @@
 package yggdrasil.language.symbol
 
-import yggdrasil.language.ast.YggdrasilIdentifierNode
 import valkyrie.ide.highlight.YggdrasilHighlightColor
+import yggdrasil.psi.node.YggdrasilIdentifierNode
 
 data class ValkyrieVariableKind(
     val identifier: YggdrasilIdentifierNode,

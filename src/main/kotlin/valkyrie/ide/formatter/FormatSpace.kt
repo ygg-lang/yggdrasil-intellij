@@ -4,17 +4,15 @@ import com.intellij.formatting.SpacingBuilder
 import com.intellij.psi.codeStyle.CodeStyleSettings
 import com.intellij.psi.codeStyle.CommonCodeStyleSettings
 import com.intellij.psi.tree.TokenSet
-import valkyrie.ide.matcher.ValkyrieBracketMatch
-import yggdrasil.antlr.YggdrasilAntlrLexer
-import yggdrasil.antlr.YggdrasilLexer
 import yggdrasil.language.YggdrasilLanguage
+import yggdrasil.psi.ParserExtension
 
 
 private val removeSpaceBefore = TokenSet.orSet(
 //    createTokenSet(YggdrasilLanguage),
-    ValkyrieBracketMatch.Instance.Right,
+//    ValkyrieBracketMatch.Instance.Right,
 
-    )
+)
 
 private val removeSpaceNewlineBefore = TokenSet.orSet(
 //    createTokenSet(YggdrasilLanguage)
@@ -32,11 +30,11 @@ private val removeSpaceNewlineAfter = TokenSet.orSet(
 // 左右插入一个空格
 private val spaceAroundOperator = TokenSet.orSet(
 //    createTokenSet(YggdrasilLanguage),
-    YggdrasilLexer.OperatorInfix
+    ParserExtension.OperatorInfix
 )
 
 private val addSpaceAfter = TokenSet.orSet(
-    YggdrasilLanguage.createTokenSet(YggdrasilAntlrLexer.COMMA)
+//    YggdrasilLanguage.createTokenSet(ParserExtension.COMMA)
 )
 
 private val newlineIndentAfter = TokenSet.create()

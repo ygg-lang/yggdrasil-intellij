@@ -3,58 +3,58 @@
 	<name>Yggdrasil Language</name>
 	<vendor>voml</vendor>
 	<depends>com.intellij.modules.platform</depends>
-	<depends optional="true" config-file="plugin-with-rust.xml">com.jetbrains.rust</depends>
+<!--	<depends optional="true" config-file="plugin-with-rust.xml">com.jetbrains.rust</depends>-->
 	<depends optional="true" config-file="plugin-with-markdown.xml">org.intellij.plugins.markdown</depends>
 	<resource-bundle>messages.YggdrasilBundle</resource-bundle>
 	<extensions defaultExtensionNs="com.intellij">
 		<fileType
 			name="Yggdrasil"
-			language="Yggdrasil"
+			language="yggdrasil"
 			extensions="ygg;yggdrasil;"
 			implementationClass="yggdrasil.language.file.YggdrasilFileType"
 			fieldName="INSTANCE"/>
 		<lang.parserDefinition
-			language="Yggdrasil"
-			implementationClass="yggdrasil.antlr.YggdrasilParserDefinition"/>
+			language="yggdrasil"
+			implementationClass="yggdrasil.psi.ParserDefinition"/>
 		<multiHostInjector implementation="valkyrie.ide.matcher.LanguageInjector"/>
 		<!-- Project Namespace -->
 		<iconProvider implementation="yggdrasil.language.file.YggdrasilIconProvider"/>
 		<!--		<lang.structureViewExtension implementation="valkyrie.ide.view.VStructureViewExtension"/>-->
 		<lang.psiStructureViewFactory
-			language="Yggdrasil"
+			language="yggdrasil"
 			implementationClass="valkyrie.ide.view.YggdrasilStructureView"/>
 
 		<!-- Highlight -->
 		<colorSettingsPage implementation="valkyrie.ide.highlight.HighlightSetting"/>
 		<highlightVisitor implementation="valkyrie.ide.highlight.NexusHighlighterVisitor"/>
 		<lang.syntaxHighlighter
-			language="Yggdrasil"
+			language="yggdrasil"
 			implementationClass="valkyrie.ide.highlight.TokenHighlighter"
 		/>
 		<!-- Formatter -->
-		<lang.formatter language="Yggdrasil" implementationClass="valkyrie.ide.formatter.FormatBuilder"/>
+		<lang.formatter language="yggdrasil" implementationClass="valkyrie.ide.formatter.FormatBuilder"/>
 		<langCodeStyleSettingsProvider implementation="yggdrasil.settings.YggdrasilCodeStyleSettings"/>
 		<!-- Goto -->
 		<symbolNavigation
 			forClass="yggdrasil.language.symbol.ValkyrieSymbolTemplate"
 			implementationClass="valkyrie.ide.goto.VSymbolNavigationProvider"/>
-		<codeInsight.gotoSuper language="Yggdrasil" implementationClass="valkyrie.ide.navigation.GotoSuper"/>
+		<codeInsight.gotoSuper language="yggdrasil" implementationClass="valkyrie.ide.navigation.GotoSuper"/>
 		<importFilteringRule implementation="valkyrie.ide.navigation.ValkyrieImportFilter"/>
 		<usageFilteringRuleProvider implementation="valkyrie.ide.navigation.usageFiltering"/>
 		<!-- Hint -->
-		<codeInsight.parameterInfo language="Yggdrasil" implementationClass="valkyrie.ide.hint.ParameterInfoHint"/>
-		<codeInsight.parameterNameHints language="Yggdrasil"
+		<codeInsight.parameterInfo language="yggdrasil" implementationClass="valkyrie.ide.hint.ParameterInfoHint"/>
+		<codeInsight.parameterNameHints language="yggdrasil"
 		                                implementationClass="valkyrie.ide.hint.ParameterInlayProvider"/>
 		<codeInsight.lineMarkerProvider
-			language="Yggdrasil"
+			language="yggdrasil"
 			implementationClass="valkyrie.ide.hint.ValkyrieLineMarkerProvider"/>
 		<vcs.codeVisionLanguageContext
-			language="Yggdrasil"
+			language="yggdrasil"
 			implementationClass="valkyrie.ide.hint.AuthorAbove"/>
 
 		<!--		<psi.fileReferenceHelper implementation="valkyrie.ide.reference.ValkyrieFileReference"/>-->
 		<psi.referenceContributor
-			language="Yggdrasil"
+			language="yggdrasil"
 			implementation="valkyrie.ide.reference.ValkyrieReferenceContributor"/>
 		<!--		<psi.referenceProvider language="Valkyrie" providerClass="valkyrie.ide.reference.ValkyrieReferenceProvider"/>-->
 		<!--		<psi.symbolReferenceProvider-->
@@ -64,35 +64,35 @@
 		<!--			hostElementClass="com.intellij.psi.xml.XmlAttributeValue"-->
 		<!--			targetClass="valkyrie.language.symbol.ValkyrieSymbolTemplate"/>-->
 		<!-- Lint -->
-		<lang.namesValidator language="Yggdrasil" implementationClass="valkyrie.ide.lint.ValkyrieNameValidator"/>
+		<lang.namesValidator language="yggdrasil" implementationClass="valkyrie.ide.lint.ValkyrieNameValidator"/>
 		<!-- Completion -->
 		<typedHandler implementation="valkyrie.ide.completion.AutoInsertBrace"/>
 		<backspaceHandlerDelegate implementation="valkyrie.ide.completion.AutoDeleteBrace"/>
 		<!--		<lookup.charFilter implementation="valkyrie.ide.completion.CompletionInterrupter"/>-->
-		<lang.commenter language="Yggdrasil" implementationClass="valkyrie.ide.formatter.YggdrasilCommenter"/>
+		<lang.commenter language="yggdrasil" implementationClass="valkyrie.ide.formatter.YggdrasilCommenter"/>
 		<lang.braceMatcher
-			language="Yggdrasil"
+			language="yggdrasil"
 			implementationClass="valkyrie.ide.matcher.BraceMatchAdapter"/>
 		<lang.quoteHandler
-			language="Yggdrasil"
+			language="yggdrasil"
 			implementationClass="valkyrie.ide.matcher.ValkyrieQuoteHandler"/>
 		<codeCompletionConfigurable instance="valkyrie.ide.completion.CompletionConfig"/>
 		<completion.contributor
-			language="Yggdrasil"
+			language="yggdrasil"
 			implementationClass="valkyrie.ide.completion.CompletionRegistrar"/>
 		<nameSuggestionProvider implementation="valkyrie.ide.completion.CompletionSuggestion"/>
 		<lang.foldingBuilder
-			language="Yggdrasil"
+			language="yggdrasil"
 			implementationClass="valkyrie.ide.folding.ValkyrieFoldingBuilder"/>
-		<codeBlockProvider language="Yggdrasil" implementationClass="valkyrie.ide.matcher.ValkyrieCodeBlockProvider"/>
+		<codeBlockProvider language="yggdrasil" implementationClass="valkyrie.ide.matcher.ValkyrieCodeBlockProvider"/>
 		<codeFoldingOptionsProvider instance="valkyrie.ide.folding.ValkyrieFoldingOptions"/>
 		<referenceImporter implementation="valkyrie.ide.completion.ValkyrieImportInsert"/>
 		<lang.importOptimizer
-			language="Yggdrasil"
+			language="yggdrasil"
 			implementationClass="valkyrie.ide.completion.ValkyrieImportOptimizer"/>
 		<!-- Document -->
 		<lang.documentationProvider
-			language="Yggdrasil"
+			language="yggdrasil"
 			implementationClass="valkyrie.ide.doc.DocumentationProvider"/>
 	</extensions>
 	<actions>

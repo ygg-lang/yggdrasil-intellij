@@ -5,10 +5,9 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNameIdentifierOwner
 import com.intellij.psi.PsiReferenceBase
 import valkyrie.ide.highlight.YggdrasilHighlightColor
-import yggdrasil.language.ast.YggdrasilIdentifierNode
-import yggdrasil.language.ast.classes.YggdrasilClassNode
-import yggdrasil.language.ast.group.YggdrasilGroupItem
-import yggdrasil.language.ast.unions.YggdrasilUnionNode
+import yggdrasil.psi.node.YggdrasilClassNode
+import yggdrasil.psi.node.YggdrasilIdentifierNode
+import yggdrasil.psi.node.YggdrasilUnionNode
 
 open class ValkyrieReference(element: YggdrasilIdentifierNode, private val definition: PsiNameIdentifierOwner) :
     PsiReferenceBase<YggdrasilIdentifierNode>(element, TextRange(0, element.text.length)) {
@@ -26,7 +25,8 @@ open class ValkyrieReference(element: YggdrasilIdentifierNode, private val defin
      */
 
     override fun handleElementRename(newElementName: String): PsiElement {
-        return myElement!!.setName(newElementName)
+//        return myElement!!.setName(newElementName)
+        throw UnsupportedOperationException("not implemented")
     }
 
     /** Resolve a reference to the definition subtree (subclass of
@@ -43,12 +43,13 @@ open class ValkyrieReference(element: YggdrasilIdentifierNode, private val defin
             is YggdrasilClassNode -> {
                 YggdrasilHighlightColor.RULE_CLASS
             }
+
             is YggdrasilUnionNode -> {
                 YggdrasilHighlightColor.RULE_UNION
             }
-            is YggdrasilGroupItem -> {
-                YggdrasilHighlightColor.SYM_CONSTANT
-            }
+//            is YggdrasilGroupItem -> {
+//                YggdrasilHighlightColor.SYM_CONSTANT
+//            }
             else -> {
                 null
             }

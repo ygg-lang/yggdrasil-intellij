@@ -10,14 +10,14 @@ import com.intellij.psi.util.PsiTreeUtil;
 import static yggdrasil.psi.YggdrasilTypes.*;
 import yggdrasil.psi.YggdrasilElement;
 
-public class YggdrasilSemanticNumberNode extends YggdrasilElement implements YggdrasilSemanticNumber {
+public class YggdrasilNumberNode extends YggdrasilElement implements YggdrasilNumber {
 
-  public YggdrasilSemanticNumberNode(@NotNull ASTNode node) {
+  public YggdrasilNumberNode(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull YggdrasilVisitor visitor) {
-    visitor.visitSemanticNumber(this);
+    visitor.visitNumber(this);
   }
 
   @Override

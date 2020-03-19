@@ -6,8 +6,7 @@ import com.intellij.openapi.util.TextRange
 import com.intellij.psi.*
 import com.intellij.psi.util.PsiTreeUtil
 import com.intellij.psi.util.elementType
-import yggdrasil.antlr.YggdrasilLexer
-import yggdrasil.language.ast.ValkyrieCommentDocument
+import yggdrasil.psi.ParserExtension
 import java.net.ConnectException
 import java.util.function.Consumer
 
@@ -40,9 +39,9 @@ class DocumentationProvider : DocumentationProvider {
     }
 
     override fun generateRenderedDoc(comment: PsiDocCommentBase): String? {
-        if (comment is ValkyrieCommentDocument) {
-            return comment.render()
-        }
+//        if (comment is ValkyrieCommentDocument) {
+//            return comment.render()
+//        }
         return null
     }
 
@@ -63,8 +62,8 @@ class DocumentationProvider : DocumentationProvider {
 
     override fun getCustomDocumentationElement(editor: Editor, file: PsiFile, contextElement: PsiElement?, targetOffset: Int): PsiElement? {
         return when {
-            YggdrasilLexer.Keywords.contains(contextElement.elementType) -> contextElement
-            YggdrasilLexer.Operators.contains(contextElement.elementType) -> contextElement
+            ParserExtension.Keywords.contains(contextElement.elementType) -> contextElement
+            ParserExtension.Operators.contains(contextElement.elementType) -> contextElement
             contextElement.elementType == TokenType.WHITE_SPACE -> null
             else -> null
         }

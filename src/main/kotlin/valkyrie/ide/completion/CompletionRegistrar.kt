@@ -7,10 +7,10 @@ import com.intellij.openapi.progress.ProgressManager
 import com.intellij.psi.util.elementType
 import com.intellij.psi.util.parents
 import com.intellij.util.ProcessingContext
-import yggdrasil.antlr.YggdrasilLexer
-import yggdrasil.language.ast.classes.YggdrasilClassNode
-import yggdrasil.language.ast.unions.YggdrasilUnionNode
 import yggdrasil.language.file.YggdrasilFileNode
+import yggdrasil.psi.ParserExtension
+import yggdrasil.psi.node.YggdrasilClassNode
+import yggdrasil.psi.node.YggdrasilUnionNode
 
 
 class CompletionRegistrar : CompletionContributor() {
@@ -28,7 +28,7 @@ class CompletionRegistrar : CompletionContributor() {
         ProgressManager.checkCanceled()
         val context = ProcessingContext()
         val element = parameters.originalPosition ?: return
-        if (YggdrasilLexer.CompletionWords.contains(element.elementType)) {
+        if (ParserExtension.CompletionWords.contains(element.elementType)) {
             for (node in element.parents(false)) {
                 if (result.isStopped) {
                     return
