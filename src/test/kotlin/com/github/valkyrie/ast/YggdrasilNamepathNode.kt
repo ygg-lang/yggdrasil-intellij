@@ -4,8 +4,6 @@ import com.intellij.extapi.psi.ASTWrapperPsiElement
 import com.intellij.psi.PsiElement
 import com.intellij.psi.impl.source.tree.CompositeElement
 import com.intellij.psi.util.PsiTreeUtil
-import valkyrie.ide.highlight.NodeHighlighter
-import valkyrie.ide.highlight.YggdrasilHighlightElement
 
 
 class YggdrasilNamepathNode(node: CompositeElement) : ASTWrapperPsiElement(node),

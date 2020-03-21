@@ -10,7 +10,7 @@ import java.util.function.Supplier
 import com.intellij.openapi.editor.DefaultLanguageHighlighterColors as Default
 
 
-enum class YggdrasilHighlightColor(humanName: Supplier<@AttributeDescriptor String>, default: TextAttributesKey? = null) {
+enum class HighlightColor(humanName: Supplier<@AttributeDescriptor String>, default: TextAttributesKey? = null) {
     // 特殊关键词
     KEYWORD(OptionsBundle.messagePointer("options.language.defaults.keyword"), Default.KEYWORD),
     MODIFIER(YggdrasilBundle.messagePointer("valkyrie.highlight.modifier"), Default.KEYWORD),

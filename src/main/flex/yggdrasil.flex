@@ -28,7 +28,11 @@ WHITE_SPACE      = [\s\t]
 COMMENT_LINE     = [/]{2}[^\r\n]*
 COMMENT_BLOCK    = [/][*][^*]*[*]+([^/*][^*]*[*]+)*[/]
 
+
+INTEGER = [0-9]+
+
 SYMBOL=[\p{XID_Start}_][\p{XID_Continue}_]*
+SYMBOW_RAW = `[^`]*`
 KW_BOOLEAN = true|false
 KW_ANY = any
 ESCAPED = \\.
@@ -62,6 +66,8 @@ KW_MACRO = macro
 	"<" { return ANGLE_L; }
 	">" { return ANGLE_R; }
     "->" { return TO; }
+    "|" { return OP_OR;}
+    "~" { return OP_CONCAT;}
 	"^" { return ACCENT; }
 	":" { return COLON; }
 	";" { return SEMICOLON; }
@@ -73,6 +79,11 @@ KW_MACRO = macro
 	"-" { return HYPHEN; }
 	"=" { return EQ; }
 }
+
+<YYINITIAL> {
+    {INTEGER} { return INTEGER; }
+}
+
 <YYINITIAL> {
     {KW_GRAMMAR} { return KW_GRAMMAR; }
     {KW_GROUP} { return KW_GROUP; }
@@ -86,6 +97,7 @@ KW_MACRO = macro
     {KW_ANY} { return KW_ANY; }
 
     {ESCAPED} { return ESCAPED; }
+    {SYMBOW_RAW} { return SYMBOL; }
     {SYMBOL}  { return SYMBOL; }
 }
 // =====================================================================================================================

@@ -26,7 +26,7 @@
 
 		<!-- Highlight -->
 		<colorSettingsPage implementation="valkyrie.ide.highlight.HighlightSetting"/>
-		<highlightVisitor implementation="valkyrie.ide.highlight.NexusHighlighterVisitor"/>
+		<highlightVisitor implementation="valkyrie.ide.highlight.NodeHighlighter"/>
 		<lang.syntaxHighlighter
 			language="yggdrasil"
 			implementationClass="valkyrie.ide.highlight.TokenHighlighter"

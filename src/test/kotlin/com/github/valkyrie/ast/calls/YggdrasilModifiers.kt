@@ -2,8 +2,6 @@ package yggdrasil.language.ast.calls
 
 import com.intellij.extapi.psi.ASTWrapperPsiElement
 import com.intellij.psi.impl.source.tree.CompositeElement
-import valkyrie.ide.highlight.NodeHighlighter
-import valkyrie.ide.highlight.YggdrasilHighlightElement
 import yggdrasil.language.ast.YggdrasilIdentifierNode
 import yggdrasil.language.ast.YggdrasilNamepathNode
 

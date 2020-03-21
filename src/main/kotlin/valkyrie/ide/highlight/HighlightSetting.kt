@@ -5,11 +5,11 @@ import com.intellij.openapi.options.colors.ColorSettingsPage
 import yggdrasil.language.file.YggdrasilIconProvider
 
 class HighlightSetting : ColorSettingsPage {
-    private val annotatorTags = YggdrasilHighlightColor
+    private val annotatorTags = HighlightColor
         .values()
         .associateBy({ it.name }, { it.textAttributesKey })
 
-    override fun getAttributeDescriptors() = YggdrasilHighlightColor
+    override fun getAttributeDescriptors() = HighlightColor
         .values()
         .map { it.attributesDescriptor }
         .toTypedArray()

@@ -2,9 +2,7 @@ package yggdrasil.language.ast.unions
 
 import com.intellij.extapi.psi.ASTWrapperPsiElement
 import com.intellij.psi.impl.source.tree.CompositeElement
-import valkyrie.ide.highlight.YggdrasilHighlightColor
-import valkyrie.ide.highlight.YggdrasilHighlightElement
-import valkyrie.ide.highlight.NodeHighlighter
+import valkyrie.ide.highlight.HighlightColor
 import yggdrasil.language.ast.YggdrasilIdentifierNode
 
 
@@ -12,7 +10,7 @@ class YggdrasilClimbStatement(node: CompositeElement) : ASTWrapperPsiElement(nod
     val key by lazy { YggdrasilIdentifierNode.find(this) }
 
     override fun on_highlight(e: NodeHighlighter) {
-        e.register(key, YggdrasilHighlightColor.TAG_BRANCH)
+        e.register(key, HighlightColor.TAG_BRANCH)
     }
 
 

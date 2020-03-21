@@ -4,9 +4,7 @@ import com.intellij.icons.AllIcons
 import com.intellij.ide.projectView.PresentationData
 import com.intellij.navigation.ItemPresentation
 import com.intellij.psi.impl.source.tree.CompositeElement
-import valkyrie.ide.highlight.NodeHighlighter
-import valkyrie.ide.highlight.YggdrasilHighlightColor
-import valkyrie.ide.highlight.YggdrasilHighlightElement
+import valkyrie.ide.highlight.HighlightColor
 import yggdrasil.language.ast.YggdrasilIdentifierNode
 import yggdrasil.language.psi.YggdrasilScopeNode
 import javax.swing.Icon
@@ -16,7 +14,7 @@ class YggdrasilMatchStatement(node: CompositeElement) : YggdrasilScopeNode(node)
     override fun on_highlight(e: NodeHighlighter) {
         if (bind != null) {
             // maybe mutable
-            e.register(bind, YggdrasilHighlightColor.SYM_LOCAL)
+            e.register(bind, HighlightColor.SYM_LOCAL)
         }
     }
 

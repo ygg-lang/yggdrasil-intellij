@@ -4,9 +4,7 @@ import com.intellij.extapi.psi.ASTWrapperPsiElement
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNameIdentifierOwner
 import com.intellij.psi.impl.source.tree.CompositeElement
-import valkyrie.ide.highlight.NodeHighlighter
-import valkyrie.ide.highlight.YggdrasilHighlightColor
-import valkyrie.ide.highlight.YggdrasilHighlightElement
+import valkyrie.ide.highlight.HighlightColor
 import yggdrasil.language.ast.YggdrasilIdentifierNode
 import javax.swing.Icon
 
@@ -33,7 +31,7 @@ class YggdrasilTagNode(node: CompositeElement) : ASTWrapperPsiElement(node), Psi
 
     override fun on_highlight(e: NodeHighlighter) {
         if (nameIdentifier != null) {
-            e.register(nameIdentifier, YggdrasilHighlightColor.TAG_NODE)
+            e.register(nameIdentifier, HighlightColor.TAG_NODE)
         }
     }
 }

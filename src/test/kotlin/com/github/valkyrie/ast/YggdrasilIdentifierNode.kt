@@ -5,9 +5,7 @@ import com.intellij.lang.ASTNode
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNamedElement
 import com.intellij.psi.util.PsiTreeUtil
-import valkyrie.ide.highlight.NodeHighlighter
-import valkyrie.ide.highlight.YggdrasilHighlightColor
-import valkyrie.ide.highlight.YggdrasilHighlightElement
+import valkyrie.ide.highlight.HighlightColor
 import valkyrie.ide.reference.declaration.ValkyrieReference
 import yggdrasil.language.ast.classes.YggdrasilClassNode
 import yggdrasil.language.ast.grammars.YggdrasilGrammarNode
@@ -68,14 +66,14 @@ class YggdrasilIdentifierNode(node: ASTNode) : ASTWrapperPsiElement(node), PsiNa
     override fun on_highlight(e: NodeHighlighter) {
         when (this.text) {
             "HIDE", "ANY",
-            -> e.register(this, YggdrasilHighlightColor.KEYWORD)
+            -> e.register(this, HighlightColor.KEYWORD)
 
             "SOI", "START_OF_INPUT",
             "EOI", "END_OF_INPUT",
             "EOF", "END_OF_FILE",
             "EOL", "END_OF_LINE",
             "ROL", "REST_OF_LINE",
-            -> e.register(this, YggdrasilHighlightColor.SYM_CONSTANT)
+            -> e.register(this, HighlightColor.SYM_CONSTANT)
 
             else -> {
                 e.register(this, this.reference?.highlight())

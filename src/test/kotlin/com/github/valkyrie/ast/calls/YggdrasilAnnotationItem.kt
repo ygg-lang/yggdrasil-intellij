@@ -4,8 +4,6 @@ import com.intellij.extapi.psi.ASTWrapperPsiElement
 import com.intellij.psi.impl.source.tree.CompositeElement
 import yggdrasil.antlr.childrenWithLeaves
 import yggdrasil.language.ast.YggdrasilNamepathNode
-import valkyrie.ide.highlight.YggdrasilHighlightElement
-import valkyrie.ide.highlight.NodeHighlighter
 
 class YggdrasilAnnotationItem(node: CompositeElement) : ASTWrapperPsiElement(node), YggdrasilHighlightElement {
     override fun on_highlight(e: NodeHighlighter) {

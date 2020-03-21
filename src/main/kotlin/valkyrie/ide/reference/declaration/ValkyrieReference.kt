@@ -4,7 +4,7 @@ import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNameIdentifierOwner
 import com.intellij.psi.PsiReferenceBase
-import valkyrie.ide.highlight.YggdrasilHighlightColor
+import valkyrie.ide.highlight.HighlightColor
 import yggdrasil.psi.node.YggdrasilClassNode
 import yggdrasil.psi.node.YggdrasilIdentifierNode
 import yggdrasil.psi.node.YggdrasilUnionNode
@@ -38,14 +38,14 @@ open class ValkyrieReference(element: YggdrasilIdentifierNode, private val defin
     }
 
 
-    fun highlight(): YggdrasilHighlightColor? =
+    fun highlight(): HighlightColor? =
         when (definition) {
             is YggdrasilClassNode -> {
-                YggdrasilHighlightColor.RULE_CLASS
+                HighlightColor.RULE_CLASS
             }
 
             is YggdrasilUnionNode -> {
-                YggdrasilHighlightColor.RULE_UNION
+                HighlightColor.RULE_UNION
             }
 //            is YggdrasilGroupItem -> {
 //                YggdrasilHighlightColor.SYM_CONSTANT

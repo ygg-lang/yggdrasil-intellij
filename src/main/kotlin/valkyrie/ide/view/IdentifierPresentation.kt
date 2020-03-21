@@ -2,7 +2,7 @@ package valkyrie.ide.view
 
 import com.intellij.navigation.ColoredItemPresentation
 import com.intellij.openapi.editor.colors.TextAttributesKey
-import valkyrie.ide.highlight.YggdrasilHighlightColor
+import valkyrie.ide.highlight.HighlightColor
 import yggdrasil.psi.node.YggdrasilIdentifierNode
 import javax.swing.Icon
 
@@ -16,7 +16,7 @@ class IdentifierPresentation(val name: YggdrasilIdentifierNode?, private val ico
     }
 
     override fun getTextAttributesKey(): TextAttributesKey {
-        return YggdrasilHighlightColor.IDENTIFIER.textAttributesKey
+        return HighlightColor.IDENTIFIER.textAttributesKey
     }
 
 }

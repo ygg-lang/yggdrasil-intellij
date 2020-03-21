@@ -7,9 +7,7 @@ import com.intellij.icons.AllIcons
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNameIdentifierOwner
 import com.intellij.psi.impl.source.tree.CompositeElement
-import valkyrie.ide.highlight.NodeHighlighter
-import valkyrie.ide.highlight.YggdrasilHighlightColor
-import valkyrie.ide.highlight.YggdrasilHighlightElement
+import valkyrie.ide.highlight.HighlightColor
 import yggdrasil.antlr.YggdrasilAntlrParser
 import yggdrasil.language.ast.YggdrasilIdentifierNode
 import javax.swing.Icon
@@ -37,7 +35,7 @@ class YggdrasilGroupItem : ASTWrapperPsiElement, PsiNameIdentifierOwner, Yggdras
 
     override fun on_highlight(e: NodeHighlighter) {
         if (nameIdentifier != null) {
-            e.register(nameIdentifier, YggdrasilHighlightColor.SYM_CONSTANT)
+            e.register(nameIdentifier, HighlightColor.SYM_CONSTANT)
         }
     }
 

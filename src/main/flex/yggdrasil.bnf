@@ -25,7 +25,8 @@
         SYMBOL    = "Symbol"
         ESCAPED   = "\escaped"
         KW_BOOLEAN = "true|false"
-        KW_ANY = "any"
+        KW_ANY = "<<ANY>>"
+        INTEGER = "<<INTEGER>>"
 
         REFERENCE = "$Symbol"
 
@@ -65,6 +66,8 @@
         TO = "->"
         HYPHEN = "-"
         SLASH = '/'
+        OP_OR = '|'
+        OP_CONCAT = '~'
         PLACE_HOLDER = "_"
 //      SPACE='regexp:\s+'
 //      ANY = 'regexp:.'
@@ -73,34 +76,75 @@
 }
 
 // https://github.com/bytecodealliance/fluent/blob/master/spec/fluent.ebnf
-wit ::= statements*
+root ::= statements*
 private statements ::=
     grammar
   | class
   | union
   | group
   | SEMICOLON
-
-// package wasi:blobstore@0.2.0-draft;
-grammar ::= modifiers KW_GRAMMAR identifier BRACE_L BRACE_R {
+// === grammar statement ===
+grammar ::= annotations KW_GRAMMAR identifier BRACE_L BRACE_R {
 	pin = 2
     mixin = "yggdrasil.psi.mixin.MixinGrammar"
 }
-
-modifiers ::= identifier+;
-
-class  ::= modifiers KW_CLASS SYMBOL {
+annotations ::= modifiers?
+modifiers   ::= identifier+;
+// === class statement ===
+class  ::= annotations KW_CLASS identifier class-body {
     pin = 2
     mixin = "yggdrasil.psi.mixin.MixinClass"
 }
-union  ::= modifiers KW_UNION SYMBOL {
+class-body ::= BRACE_L class-term* BRACE_R;
+class-term ::= expression;
+// === union statement ===
+union  ::= annotations KW_UNION identifier union-body {
     pin = 2
     mixin = "yggdrasil.psi.mixin.MixinUnion"
 }
-group  ::= modifiers KW_GROUP SYMBOL {
+union-body ::= BRACE_L union-term* BRACE_R;
+union-term ::= OP_OR expression;
+// === group statement ===
+group  ::= annotations KW_GROUP SYMBOL {
     pin = 2
-    mixin = "yggdrasil.psi.mixin.MixinUnion"
+    mixin = "yggdrasil.psi.mixin.MixinGroup"
 }
+
+expression ::=
+    expression_group
+  | expression-or
+expression_group ::= PARENTHESIS_L OP_OR? expression PARENTHESIS_R {
+    extends = expression
+}
+expression-or ::= expression OP_OR expression {
+//    mixin = "yggdrasil.psi.mixin.MixinOr"
+    extends = expression
+}
+expression-concat ::= expression-unary OP_CONCAT expression-unary {
+//    mixin = "yggdrasil.psi.mixin.MixinOr"
+    extends = expression
+}
+expression-unary ::= expression-atom STAR* {
+    extends = expression
+}
+expression-atom ::= identifier | category | regex | range {
+    extends = expression
+}
+
+
+category ::= escape (BRACE_L identifier (EQ identifier)? BRACE_R)? {
+
+}
+escape   ::= ESCAPED
+
+range    ::= BRACE_L COMMA? BRACE_R
+           | BRACE_L range-lower COMMA? BRACE_R
+           | BRACE_L COMMA range-upper BRACE_R
+           | BRACE_L range-upper COMMA range-upper BRACE_R
+range-upper ::= INTEGER;
+range-lower ::= INTEGER;
+
+
 regex ::= SYMBOL {
 
 }
@@ -111,10 +155,10 @@ key ::= identifier;
 value ::= identifier | ESCAPED;
 
 
-number ::= SYMBOL {
+number ::= INTEGER {
 //    mixin = "yggdrasil.psi.mixin.MixinNumber"
 }
-string ::= SYMBOL {
+string ::= INTEGER {
     mixin = "yggdrasil.psi.mixin.MixinString"
 }
 
