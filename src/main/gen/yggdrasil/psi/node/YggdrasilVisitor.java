@@ -35,6 +35,10 @@ public class YggdrasilVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitModifiers(@NotNull YggdrasilModifiers o) {
+    visitPsiElement(o);
+  }
+
   public void visitModuleName(@NotNull YggdrasilModuleName o) {
     visitPsiElement(o);
   }

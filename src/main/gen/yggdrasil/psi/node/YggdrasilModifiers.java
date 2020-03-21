@@ -5,12 +5,9 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface YggdrasilGrammar extends PsiElement {
-
-  @Nullable
-  YggdrasilIdentifier getIdentifier();
+public interface YggdrasilModifiers extends PsiElement {
 
   @NotNull
-  YggdrasilModifiers getModifiers();
+  List<YggdrasilIdentifier> getIdentifierList();
 
 }

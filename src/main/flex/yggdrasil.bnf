@@ -76,28 +76,29 @@
 wit ::= statements*
 private statements ::=
     grammar
-  | world
-  | include
-  | interface
+  | class
+  | union
+  | group
   | SEMICOLON
 
 // package wasi:blobstore@0.2.0-draft;
-grammar ::= KW_GRAMMAR identifier BRACE_L BRACE_R {
-	pin = 1
+grammar ::= modifiers KW_GRAMMAR identifier BRACE_L BRACE_R {
+	pin = 2
     mixin = "yggdrasil.psi.mixin.MixinGrammar"
 }
 
+modifiers ::= identifier+;
 
-class  ::= KW_CLASS SYMBOL {
-    pin = 1
+class  ::= modifiers KW_CLASS SYMBOL {
+    pin = 2
     mixin = "yggdrasil.psi.mixin.MixinClass"
 }
-union  ::= KW_UNION SYMBOL {
-    pin = 1
+union  ::= modifiers KW_UNION SYMBOL {
+    pin = 2
     mixin = "yggdrasil.psi.mixin.MixinUnion"
 }
-group  ::= KW_GROUP SYMBOL {
-    pin = 1
+group  ::= modifiers KW_GROUP SYMBOL {
+    pin = 2
     mixin = "yggdrasil.psi.mixin.MixinUnion"
 }
 regex ::= SYMBOL {
@@ -126,5 +127,6 @@ module-name         ::= SYMBOL | ESCAPED;
 interface-name      ::= SYMBOL | ESCAPED;
 alias-name          ::= SYMBOL | ESCAPED;
 semantic-number     ::= SYMBOL | ESCAPED;
+
 
 identifier          ::= SYMBOL;

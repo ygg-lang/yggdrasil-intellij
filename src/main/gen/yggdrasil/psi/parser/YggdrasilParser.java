@@ -49,42 +49,45 @@ public class YggdrasilParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // KW_CLASS SYMBOL
+  // modifiers KW_CLASS SYMBOL
   public static boolean class_$(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "class_$")) return false;
-    if (!nextTokenIs(b, KW_CLASS)) return false;
+    if (!nextTokenIs(b, SYMBOL)) return false;
     boolean r, p;
     Marker m = enter_section_(b, l, _NONE_, CLASS, null);
-    r = consumeTokens(b, 1, KW_CLASS, SYMBOL);
+    r = modifiers(b, l + 1);
     p = r; // pin = 1
+    r = r && report_error_(b, consumeTokens(b, -1, KW_CLASS, SYMBOL));
     exit_section_(b, l, m, r, p, null);
     return r || p;
   }
 
   /* ********************************************************** */
-  // KW_GRAMMAR identifier BRACE_L BRACE_R
+  // modifiers KW_GRAMMAR identifier BRACE_L BRACE_R
   public static boolean grammar(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "grammar")) return false;
-    if (!nextTokenIs(b, KW_GRAMMAR)) return false;
+    if (!nextTokenIs(b, SYMBOL)) return false;
     boolean r, p;
     Marker m = enter_section_(b, l, _NONE_, GRAMMAR, null);
-    r = consumeToken(b, KW_GRAMMAR);
+    r = modifiers(b, l + 1);
     p = r; // pin = 1
-    r = r && report_error_(b, identifier(b, l + 1));
+    r = r && report_error_(b, consumeToken(b, KW_GRAMMAR));
+    r = p && report_error_(b, identifier(b, l + 1)) && r;
     r = p && report_error_(b, consumeTokens(b, -1, BRACE_L, BRACE_R)) && r;
     exit_section_(b, l, m, r, p, null);
     return r || p;
   }
 
   /* ********************************************************** */
-  // KW_GROUP SYMBOL
+  // modifiers KW_GROUP SYMBOL
   public static boolean group(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "group")) return false;
-    if (!nextTokenIs(b, KW_GROUP)) return false;
+    if (!nextTokenIs(b, SYMBOL)) return false;
     boolean r, p;
     Marker m = enter_section_(b, l, _NONE_, GROUP, null);
-    r = consumeTokens(b, 1, KW_GROUP, SYMBOL);
+    r = modifiers(b, l + 1);
     p = r; // pin = 1
+    r = r && report_error_(b, consumeTokens(b, -1, KW_GROUP, SYMBOL));
     exit_section_(b, l, m, r, p, null);
     return r || p;
   }
@@ -123,6 +126,23 @@ public class YggdrasilParser implements PsiParser, LightPsiParser {
     Marker m = enter_section_(b);
     r = identifier(b, l + 1);
     exit_section_(b, m, KEY, r);
+    return r;
+  }
+
+  /* ********************************************************** */
+  // identifier+
+  public static boolean modifiers(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "modifiers")) return false;
+    if (!nextTokenIs(b, SYMBOL)) return false;
+    boolean r;
+    Marker m = enter_section_(b);
+    r = identifier(b, l + 1);
+    while (r) {
+      int c = current_position_(b);
+      if (!identifier(b, l + 1)) break;
+      if (!empty_element_parsed_guard_(b, "modifiers", c)) break;
+    }
+    exit_section_(b, m, MODIFIERS, r);
     return r;
   }
 
@@ -223,17 +243,18 @@ public class YggdrasilParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // grammar
-  //   | world
-  //   | include
-  //   | interface
+  //   | class
+  //   | union
+  //   | group
   //   | SEMICOLON
   static boolean statements(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "statements")) return false;
+    if (!nextTokenIs(b, "", SEMICOLON, SYMBOL)) return false;
     boolean r;
     r = grammar(b, l + 1);
-    if (!r) r = consumeToken(b, WORLD);
-    if (!r) r = consumeToken(b, INCLUDE);
-    if (!r) r = consumeToken(b, INTERFACE);
+    if (!r) r = class_$(b, l + 1);
+    if (!r) r = union(b, l + 1);
+    if (!r) r = group(b, l + 1);
     if (!r) r = consumeToken(b, SEMICOLON);
     return r;
   }
@@ -251,14 +272,15 @@ public class YggdrasilParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // KW_UNION SYMBOL
+  // modifiers KW_UNION SYMBOL
   public static boolean union(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "union")) return false;
-    if (!nextTokenIs(b, KW_UNION)) return false;
+    if (!nextTokenIs(b, SYMBOL)) return false;
     boolean r, p;
     Marker m = enter_section_(b, l, _NONE_, UNION, null);
-    r = consumeTokens(b, 1, KW_UNION, SYMBOL);
+    r = modifiers(b, l + 1);
     p = r; // pin = 1
+    r = r && report_error_(b, consumeTokens(b, -1, KW_UNION, SYMBOL));
     exit_section_(b, l, m, r, p, null);
     return r || p;
   }

@@ -15,6 +15,7 @@ public interface YggdrasilTypes {
   IElementType IDENTIFIER = new YggdrasilElementType("IDENTIFIER");
   IElementType INTERFACE_NAME = new YggdrasilElementType("INTERFACE_NAME");
   IElementType KEY = new YggdrasilElementType("KEY");
+  IElementType MODIFIERS = new YggdrasilElementType("MODIFIERS");
   IElementType MODULE_NAME = new YggdrasilElementType("MODULE_NAME");
   IElementType NUMBER = new YggdrasilElementType("NUMBER");
   IElementType ORGANIZATION_NAME = new YggdrasilElementType("ORGANIZATION_NAME");
@@ -42,8 +43,6 @@ public interface YggdrasilTypes {
   IElementType EQ = new YggdrasilElementType("=");
   IElementType ESCAPED = new YggdrasilElementType("\\escaped");
   IElementType HYPHEN = new YggdrasilElementType("-");
-  IElementType INCLUDE = new YggdrasilElementType("include");
-  IElementType INTERFACE = new YggdrasilElementType("interface");
   IElementType KW_ANY = new YggdrasilElementType("any");
   IElementType KW_AS = new YggdrasilElementType("as");
   IElementType KW_BOOLEAN = new YggdrasilElementType("true|false");
@@ -69,7 +68,6 @@ public interface YggdrasilTypes {
   IElementType TO = new YggdrasilElementType("->");
   IElementType URL = new YggdrasilElementType("Url");
   IElementType VERSION = new YggdrasilElementType("<<semver>>");
-  IElementType WORLD = new YggdrasilElementType("world");
 
   class Factory {
     public static PsiElement createElement(ASTNode node) {
@@ -94,6 +92,9 @@ public interface YggdrasilTypes {
       }
       else if (type == KEY) {
         return new YggdrasilKeyNode(node);
+      }
+      else if (type == MODIFIERS) {
+        return new YggdrasilModifiersNode(node);
       }
       else if (type == MODULE_NAME) {
         return new YggdrasilModuleNameNode(node);

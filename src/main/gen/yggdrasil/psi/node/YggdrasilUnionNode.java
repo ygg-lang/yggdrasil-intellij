@@ -26,4 +26,10 @@ public class YggdrasilUnionNode extends MixinUnion implements YggdrasilUnion {
     else super.accept(visitor);
   }
 
+  @Override
+  @NotNull
+  public YggdrasilModifiers getModifiers() {
+    return findNotNullChildByClass(YggdrasilModifiers.class);
+  }
+
 }
