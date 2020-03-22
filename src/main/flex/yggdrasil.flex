@@ -78,6 +78,10 @@ KW_MACRO = macro
 	"," { return COMMA; }
 	"-" { return HYPHEN; }
 	"=" { return EQ; }
+
+    "?" { return OP_OPTIONAL; }
+    "*" { return OP_MANY; }
+    "+" { return OP_MANY1; }
 }
 
 <YYINITIAL> {

@@ -8,16 +8,16 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static yggdrasil.psi.YggdrasilTypes.*;
+import yggdrasil.psi.YggdrasilElement;
 
-public class YggdrasilExpressionGroupNode extends YggdrasilExpressionNode implements YggdrasilExpressionGroup {
+public class YggdrasilSuffixNode extends YggdrasilElement implements YggdrasilSuffix {
 
-  public YggdrasilExpressionGroupNode(@NotNull ASTNode node) {
+  public YggdrasilSuffixNode(@NotNull ASTNode node) {
     super(node);
   }
 
-  @Override
   public void accept(@NotNull YggdrasilVisitor visitor) {
-    visitor.visitExpressionGroup(this);
+    visitor.visitSuffix(this);
   }
 
   @Override
@@ -27,9 +27,9 @@ public class YggdrasilExpressionGroupNode extends YggdrasilExpressionNode implem
   }
 
   @Override
-  @NotNull
-  public YggdrasilExpression getExpression() {
-    return findNotNullChildByClass(YggdrasilExpression.class);
+  @Nullable
+  public YggdrasilRange getRange() {
+    return findChildByClass(YggdrasilRange.class);
   }
 
 }

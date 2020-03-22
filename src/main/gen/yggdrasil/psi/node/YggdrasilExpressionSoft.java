@@ -5,9 +5,6 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface YggdrasilExpressionGroup extends YggdrasilExpression {
-
-  @NotNull
-  YggdrasilExpression getExpression();
+public interface YggdrasilExpressionSoft extends YggdrasilExpression {
 
 }

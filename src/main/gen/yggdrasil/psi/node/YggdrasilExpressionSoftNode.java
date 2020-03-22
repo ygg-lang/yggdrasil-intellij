@@ -9,27 +9,21 @@ import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static yggdrasil.psi.YggdrasilTypes.*;
 
-public class YggdrasilExpressionGroupNode extends YggdrasilExpressionNode implements YggdrasilExpressionGroup {
+public class YggdrasilExpressionSoftNode extends YggdrasilExpressionNode implements YggdrasilExpressionSoft {
 
-  public YggdrasilExpressionGroupNode(@NotNull ASTNode node) {
+  public YggdrasilExpressionSoftNode(@NotNull ASTNode node) {
     super(node);
   }
 
   @Override
   public void accept(@NotNull YggdrasilVisitor visitor) {
-    visitor.visitExpressionGroup(this);
+    visitor.visitExpressionSoft(this);
   }
 
   @Override
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof YggdrasilVisitor) accept((YggdrasilVisitor)visitor);
     else super.accept(visitor);
-  }
-
-  @Override
-  @NotNull
-  public YggdrasilExpression getExpression() {
-    return findNotNullChildByClass(YggdrasilExpression.class);
   }
 
 }

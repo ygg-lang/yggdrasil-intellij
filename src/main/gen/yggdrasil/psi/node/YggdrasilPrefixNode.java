@@ -8,28 +8,22 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static yggdrasil.psi.YggdrasilTypes.*;
+import yggdrasil.psi.YggdrasilElement;
 
-public class YggdrasilExpressionGroupNode extends YggdrasilExpressionNode implements YggdrasilExpressionGroup {
+public class YggdrasilPrefixNode extends YggdrasilElement implements YggdrasilPrefix {
 
-  public YggdrasilExpressionGroupNode(@NotNull ASTNode node) {
+  public YggdrasilPrefixNode(@NotNull ASTNode node) {
     super(node);
   }
 
-  @Override
   public void accept(@NotNull YggdrasilVisitor visitor) {
-    visitor.visitExpressionGroup(this);
+    visitor.visitPrefix(this);
   }
 
   @Override
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof YggdrasilVisitor) accept((YggdrasilVisitor)visitor);
     else super.accept(visitor);
-  }
-
-  @Override
-  @NotNull
-  public YggdrasilExpression getExpression() {
-    return findNotNullChildByClass(YggdrasilExpression.class);
   }
 
 }

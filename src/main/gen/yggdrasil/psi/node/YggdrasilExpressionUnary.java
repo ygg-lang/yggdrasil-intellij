@@ -8,6 +8,6 @@ import com.intellij.psi.PsiElement;
 public interface YggdrasilExpressionUnary extends YggdrasilExpression {
 
   @NotNull
-  YggdrasilExpressionAtom getExpressionAtom();
+  YggdrasilExpression getExpression();
 
 }
