@@ -81,7 +81,7 @@ private statements ::=
     grammar
   | class
   | union
-  | group
+  | token
   | SEMICOLON
 // === grammar statement ===
 grammar ::= annotations KW_GRAMMAR identifier BRACE_L BRACE_R {
@@ -104,12 +104,14 @@ union  ::= annotations KW_UNION identifier union-body {
     mixin = "yggdrasil.psi.mixin.MixinUnion"
 }
 union-body ::= BRACE_L union-term* BRACE_R;
-union-term ::= OP_OR expression-hard;
+union-term ::= OP_OR expression-hard tag-branch?;
 // === group statement ===
-group  ::= annotations KW_GROUP SYMBOL {
+token  ::= annotations KW_GROUP token-body {
     pin = 2
     mixin = "yggdrasil.psi.mixin.MixinGroup"
 }
+token-body ::= BRACE_L token-term* BRACE_R;
+token-term ::= identifier COLON expression | SEMICOLON;
 
 expression ::= expression-hard (OP_OR expression-hard)* {
 
@@ -126,13 +128,15 @@ expression-tag ::= (identifier COLON)? term {
 term ::= prefix* atomic suffix* {
     extends = expression
 }
+
+
 prefix ::= OP_NOT | OP_AND | OP_REMARK {
 
 }
 suffix ::= OP_OPTIONAL | OP_MANY | OP_MANY1 | range {
 
 }
-atomic ::= expression-group | identifier | category | regex {
+atomic ::= expression-group | identifier | category | string | regex {
     extends = expression
 }
 expression-group ::= PARENTHESIS_L OP_OR? expression PARENTHESIS_R {
@@ -151,10 +155,15 @@ range    ::= BRACE_L COMMA? BRACE_R
 range-upper ::= INTEGER;
 range-lower ::= INTEGER;
 
-
-regex ::= SYMBOL {
+string ::= TEXT_SINGLE | TEXT_DOUBLE {
+    mixin = "yggdrasil.psi.mixin.MixinString"
+}
+regex ::= REGULAR_EXPRESSION {
 
 }
+
+
+tag-branch ::= HASH identifier;
 
 pair ::= key COLON value;
 key ::= identifier;
@@ -165,9 +174,7 @@ value ::= identifier | ESCAPED;
 number ::= INTEGER {
 //    mixin = "yggdrasil.psi.mixin.MixinNumber"
 }
-string ::= INTEGER {
-    mixin = "yggdrasil.psi.mixin.MixinString"
-}
+
 
 
 /* Literals */
@@ -180,4 +187,4 @@ alias-name          ::= SYMBOL | ESCAPED;
 semantic-number     ::= SYMBOL | ESCAPED;
 
 
-identifier          ::= SYMBOL;
+identifier          ::= SYMBOL | SYMBOW_RAW;

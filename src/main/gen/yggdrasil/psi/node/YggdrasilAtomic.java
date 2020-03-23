@@ -16,4 +16,7 @@ public interface YggdrasilAtomic extends YggdrasilExpression {
   @Nullable
   YggdrasilRegex getRegex();
 
+  @Nullable
+  YggdrasilString getString();
+
 }

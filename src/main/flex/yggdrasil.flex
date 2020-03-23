@@ -24,10 +24,12 @@ import static yggdrasil.psi.YggdrasilTypes.*;
 
 //%state TextContextIndent
 
-WHITE_SPACE      = [\s\t]
-COMMENT_LINE     = [/]{2}[^\r\n]*
-COMMENT_BLOCK    = [/][*][^*]*[*]+([^/*][^*]*[*]+)*[/]
-
+WHITE_SPACE        = [\s\t]
+REGULAR_EXPRESSION = \/([^\/\\]|\\.)+\/
+COMMENT_LINE       = [/]{2}[^\r\n]*
+COMMENT_BLOCK      = [/][*][^*]*[*]+([^/*][^*]*[*]+)*[/]
+TEXT_SINGLE        = '([^']|\\.)*'
+TEXT_DOUBLE        = \"([^\"]|\\.)*\"
 
 INTEGER = [0-9]+
 
@@ -38,14 +40,13 @@ KW_ANY = any
 ESCAPED = \\.
 
 KW_GRAMMAR = grammar
-KW_GROUP = group
-KW_CLASS = class
-KW_UNION = union
+KW_GROUP = group|token
+KW_CLASS = class|struct
+KW_UNION = union|enum
 KW_CLIMB = climb
 KW_IMPORT = import
 KW_AS = as
 KW_MACRO = macro
-
 
 
 %%
@@ -71,6 +72,7 @@ KW_MACRO = macro
 	"^" { return ACCENT; }
 	":" { return COLON; }
 	";" { return SEMICOLON; }
+	"#" { return HASH; }
 	"$" { return DOLLAR; }
 	"@" { return AT; }
 	"/" { return SLASH; }
@@ -86,6 +88,9 @@ KW_MACRO = macro
 
 <YYINITIAL> {
     {INTEGER} { return INTEGER; }
+    {TEXT_SINGLE} { return TEXT_SINGLE; }
+    {TEXT_DOUBLE} { return TEXT_DOUBLE; }
+    {REGULAR_EXPRESSION} { return REGULAR_EXPRESSION;}
 }
 
 <YYINITIAL> {
@@ -101,7 +106,7 @@ KW_MACRO = macro
     {KW_ANY} { return KW_ANY; }
 
     {ESCAPED} { return ESCAPED; }
-    {SYMBOW_RAW} { return SYMBOL; }
+    {SYMBOW_RAW} { return SYMBOW_RAW; }
     {SYMBOL}  { return SYMBOL; }
 }
 // =====================================================================================================================

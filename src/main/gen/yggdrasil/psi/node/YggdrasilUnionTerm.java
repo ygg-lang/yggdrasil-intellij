@@ -10,4 +10,7 @@ public interface YggdrasilUnionTerm extends PsiElement {
   @NotNull
   YggdrasilExpression getExpression();
 
+  @Nullable
+  YggdrasilTagBranch getTagBranch();
+
 }

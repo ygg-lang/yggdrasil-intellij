@@ -23,7 +23,6 @@ public interface YggdrasilTypes {
   IElementType EXPRESSION_SOFT = new YggdrasilElementType("EXPRESSION_SOFT");
   IElementType EXPRESSION_TAG = new YggdrasilElementType("EXPRESSION_TAG");
   IElementType GRAMMAR = new YggdrasilElementType("GRAMMAR");
-  IElementType GROUP = new YggdrasilElementType("GROUP");
   IElementType IDENTIFIER = new YggdrasilElementType("IDENTIFIER");
   IElementType INTERFACE_NAME = new YggdrasilElementType("INTERFACE_NAME");
   IElementType KEY = new YggdrasilElementType("KEY");
@@ -40,7 +39,11 @@ public interface YggdrasilTypes {
   IElementType SEMANTIC_NUMBER = new YggdrasilElementType("SEMANTIC_NUMBER");
   IElementType STRING = new YggdrasilElementType("STRING");
   IElementType SUFFIX = new YggdrasilElementType("SUFFIX");
+  IElementType TAG_BRANCH = new YggdrasilElementType("TAG_BRANCH");
   IElementType TERM = new YggdrasilElementType("TERM");
+  IElementType TOKEN = new YggdrasilElementType("TOKEN");
+  IElementType TOKEN_BODY = new YggdrasilElementType("TOKEN_BODY");
+  IElementType TOKEN_TERM = new YggdrasilElementType("TOKEN_TERM");
   IElementType UNION = new YggdrasilElementType("UNION");
   IElementType UNION_BODY = new YggdrasilElementType("UNION_BODY");
   IElementType UNION_TERM = new YggdrasilElementType("UNION_TERM");
@@ -62,6 +65,7 @@ public interface YggdrasilTypes {
   IElementType DOT = new YggdrasilElementType(".");
   IElementType EQ = new YggdrasilElementType("=");
   IElementType ESCAPED = new YggdrasilElementType("\\escaped");
+  IElementType HASH = new YggdrasilElementType("HASH");
   IElementType HYPHEN = new YggdrasilElementType("-");
   IElementType INTEGER = new YggdrasilElementType("<<INTEGER>>");
   IElementType KW_ANY = new YggdrasilElementType("<<ANY>>");
@@ -86,6 +90,7 @@ public interface YggdrasilTypes {
   IElementType PARENTHESIS_R = new YggdrasilElementType(")");
   IElementType PLACE_HOLDER = new YggdrasilElementType("_");
   IElementType REFERENCE = new YggdrasilElementType("$Symbol");
+  IElementType REGULAR_EXPRESSION = new YggdrasilElementType("REGULAR_EXPRESSION");
   IElementType SELECTION_LINE = new YggdrasilElementType("SELECTION_LINE");
   IElementType SEMICOLON = new YggdrasilElementType(";");
   IElementType SLASH = new YggdrasilElementType("/");
@@ -94,6 +99,9 @@ public interface YggdrasilTypes {
   IElementType STRING_ESCAPE = new YggdrasilElementType("String Escaped");
   IElementType STRING_QUOTE = new YggdrasilElementType("String Quote");
   IElementType SYMBOL = new YggdrasilElementType("Symbol");
+  IElementType SYMBOW_RAW = new YggdrasilElementType("SYMBOW_RAW");
+  IElementType TEXT_DOUBLE = new YggdrasilElementType("TEXT_DOUBLE");
+  IElementType TEXT_SINGLE = new YggdrasilElementType("TEXT_SINGLE");
   IElementType TO = new YggdrasilElementType("->");
   IElementType URL = new YggdrasilElementType("Url");
   IElementType VERSION = new YggdrasilElementType("<<semver>>");
@@ -146,9 +154,6 @@ public interface YggdrasilTypes {
       else if (type == GRAMMAR) {
         return new YggdrasilGrammarNode(node);
       }
-      else if (type == GROUP) {
-        return new YggdrasilGroupNode(node);
-      }
       else if (type == IDENTIFIER) {
         return new YggdrasilIdentifierNode(node);
       }
@@ -197,8 +202,20 @@ public interface YggdrasilTypes {
       else if (type == SUFFIX) {
         return new YggdrasilSuffixNode(node);
       }
+      else if (type == TAG_BRANCH) {
+        return new YggdrasilTagBranchNode(node);
+      }
       else if (type == TERM) {
         return new YggdrasilTermNode(node);
+      }
+      else if (type == TOKEN) {
+        return new YggdrasilTokenNode(node);
+      }
+      else if (type == TOKEN_BODY) {
+        return new YggdrasilTokenBodyNode(node);
+      }
+      else if (type == TOKEN_TERM) {
+        return new YggdrasilTokenTermNode(node);
       }
       else if (type == UNION) {
         return new YggdrasilUnionNode(node);
