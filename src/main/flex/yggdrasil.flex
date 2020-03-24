@@ -36,8 +36,6 @@ INTEGER = [0-9]+
 
 SYMBOL=[\p{XID_Start}_][\p{XID_Continue}_]*
 SYMBOW_RAW = `[^`]*`
-KW_BOOLEAN = true|false
-KW_ANY = any
 ESCAPED = \\.
 
 KW_GRAMMAR = grammar
@@ -104,8 +102,6 @@ KW_MACRO = macro
     {KW_IMPORT} { return KW_IMPORT; }
     {KW_AS} { return KW_AS; }
     {KW_MACRO} { return KW_MACRO; }
-    {KW_BOOLEAN} { return KW_BOOLEAN; }
-    {KW_ANY} { return KW_ANY; }
 
     {ESCAPED} { return ESCAPED; }
     {SYMBOW_RAW} { return SYMBOW_RAW; }

@@ -7,7 +7,9 @@ import com.intellij.psi.PsiErrorElement
 import com.intellij.psi.formatter.FormatterUtil
 import yggdrasil.antlr.isWhitespaceOrEmpty
 import yggdrasil.language.psi.ValkyrieAlignmentElement
-import yggdrasil.language.psi.YggdrasilIndentElement
+import yggdrasil.psi.YggdrasilTypes
+import yggdrasil.psi.node.YggdrasilClassBody
+import yggdrasil.psi.node.YggdrasilUnionBody
 
 //import nexus.language.psi.ValkyrieTokenType
 
@@ -62,15 +64,9 @@ class FormatBlock : ASTBlock {
     }
 
     override fun getSubBlocks(): List<Block> {
-        return node.getChildren(null).filter { !it.isWhitespaceOrEmpty() }.map {
-            FormatBlock(
-                node = it,
-                alignment = computeAlignment(it),
-                indent = computeIndent(it),
-                wrap = computeWrap(it),
-                _space
-            )
-        }
+        return node.getChildren(null)
+            .filter { !it.isWhitespaceOrEmpty() }
+            .map { FormatBlock(it, _space) }
     }
 
     override fun isIncomplete(): Boolean {
@@ -82,13 +78,32 @@ class FormatBlock : ASTBlock {
     }
 
     private fun computeIndent(child: ASTNode): Indent? {
-        val psi = _node.psi;
-        if (psi is YggdrasilIndentElement) {
-            return psi.on_indent(child)
+        val isCorner = _node.firstChildNode == child || _node.lastChildNode == child
+        val byCorner = if (isCorner) Indent.getNoneIndent() else Indent.getNormalIndent();
+        return when (node.elementType) {
+            YggdrasilTypes.CLASS_BODY -> byCorner
+            YggdrasilTypes.UNION_BODY -> byCorner
+            else -> Indent.getNoneIndent()
         }
-        return Indent.getNoneIndent()
     }
-
+//    private fun computeIndent(child: ASTNode): Indent? {
+//        return when (_node.psi) {
+//            is YggdrasilClassBody -> _node.indentInRange(child, 1, 1)
+//            is YggdrasilUnionBody -> _node.indentInRange(child, 1, 1)
+//            else -> Indent.getNoneIndent()
+//        }
+//    }
+//
+//    private fun ASTNode.indentInRange(child: ASTNode, head: Int, tail: Int): Indent {
+//        val children = this.getChildren(null);
+//        val index = children.indexOf(child)
+//        val last = children.size - tail
+//        return when {
+//            index <= head -> Indent.getNoneIndent()
+//            index >= last -> Indent.getNoneIndent()
+//            else -> Indent.getNormalIndent()
+//        }
+//    }
 
     private fun computeAlignment(child: ASTNode): Alignment? {
         val psi = _node.psi;

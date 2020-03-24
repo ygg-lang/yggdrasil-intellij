@@ -28,14 +28,14 @@ public class YggdrasilTokenTermNode extends YggdrasilElement implements Yggdrasi
 
   @Override
   @Nullable
-  public YggdrasilExpression getExpression() {
-    return findChildByClass(YggdrasilExpression.class);
+  public YggdrasilAnnotations getAnnotations() {
+    return findChildByClass(YggdrasilAnnotations.class);
   }
 
   @Override
   @Nullable
-  public YggdrasilIdentifier getIdentifier() {
-    return findChildByClass(YggdrasilIdentifier.class);
+  public YggdrasilExpression getExpression() {
+    return findChildByClass(YggdrasilExpression.class);
   }
 
 }

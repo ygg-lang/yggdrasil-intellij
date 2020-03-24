@@ -8,9 +8,9 @@ import com.intellij.psi.PsiElement;
 public interface YggdrasilTokenTerm extends PsiElement {
 
   @Nullable
-  YggdrasilExpression getExpression();
+  YggdrasilAnnotations getAnnotations();
 
   @Nullable
-  YggdrasilIdentifier getIdentifier();
+  YggdrasilExpression getExpression();
 
 }

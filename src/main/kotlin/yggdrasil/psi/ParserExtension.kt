@@ -31,7 +31,7 @@ class ParserExtension : GeneratedParserUtilBase() {
             // tok
             KW_MACRO,
             // special
-            KW_ANY, KW_BOOLEAN,
+//            KW_ANY, KW_BOOLEAN,
 //            OP_CONCAT,
 //            // control flow
 //            KW_PUSH, KW_PEEK, KW_DROP, KW_PULL,

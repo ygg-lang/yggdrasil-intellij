@@ -7,6 +7,7 @@ import com.intellij.openapi.fileTypes.SyntaxHighlighter
 import com.intellij.openapi.fileTypes.SyntaxHighlighterBase.pack
 import com.intellij.psi.tree.IElementType
 import yggdrasil.psi.ParserDefinition
+import yggdrasil.psi.YggdrasilTypes
 import yggdrasil.psi.YggdrasilTypes.*
 
 class TokenHighlighter : SyntaxHighlighter {
@@ -26,20 +27,13 @@ class TokenHighlighter : SyntaxHighlighter {
 //            KW_FUNCTION, KW_CONSTRUCTOR,
             -> HighlightColor.KEYWORD
 //
-//            PARENTHESIS_L, PARENTHESIS_R -> YggdrasilHighlightColor.PARENTHESES
-//            BRACKET_L, BRACKET_R -> YggdrasilHighlightColor.BRACKETS
-//            BRACE_L, BRACE_R -> YggdrasilHighlightColor.BRACES
-//            COLON, EQ -> YggdrasilHighlightColor.OPERATION
-//            AT, STAR -> YggdrasilHighlightColor.OPERATION
-//
-//            COMMA -> YggdrasilHighlightColor.COMMA
-//            // atom
+            COLON, EQ -> HighlightColor.OPERATION
             OP_OR, OP_CONCAT -> HighlightColor.OPERATION
             OP_OPTIONAL, OP_MANY, OP_MANY1 -> HighlightColor.OPERATION
 
 //
 //            SELECTION_LINE -> YggdrasilHighlightColor.TEXT
-//            STRING_QUOTE, STRING_CHAR -> YggdrasilHighlightColor.STRING
+            TEXT_SINGLE, TEXT_DOUBLE -> HighlightColor.STRING
 //            STRING_ESCAPE -> YggdrasilHighlightColor.STRING_ESCAPED
 ////            STRING -> AwslColor.STRING
 //            SYMBOL -> YggdrasilHighlightColor.IDENTIFIER
