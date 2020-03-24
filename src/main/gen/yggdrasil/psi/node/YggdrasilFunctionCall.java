@@ -8,7 +8,7 @@ import com.intellij.psi.PsiElement;
 public interface YggdrasilFunctionCall extends PsiElement {
 
   @Nullable
-  YggdrasilFunctionBody getFunctionBody();
+  YggdrasilFunctionArgument getFunctionArgument();
 
   @NotNull
   YggdrasilIdentifier getIdentifier();

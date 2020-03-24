@@ -28,12 +28,6 @@ public class YggdrasilCategoryNode extends YggdrasilElement implements Yggdrasil
 
   @Override
   @NotNull
-  public YggdrasilEscape getEscape() {
-    return findNotNullChildByClass(YggdrasilEscape.class);
-  }
-
-  @Override
-  @NotNull
   public List<YggdrasilIdentifier> getIdentifierList() {
     return PsiTreeUtil.getChildrenOfTypeAsList(this, YggdrasilIdentifier.class);
   }

@@ -24,8 +24,10 @@ class NodeHighlighter : YggdrasilVisitor(), HighlightVisitor {
         }
     }
 
+
     override fun visitAttribute(o: YggdrasilAttribute) {
-        super.visitAttribute(o as YggdrasilAttributeNode)
+        o as YggdrasilAttributeNode;
+        o.highlight(this)
     }
 
     override fun visitClass(o: YggdrasilClass) {
@@ -42,7 +44,21 @@ class NodeHighlighter : YggdrasilVisitor(), HighlightVisitor {
     }
 
 
-    private fun highlight(element: PsiElement, color: HighlightColor) {
+    override fun visitAtomic(o: YggdrasilAtomic) {
+        val id = o.identifier as? YggdrasilIdentifierNode
+        id?.highlight(this)
+    }
+
+    override fun visitCategory(o: YggdrasilCategory) {
+        super.visitCategory(o)
+    }
+
+    override fun visitRange(o: YggdrasilRange) {
+        highlight(o.firstChild, HighlightColor.OPERATION)
+        highlight(o.lastChild, HighlightColor.OPERATION)
+    }
+
+    fun highlight(element: PsiElement, color: HighlightColor) {
         val builder = HighlightInfo.newHighlightInfo(HighlightInfoType.INFORMATION)
         builder.textAttributes(color.textAttributesKey)
         builder.range(element)

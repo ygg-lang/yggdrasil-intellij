@@ -8,9 +8,9 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static yggdrasil.psi.YggdrasilTypes.*;
-import yggdrasil.psi.YggdrasilElement;
+import yggdrasil.psi.mixin.MixinAttribute;
 
-public class YggdrasilAttributeNode extends YggdrasilElement implements YggdrasilAttribute {
+public class YggdrasilAttributeNode extends MixinAttribute implements YggdrasilAttribute {
 
   public YggdrasilAttributeNode(@NotNull ASTNode node) {
     super(node);
@@ -28,8 +28,8 @@ public class YggdrasilAttributeNode extends YggdrasilElement implements Yggdrasi
 
   @Override
   @Nullable
-  public YggdrasilFunctionBody getFunctionBody() {
-    return findChildByClass(YggdrasilFunctionBody.class);
+  public YggdrasilFunctionParameter getFunctionParameter() {
+    return findChildByClass(YggdrasilFunctionParameter.class);
   }
 
   @Override

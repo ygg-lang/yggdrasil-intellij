@@ -5,9 +5,9 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface YggdrasilExpressionOr extends YggdrasilExpression {
+public interface YggdrasilFunctionParameter extends PsiElement {
 
   @NotNull
-  List<YggdrasilExpression> getExpressionList();
+  List<YggdrasilParameter> getParameterList();
 
 }

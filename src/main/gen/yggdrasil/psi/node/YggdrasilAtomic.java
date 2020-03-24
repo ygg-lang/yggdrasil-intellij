@@ -8,7 +8,7 @@ import com.intellij.psi.PsiElement;
 public interface YggdrasilAtomic extends YggdrasilExpression {
 
   @Nullable
-  YggdrasilCategory getCategory();
+  YggdrasilEscape getEscape();
 
   @Nullable
   YggdrasilFunctionCall getFunctionCall();

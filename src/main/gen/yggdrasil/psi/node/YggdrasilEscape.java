@@ -7,4 +7,7 @@ import com.intellij.psi.PsiElement;
 
 public interface YggdrasilEscape extends PsiElement {
 
+  @Nullable
+  YggdrasilCategory getCategory();
+
 }

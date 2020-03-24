@@ -8,9 +8,6 @@ import com.intellij.psi.PsiElement;
 public interface YggdrasilCategory extends PsiElement {
 
   @NotNull
-  YggdrasilEscape getEscape();
-
-  @NotNull
   List<YggdrasilIdentifier> getIdentifierList();
 
 }

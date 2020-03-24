@@ -11,6 +11,9 @@ public interface YggdrasilGrammar extends PsiElement {
   YggdrasilAnnotations getAnnotations();
 
   @Nullable
+  YggdrasilGrammarBody getGrammarBody();
+
+  @Nullable
   YggdrasilIdentifier getIdentifier();
 
 }

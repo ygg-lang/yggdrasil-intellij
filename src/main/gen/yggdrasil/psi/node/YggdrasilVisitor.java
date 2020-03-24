@@ -7,11 +7,11 @@ import com.intellij.psi.PsiElement;
 
 public class YggdrasilVisitor extends PsiElementVisitor {
 
-  public void visitAliasName(@NotNull YggdrasilAliasName o) {
+  public void visitAnnotations(@NotNull YggdrasilAnnotations o) {
     visitPsiElement(o);
   }
 
-  public void visitAnnotations(@NotNull YggdrasilAnnotations o) {
+  public void visitArgument(@NotNull YggdrasilArgument o) {
     visitPsiElement(o);
   }
 
@@ -39,10 +39,6 @@ public class YggdrasilVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitClassTerm(@NotNull YggdrasilClassTerm o) {
-    visitPsiElement(o);
-  }
-
   public void visitEscape(@NotNull YggdrasilEscape o) {
     visitPsiElement(o);
   }
@@ -67,7 +63,11 @@ public class YggdrasilVisitor extends PsiElementVisitor {
     visitExpression(o);
   }
 
-  public void visitFunctionBody(@NotNull YggdrasilFunctionBody o) {
+  public void visitFunctionArgument(@NotNull YggdrasilFunctionArgument o) {
+    visitPsiElement(o);
+  }
+
+  public void visitFunctionBlock(@NotNull YggdrasilFunctionBlock o) {
     visitPsiElement(o);
   }
 
@@ -75,7 +75,27 @@ public class YggdrasilVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitFunctionDefine(@NotNull YggdrasilFunctionDefine o) {
+    visitPsiElement(o);
+  }
+
+  public void visitFunctionParameter(@NotNull YggdrasilFunctionParameter o) {
+    visitPsiElement(o);
+  }
+
   public void visitGrammar(@NotNull YggdrasilGrammar o) {
+    visitPsiElement(o);
+  }
+
+  public void visitGrammarBody(@NotNull YggdrasilGrammarBody o) {
+    visitPsiElement(o);
+  }
+
+  public void visitGrammarPair(@NotNull YggdrasilGrammarPair o) {
+    visitPsiElement(o);
+  }
+
+  public void visitGrammarTerm(@NotNull YggdrasilGrammarTerm o) {
     visitPsiElement(o);
   }
 
@@ -83,27 +103,7 @@ public class YggdrasilVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitInterfaceName(@NotNull YggdrasilInterfaceName o) {
-    visitPsiElement(o);
-  }
-
-  public void visitKey(@NotNull YggdrasilKey o) {
-    visitPsiElement(o);
-  }
-
-  public void visitModuleName(@NotNull YggdrasilModuleName o) {
-    visitPsiElement(o);
-  }
-
   public void visitNumber(@NotNull YggdrasilNumber o) {
-    visitPsiElement(o);
-  }
-
-  public void visitOrganizationName(@NotNull YggdrasilOrganizationName o) {
-    visitPsiElement(o);
-  }
-
-  public void visitPair(@NotNull YggdrasilPair o) {
     visitPsiElement(o);
   }
 
@@ -128,10 +128,6 @@ public class YggdrasilVisitor extends PsiElementVisitor {
   }
 
   public void visitRegex(@NotNull YggdrasilRegex o) {
-    visitPsiElement(o);
-  }
-
-  public void visitSemanticNumber(@NotNull YggdrasilSemanticNumber o) {
     visitPsiElement(o);
   }
 
@@ -172,10 +168,6 @@ public class YggdrasilVisitor extends PsiElementVisitor {
   }
 
   public void visitUnionTerm(@NotNull YggdrasilUnionTerm o) {
-    visitPsiElement(o);
-  }
-
-  public void visitValue(@NotNull YggdrasilValue o) {
     visitPsiElement(o);
   }
 

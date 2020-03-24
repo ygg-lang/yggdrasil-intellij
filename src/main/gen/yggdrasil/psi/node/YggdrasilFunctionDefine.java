@@ -5,9 +5,18 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface YggdrasilGroup extends PsiElement {
+public interface YggdrasilFunctionDefine extends PsiElement {
 
   @NotNull
   YggdrasilAnnotations getAnnotations();
+
+  @Nullable
+  YggdrasilFunctionBlock getFunctionBlock();
+
+  @Nullable
+  YggdrasilFunctionParameter getFunctionParameter();
+
+  @Nullable
+  YggdrasilIdentifier getIdentifier();
 
 }

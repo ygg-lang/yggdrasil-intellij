@@ -41,8 +41,7 @@ ESCAPED = \\.
 KW_GRAMMAR = grammar
 KW_GROUP = group|token
 KW_CLASS = class|struct
-KW_UNION = union|enum
-KW_CLIMB = climb
+KW_UNION = union|enum|climb
 KW_IMPORT = import
 KW_AS = as
 KW_MACRO = macro
@@ -98,7 +97,6 @@ KW_MACRO = macro
     {KW_GROUP} { return KW_GROUP; }
     {KW_CLASS} { return KW_CLASS; }
     {KW_UNION} { return KW_UNION; }
-    {KW_CLIMB} { return KW_CLIMB; }
     {KW_IMPORT} { return KW_IMPORT; }
     {KW_AS} { return KW_AS; }
     {KW_MACRO} { return KW_MACRO; }

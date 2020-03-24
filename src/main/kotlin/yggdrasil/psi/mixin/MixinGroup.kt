@@ -8,12 +8,12 @@ import com.intellij.psi.NavigatablePsiElement
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNameIdentifierOwner
 import yggdrasil.psi.YggdrasilElement
-import yggdrasil.psi.node.YggdrasilGroup
+import yggdrasil.psi.node.YggdrasilToken
 
 abstract class MixinGroup(node: ASTNode) : YggdrasilElement(node),
     NavigatablePsiElement,
     PsiNameIdentifierOwner,
-    YggdrasilGroup {
+    YggdrasilToken {
     override fun setName(name: String): PsiElement {
         TODO("Not yet implemented")
     }
