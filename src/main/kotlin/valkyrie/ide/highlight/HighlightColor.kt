@@ -47,6 +47,7 @@ enum class HighlightColor(humanName: Supplier<@AttributeDescriptor String>, defa
 
     // 标点符号
     ASSIGN(YggdrasilBundle.messagePointer("color.token.set"), Default.OPERATION_SIGN),
+    OPERATION(OptionsBundle.messagePointer("options.language.defaults.operation"), Default.OPERATION_SIGN),
     OP_NUMBER(YggdrasilBundle.messagePointer("color.token.number.suffix"), Default.METADATA),
     OP_STRING(YggdrasilBundle.messagePointer("color.token.string.prefix"), Default.KEYWORD),
     ;

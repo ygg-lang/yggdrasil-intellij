@@ -54,7 +54,7 @@
         BRACE_R = '}'
         ANGLE_L = '<'
         ANGLE_R = '>'
-        ACCENT = '^'
+        OP_REMARK = '^'
         EQ = '='
         COLON = ':'
         SEMICOLON = ';'
@@ -113,6 +113,7 @@ token  ::= annotations KW_GROUP token-body {
 token-body ::= BRACE_L token-term* BRACE_R;
 token-term ::= identifier COLON expression | SEMICOLON;
 
+// === expression statement ===
 expression ::= expression-hard (OP_OR expression-hard)* {
 
 }
@@ -128,14 +129,9 @@ expression-tag ::= (identifier COLON)? term {
 term ::= prefix* atomic suffix* {
     extends = expression
 }
-
-
-prefix ::= OP_NOT | OP_AND | OP_REMARK {
-
-}
-suffix ::= OP_OPTIONAL | OP_MANY | OP_MANY1 | range {
-
-}
+prefix ::= OP_NOT | OP_AND | OP_REMARK;
+suffix ::= OP_OPTIONAL | OP_MANY | OP_MANY1 | range;
+// === atomic statement ===
 atomic ::= expression-group | identifier | category | string | regex {
     extends = expression
 }
@@ -158,8 +154,8 @@ range-lower ::= INTEGER;
 string ::= TEXT_SINGLE | TEXT_DOUBLE {
     mixin = "yggdrasil.psi.mixin.MixinString"
 }
-regex ::= REGULAR_EXPRESSION {
-
+regex ::= REGULAR_EXPRESSION | REGULAR_RANGE {
+    mixin = "yggdrasil.psi.mixin.MixinRegex"
 }
 
 
@@ -187,4 +183,6 @@ alias-name          ::= SYMBOL | ESCAPED;
 semantic-number     ::= SYMBOL | ESCAPED;
 
 
-identifier          ::= SYMBOL | SYMBOW_RAW;
+identifier          ::= SYMBOL | SYMBOW_RAW {
+    mixin = "yggdrasil.psi.mixin.MixinIdentifier"
+}

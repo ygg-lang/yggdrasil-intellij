@@ -513,35 +513,16 @@ public class YggdrasilParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // OP_NOT | OP_AND | OP_REMARK {
-  // }
+  // OP_NOT | OP_AND | OP_REMARK
   public static boolean prefix(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "prefix")) return false;
     boolean r;
     Marker m = enter_section_(b, l, _NONE_, PREFIX, "<prefix>");
     r = consumeToken(b, OP_NOT);
     if (!r) r = consumeToken(b, OP_AND);
-    if (!r) r = prefix_2(b, l + 1);
+    if (!r) r = consumeToken(b, OP_REMARK);
     exit_section_(b, l, m, r, false, null);
     return r;
-  }
-
-  // OP_REMARK {
-  // }
-  private static boolean prefix_2(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "prefix_2")) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = consumeToken(b, OP_REMARK);
-    r = r && prefix_2_1(b, l + 1);
-    exit_section_(b, m, null, r);
-    return r;
-  }
-
-  // {
-  // }
-  private static boolean prefix_2_1(PsiBuilder b, int l) {
-    return true;
   }
 
   /* ********************************************************** */
@@ -652,23 +633,16 @@ public class YggdrasilParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // REGULAR_EXPRESSION {
-  // }
+  // REGULAR_EXPRESSION | REGULAR_RANGE
   public static boolean regex(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "regex")) return false;
-    if (!nextTokenIs(b, REGULAR_EXPRESSION)) return false;
+    if (!nextTokenIs(b, "<regex>", REGULAR_EXPRESSION, REGULAR_RANGE)) return false;
     boolean r;
-    Marker m = enter_section_(b);
+    Marker m = enter_section_(b, l, _NONE_, REGEX, "<regex>");
     r = consumeToken(b, REGULAR_EXPRESSION);
-    r = r && regex_1(b, l + 1);
-    exit_section_(b, m, REGEX, r);
+    if (!r) r = consumeToken(b, REGULAR_RANGE);
+    exit_section_(b, l, m, r, false, null);
     return r;
-  }
-
-  // {
-  // }
-  private static boolean regex_1(PsiBuilder b, int l) {
-    return true;
   }
 
   /* ********************************************************** */
@@ -727,8 +701,7 @@ public class YggdrasilParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // OP_OPTIONAL | OP_MANY | OP_MANY1 | range {
-  // }
+  // OP_OPTIONAL | OP_MANY | OP_MANY1 | range
   public static boolean suffix(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "suffix")) return false;
     boolean r;
@@ -736,27 +709,9 @@ public class YggdrasilParser implements PsiParser, LightPsiParser {
     r = consumeToken(b, OP_OPTIONAL);
     if (!r) r = consumeToken(b, OP_MANY);
     if (!r) r = consumeToken(b, OP_MANY1);
-    if (!r) r = suffix_3(b, l + 1);
+    if (!r) r = range(b, l + 1);
     exit_section_(b, l, m, r, false, null);
     return r;
-  }
-
-  // range {
-  // }
-  private static boolean suffix_3(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "suffix_3")) return false;
-    boolean r;
-    Marker m = enter_section_(b);
-    r = range(b, l + 1);
-    r = r && suffix_3_1(b, l + 1);
-    exit_section_(b, m, null, r);
-    return r;
-  }
-
-  // {
-  // }
-  private static boolean suffix_3_1(PsiBuilder b, int l) {
-    return true;
   }
 
   /* ********************************************************** */

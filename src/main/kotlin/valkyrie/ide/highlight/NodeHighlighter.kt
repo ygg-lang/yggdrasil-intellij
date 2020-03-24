@@ -9,10 +9,7 @@ import com.intellij.codeInsight.daemon.impl.analysis.HighlightInfoHolder
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import yggdrasil.language.file.YggdrasilFileNode
-import yggdrasil.psi.node.YggdrasilClass
-import yggdrasil.psi.node.YggdrasilGrammar
-import yggdrasil.psi.node.YggdrasilUnion
-import yggdrasil.psi.node.YggdrasilVisitor
+import yggdrasil.psi.node.*
 
 class NodeHighlighter : YggdrasilVisitor(), HighlightVisitor {
     private var infoHolder: HighlightInfoHolder? = null
@@ -27,6 +24,11 @@ class NodeHighlighter : YggdrasilVisitor(), HighlightVisitor {
 
     override fun visitUnion(o: YggdrasilUnion) {
         o.identifier?.let { highlight(it, HighlightColor.RULE_UNION) }
+    }
+
+
+    override fun visitTagBranch(o: YggdrasilTagBranch) {
+        highlight(o.identifier, HighlightColor.TAG_BRANCH)
     }
 
     private fun highlight(element: PsiElement, color: HighlightColor) {

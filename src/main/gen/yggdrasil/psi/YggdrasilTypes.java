@@ -49,7 +49,6 @@ public interface YggdrasilTypes {
   IElementType UNION_TERM = new YggdrasilElementType("UNION_TERM");
   IElementType VALUE = new YggdrasilElementType("VALUE");
 
-  IElementType ACCENT = new YggdrasilElementType("^");
   IElementType ANGLE_L = new YggdrasilElementType("<");
   IElementType ANGLE_R = new YggdrasilElementType(">");
   IElementType AT = new YggdrasilElementType("@");
@@ -85,12 +84,13 @@ public interface YggdrasilTypes {
   IElementType OP_NOT = new YggdrasilElementType("OP_NOT");
   IElementType OP_OPTIONAL = new YggdrasilElementType("OP_OPTIONAL");
   IElementType OP_OR = new YggdrasilElementType("|");
-  IElementType OP_REMARK = new YggdrasilElementType("OP_REMARK");
+  IElementType OP_REMARK = new YggdrasilElementType("^");
   IElementType PARENTHESIS_L = new YggdrasilElementType("(");
   IElementType PARENTHESIS_R = new YggdrasilElementType(")");
   IElementType PLACE_HOLDER = new YggdrasilElementType("_");
   IElementType REFERENCE = new YggdrasilElementType("$Symbol");
   IElementType REGULAR_EXPRESSION = new YggdrasilElementType("REGULAR_EXPRESSION");
+  IElementType REGULAR_RANGE = new YggdrasilElementType("REGULAR_RANGE");
   IElementType SELECTION_LINE = new YggdrasilElementType("SELECTION_LINE");
   IElementType SEMICOLON = new YggdrasilElementType(";");
   IElementType SLASH = new YggdrasilElementType("/");
