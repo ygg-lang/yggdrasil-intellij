@@ -44,7 +44,7 @@ KW_CLASS = class|struct
 KW_UNION = union|enum|climb
 KW_IMPORT = import
 KW_AS = as
-KW_MACRO = macro
+KW_MACRO = macro|function|func|fun|fn|def
 
 
 %%

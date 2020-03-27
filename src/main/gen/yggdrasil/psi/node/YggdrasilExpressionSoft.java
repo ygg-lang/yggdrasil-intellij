@@ -7,4 +7,7 @@ import com.intellij.psi.PsiElement;
 
 public interface YggdrasilExpressionSoft extends YggdrasilExpression {
 
+  @NotNull
+  List<YggdrasilExpression> getExpressionList();
+
 }

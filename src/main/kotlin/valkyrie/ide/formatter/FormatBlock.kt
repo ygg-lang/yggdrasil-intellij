@@ -7,8 +7,9 @@ import com.intellij.psi.PsiErrorElement
 import com.intellij.psi.formatter.FormatterUtil
 import yggdrasil.antlr.isWhitespaceOrEmpty
 import yggdrasil.language.psi.ValkyrieAlignmentElement
-import yggdrasil.psi.YggdrasilTypes
 import yggdrasil.psi.node.YggdrasilClassBody
+import yggdrasil.psi.node.YggdrasilFunctionBody
+import yggdrasil.psi.node.YggdrasilGrammarBody
 import yggdrasil.psi.node.YggdrasilUnionBody
 
 //import nexus.language.psi.ValkyrieTokenType
@@ -66,7 +67,15 @@ class FormatBlock : ASTBlock {
     override fun getSubBlocks(): List<Block> {
         return node.getChildren(null)
             .filter { !it.isWhitespaceOrEmpty() }
-            .map { FormatBlock(it, _space) }
+            .map {
+                FormatBlock(
+                    node = it,
+                    alignment = computeAlignment(it),
+                    indent = computeIndent(it),
+                    wrap = computeWrap(it),
+                    _space
+                )
+            }
     }
 
     override fun isIncomplete(): Boolean {
@@ -80,9 +89,11 @@ class FormatBlock : ASTBlock {
     private fun computeIndent(child: ASTNode): Indent? {
         val isCorner = _node.firstChildNode == child || _node.lastChildNode == child
         val byCorner = if (isCorner) Indent.getNoneIndent() else Indent.getNormalIndent();
-        return when (node.elementType) {
-            YggdrasilTypes.CLASS_BODY -> byCorner
-            YggdrasilTypes.UNION_BODY -> byCorner
+        return when (node.psi) {
+            is YggdrasilGrammarBody -> byCorner
+            is YggdrasilClassBody -> byCorner
+            is YggdrasilUnionBody -> byCorner
+            is YggdrasilFunctionBody -> byCorner
             else -> Indent.getNoneIndent()
         }
     }

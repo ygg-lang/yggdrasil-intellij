@@ -26,4 +26,10 @@ public class YggdrasilExpressionHardNode extends YggdrasilExpressionNode impleme
     else super.accept(visitor);
   }
 
+  @Override
+  @NotNull
+  public List<YggdrasilExpression> getExpressionList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, YggdrasilExpression.class);
+  }
+
 }
