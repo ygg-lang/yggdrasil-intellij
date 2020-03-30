@@ -8,16 +8,16 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static yggdrasil.psi.YggdrasilTypes.*;
-import yggdrasil.psi.mixin.MixinAttribute;
+import yggdrasil.psi.YggdrasilElement;
 
-public class YggdrasilAttributeNode extends MixinAttribute implements YggdrasilAttribute {
+public class YggdrasilArgumentValueNode extends YggdrasilElement implements YggdrasilArgumentValue {
 
-  public YggdrasilAttributeNode(@NotNull ASTNode node) {
+  public YggdrasilArgumentValueNode(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull YggdrasilVisitor visitor) {
-    visitor.visitAttribute(this);
+    visitor.visitArgumentValue(this);
   }
 
   @Override
@@ -28,14 +28,14 @@ public class YggdrasilAttributeNode extends MixinAttribute implements YggdrasilA
 
   @Override
   @Nullable
-  public YggdrasilFunctionArgument getFunctionArgument() {
-    return findChildByClass(YggdrasilFunctionArgument.class);
+  public YggdrasilExpression getExpression() {
+    return findChildByClass(YggdrasilExpression.class);
   }
 
   @Override
-  @NotNull
-  public YggdrasilIdentifier getIdentifier() {
-    return findNotNullChildByClass(YggdrasilIdentifier.class);
+  @Nullable
+  public YggdrasilNumber getNumber() {
+    return findChildByClass(YggdrasilNumber.class);
   }
 
 }
