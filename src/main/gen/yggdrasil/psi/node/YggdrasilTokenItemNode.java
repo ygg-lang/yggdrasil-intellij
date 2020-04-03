@@ -9,14 +9,14 @@ import yggdrasil.psi.YggdrasilElement;
 
 import java.util.List;
 
-public class YggdrasilAnnotationsNode extends YggdrasilElement implements YggdrasilAnnotations {
+public class YggdrasilTokenItemNode extends YggdrasilElement implements YggdrasilTokenItem {
 
-    public YggdrasilAnnotationsNode(@NotNull ASTNode node) {
+    public YggdrasilTokenItemNode(@NotNull ASTNode node) {
         super(node);
     }
 
     public void accept(@NotNull YggdrasilVisitor visitor) {
-        visitor.visitAnnotations(this);
+        visitor.visitTokenItem(this);
     }
 
     @Override
@@ -29,6 +29,12 @@ public class YggdrasilAnnotationsNode extends YggdrasilElement implements Yggdra
     @NotNull
     public List<YggdrasilAttribute> getAttributeList() {
         return PsiTreeUtil.getChildrenOfTypeAsList(this, YggdrasilAttribute.class);
+    }
+
+    @Override
+    @NotNull
+    public YggdrasilExpression getExpression() {
+        return findNotNullChildByClass(YggdrasilExpression.class);
     }
 
     @Override

@@ -1,13 +1,12 @@
 // This is a generated file. Not intended for manual editing.
 package yggdrasil.psi.node;
 
-import java.util.List;
-import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
+import org.jetbrains.annotations.NotNull;
 
 public interface YggdrasilClassTerm extends PsiElement {
 
-  @NotNull
-  YggdrasilExpression getExpression();
+    @NotNull
+    YggdrasilExpression getExpression();
 
 }

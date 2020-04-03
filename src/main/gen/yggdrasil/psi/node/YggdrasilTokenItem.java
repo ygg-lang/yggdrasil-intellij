@@ -6,7 +6,13 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
-public interface YggdrasilCategory extends PsiElement {
+public interface YggdrasilTokenItem extends PsiElement {
+
+    @NotNull
+    List<YggdrasilAttribute> getAttributeList();
+
+    @NotNull
+    YggdrasilExpression getExpression();
 
     @NotNull
     List<YggdrasilIdentifier> getIdentifierList();

@@ -7,11 +7,7 @@ import com.intellij.psi.PsiErrorElement
 import com.intellij.psi.formatter.FormatterUtil
 import yggdrasil.antlr.isWhitespaceOrEmpty
 import yggdrasil.language.psi.ValkyrieAlignmentElement
-import yggdrasil.psi.node.YggdrasilClassBody
-import yggdrasil.psi.node.YggdrasilFunctionBlock
-import yggdrasil.psi.node.YggdrasilFunctionBody
-import yggdrasil.psi.node.YggdrasilGrammarBody
-import yggdrasil.psi.node.YggdrasilUnionBody
+import yggdrasil.psi.node.*
 
 //import nexus.language.psi.ValkyrieTokenType
 
