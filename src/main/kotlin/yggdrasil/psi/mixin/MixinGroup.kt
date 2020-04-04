@@ -8,22 +8,24 @@ import com.intellij.psi.NavigatablePsiElement
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNameIdentifierOwner
 import yggdrasil.psi.YggdrasilElement
-import yggdrasil.psi.node.YggdrasilToken
-import yggdrasil.psi.node.YggdrasilTokenItemNode
+import yggdrasil.psi.node.YggdrasilGroup
+import yggdrasil.psi.node.YggdrasilGroupItemNode
+
 
 abstract class MixinGroup(node: ASTNode) : YggdrasilElement(node),
     NavigatablePsiElement,
     PsiNameIdentifierOwner,
-    YggdrasilToken {
+    YggdrasilGroup {
 
-    override fun getTokenList(): MutableList<YggdrasilTokenItemNode> {
-        if (tokenBody == null) {
+    override fun getTokenList(): MutableList<YggdrasilGroupItemNode> {
+        if (groupBody == null) {
             return mutableListOf()
         }
-        val items = mutableListOf<YggdrasilTokenItemNode>()
-        for (item in tokenBody!!.tokenTermList) {
-            if (item is YggdrasilTokenItemNode) {
-                items.add(item)
+        val items = mutableListOf<YggdrasilGroupItemNode>()
+        for (item in groupBody!!.groupTermList) {
+            val inner = item.groupItem as? YggdrasilGroupItemNode;
+            if (inner != null) {
+                items.add(inner)
             }
         }
         return items;

@@ -8,16 +8,16 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static yggdrasil.psi.YggdrasilTypes.*;
-import yggdrasil.psi.mixin.MixinGroup;
+import yggdrasil.psi.YggdrasilElement;
 
-public class YggdrasilTokenNode extends MixinGroup implements YggdrasilToken {
+public class YggdrasilGroupBodyNode extends YggdrasilElement implements YggdrasilGroupBody {
 
-  public YggdrasilTokenNode(@NotNull ASTNode node) {
+  public YggdrasilGroupBodyNode(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull YggdrasilVisitor visitor) {
-    visitor.visitToken(this);
+    visitor.visitGroupBody(this);
   }
 
   @Override
@@ -28,20 +28,8 @@ public class YggdrasilTokenNode extends MixinGroup implements YggdrasilToken {
 
   @Override
   @NotNull
-  public YggdrasilAnnotations getAnnotations() {
-    return findNotNullChildByClass(YggdrasilAnnotations.class);
-  }
-
-  @Override
-  @Nullable
-  public YggdrasilIdentifierFree getIdentifierFree() {
-    return findChildByClass(YggdrasilIdentifierFree.class);
-  }
-
-  @Override
-  @Nullable
-  public YggdrasilTokenBody getTokenBody() {
-    return findChildByClass(YggdrasilTokenBody.class);
+  public List<YggdrasilGroupTerm> getGroupTermList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, YggdrasilGroupTerm.class);
   }
 
 }

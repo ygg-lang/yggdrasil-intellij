@@ -8,17 +8,18 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static yggdrasil.psi.YggdrasilTypes.*;
-import yggdrasil.psi.mixin.MixinTokenItem;
+import yggdrasil.psi.mixin.MixinGroupItem;
 import com.intellij.codeInsight.lookup.LookupElement;
+import valkyrie.ide.highlight.NodeHighlighter;
 
-public class YggdrasilTokenItemNode extends MixinTokenItem implements YggdrasilTokenItem {
+public class YggdrasilGroupItemNode extends MixinGroupItem implements YggdrasilGroupItem {
 
-  public YggdrasilTokenItemNode(@NotNull ASTNode node) {
+  public YggdrasilGroupItemNode(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull YggdrasilVisitor visitor) {
-    visitor.visitTokenItem(this);
+    visitor.visitGroupItem(this);
   }
 
   @Override

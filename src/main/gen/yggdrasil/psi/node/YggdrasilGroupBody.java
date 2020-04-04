@@ -5,9 +5,9 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface YggdrasilTokenBody extends PsiElement {
+public interface YggdrasilGroupBody extends PsiElement {
 
   @NotNull
-  List<YggdrasilTokenTerm> getTokenTermList();
+  List<YggdrasilGroupTerm> getGroupTermList();
 
 }

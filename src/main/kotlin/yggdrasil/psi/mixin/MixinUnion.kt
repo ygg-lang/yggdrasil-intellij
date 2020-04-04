@@ -17,6 +17,9 @@ abstract class MixinUnion(node: ASTNode) : YggdrasilElement(node),
     NavigatablePsiElement,
     PsiNameIdentifierOwner,
     YggdrasilUnion {
+    override fun getNavigationElement(): PsiElement {
+        return nameIdentifier ?: this
+    }
 
     override fun getNameIdentifier(): YggdrasilIdentifier? {
         return this.identifier

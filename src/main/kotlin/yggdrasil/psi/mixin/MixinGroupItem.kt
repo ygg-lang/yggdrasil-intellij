@@ -9,41 +9,54 @@ import com.intellij.navigation.ItemPresentation
 import com.intellij.psi.NavigatablePsiElement
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNameIdentifierOwner
+import valkyrie.ide.highlight.HighlightColor
+import valkyrie.ide.highlight.NodeHighlighter
 import yggdrasil.psi.YggdrasilElement
-import yggdrasil.psi.node.YggdrasilClass
+import yggdrasil.psi.node.YggdrasilGroupItem
 import yggdrasil.psi.node.YggdrasilIdentifierNode
 
-
-abstract class MixinClass(node: ASTNode) : YggdrasilElement(node),
+abstract class MixinGroupItem(node: ASTNode) : YggdrasilElement(node),
     NavigatablePsiElement,
     PsiNameIdentifierOwner,
-    YggdrasilClass {
+    YggdrasilGroupItem {
     override fun getNavigationElement(): PsiElement {
         return nameIdentifier ?: this
     }
 
     override fun getNameIdentifier(): YggdrasilIdentifierNode? {
-        return this.identifier as? YggdrasilIdentifierNode
+        return this.identifierList.lastOrNull() as? YggdrasilIdentifierNode
     }
+
 
     override fun getName(): String {
-        return this.identifier?.text ?: ""
+        return nameIdentifier?.name ?: ""
     }
 
-    override fun setName(name: String): YggdrasilIdentifierNode {
+
+    override fun setName(name: String): PsiElement {
         TODO("Not yet implemented")
     }
 
 
     override fun getPresentation(): ItemPresentation? {
-        return PresentationData("YggdrasilClass", "YggdrasilClass", AllIcons.Nodes.Class, null)
+        return PresentationData("YggdrasilClass", "YggdrasilClass", AllIcons.Nodes.Constant, null)
+    }
+
+    override fun highlight(highlighter: NodeHighlighter) {
+        this.identifierList.forEach {
+            if (it == this.identifierList.lastOrNull()) {
+                highlighter.highlight(it, HighlightColor.SYM_CONSTANT)
+            } else {
+                highlighter.highlight(it, HighlightColor.KEYWORD)
+            }
+        }
     }
 
     override fun createLookup(completions: MutableList<LookupElement>) {
-        this.identifier?.let {
+        this.nameIdentifier?.let {
             completions.add(
                 LookupElementBuilder.create(it)
-                    .withIcon(AllIcons.Nodes.Class)
+                    .withIcon(AllIcons.Nodes.Constant)
                     .withCaseSensitivity(false)
                     .withTypeText("withTypeText")
                     .withPresentableText(name)
@@ -52,4 +65,3 @@ abstract class MixinClass(node: ASTNode) : YggdrasilElement(node),
         }
     }
 }
-

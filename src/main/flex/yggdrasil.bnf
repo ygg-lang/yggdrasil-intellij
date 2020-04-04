@@ -76,7 +76,7 @@ private statements ::=
     grammar
   | class
   | union
-  | token
+  | group
   | function-define
   | SEMICOLON
 // === annotation statement ===
@@ -111,16 +111,16 @@ union-body ::= BRACE_L union-term* BRACE_R;
 union-term ::= OP_OR expression-hard tag-branch?;
 tag-branch ::= HASH identifier;
 // === group statement ===
-token  ::= annotations KW_GROUP identifier-free? token-body {
+group  ::= annotations KW_GROUP identifier-free? group-body {
     pin = 2
     mixin = "yggdrasil.psi.mixin.MixinGroup"
-    methods=[createLookup getTokenList]
+    methods=[getTokenList]
 }
-token-body ::= BRACE_L token-term* BRACE_R;
-token-term ::= token-item | SEMICOLON;
-token-item ::= attribute* identifier* EQ expression {
-    mixin = "yggdrasil.psi.mixin.MixinTokenItem"
-    methods=[createLookup]
+group-body ::= BRACE_L group-term* BRACE_R;
+group-term ::= group-item | SEMICOLON;
+group-item ::= attribute* identifier* EQ atomic {
+    mixin = "yggdrasil.psi.mixin.MixinGroupItem"
+    methods=[highlight createLookup]
 }
 /// === function definition ===
 function-define ::= annotations KW_MACRO identifier function-parameter function-block {

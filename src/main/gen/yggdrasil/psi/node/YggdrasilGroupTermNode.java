@@ -10,14 +10,14 @@ import com.intellij.psi.util.PsiTreeUtil;
 import static yggdrasil.psi.YggdrasilTypes.*;
 import yggdrasil.psi.YggdrasilElement;
 
-public class YggdrasilTokenTermNode extends YggdrasilElement implements YggdrasilTokenTerm {
+public class YggdrasilGroupTermNode extends YggdrasilElement implements YggdrasilGroupTerm {
 
-  public YggdrasilTokenTermNode(@NotNull ASTNode node) {
+  public YggdrasilGroupTermNode(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull YggdrasilVisitor visitor) {
-    visitor.visitTokenTerm(this);
+    visitor.visitGroupTerm(this);
   }
 
   @Override
@@ -28,8 +28,8 @@ public class YggdrasilTokenTermNode extends YggdrasilElement implements Yggdrasi
 
   @Override
   @Nullable
-  public YggdrasilTokenItem getTokenItem() {
-    return findChildByClass(YggdrasilTokenItem.class);
+  public YggdrasilGroupItem getGroupItem() {
+    return findChildByClass(YggdrasilGroupItem.class);
   }
 
 }
