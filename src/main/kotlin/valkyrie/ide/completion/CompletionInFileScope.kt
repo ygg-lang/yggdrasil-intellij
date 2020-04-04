@@ -20,35 +20,19 @@ class CompletionInFileScope : CompletionProvider<CompletionParameters>() {
         element = parameters.position
         result.addTopMacros()
         keywordSnippet(result)
-        addControlFlow(result)
-
-//        println("已触发: ${parameters.position.text}")
-    }
-
-
-    fun inClassBlock(parameters: CompletionParameters, context: ProcessingContext, result: CompletionResultSet) {
-
-    }
-
-    fun inClassTuple(parameters: CompletionParameters, context: ProcessingContext, result: CompletionResultSet) {
-//        element = parameters.position
-        result.addTopMacros()
-    }
-
-    fun inMacroBlock(parameters: CompletionParameters, context: ProcessingContext, result: CompletionResultSet) {
-//        element = parameters.position
-    }
-
-    fun inDefineBlock(parameters: CompletionParameters, context: ProcessingContext, result: CompletionResultSet) {
-//        element = parameters.position
-        addControlFlow(result)
     }
 
     private fun CompletionResultSet.addTopMacros() {
-        addElement(annotationCall("@derive", "@derive()", 1))
-        addElement(macroCall("@style", "@style()", 1))
-        addElement(macroCall("@railroad", "@railroad()", 1))
-        addElement(macroCall("@atomic", "@atomic", 1))
+        addElement(annotationCall("#derive", "#derive()", 1))
+        addElement(annotationCall("#style", "#style()", 1))
+        addElement(annotationCall("#railroad", "#railroad()", 1))
+        addElement(annotationCall("#atomic", "#atomic", 1))
+        addElement(macroCall("@comment_line", "@comment_line", 1))
+    }
+
+    private fun keywordSnippet(result: CompletionResultSet) {
+        result.addKeywordSnippet("class", "let.ft", setOf("class", "struct"))
+        result.addKeywordSnippet("union", "let_mut.ft", setOf("union", "enum"))
     }
 
     private fun macroCall(show: String, replace: String, offset: Int, lookup: Set<String> = setOf()): LookupElementBuilder {
@@ -57,39 +41,6 @@ class CompletionInFileScope : CompletionProvider<CompletionParameters>() {
 
     private fun annotationCall(show: String, replace: String, offset: Int, lookup: Set<String> = setOf()): LookupElementBuilder {
         return buildWithReplace(show, replace, offset, lookup, AllIcons.Nodes.Annotationtype)
-    }
-
-
-    private fun keywordSnippet(result: CompletionResultSet) {
-        result.addKeywordSnippet("let", "let.ft", setOf("val"))
-        result.addKeywordSnippet("let mut", "let_mut.ft", setOf("var", "mut"))
-
-        result.addKeywordSnippet("def", "def.ft", setOf("fn", "fun", "function"))
-        result.addKeywordSnippet("method", "method.ft", setOf("def"))
-        result.addKeywordSnippet("mutable method", "method_mut.ft", setOf("def", "mutmethod"))
-        result.addKeywordSnippet("lambda", "lambda.ft")
-
-        result.addKeywordSnippet("type", "type.ft")
-
-        result.addKeywordSnippet("class", "class.ft", setOf("cass", "struct"))
-        result.addKeywordSnippet("inline class", "class_atomic.ft", setOf("class inline"))
-        result.addKeywordSnippet("atomic class", "class_inline.ft", setOf("class atomic"))
-
-        result.addKeywordSnippet("union", "tagged.ft")
-        result.addKeywordSnippet("flags", "bitset.ft")
-
-        result.addKeywordSnippet("trait", "trait.ft")
-        result.addKeywordSnippet("interface", "interface.ft")
-        result.addKeywordSnippet("protocol", "protocol.ft")
-    }
-
-    private fun addControlFlow(result: CompletionResultSet) {
-        result.addKeywordSnippet("if", "if.ft")
-        result.addKeywordSnippet("else if", "else_if.ft", setOf("ef"))
-        result.addKeywordSnippet("else", "else.ft")
-        result.addKeywordSnippet("for in", "for_in.ft")
-        result.addKeywordSnippet("for range", "for_range.ft")
-        result.addKeywordSnippet("for kv", "for_kv.ft")
     }
 
 

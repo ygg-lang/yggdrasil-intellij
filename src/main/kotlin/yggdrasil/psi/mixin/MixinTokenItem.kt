@@ -10,22 +10,22 @@ import com.intellij.psi.NavigatablePsiElement
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNameIdentifierOwner
 import yggdrasil.psi.YggdrasilElement
-import yggdrasil.psi.node.YggdrasilIdentifier
-import yggdrasil.psi.node.YggdrasilUnion
+import yggdrasil.psi.node.YggdrasilIdentifierNode
+import yggdrasil.psi.node.YggdrasilTokenItem
 
-abstract class MixinUnion(node: ASTNode) : YggdrasilElement(node),
+abstract class MixinTokenItem(node: ASTNode) : YggdrasilElement(node),
     NavigatablePsiElement,
     PsiNameIdentifierOwner,
-    YggdrasilUnion {
+    YggdrasilTokenItem {
 
-    override fun getNameIdentifier(): YggdrasilIdentifier? {
-        return this.identifier
+    override fun getNameIdentifier(): YggdrasilIdentifierNode? {
+        return this.identifierList.lastOrNull() as? YggdrasilIdentifierNode
     }
-
 
     override fun getName(): String {
-        return this.identifier?.text ?: ""
+        return nameIdentifier?.name ?: ""
     }
+
 
     override fun setName(name: String): PsiElement {
         TODO("Not yet implemented")
@@ -33,20 +33,12 @@ abstract class MixinUnion(node: ASTNode) : YggdrasilElement(node),
 
 
     override fun getPresentation(): ItemPresentation? {
-        return PresentationData("YggdrasilClass", "YggdrasilClass", AllIcons.Nodes.Enum, null)
+        return PresentationData("YggdrasilClass", "YggdrasilClass", AllIcons.Nodes.Class, null)
     }
 
     override fun createLookup(completions: MutableList<LookupElement>) {
-        this.identifier?.let {
-            completions.add(
-                LookupElementBuilder.create(it)
-                    .withIcon(AllIcons.Nodes.Enum)
-                    .withCaseSensitivity(false)
-                    .withTypeText("withTypeText")
-                    .withPresentableText(name)
-                    .withTailText(" withTailText")
-            )
+        this.nameIdentifier?.let {
+            completions.add(LookupElementBuilder.create(it))
         }
     }
 }
-

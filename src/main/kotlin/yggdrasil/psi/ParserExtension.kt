@@ -59,7 +59,7 @@ class ParserExtension : GeneratedParserUtilBase() {
         );
         val Comments: TokenSet = TokenSet.create();
         val CompletionWords: TokenSet = TokenSet.create(
-//            RAW_ID, UNICODE_ID
+            SYMBOL, SYMBOW_RAW
         )
     }
 

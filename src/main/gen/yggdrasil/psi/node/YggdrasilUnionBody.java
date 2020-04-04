@@ -1,14 +1,13 @@
 // This is a generated file. Not intended for manual editing.
 package yggdrasil.psi.node;
 
-import com.intellij.psi.PsiElement;
-import org.jetbrains.annotations.NotNull;
-
 import java.util.List;
+import org.jetbrains.annotations.*;
+import com.intellij.psi.PsiElement;
 
 public interface YggdrasilUnionBody extends PsiElement {
 
-    @NotNull
-    List<YggdrasilUnionTerm> getUnionTermList();
+  @NotNull
+  List<YggdrasilUnionTerm> getUnionTermList();
 
 }
