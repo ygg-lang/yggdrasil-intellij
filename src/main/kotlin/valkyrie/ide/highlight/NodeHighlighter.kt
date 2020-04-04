@@ -26,7 +26,6 @@ class NodeHighlighter : YggdrasilVisitor(), HighlightVisitor {
 
 
     override fun visitAttribute(o: YggdrasilAttribute) {
-        o as YggdrasilAttributeNode;
         o.highlight(this)
     }
 
@@ -42,10 +41,13 @@ class NodeHighlighter : YggdrasilVisitor(), HighlightVisitor {
         o.highlight(this)
     }
 
+    override fun visitExpressionTag(o: YggdrasilExpressionTag) {
+        o.identifierFree?.let { highlight(it, HighlightColor.TAG_NODE) }
+    }
+
     override fun visitTagBranch(o: YggdrasilTagBranch) {
         highlight(o, HighlightColor.TAG_BRANCH)
     }
-
 
     override fun visitAtomic(o: YggdrasilAtomic) {
         o.identifierFree?.highlight(this)

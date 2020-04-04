@@ -1,15 +1,15 @@
 # Yggdrasil Intellij
 
 
-![Build](https://github.com/oovm/Wit-Intellij/workflows/Build/badge.svg)
-[![Version](https://img.shields.io/jetbrains/plugin/v/24001.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
-[![Downloads](https://img.shields.io/jetbrains/plugin/d/24001.svg)](https://plugins.jetbrains.com/plugin/PLUGIN_ID)
+![Build](https://github.com/ygg-lang/project-yggdrasil/workflows/Build/badge.svg)
+[![Version](https://img.shields.io/jetbrains/plugin/v/20594.svg)](https://plugins.jetbrains.com/plugin/20594)
+[![Downloads](https://img.shields.io/jetbrains/plugin/d/20594.svg)](https://plugins.jetbrains.com/plugin/20594)
 
 ## Features
 
 - Semantic Highlight
 
-![](https://github.com/oovm/WIT-Intellij/assets/17541209/8b1200e4-6107-4c0e-9def-2221f16827c1)
+![](https://plugins.jetbrains.com/files/20594/screenshot_49248c4b-e4ae-4bbd-acab-ed7151e5cc6e)
 
 - Code Formatting
   - supports `.editorconfig`

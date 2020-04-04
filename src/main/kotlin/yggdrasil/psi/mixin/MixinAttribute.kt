@@ -11,9 +11,12 @@ import yggdrasil.psi.node.YggdrasilAttribute
 
 abstract class MixinAttribute(node: ASTNode) : YggdrasilElement(node), YggdrasilAttribute {
 
-    fun highlight(visitor: NodeHighlighter) {
+    override fun highlight(visitor: NodeHighlighter) {
         visitor.highlight(this.firstChild, HighlightColor.SYM_MACRO)
         visitor.highlight(this.identifier, HighlightColor.SYM_MACRO)
+
+
+
     }
 
     override fun getPresentation(): ItemPresentation? {

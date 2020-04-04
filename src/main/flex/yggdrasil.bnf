@@ -84,6 +84,7 @@ annotations ::= attribute* identifier*
 attribute   ::= (AT|HASH) identifier function-argument? {
 	pin = 2
     mixin = "yggdrasil.psi.mixin.MixinAttribute"
+    methods=[highlight]
 }
 // === grammar statement ===
 grammar ::= annotations KW_GRAMMAR identifier grammar-body {

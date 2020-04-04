@@ -90,6 +90,7 @@ class FormatBlock : ASTBlock {
             is YggdrasilGrammarBody -> byCorner
             is YggdrasilClassBody -> byCorner
             is YggdrasilUnionBody -> byCorner
+            is YggdrasilGroupBody -> byCorner
             is YggdrasilFunctionBlock -> byCorner
             is YggdrasilFunctionParameter -> byCorner
             is YggdrasilFunctionArgument -> byCorner
