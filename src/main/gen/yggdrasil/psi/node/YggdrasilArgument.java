@@ -7,10 +7,10 @@ import com.intellij.psi.PsiElement;
 
 public interface YggdrasilArgument extends PsiElement {
 
-  @NotNull
-  YggdrasilArgumentValue getArgumentValue();
-
   @Nullable
   YggdrasilIdentifier getIdentifier();
+
+  @NotNull
+  YggdrasilValue getValue();
 
 }

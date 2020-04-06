@@ -28,8 +28,8 @@ public class YggdrasilFunctionArgumentNode extends YggdrasilElement implements Y
 
   @Override
   @NotNull
-  public List<YggdrasilArgument> getArgumentList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, YggdrasilArgument.class);
+  public List<YggdrasilPair> getPairList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, YggdrasilPair.class);
   }
 
 }

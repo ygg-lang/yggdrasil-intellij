@@ -8,9 +8,6 @@ import valkyrie.ide.highlight.NodeHighlighter;
 
 public interface YggdrasilAttribute extends PsiElement {
 
-  @Nullable
-  YggdrasilFunctionArgument getFunctionArgument();
-
   @NotNull
   YggdrasilIdentifier getIdentifier();
 

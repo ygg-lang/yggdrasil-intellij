@@ -8,6 +8,6 @@ import com.intellij.psi.PsiElement;
 public interface YggdrasilFunctionArgument extends PsiElement {
 
   @NotNull
-  List<YggdrasilArgument> getArgumentList();
+  List<YggdrasilPair> getPairList();
 
 }

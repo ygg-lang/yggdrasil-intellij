@@ -28,8 +28,8 @@ public class YggdrasilGrammarTermNode extends YggdrasilElement implements Yggdra
 
   @Override
   @Nullable
-  public YggdrasilGrammarPair getGrammarPair() {
-    return findChildByClass(YggdrasilGrammarPair.class);
+  public YggdrasilPair getPair() {
+    return findChildByClass(YggdrasilPair.class);
   }
 
 }

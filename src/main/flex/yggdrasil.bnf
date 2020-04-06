@@ -24,7 +24,7 @@
         URL = "Url"
         SYMBOL    = "Symbol"
         ESCAPED   = "\escaped"
-        INTEGER = "<<INTEGER>>"
+        INTEGER   = "<<INTEGER>>"
 
         REFERENCE = "$Symbol"
 
@@ -92,8 +92,7 @@ grammar ::= annotations KW_GRAMMAR identifier grammar-body {
     mixin = "yggdrasil.psi.mixin.MixinGrammar"
 }
 grammar-body ::= BRACE_L grammar-term* BRACE_R;
-grammar-term ::= grammar-pair | COMMA | SEMICOLON;
-grammar-pair ::= identifier COLON expression;
+grammar-term ::= pair | COMMA | SEMICOLON;
 // === class statement ===
 class  ::= annotations KW_CLASS identifier class-cast? OP_REMARK? class-body {
     pin = 2
@@ -103,7 +102,7 @@ class  ::= annotations KW_CLASS identifier class-cast? OP_REMARK? class-body {
 class-cast ::= TO identifier;
 class-body ::= BRACE_L OP_OR? expression? BRACE_R;
 // === union statement ===
-union  ::= annotations KW_UNION identifier union-body {
+union  ::= annotations KW_UNION identifier OP_REMARK? union-body {
     pin = 2
     mixin = "yggdrasil.psi.mixin.MixinUnion"
     methods=[createLookup]
@@ -134,12 +133,9 @@ parameter ::= identifier ((EQ|COLON) expression)? {
 }
 function-block ::= BRACE_L OP_OR? expression? BRACE_R;
 // === function statement ===
-function-call ::= AT identifier function-argument? {
+function-call ::= AT identifier tuple? {
     pin = 1
 }
-function-argument ::= PARENTHESIS_L (argument (COMMA argument)* COMMA?)? PARENTHESIS_R;
-argument ::= (identifier COLON)? argument-value;
-argument-value ::= expression | number;
 // === expression statement ===
 expression ::= expression-choice {
 
@@ -187,11 +183,13 @@ string ::= TEXT_SINGLE | TEXT_DOUBLE {
 regex ::= REGULAR_EXPRESSION | REGULAR_RANGE {
     mixin = "yggdrasil.psi.mixin.MixinRegex"
 }
-
-
-
-
-
+// === atomic statement ===
+value    ::= tuple | expression | number;
+pair     ::= identifier EQ value;
+argument ::= (identifier EQ)? value;
+tuple    ::= PARENTHESIS_L (argument (COMMA argument)* COMMA?)? PARENTHESIS_R {
+//    mixin = "yggdrasil.psi.mixin.MixinTuple"
+}
 
 
 number ::= INTEGER {

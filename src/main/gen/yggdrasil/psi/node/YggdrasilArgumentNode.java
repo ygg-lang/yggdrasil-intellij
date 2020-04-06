@@ -27,15 +27,15 @@ public class YggdrasilArgumentNode extends YggdrasilElement implements Yggdrasil
   }
 
   @Override
-  @NotNull
-  public YggdrasilArgumentValue getArgumentValue() {
-    return findNotNullChildByClass(YggdrasilArgumentValue.class);
-  }
-
-  @Override
   @Nullable
   public YggdrasilIdentifier getIdentifier() {
     return findChildByClass(YggdrasilIdentifier.class);
+  }
+
+  @Override
+  @NotNull
+  public YggdrasilValue getValue() {
+    return findNotNullChildByClass(YggdrasilValue.class);
   }
 
 }

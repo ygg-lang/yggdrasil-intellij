@@ -28,12 +28,6 @@ public class YggdrasilAttributeNode extends MixinAttribute implements YggdrasilA
   }
 
   @Override
-  @Nullable
-  public YggdrasilFunctionArgument getFunctionArgument() {
-    return findChildByClass(YggdrasilFunctionArgument.class);
-  }
-
-  @Override
   @NotNull
   public YggdrasilIdentifier getIdentifier() {
     return findNotNullChildByClass(YggdrasilIdentifier.class);

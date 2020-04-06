@@ -8,6 +8,6 @@ import com.intellij.psi.PsiElement;
 public interface YggdrasilGrammarTerm extends PsiElement {
 
   @Nullable
-  YggdrasilGrammarPair getGrammarPair();
+  YggdrasilPair getPair();
 
 }

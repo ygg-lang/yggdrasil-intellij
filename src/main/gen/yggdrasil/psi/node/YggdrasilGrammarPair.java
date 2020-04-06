@@ -8,9 +8,9 @@ import com.intellij.psi.PsiElement;
 public interface YggdrasilGrammarPair extends PsiElement {
 
   @NotNull
-  YggdrasilExpression getExpression();
+  YggdrasilIdentifier getIdentifier();
 
   @NotNull
-  YggdrasilIdentifier getIdentifier();
+  YggdrasilValue getValue();
 
 }

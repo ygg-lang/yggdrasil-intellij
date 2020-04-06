@@ -15,10 +15,6 @@ public class YggdrasilVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitArgumentValue(@NotNull YggdrasilArgumentValue o) {
-    visitPsiElement(o);
-  }
-
   public void visitAtomic(@NotNull YggdrasilAtomic o) {
     visitExpression(o);
   }
@@ -71,10 +67,6 @@ public class YggdrasilVisitor extends PsiElementVisitor {
     visitExpression(o);
   }
 
-  public void visitFunctionArgument(@NotNull YggdrasilFunctionArgument o) {
-    visitPsiElement(o);
-  }
-
   public void visitFunctionBlock(@NotNull YggdrasilFunctionBlock o) {
     visitPsiElement(o);
   }
@@ -96,10 +88,6 @@ public class YggdrasilVisitor extends PsiElementVisitor {
   }
 
   public void visitGrammarBody(@NotNull YggdrasilGrammarBody o) {
-    visitPsiElement(o);
-  }
-
-  public void visitGrammarPair(@NotNull YggdrasilGrammarPair o) {
     visitPsiElement(o);
   }
 
@@ -132,6 +120,10 @@ public class YggdrasilVisitor extends PsiElementVisitor {
   }
 
   public void visitNumber(@NotNull YggdrasilNumber o) {
+    visitPsiElement(o);
+  }
+
+  public void visitPair(@NotNull YggdrasilPair o) {
     visitPsiElement(o);
   }
 
@@ -175,6 +167,10 @@ public class YggdrasilVisitor extends PsiElementVisitor {
     visitExpression(o);
   }
 
+  public void visitTuple(@NotNull YggdrasilTuple o) {
+    visitPsiElement(o);
+  }
+
   public void visitUnion(@NotNull YggdrasilUnion o) {
     visitPsiElement(o);
   }
@@ -184,6 +180,10 @@ public class YggdrasilVisitor extends PsiElementVisitor {
   }
 
   public void visitUnionTerm(@NotNull YggdrasilUnionTerm o) {
+    visitPsiElement(o);
+  }
+
+  public void visitValue(@NotNull YggdrasilValue o) {
     visitPsiElement(o);
   }
 

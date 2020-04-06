@@ -13,4 +13,7 @@ public interface YggdrasilArgumentValue extends PsiElement {
   @Nullable
   YggdrasilNumber getNumber();
 
+  @Nullable
+  YggdrasilTuple getTuple();
+
 }
