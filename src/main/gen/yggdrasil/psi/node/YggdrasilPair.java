@@ -5,9 +5,9 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface YggdrasilArgument extends PsiElement {
+public interface YggdrasilPair extends PsiElement {
 
-  @Nullable
+  @NotNull
   YggdrasilIdentifierFree getIdentifierFree();
 
   @NotNull

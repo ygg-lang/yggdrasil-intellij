@@ -76,37 +76,47 @@ public class YggdrasilParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // (identifier EQ)? value
+  // (identifier-free EQ)? value {
+  // //    mixin = "yggdrasil.psi.mixin.MixinTuple"
+  // }
   public static boolean argument(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "argument")) return false;
     boolean r;
     Marker m = enter_section_(b, l, _NONE_, ARGUMENT, "<argument>");
     r = argument_0(b, l + 1);
     r = r && value(b, l + 1);
+    r = r && argument_2(b, l + 1);
     exit_section_(b, l, m, r, false, null);
     return r;
   }
 
-  // (identifier EQ)?
+  // (identifier-free EQ)?
   private static boolean argument_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "argument_0")) return false;
     argument_0_0(b, l + 1);
     return true;
   }
 
-  // identifier EQ
+  // identifier-free EQ
   private static boolean argument_0_0(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "argument_0_0")) return false;
     boolean r;
     Marker m = enter_section_(b);
-    r = identifier(b, l + 1);
+    r = identifier_free(b, l + 1);
     r = r && consumeToken(b, EQ);
     exit_section_(b, m, null, r);
     return r;
   }
 
+  // {
+  // //    mixin = "yggdrasil.psi.mixin.MixinTuple"
+  // }
+  private static boolean argument_2(PsiBuilder b, int l) {
+    return true;
+  }
+
   /* ********************************************************** */
-  // expression-group | identifier-free | escape | string | regex | function-call
+  // expression-group | identifier-free | escape | string | regex | function-call | number
   public static boolean atomic(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "atomic")) return false;
     boolean r;
@@ -117,12 +127,13 @@ public class YggdrasilParser implements PsiParser, LightPsiParser {
     if (!r) r = string(b, l + 1);
     if (!r) r = regex(b, l + 1);
     if (!r) r = function_call(b, l + 1);
+    if (!r) r = number(b, l + 1);
     exit_section_(b, l, m, r, false, null);
     return r;
   }
 
   /* ********************************************************** */
-  // (AT|HASH) identifier function-argument?
+  // (AT|HASH) identifier tuple?
   public static boolean attribute(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "attribute")) return false;
     if (!nextTokenIs(b, "<attribute>", AT, HASH)) return false;
@@ -145,10 +156,10 @@ public class YggdrasilParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // function-argument?
+  // tuple?
   private static boolean attribute_2(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "attribute_2")) return false;
-    consumeToken(b, FUNCTION_ARGUMENT);
+    tuple(b, l + 1);
     return true;
   }
 
@@ -485,9 +496,9 @@ public class YggdrasilParser implements PsiParser, LightPsiParser {
     boolean r, p;
     Marker m = enter_section_(b, l, _NONE_, FUNCTION_CALL, null);
     r = consumeToken(b, AT);
-    p = r; // pin = 1
-    r = r && report_error_(b, identifier(b, l + 1));
-    r = p && function_call_2(b, l + 1) && r;
+    r = r && identifier(b, l + 1);
+    p = r; // pin = 2
+    r = r && function_call_2(b, l + 1);
     exit_section_(b, l, m, r, p, null);
     return r || p;
   }
@@ -781,17 +792,26 @@ public class YggdrasilParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // identifier EQ value
+  // identifier-free EQ value {
+  // //    mixin = "yggdrasil.psi.mixin.MixinTuple"
+  // }
   public static boolean pair(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "pair")) return false;
-    if (!nextTokenIs(b, "<pair>", SYMBOL, SYMBOW_RAW)) return false;
     boolean r;
     Marker m = enter_section_(b, l, _NONE_, PAIR, "<pair>");
-    r = identifier(b, l + 1);
+    r = identifier_free(b, l + 1);
     r = r && consumeToken(b, EQ);
     r = r && value(b, l + 1);
+    r = r && pair_3(b, l + 1);
     exit_section_(b, l, m, r, false, null);
     return r;
+  }
+
+  // {
+  // //    mixin = "yggdrasil.psi.mixin.MixinTuple"
+  // }
+  private static boolean pair_3(PsiBuilder b, int l) {
+    return true;
   }
 
   /* ********************************************************** */
@@ -1082,9 +1102,7 @@ public class YggdrasilParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // PARENTHESIS_L (argument (COMMA argument)* COMMA?)? PARENTHESIS_R {
-  // //    mixin = "yggdrasil.psi.mixin.MixinTuple"
-  // }
+  // PARENTHESIS_L (argument (COMMA argument)* COMMA?)?  PARENTHESIS_R
   public static boolean tuple(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "tuple")) return false;
     if (!nextTokenIs(b, PARENTHESIS_L)) return false;
@@ -1093,7 +1111,6 @@ public class YggdrasilParser implements PsiParser, LightPsiParser {
     r = consumeToken(b, PARENTHESIS_L);
     r = r && tuple_1(b, l + 1);
     r = r && consumeToken(b, PARENTHESIS_R);
-    r = r && tuple_3(b, l + 1);
     exit_section_(b, m, TUPLE, r);
     return r;
   }
@@ -1143,13 +1160,6 @@ public class YggdrasilParser implements PsiParser, LightPsiParser {
   private static boolean tuple_1_0_2(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "tuple_1_0_2")) return false;
     consumeToken(b, COMMA);
-    return true;
-  }
-
-  // {
-  // //    mixin = "yggdrasil.psi.mixin.MixinTuple"
-  // }
-  private static boolean tuple_3(PsiBuilder b, int l) {
     return true;
   }
 
@@ -1223,14 +1233,13 @@ public class YggdrasilParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // tuple | expression | number
+  // tuple | expression
   public static boolean value(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "value")) return false;
     boolean r;
     Marker m = enter_section_(b, l, _NONE_, VALUE, "<value>");
     r = tuple(b, l + 1);
     if (!r) r = expression(b, l + 1);
-    if (!r) r = number(b, l + 1);
     exit_section_(b, l, m, r, false, null);
     return r;
   }

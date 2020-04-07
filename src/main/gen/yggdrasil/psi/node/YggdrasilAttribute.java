@@ -11,6 +11,9 @@ public interface YggdrasilAttribute extends PsiElement {
   @NotNull
   YggdrasilIdentifier getIdentifier();
 
+  @Nullable
+  YggdrasilTuple getTuple();
+
   void highlight(@NotNull NodeHighlighter visitor);
 
 }

@@ -49,6 +49,15 @@ class NodeHighlighter : YggdrasilVisitor(), HighlightVisitor {
         highlight(o, HighlightColor.TAG_BRANCH)
     }
 
+    override fun visitArgument(o: YggdrasilArgument) {
+        o.identifierFree?.let { highlight(it, HighlightColor.SYM_FIELD) }
+    }
+
+    override fun visitPair(o: YggdrasilPair) {
+        highlight(o.identifierFree, HighlightColor.SYM_FIELD)
+    }
+
+
     override fun visitAtomic(o: YggdrasilAtomic) {
         o.identifierFree?.highlight(this)
     }

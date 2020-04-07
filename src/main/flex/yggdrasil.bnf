@@ -81,7 +81,7 @@ private statements ::=
   | SEMICOLON
 // === annotation statement ===
 annotations ::= attribute* identifier*
-attribute   ::= (AT|HASH) identifier function-argument? {
+attribute   ::= (AT|HASH) identifier tuple? {
 	pin = 2
     mixin = "yggdrasil.psi.mixin.MixinAttribute"
     methods=[highlight]
@@ -134,7 +134,7 @@ parameter ::= identifier ((EQ|COLON) expression)? {
 function-block ::= BRACE_L OP_OR? expression? BRACE_R;
 // === function statement ===
 function-call ::= AT identifier tuple? {
-    pin = 1
+    pin = 2
 }
 // === expression statement ===
 expression ::= expression-choice {
@@ -158,7 +158,7 @@ term ::= prefix* atomic suffix* {
 prefix ::= OP_NOT | OP_AND | OP_REMARK;
 suffix ::= OP_OPTIONAL | OP_MANY | OP_MANY1 | range;
 // === atomic statement ===
-atomic ::= expression-group | identifier-free | escape | string | regex | function-call {
+atomic ::= expression-group | identifier-free | escape | string | regex | function-call | number {
     extends = expression
 }
 expression-group ::= PARENTHESIS_L OP_OR? expression PARENTHESIS_R {
@@ -184,13 +184,16 @@ regex ::= REGULAR_EXPRESSION | REGULAR_RANGE {
     mixin = "yggdrasil.psi.mixin.MixinRegex"
 }
 // === atomic statement ===
-value    ::= tuple | expression | number;
-pair     ::= identifier EQ value;
-argument ::= (identifier EQ)? value;
-tuple    ::= PARENTHESIS_L (argument (COMMA argument)* COMMA?)? PARENTHESIS_R {
+value    ::= tuple | expression;
+pair     ::= identifier-free EQ value {
 //    mixin = "yggdrasil.psi.mixin.MixinTuple"
 }
-
+argument ::= (identifier-free EQ)? value {
+//    mixin = "yggdrasil.psi.mixin.MixinTuple"
+}
+tuple    ::= PARENTHESIS_L (argument (COMMA argument)* COMMA?)?  PARENTHESIS_R
+//  | PARENTHESIS_L argument COMMA PARENTHESIS_R
+//  | PARENTHESIS_L PARENTHESIS_R
 
 number ::= INTEGER {
 //    mixin = "yggdrasil.psi.mixin.MixinNumber"

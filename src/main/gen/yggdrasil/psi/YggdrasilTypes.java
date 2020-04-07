@@ -69,7 +69,6 @@ public interface YggdrasilTypes {
   IElementType DOT = new YggdrasilTokenType(".");
   IElementType EQ = new YggdrasilTokenType("=");
   IElementType ESCAPED = new YggdrasilTokenType("\\escaped");
-  IElementType FUNCTION_ARGUMENT = new YggdrasilTokenType("function-argument");
   IElementType HASH = new YggdrasilTokenType("HASH");
   IElementType HYPHEN = new YggdrasilTokenType("-");
   IElementType INTEGER = new YggdrasilTokenType("<<INTEGER>>");

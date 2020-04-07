@@ -8,17 +8,16 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static yggdrasil.psi.YggdrasilTypes.*;
-import yggdrasil.psi.mixin.MixinAttribute;
-import valkyrie.ide.highlight.NodeHighlighter;
+import yggdrasil.psi.YggdrasilElement;
 
-public class YggdrasilAttributeNode extends MixinAttribute implements YggdrasilAttribute {
+public class YggdrasilTupleNode extends YggdrasilElement implements YggdrasilTuple {
 
-  public YggdrasilAttributeNode(@NotNull ASTNode node) {
+  public YggdrasilTupleNode(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull YggdrasilVisitor visitor) {
-    visitor.visitAttribute(this);
+    visitor.visitTuple(this);
   }
 
   @Override
@@ -29,14 +28,8 @@ public class YggdrasilAttributeNode extends MixinAttribute implements YggdrasilA
 
   @Override
   @NotNull
-  public YggdrasilIdentifier getIdentifier() {
-    return findNotNullChildByClass(YggdrasilIdentifier.class);
-  }
-
-  @Override
-  @Nullable
-  public YggdrasilTuple getTuple() {
-    return findChildByClass(YggdrasilTuple.class);
+  public List<YggdrasilArgument> getArgumentList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, YggdrasilArgument.class);
   }
 
 }
