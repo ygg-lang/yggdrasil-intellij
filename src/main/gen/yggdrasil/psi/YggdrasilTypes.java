@@ -17,6 +17,7 @@ public interface YggdrasilTypes {
   IElementType CLASS_BODY = new YggdrasilElementType("CLASS_BODY");
   IElementType CLASS_CAST = new YggdrasilElementType("CLASS_CAST");
   IElementType DEFINE_FUNCTION = new YggdrasilElementType("DEFINE_FUNCTION");
+  IElementType DEFINE_UNION = new YggdrasilElementType("DEFINE_UNION");
   IElementType ESCAPE = new YggdrasilElementType("ESCAPE");
   IElementType EXPRESSION = new YggdrasilElementType("EXPRESSION");
   IElementType EXPRESSION_CHOICE = new YggdrasilElementType("EXPRESSION_CHOICE");
@@ -37,6 +38,7 @@ public interface YggdrasilTypes {
   IElementType IDENTIFIER = new YggdrasilElementType("IDENTIFIER");
   IElementType IDENTIFIER_FREE = new YggdrasilElementType("IDENTIFIER_FREE");
   IElementType KEY = new YggdrasilElementType("KEY");
+  IElementType MODIFIER = new YggdrasilElementType("MODIFIER");
   IElementType NUMBER = new YggdrasilElementType("NUMBER");
   IElementType PAIR = new YggdrasilElementType("PAIR");
   IElementType PARAMETER = new YggdrasilElementType("PARAMETER");
@@ -50,9 +52,8 @@ public interface YggdrasilTypes {
   IElementType TAG_BRANCH = new YggdrasilElementType("TAG_BRANCH");
   IElementType TERM = new YggdrasilElementType("TERM");
   IElementType TUPLE = new YggdrasilElementType("TUPLE");
-  IElementType UNION = new YggdrasilElementType("UNION");
   IElementType UNION_BODY = new YggdrasilElementType("UNION_BODY");
-  IElementType UNION_TERM = new YggdrasilElementType("UNION_TERM");
+  IElementType UNION_VARIANT = new YggdrasilElementType("UNION_VARIANT");
   IElementType USING = new YggdrasilElementType("USING");
   IElementType USING_ALIAS = new YggdrasilElementType("USING_ALIAS");
   IElementType USING_BODY = new YggdrasilElementType("USING_BODY");
@@ -141,6 +142,9 @@ public interface YggdrasilTypes {
       else if (type == DEFINE_FUNCTION) {
         return new YggdrasilDefineFunctionNode(node);
       }
+      else if (type == DEFINE_UNION) {
+        return new YggdrasilDefineUnionNode(node);
+      }
       else if (type == ESCAPE) {
         return new YggdrasilEscapeNode(node);
       }
@@ -198,6 +202,9 @@ public interface YggdrasilTypes {
       else if (type == KEY) {
         return new YggdrasilKeyNode(node);
       }
+      else if (type == MODIFIER) {
+        return new YggdrasilModifierNode(node);
+      }
       else if (type == NUMBER) {
         return new YggdrasilNumberNode(node);
       }
@@ -237,14 +244,11 @@ public interface YggdrasilTypes {
       else if (type == TUPLE) {
         return new YggdrasilTupleNode(node);
       }
-      else if (type == UNION) {
-        return new YggdrasilUnionNode(node);
-      }
       else if (type == UNION_BODY) {
         return new YggdrasilUnionBodyNode(node);
       }
-      else if (type == UNION_TERM) {
-        return new YggdrasilUnionTermNode(node);
+      else if (type == UNION_VARIANT) {
+        return new YggdrasilUnionVariantNode(node);
       }
       else if (type == USING) {
         return new YggdrasilUsingNode(node);

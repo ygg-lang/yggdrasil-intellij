@@ -43,6 +43,10 @@ public class YggdrasilVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitDefineUnion(@NotNull YggdrasilDefineUnion o) {
+    visitPsiElement(o);
+  }
+
   public void visitEscape(@NotNull YggdrasilEscape o) {
     visitPsiElement(o);
   }
@@ -123,6 +127,10 @@ public class YggdrasilVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitModifier(@NotNull YggdrasilModifier o) {
+    visitPsiElement(o);
+  }
+
   public void visitNumber(@NotNull YggdrasilNumber o) {
     visitPsiElement(o);
   }
@@ -175,15 +183,11 @@ public class YggdrasilVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitUnion(@NotNull YggdrasilUnion o) {
-    visitPsiElement(o);
-  }
-
   public void visitUnionBody(@NotNull YggdrasilUnionBody o) {
     visitPsiElement(o);
   }
 
-  public void visitUnionTerm(@NotNull YggdrasilUnionTerm o) {
+  public void visitUnionVariant(@NotNull YggdrasilUnionVariant o) {
     visitPsiElement(o);
   }
 

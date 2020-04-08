@@ -77,12 +77,15 @@ private statements ::=
     grammar
   | using
   | class
-  | union
+  | define-union
   | group
   | define-function
   | SEMICOLON
 // === annotation statement ===
-annotations ::= attribute* identifier*
+annotations ::= attribute* modifier*
+modifier    ::= identifier {
+    mixin = "yggdrasil.psi.mixin.MixinModifier"
+}
 attribute   ::= (AT|HASH) identifier tuple? {
 	pin = 2
     mixin = "yggdrasil.psi.mixin.MixinAttribute"
@@ -114,14 +117,16 @@ class  ::= annotations KW_CLASS identifier class-cast? OP_REMARK? class-body {
 class-cast ::= TO identifier;
 class-body ::= BRACE_L OP_OR? expression? BRACE_R;
 // === union statement ===
-union  ::= annotations KW_UNION identifier OP_REMARK? union-body {
+define-union ::= annotations KW_UNION identifier OP_REMARK? union-body {
     pin = 2
     mixin = "yggdrasil.psi.mixin.MixinUnion"
     methods=[createLookup]
 }
-union-body ::= BRACE_L union-term* BRACE_R;
-union-term ::= OP_OR expression-hard tag-branch?;
-tag-branch ::= HASH identifier;
+union-body ::= BRACE_L union-variant* BRACE_R;
+union-variant ::= OP_OR expression-hard tag-branch? {
+    mixin = "yggdrasil.psi.mixin.MixinUnionItem"
+}
+tag-branch ::= HASH identifier-free;
 // === group statement ===
 group  ::= annotations KW_GROUP identifier-free? group-body {
     pin = 2
@@ -164,6 +169,7 @@ expression-soft ::= expression-tag expression-tag* {
 }
 expression-tag ::= (identifier-free COLON)? term {
     extends = expression
+    mixin = "yggdrasil.psi.mixin.MixinExpressionTag"
 }
 term ::= prefix* atomic suffix* {
     extends = expression

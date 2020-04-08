@@ -11,15 +11,17 @@ import yggdrasil.psi.node.YggdrasilAttribute
 
 abstract class MixinAttribute(node: ASTNode) : YggdrasilElement(node), YggdrasilAttribute {
 
+    override fun getName(): String {
+        return this.identifier.text ?: ""
+    }
+
     override fun highlight(visitor: NodeHighlighter) {
         visitor.highlight(this.firstChild, HighlightColor.SYM_MACRO)
         visitor.highlight(this.identifier, HighlightColor.SYM_MACRO)
-
-
-
     }
 
     override fun getPresentation(): ItemPresentation? {
-        return PresentationData("YggdrasilClass", "YggdrasilClass", AllIcons.Nodes.Class, null)
+        return PresentationData("@${name}", "", AllIcons.Nodes.Annotationtype, null)
     }
 }
+

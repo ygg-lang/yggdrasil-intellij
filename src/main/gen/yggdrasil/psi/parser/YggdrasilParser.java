@@ -42,7 +42,7 @@ public class YggdrasilParser implements PsiParser, LightPsiParser {
   };
 
   /* ********************************************************** */
-  // attribute* identifier*
+  // attribute* modifier*
   public static boolean annotations(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "annotations")) return false;
     boolean r;
@@ -64,12 +64,12 @@ public class YggdrasilParser implements PsiParser, LightPsiParser {
     return true;
   }
 
-  // identifier*
+  // modifier*
   private static boolean annotations_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "annotations_1")) return false;
     while (true) {
       int c = current_position_(b);
-      if (!identifier(b, l + 1)) break;
+      if (!modifier(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "annotations_1", c)) break;
     }
     return true;
@@ -283,6 +283,29 @@ public class YggdrasilParser implements PsiParser, LightPsiParser {
     r = p && function_block(b, l + 1) && r;
     exit_section_(b, l, m, r, p, null);
     return r || p;
+  }
+
+  /* ********************************************************** */
+  // annotations KW_UNION identifier OP_REMARK? union-body
+  public static boolean define_union(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "define_union")) return false;
+    boolean r, p;
+    Marker m = enter_section_(b, l, _NONE_, DEFINE_UNION, "<define union>");
+    r = annotations(b, l + 1);
+    r = r && consumeToken(b, KW_UNION);
+    p = r; // pin = 2
+    r = r && report_error_(b, identifier(b, l + 1));
+    r = p && report_error_(b, define_union_3(b, l + 1)) && r;
+    r = p && union_body(b, l + 1) && r;
+    exit_section_(b, l, m, r, p, null);
+    return r || p;
+  }
+
+  // OP_REMARK?
+  private static boolean define_union_3(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "define_union_3")) return false;
+    consumeToken(b, OP_REMARK);
+    return true;
   }
 
   /* ********************************************************** */
@@ -781,6 +804,18 @@ public class YggdrasilParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
+  // identifier
+  public static boolean modifier(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "modifier")) return false;
+    if (!nextTokenIs(b, "<modifier>", SYMBOL, SYMBOW_RAW)) return false;
+    boolean r;
+    Marker m = enter_section_(b, l, _NONE_, MODIFIER, "<modifier>");
+    r = identifier(b, l + 1);
+    exit_section_(b, l, m, r, false, null);
+    return r;
+  }
+
+  /* ********************************************************** */
   // INTEGER {
   // //    mixin = "yggdrasil.psi.mixin.MixinNumber"
   // }
@@ -1022,7 +1057,7 @@ public class YggdrasilParser implements PsiParser, LightPsiParser {
   // grammar
   //   | using
   //   | class
-  //   | union
+  //   | define-union
   //   | group
   //   | define-function
   //   | SEMICOLON
@@ -1032,7 +1067,7 @@ public class YggdrasilParser implements PsiParser, LightPsiParser {
     r = grammar(b, l + 1);
     if (!r) r = using(b, l + 1);
     if (!r) r = class_$(b, l + 1);
-    if (!r) r = union(b, l + 1);
+    if (!r) r = define_union(b, l + 1);
     if (!r) r = group(b, l + 1);
     if (!r) r = define_function(b, l + 1);
     if (!r) r = consumeToken(b, SEMICOLON);
@@ -1067,14 +1102,14 @@ public class YggdrasilParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // HASH identifier
+  // HASH identifier-free
   public static boolean tag_branch(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "tag_branch")) return false;
     if (!nextTokenIs(b, HASH)) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, HASH);
-    r = r && identifier(b, l + 1);
+    r = r && identifier_free(b, l + 1);
     exit_section_(b, m, TAG_BRANCH, r);
     return r;
   }
@@ -1177,30 +1212,7 @@ public class YggdrasilParser implements PsiParser, LightPsiParser {
   }
 
   /* ********************************************************** */
-  // annotations KW_UNION identifier OP_REMARK? union-body
-  public static boolean union(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "union")) return false;
-    boolean r, p;
-    Marker m = enter_section_(b, l, _NONE_, UNION, "<union>");
-    r = annotations(b, l + 1);
-    r = r && consumeToken(b, KW_UNION);
-    p = r; // pin = 2
-    r = r && report_error_(b, identifier(b, l + 1));
-    r = p && report_error_(b, union_3(b, l + 1)) && r;
-    r = p && union_body(b, l + 1) && r;
-    exit_section_(b, l, m, r, p, null);
-    return r || p;
-  }
-
-  // OP_REMARK?
-  private static boolean union_3(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "union_3")) return false;
-    consumeToken(b, OP_REMARK);
-    return true;
-  }
-
-  /* ********************************************************** */
-  // BRACE_L union-term* BRACE_R
+  // BRACE_L union-variant* BRACE_R
   public static boolean union_body(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "union_body")) return false;
     if (!nextTokenIs(b, BRACE_L)) return false;
@@ -1213,12 +1225,12 @@ public class YggdrasilParser implements PsiParser, LightPsiParser {
     return r;
   }
 
-  // union-term*
+  // union-variant*
   private static boolean union_body_1(PsiBuilder b, int l) {
     if (!recursion_guard_(b, l, "union_body_1")) return false;
     while (true) {
       int c = current_position_(b);
-      if (!union_term(b, l + 1)) break;
+      if (!union_variant(b, l + 1)) break;
       if (!empty_element_parsed_guard_(b, "union_body_1", c)) break;
     }
     return true;
@@ -1226,21 +1238,21 @@ public class YggdrasilParser implements PsiParser, LightPsiParser {
 
   /* ********************************************************** */
   // OP_OR expression-hard tag-branch?
-  public static boolean union_term(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "union_term")) return false;
+  public static boolean union_variant(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "union_variant")) return false;
     if (!nextTokenIs(b, OP_OR)) return false;
     boolean r;
     Marker m = enter_section_(b);
     r = consumeToken(b, OP_OR);
     r = r && expression_hard(b, l + 1);
-    r = r && union_term_2(b, l + 1);
-    exit_section_(b, m, UNION_TERM, r);
+    r = r && union_variant_2(b, l + 1);
+    exit_section_(b, m, UNION_VARIANT, r);
     return r;
   }
 
   // tag-branch?
-  private static boolean union_term_2(PsiBuilder b, int l) {
-    if (!recursion_guard_(b, l, "union_term_2")) return false;
+  private static boolean union_variant_2(PsiBuilder b, int l) {
+    if (!recursion_guard_(b, l, "union_variant_2")) return false;
     tag_branch(b, l + 1);
     return true;
   }

@@ -22,10 +22,9 @@ class NodeHighlighter : YggdrasilVisitor(), HighlightVisitor {
         o.identifierFree?.let { highlight(it, HighlightColor.SYM_MACRO) }
     }
 
-    override fun visitAnnotations(o: YggdrasilAnnotations) {
-        for (modifier in o.identifierList) {
-            highlight(modifier, HighlightColor.KEYWORD)
-        }
+
+    override fun visitModifier(o: YggdrasilModifier) {
+        highlight(o.identifier, HighlightColor.KEYWORD)
     }
 
 
@@ -37,12 +36,12 @@ class NodeHighlighter : YggdrasilVisitor(), HighlightVisitor {
         o.identifier?.let { highlight(it, HighlightColor.RULE_CLASS) }
     }
 
-    override fun visitUnion(o: YggdrasilUnion) {
+    override fun visitDefineUnion(o: YggdrasilDefineUnion) {
         o.identifier?.let { highlight(it, HighlightColor.RULE_UNION) }
     }
 
-    override fun visitFunctionDefine(o: YggdrasilFunctionDefine) {
-        o.highlight(this)
+    override fun visitDefineFunction(o: YggdrasilDefineFunction) {
+        o.identifierFree?.let { highlight(it, HighlightColor.SYM_FUNCTION) }
     }
 
     override fun visitGroupItem(o: YggdrasilGroupItem) {

@@ -8,23 +8,24 @@ import com.intellij.psi.NavigatablePsiElement
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNameIdentifierOwner
 import yggdrasil.psi.YggdrasilElement
-import yggdrasil.psi.node.YggdrasilGroup
-import yggdrasil.psi.node.YggdrasilGroupItemNode
 import yggdrasil.psi.node.YggdrasilIdentifierNode
+import yggdrasil.psi.node.YggdrasilUnionVariant
 import javax.swing.Icon
 
-
-abstract class MixinGroup(node: ASTNode) : YggdrasilElement(node),
+abstract class MixinUnionItem(node: ASTNode) : YggdrasilElement(node),
     NavigatablePsiElement,
     PsiNameIdentifierOwner,
-    YggdrasilGroup {
-
-
-    override fun getNameIdentifier(): YggdrasilIdentifierNode? {
-        return this.identifierFree as? YggdrasilIdentifierNode
+    YggdrasilUnionVariant {
+    override fun getNavigationElement(): PsiElement {
+        return nameIdentifier ?: this
     }
 
-    override fun getName(): String? {
+    override fun getNameIdentifier(): YggdrasilIdentifierNode? {
+        return this.tagBranch?.identifierFree as? YggdrasilIdentifierNode
+    }
+
+
+    override fun getName(): String {
         return nameIdentifier?.name ?: "⟪anonymous⟫"
     }
 
@@ -32,28 +33,11 @@ abstract class MixinGroup(node: ASTNode) : YggdrasilElement(node),
         TODO("Not yet implemented")
     }
 
-
     override fun getBaseIcon(): Icon {
-        return AllIcons.Nodes.ModuleGroup
+        return AllIcons.Nodes.Variable
     }
 
     override fun getPresentation(): ItemPresentation? {
         return PresentationData(name, "", baseIcon, null)
     }
-
-    override fun getTokenList(): MutableList<YggdrasilGroupItemNode> {
-        if (groupBody == null) {
-            return mutableListOf()
-        }
-        val items = mutableListOf<YggdrasilGroupItemNode>()
-        for (item in groupBody!!.groupTermList) {
-            val inner = item.groupItem as? YggdrasilGroupItemNode;
-            if (inner != null) {
-                items.add(inner)
-            }
-        }
-        return items;
-    }
-
 }
-

@@ -10,7 +10,7 @@ import com.intellij.util.ProcessingContext
 import yggdrasil.language.file.YggdrasilFileNode
 import yggdrasil.psi.ParserExtension
 import yggdrasil.psi.node.YggdrasilClassNode
-import yggdrasil.psi.node.YggdrasilUnionNode
+import yggdrasil.psi.node.YggdrasilDefineUnion
 
 
 class CompletionRegistrar : CompletionContributor() {
@@ -44,7 +44,7 @@ class CompletionRegistrar : CompletionContributor() {
                         return
                     }
 
-                    is YggdrasilUnionNode -> {
+                    is YggdrasilDefineUnion -> {
                         CompletionInClassScope().addCompletionVariants(parameters, context, result)
                         return
                     }

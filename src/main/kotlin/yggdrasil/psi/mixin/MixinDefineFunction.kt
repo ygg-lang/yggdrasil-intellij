@@ -10,41 +10,43 @@ import com.intellij.psi.NavigatablePsiElement
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNameIdentifierOwner
 import yggdrasil.psi.YggdrasilElement
-import yggdrasil.psi.node.YggdrasilClass
+import yggdrasil.psi.node.YggdrasilDefineFunction
+
 import yggdrasil.psi.node.YggdrasilIdentifierNode
 import javax.swing.Icon
 
-
-abstract class MixinClass(node: ASTNode) : YggdrasilElement(node),
+abstract class MixinDefineFunction(node: ASTNode) : YggdrasilElement(node),
     NavigatablePsiElement,
     PsiNameIdentifierOwner,
-    YggdrasilClass {
+    YggdrasilDefineFunction {
     override fun getNavigationElement(): PsiElement {
         return nameIdentifier ?: this
     }
 
     override fun getNameIdentifier(): YggdrasilIdentifierNode? {
-        return this.identifier as? YggdrasilIdentifierNode
+        return this.identifierFree as? YggdrasilIdentifierNode
     }
+
 
     override fun getName(): String {
-        return this.identifier?.text ?: ""
+        return nameIdentifier?.name ?: ""
     }
 
-    override fun setName(name: String): YggdrasilIdentifierNode {
+
+    override fun setName(name: String): PsiElement {
         TODO("Not yet implemented")
     }
+
     override fun getBaseIcon(): Icon {
-        return AllIcons.Nodes.Class
+        return AllIcons.Nodes.Function
     }
 
     override fun getPresentation(): ItemPresentation? {
-        // annotations.identifierList.joinToString(" ")
-        return PresentationData(name, "", baseIcon, null)
+        return PresentationData("YggdrasilClass", "YggdrasilClass", baseIcon, null)
     }
 
     override fun createLookup(completions: MutableList<LookupElement>) {
-        this.identifier?.let {
+        this.nameIdentifier?.let {
             completions.add(
                 LookupElementBuilder.create(it)
                     .withIcon(baseIcon)
@@ -56,4 +58,3 @@ abstract class MixinClass(node: ASTNode) : YggdrasilElement(node),
         }
     }
 }
-

@@ -1,10 +1,7 @@
 package yggdrasil.psi.mixin
 
-import com.intellij.icons.AllIcons
-import com.intellij.ide.projectView.PresentationData
 import com.intellij.lang.ASTNode
 import com.intellij.lang.injection.MultiHostRegistrar
-import com.intellij.navigation.ItemPresentation
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.LiteralTextEscaper
 import com.intellij.psi.PsiLanguageInjectionHost
@@ -14,10 +11,6 @@ import yggdrasil.psi.node.YggdrasilRegex
 import yggdrasil.psi.node.YggdrasilRegexNode
 
 abstract class MixinRegex(node: ASTNode) : YggdrasilElement(node), PsiLanguageInjectionHost, YggdrasilRegex {
-
-    override fun getPresentation(): ItemPresentation? {
-        return PresentationData("YggdrasilClass", "YggdrasilClass", AllIcons.Nodes.Class, null)
-    }
 
     override fun isValidHost(): Boolean {
         return true

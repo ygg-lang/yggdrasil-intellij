@@ -8,9 +8,9 @@ import valkyrie.ide.reference.declaration.ValkyrieReference
 import yggdrasil.language.file.YggdrasilFileNode
 import yggdrasil.psi.YggdrasilElement
 import yggdrasil.psi.node.YggdrasilClassNode
+import yggdrasil.psi.node.YggdrasilDefineUnion
 import yggdrasil.psi.node.YggdrasilIdentifier
 import yggdrasil.psi.node.YggdrasilIdentifierNode
-import yggdrasil.psi.node.YggdrasilUnionNode
 
 abstract class MixinIdentifier(node: ASTNode) : YggdrasilElement(node),
 
@@ -29,7 +29,7 @@ abstract class MixinIdentifier(node: ASTNode) : YggdrasilElement(node),
         if (this.parent is YggdrasilClassNode) {
             return null
         }
-        if (this.parent is YggdrasilUnionNode) {
+        if (this.parent is YggdrasilDefineUnion) {
             return null
         }
         return ValkyrieReference(this as YggdrasilIdentifierNode)

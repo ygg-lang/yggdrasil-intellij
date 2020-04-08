@@ -8,16 +8,16 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static yggdrasil.psi.YggdrasilTypes.*;
-import yggdrasil.psi.YggdrasilElement;
+import yggdrasil.psi.mixin.MixinModifier;
 
-public class YggdrasilAnnotationsNode extends YggdrasilElement implements YggdrasilAnnotations {
+public class YggdrasilModifierNode extends MixinModifier implements YggdrasilModifier {
 
-  public YggdrasilAnnotationsNode(@NotNull ASTNode node) {
+  public YggdrasilModifierNode(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull YggdrasilVisitor visitor) {
-    visitor.visitAnnotations(this);
+    visitor.visitModifier(this);
   }
 
   @Override
@@ -28,14 +28,8 @@ public class YggdrasilAnnotationsNode extends YggdrasilElement implements Yggdra
 
   @Override
   @NotNull
-  public List<YggdrasilAttribute> getAttributeList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, YggdrasilAttribute.class);
-  }
-
-  @Override
-  @NotNull
-  public List<YggdrasilModifier> getModifierList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, YggdrasilModifier.class);
+  public YggdrasilIdentifier getIdentifier() {
+    return findNotNullChildByClass(YggdrasilIdentifier.class);
   }
 
 }

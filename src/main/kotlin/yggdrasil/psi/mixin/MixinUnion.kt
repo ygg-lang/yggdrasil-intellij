@@ -10,13 +10,14 @@ import com.intellij.psi.NavigatablePsiElement
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNameIdentifierOwner
 import yggdrasil.psi.YggdrasilElement
+import yggdrasil.psi.node.YggdrasilDefineUnion
 import yggdrasil.psi.node.YggdrasilIdentifier
-import yggdrasil.psi.node.YggdrasilUnion
+import javax.swing.Icon
 
 abstract class MixinUnion(node: ASTNode) : YggdrasilElement(node),
     NavigatablePsiElement,
     PsiNameIdentifierOwner,
-    YggdrasilUnion {
+    YggdrasilDefineUnion {
     override fun getNavigationElement(): PsiElement {
         return nameIdentifier ?: this
     }
@@ -34,16 +35,19 @@ abstract class MixinUnion(node: ASTNode) : YggdrasilElement(node),
         TODO("Not yet implemented")
     }
 
+    override fun getBaseIcon(): Icon {
+        return AllIcons.Nodes.AbstractClass
+    }
 
     override fun getPresentation(): ItemPresentation? {
-        return PresentationData("YggdrasilClass", "YggdrasilClass", AllIcons.Nodes.Enum, null)
+        return PresentationData(name, "", baseIcon, null)
     }
 
     override fun createLookup(completions: MutableList<LookupElement>) {
         this.identifier?.let {
             completions.add(
                 LookupElementBuilder.create(it)
-                    .withIcon(AllIcons.Nodes.Enum)
+                    .withIcon(baseIcon)
                     .withCaseSensitivity(false)
                     .withTypeText("withTypeText")
                     .withPresentableText(name)
@@ -52,4 +56,5 @@ abstract class MixinUnion(node: ASTNode) : YggdrasilElement(node),
         }
     }
 }
+
 

@@ -28,8 +28,8 @@ public class YggdrasilUnionBodyNode extends YggdrasilElement implements Yggdrasi
 
   @Override
   @NotNull
-  public List<YggdrasilUnionTerm> getUnionTermList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, YggdrasilUnionTerm.class);
+  public List<YggdrasilUnionVariant> getUnionVariantList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, YggdrasilUnionVariant.class);
   }
 
 }

@@ -11,9 +11,9 @@ abstract class MixinString(node: ASTNode) : YggdrasilElement(node),
     YggdrasilString {
 
 
-    override fun getPresentation(): ItemPresentation? {
-        return PresentationData("YggdrasilClass", "YggdrasilClass", AllIcons.Nodes.Class, null)
-    }
+//    override fun getPresentation(): ItemPresentation? {
+//        return PresentationData("YggdrasilClass", "YggdrasilClass", AllIcons.Nodes.Class, null)
+//    }
 
 }
 

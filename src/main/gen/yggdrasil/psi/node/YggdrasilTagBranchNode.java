@@ -28,8 +28,8 @@ public class YggdrasilTagBranchNode extends YggdrasilElement implements Yggdrasi
 
   @Override
   @NotNull
-  public YggdrasilIdentifier getIdentifier() {
-    return findNotNullChildByClass(YggdrasilIdentifier.class);
+  public YggdrasilIdentifierFree getIdentifierFree() {
+    return findNotNullChildByClass(YggdrasilIdentifierFree.class);
   }
 
 }

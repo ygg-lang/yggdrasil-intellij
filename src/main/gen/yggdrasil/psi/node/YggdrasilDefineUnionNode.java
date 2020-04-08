@@ -8,17 +8,17 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static yggdrasil.psi.YggdrasilTypes.*;
-import yggdrasil.psi.mixin.MixinDefineFunction;
-import valkyrie.ide.highlight.NodeHighlighter;
+import yggdrasil.psi.mixin.MixinUnion;
+import com.intellij.codeInsight.lookup.LookupElement;
 
-public class YggdrasilFunctionDefineNode extends MixinDefineFunction implements YggdrasilFunctionDefine {
+public class YggdrasilDefineUnionNode extends MixinUnion implements YggdrasilDefineUnion {
 
-  public YggdrasilFunctionDefineNode(@NotNull ASTNode node) {
+  public YggdrasilDefineUnionNode(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull YggdrasilVisitor visitor) {
-    visitor.visitFunctionDefine(this);
+    visitor.visitDefineUnion(this);
   }
 
   @Override
@@ -35,20 +35,14 @@ public class YggdrasilFunctionDefineNode extends MixinDefineFunction implements 
 
   @Override
   @Nullable
-  public YggdrasilFunctionBlock getFunctionBlock() {
-    return findChildByClass(YggdrasilFunctionBlock.class);
+  public YggdrasilIdentifier getIdentifier() {
+    return findChildByClass(YggdrasilIdentifier.class);
   }
 
   @Override
   @Nullable
-  public YggdrasilFunctionParameter getFunctionParameter() {
-    return findChildByClass(YggdrasilFunctionParameter.class);
-  }
-
-  @Override
-  @Nullable
-  public YggdrasilIdentifierFree getIdentifierFree() {
-    return findChildByClass(YggdrasilIdentifierFree.class);
+  public YggdrasilUnionBody getUnionBody() {
+    return findChildByClass(YggdrasilUnionBody.class);
   }
 
 }

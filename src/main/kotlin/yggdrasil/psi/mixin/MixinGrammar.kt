@@ -9,6 +9,7 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNameIdentifierOwner
 import yggdrasil.psi.YggdrasilElement
 import yggdrasil.psi.node.YggdrasilGrammar
+import javax.swing.Icon
 
 abstract class MixinGrammar(node: ASTNode) : YggdrasilElement(node),
     NavigatablePsiElement,
@@ -22,8 +23,12 @@ abstract class MixinGrammar(node: ASTNode) : YggdrasilElement(node),
         return null
     }
 
+    override fun getBaseIcon(): Icon {
+        return AllIcons.Nodes.ModuleGroup
+    }
+
     override fun getPresentation(): ItemPresentation? {
-        return PresentationData("YggdrasilClass", "YggdrasilClass", AllIcons.Nodes.Class, null)
+        return PresentationData("YggdrasilClass", "YggdrasilClass", baseIcon, null)
     }
 }
 

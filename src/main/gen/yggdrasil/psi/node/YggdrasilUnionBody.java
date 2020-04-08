@@ -8,6 +8,6 @@ import com.intellij.psi.PsiElement;
 public interface YggdrasilUnionBody extends PsiElement {
 
   @NotNull
-  List<YggdrasilUnionTerm> getUnionTermList();
+  List<YggdrasilUnionVariant> getUnionVariantList();
 
 }
