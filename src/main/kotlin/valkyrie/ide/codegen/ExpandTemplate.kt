@@ -1,6 +1,6 @@
 package valkyrie.ide.codegen
 
-import com.intellij.icons.ExpUiIcons
+import com.intellij.icons.AllIcons
 import com.intellij.openapi.actionSystem.AnAction
 import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.psi.PsiDirectory
@@ -10,7 +10,7 @@ import com.intellij.psi.PsiFileFactory
 private val name = yggdrasil.language.YggdrasilBundle.message("action.macro.expand_file")
 private val description = yggdrasil.language.YggdrasilBundle.message("action.convert_prop.description")
 
-class ExpandTemplate : AnAction(name, description, ExpUiIcons.Actions.GroupByMethod) {
+class ExpandTemplate : AnAction(name, description, AllIcons.Actions.GroupByMethod) {
     override fun actionPerformed(e: AnActionEvent) {
 //        val src = LangDataKeys.PSI_FILE.getData(e.dataContext) ?: return
 //        if (isValidFile(src)) {

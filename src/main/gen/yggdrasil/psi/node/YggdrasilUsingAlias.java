@@ -5,12 +5,12 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface YggdrasilFunctionCall extends PsiElement {
+public interface YggdrasilUsingAlias extends PsiElement {
+
+  @Nullable
+  YggdrasilAlias getAlias();
 
   @NotNull
   YggdrasilIdentifierFree getIdentifierFree();
-
-  @Nullable
-  YggdrasilTuple getTuple();
 
 }

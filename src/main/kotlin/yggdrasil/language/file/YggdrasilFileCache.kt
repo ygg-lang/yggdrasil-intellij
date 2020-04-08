@@ -8,37 +8,54 @@ import yggdrasil.psi.node.YggdrasilIdentifierNode
 
 import yggdrasil.psi.node.YggdrasilUnionNode
 
-class YggdrasilFileCache(root: YggdrasilFileNode) {
-    val cache = mutableMapOf<String, PsiNameIdentifierOwner>()
-    val completions = mutableListOf<LookupElement>()
+class YggdrasilFileCache(val root: YggdrasilFileNode) {
+    private fun getCache(): MutableMap<String, PsiNameIdentifierOwner> {
+        val cache = mutableMapOf<String, PsiNameIdentifierOwner>()
 
-    init {
         for (child in root.children) {
             when (child) {
                 is YggdrasilClassNode -> {
-                    val name = child.name;
-                    cache[name] = child
-                    child.createLookup(completions)
+                    cache[child.name] = child
                 }
 
                 is YggdrasilUnionNode -> {
-                    val name = child.name;
-                    cache[name] = child
-                    child.createLookup(completions)
+                    cache[child.name] = child
                 }
 
                 is YggdrasilGroupNode -> {
                     for (item in child.tokenList) {
                         cache[item.name] = item
+                    }
+                }
+            }
+        }
+        return cache
+    }
+
+     fun getCompletions(): MutableList<LookupElement> {
+        val completions = mutableListOf<LookupElement>()
+        for (child in root.children) {
+            when (child) {
+                is YggdrasilClassNode -> {
+                    child.createLookup(completions)
+                }
+
+                is YggdrasilUnionNode -> {
+                    child.createLookup(completions)
+                }
+
+                is YggdrasilGroupNode -> {
+                    for (item in child.tokenList) {
                         item.createLookup(completions)
                     }
                 }
             }
         }
+        return completions
     }
 
 
     fun find(name: YggdrasilIdentifierNode?): PsiNameIdentifierOwner? {
-        return cache[name?.text]
+        return getCache()[name?.text]
     }
 }

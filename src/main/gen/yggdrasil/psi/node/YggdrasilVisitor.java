@@ -7,6 +7,10 @@ import com.intellij.psi.PsiElement;
 
 public class YggdrasilVisitor extends PsiElementVisitor {
 
+  public void visitAlias(@NotNull YggdrasilAlias o) {
+    visitPsiElement(o);
+  }
+
   public void visitAnnotations(@NotNull YggdrasilAnnotations o) {
     visitPsiElement(o);
   }
@@ -180,6 +184,22 @@ public class YggdrasilVisitor extends PsiElementVisitor {
   }
 
   public void visitUnionTerm(@NotNull YggdrasilUnionTerm o) {
+    visitPsiElement(o);
+  }
+
+  public void visitUsing(@NotNull YggdrasilUsing o) {
+    visitPsiElement(o);
+  }
+
+  public void visitUsingAlias(@NotNull YggdrasilUsingAlias o) {
+    visitPsiElement(o);
+  }
+
+  public void visitUsingBody(@NotNull YggdrasilUsingBody o) {
+    visitPsiElement(o);
+  }
+
+  public void visitUsingTerm(@NotNull YggdrasilUsingTerm o) {
     visitPsiElement(o);
   }
 

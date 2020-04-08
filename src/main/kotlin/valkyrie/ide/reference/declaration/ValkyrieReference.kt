@@ -27,7 +27,7 @@ open class ValkyrieReference : PsiQualifiedReference {
     }
 
     override fun resolve(): PsiElement? {
-        return _element.containingFile.definitions.cache[_element.name]
+        return _element.containingFile.definitions.find(_element)
     }
 
     override fun getCanonicalText(): String {

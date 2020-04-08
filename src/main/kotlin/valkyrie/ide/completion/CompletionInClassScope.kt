@@ -24,7 +24,7 @@ class CompletionInClassScope : CompletionProvider<CompletionParameters>() {
 
     private fun CompletionResultSet.addDefinitions() {
         val file = element?.containingFile as? YggdrasilFileNode ?: return;
-        for (completion in file.definitions.completions) {
+        for (completion in file.definitions.getCompletions()) {
             addElement(completion)
         }
     }

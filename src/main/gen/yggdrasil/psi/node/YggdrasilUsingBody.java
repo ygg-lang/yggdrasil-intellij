@@ -5,12 +5,9 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface YggdrasilFunctionCall extends PsiElement {
+public interface YggdrasilUsingBody extends PsiElement {
 
   @NotNull
-  YggdrasilIdentifierFree getIdentifierFree();
-
-  @Nullable
-  YggdrasilTuple getTuple();
+  List<YggdrasilUsingTerm> getUsingTermList();
 
 }

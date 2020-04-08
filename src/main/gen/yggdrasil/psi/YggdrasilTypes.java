@@ -8,6 +8,7 @@ import yggdrasil.psi.node.*;
 
 public interface YggdrasilTypes {
 
+  IElementType ALIAS = new YggdrasilElementType("ALIAS");
   IElementType ANNOTATIONS = new YggdrasilElementType("ANNOTATIONS");
   IElementType ARGUMENT = new YggdrasilElementType("ARGUMENT");
   IElementType ATOMIC = new YggdrasilElementType("ATOMIC");
@@ -52,6 +53,10 @@ public interface YggdrasilTypes {
   IElementType UNION = new YggdrasilElementType("UNION");
   IElementType UNION_BODY = new YggdrasilElementType("UNION_BODY");
   IElementType UNION_TERM = new YggdrasilElementType("UNION_TERM");
+  IElementType USING = new YggdrasilElementType("USING");
+  IElementType USING_ALIAS = new YggdrasilElementType("USING_ALIAS");
+  IElementType USING_BODY = new YggdrasilElementType("USING_BODY");
+  IElementType USING_TERM = new YggdrasilElementType("USING_TERM");
   IElementType VALUE = new YggdrasilElementType("VALUE");
 
   IElementType ANGLE_L = new YggdrasilTokenType("<");
@@ -80,6 +85,7 @@ public interface YggdrasilTypes {
   IElementType KW_IMPORT = new YggdrasilTokenType("import");
   IElementType KW_MACRO = new YggdrasilTokenType("macro");
   IElementType KW_UNION = new YggdrasilTokenType("union");
+  IElementType KW_USING = new YggdrasilTokenType("using");
   IElementType OP_AND = new YggdrasilTokenType("OP_AND");
   IElementType OP_CONCAT = new YggdrasilTokenType("~");
   IElementType OP_MANY = new YggdrasilTokenType("OP_MANY");
@@ -109,7 +115,10 @@ public interface YggdrasilTypes {
   class Factory {
     public static PsiElement createElement(ASTNode node) {
       IElementType type = node.getElementType();
-      if (type == ANNOTATIONS) {
+      if (type == ALIAS) {
+        return new YggdrasilAliasNode(node);
+      }
+      else if (type == ANNOTATIONS) {
         return new YggdrasilAnnotationsNode(node);
       }
       else if (type == ARGUMENT) {
@@ -237,6 +246,18 @@ public interface YggdrasilTypes {
       }
       else if (type == UNION_TERM) {
         return new YggdrasilUnionTermNode(node);
+      }
+      else if (type == USING) {
+        return new YggdrasilUsingNode(node);
+      }
+      else if (type == USING_ALIAS) {
+        return new YggdrasilUsingAliasNode(node);
+      }
+      else if (type == USING_BODY) {
+        return new YggdrasilUsingBodyNode(node);
+      }
+      else if (type == USING_TERM) {
+        return new YggdrasilUsingTermNode(node);
       }
       else if (type == VALUE) {
         return new YggdrasilValueNode(node);

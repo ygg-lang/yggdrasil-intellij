@@ -32,6 +32,7 @@
 
 
         KW_GRAMMAR = "grammar"
+        KW_USING = "using"
         KW_GROUP = "group"
         KW_CLASS = "class"
         KW_UNION = "union"
@@ -74,6 +75,7 @@
 root ::= statements*
 private statements ::=
     grammar
+  | using
   | class
   | union
   | group
@@ -93,6 +95,16 @@ grammar ::= annotations KW_GRAMMAR identifier grammar-body {
 }
 grammar-body ::= BRACE_L grammar-term* BRACE_R;
 grammar-term ::= pair | COMMA | SEMICOLON;
+// === class statement ===
+using ::= annotations KW_USING identifier-free (DOT (STAR | using-body))? {
+    pin = 2
+//    mixin = "yggdrasil.psi.mixin.MixinUsing"
+}
+using-body ::= BRACE_L using-term* BRACE_R;
+using-term ::=
+    using-alias
+  | SEMICOLON
+using-alias ::= identifier-free alias?;
 // === class statement ===
 class  ::= annotations KW_CLASS identifier class-cast? OP_REMARK? class-body {
     pin = 2
@@ -133,7 +145,7 @@ parameter ::= identifier ((EQ|COLON) expression)? {
 }
 function-block ::= BRACE_L OP_OR? expression? BRACE_R;
 // === function statement ===
-function-call ::= AT identifier tuple? {
+function-call ::= AT identifier-free tuple? {
     pin = 2
 }
 // === expression statement ===
@@ -184,7 +196,7 @@ regex ::= REGULAR_EXPRESSION | REGULAR_RANGE {
     mixin = "yggdrasil.psi.mixin.MixinRegex"
 }
 // === atomic statement ===
-value    ::= tuple | expression;
+value    ::= tuple | expression-tag;
 pair     ::= identifier-free EQ value {
 //    mixin = "yggdrasil.psi.mixin.MixinTuple"
 }
@@ -204,6 +216,7 @@ number ::= INTEGER {
 /* Literals */
 
 /* Identifier */
+alias  ::= KW_AS identifier-free;
 identifier          ::= SYMBOL | SYMBOW_RAW {
     mixin = "yggdrasil.psi.mixin.MixinIdentifier"
     methods=[highlight]

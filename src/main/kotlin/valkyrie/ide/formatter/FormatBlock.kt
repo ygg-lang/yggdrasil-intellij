@@ -91,6 +91,7 @@ class FormatBlock : ASTBlock {
             is YggdrasilClassBody -> byCorner
             is YggdrasilUnionBody -> byCorner
             is YggdrasilGroupBody -> byCorner
+            is YggdrasilExpressionGroup -> byCorner
             is YggdrasilFunctionBlock -> byCorner
             is YggdrasilFunctionParameter -> byCorner
             is YggdrasilFunctionArgument -> byCorner

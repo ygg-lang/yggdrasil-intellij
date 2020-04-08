@@ -10,14 +10,14 @@ import com.intellij.psi.util.PsiTreeUtil;
 import static yggdrasil.psi.YggdrasilTypes.*;
 import yggdrasil.psi.YggdrasilElement;
 
-public class YggdrasilFunctionCallNode extends YggdrasilElement implements YggdrasilFunctionCall {
+public class YggdrasilUsingNode extends YggdrasilElement implements YggdrasilUsing {
 
-  public YggdrasilFunctionCallNode(@NotNull ASTNode node) {
+  public YggdrasilUsingNode(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull YggdrasilVisitor visitor) {
-    visitor.visitFunctionCall(this);
+    visitor.visitUsing(this);
   }
 
   @Override
@@ -28,14 +28,20 @@ public class YggdrasilFunctionCallNode extends YggdrasilElement implements Yggdr
 
   @Override
   @NotNull
-  public YggdrasilIdentifierFree getIdentifierFree() {
-    return findNotNullChildByClass(YggdrasilIdentifierFree.class);
+  public YggdrasilAnnotations getAnnotations() {
+    return findNotNullChildByClass(YggdrasilAnnotations.class);
   }
 
   @Override
   @Nullable
-  public YggdrasilTuple getTuple() {
-    return findChildByClass(YggdrasilTuple.class);
+  public YggdrasilIdentifierFree getIdentifierFree() {
+    return findChildByClass(YggdrasilIdentifierFree.class);
+  }
+
+  @Override
+  @Nullable
+  public YggdrasilUsingBody getUsingBody() {
+    return findChildByClass(YggdrasilUsingBody.class);
   }
 
 }
