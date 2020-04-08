@@ -8,7 +8,7 @@ import com.intellij.psi.PsiElement;
 public interface YggdrasilPair extends PsiElement {
 
   @NotNull
-  YggdrasilIdentifierFree getIdentifierFree();
+  YggdrasilKey getKey();
 
   @NotNull
   YggdrasilValue getValue();

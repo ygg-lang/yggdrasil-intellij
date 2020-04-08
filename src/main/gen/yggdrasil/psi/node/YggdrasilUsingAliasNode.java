@@ -27,15 +27,15 @@ public class YggdrasilUsingAliasNode extends YggdrasilElement implements Yggdras
   }
 
   @Override
-  @Nullable
-  public YggdrasilAlias getAlias() {
-    return findChildByClass(YggdrasilAlias.class);
+  @NotNull
+  public YggdrasilIdentifierFree getIdentifierFree() {
+    return findNotNullChildByClass(YggdrasilIdentifierFree.class);
   }
 
   @Override
   @NotNull
-  public YggdrasilIdentifierFree getIdentifierFree() {
-    return findNotNullChildByClass(YggdrasilIdentifierFree.class);
+  public YggdrasilKey getKey() {
+    return findNotNullChildByClass(YggdrasilKey.class);
   }
 
 }

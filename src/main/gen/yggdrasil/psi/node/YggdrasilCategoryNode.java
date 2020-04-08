@@ -28,8 +28,14 @@ public class YggdrasilCategoryNode extends YggdrasilElement implements Yggdrasil
 
   @Override
   @NotNull
-  public List<YggdrasilIdentifier> getIdentifierList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, YggdrasilIdentifier.class);
+  public YggdrasilIdentifierFree getIdentifierFree() {
+    return findNotNullChildByClass(YggdrasilIdentifierFree.class);
+  }
+
+  @Override
+  @Nullable
+  public YggdrasilKey getKey() {
+    return findChildByClass(YggdrasilKey.class);
   }
 
 }

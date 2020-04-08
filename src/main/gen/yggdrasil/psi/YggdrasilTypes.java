@@ -8,7 +8,6 @@ import yggdrasil.psi.node.*;
 
 public interface YggdrasilTypes {
 
-  IElementType ALIAS = new YggdrasilElementType("ALIAS");
   IElementType ANNOTATIONS = new YggdrasilElementType("ANNOTATIONS");
   IElementType ARGUMENT = new YggdrasilElementType("ARGUMENT");
   IElementType ATOMIC = new YggdrasilElementType("ATOMIC");
@@ -17,6 +16,7 @@ public interface YggdrasilTypes {
   IElementType CLASS = new YggdrasilElementType("CLASS");
   IElementType CLASS_BODY = new YggdrasilElementType("CLASS_BODY");
   IElementType CLASS_CAST = new YggdrasilElementType("CLASS_CAST");
+  IElementType DEFINE_FUNCTION = new YggdrasilElementType("DEFINE_FUNCTION");
   IElementType ESCAPE = new YggdrasilElementType("ESCAPE");
   IElementType EXPRESSION = new YggdrasilElementType("EXPRESSION");
   IElementType EXPRESSION_CHOICE = new YggdrasilElementType("EXPRESSION_CHOICE");
@@ -26,7 +26,6 @@ public interface YggdrasilTypes {
   IElementType EXPRESSION_TAG = new YggdrasilElementType("EXPRESSION_TAG");
   IElementType FUNCTION_BLOCK = new YggdrasilElementType("FUNCTION_BLOCK");
   IElementType FUNCTION_CALL = new YggdrasilElementType("FUNCTION_CALL");
-  IElementType FUNCTION_DEFINE = new YggdrasilElementType("FUNCTION_DEFINE");
   IElementType FUNCTION_PARAMETER = new YggdrasilElementType("FUNCTION_PARAMETER");
   IElementType GRAMMAR = new YggdrasilElementType("GRAMMAR");
   IElementType GRAMMAR_BODY = new YggdrasilElementType("GRAMMAR_BODY");
@@ -37,6 +36,7 @@ public interface YggdrasilTypes {
   IElementType GROUP_TERM = new YggdrasilElementType("GROUP_TERM");
   IElementType IDENTIFIER = new YggdrasilElementType("IDENTIFIER");
   IElementType IDENTIFIER_FREE = new YggdrasilElementType("IDENTIFIER_FREE");
+  IElementType KEY = new YggdrasilElementType("KEY");
   IElementType NUMBER = new YggdrasilElementType("NUMBER");
   IElementType PAIR = new YggdrasilElementType("PAIR");
   IElementType PARAMETER = new YggdrasilElementType("PARAMETER");
@@ -88,7 +88,7 @@ public interface YggdrasilTypes {
   IElementType KW_USING = new YggdrasilTokenType("using");
   IElementType OP_AND = new YggdrasilTokenType("OP_AND");
   IElementType OP_CONCAT = new YggdrasilTokenType("~");
-  IElementType OP_MANY = new YggdrasilTokenType("OP_MANY");
+  IElementType OP_MANY = new YggdrasilTokenType("*");
   IElementType OP_MANY1 = new YggdrasilTokenType("OP_MANY1");
   IElementType OP_NOT = new YggdrasilTokenType("OP_NOT");
   IElementType OP_OPTIONAL = new YggdrasilTokenType("OP_OPTIONAL");
@@ -103,7 +103,6 @@ public interface YggdrasilTypes {
   IElementType SELECTION_LINE = new YggdrasilTokenType("SELECTION_LINE");
   IElementType SEMICOLON = new YggdrasilTokenType(";");
   IElementType SLASH = new YggdrasilTokenType("/");
-  IElementType STAR = new YggdrasilTokenType("*");
   IElementType SYMBOL = new YggdrasilTokenType("Symbol");
   IElementType SYMBOW_RAW = new YggdrasilTokenType("SYMBOW_RAW");
   IElementType TEXT_DOUBLE = new YggdrasilTokenType("TEXT_DOUBLE");
@@ -115,10 +114,7 @@ public interface YggdrasilTypes {
   class Factory {
     public static PsiElement createElement(ASTNode node) {
       IElementType type = node.getElementType();
-      if (type == ALIAS) {
-        return new YggdrasilAliasNode(node);
-      }
-      else if (type == ANNOTATIONS) {
+      if (type == ANNOTATIONS) {
         return new YggdrasilAnnotationsNode(node);
       }
       else if (type == ARGUMENT) {
@@ -141,6 +137,9 @@ public interface YggdrasilTypes {
       }
       else if (type == CLASS_CAST) {
         return new YggdrasilClassCastNode(node);
+      }
+      else if (type == DEFINE_FUNCTION) {
+        return new YggdrasilDefineFunctionNode(node);
       }
       else if (type == ESCAPE) {
         return new YggdrasilEscapeNode(node);
@@ -165,9 +164,6 @@ public interface YggdrasilTypes {
       }
       else if (type == FUNCTION_CALL) {
         return new YggdrasilFunctionCallNode(node);
-      }
-      else if (type == FUNCTION_DEFINE) {
-        return new YggdrasilFunctionDefineNode(node);
       }
       else if (type == FUNCTION_PARAMETER) {
         return new YggdrasilFunctionParameterNode(node);
@@ -198,6 +194,9 @@ public interface YggdrasilTypes {
       }
       else if (type == IDENTIFIER_FREE) {
         return new YggdrasilIdentifierFreeNode(node);
+      }
+      else if (type == KEY) {
+        return new YggdrasilKeyNode(node);
       }
       else if (type == NUMBER) {
         return new YggdrasilNumberNode(node);

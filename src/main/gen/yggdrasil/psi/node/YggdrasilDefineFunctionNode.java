@@ -9,16 +9,16 @@ import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static yggdrasil.psi.YggdrasilTypes.*;
 import yggdrasil.psi.mixin.MixinDefineFunction;
-import valkyrie.ide.highlight.NodeHighlighter;
+import com.intellij.codeInsight.lookup.LookupElement;
 
-public class YggdrasilFunctionDefineNode extends MixinDefineFunction implements YggdrasilFunctionDefine {
+public class YggdrasilDefineFunctionNode extends MixinDefineFunction implements YggdrasilDefineFunction {
 
-  public YggdrasilFunctionDefineNode(@NotNull ASTNode node) {
+  public YggdrasilDefineFunctionNode(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull YggdrasilVisitor visitor) {
-    visitor.visitFunctionDefine(this);
+    visitor.visitDefineFunction(this);
   }
 
   @Override

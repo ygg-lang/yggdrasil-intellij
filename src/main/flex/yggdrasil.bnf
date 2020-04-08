@@ -57,7 +57,7 @@
         COMMA = ','
         DOLLAR = '$'
         DOT = '.'
-        STAR = '*'
+        OP_MANY = '*'
         AT = '@'
         TO = "->"
         HYPHEN = "-"
@@ -79,7 +79,7 @@ private statements ::=
   | class
   | union
   | group
-  | function-define
+  | define-function
   | SEMICOLON
 // === annotation statement ===
 annotations ::= attribute* identifier*
@@ -96,7 +96,7 @@ grammar ::= annotations KW_GRAMMAR identifier grammar-body {
 grammar-body ::= BRACE_L grammar-term* BRACE_R;
 grammar-term ::= pair | COMMA | SEMICOLON;
 // === class statement ===
-using ::= annotations KW_USING identifier-free (DOT (STAR | using-body))? {
+using ::= annotations KW_USING identifier-free (DOT (OP_MANY | using-body))? {
     pin = 2
 //    mixin = "yggdrasil.psi.mixin.MixinUsing"
 }
@@ -104,7 +104,7 @@ using-body ::= BRACE_L using-term* BRACE_R;
 using-term ::=
     using-alias
   | SEMICOLON
-using-alias ::= identifier-free alias?;
+using-alias ::= key KW_AS identifier-free;
 // === class statement ===
 class  ::= annotations KW_CLASS identifier class-cast? OP_REMARK? class-body {
     pin = 2
@@ -135,9 +135,10 @@ group-item ::= attribute* identifier* EQ atomic {
     methods=[highlight createLookup]
 }
 /// === function definition ===
-function-define ::= annotations KW_MACRO identifier function-parameter function-block {
+define-function ::= annotations KW_MACRO identifier-free function-parameter function-block {
     pin = 2
-//    mixin = "yggdrasil.psi.mixin.MixinFunction"
+    mixin = "yggdrasil.psi.mixin.MixinDefineFunction"
+    methods=[createLookup]
 }
 function-parameter ::= PARENTHESIS_L (parameter (COMMA parameter)* COMMA?)? PARENTHESIS_R;
 parameter ::= identifier ((EQ|COLON) expression)? {
@@ -180,7 +181,7 @@ expression-group ::= PARENTHESIS_L OP_OR? expression PARENTHESIS_R {
 escape ::= ESCAPED category? {
 
 }
-category ::= BRACE_L identifier (EQ identifier)? BRACE_R;
+category ::= BRACE_L (key EQ)? identifier-free BRACE_R;
 // === atomic statement ===
 range    ::= BRACE_L COMMA? BRACE_R
            | BRACE_L range-lower COMMA? BRACE_R
@@ -196,8 +197,9 @@ regex ::= REGULAR_EXPRESSION | REGULAR_RANGE {
     mixin = "yggdrasil.psi.mixin.MixinRegex"
 }
 // === atomic statement ===
+key      ::= identifier-free;
 value    ::= tuple | expression-tag;
-pair     ::= identifier-free EQ value {
+pair     ::= key EQ value {
 //    mixin = "yggdrasil.psi.mixin.MixinTuple"
 }
 argument ::= (identifier-free EQ)? value {
@@ -216,7 +218,6 @@ number ::= INTEGER {
 /* Literals */
 
 /* Identifier */
-alias  ::= KW_AS identifier-free;
 identifier          ::= SYMBOL | SYMBOW_RAW {
     mixin = "yggdrasil.psi.mixin.MixinIdentifier"
     methods=[highlight]

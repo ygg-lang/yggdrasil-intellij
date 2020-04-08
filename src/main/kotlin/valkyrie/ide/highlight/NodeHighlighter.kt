@@ -18,6 +18,10 @@ class NodeHighlighter : YggdrasilVisitor(), HighlightVisitor {
         o.identifier?.let { highlight(it, HighlightColor.SYM_MACRO) }
     }
 
+    override fun visitUsing(o: YggdrasilUsing) {
+        o.identifierFree?.let { highlight(it, HighlightColor.SYM_MACRO) }
+    }
+
     override fun visitAnnotations(o: YggdrasilAnnotations) {
         for (modifier in o.identifierList) {
             highlight(modifier, HighlightColor.KEYWORD)
@@ -37,6 +41,10 @@ class NodeHighlighter : YggdrasilVisitor(), HighlightVisitor {
         o.identifier?.let { highlight(it, HighlightColor.RULE_UNION) }
     }
 
+    override fun visitFunctionDefine(o: YggdrasilFunctionDefine) {
+        o.highlight(this)
+    }
+
     override fun visitGroupItem(o: YggdrasilGroupItem) {
         o.highlight(this)
     }
@@ -54,7 +62,7 @@ class NodeHighlighter : YggdrasilVisitor(), HighlightVisitor {
     }
 
     override fun visitPair(o: YggdrasilPair) {
-        highlight(o.identifierFree, HighlightColor.SYM_FIELD)
+        highlight(o.key, HighlightColor.SYM_FIELD)
     }
 
     override fun visitFunctionCall(o: YggdrasilFunctionCall) {
@@ -67,7 +75,8 @@ class NodeHighlighter : YggdrasilVisitor(), HighlightVisitor {
     }
 
     override fun visitCategory(o: YggdrasilCategory) {
-        super.visitCategory(o)
+        o.key?.let { highlight(it, HighlightColor.SYM_FIELD) }
+        highlight(o.identifierFree, HighlightColor.SYM_CONSTANT)
     }
 
     override fun visitRange(o: YggdrasilRange) {

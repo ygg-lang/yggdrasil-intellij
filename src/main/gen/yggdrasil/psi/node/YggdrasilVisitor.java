@@ -7,10 +7,6 @@ import com.intellij.psi.PsiElement;
 
 public class YggdrasilVisitor extends PsiElementVisitor {
 
-  public void visitAlias(@NotNull YggdrasilAlias o) {
-    visitPsiElement(o);
-  }
-
   public void visitAnnotations(@NotNull YggdrasilAnnotations o) {
     visitPsiElement(o);
   }
@@ -40,6 +36,10 @@ public class YggdrasilVisitor extends PsiElementVisitor {
   }
 
   public void visitClassCast(@NotNull YggdrasilClassCast o) {
+    visitPsiElement(o);
+  }
+
+  public void visitDefineFunction(@NotNull YggdrasilDefineFunction o) {
     visitPsiElement(o);
   }
 
@@ -76,10 +76,6 @@ public class YggdrasilVisitor extends PsiElementVisitor {
   }
 
   public void visitFunctionCall(@NotNull YggdrasilFunctionCall o) {
-    visitPsiElement(o);
-  }
-
-  public void visitFunctionDefine(@NotNull YggdrasilFunctionDefine o) {
     visitPsiElement(o);
   }
 
@@ -121,6 +117,10 @@ public class YggdrasilVisitor extends PsiElementVisitor {
 
   public void visitIdentifierFree(@NotNull YggdrasilIdentifierFree o) {
     visitIdentifier(o);
+  }
+
+  public void visitKey(@NotNull YggdrasilKey o) {
+    visitPsiElement(o);
   }
 
   public void visitNumber(@NotNull YggdrasilNumber o) {

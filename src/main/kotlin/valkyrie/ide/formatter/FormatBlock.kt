@@ -94,7 +94,7 @@ class FormatBlock : ASTBlock {
             is YggdrasilExpressionGroup -> byCorner
             is YggdrasilFunctionBlock -> byCorner
             is YggdrasilFunctionParameter -> byCorner
-            is YggdrasilFunctionArgument -> byCorner
+            is YggdrasilTuple -> byCorner
             else -> Indent.getNoneIndent()
         }
     }

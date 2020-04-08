@@ -4,9 +4,9 @@ package yggdrasil.psi.node;
 import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
-import valkyrie.ide.highlight.NodeHighlighter;
+import com.intellij.codeInsight.lookup.LookupElement;
 
-public interface YggdrasilFunctionDefine extends PsiElement {
+public interface YggdrasilDefineFunction extends PsiElement {
 
   @NotNull
   YggdrasilAnnotations getAnnotations();
@@ -20,6 +20,6 @@ public interface YggdrasilFunctionDefine extends PsiElement {
   @Nullable
   YggdrasilIdentifierFree getIdentifierFree();
 
-  void highlight(@NotNull NodeHighlighter highlighter);
+  void createLookup(@NotNull List<LookupElement> completions);
 
 }
