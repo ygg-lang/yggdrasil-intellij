@@ -24,7 +24,7 @@ abstract class MixinDefineFunction(node: ASTNode) : YggdrasilElement(node),
     }
 
     override fun getNameIdentifier(): YggdrasilIdentifierNode? {
-        return this.identifierFree as? YggdrasilIdentifierNode
+        return this.identifier as? YggdrasilIdentifierNode
     }
 
 

@@ -14,7 +14,7 @@ public interface YggdrasilGroup extends PsiElement {
   YggdrasilGroupBody getGroupBody();
 
   @Nullable
-  YggdrasilIdentifierFree getIdentifierFree();
+  YggdrasilIdentifier getIdentifier();
 
   @NotNull
   List<YggdrasilGroupItemNode> getTokenList();

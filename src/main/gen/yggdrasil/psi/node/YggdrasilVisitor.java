@@ -119,10 +119,6 @@ public class YggdrasilVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitIdentifierFree(@NotNull YggdrasilIdentifierFree o) {
-    visitIdentifier(o);
-  }
-
   public void visitKey(@NotNull YggdrasilKey o) {
     visitPsiElement(o);
   }

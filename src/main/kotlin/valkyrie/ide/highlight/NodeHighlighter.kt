@@ -19,12 +19,12 @@ class NodeHighlighter : YggdrasilVisitor(), HighlightVisitor {
     }
 
     override fun visitUsing(o: YggdrasilUsing) {
-        o.identifierFree?.let { highlight(it, HighlightColor.SYM_MACRO) }
+        o.identifier?.let { highlight(it, HighlightColor.SYM_MACRO) }
     }
 
 
     override fun visitModifier(o: YggdrasilModifier) {
-        highlight(o.identifier, HighlightColor.KEYWORD)
+        highlight(o, HighlightColor.KEYWORD)
     }
 
 
@@ -41,7 +41,7 @@ class NodeHighlighter : YggdrasilVisitor(), HighlightVisitor {
     }
 
     override fun visitDefineFunction(o: YggdrasilDefineFunction) {
-        o.identifierFree?.let { highlight(it, HighlightColor.SYM_FUNCTION) }
+        o.identifier?.let { highlight(it, HighlightColor.SYM_FUNCTION) }
     }
 
     override fun visitGroupItem(o: YggdrasilGroupItem) {
@@ -49,7 +49,7 @@ class NodeHighlighter : YggdrasilVisitor(), HighlightVisitor {
     }
 
     override fun visitExpressionTag(o: YggdrasilExpressionTag) {
-        o.identifierFree?.let { highlight(it, HighlightColor.TAG_NODE) }
+        o.identifier?.let { highlight(it, HighlightColor.TAG_NODE) }
     }
 
     override fun visitTagBranch(o: YggdrasilTagBranch) {
@@ -57,7 +57,7 @@ class NodeHighlighter : YggdrasilVisitor(), HighlightVisitor {
     }
 
     override fun visitArgument(o: YggdrasilArgument) {
-        o.identifierFree?.let { highlight(it, HighlightColor.SYM_FIELD) }
+        o.identifier?.let { highlight(it, HighlightColor.SYM_FIELD) }
     }
 
     override fun visitPair(o: YggdrasilPair) {
@@ -66,16 +66,16 @@ class NodeHighlighter : YggdrasilVisitor(), HighlightVisitor {
 
     override fun visitFunctionCall(o: YggdrasilFunctionCall) {
         highlight(o.firstChild, HighlightColor.SYM_FUNCTION)
-        highlight(o.identifierFree, HighlightColor.SYM_FUNCTION)
+        highlight(o.identifier, HighlightColor.SYM_FUNCTION)
     }
 
     override fun visitAtomic(o: YggdrasilAtomic) {
-        o.identifierFree?.highlight(this)
+        o.identifier?.highlight(this)
     }
 
     override fun visitCategory(o: YggdrasilCategory) {
         o.key?.let { highlight(it, HighlightColor.SYM_FIELD) }
-        highlight(o.identifierFree, HighlightColor.SYM_CONSTANT)
+        highlight(o.identifier, HighlightColor.SYM_CONSTANT)
     }
 
     override fun visitRange(o: YggdrasilRange) {

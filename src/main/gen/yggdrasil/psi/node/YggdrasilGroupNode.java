@@ -40,8 +40,8 @@ public class YggdrasilGroupNode extends MixinGroup implements YggdrasilGroup {
 
   @Override
   @Nullable
-  public YggdrasilIdentifierFree getIdentifierFree() {
-    return findChildByClass(YggdrasilIdentifierFree.class);
+  public YggdrasilIdentifier getIdentifier() {
+    return findChildByClass(YggdrasilIdentifier.class);
   }
 
 }

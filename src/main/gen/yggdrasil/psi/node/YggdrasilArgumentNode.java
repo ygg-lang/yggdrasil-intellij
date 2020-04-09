@@ -28,8 +28,8 @@ public class YggdrasilArgumentNode extends YggdrasilElement implements Yggdrasil
 
   @Override
   @Nullable
-  public YggdrasilIdentifierFree getIdentifierFree() {
-    return findChildByClass(YggdrasilIdentifierFree.class);
+  public YggdrasilIdentifier getIdentifier() {
+    return findChildByClass(YggdrasilIdentifier.class);
   }
 
   @Override

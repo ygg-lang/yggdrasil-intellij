@@ -7,7 +7,4 @@ import com.intellij.psi.PsiElement;
 
 public interface YggdrasilModifier extends PsiElement {
 
-  @NotNull
-  YggdrasilIdentifier getIdentifier();
-
 }

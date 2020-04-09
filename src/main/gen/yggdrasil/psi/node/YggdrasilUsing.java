@@ -11,7 +11,7 @@ public interface YggdrasilUsing extends PsiElement {
   YggdrasilAnnotations getAnnotations();
 
   @Nullable
-  YggdrasilIdentifierFree getIdentifierFree();
+  YggdrasilIdentifier getIdentifier();
 
   @Nullable
   YggdrasilUsingBody getUsingBody();

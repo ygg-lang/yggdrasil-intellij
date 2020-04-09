@@ -10,7 +10,7 @@ import javax.swing.Icon
 
 abstract class MixinUsing(node: ASTNode) : YggdrasilElement(node), YggdrasilUsing {
     override fun getName(): String {
-        return this.identifierFree?.text ?: ""
+        return this.identifier?.text ?: ""
     }
 
     override fun getBaseIcon(): Icon {

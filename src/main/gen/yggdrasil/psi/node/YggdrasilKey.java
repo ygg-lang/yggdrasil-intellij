@@ -8,6 +8,6 @@ import com.intellij.psi.PsiElement;
 public interface YggdrasilKey extends PsiElement {
 
   @NotNull
-  YggdrasilIdentifierFree getIdentifierFree();
+  YggdrasilIdentifier getIdentifier();
 
 }

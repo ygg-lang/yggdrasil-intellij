@@ -36,7 +36,6 @@ public interface YggdrasilTypes {
   IElementType GROUP_ITEM = new YggdrasilElementType("GROUP_ITEM");
   IElementType GROUP_TERM = new YggdrasilElementType("GROUP_TERM");
   IElementType IDENTIFIER = new YggdrasilElementType("IDENTIFIER");
-  IElementType IDENTIFIER_FREE = new YggdrasilElementType("IDENTIFIER_FREE");
   IElementType KEY = new YggdrasilElementType("KEY");
   IElementType MODIFIER = new YggdrasilElementType("MODIFIER");
   IElementType NUMBER = new YggdrasilElementType("NUMBER");
@@ -195,9 +194,6 @@ public interface YggdrasilTypes {
       }
       else if (type == IDENTIFIER) {
         return new YggdrasilIdentifierNode(node);
-      }
-      else if (type == IDENTIFIER_FREE) {
-        return new YggdrasilIdentifierFreeNode(node);
       }
       else if (type == KEY) {
         return new YggdrasilKeyNode(node);

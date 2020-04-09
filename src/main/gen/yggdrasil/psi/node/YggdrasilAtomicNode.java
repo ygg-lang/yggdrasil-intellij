@@ -40,8 +40,8 @@ public class YggdrasilAtomicNode extends YggdrasilExpressionNode implements Yggd
 
   @Override
   @Nullable
-  public YggdrasilIdentifierFree getIdentifierFree() {
-    return findChildByClass(YggdrasilIdentifierFree.class);
+  public YggdrasilIdentifier getIdentifier() {
+    return findChildByClass(YggdrasilIdentifier.class);
   }
 
   @Override

@@ -10,7 +10,7 @@ import javax.swing.Icon
 
 abstract class MixinModifier(node: ASTNode) : YggdrasilElement(node), YggdrasilModifier {
     override fun getName(): String {
-        return this.identifier.text ?: ""
+        return this.text.trim('`')
     }
 
     override fun getBaseIcon(): Icon {

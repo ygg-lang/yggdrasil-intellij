@@ -34,8 +34,8 @@ public class YggdrasilUsingNode extends MixinUsing implements YggdrasilUsing {
 
   @Override
   @Nullable
-  public YggdrasilIdentifierFree getIdentifierFree() {
-    return findChildByClass(YggdrasilIdentifierFree.class);
+  public YggdrasilIdentifier getIdentifier() {
+    return findChildByClass(YggdrasilIdentifier.class);
   }
 
   @Override

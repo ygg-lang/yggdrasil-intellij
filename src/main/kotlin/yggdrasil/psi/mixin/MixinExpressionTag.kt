@@ -10,7 +10,7 @@ import javax.swing.Icon
 
 abstract class MixinExpressionTag(node: ASTNode) : YggdrasilElement(node), YggdrasilExpressionTag {
     override fun getName(): String {
-        return this.identifierFree?.text ?: ""
+        return this.identifier?.text ?: ""
     }
 
     override fun getBaseIcon(): Icon {

@@ -28,8 +28,8 @@ public class YggdrasilKeyNode extends YggdrasilElement implements YggdrasilKey {
 
   @Override
   @NotNull
-  public YggdrasilIdentifierFree getIdentifierFree() {
-    return findNotNullChildByClass(YggdrasilIdentifierFree.class);
+  public YggdrasilIdentifier getIdentifier() {
+    return findNotNullChildByClass(YggdrasilIdentifier.class);
   }
 
 }

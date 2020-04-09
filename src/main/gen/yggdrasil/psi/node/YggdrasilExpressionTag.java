@@ -11,6 +11,6 @@ public interface YggdrasilExpressionTag extends YggdrasilExpression {
   YggdrasilExpression getExpression();
 
   @Nullable
-  YggdrasilIdentifierFree getIdentifierFree();
+  YggdrasilIdentifier getIdentifier();
 
 }

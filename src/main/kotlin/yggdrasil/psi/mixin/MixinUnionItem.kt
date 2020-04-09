@@ -21,7 +21,7 @@ abstract class MixinUnionItem(node: ASTNode) : YggdrasilElement(node),
     }
 
     override fun getNameIdentifier(): YggdrasilIdentifierNode? {
-        return this.tagBranch?.identifierFree as? YggdrasilIdentifierNode
+        return this.tagBranch?.identifier as? YggdrasilIdentifierNode
     }
 
 

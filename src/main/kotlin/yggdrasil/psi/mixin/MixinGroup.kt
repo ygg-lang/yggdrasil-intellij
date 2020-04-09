@@ -4,7 +4,6 @@ import com.intellij.icons.AllIcons
 import com.intellij.ide.projectView.PresentationData
 import com.intellij.lang.ASTNode
 import com.intellij.navigation.ItemPresentation
-import com.intellij.psi.NavigatablePsiElement
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNameIdentifierOwner
 import yggdrasil.psi.YggdrasilElement
@@ -15,13 +14,12 @@ import javax.swing.Icon
 
 
 abstract class MixinGroup(node: ASTNode) : YggdrasilElement(node),
-    NavigatablePsiElement,
     PsiNameIdentifierOwner,
     YggdrasilGroup {
 
 
     override fun getNameIdentifier(): YggdrasilIdentifierNode? {
-        return this.identifierFree as? YggdrasilIdentifierNode
+        return this.identifier as? YggdrasilIdentifierNode
     }
 
     override fun getName(): String? {

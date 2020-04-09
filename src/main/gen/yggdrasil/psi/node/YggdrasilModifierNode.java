@@ -26,10 +26,4 @@ public class YggdrasilModifierNode extends MixinModifier implements YggdrasilMod
     else super.accept(visitor);
   }
 
-  @Override
-  @NotNull
-  public YggdrasilIdentifier getIdentifier() {
-    return findNotNullChildByClass(YggdrasilIdentifier.class);
-  }
-
 }

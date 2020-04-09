@@ -8,7 +8,7 @@ import com.intellij.psi.PsiElement;
 public interface YggdrasilUsingAlias extends PsiElement {
 
   @NotNull
-  YggdrasilIdentifierFree getIdentifierFree();
+  YggdrasilIdentifier getIdentifier();
 
   @NotNull
   YggdrasilKey getKey();

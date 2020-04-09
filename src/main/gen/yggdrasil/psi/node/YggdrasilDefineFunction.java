@@ -18,7 +18,7 @@ public interface YggdrasilDefineFunction extends PsiElement {
   YggdrasilFunctionParameter getFunctionParameter();
 
   @Nullable
-  YggdrasilIdentifierFree getIdentifierFree();
+  YggdrasilIdentifier getIdentifier();
 
   void createLookup(@NotNull List<LookupElement> completions);
 

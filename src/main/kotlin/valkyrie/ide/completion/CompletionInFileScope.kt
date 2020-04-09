@@ -11,7 +11,6 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.impl.source.tree.LeafPsiElement
 import com.intellij.util.ProcessingContext
 import yggdrasil.language.YggdrasilLanguage
-import yggdrasil.language.file.YggdrasilIconProvider
 import javax.swing.Icon
 
 class CompletionInFileScope : CompletionProvider<CompletionParameters>() {
@@ -51,7 +50,7 @@ class CompletionInFileScope : CompletionProvider<CompletionParameters>() {
         val item = TemplateReplaceElement.snippetFromPath(element!!, id, file)
             .bold()
             .withLookupStrings(lookup)
-            .withIcon(YggdrasilIconProvider.Instance.SNIPPET)
+            .withIcon( AllIcons.Actions.MoreHorizontal)
         addElement(item)
     }
 
@@ -71,8 +70,8 @@ class CompletionInFileScope : CompletionProvider<CompletionParameters>() {
 
         private fun CompletionResultSet.addLinkedTraitMethod(kind: String, trait: String, args: String = "") {
             val element = LookupElementBuilder.create(kind)
-                .withIcon(YggdrasilIconProvider.Instance.Function)
-                .withTypeText(trait, YggdrasilIconProvider.Instance.TRAIT, false)
+                .withIcon(AllIcons.Nodes.Function)
+                .withTypeText(trait, AllIcons.Nodes.Interface, false)
                 .withInsertHandler { context, _ ->
                     val document = context.document
                     document.replaceString(context.startOffset, context.tailOffset, "$kind($args) {}")
