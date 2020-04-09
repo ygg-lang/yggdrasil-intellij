@@ -3,15 +3,12 @@
 
 package yggdrasil.psi;
 
-import com.intellij.lexer.FlexLexer;
-import com.intellij.psi.tree.IElementType;
-
 import static com.intellij.psi.TokenType.BAD_CHARACTER;
 import static com.intellij.psi.TokenType.WHITE_SPACE;
 import static yggdrasil.psi.YggdrasilTypes.*;
 
 
-public class _YggdrasilLexer implements FlexLexer {
+public class _YggdrasilLexer implements com.intellij.lexer.FlexLexer {
 
   /** This character denotes the end of file */
   public static final int YYEOF = -1;
@@ -771,7 +768,7 @@ public class _YggdrasilLexer implements FlexLexer {
    * @return      the next token
    * @exception   java.io.IOException  if any I/O-Error occurs
    */
-  public IElementType advance() throws java.io.IOException
+  public com.intellij.psi.tree.IElementType advance() throws java.io.IOException
   {
     int zzInput;
     int zzAction;
@@ -941,7 +938,7 @@ public class _YggdrasilLexer implements FlexLexer {
           // fall through
           case 63: break;
           case 18:
-            { return EQ;
+            { return BIND;
             }
           // fall through
           case 64: break;

@@ -8,14 +8,14 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static yggdrasil.psi.YggdrasilTypes.*;
+import yggdrasil.psi.mixin.MixinExpressionTag;
 
-public class YggdrasilExpressionTagNode extends YggdrasilExpressionNode implements YggdrasilExpressionTag {
+public class YggdrasilExpressionTagNode extends MixinExpressionTag implements YggdrasilExpressionTag {
 
   public YggdrasilExpressionTagNode(@NotNull ASTNode node) {
     super(node);
   }
 
-  @Override
   public void accept(@NotNull YggdrasilVisitor visitor) {
     visitor.visitExpressionTag(this);
   }

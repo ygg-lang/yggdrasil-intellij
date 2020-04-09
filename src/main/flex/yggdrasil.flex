@@ -1,8 +1,5 @@
 package yggdrasil.psi;
 
-import com.intellij.lexer.FlexLexer;
-import com.intellij.psi.tree.IElementType;
-
 import static com.intellij.psi.TokenType.BAD_CHARACTER;
 import static com.intellij.psi.TokenType.WHITE_SPACE;
 import static yggdrasil.psi.YggdrasilTypes.*;
@@ -17,9 +14,9 @@ import static yggdrasil.psi.YggdrasilTypes.*;
 
 %public
 %class _YggdrasilLexer
-%implements FlexLexer
+%implements com.intellij.lexer.FlexLexer
 %function advance
-%type IElementType
+%type com.intellij.psi.tree.IElementType
 %unicode
 
 //%state TextContextIndent
@@ -78,7 +75,7 @@ KW_MACRO   = macro|function|func|fun|fn|def
 	"." { return DOT; }
 	"," { return COMMA; }
 	"-" { return HYPHEN; }
-	"=" { return EQ; }
+	"=" { return BIND; }
 
 	"^" { return OP_REMARK; }
     "!" { return OP_NOT; }

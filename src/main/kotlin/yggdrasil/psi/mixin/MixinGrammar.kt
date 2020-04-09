@@ -9,26 +9,34 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNameIdentifierOwner
 import yggdrasil.psi.YggdrasilElement
 import yggdrasil.psi.node.YggdrasilGrammar
+import yggdrasil.psi.node.YggdrasilIdentifierNode
 import javax.swing.Icon
 
 abstract class MixinGrammar(node: ASTNode) : YggdrasilElement(node),
     NavigatablePsiElement,
     PsiNameIdentifierOwner,
     YggdrasilGrammar {
+
+    override fun getName(): String? {
+        return this.nameIdentifier?.name ?: "⟪anonymous⟫"
+    }
+
+    override fun getNameIdentifier(): YggdrasilIdentifierNode? {
+        return this.identifier as? YggdrasilIdentifierNode
+    }
+
+
     override fun setName(name: String): PsiElement {
         TODO("Not yet implemented")
     }
 
-    override fun getNameIdentifier(): PsiElement? {
-        return null
-    }
 
     override fun getBaseIcon(): Icon {
-        return AllIcons.Nodes.ModuleGroup
+        return AllIcons.Nodes.DataSchema
     }
 
     override fun getPresentation(): ItemPresentation? {
-        return PresentationData("YggdrasilClass", "YggdrasilClass", baseIcon, null)
+        return PresentationData(name, "", baseIcon, null)
     }
 }
 

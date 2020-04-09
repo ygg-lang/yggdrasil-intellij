@@ -24,7 +24,7 @@ class TokenHighlighter : SyntaxHighlighter {
             KW_CLASS, KW_UNION, KW_GROUP, KW_MACRO,
             -> HighlightColor.KEYWORD
             // operations
-            COLON, EQ -> HighlightColor.OPERATION
+            COLON, BIND -> HighlightColor.OPERATION
             OP_OR, OP_CONCAT -> HighlightColor.OPERATION
             OP_REMARK -> HighlightColor.OPERATION
             OP_OPTIONAL, OP_MANY, OP_MANY1 -> HighlightColor.OPERATION

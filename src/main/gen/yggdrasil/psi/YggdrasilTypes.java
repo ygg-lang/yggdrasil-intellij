@@ -63,6 +63,7 @@ public interface YggdrasilTypes {
   IElementType ANGLE_L = new YggdrasilTokenType("<");
   IElementType ANGLE_R = new YggdrasilTokenType(">");
   IElementType AT = new YggdrasilTokenType("@");
+  IElementType BIND = new YggdrasilTokenType("=");
   IElementType BRACE_L = new YggdrasilTokenType("{");
   IElementType BRACE_R = new YggdrasilTokenType("}");
   IElementType BRACKET_L = new YggdrasilTokenType("[");
@@ -73,7 +74,6 @@ public interface YggdrasilTypes {
   IElementType COMMENT_LINE = new YggdrasilTokenType("Comment");
   IElementType DOLLAR = new YggdrasilTokenType("$");
   IElementType DOT = new YggdrasilTokenType(".");
-  IElementType EQ = new YggdrasilTokenType("=");
   IElementType ESCAPED = new YggdrasilTokenType("\\escaped");
   IElementType HASH = new YggdrasilTokenType("HASH");
   IElementType HYPHEN = new YggdrasilTokenType("-");

@@ -51,7 +51,7 @@
         ANGLE_L = '<'
         ANGLE_R = '>'
         OP_REMARK = '^'
-        EQ = '='
+        BIND = '='
         COLON = ':'
         SEMICOLON = ';'
         COMMA = ','
@@ -101,7 +101,7 @@ grammar-term ::= pair | COMMA | SEMICOLON;
 // === class statement ===
 using ::= annotations KW_USING identifier-free (DOT (OP_MANY | using-body))? {
     pin = 2
-//    mixin = "yggdrasil.psi.mixin.MixinUsing"
+    mixin = "yggdrasil.psi.mixin.MixinUsing"
 }
 using-body ::= BRACE_L using-term* BRACE_R;
 using-term ::=
@@ -135,7 +135,7 @@ group  ::= annotations KW_GROUP identifier-free? group-body {
 }
 group-body ::= BRACE_L group-term* BRACE_R;
 group-term ::= group-item | SEMICOLON;
-group-item ::= attribute* identifier* EQ atomic {
+group-item ::= attribute* identifier* COLON atomic {
     mixin = "yggdrasil.psi.mixin.MixinGroupItem"
     methods=[highlight createLookup]
 }
@@ -146,7 +146,7 @@ define-function ::= annotations KW_MACRO identifier-free function-parameter func
     methods=[createLookup]
 }
 function-parameter ::= PARENTHESIS_L (parameter (COMMA parameter)* COMMA?)? PARENTHESIS_R;
-parameter ::= identifier ((EQ|COLON) expression)? {
+parameter ::= identifier (COLON expression)? {
 
 }
 function-block ::= BRACE_L OP_OR? expression? BRACE_R;
@@ -167,7 +167,7 @@ expression-hard ::= expression-soft (OP_CONCAT expression-soft)* {
 expression-soft ::= expression-tag expression-tag* {
     extends = expression
 }
-expression-tag ::= (identifier-free COLON)? term {
+expression-tag ::= (identifier-free BIND)? term {
     extends = expression
     mixin = "yggdrasil.psi.mixin.MixinExpressionTag"
 }
@@ -187,7 +187,7 @@ expression-group ::= PARENTHESIS_L OP_OR? expression PARENTHESIS_R {
 escape ::= ESCAPED category? {
 
 }
-category ::= BRACE_L (key EQ)? identifier-free BRACE_R;
+category ::= BRACE_L (key COLON)? identifier-free BRACE_R;
 // === atomic statement ===
 range    ::= BRACE_L COMMA? BRACE_R
            | BRACE_L range-lower COMMA? BRACE_R
@@ -205,10 +205,10 @@ regex ::= REGULAR_EXPRESSION | REGULAR_RANGE {
 // === atomic statement ===
 key      ::= identifier-free;
 value    ::= tuple | expression-tag;
-pair     ::= key EQ value {
+pair     ::= key COLON value {
 //    mixin = "yggdrasil.psi.mixin.MixinTuple"
 }
-argument ::= (identifier-free EQ)? value {
+argument ::= (identifier-free COLON)? value {
 //    mixin = "yggdrasil.psi.mixin.MixinTuple"
 }
 tuple    ::= PARENTHESIS_L (argument (COMMA argument)* COMMA?)?  PARENTHESIS_R
