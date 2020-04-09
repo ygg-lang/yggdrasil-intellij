@@ -72,10 +72,10 @@
 		<lang.commenter language="yggdrasil" implementationClass="valkyrie.ide.formatter.YggdrasilCommenter"/>
 		<lang.braceMatcher
 			language="yggdrasil"
-			implementationClass="valkyrie.ide.matcher.BraceMatchAdapter"/>
+			implementationClass="valkyrie.ide.matcher.BraceMatch"/>
 		<lang.quoteHandler
 			language="yggdrasil"
-			implementationClass="valkyrie.ide.matcher.ValkyrieQuoteHandler"/>
+			implementationClass="valkyrie.ide.matcher.QuoteHandler"/>
 		<codeCompletionConfigurable instance="valkyrie.ide.completion.CompletionConfig"/>
 		<completion.contributor
 			language="yggdrasil"
@@ -84,7 +84,7 @@
 		<lang.foldingBuilder
 			language="yggdrasil"
 			implementationClass="valkyrie.ide.folding.ValkyrieFoldingBuilder"/>
-		<codeBlockProvider language="yggdrasil" implementationClass="valkyrie.ide.matcher.ValkyrieCodeBlockProvider"/>
+		<codeBlockProvider language="yggdrasil" implementationClass="valkyrie.ide.matcher.CodeBlockProvider"/>
 		<codeFoldingOptionsProvider instance="valkyrie.ide.folding.ValkyrieFoldingOptions"/>
 		<referenceImporter implementation="valkyrie.ide.completion.ValkyrieImportInsert"/>
 		<lang.importOptimizer

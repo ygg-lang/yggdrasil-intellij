@@ -5,14 +5,14 @@ import com.intellij.openapi.editor.Editor
 import com.intellij.openapi.editor.highlighter.HighlighterIterator
 
 
-class ValkyrieQuoteHandler : MultiCharQuoteHandler {
+class QuoteHandler : MultiCharQuoteHandler {
     override fun isOpeningQuote(iterator: HighlighterIterator?, offset: Int): Boolean {
-        return ValkyrieBracketMatch.Left.contains(iterator?.tokenType)
+        return BraceMatch.Left.contains(iterator?.tokenType)
     }
 
 
     override fun isClosingQuote(iterator: HighlighterIterator?, offset: Int): Boolean {
-        return ValkyrieBracketMatch.Right.contains(iterator?.tokenType)
+        return BraceMatch.Right.contains(iterator?.tokenType)
     }
 
 
