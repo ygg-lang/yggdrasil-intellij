@@ -2,7 +2,9 @@ package yggdrasil.language.file
 
 import com.intellij.codeInsight.lookup.LookupElement
 import com.intellij.psi.PsiNameIdentifierOwner
-import yggdrasil.psi.node.*
+import yggdrasil.psi.node.YggdrasilClassNode
+import yggdrasil.psi.node.YggdrasilGroupNode
+import yggdrasil.psi.node.YggdrasilIdentifierNode
 
 class YggdrasilFileCache(val root: YggdrasilFileNode) {
     private fun getCache(): MutableMap<String, PsiNameIdentifierOwner> {
@@ -10,13 +12,13 @@ class YggdrasilFileCache(val root: YggdrasilFileNode) {
 
         for (child in root.children) {
             when (child) {
-                is YggdrasilClassNode -> {
-                    cache[child.name] = child
-                }
-
-                is YggdrasilDefineUnionNode -> {
-                    cache[child.name] = child
-                }
+//                is YggdrasilClassNode -> {
+//                    cache[child.name] = child
+//                }
+//
+//                is YggdrasilDefineUnionNode -> {
+//                    cache[child.name] = child
+//                }
 
                 is YggdrasilGroupNode -> {
                     for (item in child.tokenList) {
@@ -36,9 +38,6 @@ class YggdrasilFileCache(val root: YggdrasilFileNode) {
                     child.createLookup(completions)
                 }
 
-                is YggdrasilDefineUnion -> {
-                    child.createLookup(completions)
-                }
 
                 is YggdrasilGroupNode -> {
                     for (item in child.tokenList) {

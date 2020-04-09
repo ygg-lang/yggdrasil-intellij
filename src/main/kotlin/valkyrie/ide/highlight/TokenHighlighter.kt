@@ -6,12 +6,12 @@ import com.intellij.openapi.editor.colors.TextAttributesKey
 import com.intellij.openapi.fileTypes.SyntaxHighlighter
 import com.intellij.openapi.fileTypes.SyntaxHighlighterBase.pack
 import com.intellij.psi.tree.IElementType
-import yggdrasil.psi.ParserDefinition
+import yggdrasil.language.YggdrasilLanguage
 import yggdrasil.psi.YggdrasilTypes.*
 
 class TokenHighlighter : SyntaxHighlighter {
     override fun getHighlightingLexer(): Lexer {
-        return ParserDefinition.createLexer()
+        return YggdrasilLanguage.lexer
     }
 
     override fun getTokenHighlights(tokenType: IElementType): Array<TextAttributesKey> {

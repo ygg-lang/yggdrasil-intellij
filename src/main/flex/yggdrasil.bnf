@@ -112,7 +112,7 @@ using-alias ::= key KW_AS identifier;
 class  ::= annotations KW_CLASS identifier class-cast? OP_REMARK? class-body {
     pin = 2
     mixin = "yggdrasil.psi.mixin.MixinClass"
-    methods=[createLookup]
+
 }
 class-cast ::= TO identifier;
 class-body ::= BRACE_L OP_OR? expression? BRACE_R;
@@ -120,7 +120,6 @@ class-body ::= BRACE_L OP_OR? expression? BRACE_R;
 define-union ::= annotations KW_UNION identifier OP_REMARK? union-body {
     pin = 2
     mixin = "yggdrasil.psi.mixin.MixinUnion"
-    methods=[createLookup]
 }
 union-body ::= BRACE_L union-variant* BRACE_R;
 union-variant ::= OP_OR expression-hard tag-branch? {

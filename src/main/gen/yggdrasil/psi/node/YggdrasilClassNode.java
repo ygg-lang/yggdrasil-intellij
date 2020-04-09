@@ -9,7 +9,6 @@ import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static yggdrasil.psi.YggdrasilTypes.*;
 import yggdrasil.psi.mixin.MixinClass;
-import com.intellij.codeInsight.lookup.LookupElement;
 
 public class YggdrasilClassNode extends MixinClass implements YggdrasilClass {
 

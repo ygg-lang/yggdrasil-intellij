@@ -9,7 +9,6 @@ import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static yggdrasil.psi.YggdrasilTypes.*;
 import yggdrasil.psi.mixin.MixinUnion;
-import com.intellij.codeInsight.lookup.LookupElement;
 
 public class YggdrasilDefineUnionNode extends MixinUnion implements YggdrasilDefineUnion {
 

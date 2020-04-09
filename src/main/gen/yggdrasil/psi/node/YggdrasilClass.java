@@ -4,7 +4,6 @@ package yggdrasil.psi.node;
 import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
-import com.intellij.codeInsight.lookup.LookupElement;
 
 public interface YggdrasilClass extends PsiElement {
 
@@ -19,7 +18,5 @@ public interface YggdrasilClass extends PsiElement {
 
   @Nullable
   YggdrasilIdentifier getIdentifier();
-
-  void createLookup(@NotNull List<LookupElement> completions);
 
 }

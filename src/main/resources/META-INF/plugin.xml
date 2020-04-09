@@ -23,7 +23,7 @@
 		<lang.psiStructureViewFactory
 			language="yggdrasil"
 			implementationClass="valkyrie.ide.view.YggdrasilStructureView"/>
-
+		<breadcrumbsInfoProvider implementation="valkyrie.ide.view.YggdrasilBreadcrumbsProvider"/>
 		<!-- Highlight -->
 		<colorSettingsPage implementation="valkyrie.ide.highlight.HighlightSetting"/>
 		<highlightVisitor implementation="valkyrie.ide.highlight.NodeHighlighter"/>
