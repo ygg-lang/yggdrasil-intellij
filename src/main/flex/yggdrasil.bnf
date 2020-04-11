@@ -136,7 +136,6 @@ group-body ::= BRACE_L group-term* BRACE_R;
 group-term ::= group-item | SEMICOLON;
 group-item ::= attribute* identifier* COLON atomic {
     mixin = "yggdrasil.psi.mixin.MixinGroupItem"
-
 }
 /// === function definition ===
 define-function ::= annotations KW_MACRO identifier function-parameter function-block {

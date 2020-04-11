@@ -1,6 +1,6 @@
 package yggdrasil.psi
 
-import com.intellij.codeInsight.lookup.LookupElement
+import com.intellij.codeInsight.completion.CompletionResultSet
 import com.intellij.codeInsight.lookup.LookupElementBuilder
 import com.intellij.ide.projectView.PresentationData
 import com.intellij.lang.ASTNode
@@ -11,7 +11,9 @@ import com.intellij.refactoring.suggested.startOffset
 import yggdrasil.psi.node.YggdrasilIdentifierNode
 import javax.swing.Icon
 
-abstract class YggdrasilDeclaration(node: ASTNode) : YggdrasilElement(node), PsiNameIdentifierOwner {
+abstract class YggdrasilDeclaration : YggdrasilElement, PsiNameIdentifierOwner {
+    constructor(node: ASTNode) : super(node)
+
     override fun getNavigationElement(): PsiElement {
         return nameIdentifier ?: this
     }
@@ -40,9 +42,9 @@ abstract class YggdrasilDeclaration(node: ASTNode) : YggdrasilElement(node), Psi
         return PresentationData(name, "", baseIcon, null)
     }
 
-    fun createLookup(completions: MutableList<LookupElement>) {
-        nameIdentifier?.let {
-            completions.add(
+    fun createLookup(completions: CompletionResultSet) {
+        nameIdentifier?.text?.let {
+            completions.addElement(
                 LookupElementBuilder.create(it)
                     .withIcon(baseIcon)
                     .withCaseSensitivity(false)

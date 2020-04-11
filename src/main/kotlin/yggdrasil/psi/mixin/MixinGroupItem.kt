@@ -21,14 +21,6 @@ abstract class MixinGroupItem : YggdrasilDeclaration, YggdrasilGroupItem {
         return AllIcons.Nodes.Constant
     }
 
-    override fun highlight(highlighter: NodeHighlighter) {
-        this.identifierList.forEach {
-            if (it == this.identifierList.lastOrNull()) {
-                highlighter.highlight(it, HighlightColor.SYM_CONSTANT)
-            } else {
-                highlighter.highlight(it, HighlightColor.KEYWORD)
-            }
-        }
-    }
+
 }
 

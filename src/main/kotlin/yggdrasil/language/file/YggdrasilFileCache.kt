@@ -1,6 +1,6 @@
 package yggdrasil.language.file
 
-import com.intellij.psi.PsiNameIdentifierOwner
+import yggdrasil.psi.YggdrasilDeclaration
 import yggdrasil.psi.node.YggdrasilClassNode
 import yggdrasil.psi.node.YggdrasilDefineUnionNode
 import yggdrasil.psi.node.YggdrasilGroupNode
@@ -8,11 +8,12 @@ import yggdrasil.psi.node.YggdrasilGroupNode
 class YggdrasilFileCache {
     private val root: YggdrasilFileNode
 
+
     constructor(root: YggdrasilFileNode) {
         this.root = root
     }
 
-    fun getCache(): Sequence<PsiNameIdentifierOwner> {
+    fun getDefinitions(): Sequence<YggdrasilDeclaration> {
         return sequence {
             for (child in root.children) {
                 when (child) {
@@ -33,5 +34,4 @@ class YggdrasilFileCache {
             }
         }
     }
-
 }

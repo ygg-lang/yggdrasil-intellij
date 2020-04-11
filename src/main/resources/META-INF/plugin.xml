@@ -3,7 +3,7 @@
 	<name>Yggdrasil Language</name>
 	<vendor>voml</vendor>
 	<depends>com.intellij.modules.platform</depends>
-	<!--	<depends optional="true" config-file="plugin-with-rust.xml">com.jetbrains.rust</depends>-->
+	<depends optional="true" config-file="plugin-with-rust.xml">com.jetbrains.rust</depends>
 	<depends optional="true" config-file="plugin-with-markdown.xml">org.intellij.plugins.markdown</depends>
 	<resource-bundle>messages.YggdrasilBundle</resource-bundle>
 	<extensions defaultExtensionNs="com.intellij">
@@ -47,15 +47,17 @@
 		                                implementationClass="valkyrie.ide.hint.ParameterInlayProvider"/>
 		<codeInsight.lineMarkerProvider
 			language="yggdrasil"
-			implementationClass="valkyrie.ide.hint.ValkyrieLineMarkerProvider"/>
+			implementationClass="valkyrie.ide.line_marker.YggdrasilLineMarkerProvider"
+		/>
 		<vcs.codeVisionLanguageContext
 			language="yggdrasil"
-			implementationClass="valkyrie.ide.hint.AuthorAbove"/>
-
+			implementationClass="valkyrie.ide.hint.AuthorAbove"
+		/>
 		<!--		<psi.fileReferenceHelper implementation="valkyrie.ide.reference.ValkyrieFileReference"/>-->
 		<psi.referenceContributor
 			language="yggdrasil"
-			implementation="valkyrie.ide.reference.ValkyrieReferenceContributor"/>
+			implementation="valkyrie.ide.reference.ValkyrieReferenceContributor"
+		/>
 		<!--		<psi.referenceProvider language="Valkyrie" providerClass="valkyrie.ide.reference.ValkyrieReferenceProvider"/>-->
 		<!--		<psi.symbolReferenceProvider-->
 		<!--			anyReferenceClass="true"-->
@@ -72,28 +74,34 @@
 		<lang.commenter language="yggdrasil" implementationClass="valkyrie.ide.formatter.YggdrasilCommenter"/>
 		<lang.braceMatcher
 			language="yggdrasil"
-			implementationClass="valkyrie.ide.matcher.BraceMatch"/>
+			implementationClass="valkyrie.ide.matcher.BraceMatch"
+		/>
 		<lang.quoteHandler
 			language="yggdrasil"
-			implementationClass="valkyrie.ide.matcher.QuoteHandler"/>
+			implementationClass="valkyrie.ide.matcher.QuoteHandler"
+		/>
 		<codeCompletionConfigurable instance="valkyrie.ide.completion.CompletionConfig"/>
 		<completion.contributor
 			language="yggdrasil"
-			implementationClass="valkyrie.ide.completion.CompletionRegistrar"/>
+			implementationClass="valkyrie.ide.completion.CompletionRegistrar"
+		/>
 		<nameSuggestionProvider implementation="valkyrie.ide.completion.CompletionSuggestion"/>
 		<lang.foldingBuilder
 			language="yggdrasil"
-			implementationClass="valkyrie.ide.folding.ValkyrieFoldingBuilder"/>
+			implementationClass="valkyrie.ide.folding.ValkyrieFoldingBuilder"
+		/>
 		<codeBlockProvider language="yggdrasil" implementationClass="valkyrie.ide.matcher.CodeBlockProvider"/>
 		<codeFoldingOptionsProvider instance="valkyrie.ide.folding.ValkyrieFoldingOptions"/>
 		<referenceImporter implementation="valkyrie.ide.completion.ValkyrieImportInsert"/>
 		<lang.importOptimizer
 			language="yggdrasil"
-			implementationClass="valkyrie.ide.completion.ValkyrieImportOptimizer"/>
+			implementationClass="valkyrie.ide.completion.ValkyrieImportOptimizer"
+		/>
 		<!-- Document -->
 		<lang.documentationProvider
 			language="yggdrasil"
-			implementationClass="valkyrie.ide.doc.DocumentationProvider"/>
+			implementationClass="valkyrie.ide.doc.DocumentationProvider"
+		/>
 	</extensions>
 	<actions>
 		<action id="valkyrie.create.file" class="valkyrie.ide.actions.file_transform.ValkyrieCreateFile">

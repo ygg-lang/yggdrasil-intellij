@@ -37,7 +37,7 @@ open class ValkyrieReference : PsiPolyVariantReference {
     }
 
   private  fun resolveSequence(): Sequence<PsiNameIdentifierOwner> {
-        return element.containingFile.definitions.getCache().filter {
+      return element.containingFile.definitions.getDefinitions().filter {
             it.name == element.name
 
         }
@@ -66,7 +66,7 @@ open class ValkyrieReference : PsiPolyVariantReference {
 
 
     fun highlight(highlighter: NodeHighlighter) {
-        return when (resolveSequence().first()) {
+        return when (resolveSequence().firstOrNull()) {
             is YggdrasilClassNode -> highlighter.highlight(_element, HighlightColor.RULE_CLASS)
             is YggdrasilDefineUnion -> highlighter.highlight(_element, HighlightColor.RULE_UNION)
             is YggdrasilGroupItemNode -> highlighter.highlight(_element, HighlightColor.SYM_CONSTANT)
