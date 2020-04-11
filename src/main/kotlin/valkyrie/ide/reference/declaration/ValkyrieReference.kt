@@ -1,8 +1,7 @@
 package valkyrie.ide.reference.declaration
 
 import com.intellij.openapi.util.TextRange
-import com.intellij.psi.PsiElement
-import com.intellij.psi.PsiQualifiedReference
+import com.intellij.psi.*
 import valkyrie.ide.highlight.HighlightColor
 import valkyrie.ide.highlight.NodeHighlighter
 import yggdrasil.psi.node.YggdrasilClassNode
@@ -10,7 +9,7 @@ import yggdrasil.psi.node.YggdrasilDefineUnion
 import yggdrasil.psi.node.YggdrasilGroupItemNode
 import yggdrasil.psi.node.YggdrasilIdentifierNode
 
-open class ValkyrieReference : PsiQualifiedReference {
+open class ValkyrieReference : PsiPolyVariantReference {
     private val _element: YggdrasilIdentifierNode
 
     constructor(element: YggdrasilIdentifierNode) {
@@ -26,8 +25,24 @@ open class ValkyrieReference : PsiQualifiedReference {
     }
 
     override fun resolve(): PsiElement? {
-        return _element.containingFile.definitions.find(_element)
+        return null
     }
+
+    override fun multiResolve(incompleteCode: Boolean): Array<ResolveResult> {
+        return resolveSequence()
+            .map {
+                PsiElementResolveResult(it)
+            }
+            .toList().toTypedArray()
+    }
+
+  private  fun resolveSequence(): Sequence<PsiNameIdentifierOwner> {
+        return element.containingFile.definitions.getCache().filter {
+            it.name == element.name
+
+        }
+    }
+
 
     override fun getCanonicalText(): String {
         TODO("Not yet implemented")
@@ -49,16 +64,9 @@ open class ValkyrieReference : PsiQualifiedReference {
         TODO("Not yet implemented")
     }
 
-    override fun getQualifier(): PsiElement? {
-        TODO("Not yet implemented")
-    }
-
-    override fun getReferenceName(): String? {
-        TODO("Not yet implemented")
-    }
 
     fun highlight(highlighter: NodeHighlighter) {
-        return when (this.resolve()) {
+        return when (resolveSequence().first()) {
             is YggdrasilClassNode -> highlighter.highlight(_element, HighlightColor.RULE_CLASS)
             is YggdrasilDefineUnion -> highlighter.highlight(_element, HighlightColor.RULE_UNION)
             is YggdrasilGroupItemNode -> highlighter.highlight(_element, HighlightColor.SYM_CONSTANT)

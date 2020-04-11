@@ -37,7 +37,7 @@ abstract class MixinIdentifier(node: ASTNode) : YggdrasilElement(node),
 
 
     override fun highlight(highlighter: NodeHighlighter) {
-        return when (this.text) {
+        when (this.text) {
             "HIDE", "ANY", "INDENT", "DEDENT" -> highlighter.highlight(this, HighlightColor.SYM_MACRO)
             "SOI", "START_OF_INPUT",
             "EOI", "END_OF_INPUT",
@@ -47,16 +47,9 @@ abstract class MixinIdentifier(node: ASTNode) : YggdrasilElement(node),
             -> highlighter.highlight(this, HighlightColor.SYM_CONSTANT)
 
             else -> {
-                if (this.reference != null) {
-                    this.reference!!.highlight(highlighter)
-                } else {
-
-                }
-
-
+                this.reference?.highlight(highlighter)
             }
         }
     }
-
 
 }

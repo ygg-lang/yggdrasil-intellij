@@ -6,6 +6,8 @@ import com.intellij.ui.breadcrumbs.BreadcrumbsProvider
 import yggdrasil.language.YggdrasilLanguage
 import yggdrasil.psi.node.YggdrasilClassNode
 import yggdrasil.psi.node.YggdrasilDefineUnionNode
+import yggdrasil.psi.node.YggdrasilGrammarNode
+import yggdrasil.psi.node.YggdrasilGroupNode
 
 class YggdrasilBreadcrumbsProvider : BreadcrumbsProvider {
     override fun getLanguages(): Array<Language> {
@@ -13,14 +15,14 @@ class YggdrasilBreadcrumbsProvider : BreadcrumbsProvider {
     }
 
     override fun acceptElement(element: PsiElement) = when (element) {
-        is YggdrasilClassNode -> {
+        is YggdrasilGrammarNode,
+        is YggdrasilClassNode,
+        is YggdrasilGroupNode -> {
             true
         }
-
         is YggdrasilDefineUnionNode -> {
             true
         }
-
         else -> {
             false
         }

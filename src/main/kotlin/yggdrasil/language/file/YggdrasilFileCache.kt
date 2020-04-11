@@ -1,56 +1,37 @@
 package yggdrasil.language.file
 
-import com.intellij.codeInsight.lookup.LookupElement
 import com.intellij.psi.PsiNameIdentifierOwner
 import yggdrasil.psi.node.YggdrasilClassNode
+import yggdrasil.psi.node.YggdrasilDefineUnionNode
 import yggdrasil.psi.node.YggdrasilGroupNode
-import yggdrasil.psi.node.YggdrasilIdentifierNode
 
-class YggdrasilFileCache(val root: YggdrasilFileNode) {
-    private fun getCache(): MutableMap<String, PsiNameIdentifierOwner> {
-        val cache = mutableMapOf<String, PsiNameIdentifierOwner>()
+class YggdrasilFileCache {
+    private val root: YggdrasilFileNode
 
-        for (child in root.children) {
-            when (child) {
-//                is YggdrasilClassNode -> {
-//                    cache[child.name] = child
-//                }
-//
-//                is YggdrasilDefineUnionNode -> {
-//                    cache[child.name] = child
-//                }
+    constructor(root: YggdrasilFileNode) {
+        this.root = root
+    }
 
-                is YggdrasilGroupNode -> {
-                    for (item in child.tokenList) {
-                        cache[item.name] = item
+    fun getCache(): Sequence<PsiNameIdentifierOwner> {
+        return sequence {
+            for (child in root.children) {
+                when (child) {
+                    is YggdrasilClassNode -> {
+                        yield(child)
+                    }
+
+                    is YggdrasilDefineUnionNode -> {
+                        yield(child)
+                    }
+
+                    is YggdrasilGroupNode -> {
+                        for (item in child.tokenList) {
+                            yield(item)
+                        }
                     }
                 }
             }
         }
-        return cache
     }
 
-     fun getCompletions(): MutableList<LookupElement> {
-        val completions = mutableListOf<LookupElement>()
-        for (child in root.children) {
-            when (child) {
-                is YggdrasilClassNode -> {
-                    child.createLookup(completions)
-                }
-
-
-                is YggdrasilGroupNode -> {
-                    for (item in child.tokenList) {
-                        item.createLookup(completions)
-                    }
-                }
-            }
-        }
-        return completions
-    }
-
-
-    fun find(name: YggdrasilIdentifierNode?): PsiNameIdentifierOwner? {
-        return getCache()[name?.text]
-    }
 }

@@ -16,7 +16,5 @@ abstract class MixinClass(node: ASTNode) : YggdrasilDeclaration(node), Yggdrasil
     override fun getBaseIcon(): Icon {
         return AllIcons.Nodes.Class
     }
-
-
 }
 

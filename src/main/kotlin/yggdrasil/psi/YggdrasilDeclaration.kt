@@ -7,6 +7,7 @@ import com.intellij.lang.ASTNode
 import com.intellij.navigation.ItemPresentation
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNameIdentifierOwner
+import com.intellij.refactoring.suggested.startOffset
 import yggdrasil.psi.node.YggdrasilIdentifierNode
 import javax.swing.Icon
 
@@ -23,6 +24,9 @@ abstract class YggdrasilDeclaration(node: ASTNode) : YggdrasilElement(node), Psi
 
     override fun setName(name: String): YggdrasilIdentifierNode {
         TODO("Not yet implemented")
+    }
+    override fun getTextOffset(): Int {
+        return navigationElement.startOffset
     }
 
     abstract override fun getBaseIcon(): Icon;

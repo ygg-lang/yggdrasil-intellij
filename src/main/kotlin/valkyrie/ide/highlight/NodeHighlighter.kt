@@ -45,7 +45,13 @@ class NodeHighlighter : YggdrasilVisitor(), HighlightVisitor {
     }
 
     override fun visitGroupItem(o: YggdrasilGroupItem) {
-        o.highlight(this)
+        o.identifierList.forEach {
+            if (it == o.identifierList.lastOrNull()) {
+                highlight(it, HighlightColor.SYM_CONSTANT)
+            } else {
+                highlight(it, HighlightColor.KEYWORD)
+            }
+        }
     }
 
     override fun visitExpressionTag(o: YggdrasilExpressionTag) {
