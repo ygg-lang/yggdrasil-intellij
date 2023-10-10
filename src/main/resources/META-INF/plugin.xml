@@ -8,7 +8,7 @@
 	<resource-bundle>messages.YggdrasilBundle</resource-bundle>
 	<extensions defaultExtensionNs="com.intellij">
 		<fileType
-			name="Nexus"
+			name="Yggdrasil"
 			language="Yggdrasil"
 			extensions="ygg;yggdrasil;"
 			implementationClass="yggdrasil.language.file.YggdrasilFileType"
@@ -17,11 +17,6 @@
 			language="Yggdrasil"
 			implementationClass="yggdrasil.antlr.YggdrasilParserDefinition"/>
 		<multiHostInjector implementation="valkyrie.ide.matcher.LanguageInjector"/>
-		<!-- Project Library -->
-		<packageDependencies.visitor
-			language="Yggdrasil"
-			implementationClass="valkyrie.ide.project.ValkyrieDependencyResolver"/>
-		<additionalLibraryRootsProvider implementation="valkyrie.ide.project.library.LibraryRootsProvider"/>
 		<!-- Project Namespace -->
 		<iconProvider implementation="yggdrasil.language.file.YggdrasilIconProvider"/>
 		<!--		<lang.structureViewExtension implementation="valkyrie.ide.view.VStructureViewExtension"/>-->
@@ -57,7 +52,6 @@
 			implementationClass="valkyrie.ide.hint.AuthorAbove"/>
 
 		<!--		<psi.fileReferenceHelper implementation="valkyrie.ide.reference.ValkyrieFileReference"/>-->
-		<psi.treeChangeListener implementation="valkyrie.ide.project.crate.ValkyrieFileListener"/>
 		<psi.referenceContributor
 			language="Yggdrasil"
 			implementation="valkyrie.ide.reference.ValkyrieReferenceContributor"/>
@@ -70,7 +64,6 @@
 		<!--			targetClass="valkyrie.language.symbol.ValkyrieSymbolTemplate"/>-->
 		<!-- Lint -->
 		<lang.namesValidator language="Yggdrasil" implementationClass="valkyrie.ide.lint.ValkyrieNameValidator"/>
-		<annotator language="Yggdrasil" implementationClass="valkyrie.ide.annotator.MarkImplicitTypes"/>
 		<!-- Declaration -->
 		<findUsagesHandlerFactory implementation="valkyrie.ide.usages.ValkyrieUsagesFactory"/>
 		<lang.findUsagesProvider
