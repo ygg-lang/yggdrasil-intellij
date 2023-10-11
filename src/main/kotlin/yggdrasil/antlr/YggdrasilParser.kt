@@ -25,6 +25,8 @@ import yggdrasil.language.ast.external.YggdrasilInspectorNode
 import yggdrasil.language.ast.unions.YggdrasilUnionStatement
 import yggdrasil.language.ast.classes.YggdrasilGrammarStatement
 import yggdrasil.language.ast.classes.YggdrasilClassStatement
+import yggdrasil.language.ast.external.YggdrasilGrammarPair
+import yggdrasil.language.ast.literals.YggdrasilRegex
 import yggdrasil.language.psi.types.ValkyrieBlockType
 
 
@@ -47,20 +49,12 @@ class YggdrasilParser(parser: YggdrasilAntlrParser) : ANTLRParserAdaptor(Yggdras
             val type: RuleIElementType = node.elementType as RuleIElementType;
             return when (type.ruleIndex) {
                 RULE_define_grammar -> YggdrasilGrammarStatement(node)
-//                RULE_import_statement -> ValkyrieImportStatement(node)
-//                // annotations
-//                RULE_modifiers -> NexusModifiedNode(node, ValkyrieModifiedType.Pure)
-//                RULE_modified_identifier -> NexusModifiedNode(node, ValkyrieModifiedType.ModifiedIdentifier)
-//                RULE_modified_namepath -> NexusModifiedNode(node, ValkyrieModifiedType.ModifiedNamepath)
-//                RULE_template_block -> ValkyrieBlockNode(node, ValkyrieBlockType.Brace)
-//                RULE_where_block -> ValkyrieBlockNode(node, ValkyrieBlockType.Brace)
-//                RULE_annotation -> ValkyrieAnnotation(node)
-//                RULE_annotation_call_item -> ValkyrieAnnotationItem(node)
-//                // class
+                RULE_grammar_pair -> YggdrasilGrammarPair(node)
+                // class
                 RULE_define_class -> YggdrasilClassStatement(node)
                 RULE_class_block -> YggdrasilBlockNode(node, ValkyrieBlockType.Brace)
                 RULE_tuple_block -> YggdrasilBlockNode(node, ValkyrieBlockType.Parenthesis)
-//                // function
+                // function
                 RULE_define_union -> YggdrasilUnionStatement(node)
                 RULE_union_block -> YggdrasilBlockNode(node, ValkyrieBlockType.Brace)
 //                RULE_define_function -> ValkyrieFunctionStatement(node)
@@ -77,8 +71,6 @@ class YggdrasilParser(parser: YggdrasilAntlrParser) : ANTLRParserAdaptor(Yggdras
                 RULE_external_pair -> YggdrasilExternalPair(node)
 
 
-//                // control
-//                RULE_tag_pair -> YggdrasilNodeTag(node)
 ////                RULE_while_statement -> ValkyrieWhileStatement(node)
 //                // pattern match
 //                RULE_match_statement -> {
