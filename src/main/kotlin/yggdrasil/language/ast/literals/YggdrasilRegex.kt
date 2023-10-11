@@ -1,4 +1,4 @@
-package yggdrasil.language.ast
+package yggdrasil.language.ast.literals
 
 import com.intellij.extapi.psi.ASTWrapperPsiElement
 import com.intellij.lang.ASTNode
@@ -14,22 +14,24 @@ class YggdrasilRegex(node: ASTNode) : ASTWrapperPsiElement(node), PsiLanguageInj
     }
 
     override fun updateText(p0: String): PsiLanguageInjectionHost {
-        TODO("Not yet implemented")
+        return this
     }
 
     override fun createLiteralTextEscaper(): LiteralTextEscaper<out PsiLanguageInjectionHost> {
-        TODO("Not yet implemented")
+        return YggdrasilRegexEscaper(this)
     }
+
 
     fun injectPerform(r: MultiHostRegistrar) {
-        r.startInjecting(RegExpLanguage.INSTANCE)
-            .addPlace(null, null, this, innerRange())
-            .doneInjecting()
+        r.startInjecting(RegExpLanguage.INSTANCE).addPlace(null, null, this, innerRange()).doneInjecting()
     }
 
-    private fun innerRange(): TextRange {
-        val start = textRange.startOffset - textRange.startOffset + 1;
-        val end = textRange.endOffset - textRange.startOffset - 1;
-        return TextRange(start, end)
+    fun innerRange(): TextRange {
+        return if (text.startsWith('/')) {
+            TextRange(1, textLength - 1)
+        } else {
+            TextRange(0, textLength)
+        }
     }
 }
+
