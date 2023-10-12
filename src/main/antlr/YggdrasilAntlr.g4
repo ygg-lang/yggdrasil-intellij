@@ -33,8 +33,9 @@ define_class
     ;
 class_block: BRACE_L OP_OR? class_expression* BRACE_R;
 class_expression
-    : class_expression suffix                                 # CSuffix
-    | identifier COLON class_expression                       # CETag
+    :
+     identifier COLON class_expression                       # CETag
+    | class_expression suffix                                 # CSuffix
     | OP_UNTAG class_expression                               # CUntag
     | OP_NOT class_expression                                 # CNot
     | lhs = class_expression OP_CONCAT rhs = class_expression # CHard
@@ -49,8 +50,8 @@ define_union
 union_block: BRACE_L union_term* BRACE_R;
 union_term:  OP_OR union_expression* tag_branch?;
 union_expression
-    : union_expression suffix                                 # USuffix
-    | identifier COLON union_expression                       # UETag
+    : identifier COLON union_expression                       # UETag
+    | union_expression suffix                                 # USuffix
     | OP_UNTAG union_expression                               # UUntag
     | OP_NOT union_expression                                 # UNot
     | lhs = union_expression OP_CONCAT rhs = union_expression # UHard
