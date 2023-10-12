@@ -34,7 +34,7 @@ define_class
 class_block: BRACE_L OP_OR? class_expression* BRACE_R;
 class_expression
     :
-     identifier COLON class_expression                       # CETag
+     class_tag                       # CETag
     | class_expression suffix                                 # CSuffix
     | OP_UNTAG class_expression                               # CUntag
     | OP_NOT class_expression                                 # CNot
@@ -43,6 +43,7 @@ class_expression
     | lhs = class_expression OP_OR rhs = class_expression     # CPattern
     | atomic                                                  # Atom
     ;
+class_tag: identifier_free COLON class_expression;
 // =================================================================================================
 define_union
     : annotation* modifiers KW_UNION name = identifier (OP_TO cast = identifier)? OP_UNTAG? union_block
@@ -50,7 +51,7 @@ define_union
 union_block: BRACE_L union_term* BRACE_R;
 union_term:  OP_OR union_expression* tag_branch?;
 union_expression
-    : identifier COLON union_expression                       # UETag
+    : union_tag                      # UETag
     | union_expression suffix                                 # USuffix
     | OP_UNTAG union_expression                               # UUntag
     | OP_NOT union_expression                                 # UNot
@@ -58,6 +59,7 @@ union_expression
     | lhs = union_expression rhs = union_expression           # USoft
     | atomic                                                  # Utom
     ;
+union_tag: identifier_free COLON union_expression;
 // =================================================================================================
 define_climb: annotation* modifiers KW_CLIMB name = identifier union_block;
 tag_branch:   OP_HASH identifier OP_GT?;
@@ -100,4 +102,5 @@ atomic
 regex:      REGEX_RANGE | REGEX_FREE;
 namepath:   identifier ((OP_PROPORTION | DOT) identifier)*;
 string:     STRING_SINGLE | STRING_DOUBLE;
+identifier_free: identifier | KW_CLASS | KW_UNION;
 identifier: RAW_ID | UNICODE_ID;
