@@ -27,6 +27,8 @@ import yggdrasil.language.ast.classes.YggdrasilGrammarStatement
 import yggdrasil.language.ast.classes.YggdrasilClassStatement
 import yggdrasil.language.ast.external.YggdrasilGrammarPair
 import yggdrasil.language.ast.literals.YggdrasilRegex
+import yggdrasil.language.ast.pattern_match.YggdrasilTagBranch
+import yggdrasil.language.ast.tagged.YggdrasilTagNode
 import yggdrasil.language.psi.types.ValkyrieBlockType
 
 
@@ -86,6 +88,8 @@ class YggdrasilParser(parser: YggdrasilAntlrParser) : ANTLRParserAdaptor(Yggdras
                 RULE_namepath -> YggdrasilNamepathNode(node)
                 RULE_identifier -> YggdrasilIdentifierNode(node)
                 RULE_tag_branch -> YggdrasilTagBranch(node)
+                RULE_class_tag -> YggdrasilTagNode(node)
+                RULE_union_tag -> YggdrasilTagNode(node)
                 // regex
                 RULE_regex -> YggdrasilRegex(node)
 //
