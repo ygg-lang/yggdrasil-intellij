@@ -29,7 +29,7 @@ grammar_value:
 	;
 // =================================================================================================
 define_class
-    : annotation* modifiers KW_CLASS name = identifier (OP_TO cast = identifier)? class_block
+    : annotation* modifiers KW_CLASS name = identifier (OP_TO cast = identifier)? OP_UNTAG? class_block
     ;
 class_block: BRACE_L OP_OR? class_expression* BRACE_R;
 class_expression
@@ -44,7 +44,7 @@ class_expression
     ;
 // =================================================================================================
 define_union
-    : annotation* modifiers KW_UNION name = identifier (OP_TO cast = identifier)? union_block
+    : annotation* modifiers KW_UNION name = identifier (OP_TO cast = identifier)? OP_UNTAG? union_block
     ;
 union_block: BRACE_L union_term* BRACE_R;
 union_term:  OP_OR union_expression* tag_branch?;
