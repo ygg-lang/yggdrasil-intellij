@@ -66,12 +66,10 @@ class YggdrasilLexer : Lexer() {
             // import keywords
             KW_IMPORT, KW_AS,
             // tok
-
-
+            KW_MACRO,
             // conditional
             MATCH_OPTIONAL, MATCH_MANY, MATCH_MANY1,
             // control flow
-
 
             // which/match/catch
 

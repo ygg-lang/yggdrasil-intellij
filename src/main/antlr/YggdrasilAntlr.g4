@@ -13,6 +13,7 @@ program
         | define_token
         | define_external
         | define_inspector
+        | define_function
         | SEMICOLON
     )* EOF
     ;
@@ -72,6 +73,9 @@ external_pair:   annotation* identifier COLON namepath;
 // =================================================================================================
 define_inspector: annotation* modifiers KW_INSPECTOR identifier external_block;
 // =================================================================================================
+define_function: KW_MACRO identifier function_tuple class_block;
+function_tuple:  PARENTHESES_L (identifier (COMMA identifier)* COMMA?)? PARENTHESES_R;
+// =================================================================================================
 annotation: (OP_HASH | OP_AT) (KW_EXTERNAL | KW_INSPECTOR | namepath) tuple_block?;
 modifiers:  identifier*;
 // =================================================================================================
@@ -79,11 +83,11 @@ macro_call:  OP_AT namepath tuple_block?;
 tuple_block: PARENTHESES_L (class_expression (COMMA class_expression)* COMMA?)? PARENTHESES_R;
 // =================================================================================================
 suffix
-    : MATCH_OPTIONAL             # Optional
-    | MATCH_MANY                 # MaybeGreedy
-    | MATCH_MANY MATCH_OPTIONAL  # Maybe
-    | MATCH_MANY1                # ManyGreedy
-    | MATCH_MANY1 MATCH_OPTIONAL # Many
+    : MATCH_OPTIONAL                                          # Optional
+    | MATCH_MANY MATCH_OPTIONAL?                              # Many
+    | MATCH_MANY1 MATCH_OPTIONAL?                             # Many1
+    | BRACE_L INTEGER? BRACE_R MATCH_OPTIONAL?                # Index
+    | BRACE_L INTEGER? COMMA INTEGER? BRACE_R MATCH_OPTIONAL? # Range
     ;
 // =================================================================================================
 atomic

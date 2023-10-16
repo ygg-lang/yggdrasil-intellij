@@ -86,6 +86,7 @@ class YggdrasilParser(parser: YggdrasilAntlrParser) : ANTLRParserAdaptor(Yggdras
 
                 // identifier
                 RULE_namepath -> YggdrasilNamepathNode(node)
+                RULE_identifier_free -> YggdrasilIdentifierNode(node)
                 RULE_identifier -> YggdrasilIdentifierNode(node)
                 RULE_tag_branch -> YggdrasilTagBranch(node)
                 RULE_class_tag -> YggdrasilTagNode(node)
