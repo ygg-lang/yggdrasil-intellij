@@ -20,21 +20,18 @@ program
 import_statement: KW_IMPORT (identifier | string) import_block?;
 import_block:     BRACE_L identifier* BRACE_R;
 // =================================================================================================
-define_grammar: KW_GRAMMAR identifier (COLON parent=identifier)? grammar_block;
-grammar_block:  BRACE_L (grammar_pair|SEMICOLON|COMMA)* BRACE_R;
-grammar_pair:  grammar_key COLON grammar_value;
-grammar_key: string|identifier;
-grammar_value:
-	string | namepath | BOOLEAN
-	;
+define_grammar: KW_GRAMMAR identifier (COLON parent = identifier)? grammar_block;
+grammar_block:  BRACE_L (grammar_pair | SEMICOLON | COMMA)* BRACE_R;
+grammar_pair:   grammar_key COLON grammar_value;
+grammar_key:    string | identifier;
+grammar_value:  string | namepath | BOOLEAN;
 // =================================================================================================
 define_class
     : annotation* modifiers KW_CLASS name = identifier (OP_TO cast = identifier)? OP_UNTAG? class_block
     ;
 class_block: BRACE_L OP_OR? class_expression* BRACE_R;
 class_expression
-    :
-     class_tag                       # CETag
+    : class_tag                                               # CETag
     | class_expression suffix                                 # CSuffix
     | OP_UNTAG class_expression                               # CUntag
     | OP_NOT class_expression                                 # CNot
@@ -51,7 +48,7 @@ define_union
 union_block: BRACE_L union_term* BRACE_R;
 union_term:  OP_OR union_expression* tag_branch?;
 union_expression
-    : union_tag                      # UETag
+    : union_tag                                               # UETag
     | union_expression suffix                                 # USuffix
     | OP_UNTAG union_expression                               # UUntag
     | OP_NOT union_expression                                 # UNot
@@ -99,8 +96,8 @@ atomic
     | BOOLEAN                                             # ABool
     | ESCAPED                                             # AChar
     ;
-regex:      REGEX_RANGE | REGEX_FREE;
-namepath:   identifier ((OP_PROPORTION | DOT) identifier)*;
-string:     STRING_SINGLE | STRING_DOUBLE;
+regex:           REGEX_RANGE | REGEX_FREE;
+namepath:        identifier ((OP_PROPORTION | DOT) identifier)*;
+string:          STRING_SINGLE | STRING_DOUBLE;
 identifier_free: identifier | KW_CLASS | KW_UNION;
-identifier: RAW_ID | UNICODE_ID;
+identifier:      RAW_ID | UNICODE_ID;
