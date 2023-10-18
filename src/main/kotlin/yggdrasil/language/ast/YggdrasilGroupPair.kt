@@ -10,7 +10,7 @@ import valkyrie.ide.highlight.YggdrasilHighlightElement
 import yggdrasil.antlr.YggdrasilAntlrParser
 import yggdrasil.antlr.YggdrasilParser
 
-class YggdrasilTokenPair : ASTWrapperPsiElement, PsiNameIdentifierOwner, YggdrasilHighlightElement {
+class YggdrasilGroupPair : ASTWrapperPsiElement, PsiNameIdentifierOwner, YggdrasilHighlightElement {
     constructor(node: CompositeElement) : super(node) {
 
     }
