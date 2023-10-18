@@ -345,6 +345,12 @@ public interface YggdrasilAntlrVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitRange(YggdrasilAntlrParser.RangeContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link YggdrasilAntlrParser#ucc}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitUcc(YggdrasilAntlrParser.UccContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link YggdrasilAntlrParser#push}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -419,6 +425,13 @@ public interface YggdrasilAntlrVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitARe(YggdrasilAntlrParser.AReContext ctx);
+	/**
+	 * Visit a parse tree produced by the {@code AUcc}
+	 * labeled alternative in {@link YggdrasilAntlrParser#atomic}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitAUcc(YggdrasilAntlrParser.AUccContext ctx);
 	/**
 	 * Visit a parse tree produced by the {@code AInt}
 	 * labeled alternative in {@link YggdrasilAntlrParser#atomic}.

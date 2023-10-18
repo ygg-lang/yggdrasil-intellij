@@ -572,6 +572,16 @@ public interface YggdrasilAntlrListener extends ParseTreeListener {
 	 */
 	void exitRange(YggdrasilAntlrParser.RangeContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link YggdrasilAntlrParser#ucc}.
+	 * @param ctx the parse tree
+	 */
+	void enterUcc(YggdrasilAntlrParser.UccContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link YggdrasilAntlrParser#ucc}.
+	 * @param ctx the parse tree
+	 */
+	void exitUcc(YggdrasilAntlrParser.UccContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link YggdrasilAntlrParser#push}.
 	 * @param ctx the parse tree
 	 */
@@ -699,6 +709,18 @@ public interface YggdrasilAntlrListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitARe(YggdrasilAntlrParser.AReContext ctx);
+	/**
+	 * Enter a parse tree produced by the {@code AUcc}
+	 * labeled alternative in {@link YggdrasilAntlrParser#atomic}.
+	 * @param ctx the parse tree
+	 */
+	void enterAUcc(YggdrasilAntlrParser.AUccContext ctx);
+	/**
+	 * Exit a parse tree produced by the {@code AUcc}
+	 * labeled alternative in {@link YggdrasilAntlrParser#atomic}.
+	 * @param ctx the parse tree
+	 */
+	void exitAUcc(YggdrasilAntlrParser.AUccContext ctx);
 	/**
 	 * Enter a parse tree produced by the {@code AInt}
 	 * labeled alternative in {@link YggdrasilAntlrParser#atomic}.
