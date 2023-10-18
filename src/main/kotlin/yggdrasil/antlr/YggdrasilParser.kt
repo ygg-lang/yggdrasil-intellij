@@ -56,16 +56,17 @@ class YggdrasilParser(parser: YggdrasilAntlrParser) : ANTLRParserAdaptor(Yggdras
                 RULE_define_class -> YggdrasilClassStatement(node)
                 RULE_class_block -> YggdrasilBlockNode(node, ValkyrieBlockType.Brace)
                 RULE_tuple_block -> YggdrasilBlockNode(node, ValkyrieBlockType.Parenthesis)
-                // function
+                // union
                 RULE_define_union -> YggdrasilUnionStatement(node)
                 RULE_union_block -> YggdrasilBlockNode(node, ValkyrieBlockType.Brace)
-//                RULE_define_function -> ValkyrieFunctionStatement(node)
+                // function
+                RULE_define_function -> YggdrasilFunctionStatement(node)
 //                RULE_function_parameters -> ValkyrieBlockNode(node, ValkyrieBlockType.Parenthesis)
 //                RULE_parameter_item -> ValkyrieFunctionParameter(node)
 //                RULE_function_block -> ValkyrieBlockNode(node, ValkyrieBlockType.Brace)
-//                // token rule
-                RULE_token_block -> YggdrasilBlockNode(node, ValkyrieBlockType.Brace)
-                RULE_token_pair -> YggdrasilTokenPair(node)
+//                // group rule
+                RULE_group_block -> YggdrasilBlockNode(node, ValkyrieBlockType.Brace)
+                RULE_group_pair -> YggdrasilGroupPair(node)
                 // externals
                 RULE_define_inspector -> YggdrasilInspectorNode(node)
                 RULE_define_external -> YggdrasilExternalNode(node)
