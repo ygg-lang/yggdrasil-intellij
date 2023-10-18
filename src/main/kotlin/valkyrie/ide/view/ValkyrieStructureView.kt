@@ -3,15 +3,14 @@ package valkyrie.ide.view
 import com.intellij.ide.structureView.*
 import com.intellij.ide.structureView.StructureViewModel.ElementInfoProvider
 import com.intellij.ide.structureView.StructureViewModel.ExpandInfoProvider
+import com.intellij.ide.util.treeView.smartTree.Filter
+import com.intellij.ide.util.treeView.smartTree.Grouper
 import com.intellij.ide.util.treeView.smartTree.Sorter
 import com.intellij.lang.PsiStructureViewFactory
 import com.intellij.openapi.editor.Editor
 import com.intellij.openapi.fileEditor.FileEditor
 import com.intellij.openapi.project.Project
 import com.intellij.psi.PsiFile
-import valkyrie.ide.view.filter.MainInfoFilter
-import valkyrie.ide.view.filter.PublicElementsFilter
-import valkyrie.ide.view.grouper.PropertiesGrouper
 
 class ValkyrieStructureView : PsiStructureViewFactory {
     override fun getStructureViewBuilder(psiFile: PsiFile): Builder {
@@ -39,8 +38,14 @@ class ValkyrieStructureView : PsiStructureViewFactory {
         }
 
         override fun getSorters() = arrayOf(Sorter.ALPHA_SORTER)
-        override fun getFilters() = arrayOf(PublicElementsFilter(), MainInfoFilter())
-        override fun getGroupers() = arrayOf(PropertiesGrouper)
+
+        override fun getFilters(): Array<Filter> {
+            return super.getFilters()
+        }
+
+        override fun getGroupers(): Array<Grouper> {
+            return super.getGroupers()
+        }
         override fun isAlwaysLeaf(element: StructureViewTreeElement): Boolean {
             // 是否是叶节点
             return false

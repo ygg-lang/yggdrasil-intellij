@@ -8,35 +8,36 @@ import yggdrasil.antlr.YggdrasilLexer
 import org.antlr.intellij.adaptor.lexer.PSIElementTypeFactory.createTokenSet
 import valkyrie.ide.matcher.ValkyrieBracketMatch
 import yggdrasil.antlr.YggdrasilAntlrLexer
+import yggdrasil.language.YggdrasilLanguage
 
 
 private val removeSpaceBefore = TokenSet.orSet(
-    createTokenSet(yggdrasil.language.YggdrasilLanguage),
+    createTokenSet(YggdrasilLanguage),
     ValkyrieBracketMatch.Instance.Right,
 
     )
 
 private val removeSpaceNewlineBefore = TokenSet.orSet(
-    createTokenSet(yggdrasil.language.YggdrasilLanguage)
+    createTokenSet(YggdrasilLanguage)
 
 )
 
 private val removeSpaceAfter = TokenSet.orSet(
-    createTokenSet(yggdrasil.language.YggdrasilLanguage)
+    createTokenSet(YggdrasilLanguage)
 )
 
 private val removeSpaceNewlineAfter = TokenSet.orSet(
-    createTokenSet(yggdrasil.language.YggdrasilLanguage)
+    createTokenSet(YggdrasilLanguage)
 )
 
 // 左右插入一个空格
 private val spaceAroundOperator = TokenSet.orSet(
-    createTokenSet(yggdrasil.language.YggdrasilLanguage),
+    createTokenSet(YggdrasilLanguage),
     YggdrasilLexer.OperatorInfix
 )
 
 private val addSpaceAfter = TokenSet.orSet(
-    createTokenSet(yggdrasil.language.YggdrasilLanguage)
+    createTokenSet(YggdrasilLanguage, YggdrasilAntlrLexer.COMMA)
 )
 
 private val newlineIndentAfter = TokenSet.create()
@@ -44,7 +45,7 @@ private val newlineIndentAfter = TokenSet.create()
 data class FormatSpace(val commonSettings: CommonCodeStyleSettings, val spacingBuilder: SpacingBuilder) {
     companion object {
         fun create(settings: CodeStyleSettings): FormatSpace {
-            val commonSettings = settings.getCommonSettings(yggdrasil.language.YggdrasilLanguage)
+            val commonSettings = settings.getCommonSettings(YggdrasilLanguage)
             return FormatSpace(commonSettings, createSpacingBuilder(commonSettings))
         }
 
