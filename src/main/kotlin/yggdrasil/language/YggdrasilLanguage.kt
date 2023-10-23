@@ -6,10 +6,10 @@ import com.intellij.openapi.fileTypes.LanguageFileType
 private const val LANGUAGE_ID = "Yggdrasil"
 
 
-object YggdrasilLanguage : Language(yggdrasil.language.LANGUAGE_ID) {
-    private fun readResolve(): Any = yggdrasil.language.YggdrasilLanguage
+object YggdrasilLanguage : Language(LANGUAGE_ID) {
+    private fun readResolve(): Any = YggdrasilLanguage
     override fun getID(): String {
-        return yggdrasil.language.LANGUAGE_ID
+        return LANGUAGE_ID
     }
     override fun getDisplayName(): String {
         return super.getDisplayName()

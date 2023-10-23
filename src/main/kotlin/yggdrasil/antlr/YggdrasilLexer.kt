@@ -13,7 +13,7 @@ class YggdrasilLexer : Lexer() {
     private var adaptor: ANTLRLexerAdaptor
 
     init {
-        val lexer = YggdrasilAntlrLexer(null)
+        val lexer = yggdrasil.antlr.YggdrasilAntlrLexer(null)
         this.adaptor = ANTLRLexerAdaptor(YggdrasilLanguage, lexer)
     }
 
@@ -75,10 +75,11 @@ class YggdrasilLexer : Lexer() {
             //
 
         )
-        val OperatorPrefix: TokenSet = PSIElementTypeFactory.createTokenSet(
-            YggdrasilLanguage,
 
-            )
+        //        val OperatorPrefix: TokenSet = PSIElementTypeFactory.createTokenSet(
+//            YggdrasilLanguage,
+//
+//            )
         val OperatorInfix: TokenSet = PSIElementTypeFactory.createTokenSet(
             YggdrasilLanguage,
             OP_PEEK_ALL, OP_SLICE
@@ -90,22 +91,21 @@ class YggdrasilLexer : Lexer() {
             MATCH_OPTIONAL, MATCH_MANY, MATCH_MANY1,
         )
         val Operators = TokenSet.orSet(
-            OperatorPrefix,
+//            OperatorPrefix,
             OperatorInfix,
             OperatorSuffix
         );
-        val Escapes: TokenSet = PSIElementTypeFactory.createTokenSet(YggdrasilLanguage, ESCAPED);
-        val Comma: TokenSet = PSIElementTypeFactory.createTokenSet(YggdrasilLanguage);
-        val Semicolon: TokenSet = PSIElementTypeFactory.createTokenSet(YggdrasilLanguage);
+        val Escapes: TokenSet = PSIElementTypeFactory.createTokenSet(YggdrasilLanguage, ESCAPED, OP_CATEGORY);
+        val Comma: TokenSet = PSIElementTypeFactory.createTokenSet(YggdrasilLanguage, COMMA);
+        val Semicolon: TokenSet = PSIElementTypeFactory.createTokenSet(YggdrasilLanguage, SEMICOLON);
         val Integers: TokenSet = PSIElementTypeFactory.createTokenSet(YggdrasilLanguage, INTEGER);
-        val Decimals: TokenSet = PSIElementTypeFactory.createTokenSet(YggdrasilLanguage);
+        val Decimals: TokenSet = PSIElementTypeFactory.createTokenSet(YggdrasilLanguage, INTEGER);
         val Strings: TokenSet = PSIElementTypeFactory.createTokenSet(YggdrasilLanguage, STRING_SINGLE, STRING_DOUBLE);
-        val Identifiers: TokenSet = PSIElementTypeFactory.createTokenSet(YggdrasilLanguage);
+        val Identifiers: TokenSet = PSIElementTypeFactory.createTokenSet(YggdrasilLanguage, RAW_ID);
 
         val Comments: TokenSet = PSIElementTypeFactory.createTokenSet(YggdrasilLanguage, LINE_COMMENT, BLOCK_COMMENT);
         val CompletionWords: TokenSet = PSIElementTypeFactory.createTokenSet(
-            YggdrasilLanguage,
-
-            )
+            YggdrasilLanguage, RAW_ID
+        )
     }
 }

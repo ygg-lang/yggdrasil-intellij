@@ -33,7 +33,7 @@ KW_AS:     'as';
 KW_CLASS:     'class' | 'struct';
 KW_UNION:     'union' | 'enum';
 KW_CLIMB:     'climb';
-KW_GROUP:     'group';
+KW_GROUP:     'group' | 'token';
 KW_EXTERNAL:  'parser' | 'external';
 KW_INSPECTOR: 'inspect' | 'inspector';
 
