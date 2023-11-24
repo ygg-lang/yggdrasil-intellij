@@ -5,12 +5,8 @@ import com.intellij.model.psi.PsiSymbolDeclaration
 import com.intellij.model.psi.PsiSymbolReference
 import com.intellij.openapi.fileTypes.FileType
 import com.intellij.psi.FileViewProvider
-import com.intellij.psi.PsiElement
 import com.intellij.psi.search.GlobalSearchScope
 import com.intellij.psi.search.SearchScope
-import yggdrasil.language.ast.YggdrasilIdentifierNode
-import yggdrasil.language.ast.classes.YggdrasilClassNode
-import yggdrasil.language.ast.unions.YggdrasilUnionNode
 
 
 /**
@@ -57,27 +53,3 @@ class YggdrasilFileNode(viewProvider: FileViewProvider) : PsiFileBase(viewProvid
     }
 }
 
-class YggdrasilFileCache(private val root: YggdrasilFileNode) {
-    private val _cache = mutableMapOf<String, PsiElement>()
-
-    init {
-        for (child in root.children) {
-            if (child is YggdrasilClassNode) {
-                val name = child.name;
-                if (name != null) {
-                    _cache[name] = child
-                }
-            }
-            if (child is YggdrasilUnionNode) {
-                val name = child.name;
-                if (name != null) {
-                    _cache[name] = child
-                }
-            }
-        }
-    }
-
-    fun find(name: YggdrasilIdentifierNode): PsiElement? {
-        return _cache[name.text]
-    }
-}

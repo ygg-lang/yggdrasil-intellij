@@ -1,16 +1,16 @@
-package yggdrasil.language.ast
+package yggdrasil.language.ast.group
 
 import com.intellij.extapi.psi.ASTWrapperPsiElement
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNameIdentifierOwner
 import com.intellij.psi.impl.source.tree.CompositeElement
-import valkyrie.ide.highlight.YggdrasilHighlightColor
 import valkyrie.ide.highlight.NodeHighlighter
+import valkyrie.ide.highlight.YggdrasilHighlightColor
 import valkyrie.ide.highlight.YggdrasilHighlightElement
 import yggdrasil.antlr.YggdrasilAntlrParser
 import yggdrasil.antlr.YggdrasilParser
 
-class YggdrasilGroupPair : ASTWrapperPsiElement, PsiNameIdentifierOwner, YggdrasilHighlightElement {
+class YggdrasilGroupItem : ASTWrapperPsiElement, PsiNameIdentifierOwner, YggdrasilHighlightElement {
     constructor(node: CompositeElement) : super(node) {
 
     }

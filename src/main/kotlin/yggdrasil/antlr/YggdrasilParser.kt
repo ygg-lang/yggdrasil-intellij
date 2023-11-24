@@ -20,7 +20,10 @@ import org.antlr.v4.runtime.tree.ParseTree
 import org.antlr.v4.runtime.tree.TerminalNode
 import yggdrasil.antlr.YggdrasilAntlrParser.*
 import yggdrasil.language.YggdrasilLanguage
-import yggdrasil.language.ast.*
+import yggdrasil.language.ast.YggdrasilBlockNode
+import yggdrasil.language.ast.YggdrasilFunctionStatement
+import yggdrasil.language.ast.YggdrasilIdentifierNode
+import yggdrasil.language.ast.YggdrasilNamepathNode
 import yggdrasil.language.ast.calls.YggdrasilAnnotation
 import yggdrasil.language.ast.calls.YggdrasilMacroCall
 import yggdrasil.language.ast.calls.YggdrasilModifiers
@@ -30,9 +33,11 @@ import yggdrasil.language.ast.external.YggdrasilExternalNode
 import yggdrasil.language.ast.external.YggdrasilExternalPair
 import yggdrasil.language.ast.external.YggdrasilGrammarPair
 import yggdrasil.language.ast.external.YggdrasilInspectorNode
+import yggdrasil.language.ast.group.YggdrasilGroupItem
+import yggdrasil.language.ast.group.YggdrasilGroupNode
+import yggdrasil.language.ast.group.YggdrasilTagBranch
+import yggdrasil.language.ast.group.YggdrasilTagNode
 import yggdrasil.language.ast.literals.YggdrasilRegex
-import yggdrasil.language.ast.tagged.YggdrasilTagBranch
-import yggdrasil.language.ast.tagged.YggdrasilTagNode
 import yggdrasil.language.ast.unions.YggdrasilUnionNode
 import yggdrasil.language.ast.unions.YggdrasilVariantNode
 import yggdrasil.language.psi.types.ValkyrieBlockType
@@ -167,9 +172,10 @@ private class RuleRewriter(language: Language, parser: Parser?, builder: PsiBuil
 //                RULE_function_parameters -> ValkyrieBlockNode(node, ValkyrieBlockType.Parenthesis)
 //                RULE_parameter_item -> ValkyrieFunctionParameter(node)
 //                RULE_function_block -> ValkyrieBlockNode(node, ValkyrieBlockType.Brace)
-//                // group rule
+                // group rule
+                RULE_define_group -> YggdrasilGroupNode(node)
                 RULE_group_block -> YggdrasilBlockNode(node, ValkyrieBlockType.Brace)
-                RULE_group_pair -> YggdrasilGroupPair(node)
+                RULE_group_pair -> YggdrasilGroupItem(node)
                 // externals
                 RULE_define_inspector -> YggdrasilInspectorNode(node)
                 RULE_define_external -> YggdrasilExternalNode(node)
