@@ -23,7 +23,7 @@ import javax.swing.Icon
 
 class YggdrasilClassNode(node: CompositeElement) : YggdrasilScopeNode(node), PsiNameIdentifierOwner, ValkyrieLineMarkElement,
     YggdrasilHighlightElement {
-    private val _all by lazy {
+    val modifiers by lazy {
         YggdrasilParser.getChildrenOfType<YggdrasilIdentifierNode>(this)
     }
 
@@ -36,7 +36,7 @@ class YggdrasilClassNode(node: CompositeElement) : YggdrasilScopeNode(node), Psi
     }
 
     override fun getNameIdentifier(): YggdrasilIdentifierNode? {
-        return _all.lastOrNull();
+        return YggdrasilParser.getChildOfType<YggdrasilIdentifierNode>(this);
     }
 
     override fun getBaseIcon(): Icon {
@@ -47,12 +47,13 @@ class YggdrasilClassNode(node: CompositeElement) : YggdrasilScopeNode(node), Psi
         return super.getContainingFile() as YggdrasilFileNode
     }
 
+
     override fun getPresentation(): ItemPresentation {
         return IdentifierPresentation(nameIdentifier!!, this.baseIcon)
     }
 
     override fun on_highlight(e: NodeHighlighter) {
-        e.register_modifiers(_all.dropLast(1))
+        e.register_modifiers(modifiers)
         e.register(nameIdentifier, YggdrasilHighlightColor.RULE_CLASS)
     }
 

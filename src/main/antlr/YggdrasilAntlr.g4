@@ -30,8 +30,9 @@ grammar_key:    string | identifier;
 grammar_value:  string | namepath | BOOLEAN;
 // =================================================================================================
 define_class
-    : annotation* modifiers KW_CLASS name = identifier (OP_TO cast = identifier)? OP_UNTAG? class_block
+    : annotation* modifiers KW_CLASS name = identifier class_redict? OP_UNTAG? class_block
     ;
+class_redict: OP_TO cast = identifier;
 class_block: BRACE_L OP_OR? class_expression* BRACE_R;
 class_expression
     : class_tag                                               # CETag
@@ -97,7 +98,7 @@ push: KW_PUSH tuple_block;
 peek: KW_PEEK PARENTHESES_L INTEGER? OP_SLICE? INTEGER? PARENTHESES_R | KW_PEEK PARENTHESES_L OP_PEEK_ALL PARENTHESES_R;
 // =================================================================================================
 atomic
-    : PARENTHESES_L OP_OR? class_expression PARENTHESES_R # AGroup
+    : priority_block # AGroup
     | macro_call                                          # ACall
     | string                                              # AString
     | identifier                                          # AId
@@ -112,6 +113,8 @@ atomic
     | KW_ANY                                              # AAny
     | ESCAPED                                             # AChar
     ;
+priority_block: PARENTHESES_L OP_OR? class_expression PARENTHESES_R;
+
 regex:           REGEX_RANGE | REGEX_FREE;
 namepath:        identifier ((OP_PROPORTION | DOT) identifier)*;
 string:          STRING_SINGLE | STRING_DOUBLE;

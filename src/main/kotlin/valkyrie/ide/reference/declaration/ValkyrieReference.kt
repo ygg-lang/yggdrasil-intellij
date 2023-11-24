@@ -37,6 +37,7 @@ open class ValkyrieReference(element: YggdrasilIdentifierNode, private val defin
         return definition.nameIdentifier
     }
 
+
     fun highlight(): YggdrasilHighlightColor? =
         when (definition) {
             is YggdrasilClassNode -> {
