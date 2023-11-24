@@ -3,9 +3,12 @@ package valkyrie.ide.reference.declaration
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiReferenceBase
+import valkyrie.ide.highlight.YggdrasilHighlightColor
 import yggdrasil.language.ast.YggdrasilIdentifierNode
+import yggdrasil.language.ast.classes.YggdrasilClassNode
+import yggdrasil.language.ast.unions.YggdrasilUnionNode
 
-abstract class ValkyrieReference(element: YggdrasilIdentifierNode, private val definition: PsiElement) :
+open class ValkyrieReference(element: YggdrasilIdentifierNode, private val definition: PsiElement) :
     PsiReferenceBase<YggdrasilIdentifierNode>(element, TextRange(0, element.text.length)) {
 
     override fun getVariants(): Array<Any> {
@@ -31,4 +34,20 @@ abstract class ValkyrieReference(element: YggdrasilIdentifierNode, private val d
     override fun resolve(): PsiElement? {
         return definition
     }
+
+    fun highlight(): YggdrasilHighlightColor? =
+        when (definition) {
+            is YggdrasilClassNode -> {
+                YggdrasilHighlightColor.RULE_CLASS
+            }
+
+            is YggdrasilUnionNode -> {
+                YggdrasilHighlightColor.RULE_UNION
+            }
+
+            else -> {
+                null
+            }
+
+        }
 }

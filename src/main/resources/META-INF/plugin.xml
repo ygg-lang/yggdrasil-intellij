@@ -22,7 +22,7 @@
 		<!--		<lang.structureViewExtension implementation="valkyrie.ide.view.VStructureViewExtension"/>-->
 		<lang.psiStructureViewFactory
 			language="Yggdrasil"
-			implementationClass="valkyrie.ide.view.ValkyrieStructureView"/>
+			implementationClass="valkyrie.ide.view.YggdrasilStructureView"/>
 
 		<!-- Highlight -->
 		<colorSettingsPage implementation="valkyrie.ide.highlight.HighlightSetting"/>

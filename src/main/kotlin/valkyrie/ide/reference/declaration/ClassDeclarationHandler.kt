@@ -6,11 +6,11 @@ import com.intellij.codeInsight.hint.DeclarationRangeHandler
 import com.intellij.openapi.util.TextRange
 import com.intellij.refactoring.suggested.endOffset
 import com.intellij.refactoring.suggested.startOffset
-import yggdrasil.language.ast.classes.YggdrasilClassStatement
+import yggdrasil.language.ast.classes.YggdrasilClassNode
 
 @Suppress("UnstableApiUsage")
-class ClassDeclarationHandler : DeclarationRangeHandler<YggdrasilClassStatement> {
-    override fun getDeclarationRange(container: YggdrasilClassStatement): TextRange {
+class ClassDeclarationHandler : DeclarationRangeHandler<YggdrasilClassNode> {
+    override fun getDeclarationRange(container: YggdrasilClassNode): TextRange {
         val startOffset = container.startOffset
         val endOffset = container.endOffset
         return TextRange(startOffset, endOffset)

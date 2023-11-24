@@ -8,8 +8,9 @@ import yggdrasil.language.ast.YggdrasilIdentifierNode
 
 @Suppress("FunctionName")
 class NodeHighlighter(private val info: HighlightInfoHolder?) {
-    fun register(element: PsiElement?, color: YggdrasilHighlightColor) {
+    fun register(element: PsiElement?, color: YggdrasilHighlightColor?) {
         if (element == null) return
+        if (color == null) return
         val builder = HighlightInfo.newHighlightInfo(HighlightInfoType.INFORMATION)
         builder.textAttributes(color.textAttributesKey)
         builder.range(element.textRange)

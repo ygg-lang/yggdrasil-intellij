@@ -2,12 +2,31 @@ package yggdrasil.language.ast.literals
 
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.LiteralTextEscaper
-import java.lang.StringBuilder
 
 class YggdrasilRegexEscaper(val psi: YggdrasilRegex) : LiteralTextEscaper<YggdrasilRegex>(psi) {
     override fun decode(rangeInsideHost: TextRange, outChars: StringBuilder): Boolean {
-        val hostText = myHost.text
-        outChars.append(hostText.substring(rangeInsideHost.startOffset, rangeInsideHost.endOffset))
+        val hostText = myHost.text.substring(rangeInsideHost.startOffset, rangeInsideHost.endOffset)
+
+        var index = 0;
+        for (c in hostText) {
+            if (c == '\\') {
+                if (index >= hostText.length) {
+                    return false
+                }
+                val next = hostText[index]
+                // \/ -> /
+                if (next == '/') {
+                    outChars.append('/')
+                    index++
+                    index++
+                    continue
+                }
+            }
+            outChars.append(c)
+            index++
+        }
+
+
         return true
     }
 
