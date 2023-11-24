@@ -104,7 +104,7 @@ class YggdrasilLexer : Lexer() {
 
         val Comments: TokenSet = PSIElementTypeFactory.createTokenSet(YggdrasilLanguage, LINE_COMMENT, BLOCK_COMMENT);
         val CompletionWords: TokenSet = PSIElementTypeFactory.createTokenSet(
-            YggdrasilLanguage, RAW_ID
+            YggdrasilLanguage, RAW_ID, UNICODE_ID
         )
     }
 }

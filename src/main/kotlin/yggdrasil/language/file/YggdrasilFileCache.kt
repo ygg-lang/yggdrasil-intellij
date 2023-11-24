@@ -1,5 +1,6 @@
 package yggdrasil.language.file
 
+import com.intellij.codeInsight.lookup.LookupElementBuilder
 import com.intellij.psi.PsiNameIdentifierOwner
 import yggdrasil.language.ast.YggdrasilIdentifierNode
 import yggdrasil.language.ast.classes.YggdrasilClassNode
@@ -8,7 +9,7 @@ import yggdrasil.language.ast.unions.YggdrasilUnionNode
 
 class YggdrasilFileCache(root: YggdrasilFileNode) {
     private val _cache = mutableMapOf<String, PsiNameIdentifierOwner>()
-
+    val completions = mutableListOf<LookupElementBuilder>()
     init {
         for (child in root.children) {
             when (child) {
@@ -16,6 +17,7 @@ class YggdrasilFileCache(root: YggdrasilFileNode) {
                     val name = child.name;
                     if (name != null) {
                         _cache[name] = child
+                        completions.add(child.lookUp())
                     }
                 }
 
@@ -23,14 +25,14 @@ class YggdrasilFileCache(root: YggdrasilFileNode) {
                     val name = child.name;
                     if (name != null) {
                         _cache[name] = child
+                        completions.add(child.lookUp())
                     }
                 }
 
                 is YggdrasilGroupNode -> {
-                    println("YggdrasilGroupNode")
                     for (item in child.findPairs()) {
-                        println("YggdrasilGroupNode: ${item.name}")
                         _cache[item.name] = item
+                        completions.add(item.lookUp())
                     }
                 }
             }
@@ -40,4 +42,6 @@ class YggdrasilFileCache(root: YggdrasilFileNode) {
     fun find(name: YggdrasilIdentifierNode): PsiNameIdentifierOwner? {
         return _cache[name.text]
     }
+
+
 }

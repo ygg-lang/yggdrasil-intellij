@@ -2,6 +2,7 @@ package yggdrasil.language.ast.classes
 
 import com.intellij.codeInsight.daemon.LineMarkerInfo
 import com.intellij.codeInsight.daemon.RelatedItemLineMarkerInfo
+import com.intellij.codeInsight.lookup.LookupElementBuilder
 import com.intellij.navigation.GotoRelatedItem
 import com.intellij.navigation.ItemPresentation
 import com.intellij.openapi.editor.markup.GutterIconRenderer
@@ -12,8 +13,10 @@ import valkyrie.ide.highlight.NodeHighlighter
 import valkyrie.ide.highlight.YggdrasilHighlightColor
 import valkyrie.ide.highlight.YggdrasilHighlightElement
 import valkyrie.ide.view.IdentifierPresentation
+import yggdrasil.antlr.YggdrasilAntlrParser
 import yggdrasil.antlr.YggdrasilParser
 import yggdrasil.language.ast.YggdrasilIdentifierNode
+import yggdrasil.language.ast.calls.YggdrasilModifiers
 import yggdrasil.language.file.YggdrasilFileNode
 import yggdrasil.language.file.YggdrasilIconProvider
 import yggdrasil.language.psi.ValkyrieLineMarkElement
@@ -24,7 +27,10 @@ import javax.swing.Icon
 class YggdrasilClassNode(node: CompositeElement) : YggdrasilScopeNode(node), PsiNameIdentifierOwner, ValkyrieLineMarkElement,
     YggdrasilHighlightElement {
     val modifiers by lazy {
-        YggdrasilParser.getChildrenOfType<YggdrasilIdentifierNode>(this)
+        YggdrasilParser.getChildOfType(this, YggdrasilAntlrParser.RULE_modifiers) as? YggdrasilModifiers
+    }
+    val _identifier by lazy {
+        YggdrasilParser.getChildOfType<YggdrasilIdentifierNode>(this)
     }
 
     override fun getName(): String? {
@@ -36,7 +42,7 @@ class YggdrasilClassNode(node: CompositeElement) : YggdrasilScopeNode(node), Psi
     }
 
     override fun getNameIdentifier(): YggdrasilIdentifierNode? {
-        return YggdrasilParser.getChildOfType<YggdrasilIdentifierNode>(this);
+        return _identifier;
     }
 
     override fun getBaseIcon(): Icon {
@@ -53,7 +59,7 @@ class YggdrasilClassNode(node: CompositeElement) : YggdrasilScopeNode(node), Psi
     }
 
     override fun on_highlight(e: NodeHighlighter) {
-        e.register_modifiers(modifiers)
+        e.register_modifiers(modifiers?.modifiers)
         e.register(nameIdentifier, YggdrasilHighlightColor.RULE_CLASS)
     }
 
@@ -68,5 +74,17 @@ class YggdrasilClassNode(node: CompositeElement) : YggdrasilScopeNode(node), Psi
         ) { mutableListOf(GotoRelatedItem(this)) }
         e.add(info)
     }
+
+    fun lookUp(): LookupElementBuilder {
+        return LookupElementBuilder.create(text).bold()
+            .withLookupStrings(listOf(text))
+            .withIcon(baseIcon)
+//            .withInsertHandler { context, _ ->
+//                val document = context.document
+//                document.replaceString(context.startOffset, context.tailOffset, replace)
+//                context.editor.caretModel.moveToOffset(context.tailOffset - offset)
+//            }
+    }
+
 }
 

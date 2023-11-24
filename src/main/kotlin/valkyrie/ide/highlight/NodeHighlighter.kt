@@ -18,7 +18,8 @@ class NodeHighlighter(private val info: HighlightInfoHolder?) {
     }
 
 
-    fun register_modifiers(modifiers: Collection<YggdrasilIdentifierNode>) {
+    fun register_modifiers(modifiers: Collection<YggdrasilIdentifierNode>?) {
+        if (modifiers == null) return
         for (mod in modifiers) {
             this.register(mod, YggdrasilHighlightColor.MODIFIER)
         }

@@ -9,17 +9,20 @@ import com.intellij.psi.util.elementType
 import com.intellij.psi.util.parents
 import com.intellij.util.ProcessingContext
 import yggdrasil.antlr.YggdrasilLexer
+import yggdrasil.language.ast.classes.YggdrasilClassNode
+import yggdrasil.language.ast.unions.YggdrasilUnionNode
 import yggdrasil.language.file.YggdrasilFileNode
 
 
 class CompletionRegistrar : CompletionContributor() {
     init {
         extend(CompletionType.BASIC, CompletionInFileScope.Condition, CompletionInFileScope())
+        extend(CompletionType.BASIC, CompletionInClassScope.Condition, CompletionInClassScope())
     }
 
     override fun fillCompletionVariants(parameters: CompletionParameters, result: CompletionResultSet) {
-        super.fillCompletionVariants(parameters, result)
-//        myFill(parameters, result)
+//        super.fillCompletionVariants(parameters, result)
+        myFill(parameters, result)
     }
 
     private fun myFill(parameters: CompletionParameters, result: CompletionResultSet) {
@@ -34,8 +37,16 @@ class CompletionRegistrar : CompletionContributor() {
                 }
                 when (node) {
                     is YggdrasilFileNode -> {
-                        println("ValkyrieFileNode: ${result.hashCode()}")
                         CompletionInFileScope().addCompletionVariants(parameters, context, result)
+                        return
+                    }
+                    is YggdrasilClassNode -> {
+                        CompletionInClassScope().addCompletionVariants(parameters, context, result)
+                        return
+                    }
+
+                    is YggdrasilUnionNode -> {
+                        CompletionInClassScope().addCompletionVariants(parameters, context, result)
                         return
                     }
                 }
