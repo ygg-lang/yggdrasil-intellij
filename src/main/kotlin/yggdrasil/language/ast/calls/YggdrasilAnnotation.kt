@@ -3,12 +3,12 @@ package yggdrasil.language.ast.calls
 import com.intellij.extapi.psi.ASTWrapperPsiElement
 import com.intellij.psi.impl.source.tree.CompositeElement
 import com.intellij.psi.util.elementType
-import yggdrasil.antlr.childrenWithLeaves
 import org.antlr.intellij.adaptor.lexer.PSIElementTypeFactory
-import valkyrie.ide.highlight.YggdrasilHighlightElement
 import valkyrie.ide.highlight.NodeHighlighter
+import valkyrie.ide.highlight.YggdrasilHighlightElement
 import yggdrasil.antlr.YggdrasilAntlrLexer
 import yggdrasil.antlr.YggdrasilParser
+import yggdrasil.antlr.childrenWithLeaves
 import yggdrasil.language.YggdrasilLanguage
 import yggdrasil.language.ast.YggdrasilNamepathNode
 
@@ -22,8 +22,6 @@ class YggdrasilAnnotation(node: CompositeElement) : ASTWrapperPsiElement(node), 
             YggdrasilLanguage,
             YggdrasilAntlrLexer.BRACKET_L,
             YggdrasilAntlrLexer.BRACKET_R,
-            YggdrasilAntlrLexer.KW_EXTERNAL,
-            YggdrasilAntlrLexer.KW_INSPECTOR,
         )
         for (child in this.childrenWithLeaves) {
             if (dye.contains(child.elementType)) {
