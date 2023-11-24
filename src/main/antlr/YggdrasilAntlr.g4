@@ -4,7 +4,9 @@ import YggdrasilBasic;
 // $antlr-format useTab false, columnLimit 144
 // $antlr-format alignColons hanging, alignSemicolons hanging, alignFirstTokens true
 program
-    : (
+    : program_statement* EOF
+    ;
+program_statement:
         define_grammar
         | import_statement
         | define_class
@@ -14,9 +16,8 @@ program
         | define_external
         | define_inspector
         | define_function
-        | SEMICOLON
-    )* EOF
-    ;
+        | SEMICOLON;
+
 // =================================================================================================
 import_statement: KW_IMPORT (identifier | string) import_block?;
 import_block:     BRACE_L identifier* BRACE_R;
