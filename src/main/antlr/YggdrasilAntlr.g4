@@ -70,16 +70,10 @@ group_block:      BRACE_L (group_pair | SEMICOLON)* BRACE_R;
 group_pair:       annotation* modifiers identifier COLON atomic;
 group_expression: group_expression OP_OR group_expression # TOr | atomic # TAtom;
 // =================================================================================================
-define_external: annotation* modifiers KW_EXTERNAL identifier external_block;
-external_block:  BRACE_L (external_pair | SEMICOLON)* BRACE_R;
-external_pair:   annotation* identifier COLON namepath;
-// =================================================================================================
-define_inspector: annotation* modifiers KW_INSPECTOR identifier external_block;
-// =================================================================================================
 define_function: KW_MACRO identifier function_tuple class_block;
 function_tuple:  PARENTHESES_L (identifier (COMMA identifier)* COMMA?)? PARENTHESES_R;
 // =================================================================================================
-annotation: (OP_HASH | OP_AT) (KW_EXTERNAL | KW_INSPECTOR | namepath) tuple_block?;
+annotation: (OP_HASH | OP_AT) namepath tuple_block?;
 modifiers:  identifier*;
 // =================================================================================================
 macro_call:  OP_AT namepath tuple_block?;

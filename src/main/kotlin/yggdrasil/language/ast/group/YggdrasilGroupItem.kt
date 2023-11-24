@@ -1,7 +1,9 @@
 package yggdrasil.language.ast.group
 
+import com.intellij.codeInsight.lookup.LookupElement
 import com.intellij.codeInsight.lookup.LookupElementBuilder
 import com.intellij.extapi.psi.ASTWrapperPsiElement
+import com.intellij.icons.AllIcons
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNameIdentifierOwner
 import com.intellij.psi.impl.source.tree.CompositeElement
@@ -11,6 +13,7 @@ import valkyrie.ide.highlight.YggdrasilHighlightElement
 import yggdrasil.antlr.YggdrasilAntlrParser
 import yggdrasil.antlr.YggdrasilParser
 import yggdrasil.language.ast.YggdrasilIdentifierNode
+import javax.swing.Icon
 
 class YggdrasilGroupItem : ASTWrapperPsiElement, PsiNameIdentifierOwner, YggdrasilHighlightElement {
     constructor(node: CompositeElement) : super(node) {
@@ -25,6 +28,10 @@ class YggdrasilGroupItem : ASTWrapperPsiElement, PsiNameIdentifierOwner, Yggdras
         TODO("Not yet implemented")
     }
 
+    override fun getBaseIcon(): Icon {
+        return AllIcons.Nodes.Property
+    }
+
     override fun getNameIdentifier(): YggdrasilIdentifierNode? {
         return YggdrasilParser.getChildOfType(this, YggdrasilAntlrParser.RULE_identifier) as? YggdrasilIdentifierNode
     }
@@ -35,15 +42,19 @@ class YggdrasilGroupItem : ASTWrapperPsiElement, PsiNameIdentifierOwner, Yggdras
         }
     }
 
-    fun lookUp(): LookupElementBuilder {
-        return LookupElementBuilder.create(text).bold()
-            .withLookupStrings(listOf(text))
+    fun createLookup(list: MutableCollection<LookupElement>) {
+        if (name.isEmpty()) {
+            return
+        }
+        val item = LookupElementBuilder.create(name).bold()
+            .withLookupStrings(listOf(name))
+            .withTailText(previewText(), true)
             .withIcon(baseIcon)
-//            .withInsertHandler { context, _ ->
-//                val document = context.document
-//                document.replaceString(context.startOffset, context.tailOffset, replace)
-//                context.editor.caretModel.moveToOffset(context.tailOffset - offset)
-//            }
+        list.add(item)
+    }
+
+    private fun previewText(): String {
+        return children.last().text
     }
 }
 
