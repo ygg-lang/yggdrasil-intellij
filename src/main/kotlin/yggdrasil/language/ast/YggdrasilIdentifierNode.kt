@@ -10,7 +10,7 @@ import valkyrie.ide.highlight.YggdrasilHighlightColor
 import valkyrie.ide.highlight.YggdrasilHighlightElement
 import valkyrie.ide.reference.declaration.ValkyrieReference
 import yggdrasil.language.ast.classes.YggdrasilClassNode
-import yggdrasil.language.ast.classes.YggdrasilGrammarNode
+import yggdrasil.language.ast.grammars.YggdrasilGrammarNode
 import yggdrasil.language.ast.group.YggdrasilTagBranch
 import yggdrasil.language.ast.unions.YggdrasilUnionNode
 import yggdrasil.language.file.YggdrasilFileNode
@@ -51,7 +51,7 @@ class YggdrasilIdentifierNode(node: ASTNode) : ASTWrapperPsiElement(node), PsiNa
 
             else -> {}
         }
-        val target = this.containingFile?.Cache?.find(this) ?: return null
+        val target = this.containingFile?.definitions?.find(this) ?: return null
         return ValkyrieReference(this, target)
     }
 
