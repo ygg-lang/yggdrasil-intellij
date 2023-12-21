@@ -1,13 +1,15 @@
 <!-- Keep a Changelog guide -> https://keepachangelog.com -->
 
-# Valkyrie Intellij Changelog
+# Yggdrasil Intellij Changelog
+
+## [Unreleased]
 
 ## [0.0.4] Initial Version
 
 ### Added
 
-- Support `*.vk` file type
-- Support `vk` in markdown
+- Support `*.ygg` file type
+- Support `ygg` in markdown
 
 ## [0.0.2] Initial Version
 
