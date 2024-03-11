@@ -1,41 +1,38 @@
 import org.jetbrains.changelog.Changelog
 import org.jetbrains.changelog.markdownToHTML
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-fun properties(key: String): Provider<String> {
-    return providers.gradleProperty(key)
-}
-
+fun properties(key: String) = providers.gradleProperty(key)
 fun environment(key: String) = providers.environmentVariable(key)
 
 plugins {
-    idea
-    java
-    antlr
-    kotlin("jvm") version "1.9.0"
-//    kotlin("plugin.serialization") version "1.9.0"
-    id("org.jetbrains.intellij") version "1.17.2"
-    id("org.jetbrains.changelog") version "2.2.0"
+    id("java") // Java support
+    alias(libs.plugins.kotlin) // Kotlin support
+    alias(libs.plugins.gradleIntelliJPlugin) // Gradle IntelliJ Plugin
+    alias(libs.plugins.changelog) // Gradle Changelog Plugin
+    alias(libs.plugins.qodana) // Gradle Qodana Plugin
+    alias(libs.plugins.kover) // Gradle Kover Plugin
 }
 
-dependencies {
-//    implementation(kotlin("stdlib-jdk8"))
-    antlr("org.antlr:antlr4:${properties("antlrVersion").get()}") {
-        exclude(group = "com.ibm.icu", module = "icu4j")
-    }
-    implementation("org.antlr:antlr4-intellij-adaptor:0.1")
-}
-
-group = properties("Group")
-version = properties("pluginVersion")
+group = properties("pluginGroup").get()
+version = properties("pluginVersion").get()
+sourceSets["main"].java.srcDirs("src/main/gen")
 
 // Configure project's dependencies
 repositories {
     mavenCentral()
-    maven("https://cache-redirector.jetbrains.com/intellij-dependencies")
+    maven(url = "https://jitpack.io")
 }
 
-sourceSets["main"].java.srcDirs("src/main/gen")
+// Dependencies are managed with Gradle version catalog - read more: https://docs.gradle.org/current/userguide/platforms.html#sub:version-catalog
+dependencies {
+//    implementation(libs.annotations)
+    implementation("com.github.ballerina-platform:lsp4intellij:0.95.2")
+}
+
+// Set the JVM language level used to build the project.
+kotlin {
+    jvmToolchain(17)
+}
 
 // Configure Gradle IntelliJ Plugin - read more: https://plugins.jetbrains.com/docs/intellij/tools-gradle-intellij-plugin.html
 intellij {
@@ -49,43 +46,31 @@ intellij {
 
 // Configure Gradle Changelog Plugin - read more: https://github.com/JetBrains/gradle-changelog-plugin
 changelog {
-    version = properties("pluginVersion")
-    groups.set(emptyList())
+    groups.empty()
+    repositoryUrl = properties("pluginRepositoryUrl")
+}
+
+// Configure Gradle Kover Plugin - read more: https://github.com/Kotlin/kotlinx-kover#configuration
+koverReport {
+    defaults {
+        xml {
+            onCheck = true
+        }
+    }
 }
 
 tasks {
-    // Set the JVM compatibility versions
-    properties("jvm_target").get().let {
-        withType<JavaCompile> {
-            sourceCompatibility = it
-            targetCompatibility = it
-        }
-        withType<KotlinCompile> {
-            kotlinOptions.jvmTarget = it
-        }
-    }
-
     wrapper {
         gradleVersion = properties("gradleVersion").get()
     }
 
-    generateGrammarSource {
-        maxHeapSize = "64m"
-        arguments = arguments + listOf(
-            "-listener",
-            "-visitor",
-            "-long-messages",
-            "-encoding", "utf8",
-            "-package", "yggdrasil.antlr"
-        )
-    }
     patchPluginXml {
-        version = properties("pluginVersion").get()
-        sinceBuild = properties("pluginSinceBuild").get()
-        untilBuild = properties("pluginUntilBuild").get()
+        version = properties("pluginVersion")
+        sinceBuild = properties("pluginSinceBuild")
+        untilBuild = properties("pluginUntilBuild")
 
         // Extract the <!-- Plugin description --> section from README.md and provide for the plugin's manifest
-        pluginDescription = providers.fileContents(layout.projectDirectory.file("README.md")).asText.map {
+        pluginDescription = providers.fileContents(layout.projectDirectory.file("description.md")).asText.map {
             val start = "<!-- Plugin description -->"
             val end = "<!-- Plugin description end -->"
 
@@ -121,9 +106,9 @@ tasks {
     }
 
     signPlugin {
-        certificateChain.set(System.getenv("CERTIFICATE_CHAIN"))
-        privateKey.set(System.getenv("PRIVATE_KEY"))
-        password.set(System.getenv("PRIVATE_KEY_PASSWORD"))
+        certificateChain = environment("CERTIFICATE_CHAIN")
+        privateKey = environment("PRIVATE_KEY")
+        password = environment("PRIVATE_KEY_PASSWORD")
     }
 
     publishPlugin {
@@ -132,19 +117,9 @@ tasks {
         // The pluginVersion is based on the SemVer (https://semver.org) and supports pre-release labels, like 2.1.7-alpha.3
         // Specify pre-release label to publish the plugin in a custom Release Channel automatically. Read more:
         // https://plugins.jetbrains.com/docs/intellij/deployment.html#specifying-a-release-channel
-        channels = properties("pluginVersion").map { listOf(it.substringAfter('-', "").substringBefore('.').ifEmpty { "default" }) }
+        channels = properties("pluginVersion").map {
+            listOf(
+                it.substringAfter('-', "").substringBefore('.').ifEmpty { "default" })
+        }
     }
-}
-
-
-
-val compileKotlin: KotlinCompile by tasks
-compileKotlin.kotlinOptions {
-    jvmTarget = properties("jvm_target").get()
-}
-compileKotlin.dependsOn("generateGrammarSource")
-
-val compileTestKotlin: KotlinCompile by tasks
-compileTestKotlin.kotlinOptions {
-    jvmTarget = properties("jvm_target").get()
 }
