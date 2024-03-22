@@ -32,4 +32,10 @@ public class YggdrasilGrammarNode extends MixinGrammar implements YggdrasilGramm
     return findChildByClass(YggdrasilIdentifier.class);
   }
 
+  @Override
+  @NotNull
+  public YggdrasilModifiers getModifiers() {
+    return findNotNullChildByClass(YggdrasilModifiers.class);
+  }
+
 }
