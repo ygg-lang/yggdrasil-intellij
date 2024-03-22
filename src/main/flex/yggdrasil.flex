@@ -26,6 +26,7 @@ import static yggdrasil.psi.YggdrasilTypes.*;
 
 WHITE_SPACE        = [\s\t]
 REGULAR_EXPRESSION = \/([^\/\\]|\\.)+\/
+REGULAR_RANGE      = \[[^\]]*\]
 COMMENT_LINE       = [/]{2}[^\r\n]*
 COMMENT_BLOCK      = [/][*][^*]*[*]+([^/*][^*]*[*]+)*[/]
 TEXT_SINGLE        = '([^']|\\.)*'
@@ -69,7 +70,7 @@ KW_MACRO = macro
     "->" { return TO; }
     "|" { return OP_OR;}
     "~" { return OP_CONCAT;}
-	"^" { return ACCENT; }
+	"^" { return OP_REMARK; }
 	":" { return COLON; }
 	";" { return SEMICOLON; }
 	"#" { return HASH; }
@@ -90,6 +91,7 @@ KW_MACRO = macro
     {INTEGER} { return INTEGER; }
     {TEXT_SINGLE} { return TEXT_SINGLE; }
     {TEXT_DOUBLE} { return TEXT_DOUBLE; }
+    {REGULAR_RANGE} { return REGULAR_RANGE; }
     {REGULAR_EXPRESSION} { return REGULAR_EXPRESSION;}
 }
 

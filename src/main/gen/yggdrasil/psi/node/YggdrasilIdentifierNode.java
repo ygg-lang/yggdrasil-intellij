@@ -8,9 +8,9 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static yggdrasil.psi.YggdrasilTypes.*;
-import yggdrasil.psi.YggdrasilElement;
+import yggdrasil.psi.mixin.MixinIdentifier;
 
-public class YggdrasilIdentifierNode extends YggdrasilElement implements YggdrasilIdentifier {
+public class YggdrasilIdentifierNode extends MixinIdentifier implements YggdrasilIdentifier {
 
   public YggdrasilIdentifierNode(@NotNull ASTNode node) {
     super(node);

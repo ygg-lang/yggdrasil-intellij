@@ -8,22 +8,34 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static yggdrasil.psi.YggdrasilTypes.*;
-import yggdrasil.psi.mixin.MixinRegex;
+import yggdrasil.psi.mixin.MixinGroup;
 
-public class YggdrasilRegexNode extends MixinRegex implements YggdrasilRegex {
+public class YggdrasilTokenNode extends MixinGroup implements YggdrasilToken {
 
-  public YggdrasilRegexNode(@NotNull ASTNode node) {
+  public YggdrasilTokenNode(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull YggdrasilVisitor visitor) {
-    visitor.visitRegex(this);
+    visitor.visitToken(this);
   }
 
   @Override
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof YggdrasilVisitor) accept((YggdrasilVisitor)visitor);
     else super.accept(visitor);
+  }
+
+  @Override
+  @NotNull
+  public YggdrasilAnnotations getAnnotations() {
+    return findNotNullChildByClass(YggdrasilAnnotations.class);
+  }
+
+  @Override
+  @Nullable
+  public YggdrasilTokenBody getTokenBody() {
+    return findChildByClass(YggdrasilTokenBody.class);
   }
 
 }

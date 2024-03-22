@@ -34,9 +34,9 @@ class TokenHighlighter : SyntaxHighlighter {
 //
 //            COMMA -> YggdrasilHighlightColor.COMMA
 //            // atom
-            OP_OR, OP_CONCAT -> HighlightColor.KEYWORD
+            OP_OR, OP_CONCAT -> HighlightColor.OPERATION
+            OP_OPTIONAL, OP_MANY, OP_MANY1 -> HighlightColor.OPERATION
 
-            PREFIX, SUFFIX -> HighlightColor.KEYWORD
 //
 //            SELECTION_LINE -> YggdrasilHighlightColor.TEXT
 //            STRING_QUOTE, STRING_CHAR -> YggdrasilHighlightColor.STRING
