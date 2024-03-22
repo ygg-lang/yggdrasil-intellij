@@ -8,7 +8,10 @@ import com.intellij.psi.NavigatablePsiElement
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNameIdentifierOwner
 import yggdrasil.psi.YggdrasilElement
+import yggdrasil.psi.node.YggdrasilAnnotations
+import yggdrasil.psi.node.YggdrasilIdentifier
 import yggdrasil.psi.node.YggdrasilUnion
+import yggdrasil.psi.node.YggdrasilUnionBody
 
 abstract class MixinUnion(node: ASTNode) : YggdrasilElement(node),
     NavigatablePsiElement,
@@ -25,6 +28,7 @@ abstract class MixinUnion(node: ASTNode) : YggdrasilElement(node),
     override fun getPresentation(): ItemPresentation? {
         return PresentationData("YggdrasilClass", "YggdrasilClass", AllIcons.Nodes.Class, null)
     }
+
 }
 
 

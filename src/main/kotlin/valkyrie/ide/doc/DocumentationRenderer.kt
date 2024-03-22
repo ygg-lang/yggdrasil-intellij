@@ -5,7 +5,7 @@ import com.intellij.openapi.editor.colors.EditorColorsManager
 import com.intellij.openapi.editor.richcopy.HtmlSyntaxInfoUtil
 import com.intellij.psi.PsiElement
 import com.intellij.ui.ColorUtil
-import valkyrie.ide.highlight.YggdrasilHighlightColor
+import valkyrie.ide.highlight.HighlightColor
 
 
 class DocumentationRenderer(var element: PsiElement, private var original: PsiElement?) {
@@ -27,7 +27,7 @@ class DocumentationRenderer(var element: PsiElement, private var original: PsiEl
         doc.append("<span>${text}</span>")
     }
 
-    fun append(key: YggdrasilHighlightColor, text: String) {
+    fun append(key: HighlightColor, text: String) {
         // HtmlSyntaxInfoUtil.getStyledSpan(key.textAttributesKey, text, 1.0f)
         val attr = EditorColorsManager.getInstance().globalScheme.getAttributes(key.textAttributesKey)
         val color = ColorUtil.toHtmlColor(attr.foregroundColor)

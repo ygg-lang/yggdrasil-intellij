@@ -3,8 +3,6 @@ package yggdrasil.language.ast.calls
 import com.intellij.extapi.psi.ASTWrapperPsiElement
 import com.intellij.psi.impl.source.tree.CompositeElement
 import com.intellij.psi.util.elementType
-import valkyrie.ide.highlight.NodeHighlighter
-import valkyrie.ide.highlight.YggdrasilHighlightElement
 import yggdrasil.antlr.YggdrasilAntlrLexer
 import yggdrasil.antlr.childrenWithLeaves
 import yggdrasil.language.YggdrasilLanguage

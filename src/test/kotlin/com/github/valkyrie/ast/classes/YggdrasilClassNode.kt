@@ -11,9 +11,7 @@ import com.intellij.openapi.editor.markup.GutterIconRenderer
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNameIdentifierOwner
 import com.intellij.psi.impl.source.tree.CompositeElement
-import valkyrie.ide.highlight.NodeHighlighter
-import valkyrie.ide.highlight.YggdrasilHighlightColor
-import valkyrie.ide.highlight.YggdrasilHighlightElement
+import valkyrie.ide.highlight.HighlightColor
 import valkyrie.ide.view.IdentifierPresentation
 import yggdrasil.antlr.YggdrasilAntlrParser
 import yggdrasil.language.ast.YggdrasilIdentifierNode
@@ -61,7 +59,7 @@ class YggdrasilClassNode(node: CompositeElement) : YggdrasilScopeNode(node), Psi
 
     override fun on_highlight(e: NodeHighlighter) {
         e.register_modifiers(modifiers?.modifiers)
-        e.register(nameIdentifier, YggdrasilHighlightColor.RULE_CLASS)
+        e.register(nameIdentifier, HighlightColor.RULE_CLASS)
     }
 
     override fun on_line_mark(e: MutableCollection<in LineMarkerInfo<*>>) {

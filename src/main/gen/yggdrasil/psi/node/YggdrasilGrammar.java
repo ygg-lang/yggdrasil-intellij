@@ -7,10 +7,10 @@ import com.intellij.psi.PsiElement;
 
 public interface YggdrasilGrammar extends PsiElement {
 
+  @NotNull
+  YggdrasilAnnotations getAnnotations();
+
   @Nullable
   YggdrasilIdentifier getIdentifier();
-
-  @NotNull
-  YggdrasilModifiers getModifiers();
 
 }

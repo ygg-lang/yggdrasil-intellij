@@ -28,8 +28,20 @@ public class YggdrasilClassNode extends MixinClass implements YggdrasilClass {
 
   @Override
   @NotNull
-  public YggdrasilModifiers getModifiers() {
-    return findNotNullChildByClass(YggdrasilModifiers.class);
+  public YggdrasilAnnotations getAnnotations() {
+    return findNotNullChildByClass(YggdrasilAnnotations.class);
+  }
+
+  @Override
+  @Nullable
+  public YggdrasilClassBody getClassBody() {
+    return findChildByClass(YggdrasilClassBody.class);
+  }
+
+  @Override
+  @Nullable
+  public YggdrasilIdentifier getIdentifier() {
+    return findChildByClass(YggdrasilIdentifier.class);
   }
 
 }

@@ -4,9 +4,7 @@ import com.intellij.extapi.psi.ASTWrapperPsiElement
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNameIdentifierOwner
 import com.intellij.psi.impl.source.tree.CompositeElement
-import valkyrie.ide.highlight.NodeHighlighter
-import valkyrie.ide.highlight.YggdrasilHighlightColor
-import valkyrie.ide.highlight.YggdrasilHighlightElement
+import valkyrie.ide.highlight.HighlightColor
 import yggdrasil.antlr.YggdrasilAntlrParser
 import yggdrasil.language.ast.YggdrasilBlockNode
 
@@ -36,12 +34,12 @@ class YggdrasilGrammarNode(node: CompositeElement) : ASTWrapperPsiElement(node),
     }
 
     override fun on_highlight(e: NodeHighlighter) {
-        e.register(nameIdentifier, YggdrasilHighlightColor.SYM_MACRO)
+        e.register(nameIdentifier, HighlightColor.SYM_MACRO)
         for (pair in parsers()) {
-            e.register(pair.key, YggdrasilHighlightColor.SYM_FUNCTION)
+            e.register(pair.key, HighlightColor.SYM_FUNCTION)
             val dict = pair.value as? YggdrasilBlockNode ?: continue
             for (inner in YggdrasilParser.getChildrenOfType<YggdrasilGrammarPair>(dict)) {
-                e.register(inner.key, YggdrasilHighlightColor.SYM_MACRO)
+                e.register(inner.key, HighlightColor.SYM_MACRO)
             }
         }
     }

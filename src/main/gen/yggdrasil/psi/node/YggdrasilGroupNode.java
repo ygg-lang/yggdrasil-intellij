@@ -8,9 +8,9 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static yggdrasil.psi.YggdrasilTypes.*;
-import yggdrasil.psi.mixin.MixinUnion;
+import yggdrasil.psi.mixin.MixinGroup;
 
-public class YggdrasilGroupNode extends MixinUnion implements YggdrasilGroup {
+public class YggdrasilGroupNode extends MixinGroup implements YggdrasilGroup {
 
   public YggdrasilGroupNode(@NotNull ASTNode node) {
     super(node);
@@ -28,8 +28,8 @@ public class YggdrasilGroupNode extends MixinUnion implements YggdrasilGroup {
 
   @Override
   @NotNull
-  public YggdrasilModifiers getModifiers() {
-    return findNotNullChildByClass(YggdrasilModifiers.class);
+  public YggdrasilAnnotations getAnnotations() {
+    return findNotNullChildByClass(YggdrasilAnnotations.class);
   }
 
 }

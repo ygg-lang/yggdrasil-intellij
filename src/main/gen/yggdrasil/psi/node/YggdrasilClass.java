@@ -8,6 +8,12 @@ import com.intellij.psi.PsiElement;
 public interface YggdrasilClass extends PsiElement {
 
   @NotNull
-  YggdrasilModifiers getModifiers();
+  YggdrasilAnnotations getAnnotations();
+
+  @Nullable
+  YggdrasilClassBody getClassBody();
+
+  @Nullable
+  YggdrasilIdentifier getIdentifier();
 
 }

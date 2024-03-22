@@ -4,8 +4,6 @@ import com.intellij.extapi.psi.ASTWrapperPsiElement
 import com.intellij.formatting.Indent
 import com.intellij.lang.ASTNode
 import com.intellij.psi.impl.source.tree.CompositeElement
-import valkyrie.ide.highlight.NodeHighlighter
-import valkyrie.ide.highlight.YggdrasilHighlightElement
 import yggdrasil.language.ast.YggdrasilNamepathNode
 import yggdrasil.language.psi.YggdrasilIndentElement
 

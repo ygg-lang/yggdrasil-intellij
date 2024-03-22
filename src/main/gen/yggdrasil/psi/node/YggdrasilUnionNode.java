@@ -28,8 +28,20 @@ public class YggdrasilUnionNode extends MixinUnion implements YggdrasilUnion {
 
   @Override
   @NotNull
-  public YggdrasilModifiers getModifiers() {
-    return findNotNullChildByClass(YggdrasilModifiers.class);
+  public YggdrasilAnnotations getAnnotations() {
+    return findNotNullChildByClass(YggdrasilAnnotations.class);
+  }
+
+  @Override
+  @Nullable
+  public YggdrasilIdentifier getIdentifier() {
+    return findChildByClass(YggdrasilIdentifier.class);
+  }
+
+  @Override
+  @Nullable
+  public YggdrasilUnionBody getUnionBody() {
+    return findChildByClass(YggdrasilUnionBody.class);
   }
 
 }

@@ -11,8 +11,52 @@ public class YggdrasilVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitAnnotations(@NotNull YggdrasilAnnotations o) {
+    visitPsiElement(o);
+  }
+
+  public void visitCategory(@NotNull YggdrasilCategory o) {
+    visitPsiElement(o);
+  }
+
   public void visitClass(@NotNull YggdrasilClass o) {
     visitPsiElement(o);
+  }
+
+  public void visitClassBody(@NotNull YggdrasilClassBody o) {
+    visitPsiElement(o);
+  }
+
+  public void visitClassTerm(@NotNull YggdrasilClassTerm o) {
+    visitPsiElement(o);
+  }
+
+  public void visitEscape(@NotNull YggdrasilEscape o) {
+    visitPsiElement(o);
+  }
+
+  public void visitExpression(@NotNull YggdrasilExpression o) {
+    visitPsiElement(o);
+  }
+
+  public void visitExpressionAtom(@NotNull YggdrasilExpressionAtom o) {
+    visitExpression(o);
+  }
+
+  public void visitExpressionConcat(@NotNull YggdrasilExpressionConcat o) {
+    visitExpression(o);
+  }
+
+  public void visitExpressionOr(@NotNull YggdrasilExpressionOr o) {
+    visitExpression(o);
+  }
+
+  public void visitExpressionUnary(@NotNull YggdrasilExpressionUnary o) {
+    visitExpression(o);
+  }
+
+  public void visitExpressionGroup(@NotNull YggdrasilExpressionGroup o) {
+    visitExpression(o);
   }
 
   public void visitGrammar(@NotNull YggdrasilGrammar o) {
@@ -55,6 +99,18 @@ public class YggdrasilVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitRange(@NotNull YggdrasilRange o) {
+    visitPsiElement(o);
+  }
+
+  public void visitRangeLower(@NotNull YggdrasilRangeLower o) {
+    visitPsiElement(o);
+  }
+
+  public void visitRangeUpper(@NotNull YggdrasilRangeUpper o) {
+    visitPsiElement(o);
+  }
+
   public void visitRegex(@NotNull YggdrasilRegex o) {
     visitPsiElement(o);
   }
@@ -68,6 +124,14 @@ public class YggdrasilVisitor extends PsiElementVisitor {
   }
 
   public void visitUnion(@NotNull YggdrasilUnion o) {
+    visitPsiElement(o);
+  }
+
+  public void visitUnionBody(@NotNull YggdrasilUnionBody o) {
+    visitPsiElement(o);
+  }
+
+  public void visitUnionTerm(@NotNull YggdrasilUnionTerm o) {
     visitPsiElement(o);
   }
 

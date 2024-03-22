@@ -27,15 +27,15 @@ public class YggdrasilGrammarNode extends MixinGrammar implements YggdrasilGramm
   }
 
   @Override
-  @Nullable
-  public YggdrasilIdentifier getIdentifier() {
-    return findChildByClass(YggdrasilIdentifier.class);
+  @NotNull
+  public YggdrasilAnnotations getAnnotations() {
+    return findNotNullChildByClass(YggdrasilAnnotations.class);
   }
 
   @Override
-  @NotNull
-  public YggdrasilModifiers getModifiers() {
-    return findNotNullChildByClass(YggdrasilModifiers.class);
+  @Nullable
+  public YggdrasilIdentifier getIdentifier() {
+    return findChildByClass(YggdrasilIdentifier.class);
   }
 
 }
