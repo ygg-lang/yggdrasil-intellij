@@ -18,6 +18,16 @@ class NodeHighlighter : YggdrasilVisitor(), HighlightVisitor {
         o.identifier?.let { highlight(it, HighlightColor.SYM_MACRO) }
     }
 
+    override fun visitAnnotations(o: YggdrasilAnnotations) {
+        for (modifier in o.identifierList) {
+            highlight(modifier, HighlightColor.KEYWORD)
+        }
+    }
+
+    override fun visitAttribute(o: YggdrasilAttribute) {
+        super.visitAttribute(o as YggdrasilAttributeNode)
+    }
+
     override fun visitClass(o: YggdrasilClass) {
         o.identifier?.let { highlight(it, HighlightColor.RULE_CLASS) }
     }
@@ -28,8 +38,9 @@ class NodeHighlighter : YggdrasilVisitor(), HighlightVisitor {
 
 
     override fun visitTagBranch(o: YggdrasilTagBranch) {
-        highlight(o.identifier, HighlightColor.TAG_BRANCH)
+        highlight(o, HighlightColor.TAG_BRANCH)
     }
+
 
     private fun highlight(element: PsiElement, color: HighlightColor) {
         val builder = HighlightInfo.newHighlightInfo(HighlightInfoType.INFORMATION)

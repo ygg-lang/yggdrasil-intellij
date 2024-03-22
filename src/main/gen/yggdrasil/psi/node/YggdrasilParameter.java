@@ -5,12 +5,12 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface YggdrasilAnnotations extends PsiElement {
+public interface YggdrasilParameter extends PsiElement {
 
   @NotNull
-  List<YggdrasilAttribute> getAttributeList();
+  YggdrasilExpression getExpression();
 
-  @NotNull
-  List<YggdrasilIdentifier> getIdentifierList();
+  @Nullable
+  YggdrasilIdentifier getIdentifier();
 
 }

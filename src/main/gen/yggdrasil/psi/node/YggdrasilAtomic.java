@@ -11,6 +11,9 @@ public interface YggdrasilAtomic extends YggdrasilExpression {
   YggdrasilCategory getCategory();
 
   @Nullable
+  YggdrasilFunctionCall getFunctionCall();
+
+  @Nullable
   YggdrasilIdentifier getIdentifier();
 
   @Nullable

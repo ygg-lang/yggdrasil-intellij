@@ -8,7 +8,7 @@
 	<resource-bundle>messages.YggdrasilBundle</resource-bundle>
 	<extensions defaultExtensionNs="com.intellij">
 		<fileType
-			name="Yggdrasil"
+			name="yggdrasil"
 			language="yggdrasil"
 			extensions="ygg;yggdrasil;"
 			implementationClass="yggdrasil.language.file.YggdrasilFileType"

@@ -19,6 +19,10 @@ public class YggdrasilVisitor extends PsiElementVisitor {
     visitExpression(o);
   }
 
+  public void visitAttribute(@NotNull YggdrasilAttribute o) {
+    visitPsiElement(o);
+  }
+
   public void visitCategory(@NotNull YggdrasilCategory o) {
     visitPsiElement(o);
   }
@@ -63,6 +67,14 @@ public class YggdrasilVisitor extends PsiElementVisitor {
     visitExpression(o);
   }
 
+  public void visitFunctionBody(@NotNull YggdrasilFunctionBody o) {
+    visitPsiElement(o);
+  }
+
+  public void visitFunctionCall(@NotNull YggdrasilFunctionCall o) {
+    visitPsiElement(o);
+  }
+
   public void visitGrammar(@NotNull YggdrasilGrammar o) {
     visitPsiElement(o);
   }
@@ -79,10 +91,6 @@ public class YggdrasilVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitModifiers(@NotNull YggdrasilModifiers o) {
-    visitPsiElement(o);
-  }
-
   public void visitModuleName(@NotNull YggdrasilModuleName o) {
     visitPsiElement(o);
   }
@@ -96,6 +104,10 @@ public class YggdrasilVisitor extends PsiElementVisitor {
   }
 
   public void visitPair(@NotNull YggdrasilPair o) {
+    visitPsiElement(o);
+  }
+
+  public void visitParameter(@NotNull YggdrasilParameter o) {
     visitPsiElement(o);
   }
 
