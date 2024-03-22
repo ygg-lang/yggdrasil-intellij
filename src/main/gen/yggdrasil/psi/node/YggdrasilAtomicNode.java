@@ -8,16 +8,16 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static yggdrasil.psi.YggdrasilTypes.*;
-import yggdrasil.psi.mixin.MixinClass;
 
-public class YggdrasilClassNode extends MixinClass implements YggdrasilClass {
+public class YggdrasilAtomicNode extends YggdrasilExpressionNode implements YggdrasilAtomic {
 
-  public YggdrasilClassNode(@NotNull ASTNode node) {
+  public YggdrasilAtomicNode(@NotNull ASTNode node) {
     super(node);
   }
 
+  @Override
   public void accept(@NotNull YggdrasilVisitor visitor) {
-    visitor.visitClass(this);
+    visitor.visitAtomic(this);
   }
 
   @Override
@@ -27,27 +27,21 @@ public class YggdrasilClassNode extends MixinClass implements YggdrasilClass {
   }
 
   @Override
-  @NotNull
-  public YggdrasilAnnotations getAnnotations() {
-    return findNotNullChildByClass(YggdrasilAnnotations.class);
-  }
-
-  @Override
   @Nullable
-  public YggdrasilClassBody getClassBody() {
-    return findChildByClass(YggdrasilClassBody.class);
-  }
-
-  @Override
-  @Nullable
-  public YggdrasilClassCast getClassCast() {
-    return findChildByClass(YggdrasilClassCast.class);
+  public YggdrasilCategory getCategory() {
+    return findChildByClass(YggdrasilCategory.class);
   }
 
   @Override
   @Nullable
   public YggdrasilIdentifier getIdentifier() {
     return findChildByClass(YggdrasilIdentifier.class);
+  }
+
+  @Override
+  @Nullable
+  public YggdrasilRegex getRegex() {
+    return findChildByClass(YggdrasilRegex.class);
   }
 
 }

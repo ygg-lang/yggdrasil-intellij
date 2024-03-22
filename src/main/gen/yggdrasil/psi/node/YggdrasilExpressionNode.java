@@ -10,7 +10,7 @@ import com.intellij.psi.util.PsiTreeUtil;
 import static yggdrasil.psi.YggdrasilTypes.*;
 import yggdrasil.psi.YggdrasilElement;
 
-public abstract class YggdrasilExpressionNode extends YggdrasilElement implements YggdrasilExpression {
+public class YggdrasilExpressionNode extends YggdrasilElement implements YggdrasilExpression {
 
   public YggdrasilExpressionNode(@NotNull ASTNode node) {
     super(node);
@@ -24,6 +24,12 @@ public abstract class YggdrasilExpressionNode extends YggdrasilElement implement
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof YggdrasilVisitor) accept((YggdrasilVisitor)visitor);
     else super.accept(visitor);
+  }
+
+  @Override
+  @NotNull
+  public List<YggdrasilExpression> getExpressionList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, YggdrasilExpression.class);
   }
 
 }

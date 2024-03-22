@@ -8,16 +8,16 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static yggdrasil.psi.YggdrasilTypes.*;
-import yggdrasil.psi.mixin.MixinClass;
 
-public class YggdrasilClassNode extends MixinClass implements YggdrasilClass {
+public class YggdrasilTermNode extends YggdrasilExpressionNode implements YggdrasilTerm {
 
-  public YggdrasilClassNode(@NotNull ASTNode node) {
+  public YggdrasilTermNode(@NotNull ASTNode node) {
     super(node);
   }
 
+  @Override
   public void accept(@NotNull YggdrasilVisitor visitor) {
-    visitor.visitClass(this);
+    visitor.visitTerm(this);
   }
 
   @Override
@@ -28,26 +28,20 @@ public class YggdrasilClassNode extends MixinClass implements YggdrasilClass {
 
   @Override
   @NotNull
-  public YggdrasilAnnotations getAnnotations() {
-    return findNotNullChildByClass(YggdrasilAnnotations.class);
+  public YggdrasilExpression getExpression() {
+    return findNotNullChildByClass(YggdrasilExpression.class);
   }
 
   @Override
-  @Nullable
-  public YggdrasilClassBody getClassBody() {
-    return findChildByClass(YggdrasilClassBody.class);
+  @NotNull
+  public List<YggdrasilPrefix> getPrefixList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, YggdrasilPrefix.class);
   }
 
   @Override
-  @Nullable
-  public YggdrasilClassCast getClassCast() {
-    return findChildByClass(YggdrasilClassCast.class);
-  }
-
-  @Override
-  @Nullable
-  public YggdrasilIdentifier getIdentifier() {
-    return findChildByClass(YggdrasilIdentifier.class);
+  @NotNull
+  public List<YggdrasilSuffix> getSuffixList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, YggdrasilSuffix.class);
   }
 
 }

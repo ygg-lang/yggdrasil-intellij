@@ -5,18 +5,15 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface YggdrasilClass extends PsiElement {
-
-  @NotNull
-  YggdrasilAnnotations getAnnotations();
+public interface YggdrasilAtomic extends YggdrasilExpression {
 
   @Nullable
-  YggdrasilClassBody getClassBody();
-
-  @Nullable
-  YggdrasilClassCast getClassCast();
+  YggdrasilCategory getCategory();
 
   @Nullable
   YggdrasilIdentifier getIdentifier();
+
+  @Nullable
+  YggdrasilRegex getRegex();
 
 }

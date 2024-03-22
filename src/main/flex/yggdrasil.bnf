@@ -91,11 +91,12 @@ grammar ::= annotations KW_GRAMMAR identifier BRACE_L BRACE_R {
 annotations ::= modifiers?
 modifiers   ::= identifier+;
 // === class statement ===
-class  ::= annotations KW_CLASS identifier class-body {
+class  ::= annotations KW_CLASS identifier class-cast? class-body {
     pin = 2
     mixin = "yggdrasil.psi.mixin.MixinClass"
 }
-class-body ::= BRACE_L class-term* BRACE_R;
+class-cast ::= TO identifier;
+class-body ::= BRACE_L OP_OR? class-term* BRACE_R;
 class-term ::= expression;
 // === union statement ===
 union  ::= annotations KW_UNION identifier union-body {
@@ -103,34 +104,40 @@ union  ::= annotations KW_UNION identifier union-body {
     mixin = "yggdrasil.psi.mixin.MixinUnion"
 }
 union-body ::= BRACE_L union-term* BRACE_R;
-union-term ::= OP_OR expression;
+union-term ::= OP_OR expression-hard;
 // === group statement ===
 group  ::= annotations KW_GROUP SYMBOL {
     pin = 2
     mixin = "yggdrasil.psi.mixin.MixinGroup"
 }
 
-expression ::=
-    expression_group
-  | expression-or
-expression_group ::= PARENTHESIS_L OP_OR? expression PARENTHESIS_R {
-    extends = expression
-}
-expression-or ::= expression OP_OR expression {
-//    mixin = "yggdrasil.psi.mixin.MixinOr"
-    extends = expression
-}
-expression-concat ::= expression-unary OP_CONCAT expression-unary {
-//    mixin = "yggdrasil.psi.mixin.MixinOr"
-    extends = expression
-}
-expression-unary ::= expression-atom STAR* {
-    extends = expression
-}
-expression-atom ::= identifier | category | regex | range {
-    extends = expression
-}
+expression ::= expression-hard (OP_OR expression-hard)* {
 
+}
+expression-hard ::= expression-soft (OP_CONCAT expression-soft)* {
+    extends = expression
+}
+expression-soft ::= expression-tag expression-tag* {
+    extends = expression
+}
+expression-tag ::= (identifier COLON)? term {
+    extends = expression
+}
+term ::= prefix* atomic suffix* {
+    extends = expression
+}
+prefix ::= OP_NOT | OP_AND | OP_REMARK {
+
+}
+suffix ::= OP_OPTIONAL | OP_MANY | OP_MANY1 | range {
+
+}
+atomic ::= expression-group | identifier | category | regex {
+    extends = expression
+}
+expression-group ::= PARENTHESIS_L OP_OR? expression PARENTHESIS_R {
+    extends = expression
+}
 
 category ::= escape (BRACE_L identifier (EQ identifier)? BRACE_R)? {
 

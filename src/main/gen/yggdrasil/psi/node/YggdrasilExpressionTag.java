@@ -5,9 +5,12 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface YggdrasilExpressionGroup extends YggdrasilExpression {
+public interface YggdrasilExpressionTag extends YggdrasilExpression {
 
   @NotNull
   YggdrasilExpression getExpression();
+
+  @Nullable
+  YggdrasilIdentifier getIdentifier();
 
 }
