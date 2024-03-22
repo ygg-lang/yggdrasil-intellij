@@ -6,47 +6,13 @@ import com.intellij.openapi.editor.richcopy.HtmlSyntaxInfoUtil
 import com.intellij.psi.PsiElement
 import com.intellij.ui.ColorUtil
 import valkyrie.ide.highlight.YggdrasilHighlightColor
-import valkyrie.ide.highlight.YggdrasilHighlightColor.KEYWORD
-import valkyrie.ide.highlight.YggdrasilHighlightColor.RULE_CLASS
-import yggdrasil.language.ast.classes.YggdrasilClassNode
 
 
 class DocumentationRenderer(var element: PsiElement, private var original: PsiElement?) {
     private val doc = StringBuilder()
     fun onHover(): String {
-        when {
-//            NexusLexer.Keywords.contains(element.elementType) -> return RequestDocument.keyword(element.text).send()
-//            NexusLexer.Operators.contains(element.elementType) -> return RequestDocument.operator(element.text).send()
-            else -> {}
-        }
-        when (element) {
-            is YggdrasilClassNode -> buildShort(element as YggdrasilClassNode)
-            else -> {
-                doc.append(element)
-                doc.append("<br/>")
-                doc.append(original)
-                doc.append("<br/>")
-                doc.append("onDetail: ${element.text}")
-            }
-        }
         return doc.toString()
     }
-
-    private fun buildShort(element: YggdrasilClassNode) {
-        append(KEYWORD, "crate ")
-        appendNamespace()
-        doc.append("<br/>")
-        append(KEYWORD, "public ")
-        append(KEYWORD, "native ")
-        append(KEYWORD, "class ")
-        append(RULE_CLASS, element.name ?: "[Unknown]")
-//        appendNewline()
-//        append(KEYWORD, "implements ")
-//        append(SYM_TRAIT, "Eq")
-//        appendAdd()
-//        append(SYM_TRAIT, "Hash")
-    }
-
 
     /// get the path relative to the project root
     /// FIXME: get real declare module

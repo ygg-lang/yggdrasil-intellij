@@ -10,20 +10,26 @@ import com.intellij.psi.util.PsiTreeUtil;
 import static yggdrasil.psi.YggdrasilTypes.*;
 import yggdrasil.psi.YggdrasilElement;
 
-public class YggdrasilSemanticNumberNode extends YggdrasilElement implements YggdrasilSemanticNumber {
+public class YggdrasilKeyNode extends YggdrasilElement implements YggdrasilKey {
 
-  public YggdrasilSemanticNumberNode(@NotNull ASTNode node) {
+  public YggdrasilKeyNode(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull YggdrasilVisitor visitor) {
-    visitor.visitSemanticNumber(this);
+    visitor.visitKey(this);
   }
 
   @Override
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof YggdrasilVisitor) accept((YggdrasilVisitor)visitor);
     else super.accept(visitor);
+  }
+
+  @Override
+  @NotNull
+  public YggdrasilIdentifier getIdentifier() {
+    return findNotNullChildByClass(YggdrasilIdentifier.class);
   }
 
 }

@@ -1,7 +1,5 @@
 package yggdrasil.psi
 
-import com.github.bytecodealliance.language._WitLexer
-import com.github.bytecodealliance.language._YggdrasilLexer
 import com.intellij.extapi.psi.ASTWrapperPsiElement
 import com.intellij.lang.ASTNode
 import com.intellij.lang.ParserDefinition
@@ -19,7 +17,6 @@ import com.intellij.psi.tree.IFileElementType
 import com.intellij.psi.tree.TokenSet
 import yggdrasil.language.YggdrasilLanguage
 import yggdrasil.language.file.YggdrasilFileNode
-import yggdrasil.language.file.YggdrasilFileType
 import yggdrasil.psi.YggdrasilTypes.*
 import yggdrasil.psi.parser.YggdrasilParser
 
@@ -34,7 +31,7 @@ class ParserExtension : GeneratedParserUtilBase() {
             // tok
             KW_MACRO,
             // special
-            KW_ANY, BOOLEAN,
+            KW_ANY, KW_BOOLEAN,
 //            OP_CONCAT,
 //            // control flow
 //            KW_PUSH, KW_PEEK, KW_DROP, KW_PULL,
@@ -84,7 +81,7 @@ object ParserDefinition : ParserDefinition {
     override fun createParser(project: Project): PsiParser = YggdrasilParser()
     override fun getFileNodeType(): IFileElementType = IFileElementType(YggdrasilLanguage)
     override fun getCommentTokens(): TokenSet =
-        TokenSet.create(YggdrasilTypes.COMMENT_LINE, YggdrasilTypes.COMMENT_DOCUMENT, YggdrasilTypes.COMMENT_BLOCK)
+        TokenSet.create(YggdrasilTypes.COMMENT_LINE, YggdrasilTypes.COMMENT_BLOCK)
 
     override fun getStringLiteralElements(): TokenSet = TokenSet.create()
     override fun getWhitespaceTokens(): TokenSet = TokenSet.create(TokenType.WHITE_SPACE)

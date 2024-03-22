@@ -46,6 +46,7 @@ class YggdrasilStructureView : PsiStructureViewFactory {
         override fun getGroupers(): Array<Grouper> {
             return super.getGroupers()
         }
+
         override fun isAlwaysLeaf(element: StructureViewTreeElement): Boolean {
             // 是否是叶节点
             return false

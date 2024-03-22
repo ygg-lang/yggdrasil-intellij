@@ -2,60 +2,51 @@ package valkyrie.ide.highlight
 
 
 import com.intellij.lexer.Lexer
-import com.intellij.openapi.editor.DefaultLanguageHighlighterColors
 import com.intellij.openapi.editor.colors.TextAttributesKey
 import com.intellij.openapi.fileTypes.SyntaxHighlighter
-import com.intellij.psi.TokenType
+import com.intellij.openapi.fileTypes.SyntaxHighlighterBase.pack
 import com.intellij.psi.tree.IElementType
-import valkyrie.ide.matcher.ValkyrieBracketMatch
-import yggdrasil.antlr.YggdrasilLexer
-import yggdrasil.language.YggdrasilLanguage
-
+import yggdrasil.psi.ParserDefinition
 
 class TokenHighlighter : SyntaxHighlighter {
     override fun getHighlightingLexer(): Lexer {
-        return YggdrasilLexer()
+        return ParserDefinition.createLexer()
     }
 
     override fun getTokenHighlights(tokenType: IElementType): Array<TextAttributesKey> {
-        val key = getTokenColor(tokenType);
-        return if (key == null) {
-            TextAttributesKey.EMPTY_ARRAY
-        } else {
-            arrayOf(key)
-        }
+        return pack(getTokenColor(tokenType)?.textAttributesKey)
     }
 
-    private fun getTokenColor(tokenType: IElementType): TextAttributesKey? {
-        val hash = YggdrasilLanguage.createTokenSet();
-        return when {
-            YggdrasilLexer.Keywords.contains(tokenType) -> YggdrasilHighlightColor.KEYWORD.textAttributesKey
-            YggdrasilLexer.Operators.contains(tokenType) -> DefaultLanguageHighlighterColors.OPERATION_SIGN
-            YggdrasilLexer.Integers.contains(tokenType) -> YggdrasilHighlightColor.INTEGER.textAttributesKey
-            YggdrasilLexer.Decimals.contains(tokenType) -> YggdrasilHighlightColor.DECIMAL.textAttributesKey
-            YggdrasilLexer.Strings.contains(tokenType) -> YggdrasilHighlightColor.STRING.textAttributesKey
-            YggdrasilLexer.Comments.contains(tokenType) -> DefaultLanguageHighlighterColors.LINE_COMMENT
-            // inherit
-            YggdrasilLexer.Comma.contains(tokenType) -> DefaultLanguageHighlighterColors.COMMA
-            YggdrasilLexer.Semicolon.contains(tokenType) -> DefaultLanguageHighlighterColors.SEMICOLON
-            YggdrasilLexer.Escapes.contains(tokenType) -> YggdrasilHighlightColor.STRING_ESCAPED.textAttributesKey
-
-            else -> {
-                when (tokenType) {
-                    ValkyrieBracketMatch.Instance.ParenthesisL, ValkyrieBracketMatch.Instance.ParenthesisR -> DefaultLanguageHighlighterColors.PARENTHESES
-                    ValkyrieBracketMatch.Instance.BracketL, ValkyrieBracketMatch.Instance.BracketR -> DefaultLanguageHighlighterColors.BRACKETS
-                    ValkyrieBracketMatch.Instance.BraceL, ValkyrieBracketMatch.Instance.BraceR -> DefaultLanguageHighlighterColors.BRACES
-                    //
-//                    COLON, OP_SET -> ValkyrieHighlightColor.ASSIGN
-                    // 原子类型
-//                    BYTE -> ValkyrieHighlightColor.INTEGER
-//                    COLOUR -> ValkyrieHighlightColor.INTEGER
-//                    NUMBER_SUFFIX -> ValkyrieHighlightColor.OP_NUMBER
-                    // 错误
-                    TokenType.BAD_CHARACTER -> com.intellij.openapi.editor.HighlighterColors.BAD_CHARACTER
-                    else -> null
-                }
-            }
+    private fun getTokenColor(tokenType: IElementType): YggdrasilHighlightColor? {
+        return when (tokenType) {
+//            KW_PACKAGE, KW_WORLD, KW_INTERFACE,
+//            KW_INCLUDE, KW_USE, KW_IMPORT, KW_EXPORT, KW_AS,
+//            KW_TYPE, KW_RESOURCE, KW_RECORD, KW_VARIANT, KW_FLAGS, KW_ENUM,
+//            KW_FUNCTION, KW_CONSTRUCTOR,
+//            -> YggdrasilHighlightColor.KEYWORD
+//
+//            PARENTHESIS_L, PARENTHESIS_R -> YggdrasilHighlightColor.PARENTHESES
+//            BRACKET_L, BRACKET_R -> YggdrasilHighlightColor.BRACKETS
+//            BRACE_L, BRACE_R -> YggdrasilHighlightColor.BRACES
+//            COLON, EQ -> YggdrasilHighlightColor.OPERATION
+//            AT, STAR -> YggdrasilHighlightColor.OPERATION
+//
+//            COMMA -> YggdrasilHighlightColor.COMMA
+//            // atom
+//            VERSION -> YggdrasilHighlightColor.NUMBER
+//
+//            SELECTION_LINE -> YggdrasilHighlightColor.TEXT
+//            STRING_QUOTE, STRING_CHAR -> YggdrasilHighlightColor.STRING
+//            STRING_ESCAPE -> YggdrasilHighlightColor.STRING_ESCAPED
+////            STRING -> AwslColor.STRING
+//            SYMBOL -> YggdrasilHighlightColor.IDENTIFIER
+//            // 注释
+//            COMMENT_LINE -> YggdrasilHighlightColor.LINE_COMMENT
+//            COMMENT_BLOCK -> YggdrasilHighlightColor.BLOCK_COMMENT
+//            COMMENT_DOCUMENT -> YggdrasilHighlightColor.DOC_COMMENT
+            // 错误
+//            TokenType.BAD_CHARACTER -> YggdrasilHighlightColor.BAD_CHARACTER
+            else -> null
         }
     }
 }

@@ -4,12 +4,9 @@ package yggdrasil.antlr
 import com.intellij.codeInsight.daemon.impl.HighlightInfo
 import com.intellij.codeInsight.daemon.impl.HighlightInfoType
 import com.intellij.codeInsight.daemon.impl.analysis.HighlightInfoHolder
-import com.intellij.extapi.psi.ASTWrapperPsiElement
 import com.intellij.lang.ASTNode
 import com.intellij.psi.PsiElement
 import com.intellij.psi.TokenType
-import com.intellij.psi.impl.source.tree.CompositeElement
-import yggdrasil.language.ast.ValkyrieBinaryExpression
 import valkyrie.ide.highlight.YggdrasilHighlightColor
 
 

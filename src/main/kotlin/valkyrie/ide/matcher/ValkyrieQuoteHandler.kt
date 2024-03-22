@@ -7,12 +7,12 @@ import com.intellij.openapi.editor.highlighter.HighlighterIterator
 
 class ValkyrieQuoteHandler : MultiCharQuoteHandler {
     override fun isOpeningQuote(iterator: HighlighterIterator?, offset: Int): Boolean {
-        return ValkyrieBracketMatch.Instance.Left.contains(iterator?.tokenType)
+        return ValkyrieBracketMatch.Left.contains(iterator?.tokenType)
     }
 
 
     override fun isClosingQuote(iterator: HighlighterIterator?, offset: Int): Boolean {
-        return ValkyrieBracketMatch.Instance.Right.contains(iterator?.tokenType)
+        return ValkyrieBracketMatch.Right.contains(iterator?.tokenType)
     }
 
 

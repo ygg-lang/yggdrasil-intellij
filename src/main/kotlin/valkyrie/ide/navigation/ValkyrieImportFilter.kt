@@ -5,7 +5,7 @@ import com.intellij.usages.UsageTarget
 import com.intellij.usages.rules.ImportFilteringRule
 import com.intellij.usages.rules.PsiElementUsage
 import yggdrasil.antlr.ancestors
-import yggdrasil.language.ast.YggdrasilIdentifierNode
+import yggdrasil.psi.node.YggdrasilIdentifierNode
 
 //import nexus.language.psi_node.ValkyrieIdentifierNode
 //import nexus.language.psi_node.ValkyrieImportStatementNode

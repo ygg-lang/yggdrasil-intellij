@@ -9,7 +9,6 @@ import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static yggdrasil.psi.YggdrasilTypes.*;
 import yggdrasil.psi.YggdrasilElement;
-import yggdrasil.psi.*;
 
 public class YggdrasilIdentifierNode extends YggdrasilElement implements YggdrasilIdentifier {
 

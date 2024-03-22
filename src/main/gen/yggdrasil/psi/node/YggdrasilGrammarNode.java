@@ -8,23 +8,28 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static yggdrasil.psi.YggdrasilTypes.*;
-import yggdrasil.psi.mixin.MixinPackage;
-import yggdrasil.psi.*;
+import yggdrasil.psi.mixin.MixinGrammar;
 
-public class YggdrasilPackageNode extends MixinPackage implements YggdrasilPackage {
+public class YggdrasilGrammarNode extends MixinGrammar implements YggdrasilGrammar {
 
-  public YggdrasilPackageNode(ASTNode node) {
+  public YggdrasilGrammarNode(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull YggdrasilVisitor visitor) {
-    visitor.visitPackage(this);
+    visitor.visitGrammar(this);
   }
 
   @Override
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof YggdrasilVisitor) accept((YggdrasilVisitor)visitor);
     else super.accept(visitor);
+  }
+
+  @Override
+  @Nullable
+  public YggdrasilIdentifier getIdentifier() {
+    return findChildByClass(YggdrasilIdentifier.class);
   }
 
 }

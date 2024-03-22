@@ -1,5 +1,5 @@
 // This is a generated file. Not intended for manual editing.
-package yggdrasil.psi;
+package yggdrasil.psi.node;
 
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElementVisitor;
@@ -15,6 +15,14 @@ public class YggdrasilVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitGrammar(@NotNull YggdrasilGrammar o) {
+    visitPsiElement(o);
+  }
+
+  public void visitGroup(@NotNull YggdrasilGroup o) {
+    visitPsiElement(o);
+  }
+
   public void visitIdentifier(@NotNull YggdrasilIdentifier o) {
     visitPsiElement(o);
   }
@@ -23,7 +31,15 @@ public class YggdrasilVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitKey(@NotNull YggdrasilKey o) {
+    visitPsiElement(o);
+  }
+
   public void visitModuleName(@NotNull YggdrasilModuleName o) {
+    visitPsiElement(o);
+  }
+
+  public void visitNumber(@NotNull YggdrasilNumber o) {
     visitPsiElement(o);
   }
 
@@ -31,7 +47,7 @@ public class YggdrasilVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
-  public void visitPackage(@NotNull YggdrasilPackage o) {
+  public void visitPair(@NotNull YggdrasilPair o) {
     visitPsiElement(o);
   }
 
@@ -48,6 +64,10 @@ public class YggdrasilVisitor extends PsiElementVisitor {
   }
 
   public void visitUnion(@NotNull YggdrasilUnion o) {
+    visitPsiElement(o);
+  }
+
+  public void visitValue(@NotNull YggdrasilValue o) {
     visitPsiElement(o);
   }
 

@@ -10,21 +10,25 @@ public interface YggdrasilTypes {
 
   IElementType ALIAS_NAME = new YggdrasilElementType("ALIAS_NAME");
   IElementType CLASS = new YggdrasilElementType("CLASS");
+  IElementType GRAMMAR = new YggdrasilElementType("GRAMMAR");
+  IElementType GROUP = new YggdrasilElementType("GROUP");
   IElementType IDENTIFIER = new YggdrasilElementType("IDENTIFIER");
   IElementType INTERFACE_NAME = new YggdrasilElementType("INTERFACE_NAME");
+  IElementType KEY = new YggdrasilElementType("KEY");
   IElementType MODULE_NAME = new YggdrasilElementType("MODULE_NAME");
+  IElementType NUMBER = new YggdrasilElementType("NUMBER");
   IElementType ORGANIZATION_NAME = new YggdrasilElementType("ORGANIZATION_NAME");
-  IElementType PACKAGE = new YggdrasilElementType("PACKAGE");
+  IElementType PAIR = new YggdrasilElementType("PAIR");
   IElementType REGEX = new YggdrasilElementType("REGEX");
   IElementType SEMANTIC_NUMBER = new YggdrasilElementType("SEMANTIC_NUMBER");
   IElementType STRING = new YggdrasilElementType("STRING");
   IElementType UNION = new YggdrasilElementType("UNION");
+  IElementType VALUE = new YggdrasilElementType("VALUE");
 
   IElementType ACCENT = new YggdrasilElementType("^");
   IElementType ANGLE_L = new YggdrasilElementType("<");
   IElementType ANGLE_R = new YggdrasilElementType(">");
   IElementType AT = new YggdrasilElementType("@");
-  IElementType BOOLEAN = new YggdrasilElementType("true|false");
   IElementType BRACE_L = new YggdrasilElementType("{");
   IElementType BRACE_R = new YggdrasilElementType("}");
   IElementType BRACKET_L = new YggdrasilElementType("[");
@@ -36,20 +40,20 @@ public interface YggdrasilTypes {
   IElementType DOLLAR = new YggdrasilElementType("$");
   IElementType DOT = new YggdrasilElementType(".");
   IElementType EQ = new YggdrasilElementType("=");
-  IElementType ESCAPED = new YggdrasilElementType("ESCAPED");
+  IElementType ESCAPED = new YggdrasilElementType("\\escaped");
   IElementType HYPHEN = new YggdrasilElementType("-");
   IElementType INCLUDE = new YggdrasilElementType("include");
   IElementType INTERFACE = new YggdrasilElementType("interface");
+  IElementType KW_ANY = new YggdrasilElementType("any");
   IElementType KW_AS = new YggdrasilElementType("as");
+  IElementType KW_BOOLEAN = new YggdrasilElementType("true|false");
   IElementType KW_CLASS = new YggdrasilElementType("class");
   IElementType KW_CLIMB = new YggdrasilElementType("climb");
   IElementType KW_GRAMMAR = new YggdrasilElementType("grammar");
   IElementType KW_GROUP = new YggdrasilElementType("group");
   IElementType KW_IMPORT = new YggdrasilElementType("import");
   IElementType KW_MACRO = new YggdrasilElementType("macro");
-  IElementType KW_PACKAGE = new YggdrasilElementType("KW_PACKAGE");
   IElementType KW_UNION = new YggdrasilElementType("union");
-  IElementType PACKAGE_NAME = new YggdrasilElementType("package-name");
   IElementType PARENTHESIS_L = new YggdrasilElementType("(");
   IElementType PARENTHESIS_R = new YggdrasilElementType(")");
   IElementType PLACE_HOLDER = new YggdrasilElementType("_");
@@ -76,20 +80,32 @@ public interface YggdrasilTypes {
       else if (type == CLASS) {
         return new YggdrasilClassNode(node);
       }
+      else if (type == GRAMMAR) {
+        return new YggdrasilGrammarNode(node);
+      }
+      else if (type == GROUP) {
+        return new YggdrasilGroupNode(node);
+      }
       else if (type == IDENTIFIER) {
         return new YggdrasilIdentifierNode(node);
       }
       else if (type == INTERFACE_NAME) {
         return new YggdrasilInterfaceNameNode(node);
       }
+      else if (type == KEY) {
+        return new YggdrasilKeyNode(node);
+      }
       else if (type == MODULE_NAME) {
         return new YggdrasilModuleNameNode(node);
+      }
+      else if (type == NUMBER) {
+        return new YggdrasilNumberNode(node);
       }
       else if (type == ORGANIZATION_NAME) {
         return new YggdrasilOrganizationNameNode(node);
       }
-      else if (type == PACKAGE) {
-        return new YggdrasilPackageNode(node);
+      else if (type == PAIR) {
+        return new YggdrasilPairNode(node);
       }
       else if (type == REGEX) {
         return new YggdrasilRegexNode(node);
@@ -102,6 +118,9 @@ public interface YggdrasilTypes {
       }
       else if (type == UNION) {
         return new YggdrasilUnionNode(node);
+      }
+      else if (type == VALUE) {
+        return new YggdrasilValueNode(node);
       }
       throw new AssertionError("Unknown element type: " + type);
     }
