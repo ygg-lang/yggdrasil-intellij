@@ -32,4 +32,10 @@ public class YggdrasilUnionTermNode extends YggdrasilElement implements Yggdrasi
     return findNotNullChildByClass(YggdrasilExpression.class);
   }
 
+  @Override
+  @Nullable
+  public YggdrasilTagBranch getTagBranch() {
+    return findChildByClass(YggdrasilTagBranch.class);
+  }
+
 }

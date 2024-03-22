@@ -3,8 +3,8 @@ package yggdrasil.language.file
 import com.intellij.codeInsight.lookup.LookupElement
 import com.intellij.psi.PsiNameIdentifierOwner
 import yggdrasil.psi.node.YggdrasilClassNode
-import yggdrasil.psi.node.YggdrasilGroupNode
 import yggdrasil.psi.node.YggdrasilIdentifierNode
+import yggdrasil.psi.node.YggdrasilTokenNode
 import yggdrasil.psi.node.YggdrasilUnionNode
 
 class YggdrasilFileCache(root: YggdrasilFileNode) {
@@ -26,7 +26,7 @@ class YggdrasilFileCache(root: YggdrasilFileNode) {
 //                    child.createLookup(completions)
                 }
 
-                is YggdrasilGroupNode -> {
+                is YggdrasilTokenNode -> {
 //                    for (item in child.findPairs()) {
 //                        _cache[item.name] = item
 //                        item.createLookup(completions)

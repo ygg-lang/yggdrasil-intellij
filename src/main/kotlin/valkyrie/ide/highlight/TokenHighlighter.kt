@@ -34,7 +34,9 @@ class TokenHighlighter : SyntaxHighlighter {
 //
 //            COMMA -> YggdrasilHighlightColor.COMMA
 //            // atom
-//            VERSION -> YggdrasilHighlightColor.NUMBER
+            OP_OR, OP_CONCAT -> HighlightColor.KEYWORD
+
+            PREFIX, SUFFIX -> HighlightColor.KEYWORD
 //
 //            SELECTION_LINE -> YggdrasilHighlightColor.TEXT
 //            STRING_QUOTE, STRING_CHAR -> YggdrasilHighlightColor.STRING
@@ -45,7 +47,7 @@ class TokenHighlighter : SyntaxHighlighter {
 //            COMMENT_LINE -> YggdrasilHighlightColor.LINE_COMMENT
 //            COMMENT_BLOCK -> YggdrasilHighlightColor.BLOCK_COMMENT
 //            COMMENT_DOCUMENT -> YggdrasilHighlightColor.DOC_COMMENT
-                // 错误
+            // 错误
 //            TokenType.BAD_CHARACTER -> YggdrasilHighlightColor.BAD_CHARACTER
 
             else -> null

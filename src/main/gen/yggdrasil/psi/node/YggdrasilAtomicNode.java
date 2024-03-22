@@ -44,4 +44,10 @@ public class YggdrasilAtomicNode extends YggdrasilExpressionNode implements Yggd
     return findChildByClass(YggdrasilRegex.class);
   }
 
+  @Override
+  @Nullable
+  public YggdrasilString getString() {
+    return findChildByClass(YggdrasilString.class);
+  }
+
 }

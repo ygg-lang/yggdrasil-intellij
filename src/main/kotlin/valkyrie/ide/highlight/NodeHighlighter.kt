@@ -9,16 +9,25 @@ import com.intellij.codeInsight.daemon.impl.analysis.HighlightInfoHolder
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import yggdrasil.language.file.YggdrasilFileNode
+import yggdrasil.psi.node.YggdrasilClass
 import yggdrasil.psi.node.YggdrasilGrammar
+import yggdrasil.psi.node.YggdrasilUnion
 import yggdrasil.psi.node.YggdrasilVisitor
 
 class NodeHighlighter : YggdrasilVisitor(), HighlightVisitor {
     private var infoHolder: HighlightInfoHolder? = null
 
     override fun visitGrammar(o: YggdrasilGrammar) {
-        super.visitGrammar(o)
+        o.identifier?.let { highlight(it, HighlightColor.SYM_MACRO) }
     }
 
+    override fun visitClass(o: YggdrasilClass) {
+        o.identifier?.let { highlight(it, HighlightColor.RULE_CLASS) }
+    }
+
+    override fun visitUnion(o: YggdrasilUnion) {
+        o.identifier?.let { highlight(it, HighlightColor.RULE_UNION) }
+    }
 
     private fun highlight(element: PsiElement, color: HighlightColor) {
         val builder = HighlightInfo.newHighlightInfo(HighlightInfoType.INFORMATION)
