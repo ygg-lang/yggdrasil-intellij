@@ -7,7 +7,7 @@ import com.intellij.psi.PsiElement;
 
 public interface YggdrasilClassBody extends PsiElement {
 
-  @NotNull
-  List<YggdrasilClassTerm> getClassTermList();
+  @Nullable
+  YggdrasilExpression getExpression();
 
 }

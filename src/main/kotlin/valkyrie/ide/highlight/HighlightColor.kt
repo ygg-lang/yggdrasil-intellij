@@ -50,6 +50,8 @@ enum class HighlightColor(humanName: Supplier<@AttributeDescriptor String>, defa
     OPERATION(OptionsBundle.messagePointer("options.language.defaults.operation"), Default.OPERATION_SIGN),
     OP_NUMBER(YggdrasilBundle.messagePointer("color.token.number.suffix"), Default.METADATA),
     OP_STRING(YggdrasilBundle.messagePointer("color.token.string.prefix"), Default.KEYWORD),
+    COMMENT_LINE(OptionsBundle.messagePointer("options.language.defaults.line.comment"), Default.LINE_COMMENT),
+    COMMENT_BLOCK(OptionsBundle.messagePointer("options.language.defaults.block.comment"), Default.BLOCK_COMMENT),
     ;
 
     val textAttributesKey: TextAttributesKey = TextAttributesKey.createTextAttributesKey("voml.lang.$name", default)

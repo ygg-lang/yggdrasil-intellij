@@ -77,22 +77,29 @@ private statements ::=
   | class
   | union
   | token
+  | function-define
   | SEMICOLON
+// === annotation statement ===
+annotations ::= attribute* identifier*
+attribute   ::= (AT|HASH) identifier function-parameter? {
+	pin = 2
+    mixin = "yggdrasil.psi.mixin.MixinAttribute"
+}
 // === grammar statement ===
-grammar ::= annotations KW_GRAMMAR identifier BRACE_L BRACE_R {
+grammar ::= annotations KW_GRAMMAR identifier grammar-body {
 	pin = 2
     mixin = "yggdrasil.psi.mixin.MixinGrammar"
 }
-annotations ::= attribute* identifier*
-attribute   ::= (AT|HASH) identifier function-body?;
+grammar-body ::= BRACE_L grammar-term* BRACE_R;
+grammar-term ::= grammar-pair | COMMA | SEMICOLON;
+grammar-pair ::= identifier COLON expression;
 // === class statement ===
 class  ::= annotations KW_CLASS identifier class-cast? class-body {
     pin = 2
     mixin = "yggdrasil.psi.mixin.MixinClass"
 }
 class-cast ::= TO identifier;
-class-body ::= BRACE_L OP_OR? class-term* BRACE_R;
-class-term ::= expression;
+class-body ::= BRACE_L OP_OR? expression? BRACE_R;
 // === union statement ===
 union  ::= annotations KW_UNION identifier union-body {
     pin = 2
@@ -100,6 +107,7 @@ union  ::= annotations KW_UNION identifier union-body {
 }
 union-body ::= BRACE_L union-term* BRACE_R;
 union-term ::= OP_OR expression-hard tag-branch?;
+tag-branch ::= HASH identifier;
 // === group statement ===
 token  ::= annotations KW_GROUP token-body {
     pin = 2
@@ -107,7 +115,20 @@ token  ::= annotations KW_GROUP token-body {
 }
 token-body ::= BRACE_L token-term* BRACE_R;
 token-term ::= annotations COLON expression | SEMICOLON;
+/// === function definition ===
+function-define ::= annotations KW_MACRO identifier function-parameter function-block {
+    pin = 2
+//    mixin = "yggdrasil.psi.mixin.MixinFunction"
+}
+function-parameter ::= PARENTHESIS_L (parameter (COMMA parameter)* COMMA?)? PARENTHESIS_R;
+parameter ::= identifier ((EQ|COLON) expression)? {
 
+}
+function-block ::= BRACE_L OP_OR? expression? BRACE_R;
+// === function statement ===
+function-call ::= AT identifier function-argument?;
+function-argument ::= PARENTHESIS_L (argument (COMMA argument)* COMMA?)? PARENTHESIS_R;
+argument ::= (identifier COLON)? expression;
 // === expression statement ===
 expression ::= expression-hard (OP_OR expression-hard)* {
 
@@ -127,23 +148,18 @@ term ::= prefix* atomic suffix* {
 prefix ::= OP_NOT | OP_AND | OP_REMARK;
 suffix ::= OP_OPTIONAL | OP_MANY | OP_MANY1 | range;
 // === atomic statement ===
-atomic ::= expression-group | identifier | category | string | regex | function-call {
+atomic ::= expression-group | identifier | escape | string | regex | function-call {
     extends = expression
 }
 expression-group ::= PARENTHESIS_L OP_OR? expression PARENTHESIS_R {
     extends = expression
 }
-
-category ::= escape (BRACE_L identifier (EQ identifier)? BRACE_R)? {
+// === atomic statement ===
+escape ::= ESCAPED category? {
 
 }
-// === function statement ===
-function-call ::= AT identifier function-body?;
-function-body ::= PARENTHESIS_L (parameter (COMMA parameter)* COMMA?)? PARENTHESIS_R;
-parameter ::= (identifier COLON)? expression;
-
-escape   ::= ESCAPED
-
+category ::= BRACE_L identifier (EQ identifier)? BRACE_R;
+// === atomic statement ===
 range    ::= BRACE_L COMMA? BRACE_R
            | BRACE_L range-lower COMMA? BRACE_R
            | BRACE_L COMMA range-upper BRACE_R
@@ -159,12 +175,9 @@ regex ::= REGULAR_EXPRESSION | REGULAR_RANGE {
 }
 
 
-tag-branch ::= HASH identifier;
 
-pair ::= key COLON value;
-key ::= identifier;
 
-value ::= identifier | ESCAPED;
+
 
 
 number ::= INTEGER {
@@ -176,13 +189,6 @@ number ::= INTEGER {
 /* Literals */
 
 /* Identifier */
-organization-name   ::= SYMBOL | ESCAPED;
-module-name         ::= SYMBOL | ESCAPED;
-interface-name      ::= SYMBOL | ESCAPED;
-alias-name          ::= SYMBOL | ESCAPED;
-semantic-number     ::= SYMBOL | ESCAPED;
-
-
 identifier          ::= SYMBOL | SYMBOW_RAW {
     mixin = "yggdrasil.psi.mixin.MixinIdentifier"
 }

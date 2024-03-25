@@ -28,8 +28,8 @@ public class YggdrasilFunctionCallNode extends YggdrasilElement implements Yggdr
 
   @Override
   @Nullable
-  public YggdrasilFunctionBody getFunctionBody() {
-    return findChildByClass(YggdrasilFunctionBody.class);
+  public YggdrasilFunctionArgument getFunctionArgument() {
+    return findChildByClass(YggdrasilFunctionArgument.class);
   }
 
   @Override

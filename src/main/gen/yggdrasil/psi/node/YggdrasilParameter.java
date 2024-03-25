@@ -7,10 +7,10 @@ import com.intellij.psi.PsiElement;
 
 public interface YggdrasilParameter extends PsiElement {
 
-  @NotNull
+  @Nullable
   YggdrasilExpression getExpression();
 
-  @Nullable
+  @NotNull
   YggdrasilIdentifier getIdentifier();
 
 }

@@ -10,20 +10,26 @@ import com.intellij.psi.util.PsiTreeUtil;
 import static yggdrasil.psi.YggdrasilTypes.*;
 import yggdrasil.psi.YggdrasilElement;
 
-public class YggdrasilInterfaceNameNode extends YggdrasilElement implements YggdrasilInterfaceName {
+public class YggdrasilFunctionArgumentNode extends YggdrasilElement implements YggdrasilFunctionArgument {
 
-  public YggdrasilInterfaceNameNode(@NotNull ASTNode node) {
+  public YggdrasilFunctionArgumentNode(@NotNull ASTNode node) {
     super(node);
   }
 
   public void accept(@NotNull YggdrasilVisitor visitor) {
-    visitor.visitInterfaceName(this);
+    visitor.visitFunctionArgument(this);
   }
 
   @Override
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof YggdrasilVisitor) accept((YggdrasilVisitor)visitor);
     else super.accept(visitor);
+  }
+
+  @Override
+  @NotNull
+  public List<YggdrasilArgument> getArgumentList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, YggdrasilArgument.class);
   }
 
 }

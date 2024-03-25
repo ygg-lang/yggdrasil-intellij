@@ -27,9 +27,9 @@ public class YggdrasilClassBodyNode extends YggdrasilElement implements Yggdrasi
   }
 
   @Override
-  @NotNull
-  public List<YggdrasilClassTerm> getClassTermList() {
-    return PsiTreeUtil.getChildrenOfTypeAsList(this, YggdrasilClassTerm.class);
+  @Nullable
+  public YggdrasilExpression getExpression() {
+    return findChildByClass(YggdrasilExpression.class);
   }
 
 }

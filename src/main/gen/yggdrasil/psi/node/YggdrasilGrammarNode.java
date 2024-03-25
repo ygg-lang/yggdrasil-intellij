@@ -34,6 +34,12 @@ public class YggdrasilGrammarNode extends MixinGrammar implements YggdrasilGramm
 
   @Override
   @Nullable
+  public YggdrasilGrammarBody getGrammarBody() {
+    return findChildByClass(YggdrasilGrammarBody.class);
+  }
+
+  @Override
+  @Nullable
   public YggdrasilIdentifier getIdentifier() {
     return findChildByClass(YggdrasilIdentifier.class);
   }

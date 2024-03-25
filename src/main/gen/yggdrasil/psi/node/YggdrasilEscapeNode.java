@@ -26,4 +26,10 @@ public class YggdrasilEscapeNode extends YggdrasilElement implements YggdrasilEs
     else super.accept(visitor);
   }
 
+  @Override
+  @Nullable
+  public YggdrasilCategory getCategory() {
+    return findChildByClass(YggdrasilCategory.class);
+  }
+
 }

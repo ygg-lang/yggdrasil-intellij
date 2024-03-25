@@ -8,16 +8,16 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static yggdrasil.psi.YggdrasilTypes.*;
+import yggdrasil.psi.YggdrasilElement;
 
-public class YggdrasilAtomicNode extends YggdrasilExpressionNode implements YggdrasilAtomic {
+public class YggdrasilFunctionDefineNode extends YggdrasilElement implements YggdrasilFunctionDefine {
 
-  public YggdrasilAtomicNode(@NotNull ASTNode node) {
+  public YggdrasilFunctionDefineNode(@NotNull ASTNode node) {
     super(node);
   }
 
-  @Override
   public void accept(@NotNull YggdrasilVisitor visitor) {
-    visitor.visitAtomic(this);
+    visitor.visitFunctionDefine(this);
   }
 
   @Override
@@ -27,33 +27,27 @@ public class YggdrasilAtomicNode extends YggdrasilExpressionNode implements Yggd
   }
 
   @Override
-  @Nullable
-  public YggdrasilEscape getEscape() {
-    return findChildByClass(YggdrasilEscape.class);
+  @NotNull
+  public YggdrasilAnnotations getAnnotations() {
+    return findNotNullChildByClass(YggdrasilAnnotations.class);
   }
 
   @Override
   @Nullable
-  public YggdrasilFunctionCall getFunctionCall() {
-    return findChildByClass(YggdrasilFunctionCall.class);
+  public YggdrasilFunctionBlock getFunctionBlock() {
+    return findChildByClass(YggdrasilFunctionBlock.class);
+  }
+
+  @Override
+  @Nullable
+  public YggdrasilFunctionParameter getFunctionParameter() {
+    return findChildByClass(YggdrasilFunctionParameter.class);
   }
 
   @Override
   @Nullable
   public YggdrasilIdentifier getIdentifier() {
     return findChildByClass(YggdrasilIdentifier.class);
-  }
-
-  @Override
-  @Nullable
-  public YggdrasilRegex getRegex() {
-    return findChildByClass(YggdrasilRegex.class);
-  }
-
-  @Override
-  @Nullable
-  public YggdrasilString getString() {
-    return findChildByClass(YggdrasilString.class);
   }
 
 }

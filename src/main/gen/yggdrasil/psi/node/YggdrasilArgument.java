@@ -5,6 +5,12 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface YggdrasilSemanticNumber extends PsiElement {
+public interface YggdrasilArgument extends PsiElement {
+
+  @NotNull
+  YggdrasilExpression getExpression();
+
+  @Nullable
+  YggdrasilIdentifier getIdentifier();
 
 }

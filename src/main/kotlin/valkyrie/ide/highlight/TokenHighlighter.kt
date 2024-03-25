@@ -31,15 +31,15 @@ class TokenHighlighter : SyntaxHighlighter {
             OP_OR, OP_CONCAT -> HighlightColor.OPERATION
             OP_OPTIONAL, OP_MANY, OP_MANY1 -> HighlightColor.OPERATION
 
+
 //
 //            SELECTION_LINE -> YggdrasilHighlightColor.TEXT
             TEXT_SINGLE, TEXT_DOUBLE -> HighlightColor.STRING
-//            STRING_ESCAPE -> YggdrasilHighlightColor.STRING_ESCAPED
-////            STRING -> AwslColor.STRING
-//            SYMBOL -> YggdrasilHighlightColor.IDENTIFIER
+            ESCAPED -> HighlightColor.STRING_ESCAPED
+            INTEGER -> HighlightColor.INTEGER
 //            // 注释
-//            COMMENT_LINE -> YggdrasilHighlightColor.LINE_COMMENT
-//            COMMENT_BLOCK -> YggdrasilHighlightColor.BLOCK_COMMENT
+            COMMENT_LINE -> HighlightColor.COMMENT_LINE
+            COMMENT_BLOCK -> HighlightColor.COMMENT_BLOCK
 //            COMMENT_DOCUMENT -> YggdrasilHighlightColor.DOC_COMMENT
             // 错误
 //            TokenType.BAD_CHARACTER -> YggdrasilHighlightColor.BAD_CHARACTER

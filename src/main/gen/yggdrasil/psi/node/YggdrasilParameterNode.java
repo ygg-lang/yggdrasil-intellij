@@ -27,15 +27,15 @@ public class YggdrasilParameterNode extends YggdrasilElement implements Yggdrasi
   }
 
   @Override
-  @NotNull
+  @Nullable
   public YggdrasilExpression getExpression() {
-    return findNotNullChildByClass(YggdrasilExpression.class);
+    return findChildByClass(YggdrasilExpression.class);
   }
 
   @Override
-  @Nullable
+  @NotNull
   public YggdrasilIdentifier getIdentifier() {
-    return findChildByClass(YggdrasilIdentifier.class);
+    return findNotNullChildByClass(YggdrasilIdentifier.class);
   }
 
 }
