@@ -90,8 +90,9 @@ class FormatBlock : ASTBlock {
             is YggdrasilGrammarBody -> byCorner
             is YggdrasilClassBody -> byCorner
             is YggdrasilUnionBody -> byCorner
-            is YggdrasilFunctionBody -> byCorner
             is YggdrasilFunctionBlock -> byCorner
+            is YggdrasilFunctionParameter -> byCorner
+            is YggdrasilFunctionArgument -> byCorner
             else -> Indent.getNoneIndent()
         }
     }

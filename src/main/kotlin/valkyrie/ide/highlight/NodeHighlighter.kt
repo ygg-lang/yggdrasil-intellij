@@ -38,6 +38,9 @@ class NodeHighlighter : YggdrasilVisitor(), HighlightVisitor {
         o.identifier?.let { highlight(it, HighlightColor.RULE_UNION) }
     }
 
+    override fun visitGroupItem(o: YggdrasilGroupItem) {
+        o.highlight(this)
+    }
 
     override fun visitTagBranch(o: YggdrasilTagBranch) {
         highlight(o, HighlightColor.TAG_BRANCH)

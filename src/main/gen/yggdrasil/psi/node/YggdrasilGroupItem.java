@@ -5,8 +5,9 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 import com.intellij.codeInsight.lookup.LookupElement;
+import valkyrie.ide.highlight.NodeHighlighter;
 
-public interface YggdrasilTokenItem extends PsiElement {
+public interface YggdrasilGroupItem extends PsiElement {
 
   @NotNull
   List<YggdrasilAttribute> getAttributeList();
@@ -16,6 +17,8 @@ public interface YggdrasilTokenItem extends PsiElement {
 
   @NotNull
   List<YggdrasilIdentifier> getIdentifierList();
+
+  void highlight(@NotNull NodeHighlighter highlighter);
 
   void createLookup(@NotNull List<LookupElement> completions);
 

@@ -33,6 +33,10 @@ public interface YggdrasilTypes {
   IElementType GRAMMAR_BODY = new YggdrasilElementType("GRAMMAR_BODY");
   IElementType GRAMMAR_PAIR = new YggdrasilElementType("GRAMMAR_PAIR");
   IElementType GRAMMAR_TERM = new YggdrasilElementType("GRAMMAR_TERM");
+  IElementType GROUP = new YggdrasilElementType("GROUP");
+  IElementType GROUP_BODY = new YggdrasilElementType("GROUP_BODY");
+  IElementType GROUP_ITEM = new YggdrasilElementType("GROUP_ITEM");
+  IElementType GROUP_TERM = new YggdrasilElementType("GROUP_TERM");
   IElementType IDENTIFIER = new YggdrasilElementType("IDENTIFIER");
   IElementType IDENTIFIER_FREE = new YggdrasilElementType("IDENTIFIER_FREE");
   IElementType NUMBER = new YggdrasilElementType("NUMBER");
@@ -46,10 +50,6 @@ public interface YggdrasilTypes {
   IElementType SUFFIX = new YggdrasilElementType("SUFFIX");
   IElementType TAG_BRANCH = new YggdrasilElementType("TAG_BRANCH");
   IElementType TERM = new YggdrasilElementType("TERM");
-  IElementType TOKEN = new YggdrasilElementType("TOKEN");
-  IElementType TOKEN_BODY = new YggdrasilElementType("TOKEN_BODY");
-  IElementType TOKEN_ITEM = new YggdrasilElementType("TOKEN_ITEM");
-  IElementType TOKEN_TERM = new YggdrasilElementType("TOKEN_TERM");
   IElementType UNION = new YggdrasilElementType("UNION");
   IElementType UNION_BODY = new YggdrasilElementType("UNION_BODY");
   IElementType UNION_TERM = new YggdrasilElementType("UNION_TERM");
@@ -181,6 +181,18 @@ public interface YggdrasilTypes {
       else if (type == GRAMMAR_TERM) {
         return new YggdrasilGrammarTermNode(node);
       }
+      else if (type == GROUP) {
+        return new YggdrasilGroupNode(node);
+      }
+      else if (type == GROUP_BODY) {
+        return new YggdrasilGroupBodyNode(node);
+      }
+      else if (type == GROUP_ITEM) {
+        return new YggdrasilGroupItemNode(node);
+      }
+      else if (type == GROUP_TERM) {
+        return new YggdrasilGroupTermNode(node);
+      }
       else if (type == IDENTIFIER) {
         return new YggdrasilIdentifierNode(node);
       }
@@ -219,18 +231,6 @@ public interface YggdrasilTypes {
       }
       else if (type == TERM) {
         return new YggdrasilTermNode(node);
-      }
-      else if (type == TOKEN) {
-        return new YggdrasilTokenNode(node);
-      }
-      else if (type == TOKEN_BODY) {
-        return new YggdrasilTokenBodyNode(node);
-      }
-      else if (type == TOKEN_ITEM) {
-        return new YggdrasilTokenItemNode(node);
-      }
-      else if (type == TOKEN_TERM) {
-        return new YggdrasilTokenTermNode(node);
       }
       else if (type == UNION) {
         return new YggdrasilUnionNode(node);

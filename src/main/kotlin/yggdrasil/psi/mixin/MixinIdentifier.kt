@@ -1,17 +1,38 @@
 package yggdrasil.psi.mixin
 
 import com.intellij.lang.ASTNode
+import com.intellij.psi.impl.source.tree.SharedImplUtil
 import valkyrie.ide.highlight.HighlightColor
 import valkyrie.ide.highlight.NodeHighlighter
+import valkyrie.ide.reference.declaration.ValkyrieReference
+import yggdrasil.language.file.YggdrasilFileNode
 import yggdrasil.psi.YggdrasilElement
+import yggdrasil.psi.node.YggdrasilClassNode
 import yggdrasil.psi.node.YggdrasilIdentifier
+import yggdrasil.psi.node.YggdrasilIdentifierNode
+import yggdrasil.psi.node.YggdrasilUnionNode
 
 abstract class MixinIdentifier(node: ASTNode) : YggdrasilElement(node),
 
     YggdrasilIdentifier {
 
+    override fun getContainingFile(): YggdrasilFileNode {
+        return SharedImplUtil.getContainingFile(node) as YggdrasilFileNode
+    }
+
     override fun getName(): String? {
         return this.text.trim('`')
+    }
+
+
+    override fun getReference(): ValkyrieReference? {
+        if (this.parent is YggdrasilClassNode) {
+            return null
+        }
+        if (this.parent is YggdrasilUnionNode) {
+            return null
+        }
+        return ValkyrieReference(this as YggdrasilIdentifierNode)
     }
 
 
@@ -26,6 +47,12 @@ abstract class MixinIdentifier(node: ASTNode) : YggdrasilElement(node),
             -> highlighter.highlight(this, HighlightColor.SYM_CONSTANT)
 
             else -> {
+                if (this.reference != null) {
+                    this.reference!!.highlight(highlighter)
+                } else {
+
+                }
+
 
             }
         }
