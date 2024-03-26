@@ -8,34 +8,22 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static yggdrasil.psi.YggdrasilTypes.*;
-import yggdrasil.psi.mixin.MixinAttribute;
 
-public class YggdrasilAttributeNode extends MixinAttribute implements YggdrasilAttribute {
+public class YggdrasilIdentifierFreeNode extends YggdrasilIdentifierNode implements YggdrasilIdentifierFree {
 
-  public YggdrasilAttributeNode(@NotNull ASTNode node) {
+  public YggdrasilIdentifierFreeNode(@NotNull ASTNode node) {
     super(node);
   }
 
+  @Override
   public void accept(@NotNull YggdrasilVisitor visitor) {
-    visitor.visitAttribute(this);
+    visitor.visitIdentifierFree(this);
   }
 
   @Override
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof YggdrasilVisitor) accept((YggdrasilVisitor)visitor);
     else super.accept(visitor);
-  }
-
-  @Override
-  @Nullable
-  public YggdrasilFunctionArgument getFunctionArgument() {
-    return findChildByClass(YggdrasilFunctionArgument.class);
-  }
-
-  @Override
-  @NotNull
-  public YggdrasilIdentifier getIdentifier() {
-    return findNotNullChildByClass(YggdrasilIdentifier.class);
   }
 
 }

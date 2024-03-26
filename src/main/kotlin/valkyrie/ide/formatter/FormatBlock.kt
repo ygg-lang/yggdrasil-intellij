@@ -8,6 +8,7 @@ import com.intellij.psi.formatter.FormatterUtil
 import yggdrasil.antlr.isWhitespaceOrEmpty
 import yggdrasil.language.psi.ValkyrieAlignmentElement
 import yggdrasil.psi.node.YggdrasilClassBody
+import yggdrasil.psi.node.YggdrasilFunctionBlock
 import yggdrasil.psi.node.YggdrasilFunctionBody
 import yggdrasil.psi.node.YggdrasilGrammarBody
 import yggdrasil.psi.node.YggdrasilUnionBody
@@ -94,6 +95,7 @@ class FormatBlock : ASTBlock {
             is YggdrasilClassBody -> byCorner
             is YggdrasilUnionBody -> byCorner
             is YggdrasilFunctionBody -> byCorner
+            is YggdrasilFunctionBlock -> byCorner
             else -> Indent.getNoneIndent()
         }
     }

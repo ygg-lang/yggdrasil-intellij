@@ -4,10 +4,13 @@ package yggdrasil.psi.node;
 import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
-import valkyrie.ide.highlight.NodeHighlighter;
 
-public interface YggdrasilIdentifier extends PsiElement {
+public interface YggdrasilArgumentValue extends PsiElement {
 
-  void highlight(@NotNull NodeHighlighter highlighter);
+  @Nullable
+  YggdrasilExpression getExpression();
+
+  @Nullable
+  YggdrasilNumber getNumber();
 
 }

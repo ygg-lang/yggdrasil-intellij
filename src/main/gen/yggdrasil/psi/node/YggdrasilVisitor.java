@@ -15,6 +15,10 @@ public class YggdrasilVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitArgumentValue(@NotNull YggdrasilArgumentValue o) {
+    visitPsiElement(o);
+  }
+
   public void visitAtomic(@NotNull YggdrasilAtomic o) {
     visitExpression(o);
   }
@@ -105,6 +109,10 @@ public class YggdrasilVisitor extends PsiElementVisitor {
 
   public void visitIdentifier(@NotNull YggdrasilIdentifier o) {
     visitPsiElement(o);
+  }
+
+  public void visitIdentifierFree(@NotNull YggdrasilIdentifierFree o) {
+    visitIdentifier(o);
   }
 
   public void visitNumber(@NotNull YggdrasilNumber o) {

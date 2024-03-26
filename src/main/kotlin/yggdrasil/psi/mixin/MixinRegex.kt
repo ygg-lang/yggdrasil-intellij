@@ -33,17 +33,11 @@ abstract class MixinRegex(node: ASTNode) : YggdrasilElement(node), PsiLanguageIn
 
     fun injectPerform(r: MultiHostRegistrar) {
         if (text.startsWith('/')) {
-            r.startInjecting(RegExpLanguage.INSTANCE).addPlace("(?x)", null, this, innerRange()).doneInjecting()
+            val range = TextRange(1, textLength - 1);
+            r.startInjecting(RegExpLanguage.INSTANCE).addPlace("(?x)", null, this, range).doneInjecting()
         } else {
-            r.startInjecting(RegExpLanguage.INSTANCE).addPlace(null, null, this, innerRange()).doneInjecting()
-        }
-    }
-
-    fun innerRange(): TextRange {
-        return if (text.startsWith('/')) {
-            TextRange(1, textLength - 1)
-        } else {
-            TextRange(0, textLength)
+            val range = TextRange(0, textLength);
+            r.startInjecting(RegExpLanguage.INSTANCE).addPlace(null, null, this, range).doneInjecting()
         }
     }
 }

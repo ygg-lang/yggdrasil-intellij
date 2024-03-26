@@ -14,7 +14,8 @@ abstract class MixinIdentifier(node: ASTNode) : YggdrasilElement(node),
         return this.text.trim('`')
     }
 
-    fun highlight(highlighter: NodeHighlighter) {
+
+    override fun highlight(highlighter: NodeHighlighter) {
         return when (this.text) {
             "HIDE", "ANY", "INDENT", "DEDENT" -> highlighter.highlight(this, HighlightColor.SYM_MACRO)
             "SOI", "START_OF_INPUT",

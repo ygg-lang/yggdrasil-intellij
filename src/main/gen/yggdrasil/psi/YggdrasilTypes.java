@@ -10,6 +10,7 @@ public interface YggdrasilTypes {
 
   IElementType ANNOTATIONS = new YggdrasilElementType("ANNOTATIONS");
   IElementType ARGUMENT = new YggdrasilElementType("ARGUMENT");
+  IElementType ARGUMENT_VALUE = new YggdrasilElementType("ARGUMENT_VALUE");
   IElementType ATOMIC = new YggdrasilElementType("ATOMIC");
   IElementType ATTRIBUTE = new YggdrasilElementType("ATTRIBUTE");
   IElementType CATEGORY = new YggdrasilElementType("CATEGORY");
@@ -33,6 +34,7 @@ public interface YggdrasilTypes {
   IElementType GRAMMAR_PAIR = new YggdrasilElementType("GRAMMAR_PAIR");
   IElementType GRAMMAR_TERM = new YggdrasilElementType("GRAMMAR_TERM");
   IElementType IDENTIFIER = new YggdrasilElementType("IDENTIFIER");
+  IElementType IDENTIFIER_FREE = new YggdrasilElementType("IDENTIFIER_FREE");
   IElementType NUMBER = new YggdrasilElementType("NUMBER");
   IElementType PARAMETER = new YggdrasilElementType("PARAMETER");
   IElementType PREFIX = new YggdrasilElementType("PREFIX");
@@ -112,6 +114,9 @@ public interface YggdrasilTypes {
       else if (type == ARGUMENT) {
         return new YggdrasilArgumentNode(node);
       }
+      else if (type == ARGUMENT_VALUE) {
+        return new YggdrasilArgumentValueNode(node);
+      }
       else if (type == ATOMIC) {
         return new YggdrasilAtomicNode(node);
       }
@@ -177,6 +182,9 @@ public interface YggdrasilTypes {
       }
       else if (type == IDENTIFIER) {
         return new YggdrasilIdentifierNode(node);
+      }
+      else if (type == IDENTIFIER_FREE) {
+        return new YggdrasilIdentifierFreeNode(node);
       }
       else if (type == NUMBER) {
         return new YggdrasilNumberNode(node);

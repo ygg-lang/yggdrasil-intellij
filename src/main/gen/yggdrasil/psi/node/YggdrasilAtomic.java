@@ -14,7 +14,7 @@ public interface YggdrasilAtomic extends YggdrasilExpression {
   YggdrasilFunctionCall getFunctionCall();
 
   @Nullable
-  YggdrasilIdentifier getIdentifier();
+  YggdrasilIdentifierFree getIdentifierFree();
 
   @Nullable
   YggdrasilRegex getRegex();

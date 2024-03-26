@@ -45,8 +45,7 @@ class NodeHighlighter : YggdrasilVisitor(), HighlightVisitor {
 
 
     override fun visitAtomic(o: YggdrasilAtomic) {
-        val id = o.identifier as? YggdrasilIdentifierNode
-        id?.highlight(this)
+        o.identifierFree?.highlight(this)
     }
 
     override fun visitCategory(o: YggdrasilCategory) {

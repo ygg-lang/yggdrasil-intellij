@@ -81,7 +81,7 @@ private statements ::=
   | SEMICOLON
 // === annotation statement ===
 annotations ::= attribute* identifier*
-attribute   ::= (AT|HASH) identifier function-parameter? {
+attribute   ::= (AT|HASH) identifier function-argument? {
 	pin = 2
     mixin = "yggdrasil.psi.mixin.MixinAttribute"
 }
@@ -130,7 +130,8 @@ function-call ::= AT identifier function-argument? {
     pin = 1
 }
 function-argument ::= PARENTHESIS_L (argument (COMMA argument)* COMMA?)? PARENTHESIS_R;
-argument ::= (identifier COLON)? expression;
+argument ::= (identifier COLON)? argument-value;
+argument-value ::= expression | number;
 // === expression statement ===
 expression ::= expression-choice {
 
@@ -153,7 +154,7 @@ term ::= prefix* atomic suffix* {
 prefix ::= OP_NOT | OP_AND | OP_REMARK;
 suffix ::= OP_OPTIONAL | OP_MANY | OP_MANY1 | range;
 // === atomic statement ===
-atomic ::= expression-group | identifier | escape | string | regex | function-call {
+atomic ::= expression-group | identifier-free | escape | string | regex | function-call {
     extends = expression
 }
 expression-group ::= PARENTHESIS_L OP_OR? expression PARENTHESIS_R {
@@ -196,4 +197,8 @@ number ::= INTEGER {
 /* Identifier */
 identifier          ::= SYMBOL | SYMBOW_RAW {
     mixin = "yggdrasil.psi.mixin.MixinIdentifier"
+    methods=[highlight]
+}
+identifier-free     ::= SYMBOL | SYMBOW_RAW | KW_MACRO {
+    extends = identifier
 }

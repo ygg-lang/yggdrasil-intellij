@@ -29,7 +29,7 @@ REGULAR_EXPRESSION = \/([^\/\\]|\\.)+\/
 REGULAR_RANGE      = \[[^\]]*\]
 COMMENT_LINE       = [/]{2}[^\r\n]*
 COMMENT_BLOCK      = [/][*][^*]*[*]+([^/*][^*]*[*]+)*[/]
-TEXT_SINGLE        = '([^']|\\.)*'
+TEXT_SINGLE        = '([^'])*'
 TEXT_DOUBLE        = \"([^\"]|\\.)*\"
 
 INTEGER = [0-9]+
@@ -67,7 +67,7 @@ KW_MACRO = macro|function|func|fun|fn|def
     "->" { return TO; }
     "|" { return OP_OR;}
     "~" { return OP_CONCAT;}
-	"^" { return OP_REMARK; }
+
 	":" { return COLON; }
 	";" { return SEMICOLON; }
 	"#" { return HASH; }
@@ -78,6 +78,9 @@ KW_MACRO = macro|function|func|fun|fn|def
 	"," { return COMMA; }
 	"-" { return HYPHEN; }
 	"=" { return EQ; }
+
+	"^" { return OP_REMARK; }
+    "!" { return OP_NOT; }
 
     "?" { return OP_OPTIONAL; }
     "*" { return OP_MANY; }

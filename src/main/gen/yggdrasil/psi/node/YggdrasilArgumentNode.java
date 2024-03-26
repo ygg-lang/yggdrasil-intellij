@@ -28,8 +28,8 @@ public class YggdrasilArgumentNode extends YggdrasilElement implements Yggdrasil
 
   @Override
   @NotNull
-  public YggdrasilExpression getExpression() {
-    return findNotNullChildByClass(YggdrasilExpression.class);
+  public YggdrasilArgumentValue getArgumentValue() {
+    return findNotNullChildByClass(YggdrasilArgumentValue.class);
   }
 
   @Override
