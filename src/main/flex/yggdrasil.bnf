@@ -126,12 +126,17 @@ parameter ::= identifier ((EQ|COLON) expression)? {
 }
 function-block ::= BRACE_L OP_OR? expression? BRACE_R;
 // === function statement ===
-function-call ::= AT identifier function-argument?;
+function-call ::= AT identifier function-argument? {
+    pin = 1
+}
 function-argument ::= PARENTHESIS_L (argument (COMMA argument)* COMMA?)? PARENTHESIS_R;
 argument ::= (identifier COLON)? expression;
 // === expression statement ===
-expression ::= expression-hard (OP_OR expression-hard)* {
+expression ::= expression-choice {
 
+};
+expression-choice ::= expression-hard (OP_OR expression-hard)* {
+    extends = expression
 }
 expression-hard ::= expression-soft (OP_CONCAT expression-soft)* {
     extends = expression

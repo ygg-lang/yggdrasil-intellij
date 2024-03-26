@@ -33,9 +33,9 @@ public class YggdrasilFunctionCallNode extends YggdrasilElement implements Yggdr
   }
 
   @Override
-  @NotNull
+  @Nullable
   public YggdrasilIdentifier getIdentifier() {
-    return findNotNullChildByClass(YggdrasilIdentifier.class);
+    return findChildByClass(YggdrasilIdentifier.class);
   }
 
 }

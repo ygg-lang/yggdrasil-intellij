@@ -18,6 +18,7 @@ public interface YggdrasilTypes {
   IElementType CLASS_CAST = new YggdrasilElementType("CLASS_CAST");
   IElementType ESCAPE = new YggdrasilElementType("ESCAPE");
   IElementType EXPRESSION = new YggdrasilElementType("EXPRESSION");
+  IElementType EXPRESSION_CHOICE = new YggdrasilElementType("EXPRESSION_CHOICE");
   IElementType EXPRESSION_GROUP = new YggdrasilElementType("EXPRESSION_GROUP");
   IElementType EXPRESSION_HARD = new YggdrasilElementType("EXPRESSION_HARD");
   IElementType EXPRESSION_SOFT = new YggdrasilElementType("EXPRESSION_SOFT");
@@ -132,8 +133,8 @@ public interface YggdrasilTypes {
       else if (type == ESCAPE) {
         return new YggdrasilEscapeNode(node);
       }
-      else if (type == EXPRESSION) {
-        return new YggdrasilExpressionNode(node);
+      else if (type == EXPRESSION_CHOICE) {
+        return new YggdrasilExpressionChoiceNode(node);
       }
       else if (type == EXPRESSION_GROUP) {
         return new YggdrasilExpressionGroupNode(node);

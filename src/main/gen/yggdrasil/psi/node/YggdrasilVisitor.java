@@ -47,6 +47,10 @@ public class YggdrasilVisitor extends PsiElementVisitor {
     visitPsiElement(o);
   }
 
+  public void visitExpressionChoice(@NotNull YggdrasilExpressionChoice o) {
+    visitExpression(o);
+  }
+
   public void visitExpressionGroup(@NotNull YggdrasilExpressionGroup o) {
     visitExpression(o);
   }

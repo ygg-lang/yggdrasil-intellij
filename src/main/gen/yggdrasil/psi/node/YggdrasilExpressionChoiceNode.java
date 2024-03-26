@@ -8,22 +8,28 @@ import com.intellij.psi.PsiElement;
 import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static yggdrasil.psi.YggdrasilTypes.*;
-import yggdrasil.psi.YggdrasilElement;
 
-public abstract class YggdrasilExpressionNode extends YggdrasilElement implements YggdrasilExpression {
+public class YggdrasilExpressionChoiceNode extends YggdrasilExpressionNode implements YggdrasilExpressionChoice {
 
-  public YggdrasilExpressionNode(@NotNull ASTNode node) {
+  public YggdrasilExpressionChoiceNode(@NotNull ASTNode node) {
     super(node);
   }
 
+  @Override
   public void accept(@NotNull YggdrasilVisitor visitor) {
-    visitor.visitExpression(this);
+    visitor.visitExpressionChoice(this);
   }
 
   @Override
   public void accept(@NotNull PsiElementVisitor visitor) {
     if (visitor instanceof YggdrasilVisitor) accept((YggdrasilVisitor)visitor);
     else super.accept(visitor);
+  }
+
+  @Override
+  @NotNull
+  public List<YggdrasilExpression> getExpressionList() {
+    return PsiTreeUtil.getChildrenOfTypeAsList(this, YggdrasilExpression.class);
   }
 
 }
