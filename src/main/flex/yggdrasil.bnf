@@ -97,6 +97,7 @@ grammar-pair ::= identifier COLON expression;
 class  ::= annotations KW_CLASS identifier class-cast? OP_REMARK? class-body {
     pin = 2
     mixin = "yggdrasil.psi.mixin.MixinClass"
+    methods=[createLookup]
 }
 class-cast ::= TO identifier;
 class-body ::= BRACE_L OP_OR? expression? BRACE_R;
@@ -104,6 +105,7 @@ class-body ::= BRACE_L OP_OR? expression? BRACE_R;
 union  ::= annotations KW_UNION identifier union-body {
     pin = 2
     mixin = "yggdrasil.psi.mixin.MixinUnion"
+    methods=[createLookup]
 }
 union-body ::= BRACE_L union-term* BRACE_R;
 union-term ::= OP_OR expression-hard tag-branch?;
@@ -112,10 +114,14 @@ tag-branch ::= HASH identifier;
 token  ::= annotations KW_GROUP identifier-free? token-body {
     pin = 2
     mixin = "yggdrasil.psi.mixin.MixinGroup"
+    methods=[createLookup getTokenList]
 }
 token-body ::= BRACE_L token-term* BRACE_R;
 token-term ::= token-item | SEMICOLON;
-token-item ::= attribute* identifier* EQ expression;
+token-item ::= attribute* identifier* EQ expression {
+    mixin = "yggdrasil.psi.mixin.MixinTokenItem"
+    methods=[createLookup]
+}
 /// === function definition ===
 function-define ::= annotations KW_MACRO identifier function-parameter function-block {
     pin = 2

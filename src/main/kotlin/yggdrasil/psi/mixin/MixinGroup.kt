@@ -9,11 +9,27 @@ import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNameIdentifierOwner
 import yggdrasil.psi.YggdrasilElement
 import yggdrasil.psi.node.YggdrasilToken
+import yggdrasil.psi.node.YggdrasilTokenItemNode
 
 abstract class MixinGroup(node: ASTNode) : YggdrasilElement(node),
     NavigatablePsiElement,
     PsiNameIdentifierOwner,
     YggdrasilToken {
+
+    override fun getTokenList(): MutableList<YggdrasilTokenItemNode> {
+        if (tokenBody == null) {
+            return mutableListOf()
+        }
+        val items = mutableListOf<YggdrasilTokenItemNode>()
+        for (item in tokenBody!!.tokenTermList) {
+            if (item is YggdrasilTokenItemNode) {
+                items.add(item)
+            }
+        }
+        return items;
+    }
+
+
     override fun setName(name: String): PsiElement {
         TODO("Not yet implemented")
     }
@@ -26,3 +42,4 @@ abstract class MixinGroup(node: ASTNode) : YggdrasilElement(node),
         return PresentationData("YggdrasilClass", "YggdrasilClass", AllIcons.Nodes.Class, null)
     }
 }
+

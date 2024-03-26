@@ -15,26 +15,27 @@ class YggdrasilFileCache(root: YggdrasilFileNode) {
         for (child in root.children) {
             when (child) {
                 is YggdrasilClassNode -> {
-//                    val name = child.name;
-//                    _cache[name] = child
-//                    child.createLookup(completions)
+                    val name = child.name;
+                    _cache[name] = child
+                    child.createLookup(completions)
                 }
 
                 is YggdrasilUnionNode -> {
-//                    val name = child.name;
-//                    _cache[name] = child
-//                    child.createLookup(completions)
+                    val name = child.name;
+                    _cache[name] = child
+                    child.createLookup(completions)
                 }
 
                 is YggdrasilTokenNode -> {
-//                    for (item in child.findPairs()) {
-//                        _cache[item.name] = item
-//                        item.createLookup(completions)
-//                    }
+                    for (item in child.tokenList) {
+                        _cache[item.name] = item
+                        item.createLookup(completions)
+                    }
                 }
             }
         }
     }
+
 
     fun find(name: YggdrasilIdentifierNode?): PsiNameIdentifierOwner? {
         return _cache[name?.text]

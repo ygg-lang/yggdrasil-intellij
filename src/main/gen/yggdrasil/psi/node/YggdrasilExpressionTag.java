@@ -1,15 +1,16 @@
 // This is a generated file. Not intended for manual editing.
 package yggdrasil.psi.node;
 
-import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
+import java.util.List;
+import org.jetbrains.annotations.*;
+import com.intellij.psi.PsiElement;
 
 public interface YggdrasilExpressionTag extends YggdrasilExpression {
 
-    @NotNull
-    YggdrasilExpression getExpression();
+  @NotNull
+  YggdrasilExpression getExpression();
 
-    @Nullable
-    YggdrasilIdentifierFree getIdentifierFree();
+  @Nullable
+  YggdrasilIdentifierFree getIdentifierFree();
 
 }
