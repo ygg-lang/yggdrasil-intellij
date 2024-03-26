@@ -1,7 +1,7 @@
 <!-- Plugin description -->
 
 
-Intellij plugin for [Yggdrasil](https://github.com/ygg-lang/project-yggdrasil), support all IDEs.
+A [Yggdrasil Language](https://github.com/ygg-lang/project-yggdrasil) plugin for IntelliJ-based IDEs,
 
 ## Features
 

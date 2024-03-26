@@ -9,6 +9,7 @@ import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.util.PsiTreeUtil;
 import static yggdrasil.psi.YggdrasilTypes.*;
 import yggdrasil.psi.mixin.MixinAttribute;
+import valkyrie.ide.highlight.NodeHighlighter;
 
 public class YggdrasilAttributeNode extends MixinAttribute implements YggdrasilAttribute {
 
