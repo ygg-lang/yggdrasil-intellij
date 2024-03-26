@@ -94,7 +94,7 @@ grammar-body ::= BRACE_L grammar-term* BRACE_R;
 grammar-term ::= grammar-pair | COMMA | SEMICOLON;
 grammar-pair ::= identifier COLON expression;
 // === class statement ===
-class  ::= annotations KW_CLASS identifier class-cast? class-body {
+class  ::= annotations KW_CLASS identifier class-cast? OP_REMARK? class-body {
     pin = 2
     mixin = "yggdrasil.psi.mixin.MixinClass"
 }
@@ -109,12 +109,13 @@ union-body ::= BRACE_L union-term* BRACE_R;
 union-term ::= OP_OR expression-hard tag-branch?;
 tag-branch ::= HASH identifier;
 // === group statement ===
-token  ::= annotations KW_GROUP token-body {
+token  ::= annotations KW_GROUP identifier-free? token-body {
     pin = 2
     mixin = "yggdrasil.psi.mixin.MixinGroup"
 }
 token-body ::= BRACE_L token-term* BRACE_R;
-token-term ::= annotations COLON expression | SEMICOLON;
+token-term ::= token-item | SEMICOLON;
+token-item ::= attribute* identifier* EQ expression;
 /// === function definition ===
 function-define ::= annotations KW_MACRO identifier function-parameter function-block {
     pin = 2
@@ -145,7 +146,7 @@ expression-hard ::= expression-soft (OP_CONCAT expression-soft)* {
 expression-soft ::= expression-tag expression-tag* {
     extends = expression
 }
-expression-tag ::= (identifier COLON)? term {
+expression-tag ::= (identifier-free COLON)? term {
     extends = expression
 }
 term ::= prefix* atomic suffix* {
@@ -199,6 +200,6 @@ identifier          ::= SYMBOL | SYMBOW_RAW {
     mixin = "yggdrasil.psi.mixin.MixinIdentifier"
     methods=[highlight]
 }
-identifier-free     ::= SYMBOL | SYMBOW_RAW | KW_MACRO {
+identifier-free     ::= SYMBOL | SYMBOW_RAW | KW_MACRO | KW_CLASS | KW_UNION | KW_GROUP | KW_GRAMMAR | KW_IMPORT | KW_AS | KW_CLIMB {
     extends = identifier
 }

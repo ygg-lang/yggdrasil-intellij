@@ -1,4 +1,4 @@
 {
-    lambda($args$)
-    $block$
+lambda($args$)
+$block$
 }

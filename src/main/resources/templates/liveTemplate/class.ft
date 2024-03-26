@@ -1,8 +1,8 @@
 #derive(Default, Debug, Serde)
 class $Class$ {
-    $fields$
+$fields$
 }
 
 extends $Class$ {
-    $functions$
+$functions$
 }
