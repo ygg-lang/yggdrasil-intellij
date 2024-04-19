@@ -26,7 +26,7 @@ repositories {
 // Dependencies are managed with Gradle version catalog - read more: https://docs.gradle.org/current/userguide/platforms.html#sub:version-catalog
 dependencies {
     // https://jitpack.io/#ballerina-platform/lsp4intellij
-    implementation("com.github.ballerina-platform:lsp4intellij:0.95.2")
+    implementation("com.github.ballerina-platform:lsp4intellij:0.96.0")
 }
 
 // Set the JVM language level used to build the project.
