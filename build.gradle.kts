@@ -20,13 +20,11 @@ sourceSets["main"].java.srcDirs("src/main/gen")
 // Configure project's dependencies
 repositories {
     mavenCentral()
-    maven(url = "https://jitpack.io")
 }
 
 // Dependencies are managed with Gradle version catalog - read more: https://docs.gradle.org/current/userguide/platforms.html#sub:version-catalog
 dependencies {
-    // https://jitpack.io/#ballerina-platform/lsp4intellij
-    implementation("com.github.ballerina-platform:lsp4intellij:0.95.2")
+
 }
 
 // Set the JVM language level used to build the project.

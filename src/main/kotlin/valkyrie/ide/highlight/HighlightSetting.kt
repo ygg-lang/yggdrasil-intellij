@@ -18,7 +18,7 @@ class HighlightSetting : ColorSettingsPage {
 
     override fun getDisplayName() = yggdrasil.language.YggdrasilBundle.message("filetype.name")
 
-    override fun getIcon() = YggdrasilIconProvider.Instance.File
+    override fun getIcon() = YggdrasilIconProvider.Instance.Yggdrasil
 
     override fun getHighlighter() = TokenHighlighter()
 

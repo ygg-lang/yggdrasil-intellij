@@ -11,6 +11,6 @@ object YggdrasilFileType : LanguageFileType(YggdrasilLanguage) {
 
     override fun getDefaultExtension(): String = "ygg;yggdrasil;"
 
-    override fun getIcon(): Icon = YggdrasilIconProvider.Instance.File
+    override fun getIcon(): Icon = YggdrasilIconProvider.Instance.Yggdrasil
 
 }

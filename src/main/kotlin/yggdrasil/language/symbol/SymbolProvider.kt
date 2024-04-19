@@ -13,7 +13,7 @@ object SymbolProvider : SymbolDeclarationPresentationProvider<ValkyrieDeclared> 
             }
 
             override fun getIcon(unused: Boolean): Icon? {
-                return YggdrasilIconProvider.Instance.File
+                return YggdrasilIconProvider.Instance.Yggdrasil
             }
         }
     }
