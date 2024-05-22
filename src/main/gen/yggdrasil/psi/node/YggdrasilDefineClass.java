@@ -6,15 +6,18 @@ import java.util.List;
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
-public interface YggdrasilDefineUnion extends PsiElement {
+public interface YggdrasilDefineClass extends PsiElement {
 
     @NotNull
     YggdrasilAnnotations getAnnotations();
 
     @Nullable
-    YggdrasilIdentifier getIdentifier();
+    YggdrasilClassBody getClassBody();
 
     @Nullable
-    YggdrasilUnionBody getUnionBody();
+    YggdrasilClassCast getClassCast();
+
+    @Nullable
+    YggdrasilIdentifier getIdentifier();
 
 }

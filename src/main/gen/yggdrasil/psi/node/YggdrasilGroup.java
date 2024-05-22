@@ -2,21 +2,22 @@
 package yggdrasil.psi.node;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface YggdrasilGroup extends PsiElement {
 
-  @NotNull
-  YggdrasilAnnotations getAnnotations();
+    @NotNull
+    YggdrasilAnnotations getAnnotations();
 
-  @Nullable
-  YggdrasilGroupBody getGroupBody();
+    @Nullable
+    YggdrasilGroupBody getGroupBody();
 
-  @Nullable
-  YggdrasilIdentifier getIdentifier();
+    @Nullable
+    YggdrasilIdentifier getIdentifier();
 
-  @NotNull
-  List<YggdrasilGroupItemNode> getTokenList();
+    @NotNull
+    List<YggdrasilGroupItemNode> getTokenList();
 
 }

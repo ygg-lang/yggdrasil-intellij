@@ -2,18 +2,19 @@
 package yggdrasil.psi.node;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 import valkyrie.ide.highlight.NodeHighlighter;
 
 public interface YggdrasilAttribute extends PsiElement {
 
-  @NotNull
-  YggdrasilIdentifier getIdentifier();
+    @NotNull
+    YggdrasilIdentifier getIdentifier();
 
-  @Nullable
-  YggdrasilTuple getTuple();
+    @Nullable
+    YggdrasilTuple getTuple();
 
-  void highlight(@NotNull NodeHighlighter visitor);
+    void highlight(@NotNull NodeHighlighter visitor);
 
 }

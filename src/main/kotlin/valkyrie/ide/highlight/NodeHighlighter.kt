@@ -32,8 +32,8 @@ class NodeHighlighter : YggdrasilVisitor(), HighlightVisitor {
         o.highlight(this)
     }
 
-    override fun visitClass(o: YggdrasilClass) {
-        o.identifier?.let { highlight(it, HighlightColor.RULE_CLASS) }
+    override fun visitDefineClass(o: YggdrasilDefineClass) {
+        highlight(o.identifier, HighlightColor.RULE_CLASS)
     }
 
     override fun visitDefineUnion(o: YggdrasilDefineUnion) {
@@ -89,7 +89,10 @@ class NodeHighlighter : YggdrasilVisitor(), HighlightVisitor {
         highlight(o.lastChild, HighlightColor.OPERATION)
     }
 
-    fun highlight(element: PsiElement, color: HighlightColor) {
+    fun highlight(element: PsiElement?, color: HighlightColor) {
+        if (element == null) {
+            return
+        }
         val builder = HighlightInfo.newHighlightInfo(HighlightInfoType.INFORMATION)
         builder.textAttributes(color.textAttributesKey)
         builder.range(element)

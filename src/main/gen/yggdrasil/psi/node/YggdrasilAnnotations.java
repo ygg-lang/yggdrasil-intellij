@@ -2,15 +2,16 @@
 package yggdrasil.psi.node;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface YggdrasilAnnotations extends PsiElement {
 
-  @NotNull
-  List<YggdrasilAttribute> getAttributeList();
+    @NotNull
+    List<YggdrasilAttribute> getAttributeList();
 
-  @NotNull
-  List<YggdrasilModifier> getModifierList();
+    @NotNull
+    List<YggdrasilModifier> getModifierList();
 
 }

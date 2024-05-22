@@ -3,7 +3,7 @@ package valkyrie.ide.line_marker
 import com.intellij.codeInsight.daemon.LineMarkerInfo
 import com.intellij.icons.AllIcons
 import com.intellij.psi.PsiElement
-import yggdrasil.psi.node.YggdrasilClass
+import yggdrasil.psi.node.YggdrasilDefineClass
 import yggdrasil.psi.node.YggdrasilDefineFunction
 import yggdrasil.psi.node.YggdrasilDefineUnion
 import yggdrasil.psi.node.YggdrasilVisitor
@@ -16,7 +16,7 @@ class YggdrasilLineMarkerVisitor : YggdrasilVisitor {
         this.marks = result
     }
 
-    override fun visitClass(o: YggdrasilClass) {
+    override fun visitDefineClass(o: YggdrasilDefineClass) {
         mark(o.identifier?.firstChild, AllIcons.Nodes.Class)
     }
 
