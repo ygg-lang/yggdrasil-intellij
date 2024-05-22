@@ -7,7 +7,7 @@ import com.intellij.lang.ASTNode
 import com.intellij.navigation.ItemPresentation
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiNameIdentifierOwner
-import com.intellij.refactoring.suggested.startOffset
+import com.intellij.psi.util.startOffset
 import yggdrasil.psi.node.YggdrasilIdentifierNode
 import javax.swing.Icon
 

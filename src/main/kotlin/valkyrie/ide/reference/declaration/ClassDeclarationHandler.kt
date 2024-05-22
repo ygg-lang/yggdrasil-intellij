@@ -4,8 +4,8 @@ package valkyrie.ide.reference.declaration
 //import nexus.language.psi_node.ValkyrieClassStatementNode
 import com.intellij.codeInsight.hint.DeclarationRangeHandler
 import com.intellij.openapi.util.TextRange
-import com.intellij.refactoring.suggested.endOffset
-import com.intellij.refactoring.suggested.startOffset
+import com.intellij.psi.util.endOffset
+import com.intellij.psi.util.startOffset
 import yggdrasil.psi.node.YggdrasilDefineClass
 
 
