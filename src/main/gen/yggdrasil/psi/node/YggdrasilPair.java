@@ -2,15 +2,16 @@
 package yggdrasil.psi.node;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface YggdrasilPair extends PsiElement {
 
-  @NotNull
-  YggdrasilKey getKey();
+    @NotNull
+    YggdrasilKey getKey();
 
-  @NotNull
-  YggdrasilValue getValue();
+    @NotNull
+    YggdrasilValue getValue();
 
 }

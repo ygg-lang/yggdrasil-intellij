@@ -7,7 +7,7 @@ import com.intellij.openapi.progress.ProgressManager
 import com.intellij.psi.util.parents
 import com.intellij.util.ProcessingContext
 import yggdrasil.language.file.YggdrasilFileNode
-import yggdrasil.psi.node.YggdrasilClassNode
+import yggdrasil.psi.node.YggdrasilDefineClass
 import yggdrasil.psi.node.YggdrasilDefineUnion
 
 
@@ -36,7 +36,7 @@ class CompletionRegistrar : CompletionContributor() {
                     return
                 }
 
-                is YggdrasilClassNode -> {
+                is YggdrasilDefineClass -> {
                     CompletionInClassScope().addCompletionVariants(parameters, context, result)
                     return
                 }

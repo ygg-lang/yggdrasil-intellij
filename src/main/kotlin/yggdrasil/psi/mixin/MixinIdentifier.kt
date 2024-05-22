@@ -7,15 +7,12 @@ import valkyrie.ide.highlight.NodeHighlighter
 import valkyrie.ide.reference.declaration.ValkyrieReference
 import yggdrasil.language.file.YggdrasilFileNode
 import yggdrasil.psi.YggdrasilElement
-import yggdrasil.psi.node.YggdrasilClassNode
+import yggdrasil.psi.node.YggdrasilDefineClass
 import yggdrasil.psi.node.YggdrasilDefineUnion
 import yggdrasil.psi.node.YggdrasilIdentifier
 import yggdrasil.psi.node.YggdrasilIdentifierNode
 
-abstract class MixinIdentifier(node: ASTNode) : YggdrasilElement(node),
-
-    YggdrasilIdentifier {
-
+abstract class MixinIdentifier(node: ASTNode) : YggdrasilElement(node), YggdrasilIdentifier {
     override fun getContainingFile(): YggdrasilFileNode {
         return SharedImplUtil.getContainingFile(node) as YggdrasilFileNode
     }
@@ -26,7 +23,7 @@ abstract class MixinIdentifier(node: ASTNode) : YggdrasilElement(node),
 
 
     override fun getReference(): ValkyrieReference? {
-        if (this.parent is YggdrasilClassNode) {
+        if (this.parent is YggdrasilDefineClass) {
             return null
         }
         if (this.parent is YggdrasilDefineUnion) {
@@ -44,7 +41,7 @@ abstract class MixinIdentifier(node: ASTNode) : YggdrasilElement(node),
             "EOF", "END_OF_FILE",
             "EOL", "END_OF_LINE",
             "ROL", "REST_OF_LINE",
-            -> highlighter.highlight(this, HighlightColor.SYM_CONSTANT)
+                -> highlighter.highlight(this, HighlightColor.SYM_CONSTANT)
 
             else -> {
                 this.reference?.highlight(highlighter)

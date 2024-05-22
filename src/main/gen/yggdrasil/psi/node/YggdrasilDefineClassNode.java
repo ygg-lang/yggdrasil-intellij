@@ -11,16 +11,16 @@ import com.intellij.psi.util.PsiTreeUtil;
 
 import static yggdrasil.psi.YggdrasilTypes.*;
 
-import yggdrasil.psi.YggdrasilElement;
+import yggdrasil.psi.mixin.MixinClass;
 
-public class YggdrasilParameterNode extends YggdrasilElement implements YggdrasilParameter {
+public class YggdrasilDefineClassNode extends MixinClass implements YggdrasilDefineClass {
 
-    public YggdrasilParameterNode(@NotNull ASTNode node) {
+    public YggdrasilDefineClassNode(@NotNull ASTNode node) {
         super(node);
     }
 
     public void accept(@NotNull YggdrasilVisitor visitor) {
-        visitor.visitParameter(this);
+        visitor.visitDefineClass(this);
     }
 
     @Override
@@ -30,15 +30,27 @@ public class YggdrasilParameterNode extends YggdrasilElement implements Yggdrasi
     }
 
     @Override
-    @Nullable
-    public YggdrasilExpression getExpression() {
-        return findChildByClass(YggdrasilExpression.class);
+    @NotNull
+    public YggdrasilAnnotations getAnnotations() {
+        return findNotNullChildByClass(YggdrasilAnnotations.class);
     }
 
     @Override
-    @NotNull
+    @Nullable
+    public YggdrasilClassBody getClassBody() {
+        return findChildByClass(YggdrasilClassBody.class);
+    }
+
+    @Override
+    @Nullable
+    public YggdrasilClassCast getClassCast() {
+        return findChildByClass(YggdrasilClassCast.class);
+    }
+
+    @Override
+    @Nullable
     public YggdrasilIdentifier getIdentifier() {
-        return findNotNullChildByClass(YggdrasilIdentifier.class);
+        return findChildByClass(YggdrasilIdentifier.class);
     }
 
 }

@@ -2,15 +2,16 @@
 package yggdrasil.psi.node;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface YggdrasilExpressionTag extends YggdrasilExpression {
 
-  @NotNull
-  YggdrasilExpression getExpression();
+    @NotNull
+    YggdrasilExpression getExpression();
 
-  @Nullable
-  YggdrasilIdentifier getIdentifier();
+    @Nullable
+    YggdrasilIdentifier getIdentifier();
 
 }

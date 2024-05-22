@@ -2,12 +2,13 @@
 package yggdrasil.psi.node;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface YggdrasilFunctionParameter extends PsiElement {
 
-  @NotNull
-  List<YggdrasilParameter> getParameterList();
+    @NotNull
+    List<YggdrasilParameter> getParameterList();
 
 }

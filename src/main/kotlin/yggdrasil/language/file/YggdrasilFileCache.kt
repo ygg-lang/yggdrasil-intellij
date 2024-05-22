@@ -1,7 +1,7 @@
 package yggdrasil.language.file
 
 import yggdrasil.psi.YggdrasilDeclaration
-import yggdrasil.psi.node.YggdrasilClassNode
+import yggdrasil.psi.node.YggdrasilDefineClassNode
 import yggdrasil.psi.node.YggdrasilDefineUnionNode
 import yggdrasil.psi.node.YggdrasilGroupNode
 
@@ -17,7 +17,7 @@ class YggdrasilFileCache {
         return sequence {
             for (child in root.children) {
                 when (child) {
-                    is YggdrasilClassNode -> {
+                    is YggdrasilDefineClassNode -> {
                         yield(child)
                     }
 

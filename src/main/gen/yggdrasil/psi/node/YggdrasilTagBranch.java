@@ -2,12 +2,13 @@
 package yggdrasil.psi.node;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface YggdrasilTagBranch extends PsiElement {
 
-  @NotNull
-  YggdrasilIdentifier getIdentifier();
+    @NotNull
+    YggdrasilIdentifier getIdentifier();
 
 }

@@ -2,15 +2,16 @@
 package yggdrasil.psi.node;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface YggdrasilRange extends PsiElement {
 
-  @Nullable
-  YggdrasilRangeLower getRangeLower();
+    @Nullable
+    YggdrasilRangeLower getRangeLower();
 
-  @Nullable
-  YggdrasilRangeUpper getRangeUpper();
+    @Nullable
+    YggdrasilRangeUpper getRangeUpper();
 
 }

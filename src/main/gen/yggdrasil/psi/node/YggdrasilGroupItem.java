@@ -2,18 +2,19 @@
 package yggdrasil.psi.node;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface YggdrasilGroupItem extends PsiElement {
 
-  @NotNull
-  List<YggdrasilAttribute> getAttributeList();
+    @NotNull
+    List<YggdrasilAttribute> getAttributeList();
 
-  @NotNull
-  YggdrasilExpression getExpression();
+    @NotNull
+    YggdrasilExpression getExpression();
 
-  @NotNull
-  List<YggdrasilIdentifier> getIdentifierList();
+    @NotNull
+    List<YggdrasilIdentifier> getIdentifierList();
 
 }

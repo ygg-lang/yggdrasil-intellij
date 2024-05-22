@@ -76,7 +76,7 @@ root ::= statements*
 private statements ::=
     grammar
   | using
-  | class
+  | define-class
   | define-union
   | group
   | define-function
@@ -109,10 +109,9 @@ using-term ::=
   | SEMICOLON
 using-alias ::= key KW_AS identifier;
 // === class statement ===
-class  ::= annotations KW_CLASS identifier class-cast? OP_REMARK? class-body {
+define-class  ::= annotations KW_CLASS identifier class-cast? OP_REMARK? class-body {
     pin = 2
     mixin = "yggdrasil.psi.mixin.MixinClass"
-
 }
 class-cast ::= TO identifier;
 class-body ::= BRACE_L OP_OR? expression? BRACE_R;

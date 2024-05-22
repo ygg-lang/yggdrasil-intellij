@@ -2,12 +2,13 @@
 package yggdrasil.psi.node;
 
 import java.util.List;
+
 import org.jetbrains.annotations.*;
 import com.intellij.psi.PsiElement;
 
 public interface YggdrasilGrammarBody extends PsiElement {
 
-  @NotNull
-  List<YggdrasilGrammarTerm> getGrammarTermList();
+    @NotNull
+    List<YggdrasilGrammarTerm> getGrammarTermList();
 
 }

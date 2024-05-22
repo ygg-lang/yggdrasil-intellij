@@ -10,1084 +10,1161 @@ import static yggdrasil.psi.YggdrasilTypes.*;
 
 public class _YggdrasilLexer implements com.intellij.lexer.FlexLexer {
 
-  /** This character denotes the end of file */
-  public static final int YYEOF = -1;
-
-  /** initial size of the lookahead buffer */
-  private static final int ZZ_BUFFERSIZE = 16384;
-
-  /** lexical states */
-  public static final int YYINITIAL = 0;
-
-  /**
-   * ZZ_LEXSTATE[l] is the state in the DFA for the lexical state l
-   * ZZ_LEXSTATE[l+1] is the state in the DFA for the lexical state l
-   *                  at the beginning of a line
-   * l is of the form l = 2*k, k a non negative integer
-   */
-  private static final int ZZ_LEXSTATE[] = {
-     0, 0
-  };
-
-  /**
-   * Top-level table for translating characters to character classes
-   */
-  private static final int [] ZZ_CMAP_TOP = zzUnpackcmap_top();
-
-  private static final String ZZ_CMAP_TOP_PACKED_0 =
-    "\1\0\1\u0100\1\u0200\1\u0300\1\u0400\1\u0500\1\u0600\1\u0700"+
-    "\1\u0800\1\u0900\1\u0a00\1\u0b00\1\u0c00\1\u0d00\1\u0e00\1\u0f00"+
-    "\1\u1000\1\u0100\1\u1100\1\u1200\1\u1300\1\u0100\1\u1400\1\u1500"+
-    "\1\u1600\1\u1700\1\u1800\1\u1900\1\u1a00\1\u1b00\1\u0100\1\u1c00"+
-    "\1\u1d00\1\u1e00\12\u1f00\1\u2000\1\u2100\2\u1f00\1\u2200\1\u2300"+
-    "\2\u1f00\31\u0100\1\u2400\121\u0100\1\u2500\4\u0100\1\u2600\1\u0100"+
-    "\1\u2700\1\u2800\1\u2900\1\u2a00\1\u2b00\1\u2c00\53\u0100\1\u2d00"+
-    "\10\u2e00\31\u1f00\1\u0100\1\u2f00\1\u3000\1\u3100\1\u3200\1\u3300"+
-    "\1\u3400\1\u3500\1\u3600\1\u3700\1\u3800\1\u3900\1\u3a00\1\u0100"+
-    "\1\u3b00\1\u3c00\1\u3d00\1\u3e00\1\u3f00\1\u4000\1\u4100\1\u1f00"+
-    "\1\u4200\1\u4300\1\u4400\1\u4500\1\u4600\1\u4700\1\u4800\1\u4900"+
-    "\1\u4a00\1\u4b00\1\u4c00\1\u4d00\1\u1f00\1\u4e00\1\u4f00\1\u5000"+
-    "\1\u1f00\3\u0100\1\u5100\1\u5200\1\u5300\12\u1f00\4\u0100\1\u5400"+
-    "\17\u1f00\2\u0100\1\u5500\41\u1f00\2\u0100\1\u5600\1\u5700\2\u1f00"+
-    "\1\u5800\1\u5900\27\u0100\1\u5a00\2\u0100\1\u5b00\45\u1f00\1\u0100"+
-    "\1\u5c00\1\u5d00\11\u1f00\1\u5e00\24\u1f00\1\u5f00\1\u6000\1\u1f00"+
-    "\1\u6100\1\u6200\1\u6300\1\u6400\2\u1f00\1\u6500\5\u1f00\1\u6600"+
-    "\1\u6700\1\u6800\5\u1f00\1\u6900\1\u6a00\4\u1f00\1\u6b00\21\u1f00"+
-    "\246\u0100\1\u6c00\20\u0100\1\u6d00\1\u6e00\25\u0100\1\u6f00\34\u0100"+
-    "\1\u7000\14\u1f00\2\u0100\1\u7100\u0b06\u1f00\1\u7200\u02fe\u1f00";
-
-  private static int [] zzUnpackcmap_top() {
-    int [] result = new int[4352];
-    int offset = 0;
-    offset = zzUnpackcmap_top(ZZ_CMAP_TOP_PACKED_0, offset, result);
-    return result;
-  }
-
-  private static int zzUnpackcmap_top(String packed, int offset, int [] result) {
-    int i = 0;       /* index in packed string  */
-    int j = offset;  /* index in unpacked array */
-    int l = packed.length();
-    while (i < l) {
-      int count = packed.charAt(i++);
-      int value = packed.charAt(i++);
-      do result[j++] = value; while (--count > 0);
-    }
-    return j;
-  }
-
-
-  /**
-   * Second-level tables for translating characters to character classes
-   */
-  private static final int [] ZZ_CMAP_BLOCKS = zzUnpackcmap_blocks();
-
-  private static final String ZZ_CMAP_BLOCKS_PACKED_0 =
-    "\11\0\1\1\1\2\2\3\1\2\22\0\1\1\1\4"+
-    "\1\5\1\6\1\7\2\0\1\10\1\11\1\12\1\13"+
-    "\1\14\1\15\1\16\1\17\1\20\12\21\1\22\1\23"+
-    "\1\24\1\25\1\26\1\27\1\30\32\31\1\32\1\33"+
-    "\1\34\1\35\1\31\1\36\1\37\1\40\1\41\1\42"+
-    "\1\43\1\44\1\45\1\31\1\46\1\31\1\47\1\50"+
-    "\1\51\1\52\1\53\1\54\1\31\1\55\1\56\1\57"+
-    "\1\60\2\31\1\61\2\31\1\62\1\63\1\64\1\65"+
-    "\6\0\1\3\32\0\1\1\11\0\1\31\12\0\1\31"+
-    "\1\0\1\66\2\0\1\31\5\0\27\31\1\0\37\31"+
-    "\1\0\u01ca\31\4\0\14\31\16\0\5\31\7\0\1\31"+
-    "\1\0\1\31\21\0\160\66\5\31\1\0\2\31\3\0"+
-    "\3\31\1\0\1\31\6\0\1\31\1\66\3\31\1\0"+
-    "\1\31\1\0\24\31\1\0\123\31\1\0\213\31\1\0"+
-    "\5\66\2\0\246\31\1\0\46\31\2\0\1\31\6\0"+
-    "\51\31\10\0\55\66\1\0\1\66\1\0\2\66\1\0"+
-    "\2\66\1\0\1\66\10\0\33\31\4\0\4\31\35\0"+
-    "\13\66\5\0\53\31\37\66\4\0\2\31\1\66\143\31"+
-    "\1\0\1\31\7\66\2\0\6\66\2\31\2\66\1\0"+
-    "\4\66\2\31\12\66\3\31\2\0\1\31\20\0\1\31"+
-    "\1\66\36\31\33\66\2\0\131\31\13\66\1\31\16\0"+
-    "\12\66\41\31\11\66\2\31\4\0\1\31\2\0\1\66"+
-    "\2\0\26\31\4\66\1\31\11\66\1\31\3\66\1\31"+
-    "\5\66\22\0\31\31\3\66\4\0\13\31\65\0\25\31"+
-    "\1\0\10\31\25\0\17\66\1\0\41\66\66\31\3\66"+
-    "\1\31\22\66\1\31\7\66\12\31\2\66\2\0\12\66"+
-    "\1\0\20\31\3\66\1\0\10\31\2\0\2\31\2\0"+
-    "\26\31\1\0\7\31\1\0\1\31\3\0\4\31\2\0"+
-    "\1\66\1\31\7\66\2\0\2\66\2\0\3\66\1\31"+
-    "\10\0\1\66\4\0\2\31\1\0\3\31\2\66\2\0"+
-    "\12\66\2\31\12\0\1\31\1\0\1\66\2\0\3\66"+
-    "\1\0\6\31\4\0\2\31\2\0\26\31\1\0\7\31"+
-    "\1\0\2\31\1\0\2\31\1\0\2\31\2\0\1\66"+
-    "\1\0\5\66\4\0\2\66\2\0\3\66\3\0\1\66"+
-    "\7\0\4\31\1\0\1\31\7\0\14\66\3\31\1\66"+
-    "\13\0\3\66\1\0\11\31\1\0\3\31\1\0\26\31"+
-    "\1\0\7\31\1\0\2\31\1\0\5\31\2\0\1\66"+
-    "\1\31\10\66\1\0\3\66\1\0\3\66\2\0\1\31"+
-    "\17\0\2\31\2\66\2\0\12\66\11\0\1\31\6\66"+
-    "\1\0\3\66\1\0\10\31\2\0\2\31\2\0\26\31"+
-    "\1\0\7\31\1\0\2\31\1\0\5\31\2\0\1\66"+
-    "\1\31\7\66\2\0\2\66\2\0\3\66\10\0\2\66"+
-    "\4\0\2\31\1\0\3\31\2\66\2\0\12\66\1\0"+
-    "\1\31\20\0\1\66\1\31\1\0\6\31\3\0\3\31"+
-    "\1\0\4\31\3\0\2\31\1\0\1\31\1\0\2\31"+
-    "\3\0\2\31\3\0\3\31\3\0\14\31\4\0\5\66"+
-    "\3\0\3\66\1\0\4\66\2\0\1\31\6\0\1\66"+
-    "\16\0\12\66\20\0\5\66\10\31\1\0\3\31\1\0"+
-    "\27\31\1\0\20\31\3\0\1\31\7\66\1\0\3\66"+
-    "\1\0\4\66\7\0\2\66\1\0\3\31\5\0\2\31"+
-    "\2\66\2\0\12\66\20\0\1\31\3\66\1\0\10\31"+
-    "\1\0\3\31\1\0\27\31\1\0\12\31\1\0\5\31"+
-    "\2\0\1\66\1\31\7\66\1\0\3\66\1\0\4\66"+
-    "\7\0\2\66\7\0\1\31\1\0\2\31\2\66\2\0"+
-    "\12\66\1\0\2\31\15\0\4\66\1\0\10\31\1\0"+
-    "\3\31\1\0\51\31\2\66\1\31\7\66\1\0\3\66"+
-    "\1\0\4\66\1\31\5\0\3\31\1\66\7\0\3\31"+
-    "\2\66\2\0\12\66\12\0\6\31\2\0\2\66\1\0"+
-    "\22\31\3\0\30\31\1\0\11\31\1\0\1\31\2\0"+
-    "\7\31\3\0\1\66\4\0\6\66\1\0\1\66\1\0"+
-    "\10\66\6\0\12\66\2\0\2\66\15\0\60\31\1\66"+
-    "\1\31\10\66\5\0\7\31\10\66\1\0\12\66\47\0"+
-    "\2\31\1\0\1\31\1\0\5\31\1\0\30\31\1\0"+
-    "\1\31\1\0\12\31\1\66\1\31\12\66\1\31\2\0"+
-    "\5\31\1\0\1\31\1\0\6\66\2\0\12\66\2\0"+
-    "\4\31\40\0\1\31\27\0\2\66\6\0\12\66\13\0"+
-    "\1\66\1\0\1\66\1\0\1\66\4\0\2\66\10\31"+
-    "\1\0\44\31\4\0\24\66\1\0\2\66\5\31\13\66"+
-    "\1\0\44\66\11\0\1\66\71\0\53\31\24\66\1\31"+
-    "\12\66\6\0\6\31\4\66\4\31\3\66\1\31\3\66"+
-    "\2\31\7\66\3\31\4\66\15\31\14\66\1\31\17\66"+
-    "\2\0\46\31\1\0\1\31\5\0\1\31\2\0\53\31"+
-    "\1\0\115\31\1\0\4\31\2\0\7\31\1\0\1\31"+
-    "\1\0\4\31\2\0\51\31\1\0\4\31\2\0\41\31"+
-    "\1\0\4\31\2\0\7\31\1\0\1\31\1\0\4\31"+
-    "\2\0\17\31\1\0\71\31\1\0\4\31\2\0\103\31"+
-    "\2\0\3\66\11\0\11\66\16\0\20\31\20\0\126\31"+
-    "\2\0\6\31\3\0\u016c\31\2\0\21\31\1\1\32\31"+
-    "\5\0\113\31\3\0\13\31\7\0\15\31\1\0\4\31"+
-    "\3\66\13\0\22\31\3\66\13\0\22\31\2\66\14\0"+
-    "\15\31\1\0\3\31\1\0\2\66\14\0\64\31\40\66"+
-    "\3\0\1\31\4\0\1\31\1\66\2\0\12\66\41\0"+
-    "\3\66\2\0\12\66\6\0\131\31\7\0\51\31\1\66"+
-    "\1\31\5\0\106\31\12\0\37\31\1\0\14\66\4\0"+
-    "\14\66\12\0\12\66\36\31\2\0\5\31\13\0\54\31"+
-    "\4\0\32\31\6\0\13\66\45\0\27\31\5\66\4\0"+
-    "\65\31\12\66\1\0\35\66\2\0\13\66\6\0\12\66"+
-    "\15\0\1\31\10\0\16\66\102\0\5\66\57\31\21\66"+
-    "\7\31\4\0\12\66\21\0\11\66\14\0\3\66\36\31"+
-    "\15\66\2\31\12\66\54\31\16\66\14\0\44\31\24\66"+
-    "\10\0\12\66\3\0\3\31\12\66\44\31\2\0\11\31"+
-    "\7\0\53\31\2\0\3\31\20\0\3\66\1\0\25\66"+
-    "\4\31\1\66\6\31\1\66\2\31\3\66\1\31\5\0"+
-    "\300\31\72\66\1\0\5\66\26\31\2\0\6\31\2\0"+
-    "\46\31\2\0\6\31\2\0\10\31\1\0\1\31\1\0"+
-    "\1\31\1\0\1\31\1\0\37\31\2\0\65\31\1\0"+
-    "\7\31\1\0\1\31\3\0\3\31\1\0\7\31\3\0"+
-    "\4\31\2\0\6\31\4\0\15\31\5\0\3\31\1\0"+
-    "\7\31\3\0\13\1\35\0\2\3\5\0\1\1\17\0"+
-    "\2\66\23\0\1\66\12\0\1\1\21\0\1\31\15\0"+
-    "\1\31\20\0\15\31\63\0\15\66\4\0\1\66\3\0"+
-    "\14\66\21\0\1\31\4\0\1\31\2\0\12\31\1\0"+
-    "\1\31\2\0\6\31\6\0\1\31\1\0\1\31\1\0"+
-    "\1\31\1\0\20\31\2\0\4\31\5\0\5\31\4\0"+
-    "\1\31\21\0\51\31\u0177\0\57\31\1\0\57\31\1\0"+
-    "\205\31\6\0\4\31\3\66\2\31\14\0\46\31\1\0"+
-    "\1\31\5\0\1\31\2\0\70\31\7\0\1\31\17\0"+
-    "\1\66\27\31\11\0\7\31\1\0\7\31\1\0\7\31"+
-    "\1\0\7\31\1\0\7\31\1\0\7\31\1\0\7\31"+
-    "\1\0\7\31\1\0\40\66\1\1\4\0\3\31\31\0"+
-    "\11\31\6\66\1\0\5\31\2\0\5\31\4\0\126\31"+
-    "\2\0\2\66\2\0\3\31\1\0\132\31\1\0\4\31"+
-    "\5\0\53\31\1\0\136\31\21\0\33\31\65\0\306\31"+
-    "\112\0\360\31\20\0\215\31\103\0\56\31\2\0\15\31"+
-    "\3\0\20\31\12\66\2\31\24\0\57\31\1\66\4\0"+
-    "\12\66\1\0\37\31\2\66\120\31\2\66\45\0\11\31"+
-    "\2\0\147\31\2\0\65\31\2\0\5\31\60\0\13\31"+
-    "\1\66\3\31\1\66\4\31\1\66\27\31\5\66\30\0"+
-    "\64\31\14\0\2\66\62\31\22\66\12\0\12\66\6\0"+
-    "\22\66\6\31\3\0\1\31\1\0\2\31\13\66\34\31"+
-    "\10\66\2\0\27\31\15\66\14\0\35\31\3\0\4\66"+
-    "\57\31\16\66\16\0\1\31\12\66\6\0\5\31\1\66"+
-    "\12\31\12\66\5\31\1\0\51\31\16\66\11\0\3\31"+
-    "\1\66\10\31\2\66\2\0\12\66\6\0\27\31\3\0"+
-    "\1\31\3\66\62\31\1\66\1\31\3\66\2\31\2\66"+
-    "\5\31\2\66\1\31\1\66\1\31\30\0\3\31\2\0"+
-    "\13\31\5\66\2\0\3\31\2\66\12\0\6\31\2\0"+
-    "\6\31\2\0\6\31\11\0\7\31\1\0\7\31\1\0"+
-    "\53\31\1\0\14\31\10\0\163\31\10\66\1\0\2\66"+
-    "\2\0\12\66\6\0\244\31\14\0\27\31\4\0\61\31"+
-    "\4\0\u0100\67\156\31\2\0\152\31\46\0\7\31\14\0"+
-    "\5\31\5\0\1\31\1\66\12\31\1\0\15\31\1\0"+
-    "\5\31\1\0\1\31\1\0\2\31\1\0\2\31\1\0"+
-    "\154\31\41\0\213\31\6\0\332\31\22\0\100\31\2\0"+
-    "\66\31\50\0\12\31\6\0\20\66\20\0\20\66\3\0"+
-    "\2\66\30\0\3\66\41\0\1\31\1\0\1\31\3\0"+
-    "\1\31\1\0\1\31\1\0\1\31\1\0\1\31\1\0"+
-    "\176\31\23\0\12\66\7\0\32\31\4\0\1\66\1\0"+
-    "\32\31\13\0\70\31\2\66\37\31\3\0\6\31\2\0"+
-    "\6\31\2\0\6\31\2\0\3\31\43\0\14\31\1\0"+
-    "\32\31\1\0\23\31\1\0\2\31\1\0\17\31\2\0"+
-    "\16\31\42\0\173\31\105\0\65\31\210\0\1\66\202\0"+
-    "\35\31\3\0\61\31\17\0\1\66\37\0\40\31\15\0"+
-    "\36\31\5\0\46\31\5\66\5\0\36\31\2\0\44\31"+
-    "\4\0\10\31\1\0\5\31\52\0\236\31\2\0\12\66"+
-    "\6\0\44\31\4\0\44\31\4\0\50\31\10\0\64\31"+
-    "\234\0\67\31\11\0\26\31\12\0\10\31\230\0\6\31"+
-    "\2\0\1\31\1\0\54\31\1\0\2\31\3\0\1\31"+
-    "\2\0\27\31\12\0\27\31\11\0\37\31\101\0\23\31"+
-    "\1\0\2\31\12\0\26\31\12\0\32\31\106\0\70\31"+
-    "\6\0\2\31\100\0\1\31\3\66\1\0\2\66\5\0"+
-    "\4\66\4\31\1\0\3\31\1\0\35\31\2\0\3\66"+
-    "\4\0\1\66\40\0\35\31\3\0\35\31\43\0\10\31"+
-    "\1\0\34\31\2\66\31\0\66\31\12\0\26\31\12\0"+
-    "\23\31\15\0\22\31\156\0\111\31\67\0\63\31\15\0"+
-    "\63\31\15\0\44\31\4\66\10\0\12\66\306\0\35\31"+
-    "\12\0\1\31\10\0\26\31\13\66\217\0\27\31\11\0"+
-    "\3\66\65\31\17\66\37\0\12\66\17\0\4\66\55\31"+
-    "\13\66\25\0\31\31\7\0\12\66\6\0\3\66\44\31"+
-    "\16\66\1\0\12\66\4\0\1\31\2\66\11\0\43\31"+
-    "\1\66\2\0\1\31\11\0\3\66\60\31\16\66\4\31"+
-    "\4\0\4\66\3\0\12\66\1\31\1\0\1\31\43\0"+
-    "\22\31\1\0\31\31\14\66\6\0\1\66\101\0\7\31"+
-    "\1\0\1\31\1\0\4\31\1\0\17\31\1\0\12\31"+
-    "\7\0\57\31\14\66\5\0\12\66\6\0\4\66\1\0"+
-    "\10\31\2\0\2\31\2\0\26\31\1\0\7\31\1\0"+
-    "\2\31\1\0\5\31\1\0\2\66\1\31\7\66\2\0"+
-    "\2\66\2\0\3\66\2\0\1\31\6\0\1\66\5\0"+
-    "\5\31\2\66\2\0\7\66\3\0\5\66\213\0\65\31"+
-    "\22\66\4\31\5\0\12\66\4\0\1\66\1\31\40\0"+
-    "\60\31\24\66\2\31\1\0\1\31\10\0\12\66\246\0"+
-    "\57\31\7\66\2\0\11\66\27\0\4\31\2\66\42\0"+
-    "\60\31\21\66\3\0\1\31\13\0\12\66\46\0\53\31"+
-    "\15\66\1\31\7\0\12\66\66\0\33\31\2\0\17\66"+
-    "\4\0\12\66\306\0\54\31\17\66\145\0\100\31\12\66"+
-    "\25\0\1\31\240\0\10\31\2\0\47\31\7\66\2\0"+
-    "\7\66\1\31\1\0\1\31\1\66\33\0\1\31\12\66"+
-    "\50\31\7\66\1\31\4\66\10\0\1\66\10\0\1\31"+
-    "\13\66\56\31\20\66\3\0\1\31\42\0\71\31\7\0"+
-    "\11\31\1\0\45\31\10\66\1\0\10\66\1\31\17\0"+
-    "\12\66\30\0\36\31\2\0\26\66\1\0\16\66\111\0"+
-    "\7\31\1\0\2\31\1\0\46\31\6\66\3\0\1\66"+
-    "\1\0\2\66\1\0\7\66\1\31\1\66\10\0\12\66"+
-    "\6\0\6\31\1\0\2\31\1\0\40\31\5\66\1\0"+
-    "\2\66\1\0\5\66\1\31\7\0\12\66\u0136\0\23\31"+
-    "\4\66\11\0\232\31\146\0\157\31\21\0\304\31\274\0"+
-    "\57\31\321\0\107\31\271\0\71\31\7\0\37\31\1\0"+
-    "\12\66\146\0\36\31\2\0\5\66\13\0\60\31\7\66"+
-    "\11\0\4\31\14\0\12\66\11\0\25\31\5\0\23\31"+
-    "\260\0\100\31\200\0\113\31\4\0\1\66\1\31\67\66"+
-    "\7\0\4\66\15\31\100\0\2\31\1\0\1\31\34\0"+
-    "\370\31\10\0\363\31\15\0\37\31\61\0\3\31\21\0"+
-    "\4\31\10\0\u018c\31\4\0\153\31\5\0\15\31\3\0"+
-    "\11\31\7\0\12\31\3\0\2\66\306\0\5\66\3\0"+
-    "\6\66\10\0\10\66\2\0\7\66\36\0\4\66\224\0"+
-    "\3\66\273\0\125\31\1\0\107\31\1\0\2\31\2\0"+
-    "\1\31\2\0\2\31\2\0\4\31\1\0\14\31\1\0"+
-    "\1\31\1\0\7\31\1\0\101\31\1\0\4\31\2\0"+
-    "\10\31\1\0\7\31\1\0\34\31\1\0\4\31\1\0"+
-    "\5\31\1\0\1\31\3\0\7\31\1\0\u0154\31\2\0"+
-    "\31\31\1\0\31\31\1\0\37\31\1\0\31\31\1\0"+
-    "\37\31\1\0\31\31\1\0\37\31\1\0\31\31\1\0"+
-    "\37\31\1\0\31\31\1\0\10\31\2\0\151\66\4\0"+
-    "\62\66\10\0\1\66\16\0\1\66\26\0\5\66\1\0"+
-    "\17\66\120\0\7\66\1\0\21\66\2\0\7\66\1\0"+
-    "\2\66\1\0\5\66\325\0\55\31\3\0\7\66\7\31"+
-    "\2\0\12\66\4\0\1\31\u0171\0\54\31\16\66\6\0"+
-    "\305\31\13\0\7\66\51\0\104\31\7\66\1\31\4\0"+
-    "\12\66\246\0\4\31\1\0\33\31\1\0\2\31\1\0"+
-    "\1\31\2\0\1\31\1\0\12\31\1\0\4\31\1\0"+
-    "\1\31\1\0\1\31\6\0\1\31\4\0\1\31\1\0"+
-    "\1\31\1\0\1\31\1\0\3\31\1\0\2\31\1\0"+
-    "\1\31\2\0\1\31\1\0\1\31\1\0\1\31\1\0"+
-    "\1\31\1\0\1\31\1\0\2\31\1\0\1\31\2\0"+
-    "\4\31\1\0\7\31\1\0\4\31\1\0\4\31\1\0"+
-    "\1\31\1\0\12\31\1\0\21\31\5\0\3\31\1\0"+
-    "\5\31\1\0\21\31\104\0\327\31\51\0\65\31\13\0"+
-    "\336\31\2\0\u0182\31\16\0\u0131\31\37\0\36\31\342\0"+
-    "\360\66\20\0";
-
-  private static int [] zzUnpackcmap_blocks() {
-    int [] result = new int[29440];
-    int offset = 0;
-    offset = zzUnpackcmap_blocks(ZZ_CMAP_BLOCKS_PACKED_0, offset, result);
-    return result;
-  }
-
-  private static int zzUnpackcmap_blocks(String packed, int offset, int [] result) {
-    int i = 0;       /* index in packed string  */
-    int j = offset;  /* index in unpacked array */
-    int l = packed.length();
-    while (i < l) {
-      int count = packed.charAt(i++);
-      int value = packed.charAt(i++);
-      do result[j++] = value; while (--count > 0);
-    }
-    return j;
-  }
-
-  /**
-   * Translates DFA states to action switch labels.
-   */
-  private static final int [] ZZ_ACTION = zzUnpackAction();
-
-  private static final String ZZ_ACTION_PACKED_0 =
-    "\1\0\1\1\1\2\1\3\1\1\1\4\1\5\1\1"+
-    "\1\6\1\7\1\10\1\11\1\12\1\13\1\14\1\15"+
-    "\1\16\1\17\1\20\1\21\1\22\1\23\1\24\1\25"+
-    "\1\26\1\27\1\1\1\30\1\31\1\1\14\26\1\32"+
-    "\1\33\1\34\1\35\1\0\1\36\2\0\1\37\1\40"+
-    "\2\0\1\41\2\0\1\42\1\43\1\0\1\44\1\45"+
-    "\3\26\1\46\11\26\1\36\1\47\1\0\1\47\1\0"+
-    "\3\26\1\46\11\26\1\50\2\0\2\26\1\51\1\46"+
-    "\11\26\1\52\2\26\1\53\3\26\1\54\2\26\1\55"+
-    "\2\26\1\56";
-
-  private static int [] zzUnpackAction() {
-    int [] result = new int[123];
-    int offset = 0;
-    offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
-    return result;
-  }
-
-  private static int zzUnpackAction(String packed, int offset, int [] result) {
-    int i = 0;       /* index in packed string  */
-    int j = offset;  /* index in unpacked array */
-    int l = packed.length();
-    while (i < l) {
-      int count = packed.charAt(i++);
-      int value = packed.charAt(i++);
-      do result[j++] = value; while (--count > 0);
-    }
-    return j;
-  }
-
-
-  /**
-   * Translates a state to a row index in the transition table
-   */
-  private static final int [] ZZ_ROWMAP = zzUnpackRowMap();
-
-  private static final String ZZ_ROWMAP_PACKED_0 =
-    "\0\0\0\70\0\160\0\70\0\250\0\70\0\70\0\340"+
-    "\0\70\0\70\0\70\0\70\0\70\0\u0118\0\70\0\u0150"+
-    "\0\u0188\0\70\0\70\0\70\0\70\0\70\0\70\0\70"+
-    "\0\u01c0\0\u01f8\0\u0230\0\70\0\70\0\u0268\0\u02a0\0\u02d8"+
-    "\0\u0310\0\u0348\0\u0380\0\u03b8\0\u03f0\0\u0428\0\u0460\0\u0498"+
-    "\0\u04d0\0\u0508\0\70\0\70\0\70\0\70\0\250\0\70"+
-    "\0\u0540\0\340\0\70\0\70\0\u0578\0\u05b0\0\u05e8\0\u0620"+
-    "\0\u01f8\0\70\0\70\0\u0268\0\70\0\u01c0\0\u0658\0\u0690"+
-    "\0\u06c8\0\u01c0\0\u0700\0\u0738\0\u0770\0\u07a8\0\u07e0\0\u0818"+
-    "\0\u0850\0\u0888\0\u08c0\0\250\0\70\0\u08f8\0\u0930\0\u0968"+
-    "\0\u09a0\0\u09d8\0\u0a10\0\u0a48\0\u0a80\0\u0ab8\0\u0af0\0\u0b28"+
-    "\0\u0b60\0\u0b98\0\u0bd0\0\u0c08\0\u0c40\0\70\0\u0930\0\u0c78"+
-    "\0\u0cb0\0\u0ce8\0\u01c0\0\u0d20\0\u0d58\0\u0d90\0\u0dc8\0\u0e00"+
-    "\0\u0e38\0\u0e70\0\u0ea8\0\u0ee0\0\u0f18\0\u01c0\0\u0f50\0\u0f88"+
-    "\0\u01c0\0\u0fc0\0\u0ff8\0\u1030\0\u01c0\0\u1068\0\u10a0\0\u01c0"+
-    "\0\u10d8\0\u1110\0\u01c0";
-
-  private static int [] zzUnpackRowMap() {
-    int [] result = new int[123];
-    int offset = 0;
-    offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
-    return result;
-  }
-
-  private static int zzUnpackRowMap(String packed, int offset, int [] result) {
-    int i = 0;  /* index in packed string  */
-    int j = offset;  /* index in unpacked array */
-    int l = packed.length() - 1;
-    while (i < l) {
-      int high = packed.charAt(i++) << 16;
-      result[j++] = high | packed.charAt(i++);
-    }
-    return j;
-  }
-
-  /**
-   * The transition table of the DFA
-   */
-  private static final int [] ZZ_TRANS = zzUnpacktrans();
-
-  private static final String ZZ_TRANS_PACKED_0 =
-    "\1\2\3\3\1\4\1\5\1\6\1\7\1\10\1\11"+
-    "\1\12\1\13\1\14\1\15\1\16\1\17\1\20\1\21"+
-    "\1\22\1\23\1\24\1\25\1\26\1\27\1\30\1\31"+
-    "\1\32\1\33\1\34\1\35\1\36\1\37\1\31\1\40"+
-    "\1\41\1\42\1\43\1\44\1\45\1\31\1\46\1\47"+
-    "\4\31\1\50\1\51\1\52\1\31\1\53\1\54\1\55"+
-    "\1\56\2\2\71\0\3\3\64\0\5\57\1\60\25\57"+
-    "\1\61\34\57\10\62\1\63\57\62\26\0\1\64\41\0"+
-    "\13\65\1\66\4\65\1\67\12\65\1\70\34\65\21\0"+
-    "\1\21\67\0\1\31\7\0\1\31\5\0\23\31\4\0"+
-    "\1\31\1\0\34\71\1\72\33\71\2\73\2\0\63\73"+
-    "\1\0\36\74\1\75\31\74\21\0\1\31\7\0\1\31"+
-    "\5\0\17\31\1\76\3\31\4\0\1\31\22\0\1\31"+
-    "\7\0\1\31\5\0\11\31\1\77\11\31\4\0\1\31"+
-    "\22\0\1\31\7\0\1\31\5\0\4\31\1\100\16\31"+
-    "\4\0\1\31\22\0\1\31\7\0\1\31\5\0\13\31"+
-    "\1\101\7\31\4\0\1\31\22\0\1\31\7\0\1\31"+
-    "\5\0\13\31\1\102\5\31\1\103\1\31\4\0\1\31"+
-    "\22\0\1\31\7\0\1\31\5\0\16\31\1\104\4\31"+
-    "\4\0\1\31\22\0\1\31\7\0\1\31\5\0\12\31"+
-    "\1\105\10\31\4\0\1\31\22\0\1\31\7\0\1\31"+
-    "\5\0\4\31\1\106\16\31\4\0\1\31\22\0\1\31"+
-    "\7\0\1\31\5\0\1\107\22\31\4\0\1\31\22\0"+
-    "\1\31\7\0\1\31\5\0\20\31\1\110\2\31\4\0"+
-    "\1\31\22\0\1\31\7\0\1\31\5\0\14\31\1\111"+
-    "\6\31\4\0\1\31\22\0\1\31\7\0\1\31\5\0"+
-    "\13\31\1\112\3\31\1\113\3\31\4\0\1\31\1\0"+
-    "\5\57\1\114\25\57\1\61\34\57\20\65\1\115\12\65"+
-    "\1\70\34\65\13\66\1\116\4\66\1\117\12\66\1\120"+
-    "\34\66\2\67\1\0\65\67\2\65\2\0\63\65\22\0"+
-    "\1\31\7\0\1\31\5\0\1\121\6\31\1\122\13\31"+
-    "\4\0\1\31\22\0\1\31\7\0\1\31\5\0\5\31"+
-    "\1\102\15\31\4\0\1\31\22\0\1\31\7\0\1\31"+
-    "\5\0\21\31\1\123\1\31\4\0\1\31\22\0\1\31"+
-    "\7\0\1\31\5\0\13\31\1\124\7\31\4\0\1\31"+
-    "\22\0\1\31\7\0\1\31\5\0\1\125\13\31\1\126"+
-    "\6\31\4\0\1\31\22\0\1\31\7\0\1\31\5\0"+
-    "\15\31\1\127\5\31\4\0\1\31\22\0\1\31\7\0"+
-    "\1\31\5\0\22\31\1\130\4\0\1\31\22\0\1\31"+
-    "\7\0\1\31\5\0\2\31\1\131\20\31\4\0\1\31"+
-    "\22\0\1\31\7\0\1\31\5\0\16\31\1\132\4\31"+
-    "\4\0\1\31\22\0\1\31\7\0\1\31\5\0\10\31"+
-    "\1\133\12\31\4\0\1\31\22\0\1\31\7\0\1\31"+
-    "\5\0\7\31\1\134\13\31\4\0\1\31\22\0\1\31"+
-    "\7\0\1\31\5\0\7\31\1\135\13\31\4\0\1\31"+
-    "\1\0\13\66\1\116\4\66\1\136\12\66\1\120\34\66"+
-    "\13\137\1\140\54\137\2\66\2\137\7\66\1\116\53\66"+
-    "\1\137\21\0\1\31\7\0\1\31\5\0\17\31\1\141"+
-    "\3\31\4\0\1\31\22\0\1\31\7\0\1\31\5\0"+
-    "\12\31\1\142\10\31\4\0\1\31\22\0\1\31\7\0"+
-    "\1\31\5\0\12\31\1\143\10\31\4\0\1\31\22\0"+
-    "\1\31\7\0\1\31\5\0\2\31\1\144\20\31\4\0"+
-    "\1\31\22\0\1\31\7\0\1\31\5\0\12\31\1\145"+
-    "\10\31\4\0\1\31\22\0\1\31\7\0\1\31\5\0"+
-    "\21\31\1\146\1\31\4\0\1\31\22\0\1\31\7\0"+
-    "\1\31\5\0\14\31\1\147\6\31\4\0\1\31\22\0"+
-    "\1\31\7\0\1\31\5\0\7\31\1\150\13\31\4\0"+
-    "\1\31\22\0\1\31\7\0\1\31\5\0\16\31\1\151"+
-    "\4\31\4\0\1\31\22\0\1\31\7\0\1\31\5\0"+
-    "\21\31\1\152\1\31\4\0\1\31\22\0\1\31\7\0"+
-    "\1\31\5\0\4\31\1\153\16\31\4\0\1\31\22\0"+
-    "\1\31\7\0\1\31\5\0\14\31\1\154\6\31\4\0"+
-    "\1\31\22\0\1\31\7\0\1\31\5\0\13\31\1\155"+
-    "\7\31\4\0\1\31\1\0\13\137\1\140\4\137\1\136"+
-    "\47\137\21\0\1\31\7\0\1\31\5\0\17\31\1\156"+
-    "\3\31\4\0\1\31\22\0\1\31\7\0\1\31\5\0"+
-    "\1\31\1\143\21\31\4\0\1\31\22\0\1\31\7\0"+
-    "\1\31\5\0\20\31\1\157\2\31\4\0\1\31\22\0"+
-    "\1\31\7\0\1\31\5\0\12\31\1\160\10\31\4\0"+
-    "\1\31\22\0\1\31\7\0\1\31\5\0\15\31\1\161"+
-    "\5\31\4\0\1\31\22\0\1\31\7\0\1\31\5\0"+
-    "\16\31\1\162\4\31\4\0\1\31\22\0\1\31\7\0"+
-    "\1\31\5\0\2\31\1\163\20\31\4\0\1\31\22\0"+
-    "\1\31\7\0\1\31\5\0\14\31\1\102\6\31\4\0"+
-    "\1\31\22\0\1\31\7\0\1\31\5\0\2\31\1\164"+
-    "\20\31\4\0\1\31\22\0\1\31\7\0\1\31\5\0"+
-    "\13\31\1\161\7\31\4\0\1\31\22\0\1\31\7\0"+
-    "\1\31\5\0\13\31\1\143\7\31\4\0\1\31\22\0"+
-    "\1\31\7\0\1\31\5\0\6\31\1\165\14\31\4\0"+
-    "\1\31\22\0\1\31\7\0\1\31\5\0\7\31\1\166"+
-    "\13\31\4\0\1\31\22\0\1\31\7\0\1\31\5\0"+
-    "\1\167\22\31\4\0\1\31\22\0\1\31\7\0\1\31"+
-    "\5\0\20\31\1\170\2\31\4\0\1\31\22\0\1\31"+
-    "\7\0\1\31\5\0\14\31\1\171\6\31\4\0\1\31"+
-    "\22\0\1\31\7\0\1\31\5\0\20\31\1\156\2\31"+
-    "\4\0\1\31\22\0\1\31\7\0\1\31\5\0\14\31"+
-    "\1\172\6\31\4\0\1\31\22\0\1\31\7\0\1\31"+
-    "\5\0\16\31\1\173\4\31\4\0\1\31\22\0\1\31"+
-    "\7\0\1\31\5\0\13\31\1\173\7\31\4\0\1\31"+
-    "\22\0\1\31\7\0\1\31\5\0\13\31\1\102\7\31"+
-    "\4\0\1\31\1\0";
-
-  private static int [] zzUnpacktrans() {
-    int [] result = new int[4424];
-    int offset = 0;
-    offset = zzUnpacktrans(ZZ_TRANS_PACKED_0, offset, result);
-    return result;
-  }
-
-  private static int zzUnpacktrans(String packed, int offset, int [] result) {
-    int i = 0;       /* index in packed string  */
-    int j = offset;  /* index in unpacked array */
-    int l = packed.length();
-    while (i < l) {
-      int count = packed.charAt(i++);
-      int value = packed.charAt(i++);
-      value--;
-      do result[j++] = value; while (--count > 0);
-    }
-    return j;
-  }
-
-
-  /* error codes */
-  private static final int ZZ_UNKNOWN_ERROR = 0;
-  private static final int ZZ_NO_MATCH = 1;
-  private static final int ZZ_PUSHBACK_2BIG = 2;
-
-  /* error messages for the codes above */
-  private static final String[] ZZ_ERROR_MSG = {
-    "Unknown internal scanner error",
-    "Error: could not match input",
-    "Error: pushback value was too large"
-  };
-
-  /**
-   * ZZ_ATTRIBUTE[aState] contains the attributes of state {@code aState}
-   */
-  private static final int [] ZZ_ATTRIBUTE = zzUnpackAttribute();
-
-  private static final String ZZ_ATTRIBUTE_PACKED_0 =
-    "\1\0\1\11\1\1\1\11\1\1\2\11\1\1\5\11"+
-    "\1\1\1\11\2\1\7\11\3\1\2\11\15\1\4\11"+
-    "\1\0\1\11\2\0\2\11\2\0\1\1\2\0\2\11"+
-    "\1\0\1\11\17\1\1\11\1\0\1\1\1\0\15\1"+
-    "\1\11\2\0\33\1";
-
-  private static int [] zzUnpackAttribute() {
-    int [] result = new int[123];
-    int offset = 0;
-    offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
-    return result;
-  }
-
-  private static int zzUnpackAttribute(String packed, int offset, int [] result) {
-    int i = 0;       /* index in packed string  */
-    int j = offset;  /* index in unpacked array */
-    int l = packed.length();
-    while (i < l) {
-      int count = packed.charAt(i++);
-      int value = packed.charAt(i++);
-      do result[j++] = value; while (--count > 0);
-    }
-    return j;
-  }
-
-  /** the input device */
-  private java.io.Reader zzReader;
-
-  /** the current state of the DFA */
-  private int zzState;
-
-  /** the current lexical state */
-  private int zzLexicalState = YYINITIAL;
-
-  /** this buffer contains the current text to be matched and is
-      the source of the yytext() string */
-  private CharSequence zzBuffer = "";
-
-  /** the textposition at the last accepting state */
-  private int zzMarkedPos;
-
-  /** the current text position in the buffer */
-  private int zzCurrentPos;
-
-  /** startRead marks the beginning of the yytext() string in the buffer */
-  private int zzStartRead;
-
-  /** endRead marks the last character in the buffer, that has been read
-      from input */
-  private int zzEndRead;
-
-  /** zzAtEOF == true <=> the scanner is at the EOF */
-  private boolean zzAtEOF;
-
-  /** Number of newlines encountered up to the start of the matched text. */
-  @SuppressWarnings("unused")
-  private int yyline;
-
-  /** Number of characters from the last newline up to the start of the matched text. */
-  @SuppressWarnings("unused")
-  protected int yycolumn;
-
-  /** Number of characters up to the start of the matched text. */
-  @SuppressWarnings("unused")
-  private long yychar;
-
-  /** Whether the scanner is currently at the beginning of a line. */
-  @SuppressWarnings("unused")
-  private boolean zzAtBOL = true;
-
-  /** Whether the user-EOF-code has already been executed. */
-  @SuppressWarnings("unused")
-  private boolean zzEOFDone;
-
-
-  /**
-   * Creates a new scanner
-   *
-   * @param   in  the java.io.Reader to read input from.
-   */
-  public _YggdrasilLexer(java.io.Reader in) {
-    this.zzReader = in;
-  }
-
-
-  /** Returns the maximum size of the scanner buffer, which limits the size of tokens. */
-  private int zzMaxBufferLen() {
-    return Integer.MAX_VALUE;
-  }
-
-  /**  Whether the scanner buffer can grow to accommodate a larger token. */
-  private boolean zzCanGrow() {
-    return true;
-  }
-
-  /**
-   * Translates raw input code points to DFA table row
-   */
-  private static int zzCMap(int input) {
-    int offset = input & 255;
-    return offset == input ? ZZ_CMAP_BLOCKS[offset] : ZZ_CMAP_BLOCKS[ZZ_CMAP_TOP[input >> 8] | offset];
-  }
-
-  public final int getTokenStart() {
-    return zzStartRead;
-  }
-
-  public final int getTokenEnd() {
-    return getTokenStart() + yylength();
-  }
-
-  public void reset(CharSequence buffer, int start, int end, int initialState) {
-    zzBuffer = buffer;
-    zzCurrentPos = zzMarkedPos = zzStartRead = start;
-    zzAtEOF  = false;
-    zzAtBOL = true;
-    zzEndRead = end;
-    yybegin(initialState);
-  }
-
-  /**
-   * Refills the input buffer.
-   *
-   * @return      {@code false}, iff there was new input.
-   *
-   * @exception   java.io.IOException  if any I/O-Error occurs
-   */
-  private boolean zzRefill() throws java.io.IOException {
-    return true;
-  }
-
-
-  /**
-   * Returns the current lexical state.
-   */
-  public final int yystate() {
-    return zzLexicalState;
-  }
-
-
-  /**
-   * Enters a new lexical state
-   *
-   * @param newState the new lexical state
-   */
-  public final void yybegin(int newState) {
-    zzLexicalState = newState;
-  }
-
-
-  /**
-   * Returns the text matched by the current regular expression.
-   */
-  public final CharSequence yytext() {
-    return zzBuffer.subSequence(zzStartRead, zzMarkedPos);
-  }
-
-
-  /**
-   * Returns the character at position {@code pos} from the
-   * matched text.
-   *
-   * It is equivalent to yytext().charAt(pos), but faster
-   *
-   * @param pos the position of the character to fetch.
-   *            A value from 0 to yylength()-1.
-   *
-   * @return the character at position pos
-   */
-  public final char yycharat(int pos) {
-    return zzBuffer.charAt(zzStartRead+pos);
-  }
-
-
-  /**
-   * Returns the length of the matched text region.
-   */
-  public final int yylength() {
-    return zzMarkedPos-zzStartRead;
-  }
-
-
-  /**
-   * Reports an error that occurred while scanning.
-   *
-   * In a wellformed scanner (no or only correct usage of
-   * yypushback(int) and a match-all fallback rule) this method
-   * will only be called with things that "Can't Possibly Happen".
-   * If this method is called, something is seriously wrong
-   * (e.g. a JFlex bug producing a faulty scanner etc.).
-   *
-   * Usual syntax/scanner level error handling should be done
-   * in error fallback rules.
-   *
-   * @param   errorCode  the code of the errormessage to display
-   */
-  private void zzScanError(int errorCode) {
-    String message;
-    try {
-      message = ZZ_ERROR_MSG[errorCode];
-    }
-    catch (ArrayIndexOutOfBoundsException e) {
-      message = ZZ_ERROR_MSG[ZZ_UNKNOWN_ERROR];
+    /**
+     * This character denotes the end of file
+     */
+    public static final int YYEOF = -1;
+
+    /**
+     * initial size of the lookahead buffer
+     */
+    private static final int ZZ_BUFFERSIZE = 16384;
+
+    /**
+     * lexical states
+     */
+    public static final int YYINITIAL = 0;
+
+    /**
+     * ZZ_LEXSTATE[l] is the state in the DFA for the lexical state l
+     * ZZ_LEXSTATE[l+1] is the state in the DFA for the lexical state l
+     * at the beginning of a line
+     * l is of the form l = 2*k, k a non negative integer
+     */
+    private static final int ZZ_LEXSTATE[] = {
+            0, 0
+    };
+
+    /**
+     * Top-level table for translating characters to character classes
+     */
+    private static final int[] ZZ_CMAP_TOP = zzUnpackcmap_top();
+
+    private static final String ZZ_CMAP_TOP_PACKED_0 =
+            "\1\0\1\u0100\1\u0200\1\u0300\1\u0400\1\u0500\1\u0600\1\u0700" +
+                    "\1\u0800\1\u0900\1\u0a00\1\u0b00\1\u0c00\1\u0d00\1\u0e00\1\u0f00" +
+                    "\1\u1000\1\u0100\1\u1100\1\u1200\1\u1300\1\u0100\1\u1400\1\u1500" +
+                    "\1\u1600\1\u1700\1\u1800\1\u1900\1\u1a00\1\u1b00\1\u0100\1\u1c00" +
+                    "\1\u1d00\1\u1e00\12\u1f00\1\u2000\1\u2100\2\u1f00\1\u2200\1\u2300" +
+                    "\2\u1f00\31\u0100\1\u2400\121\u0100\1\u2500\4\u0100\1\u2600\1\u0100" +
+                    "\1\u2700\1\u2800\1\u2900\1\u2a00\1\u2b00\1\u2c00\53\u0100\1\u2d00" +
+                    "\10\u2e00\31\u1f00\1\u0100\1\u2f00\1\u3000\1\u3100\1\u3200\1\u3300" +
+                    "\1\u3400\1\u3500\1\u3600\1\u3700\1\u3800\1\u3900\1\u3a00\1\u0100" +
+                    "\1\u3b00\1\u3c00\1\u3d00\1\u3e00\1\u3f00\1\u4000\1\u4100\1\u1f00" +
+                    "\1\u4200\1\u4300\1\u4400\1\u4500\1\u4600\1\u4700\1\u4800\1\u4900" +
+                    "\1\u4a00\1\u4b00\1\u4c00\1\u4d00\1\u1f00\1\u4e00\1\u4f00\1\u5000" +
+                    "\1\u1f00\3\u0100\1\u5100\1\u5200\1\u5300\12\u1f00\4\u0100\1\u5400" +
+                    "\17\u1f00\2\u0100\1\u5500\41\u1f00\2\u0100\1\u5600\1\u5700\2\u1f00" +
+                    "\1\u5800\1\u5900\27\u0100\1\u5a00\2\u0100\1\u5b00\45\u1f00\1\u0100" +
+                    "\1\u5c00\1\u5d00\11\u1f00\1\u5e00\24\u1f00\1\u5f00\1\u6000\1\u1f00" +
+                    "\1\u6100\1\u6200\1\u6300\1\u6400\2\u1f00\1\u6500\5\u1f00\1\u6600" +
+                    "\1\u6700\1\u6800\5\u1f00\1\u6900\1\u6a00\4\u1f00\1\u6b00\21\u1f00" +
+                    "\246\u0100\1\u6c00\20\u0100\1\u6d00\1\u6e00\25\u0100\1\u6f00\34\u0100" +
+                    "\1\u7000\14\u1f00\2\u0100\1\u7100\u0b06\u1f00\1\u7200\u02fe\u1f00";
+
+    private static int[] zzUnpackcmap_top() {
+        int[] result = new int[4352];
+        int offset = 0;
+        offset = zzUnpackcmap_top(ZZ_CMAP_TOP_PACKED_0, offset, result);
+        return result;
     }
 
-    throw new Error(message);
-  }
-
-
-  /**
-   * Pushes the specified amount of characters back into the input stream.
-   *
-   * They will be read again by then next call of the scanning method
-   *
-   * @param number  the number of characters to be read again.
-   *                This number must not be greater than yylength()!
-   */
-  public void yypushback(int number)  {
-    if ( number > yylength() )
-      zzScanError(ZZ_PUSHBACK_2BIG);
-
-    zzMarkedPos -= number;
-  }
-
-
-  /**
-   * Resumes scanning until the next regular expression is matched,
-   * the end of input is encountered or an I/O-Error occurs.
-   *
-   * @return      the next token
-   * @exception   java.io.IOException  if any I/O-Error occurs
-   */
-  public com.intellij.psi.tree.IElementType advance() throws java.io.IOException
-  {
-    int zzInput;
-    int zzAction;
-
-    // cached fields:
-    int zzCurrentPosL;
-    int zzMarkedPosL;
-    int zzEndReadL = zzEndRead;
-    CharSequence zzBufferL = zzBuffer;
-
-    int [] zzTransL = ZZ_TRANS;
-    int [] zzRowMapL = ZZ_ROWMAP;
-    int [] zzAttrL = ZZ_ATTRIBUTE;
-
-    while (true) {
-      zzMarkedPosL = zzMarkedPos;
-
-      zzAction = -1;
-
-      zzCurrentPosL = zzCurrentPos = zzStartRead = zzMarkedPosL;
-
-      zzState = ZZ_LEXSTATE[zzLexicalState];
-
-      // set up zzAction for empty match case:
-      int zzAttributes = zzAttrL[zzState];
-      if ( (zzAttributes & 1) == 1 ) {
-        zzAction = zzState;
-      }
-
-
-      zzForAction: {
-        while (true) {
-
-          if (zzCurrentPosL < zzEndReadL) {
-            zzInput = Character.codePointAt(zzBufferL, zzCurrentPosL);
-            zzCurrentPosL += Character.charCount(zzInput);
-          }
-          else if (zzAtEOF) {
-            zzInput = YYEOF;
-            break zzForAction;
-          }
-          else {
-            // store back cached positions
-            zzCurrentPos  = zzCurrentPosL;
-            zzMarkedPos   = zzMarkedPosL;
-            boolean eof = zzRefill();
-            // get translated positions and possibly new buffer
-            zzCurrentPosL  = zzCurrentPos;
-            zzMarkedPosL   = zzMarkedPos;
-            zzBufferL      = zzBuffer;
-            zzEndReadL     = zzEndRead;
-            if (eof) {
-              zzInput = YYEOF;
-              break zzForAction;
-            }
-            else {
-              zzInput = Character.codePointAt(zzBufferL, zzCurrentPosL);
-              zzCurrentPosL += Character.charCount(zzInput);
-            }
-          }
-          int zzNext = zzTransL[ zzRowMapL[zzState] + zzCMap(zzInput) ];
-          if (zzNext == -1) break zzForAction;
-          zzState = zzNext;
-
-          zzAttributes = zzAttrL[zzState];
-          if ( (zzAttributes & 1) == 1 ) {
-            zzAction = zzState;
-            zzMarkedPosL = zzCurrentPosL;
-            if ( (zzAttributes & 8) == 8 ) break zzForAction;
-          }
-
+    private static int zzUnpackcmap_top(String packed, int offset, int[] result) {
+        int i = 0;       /* index in packed string  */
+        int j = offset;  /* index in unpacked array */
+        int l = packed.length();
+        while (i < l) {
+            int count = packed.charAt(i++);
+            int value = packed.charAt(i++);
+            do result[j++] = value; while (--count > 0);
         }
-      }
-
-      // store back cached position
-      zzMarkedPos = zzMarkedPosL;
-
-      if (zzInput == YYEOF && zzStartRead == zzCurrentPos) {
-        zzAtEOF = true;
-        return null;
-      }
-      else {
-        switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
-          case 1:
-            { return BAD_CHARACTER;
-            }
-          // fall through
-          case 47: break;
-          case 2:
-            { return WHITE_SPACE;
-            }
-          // fall through
-          case 48: break;
-          case 3:
-            { return OP_NOT;
-            }
-          // fall through
-          case 49: break;
-          case 4:
-            { return HASH;
-            }
-          // fall through
-          case 50: break;
-          case 5:
-            { return DOLLAR;
-            }
-          // fall through
-          case 51: break;
-          case 6:
-            { return PARENTHESIS_L;
-            }
-          // fall through
-          case 52: break;
-          case 7:
-            { return PARENTHESIS_R;
-            }
-          // fall through
-          case 53: break;
-          case 8:
-            { return OP_MANY;
-            }
-          // fall through
-          case 54: break;
-          case 9:
-            { return OP_MANY1;
-            }
-          // fall through
-          case 55: break;
-          case 10:
-            { return COMMA;
-            }
-          // fall through
-          case 56: break;
-          case 11:
-            { return HYPHEN;
-            }
-          // fall through
-          case 57: break;
-          case 12:
-            { return DOT;
-            }
-          // fall through
-          case 58: break;
-          case 13:
-            { return SLASH;
-            }
-          // fall through
-          case 59: break;
-          case 14:
-            { return INTEGER;
-            }
-          // fall through
-          case 60: break;
-          case 15:
-            { return COLON;
-            }
-          // fall through
-          case 61: break;
-          case 16:
-            { return SEMICOLON;
-            }
-          // fall through
-          case 62: break;
-          case 17:
-            { return ANGLE_L;
-            }
-          // fall through
-          case 63: break;
-          case 18:
-            { return BIND;
-            }
-          // fall through
-          case 64: break;
-          case 19:
-            { return ANGLE_R;
-            }
-          // fall through
-          case 65: break;
-          case 20:
-            { return OP_OPTIONAL;
-            }
-          // fall through
-          case 66: break;
-          case 21:
-            { return AT;
-            }
-          // fall through
-          case 67: break;
-          case 22:
-            { return SYMBOL;
-            }
-          // fall through
-          case 68: break;
-          case 23:
-            { return BRACKET_L;
-            }
-          // fall through
-          case 69: break;
-          case 24:
-            { return BRACKET_R;
-            }
-          // fall through
-          case 70: break;
-          case 25:
-            { return OP_REMARK;
-            }
-          // fall through
-          case 71: break;
-          case 26:
-            { return BRACE_L;
-            }
-          // fall through
-          case 72: break;
-          case 27:
-            { return OP_OR;
-            }
-          // fall through
-          case 73: break;
-          case 28:
-            { return BRACE_R;
-            }
-          // fall through
-          case 74: break;
-          case 29:
-            { return OP_CONCAT;
-            }
-          // fall through
-          case 75: break;
-          case 30:
-            { return TEXT_DOUBLE;
-            }
-          // fall through
-          case 76: break;
-          case 31:
-            { return TEXT_SINGLE;
-            }
-          // fall through
-          case 77: break;
-          case 32:
-            { return TO;
-            }
-          // fall through
-          case 78: break;
-          case 33:
-            { return COMMENT_LINE;
-            }
-          // fall through
-          case 79: break;
-          case 34:
-            { return REGULAR_RANGE;
-            }
-          // fall through
-          case 80: break;
-          case 35:
-            { return ESCAPED;
-            }
-          // fall through
-          case 81: break;
-          case 36:
-            { return SYMBOW_RAW;
-            }
-          // fall through
-          case 82: break;
-          case 37:
-            { return KW_AS;
-            }
-          // fall through
-          case 83: break;
-          case 38:
-            { return KW_MACRO;
-            }
-          // fall through
-          case 84: break;
-          case 39:
-            { return REGULAR_EXPRESSION;
-            }
-          // fall through
-          case 85: break;
-          case 40:
-            { return COMMENT_BLOCK;
-            }
-          // fall through
-          case 86: break;
-          case 41:
-            { return KW_UNION;
-            }
-          // fall through
-          case 87: break;
-          case 42:
-            { return KW_CLASS;
-            }
-          // fall through
-          case 88: break;
-          case 43:
-            { return KW_GROUP;
-            }
-          // fall through
-          case 89: break;
-          case 44:
-            { return KW_USING;
-            }
-          // fall through
-          case 90: break;
-          case 45:
-            { return KW_IMPORT;
-            }
-          // fall through
-          case 91: break;
-          case 46:
-            { return KW_GRAMMAR;
-            }
-          // fall through
-          case 92: break;
-          default:
-            zzScanError(ZZ_NO_MATCH);
-          }
-      }
+        return j;
     }
-  }
+
+
+    /**
+     * Second-level tables for translating characters to character classes
+     */
+    private static final int[] ZZ_CMAP_BLOCKS = zzUnpackcmap_blocks();
+
+    private static final String ZZ_CMAP_BLOCKS_PACKED_0 =
+            "\11\0\1\1\1\2\2\3\1\2\22\0\1\1\1\4" +
+                    "\1\5\1\6\1\7\2\0\1\10\1\11\1\12\1\13" +
+                    "\1\14\1\15\1\16\1\17\1\20\12\21\1\22\1\23" +
+                    "\1\24\1\25\1\26\1\27\1\30\32\31\1\32\1\33" +
+                    "\1\34\1\35\1\31\1\36\1\37\1\40\1\41\1\42" +
+                    "\1\43\1\44\1\45\1\31\1\46\1\31\1\47\1\50" +
+                    "\1\51\1\52\1\53\1\54\1\31\1\55\1\56\1\57" +
+                    "\1\60\2\31\1\61\2\31\1\62\1\63\1\64\1\65" +
+                    "\6\0\1\3\32\0\1\1\11\0\1\31\12\0\1\31" +
+                    "\1\0\1\66\2\0\1\31\5\0\27\31\1\0\37\31" +
+                    "\1\0\u01ca\31\4\0\14\31\16\0\5\31\7\0\1\31" +
+                    "\1\0\1\31\21\0\160\66\5\31\1\0\2\31\3\0" +
+                    "\3\31\1\0\1\31\6\0\1\31\1\66\3\31\1\0" +
+                    "\1\31\1\0\24\31\1\0\123\31\1\0\213\31\1\0" +
+                    "\5\66\2\0\246\31\1\0\46\31\2\0\1\31\6\0" +
+                    "\51\31\10\0\55\66\1\0\1\66\1\0\2\66\1\0" +
+                    "\2\66\1\0\1\66\10\0\33\31\4\0\4\31\35\0" +
+                    "\13\66\5\0\53\31\37\66\4\0\2\31\1\66\143\31" +
+                    "\1\0\1\31\7\66\2\0\6\66\2\31\2\66\1\0" +
+                    "\4\66\2\31\12\66\3\31\2\0\1\31\20\0\1\31" +
+                    "\1\66\36\31\33\66\2\0\131\31\13\66\1\31\16\0" +
+                    "\12\66\41\31\11\66\2\31\4\0\1\31\2\0\1\66" +
+                    "\2\0\26\31\4\66\1\31\11\66\1\31\3\66\1\31" +
+                    "\5\66\22\0\31\31\3\66\4\0\13\31\65\0\25\31" +
+                    "\1\0\10\31\25\0\17\66\1\0\41\66\66\31\3\66" +
+                    "\1\31\22\66\1\31\7\66\12\31\2\66\2\0\12\66" +
+                    "\1\0\20\31\3\66\1\0\10\31\2\0\2\31\2\0" +
+                    "\26\31\1\0\7\31\1\0\1\31\3\0\4\31\2\0" +
+                    "\1\66\1\31\7\66\2\0\2\66\2\0\3\66\1\31" +
+                    "\10\0\1\66\4\0\2\31\1\0\3\31\2\66\2\0" +
+                    "\12\66\2\31\12\0\1\31\1\0\1\66\2\0\3\66" +
+                    "\1\0\6\31\4\0\2\31\2\0\26\31\1\0\7\31" +
+                    "\1\0\2\31\1\0\2\31\1\0\2\31\2\0\1\66" +
+                    "\1\0\5\66\4\0\2\66\2\0\3\66\3\0\1\66" +
+                    "\7\0\4\31\1\0\1\31\7\0\14\66\3\31\1\66" +
+                    "\13\0\3\66\1\0\11\31\1\0\3\31\1\0\26\31" +
+                    "\1\0\7\31\1\0\2\31\1\0\5\31\2\0\1\66" +
+                    "\1\31\10\66\1\0\3\66\1\0\3\66\2\0\1\31" +
+                    "\17\0\2\31\2\66\2\0\12\66\11\0\1\31\6\66" +
+                    "\1\0\3\66\1\0\10\31\2\0\2\31\2\0\26\31" +
+                    "\1\0\7\31\1\0\2\31\1\0\5\31\2\0\1\66" +
+                    "\1\31\7\66\2\0\2\66\2\0\3\66\10\0\2\66" +
+                    "\4\0\2\31\1\0\3\31\2\66\2\0\12\66\1\0" +
+                    "\1\31\20\0\1\66\1\31\1\0\6\31\3\0\3\31" +
+                    "\1\0\4\31\3\0\2\31\1\0\1\31\1\0\2\31" +
+                    "\3\0\2\31\3\0\3\31\3\0\14\31\4\0\5\66" +
+                    "\3\0\3\66\1\0\4\66\2\0\1\31\6\0\1\66" +
+                    "\16\0\12\66\20\0\5\66\10\31\1\0\3\31\1\0" +
+                    "\27\31\1\0\20\31\3\0\1\31\7\66\1\0\3\66" +
+                    "\1\0\4\66\7\0\2\66\1\0\3\31\5\0\2\31" +
+                    "\2\66\2\0\12\66\20\0\1\31\3\66\1\0\10\31" +
+                    "\1\0\3\31\1\0\27\31\1\0\12\31\1\0\5\31" +
+                    "\2\0\1\66\1\31\7\66\1\0\3\66\1\0\4\66" +
+                    "\7\0\2\66\7\0\1\31\1\0\2\31\2\66\2\0" +
+                    "\12\66\1\0\2\31\15\0\4\66\1\0\10\31\1\0" +
+                    "\3\31\1\0\51\31\2\66\1\31\7\66\1\0\3\66" +
+                    "\1\0\4\66\1\31\5\0\3\31\1\66\7\0\3\31" +
+                    "\2\66\2\0\12\66\12\0\6\31\2\0\2\66\1\0" +
+                    "\22\31\3\0\30\31\1\0\11\31\1\0\1\31\2\0" +
+                    "\7\31\3\0\1\66\4\0\6\66\1\0\1\66\1\0" +
+                    "\10\66\6\0\12\66\2\0\2\66\15\0\60\31\1\66" +
+                    "\1\31\10\66\5\0\7\31\10\66\1\0\12\66\47\0" +
+                    "\2\31\1\0\1\31\1\0\5\31\1\0\30\31\1\0" +
+                    "\1\31\1\0\12\31\1\66\1\31\12\66\1\31\2\0" +
+                    "\5\31\1\0\1\31\1\0\6\66\2\0\12\66\2\0" +
+                    "\4\31\40\0\1\31\27\0\2\66\6\0\12\66\13\0" +
+                    "\1\66\1\0\1\66\1\0\1\66\4\0\2\66\10\31" +
+                    "\1\0\44\31\4\0\24\66\1\0\2\66\5\31\13\66" +
+                    "\1\0\44\66\11\0\1\66\71\0\53\31\24\66\1\31" +
+                    "\12\66\6\0\6\31\4\66\4\31\3\66\1\31\3\66" +
+                    "\2\31\7\66\3\31\4\66\15\31\14\66\1\31\17\66" +
+                    "\2\0\46\31\1\0\1\31\5\0\1\31\2\0\53\31" +
+                    "\1\0\115\31\1\0\4\31\2\0\7\31\1\0\1\31" +
+                    "\1\0\4\31\2\0\51\31\1\0\4\31\2\0\41\31" +
+                    "\1\0\4\31\2\0\7\31\1\0\1\31\1\0\4\31" +
+                    "\2\0\17\31\1\0\71\31\1\0\4\31\2\0\103\31" +
+                    "\2\0\3\66\11\0\11\66\16\0\20\31\20\0\126\31" +
+                    "\2\0\6\31\3\0\u016c\31\2\0\21\31\1\1\32\31" +
+                    "\5\0\113\31\3\0\13\31\7\0\15\31\1\0\4\31" +
+                    "\3\66\13\0\22\31\3\66\13\0\22\31\2\66\14\0" +
+                    "\15\31\1\0\3\31\1\0\2\66\14\0\64\31\40\66" +
+                    "\3\0\1\31\4\0\1\31\1\66\2\0\12\66\41\0" +
+                    "\3\66\2\0\12\66\6\0\131\31\7\0\51\31\1\66" +
+                    "\1\31\5\0\106\31\12\0\37\31\1\0\14\66\4\0" +
+                    "\14\66\12\0\12\66\36\31\2\0\5\31\13\0\54\31" +
+                    "\4\0\32\31\6\0\13\66\45\0\27\31\5\66\4\0" +
+                    "\65\31\12\66\1\0\35\66\2\0\13\66\6\0\12\66" +
+                    "\15\0\1\31\10\0\16\66\102\0\5\66\57\31\21\66" +
+                    "\7\31\4\0\12\66\21\0\11\66\14\0\3\66\36\31" +
+                    "\15\66\2\31\12\66\54\31\16\66\14\0\44\31\24\66" +
+                    "\10\0\12\66\3\0\3\31\12\66\44\31\2\0\11\31" +
+                    "\7\0\53\31\2\0\3\31\20\0\3\66\1\0\25\66" +
+                    "\4\31\1\66\6\31\1\66\2\31\3\66\1\31\5\0" +
+                    "\300\31\72\66\1\0\5\66\26\31\2\0\6\31\2\0" +
+                    "\46\31\2\0\6\31\2\0\10\31\1\0\1\31\1\0" +
+                    "\1\31\1\0\1\31\1\0\37\31\2\0\65\31\1\0" +
+                    "\7\31\1\0\1\31\3\0\3\31\1\0\7\31\3\0" +
+                    "\4\31\2\0\6\31\4\0\15\31\5\0\3\31\1\0" +
+                    "\7\31\3\0\13\1\35\0\2\3\5\0\1\1\17\0" +
+                    "\2\66\23\0\1\66\12\0\1\1\21\0\1\31\15\0" +
+                    "\1\31\20\0\15\31\63\0\15\66\4\0\1\66\3\0" +
+                    "\14\66\21\0\1\31\4\0\1\31\2\0\12\31\1\0" +
+                    "\1\31\2\0\6\31\6\0\1\31\1\0\1\31\1\0" +
+                    "\1\31\1\0\20\31\2\0\4\31\5\0\5\31\4\0" +
+                    "\1\31\21\0\51\31\u0177\0\57\31\1\0\57\31\1\0" +
+                    "\205\31\6\0\4\31\3\66\2\31\14\0\46\31\1\0" +
+                    "\1\31\5\0\1\31\2\0\70\31\7\0\1\31\17\0" +
+                    "\1\66\27\31\11\0\7\31\1\0\7\31\1\0\7\31" +
+                    "\1\0\7\31\1\0\7\31\1\0\7\31\1\0\7\31" +
+                    "\1\0\7\31\1\0\40\66\1\1\4\0\3\31\31\0" +
+                    "\11\31\6\66\1\0\5\31\2\0\5\31\4\0\126\31" +
+                    "\2\0\2\66\2\0\3\31\1\0\132\31\1\0\4\31" +
+                    "\5\0\53\31\1\0\136\31\21\0\33\31\65\0\306\31" +
+                    "\112\0\360\31\20\0\215\31\103\0\56\31\2\0\15\31" +
+                    "\3\0\20\31\12\66\2\31\24\0\57\31\1\66\4\0" +
+                    "\12\66\1\0\37\31\2\66\120\31\2\66\45\0\11\31" +
+                    "\2\0\147\31\2\0\65\31\2\0\5\31\60\0\13\31" +
+                    "\1\66\3\31\1\66\4\31\1\66\27\31\5\66\30\0" +
+                    "\64\31\14\0\2\66\62\31\22\66\12\0\12\66\6\0" +
+                    "\22\66\6\31\3\0\1\31\1\0\2\31\13\66\34\31" +
+                    "\10\66\2\0\27\31\15\66\14\0\35\31\3\0\4\66" +
+                    "\57\31\16\66\16\0\1\31\12\66\6\0\5\31\1\66" +
+                    "\12\31\12\66\5\31\1\0\51\31\16\66\11\0\3\31" +
+                    "\1\66\10\31\2\66\2\0\12\66\6\0\27\31\3\0" +
+                    "\1\31\3\66\62\31\1\66\1\31\3\66\2\31\2\66" +
+                    "\5\31\2\66\1\31\1\66\1\31\30\0\3\31\2\0" +
+                    "\13\31\5\66\2\0\3\31\2\66\12\0\6\31\2\0" +
+                    "\6\31\2\0\6\31\11\0\7\31\1\0\7\31\1\0" +
+                    "\53\31\1\0\14\31\10\0\163\31\10\66\1\0\2\66" +
+                    "\2\0\12\66\6\0\244\31\14\0\27\31\4\0\61\31" +
+                    "\4\0\u0100\67\156\31\2\0\152\31\46\0\7\31\14\0" +
+                    "\5\31\5\0\1\31\1\66\12\31\1\0\15\31\1\0" +
+                    "\5\31\1\0\1\31\1\0\2\31\1\0\2\31\1\0" +
+                    "\154\31\41\0\213\31\6\0\332\31\22\0\100\31\2\0" +
+                    "\66\31\50\0\12\31\6\0\20\66\20\0\20\66\3\0" +
+                    "\2\66\30\0\3\66\41\0\1\31\1\0\1\31\3\0" +
+                    "\1\31\1\0\1\31\1\0\1\31\1\0\1\31\1\0" +
+                    "\176\31\23\0\12\66\7\0\32\31\4\0\1\66\1\0" +
+                    "\32\31\13\0\70\31\2\66\37\31\3\0\6\31\2\0" +
+                    "\6\31\2\0\6\31\2\0\3\31\43\0\14\31\1\0" +
+                    "\32\31\1\0\23\31\1\0\2\31\1\0\17\31\2\0" +
+                    "\16\31\42\0\173\31\105\0\65\31\210\0\1\66\202\0" +
+                    "\35\31\3\0\61\31\17\0\1\66\37\0\40\31\15\0" +
+                    "\36\31\5\0\46\31\5\66\5\0\36\31\2\0\44\31" +
+                    "\4\0\10\31\1\0\5\31\52\0\236\31\2\0\12\66" +
+                    "\6\0\44\31\4\0\44\31\4\0\50\31\10\0\64\31" +
+                    "\234\0\67\31\11\0\26\31\12\0\10\31\230\0\6\31" +
+                    "\2\0\1\31\1\0\54\31\1\0\2\31\3\0\1\31" +
+                    "\2\0\27\31\12\0\27\31\11\0\37\31\101\0\23\31" +
+                    "\1\0\2\31\12\0\26\31\12\0\32\31\106\0\70\31" +
+                    "\6\0\2\31\100\0\1\31\3\66\1\0\2\66\5\0" +
+                    "\4\66\4\31\1\0\3\31\1\0\35\31\2\0\3\66" +
+                    "\4\0\1\66\40\0\35\31\3\0\35\31\43\0\10\31" +
+                    "\1\0\34\31\2\66\31\0\66\31\12\0\26\31\12\0" +
+                    "\23\31\15\0\22\31\156\0\111\31\67\0\63\31\15\0" +
+                    "\63\31\15\0\44\31\4\66\10\0\12\66\306\0\35\31" +
+                    "\12\0\1\31\10\0\26\31\13\66\217\0\27\31\11\0" +
+                    "\3\66\65\31\17\66\37\0\12\66\17\0\4\66\55\31" +
+                    "\13\66\25\0\31\31\7\0\12\66\6\0\3\66\44\31" +
+                    "\16\66\1\0\12\66\4\0\1\31\2\66\11\0\43\31" +
+                    "\1\66\2\0\1\31\11\0\3\66\60\31\16\66\4\31" +
+                    "\4\0\4\66\3\0\12\66\1\31\1\0\1\31\43\0" +
+                    "\22\31\1\0\31\31\14\66\6\0\1\66\101\0\7\31" +
+                    "\1\0\1\31\1\0\4\31\1\0\17\31\1\0\12\31" +
+                    "\7\0\57\31\14\66\5\0\12\66\6\0\4\66\1\0" +
+                    "\10\31\2\0\2\31\2\0\26\31\1\0\7\31\1\0" +
+                    "\2\31\1\0\5\31\1\0\2\66\1\31\7\66\2\0" +
+                    "\2\66\2\0\3\66\2\0\1\31\6\0\1\66\5\0" +
+                    "\5\31\2\66\2\0\7\66\3\0\5\66\213\0\65\31" +
+                    "\22\66\4\31\5\0\12\66\4\0\1\66\1\31\40\0" +
+                    "\60\31\24\66\2\31\1\0\1\31\10\0\12\66\246\0" +
+                    "\57\31\7\66\2\0\11\66\27\0\4\31\2\66\42\0" +
+                    "\60\31\21\66\3\0\1\31\13\0\12\66\46\0\53\31" +
+                    "\15\66\1\31\7\0\12\66\66\0\33\31\2\0\17\66" +
+                    "\4\0\12\66\306\0\54\31\17\66\145\0\100\31\12\66" +
+                    "\25\0\1\31\240\0\10\31\2\0\47\31\7\66\2\0" +
+                    "\7\66\1\31\1\0\1\31\1\66\33\0\1\31\12\66" +
+                    "\50\31\7\66\1\31\4\66\10\0\1\66\10\0\1\31" +
+                    "\13\66\56\31\20\66\3\0\1\31\42\0\71\31\7\0" +
+                    "\11\31\1\0\45\31\10\66\1\0\10\66\1\31\17\0" +
+                    "\12\66\30\0\36\31\2\0\26\66\1\0\16\66\111\0" +
+                    "\7\31\1\0\2\31\1\0\46\31\6\66\3\0\1\66" +
+                    "\1\0\2\66\1\0\7\66\1\31\1\66\10\0\12\66" +
+                    "\6\0\6\31\1\0\2\31\1\0\40\31\5\66\1\0" +
+                    "\2\66\1\0\5\66\1\31\7\0\12\66\u0136\0\23\31" +
+                    "\4\66\11\0\232\31\146\0\157\31\21\0\304\31\274\0" +
+                    "\57\31\321\0\107\31\271\0\71\31\7\0\37\31\1\0" +
+                    "\12\66\146\0\36\31\2\0\5\66\13\0\60\31\7\66" +
+                    "\11\0\4\31\14\0\12\66\11\0\25\31\5\0\23\31" +
+                    "\260\0\100\31\200\0\113\31\4\0\1\66\1\31\67\66" +
+                    "\7\0\4\66\15\31\100\0\2\31\1\0\1\31\34\0" +
+                    "\370\31\10\0\363\31\15\0\37\31\61\0\3\31\21\0" +
+                    "\4\31\10\0\u018c\31\4\0\153\31\5\0\15\31\3\0" +
+                    "\11\31\7\0\12\31\3\0\2\66\306\0\5\66\3\0" +
+                    "\6\66\10\0\10\66\2\0\7\66\36\0\4\66\224\0" +
+                    "\3\66\273\0\125\31\1\0\107\31\1\0\2\31\2\0" +
+                    "\1\31\2\0\2\31\2\0\4\31\1\0\14\31\1\0" +
+                    "\1\31\1\0\7\31\1\0\101\31\1\0\4\31\2\0" +
+                    "\10\31\1\0\7\31\1\0\34\31\1\0\4\31\1\0" +
+                    "\5\31\1\0\1\31\3\0\7\31\1\0\u0154\31\2\0" +
+                    "\31\31\1\0\31\31\1\0\37\31\1\0\31\31\1\0" +
+                    "\37\31\1\0\31\31\1\0\37\31\1\0\31\31\1\0" +
+                    "\37\31\1\0\31\31\1\0\10\31\2\0\151\66\4\0" +
+                    "\62\66\10\0\1\66\16\0\1\66\26\0\5\66\1\0" +
+                    "\17\66\120\0\7\66\1\0\21\66\2\0\7\66\1\0" +
+                    "\2\66\1\0\5\66\325\0\55\31\3\0\7\66\7\31" +
+                    "\2\0\12\66\4\0\1\31\u0171\0\54\31\16\66\6\0" +
+                    "\305\31\13\0\7\66\51\0\104\31\7\66\1\31\4\0" +
+                    "\12\66\246\0\4\31\1\0\33\31\1\0\2\31\1\0" +
+                    "\1\31\2\0\1\31\1\0\12\31\1\0\4\31\1\0" +
+                    "\1\31\1\0\1\31\6\0\1\31\4\0\1\31\1\0" +
+                    "\1\31\1\0\1\31\1\0\3\31\1\0\2\31\1\0" +
+                    "\1\31\2\0\1\31\1\0\1\31\1\0\1\31\1\0" +
+                    "\1\31\1\0\1\31\1\0\2\31\1\0\1\31\2\0" +
+                    "\4\31\1\0\7\31\1\0\4\31\1\0\4\31\1\0" +
+                    "\1\31\1\0\12\31\1\0\21\31\5\0\3\31\1\0" +
+                    "\5\31\1\0\21\31\104\0\327\31\51\0\65\31\13\0" +
+                    "\336\31\2\0\u0182\31\16\0\u0131\31\37\0\36\31\342\0" +
+                    "\360\66\20\0";
+
+    private static int[] zzUnpackcmap_blocks() {
+        int[] result = new int[29440];
+        int offset = 0;
+        offset = zzUnpackcmap_blocks(ZZ_CMAP_BLOCKS_PACKED_0, offset, result);
+        return result;
+    }
+
+    private static int zzUnpackcmap_blocks(String packed, int offset, int[] result) {
+        int i = 0;       /* index in packed string  */
+        int j = offset;  /* index in unpacked array */
+        int l = packed.length();
+        while (i < l) {
+            int count = packed.charAt(i++);
+            int value = packed.charAt(i++);
+            do result[j++] = value; while (--count > 0);
+        }
+        return j;
+    }
+
+    /**
+     * Translates DFA states to action switch labels.
+     */
+    private static final int[] ZZ_ACTION = zzUnpackAction();
+
+    private static final String ZZ_ACTION_PACKED_0 =
+            "\1\0\1\1\1\2\1\3\1\1\1\4\1\5\1\1" +
+                    "\1\6\1\7\1\10\1\11\1\12\1\13\1\14\1\15" +
+                    "\1\16\1\17\1\20\1\21\1\22\1\23\1\24\1\25" +
+                    "\1\26\1\27\1\1\1\30\1\31\1\1\14\26\1\32" +
+                    "\1\33\1\34\1\35\1\0\1\36\2\0\1\37\1\40" +
+                    "\2\0\1\41\2\0\1\42\1\43\1\0\1\44\1\45" +
+                    "\3\26\1\46\11\26\1\36\1\47\1\0\1\47\1\0" +
+                    "\3\26\1\46\11\26\1\50\2\0\2\26\1\51\1\46" +
+                    "\11\26\1\52\2\26\1\53\3\26\1\54\2\26\1\55" +
+                    "\2\26\1\56";
+
+    private static int[] zzUnpackAction() {
+        int[] result = new int[123];
+        int offset = 0;
+        offset = zzUnpackAction(ZZ_ACTION_PACKED_0, offset, result);
+        return result;
+    }
+
+    private static int zzUnpackAction(String packed, int offset, int[] result) {
+        int i = 0;       /* index in packed string  */
+        int j = offset;  /* index in unpacked array */
+        int l = packed.length();
+        while (i < l) {
+            int count = packed.charAt(i++);
+            int value = packed.charAt(i++);
+            do result[j++] = value; while (--count > 0);
+        }
+        return j;
+    }
+
+
+    /**
+     * Translates a state to a row index in the transition table
+     */
+    private static final int[] ZZ_ROWMAP = zzUnpackRowMap();
+
+    private static final String ZZ_ROWMAP_PACKED_0 =
+            "\0\0\0\70\0\160\0\70\0\250\0\70\0\70\0\340" +
+                    "\0\70\0\70\0\70\0\70\0\70\0\u0118\0\70\0\u0150" +
+                    "\0\u0188\0\70\0\70\0\70\0\70\0\70\0\70\0\70" +
+                    "\0\u01c0\0\u01f8\0\u0230\0\70\0\70\0\u0268\0\u02a0\0\u02d8" +
+                    "\0\u0310\0\u0348\0\u0380\0\u03b8\0\u03f0\0\u0428\0\u0460\0\u0498" +
+                    "\0\u04d0\0\u0508\0\70\0\70\0\70\0\70\0\250\0\70" +
+                    "\0\u0540\0\340\0\70\0\70\0\u0578\0\u05b0\0\u05e8\0\u0620" +
+                    "\0\u01f8\0\70\0\70\0\u0268\0\70\0\u01c0\0\u0658\0\u0690" +
+                    "\0\u06c8\0\u01c0\0\u0700\0\u0738\0\u0770\0\u07a8\0\u07e0\0\u0818" +
+                    "\0\u0850\0\u0888\0\u08c0\0\250\0\70\0\u08f8\0\u0930\0\u0968" +
+                    "\0\u09a0\0\u09d8\0\u0a10\0\u0a48\0\u0a80\0\u0ab8\0\u0af0\0\u0b28" +
+                    "\0\u0b60\0\u0b98\0\u0bd0\0\u0c08\0\u0c40\0\70\0\u0930\0\u0c78" +
+                    "\0\u0cb0\0\u0ce8\0\u01c0\0\u0d20\0\u0d58\0\u0d90\0\u0dc8\0\u0e00" +
+                    "\0\u0e38\0\u0e70\0\u0ea8\0\u0ee0\0\u0f18\0\u01c0\0\u0f50\0\u0f88" +
+                    "\0\u01c0\0\u0fc0\0\u0ff8\0\u1030\0\u01c0\0\u1068\0\u10a0\0\u01c0" +
+                    "\0\u10d8\0\u1110\0\u01c0";
+
+    private static int[] zzUnpackRowMap() {
+        int[] result = new int[123];
+        int offset = 0;
+        offset = zzUnpackRowMap(ZZ_ROWMAP_PACKED_0, offset, result);
+        return result;
+    }
+
+    private static int zzUnpackRowMap(String packed, int offset, int[] result) {
+        int i = 0;  /* index in packed string  */
+        int j = offset;  /* index in unpacked array */
+        int l = packed.length() - 1;
+        while (i < l) {
+            int high = packed.charAt(i++) << 16;
+            result[j++] = high | packed.charAt(i++);
+        }
+        return j;
+    }
+
+    /**
+     * The transition table of the DFA
+     */
+    private static final int[] ZZ_TRANS = zzUnpacktrans();
+
+    private static final String ZZ_TRANS_PACKED_0 =
+            "\1\2\3\3\1\4\1\5\1\6\1\7\1\10\1\11" +
+                    "\1\12\1\13\1\14\1\15\1\16\1\17\1\20\1\21" +
+                    "\1\22\1\23\1\24\1\25\1\26\1\27\1\30\1\31" +
+                    "\1\32\1\33\1\34\1\35\1\36\1\37\1\31\1\40" +
+                    "\1\41\1\42\1\43\1\44\1\45\1\31\1\46\1\47" +
+                    "\4\31\1\50\1\51\1\52\1\31\1\53\1\54\1\55" +
+                    "\1\56\2\2\71\0\3\3\64\0\5\57\1\60\25\57" +
+                    "\1\61\34\57\10\62\1\63\57\62\26\0\1\64\41\0" +
+                    "\13\65\1\66\4\65\1\67\12\65\1\70\34\65\21\0" +
+                    "\1\21\67\0\1\31\7\0\1\31\5\0\23\31\4\0" +
+                    "\1\31\1\0\34\71\1\72\33\71\2\73\2\0\63\73" +
+                    "\1\0\36\74\1\75\31\74\21\0\1\31\7\0\1\31" +
+                    "\5\0\17\31\1\76\3\31\4\0\1\31\22\0\1\31" +
+                    "\7\0\1\31\5\0\11\31\1\77\11\31\4\0\1\31" +
+                    "\22\0\1\31\7\0\1\31\5\0\4\31\1\100\16\31" +
+                    "\4\0\1\31\22\0\1\31\7\0\1\31\5\0\13\31" +
+                    "\1\101\7\31\4\0\1\31\22\0\1\31\7\0\1\31" +
+                    "\5\0\13\31\1\102\5\31\1\103\1\31\4\0\1\31" +
+                    "\22\0\1\31\7\0\1\31\5\0\16\31\1\104\4\31" +
+                    "\4\0\1\31\22\0\1\31\7\0\1\31\5\0\12\31" +
+                    "\1\105\10\31\4\0\1\31\22\0\1\31\7\0\1\31" +
+                    "\5\0\4\31\1\106\16\31\4\0\1\31\22\0\1\31" +
+                    "\7\0\1\31\5\0\1\107\22\31\4\0\1\31\22\0" +
+                    "\1\31\7\0\1\31\5\0\20\31\1\110\2\31\4\0" +
+                    "\1\31\22\0\1\31\7\0\1\31\5\0\14\31\1\111" +
+                    "\6\31\4\0\1\31\22\0\1\31\7\0\1\31\5\0" +
+                    "\13\31\1\112\3\31\1\113\3\31\4\0\1\31\1\0" +
+                    "\5\57\1\114\25\57\1\61\34\57\20\65\1\115\12\65" +
+                    "\1\70\34\65\13\66\1\116\4\66\1\117\12\66\1\120" +
+                    "\34\66\2\67\1\0\65\67\2\65\2\0\63\65\22\0" +
+                    "\1\31\7\0\1\31\5\0\1\121\6\31\1\122\13\31" +
+                    "\4\0\1\31\22\0\1\31\7\0\1\31\5\0\5\31" +
+                    "\1\102\15\31\4\0\1\31\22\0\1\31\7\0\1\31" +
+                    "\5\0\21\31\1\123\1\31\4\0\1\31\22\0\1\31" +
+                    "\7\0\1\31\5\0\13\31\1\124\7\31\4\0\1\31" +
+                    "\22\0\1\31\7\0\1\31\5\0\1\125\13\31\1\126" +
+                    "\6\31\4\0\1\31\22\0\1\31\7\0\1\31\5\0" +
+                    "\15\31\1\127\5\31\4\0\1\31\22\0\1\31\7\0" +
+                    "\1\31\5\0\22\31\1\130\4\0\1\31\22\0\1\31" +
+                    "\7\0\1\31\5\0\2\31\1\131\20\31\4\0\1\31" +
+                    "\22\0\1\31\7\0\1\31\5\0\16\31\1\132\4\31" +
+                    "\4\0\1\31\22\0\1\31\7\0\1\31\5\0\10\31" +
+                    "\1\133\12\31\4\0\1\31\22\0\1\31\7\0\1\31" +
+                    "\5\0\7\31\1\134\13\31\4\0\1\31\22\0\1\31" +
+                    "\7\0\1\31\5\0\7\31\1\135\13\31\4\0\1\31" +
+                    "\1\0\13\66\1\116\4\66\1\136\12\66\1\120\34\66" +
+                    "\13\137\1\140\54\137\2\66\2\137\7\66\1\116\53\66" +
+                    "\1\137\21\0\1\31\7\0\1\31\5\0\17\31\1\141" +
+                    "\3\31\4\0\1\31\22\0\1\31\7\0\1\31\5\0" +
+                    "\12\31\1\142\10\31\4\0\1\31\22\0\1\31\7\0" +
+                    "\1\31\5\0\12\31\1\143\10\31\4\0\1\31\22\0" +
+                    "\1\31\7\0\1\31\5\0\2\31\1\144\20\31\4\0" +
+                    "\1\31\22\0\1\31\7\0\1\31\5\0\12\31\1\145" +
+                    "\10\31\4\0\1\31\22\0\1\31\7\0\1\31\5\0" +
+                    "\21\31\1\146\1\31\4\0\1\31\22\0\1\31\7\0" +
+                    "\1\31\5\0\14\31\1\147\6\31\4\0\1\31\22\0" +
+                    "\1\31\7\0\1\31\5\0\7\31\1\150\13\31\4\0" +
+                    "\1\31\22\0\1\31\7\0\1\31\5\0\16\31\1\151" +
+                    "\4\31\4\0\1\31\22\0\1\31\7\0\1\31\5\0" +
+                    "\21\31\1\152\1\31\4\0\1\31\22\0\1\31\7\0" +
+                    "\1\31\5\0\4\31\1\153\16\31\4\0\1\31\22\0" +
+                    "\1\31\7\0\1\31\5\0\14\31\1\154\6\31\4\0" +
+                    "\1\31\22\0\1\31\7\0\1\31\5\0\13\31\1\155" +
+                    "\7\31\4\0\1\31\1\0\13\137\1\140\4\137\1\136" +
+                    "\47\137\21\0\1\31\7\0\1\31\5\0\17\31\1\156" +
+                    "\3\31\4\0\1\31\22\0\1\31\7\0\1\31\5\0" +
+                    "\1\31\1\143\21\31\4\0\1\31\22\0\1\31\7\0" +
+                    "\1\31\5\0\20\31\1\157\2\31\4\0\1\31\22\0" +
+                    "\1\31\7\0\1\31\5\0\12\31\1\160\10\31\4\0" +
+                    "\1\31\22\0\1\31\7\0\1\31\5\0\15\31\1\161" +
+                    "\5\31\4\0\1\31\22\0\1\31\7\0\1\31\5\0" +
+                    "\16\31\1\162\4\31\4\0\1\31\22\0\1\31\7\0" +
+                    "\1\31\5\0\2\31\1\163\20\31\4\0\1\31\22\0" +
+                    "\1\31\7\0\1\31\5\0\14\31\1\102\6\31\4\0" +
+                    "\1\31\22\0\1\31\7\0\1\31\5\0\2\31\1\164" +
+                    "\20\31\4\0\1\31\22\0\1\31\7\0\1\31\5\0" +
+                    "\13\31\1\161\7\31\4\0\1\31\22\0\1\31\7\0" +
+                    "\1\31\5\0\13\31\1\143\7\31\4\0\1\31\22\0" +
+                    "\1\31\7\0\1\31\5\0\6\31\1\165\14\31\4\0" +
+                    "\1\31\22\0\1\31\7\0\1\31\5\0\7\31\1\166" +
+                    "\13\31\4\0\1\31\22\0\1\31\7\0\1\31\5\0" +
+                    "\1\167\22\31\4\0\1\31\22\0\1\31\7\0\1\31" +
+                    "\5\0\20\31\1\170\2\31\4\0\1\31\22\0\1\31" +
+                    "\7\0\1\31\5\0\14\31\1\171\6\31\4\0\1\31" +
+                    "\22\0\1\31\7\0\1\31\5\0\20\31\1\156\2\31" +
+                    "\4\0\1\31\22\0\1\31\7\0\1\31\5\0\14\31" +
+                    "\1\172\6\31\4\0\1\31\22\0\1\31\7\0\1\31" +
+                    "\5\0\16\31\1\173\4\31\4\0\1\31\22\0\1\31" +
+                    "\7\0\1\31\5\0\13\31\1\173\7\31\4\0\1\31" +
+                    "\22\0\1\31\7\0\1\31\5\0\13\31\1\102\7\31" +
+                    "\4\0\1\31\1\0";
+
+    private static int[] zzUnpacktrans() {
+        int[] result = new int[4424];
+        int offset = 0;
+        offset = zzUnpacktrans(ZZ_TRANS_PACKED_0, offset, result);
+        return result;
+    }
+
+    private static int zzUnpacktrans(String packed, int offset, int[] result) {
+        int i = 0;       /* index in packed string  */
+        int j = offset;  /* index in unpacked array */
+        int l = packed.length();
+        while (i < l) {
+            int count = packed.charAt(i++);
+            int value = packed.charAt(i++);
+            value--;
+            do result[j++] = value; while (--count > 0);
+        }
+        return j;
+    }
+
+
+    /* error codes */
+    private static final int ZZ_UNKNOWN_ERROR = 0;
+    private static final int ZZ_NO_MATCH = 1;
+    private static final int ZZ_PUSHBACK_2BIG = 2;
+
+    /* error messages for the codes above */
+    private static final String[] ZZ_ERROR_MSG = {
+            "Unknown internal scanner error",
+            "Error: could not match input",
+            "Error: pushback value was too large"
+    };
+
+    /**
+     * ZZ_ATTRIBUTE[aState] contains the attributes of state {@code aState}
+     */
+    private static final int[] ZZ_ATTRIBUTE = zzUnpackAttribute();
+
+    private static final String ZZ_ATTRIBUTE_PACKED_0 =
+            "\1\0\1\11\1\1\1\11\1\1\2\11\1\1\5\11" +
+                    "\1\1\1\11\2\1\7\11\3\1\2\11\15\1\4\11" +
+                    "\1\0\1\11\2\0\2\11\2\0\1\1\2\0\2\11" +
+                    "\1\0\1\11\17\1\1\11\1\0\1\1\1\0\15\1" +
+                    "\1\11\2\0\33\1";
+
+    private static int[] zzUnpackAttribute() {
+        int[] result = new int[123];
+        int offset = 0;
+        offset = zzUnpackAttribute(ZZ_ATTRIBUTE_PACKED_0, offset, result);
+        return result;
+    }
+
+    private static int zzUnpackAttribute(String packed, int offset, int[] result) {
+        int i = 0;       /* index in packed string  */
+        int j = offset;  /* index in unpacked array */
+        int l = packed.length();
+        while (i < l) {
+            int count = packed.charAt(i++);
+            int value = packed.charAt(i++);
+            do result[j++] = value; while (--count > 0);
+        }
+        return j;
+    }
+
+    /**
+     * the input device
+     */
+    private java.io.Reader zzReader;
+
+    /**
+     * the current state of the DFA
+     */
+    private int zzState;
+
+    /**
+     * the current lexical state
+     */
+    private int zzLexicalState = YYINITIAL;
+
+    /**
+     * this buffer contains the current text to be matched and is
+     * the source of the yytext() string
+     */
+    private CharSequence zzBuffer = "";
+
+    /**
+     * the textposition at the last accepting state
+     */
+    private int zzMarkedPos;
+
+    /**
+     * the current text position in the buffer
+     */
+    private int zzCurrentPos;
+
+    /**
+     * startRead marks the beginning of the yytext() string in the buffer
+     */
+    private int zzStartRead;
+
+    /**
+     * endRead marks the last character in the buffer, that has been read
+     * from input
+     */
+    private int zzEndRead;
+
+    /**
+     * zzAtEOF == true <=> the scanner is at the EOF
+     */
+    private boolean zzAtEOF;
+
+    /**
+     * Number of newlines encountered up to the start of the matched text.
+     */
+    @SuppressWarnings("unused")
+    private int yyline;
+
+    /**
+     * Number of characters from the last newline up to the start of the matched text.
+     */
+    @SuppressWarnings("unused")
+    protected int yycolumn;
+
+    /**
+     * Number of characters up to the start of the matched text.
+     */
+    @SuppressWarnings("unused")
+    private long yychar;
+
+    /**
+     * Whether the scanner is currently at the beginning of a line.
+     */
+    @SuppressWarnings("unused")
+    private boolean zzAtBOL = true;
+
+    /**
+     * Whether the user-EOF-code has already been executed.
+     */
+    @SuppressWarnings("unused")
+    private boolean zzEOFDone;
+
+
+    /**
+     * Creates a new scanner
+     *
+     * @param in the java.io.Reader to read input from.
+     */
+    public _YggdrasilLexer(java.io.Reader in) {
+        this.zzReader = in;
+    }
+
+
+    /**
+     * Returns the maximum size of the scanner buffer, which limits the size of tokens.
+     */
+    private int zzMaxBufferLen() {
+        return Integer.MAX_VALUE;
+    }
+
+    /**
+     * Whether the scanner buffer can grow to accommodate a larger token.
+     */
+    private boolean zzCanGrow() {
+        return true;
+    }
+
+    /**
+     * Translates raw input code points to DFA table row
+     */
+    private static int zzCMap(int input) {
+        int offset = input & 255;
+        return offset == input ? ZZ_CMAP_BLOCKS[offset] : ZZ_CMAP_BLOCKS[ZZ_CMAP_TOP[input >> 8] | offset];
+    }
+
+    public final int getTokenStart() {
+        return zzStartRead;
+    }
+
+    public final int getTokenEnd() {
+        return getTokenStart() + yylength();
+    }
+
+    public void reset(CharSequence buffer, int start, int end, int initialState) {
+        zzBuffer = buffer;
+        zzCurrentPos = zzMarkedPos = zzStartRead = start;
+        zzAtEOF = false;
+        zzAtBOL = true;
+        zzEndRead = end;
+        yybegin(initialState);
+    }
+
+    /**
+     * Refills the input buffer.
+     *
+     * @return {@code false}, iff there was new input.
+     * @throws java.io.IOException if any I/O-Error occurs
+     */
+    private boolean zzRefill() throws java.io.IOException {
+        return true;
+    }
+
+
+    /**
+     * Returns the current lexical state.
+     */
+    public final int yystate() {
+        return zzLexicalState;
+    }
+
+
+    /**
+     * Enters a new lexical state
+     *
+     * @param newState the new lexical state
+     */
+    public final void yybegin(int newState) {
+        zzLexicalState = newState;
+    }
+
+
+    /**
+     * Returns the text matched by the current regular expression.
+     */
+    public final CharSequence yytext() {
+        return zzBuffer.subSequence(zzStartRead, zzMarkedPos);
+    }
+
+
+    /**
+     * Returns the character at position {@code pos} from the
+     * matched text.
+     * <p>
+     * It is equivalent to yytext().charAt(pos), but faster
+     *
+     * @param pos the position of the character to fetch.
+     *            A value from 0 to yylength()-1.
+     * @return the character at position pos
+     */
+    public final char yycharat(int pos) {
+        return zzBuffer.charAt(zzStartRead + pos);
+    }
+
+
+    /**
+     * Returns the length of the matched text region.
+     */
+    public final int yylength() {
+        return zzMarkedPos - zzStartRead;
+    }
+
+
+    /**
+     * Reports an error that occurred while scanning.
+     * <p>
+     * In a wellformed scanner (no or only correct usage of
+     * yypushback(int) and a match-all fallback rule) this method
+     * will only be called with things that "Can't Possibly Happen".
+     * If this method is called, something is seriously wrong
+     * (e.g. a JFlex bug producing a faulty scanner etc.).
+     * <p>
+     * Usual syntax/scanner level error handling should be done
+     * in error fallback rules.
+     *
+     * @param errorCode the code of the errormessage to display
+     */
+    private void zzScanError(int errorCode) {
+        String message;
+        try {
+            message = ZZ_ERROR_MSG[errorCode];
+        } catch (ArrayIndexOutOfBoundsException e) {
+            message = ZZ_ERROR_MSG[ZZ_UNKNOWN_ERROR];
+        }
+
+        throw new Error(message);
+    }
+
+
+    /**
+     * Pushes the specified amount of characters back into the input stream.
+     * <p>
+     * They will be read again by then next call of the scanning method
+     *
+     * @param number the number of characters to be read again.
+     *               This number must not be greater than yylength()!
+     */
+    public void yypushback(int number) {
+        if (number > yylength())
+            zzScanError(ZZ_PUSHBACK_2BIG);
+
+        zzMarkedPos -= number;
+    }
+
+
+    /**
+     * Resumes scanning until the next regular expression is matched,
+     * the end of input is encountered or an I/O-Error occurs.
+     *
+     * @return the next token
+     * @throws java.io.IOException if any I/O-Error occurs
+     */
+    public com.intellij.psi.tree.IElementType advance() throws java.io.IOException {
+        int zzInput;
+        int zzAction;
+
+        // cached fields:
+        int zzCurrentPosL;
+        int zzMarkedPosL;
+        int zzEndReadL = zzEndRead;
+        CharSequence zzBufferL = zzBuffer;
+
+        int[] zzTransL = ZZ_TRANS;
+        int[] zzRowMapL = ZZ_ROWMAP;
+        int[] zzAttrL = ZZ_ATTRIBUTE;
+
+        while (true) {
+            zzMarkedPosL = zzMarkedPos;
+
+            zzAction = -1;
+
+            zzCurrentPosL = zzCurrentPos = zzStartRead = zzMarkedPosL;
+
+            zzState = ZZ_LEXSTATE[zzLexicalState];
+
+            // set up zzAction for empty match case:
+            int zzAttributes = zzAttrL[zzState];
+            if ((zzAttributes & 1) == 1) {
+                zzAction = zzState;
+            }
+
+
+            zzForAction:
+            {
+                while (true) {
+
+                    if (zzCurrentPosL < zzEndReadL) {
+                        zzInput = Character.codePointAt(zzBufferL, zzCurrentPosL);
+                        zzCurrentPosL += Character.charCount(zzInput);
+                    } else if (zzAtEOF) {
+                        zzInput = YYEOF;
+                        break zzForAction;
+                    } else {
+                        // store back cached positions
+                        zzCurrentPos = zzCurrentPosL;
+                        zzMarkedPos = zzMarkedPosL;
+                        boolean eof = zzRefill();
+                        // get translated positions and possibly new buffer
+                        zzCurrentPosL = zzCurrentPos;
+                        zzMarkedPosL = zzMarkedPos;
+                        zzBufferL = zzBuffer;
+                        zzEndReadL = zzEndRead;
+                        if (eof) {
+                            zzInput = YYEOF;
+                            break zzForAction;
+                        } else {
+                            zzInput = Character.codePointAt(zzBufferL, zzCurrentPosL);
+                            zzCurrentPosL += Character.charCount(zzInput);
+                        }
+                    }
+                    int zzNext = zzTransL[zzRowMapL[zzState] + zzCMap(zzInput)];
+                    if (zzNext == -1) break zzForAction;
+                    zzState = zzNext;
+
+                    zzAttributes = zzAttrL[zzState];
+                    if ((zzAttributes & 1) == 1) {
+                        zzAction = zzState;
+                        zzMarkedPosL = zzCurrentPosL;
+                        if ((zzAttributes & 8) == 8) break zzForAction;
+                    }
+
+                }
+            }
+
+            // store back cached position
+            zzMarkedPos = zzMarkedPosL;
+
+            if (zzInput == YYEOF && zzStartRead == zzCurrentPos) {
+                zzAtEOF = true;
+                return null;
+            } else {
+                switch (zzAction < 0 ? zzAction : ZZ_ACTION[zzAction]) {
+                    case 1: {
+                        return BAD_CHARACTER;
+                    }
+                    // fall through
+                    case 47:
+                        break;
+                    case 2: {
+                        return WHITE_SPACE;
+                    }
+                    // fall through
+                    case 48:
+                        break;
+                    case 3: {
+                        return OP_NOT;
+                    }
+                    // fall through
+                    case 49:
+                        break;
+                    case 4: {
+                        return HASH;
+                    }
+                    // fall through
+                    case 50:
+                        break;
+                    case 5: {
+                        return DOLLAR;
+                    }
+                    // fall through
+                    case 51:
+                        break;
+                    case 6: {
+                        return PARENTHESIS_L;
+                    }
+                    // fall through
+                    case 52:
+                        break;
+                    case 7: {
+                        return PARENTHESIS_R;
+                    }
+                    // fall through
+                    case 53:
+                        break;
+                    case 8: {
+                        return OP_MANY;
+                    }
+                    // fall through
+                    case 54:
+                        break;
+                    case 9: {
+                        return OP_MANY1;
+                    }
+                    // fall through
+                    case 55:
+                        break;
+                    case 10: {
+                        return COMMA;
+                    }
+                    // fall through
+                    case 56:
+                        break;
+                    case 11: {
+                        return HYPHEN;
+                    }
+                    // fall through
+                    case 57:
+                        break;
+                    case 12: {
+                        return DOT;
+                    }
+                    // fall through
+                    case 58:
+                        break;
+                    case 13: {
+                        return SLASH;
+                    }
+                    // fall through
+                    case 59:
+                        break;
+                    case 14: {
+                        return INTEGER;
+                    }
+                    // fall through
+                    case 60:
+                        break;
+                    case 15: {
+                        return COLON;
+                    }
+                    // fall through
+                    case 61:
+                        break;
+                    case 16: {
+                        return SEMICOLON;
+                    }
+                    // fall through
+                    case 62:
+                        break;
+                    case 17: {
+                        return ANGLE_L;
+                    }
+                    // fall through
+                    case 63:
+                        break;
+                    case 18: {
+                        return BIND;
+                    }
+                    // fall through
+                    case 64:
+                        break;
+                    case 19: {
+                        return ANGLE_R;
+                    }
+                    // fall through
+                    case 65:
+                        break;
+                    case 20: {
+                        return OP_OPTIONAL;
+                    }
+                    // fall through
+                    case 66:
+                        break;
+                    case 21: {
+                        return AT;
+                    }
+                    // fall through
+                    case 67:
+                        break;
+                    case 22: {
+                        return SYMBOL;
+                    }
+                    // fall through
+                    case 68:
+                        break;
+                    case 23: {
+                        return BRACKET_L;
+                    }
+                    // fall through
+                    case 69:
+                        break;
+                    case 24: {
+                        return BRACKET_R;
+                    }
+                    // fall through
+                    case 70:
+                        break;
+                    case 25: {
+                        return OP_REMARK;
+                    }
+                    // fall through
+                    case 71:
+                        break;
+                    case 26: {
+                        return BRACE_L;
+                    }
+                    // fall through
+                    case 72:
+                        break;
+                    case 27: {
+                        return OP_OR;
+                    }
+                    // fall through
+                    case 73:
+                        break;
+                    case 28: {
+                        return BRACE_R;
+                    }
+                    // fall through
+                    case 74:
+                        break;
+                    case 29: {
+                        return OP_CONCAT;
+                    }
+                    // fall through
+                    case 75:
+                        break;
+                    case 30: {
+                        return TEXT_DOUBLE;
+                    }
+                    // fall through
+                    case 76:
+                        break;
+                    case 31: {
+                        return TEXT_SINGLE;
+                    }
+                    // fall through
+                    case 77:
+                        break;
+                    case 32: {
+                        return TO;
+                    }
+                    // fall through
+                    case 78:
+                        break;
+                    case 33: {
+                        return COMMENT_LINE;
+                    }
+                    // fall through
+                    case 79:
+                        break;
+                    case 34: {
+                        return REGULAR_RANGE;
+                    }
+                    // fall through
+                    case 80:
+                        break;
+                    case 35: {
+                        return ESCAPED;
+                    }
+                    // fall through
+                    case 81:
+                        break;
+                    case 36: {
+                        return SYMBOW_RAW;
+                    }
+                    // fall through
+                    case 82:
+                        break;
+                    case 37: {
+                        return KW_AS;
+                    }
+                    // fall through
+                    case 83:
+                        break;
+                    case 38: {
+                        return KW_MACRO;
+                    }
+                    // fall through
+                    case 84:
+                        break;
+                    case 39: {
+                        return REGULAR_EXPRESSION;
+                    }
+                    // fall through
+                    case 85:
+                        break;
+                    case 40: {
+                        return COMMENT_BLOCK;
+                    }
+                    // fall through
+                    case 86:
+                        break;
+                    case 41: {
+                        return KW_UNION;
+                    }
+                    // fall through
+                    case 87:
+                        break;
+                    case 42: {
+                        return KW_CLASS;
+                    }
+                    // fall through
+                    case 88:
+                        break;
+                    case 43: {
+                        return KW_GROUP;
+                    }
+                    // fall through
+                    case 89:
+                        break;
+                    case 44: {
+                        return KW_USING;
+                    }
+                    // fall through
+                    case 90:
+                        break;
+                    case 45: {
+                        return KW_IMPORT;
+                    }
+                    // fall through
+                    case 91:
+                        break;
+                    case 46: {
+                        return KW_GRAMMAR;
+                    }
+                    // fall through
+                    case 92:
+                        break;
+                    default:
+                        zzScanError(ZZ_NO_MATCH);
+                }
+            }
+        }
+    }
 
 
 }

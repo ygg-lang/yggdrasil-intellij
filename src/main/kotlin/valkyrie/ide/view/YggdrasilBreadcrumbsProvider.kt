@@ -4,7 +4,7 @@ import com.intellij.lang.Language
 import com.intellij.psi.PsiElement
 import com.intellij.ui.breadcrumbs.BreadcrumbsProvider
 import yggdrasil.language.YggdrasilLanguage
-import yggdrasil.psi.node.YggdrasilClassNode
+import yggdrasil.psi.node.YggdrasilDefineClassNode
 import yggdrasil.psi.node.YggdrasilDefineUnionNode
 import yggdrasil.psi.node.YggdrasilGrammarNode
 import yggdrasil.psi.node.YggdrasilGroupNode
@@ -16,8 +16,9 @@ class YggdrasilBreadcrumbsProvider : BreadcrumbsProvider {
 
     override fun acceptElement(element: PsiElement) = when (element) {
         is YggdrasilGrammarNode,
-        is YggdrasilClassNode,
-        is YggdrasilGroupNode -> {
+        is YggdrasilDefineClassNode,
+        is YggdrasilGroupNode,
+            -> {
             true
         }
         is YggdrasilDefineUnionNode -> {
@@ -29,7 +30,7 @@ class YggdrasilBreadcrumbsProvider : BreadcrumbsProvider {
     }
 
     override fun getElementInfo(element: PsiElement) = when (element) {
-        is YggdrasilClassNode -> {
+        is YggdrasilDefineClassNode -> {
             element.name ?: "?"
         }
 
