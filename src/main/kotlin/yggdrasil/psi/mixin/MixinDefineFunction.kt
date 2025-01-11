@@ -45,16 +45,16 @@ abstract class MixinDefineFunction(node: ASTNode) : YggdrasilElement(node),
         return PresentationData("YggdrasilClass", "YggdrasilClass", baseIcon, null)
     }
 
-    override fun createLookup(completions: MutableList<LookupElement>) {
-        this.nameIdentifier?.let {
-            completions.add(
-                LookupElementBuilder.create(it)
-                    .withIcon(baseIcon)
-                    .withCaseSensitivity(false)
-                    .withTypeText("withTypeText")
-                    .withPresentableText(name)
-                    .withTailText(" atomic", true)
-            )
-        }
-    }
+//    override fun createLookup(completions: MutableList<LookupElement>) {
+//        this.nameIdentifier?.let {
+//            completions.add(
+//                LookupElementBuilder.create(it)
+//                    .withIcon(baseIcon)
+//                    .withCaseSensitivity(false)
+//                    .withTypeText("withTypeText")
+//                    .withPresentableText(name)
+//                    .withTailText(" atomic", true)
+//            )
+//        }
+//    }
 }

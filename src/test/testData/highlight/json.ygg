@@ -1,4 +1,4 @@
-grammar Json5: Json {
+grammar Json5 {
     file: '*.json5'
 }
 

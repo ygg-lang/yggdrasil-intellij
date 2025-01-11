@@ -3,17 +3,10 @@ package yggdrasil.psi.node;
 
 import com.intellij.psi.PsiElement;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-public interface YggdrasilUsing extends PsiElement {
+public interface YggdrasilGrammarInherit extends PsiElement {
 
     @NotNull
-    YggdrasilAnnotations getAnnotations();
-
-    @Nullable
     YggdrasilIdentifier getIdentifier();
-
-    @Nullable
-    YggdrasilUsingBody getUsingBody();
 
 }

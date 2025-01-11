@@ -1,9 +1,9 @@
 // This is a generated file. Not intended for manual editing.
 package yggdrasil.psi;
 
-import com.intellij.psi.tree.IElementType;
-import com.intellij.psi.PsiElement;
 import com.intellij.lang.ASTNode;
+import com.intellij.psi.PsiElement;
+import com.intellij.psi.tree.IElementType;
 import yggdrasil.psi.node.*;
 
 public interface YggdrasilTypes {
@@ -30,6 +30,7 @@ public interface YggdrasilTypes {
     IElementType FUNCTION_PARAMETER = new YggdrasilElementType("FUNCTION_PARAMETER");
     IElementType GRAMMAR = new YggdrasilElementType("GRAMMAR");
     IElementType GRAMMAR_BODY = new YggdrasilElementType("GRAMMAR_BODY");
+    IElementType GRAMMAR_INHERIT = new YggdrasilElementType("GRAMMAR_INHERIT");
     IElementType GRAMMAR_TERM = new YggdrasilElementType("GRAMMAR_TERM");
     IElementType GROUP = new YggdrasilElementType("GROUP");
     IElementType GROUP_BODY = new YggdrasilElementType("GROUP_BODY");
@@ -156,6 +157,8 @@ public interface YggdrasilTypes {
                 return new YggdrasilGrammarNode(node);
             } else if (type == GRAMMAR_BODY) {
                 return new YggdrasilGrammarBodyNode(node);
+            } else if (type == GRAMMAR_INHERIT) {
+                return new YggdrasilGrammarInheritNode(node);
             } else if (type == GRAMMAR_TERM) {
                 return new YggdrasilGrammarTermNode(node);
             } else if (type == GROUP) {

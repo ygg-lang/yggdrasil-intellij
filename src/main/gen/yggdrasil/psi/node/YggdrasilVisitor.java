@@ -1,9 +1,9 @@
 // This is a generated file. Not intended for manual editing.
 package yggdrasil.psi.node;
 
-import org.jetbrains.annotations.*;
-import com.intellij.psi.PsiElementVisitor;
 import com.intellij.psi.PsiElement;
+import com.intellij.psi.PsiElementVisitor;
+import org.jetbrains.annotations.NotNull;
 
 public class YggdrasilVisitor extends PsiElementVisitor {
 
@@ -92,6 +92,10 @@ public class YggdrasilVisitor extends PsiElementVisitor {
     }
 
     public void visitGrammarBody(@NotNull YggdrasilGrammarBody o) {
+        visitPsiElement(o);
+    }
+
+    public void visitGrammarInherit(@NotNull YggdrasilGrammarInherit o) {
         visitPsiElement(o);
     }
 

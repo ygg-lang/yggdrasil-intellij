@@ -1,15 +1,16 @@
 // This is a generated file. Not intended for manual editing.
 package yggdrasil.psi.parser;
 
+import com.intellij.lang.ASTNode;
+import com.intellij.lang.LightPsiParser;
 import com.intellij.lang.PsiBuilder;
 import com.intellij.lang.PsiBuilder.Marker;
-import static yggdrasil.psi.YggdrasilTypes.*;
-import static yggdrasil.psi.ParserExtension.*;
-import com.intellij.psi.tree.IElementType;
-import com.intellij.lang.ASTNode;
-import com.intellij.psi.tree.TokenSet;
 import com.intellij.lang.PsiParser;
-import com.intellij.lang.LightPsiParser;
+import com.intellij.psi.tree.IElementType;
+import com.intellij.psi.tree.TokenSet;
+
+import static yggdrasil.psi.ParserExtension.*;
+import static yggdrasil.psi.YggdrasilTypes.*;
 
 @SuppressWarnings({"SimplifiableIfStatement", "UnusedAssignment"})
 public class YggdrasilParser implements PsiParser, LightPsiParser {
@@ -611,7 +612,7 @@ public class YggdrasilParser implements PsiParser, LightPsiParser {
     }
 
     /* ********************************************************** */
-    // annotations KW_GRAMMAR identifier grammar-body
+    // annotations KW_GRAMMAR identifier grammar-inherit? grammar-body
     public static boolean grammar(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "grammar")) return false;
         boolean r, p;
@@ -620,9 +621,17 @@ public class YggdrasilParser implements PsiParser, LightPsiParser {
         r = r && consumeToken(b, KW_GRAMMAR);
         p = r; // pin = 2
         r = r && report_error_(b, identifier(b, l + 1));
+        r = p && report_error_(b, grammar_3(b, l + 1)) && r;
         r = p && grammar_body(b, l + 1) && r;
         exit_section_(b, l, m, r, p, null);
         return r || p;
+    }
+
+    // grammar-inherit?
+    private static boolean grammar_3(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "grammar_3")) return false;
+        grammar_inherit(b, l + 1);
+        return true;
     }
 
     /* ********************************************************** */
@@ -648,6 +657,19 @@ public class YggdrasilParser implements PsiParser, LightPsiParser {
             if (!empty_element_parsed_guard_(b, "grammar_body_1", c)) break;
         }
         return true;
+    }
+
+    /* ********************************************************** */
+    // COLON identifier
+    public static boolean grammar_inherit(PsiBuilder b, int l) {
+        if (!recursion_guard_(b, l, "grammar_inherit")) return false;
+        if (!nextTokenIs(b, COLON)) return false;
+        boolean r;
+        Marker m = enter_section_(b);
+        r = consumeToken(b, COLON);
+        r = r && identifier(b, l + 1);
+        exit_section_(b, m, GRAMMAR_INHERIT, r);
+        return r;
     }
 
     /* ********************************************************** */
@@ -1031,23 +1053,23 @@ public class YggdrasilParser implements PsiParser, LightPsiParser {
     }
 
     /* ********************************************************** */
-    // grammar
-    //   | using
-    //   | define-class
-    //   | define-union
-    //   | group
-    //   | define-function
-    //   | SEMICOLON
+    // SEMICOLON
+    //     | grammar
+    //     | using
+    //     | define-class
+    //     | define-union
+    //     | group
+    //     | define-function
     static boolean statements(PsiBuilder b, int l) {
         if (!recursion_guard_(b, l, "statements")) return false;
         boolean r;
-        r = grammar(b, l + 1);
+        r = consumeToken(b, SEMICOLON);
+        if (!r) r = grammar(b, l + 1);
         if (!r) r = using(b, l + 1);
         if (!r) r = define_class(b, l + 1);
         if (!r) r = define_union(b, l + 1);
         if (!r) r = group(b, l + 1);
         if (!r) r = define_function(b, l + 1);
-        if (!r) r = consumeToken(b, SEMICOLON);
         return r;
     }
 

@@ -4,16 +4,16 @@ package yggdrasil.psi.node;
 import com.intellij.lang.ASTNode;
 import com.intellij.psi.PsiElementVisitor;
 import org.jetbrains.annotations.NotNull;
+import yggdrasil.psi.YggdrasilElement;
 
-public class YggdrasilExpressionGroupNode extends YggdrasilExpressionNode implements YggdrasilExpressionGroup {
+public class YggdrasilGrammarInheritNode extends YggdrasilElement implements YggdrasilGrammarInherit {
 
-    public YggdrasilExpressionGroupNode(@NotNull ASTNode node) {
+    public YggdrasilGrammarInheritNode(@NotNull ASTNode node) {
         super(node);
     }
 
-    @Override
     public void accept(@NotNull YggdrasilVisitor visitor) {
-        visitor.visitExpressionGroup(this);
+        visitor.visitGrammarInherit(this);
     }
 
     @Override
@@ -24,8 +24,8 @@ public class YggdrasilExpressionGroupNode extends YggdrasilExpressionNode implem
 
     @Override
     @NotNull
-    public YggdrasilExpression getExpression() {
-        return findNotNullChildByClass(YggdrasilExpression.class);
+    public YggdrasilIdentifier getIdentifier() {
+        return findNotNullChildByClass(YggdrasilIdentifier.class);
     }
 
 }

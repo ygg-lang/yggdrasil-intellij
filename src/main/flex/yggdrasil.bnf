@@ -73,14 +73,13 @@
 
 // https://github.com/bytecodealliance/fluent/blob/master/spec/fluent.ebnf
 root ::= statements*
-private statements ::=
-    grammar
-  | using
-  | define-class
-  | define-union
-  | group
-  | define-function
-  | SEMICOLON
+private statements ::= SEMICOLON
+    | grammar
+    | using
+    | define-class
+    | define-union
+    | group
+    | define-function
 // === annotation statement ===
 annotations ::= attribute* modifier*
 modifier    ::= SYMBOL | SYMBOW_RAW {
@@ -92,10 +91,11 @@ attribute   ::= (AT|HASH) identifier tuple? {
     methods=[highlight]
 }
 // === grammar statement ===
-grammar ::= annotations KW_GRAMMAR identifier grammar-body {
+grammar ::= annotations KW_GRAMMAR identifier grammar-inherit? grammar-body {
 	pin = 2
     mixin = "yggdrasil.psi.mixin.MixinGrammar"
 }
+grammar-inherit ::= COLON identifier
 grammar-body ::= BRACE_L grammar-term* BRACE_R;
 grammar-term ::= pair | COMMA | SEMICOLON;
 // === class statement ===
@@ -140,7 +140,7 @@ group-item ::= attribute* identifier* COLON atomic {
 define-function ::= annotations KW_MACRO identifier function-parameter function-block {
     pin = 2
     mixin = "yggdrasil.psi.mixin.MixinDefineFunction"
-    methods=[createLookup]
+//    methods=[createLookup]
 }
 function-parameter ::= PARENTHESIS_L (parameter (COMMA parameter)* COMMA?)? PARENTHESIS_R;
 parameter ::= identifier (COLON expression)? {
