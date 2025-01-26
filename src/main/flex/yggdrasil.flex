@@ -35,14 +35,15 @@ SYMBOL=[\p{XID_Start}_][\p{XID_Continue}_]*
 SYMBOW_RAW = `[^`]*`
 ESCAPED = \\.
 
-KW_GRAMMAR = grammar|lexicon
-KW_USING   = using
-KW_GROUP   = group|token
-KW_CLASS   = class|struct
-KW_UNION   = union|enum|climb
-KW_IMPORT  = import
-KW_AS      = as
-KW_MACRO   = macro|function|func|fun|fn|def
+KW_GRAMMAR   = grammar|lexicon
+KW_USING     = using
+KW_GROUP     = group|token
+KW_OPERATORS = operators?
+KW_CLASS     = class|struct
+KW_UNION     = union|enum|climb
+KW_IMPORT    = import
+KW_AS        = as
+KW_MACRO     = macro|function|func|fun|fn|def
 
 
 %%
@@ -94,18 +95,19 @@ KW_MACRO   = macro|function|func|fun|fn|def
 }
 
 <YYINITIAL> {
-    {KW_GRAMMAR} { return KW_GRAMMAR; }
-    {KW_USING} { return KW_USING; }
-    {KW_GROUP} { return KW_GROUP; }
-    {KW_CLASS} { return KW_CLASS; }
-    {KW_UNION} { return KW_UNION; }
-    {KW_IMPORT} { return KW_IMPORT; }
-    {KW_AS} { return KW_AS; }
-    {KW_MACRO} { return KW_MACRO; }
+    {KW_GRAMMAR}   { return KW_GRAMMAR; }
+    {KW_USING}     { return KW_USING; }
+    {KW_GROUP}     { return KW_GROUP; }
+    {KW_OPERATORS} { return KW_OPERATORS; }
+    {KW_CLASS}     { return KW_CLASS; }
+    {KW_UNION}     { return KW_UNION; }
+    {KW_IMPORT}    { return KW_IMPORT; }
+    {KW_AS}        { return KW_AS; }
+    {KW_MACRO}     { return KW_MACRO; }
 
-    {ESCAPED} { return ESCAPED; }
-    {SYMBOW_RAW} { return SYMBOW_RAW; }
-    {SYMBOL}  { return SYMBOL; }
+    {ESCAPED}      { return ESCAPED; }
+    {SYMBOW_RAW}   { return SYMBOW_RAW; }
+    {SYMBOL}       { return SYMBOL; }
 }
 // =====================================================================================================================
 [^] { return BAD_CHARACTER; }

@@ -136,6 +136,12 @@ group-term ::= group-item | SEMICOLON;
 group-item ::= attribute* identifier* COLON atomic {
     mixin = "yggdrasil.psi.mixin.MixinGroupItem"
 }
+// === group statement ===
+operators  ::= annotations KW_Operators identifier? group-body {
+    pin = 2
+    mixin = "yggdrasil.psi.mixin.MixinOperators"
+//    methods=[getTokenList]
+}
 /// === function definition ===
 define-function ::= annotations KW_MACRO identifier function-parameter function-block {
     pin = 2

@@ -3,13 +3,12 @@ package yggdrasil.psi.mixin
 import com.intellij.icons.AllIcons
 import com.intellij.lang.ASTNode
 import yggdrasil.psi.YggdrasilDeclaration
-import yggdrasil.psi.node.YggdrasilGroup
 import yggdrasil.psi.node.YggdrasilGroupItemNode
 import yggdrasil.psi.node.YggdrasilIdentifierNode
+import yggdrasil.psi.node.YggdrasilOperators
 import javax.swing.Icon
 
-
-abstract class MixinGroup(node: ASTNode) : YggdrasilDeclaration(node), YggdrasilGroup {
+abstract class MixinOperators(node: ASTNode) : YggdrasilDeclaration(node), YggdrasilOperators {
 
 
     override fun getNameIdentifier(): YggdrasilIdentifierNode? {
@@ -21,7 +20,7 @@ abstract class MixinGroup(node: ASTNode) : YggdrasilDeclaration(node), Yggdrasil
         return AllIcons.Nodes.ModuleGroup
     }
 
-    override fun getTokenList(): MutableList<YggdrasilGroupItemNode> {
+    fun getTokenList(): MutableList<YggdrasilGroupItemNode> {
         if (groupBody == null) {
             return mutableListOf()
         }
@@ -36,5 +35,3 @@ abstract class MixinGroup(node: ASTNode) : YggdrasilDeclaration(node), Yggdrasil
     }
 
 }
-
-
