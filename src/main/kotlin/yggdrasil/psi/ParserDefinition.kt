@@ -1,5 +1,6 @@
 package yggdrasil.psi
 
+import com.intellij.lexer.Lexer
 import com.intellij.lang.ASTNode
 import com.intellij.lang.ParserDefinition
 import com.intellij.openapi.project.Project
@@ -12,10 +13,12 @@ import com.intellij.psi.tree.TokenSet
 import yggdrasil.language.YggdrasilLanguage
 import yggdrasil.language.file.YggdrasilFileNode
 import yggdrasil.psi.parser.YggdrasilParser
+import com.intellij.lexer.FlexAdapter
 
 class ParserDefinition : ParserDefinition {
-
-    override fun createLexer(project: Project) = YggdrasilLanguage.lexer
+    override fun createLexer(project: Project): Lexer {
+        return FlexAdapter(_YggdrasilLexer(null))
+    }
     override fun createParser(project: Project) = YggdrasilParser()
     override fun getFileNodeType(): IFileElementType = IFileElementType(YggdrasilLanguage)
     override fun getCommentTokens(): TokenSet =

@@ -69,9 +69,31 @@ ignore class WhiteSpace {
     [\p{WhiteSpace}]
 }
 
+class Array {
+    '[' (Value (',' Value)* ',')? ']'
+    @list('[', Value, ']', tail: 'optional')
+}
+class Object {
+    // (ObjectPair (',' ObjectPair)* ',')? '}'
+    @list('{', ObjectPair, '}', tail: 'optional')
+}
+
 @style(comment)
 ignore union Comment {
     | @comment_line('//')
     | @comment_line('#')
     | @comment_block('/*', '*/', nest: false)
 }
+
+    class ImportStatement {
+        | "import" (path=String) ("as" alias=Identifier)?
+        | "import" (path=String) '{' @join(items=ImportItem, ',')? '}'
+    }
+
+    union ImportStatement {
+        | "import" (path=String) ("as" alias=Identifier)?               #FromPath
+        | "import" (path=String) '{' @join(items=ImportItem, ',')? '}'  #FromPathItems
+    }
+
+
+

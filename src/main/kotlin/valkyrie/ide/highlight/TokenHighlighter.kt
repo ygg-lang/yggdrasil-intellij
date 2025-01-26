@@ -8,10 +8,12 @@ import com.intellij.openapi.fileTypes.SyntaxHighlighterBase.pack
 import com.intellij.psi.tree.IElementType
 import yggdrasil.language.YggdrasilLanguage
 import yggdrasil.psi.YggdrasilTypes.*
+import yggdrasil.psi._YggdrasilLexer
+import com.intellij.lexer.FlexAdapter
 
 class TokenHighlighter : SyntaxHighlighter {
     override fun getHighlightingLexer(): Lexer {
-        return YggdrasilLanguage.lexer
+        return FlexAdapter(_YggdrasilLexer(null))
     }
 
     override fun getTokenHighlights(tokenType: IElementType): Array<TextAttributesKey> {
@@ -22,7 +24,7 @@ class TokenHighlighter : SyntaxHighlighter {
         return when (tokenType) {
             KW_GRAMMAR, KW_USING,
             KW_CLASS, KW_UNION, KW_GROUP, KW_MACRO,
-            -> HighlightColor.KEYWORD
+                -> HighlightColor.KEYWORD
             // operations
             COLON, BIND -> HighlightColor.OPERATION
             OP_OR, OP_CONCAT -> HighlightColor.OPERATION

@@ -10,7 +10,6 @@ private const val LANGUAGE_ID = "yggdrasil"
 
 
 object YggdrasilLanguage : Language(LANGUAGE_ID) {
-    val lexer = FlexAdapter(_YggdrasilLexer(null))
     private fun readResolve(): Any = YggdrasilLanguage
     override fun getID(): String {
         return LANGUAGE_ID

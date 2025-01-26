@@ -35,7 +35,7 @@ abstract class MixinIdentifier(node: ASTNode) : YggdrasilElement(node), Yggdrasi
 
     override fun highlight(highlighter: NodeHighlighter) {
         when (this.text) {
-            "HIDE", "ANY", "INDENT", "DEDENT" -> highlighter.highlight(this, HighlightColor.SYM_MACRO)
+            "HIDE", "ANY", "INDENT", "DEDENT", "SAMEDENT" -> highlighter.highlight(this, HighlightColor.SYM_MACRO)
             "SOI", "START_OF_INPUT",
             "EOI", "END_OF_INPUT",
             "EOF", "END_OF_FILE",

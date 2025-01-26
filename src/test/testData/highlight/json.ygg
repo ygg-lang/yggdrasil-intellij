@@ -43,7 +43,7 @@ union StringText {
 }
 @style(escape)
 class StringEscape {
-    '\' c=ANY
+    '\' c:ANY
 }
 // === number === ------------------------------------------------------------------------------------------------------
 @style(number)
