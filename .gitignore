@@ -1,5 +1,6 @@
 .gradle
 .idea/
+.trae
 .qodana
 build
 _YggdrasilLexer.java~
