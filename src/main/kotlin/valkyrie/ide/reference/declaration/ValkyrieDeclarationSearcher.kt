@@ -1,8 +1,8 @@
 package valkyrie.ide.reference.declaration
 
-import com.intellij.model.search.PsiSymbolDeclarationSearcher
+// import com.intellij.model.search.PsiSymbolDeclarationSearcher
 
-@Suppress("UnstableApiUsage")
-class ValkyrieDeclarationSearcher : PsiSymbolDeclarationSearcher {
-
-}
+// @Suppress("UnstableApiUsage")
+// class ValkyrieDeclarationSearcher : PsiSymbolDeclarationSearcher {
+//
+// }
