@@ -1,0 +1,17 @@
+class Person {
+    let name: String
+    let age: Int
+
+    def new(name: String, age: Int) {
+        this.name = name
+        this.age = age
+    }
+
+    def get_name(): String {
+        return name
+    }
+
+    def get_age(): Int {
+        return age
+    }
+}

@@ -1,0 +1,6 @@
+let a = 1 + 2 * 3
+let b = (4 + 5) / 3
+let c = true && false || true
+let d = "Hello" + " " + "World"
+let e = [1, 2, 3][0]
+let f = {name: "John", age: 30}.name

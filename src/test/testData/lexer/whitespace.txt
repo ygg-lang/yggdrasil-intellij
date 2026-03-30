@@ -1,0 +1,5 @@
+WHITE_SPACE '   '
+WHITE_SPACE '\n'
+WHITE_SPACE '\t'
+WHITE_SPACE '\n'
+WHITE_SPACE '  \t  '

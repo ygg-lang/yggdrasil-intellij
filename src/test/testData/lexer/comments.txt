@@ -1,0 +1,4 @@
+COMMENT_LINE '// This is a line comment'
+WHITE_SPACE '\n'
+WHITE_SPACE '\n'
+COMMENT_BLOCK '/* This is a\nblock comment\n*/'

@@ -1,0 +1,16 @@
+let x = 10
+
+if x > 5 {
+    println("x is greater than 5")
+} else {
+    println("x is less than or equal to 5")
+}
+
+for i in 0..5 {
+    println(i)
+}
+
+let y = match x {
+    10 => "ten"
+    _ => "other"
+}

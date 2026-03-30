@@ -1,0 +1,4 @@
+TEXT_SINGLE "'single quoted string'"
+WHITE_SPACE '\n'
+TEXT_DOUBLE '"double quoted string"'
+WHITE_SPACE '\n'
