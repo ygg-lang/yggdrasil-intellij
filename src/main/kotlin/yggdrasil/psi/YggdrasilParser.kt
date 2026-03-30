@@ -49,6 +49,9 @@ class YggdrasilParser : PsiParser, LightPsiParser {
             YggdrasilTypes.KW_MACRO -> {
                 parseDefineFunction(builder)
             }
+            null -> {
+                // Reached end of file, do nothing
+            }
             else -> {
                 builder.advanceLexer()
             }
@@ -416,12 +419,8 @@ class YggdrasilParser : PsiParser, LightPsiParser {
             if (builder.tokenType == YggdrasilTypes.BIND) {
                 builder.advanceLexer() // consume BIND
             }
-        } else {
-            // If no symbol, just advance the lexer to avoid infinite loop
-            if (!builder.eof()) {
-                builder.advanceLexer()
-            }
         }
+        // Don't advance lexer here, let parseTerm handle it
         parseTerm(builder)
         expressionTagMarker.done(YggdrasilTypes.EXPRESSION_TAG)
     }
