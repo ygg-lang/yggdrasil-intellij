@@ -14,22 +14,22 @@ class YggdrasilLexerTest : LexerTestCase() {
     }
 
     fun testEmpty() {
-        doTest("empty.ygg")
+        doTest("empty.yggdrasil")
     }
 
     fun testWhitespace() {
-        doTest("whitespace.ygg")
+        doTest("whitespace.yggdrasil")
     }
 
     fun testComments() {
-        doTest("comments.ygg")
+        doTest("comments.yggdrasil")
     }
 
     fun testStringLiterals() {
-        doTest("string-literals.ygg")
+        doTest("string-literals.yggdrasil")
     }
 
     fun testNumberLiterals() {
-        doTest("number-literals.ygg")
+        doTest("number-literals.yggdrasil")
     }
 }
