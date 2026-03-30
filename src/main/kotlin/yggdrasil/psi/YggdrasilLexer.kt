@@ -5,7 +5,7 @@ import com.intellij.lexer.LexerPosition
 import com.intellij.psi.tree.IElementType
 
 class YggdrasilLexer: Lexer() {
-    override fun start(p0: CharSequence, p1: Int, p2: Int, p3: Int) {
+    override fun start(buffer: CharSequence, startOffset: Int, endOffset: Int, initialState: Int) {
         TODO("Not yet implemented")
     }
 
@@ -33,7 +33,7 @@ class YggdrasilLexer: Lexer() {
         TODO("Not yet implemented")
     }
 
-    override fun restore(p0: LexerPosition) {
+    override fun restore(position: LexerPosition) {
         TODO("Not yet implemented")
     }
 

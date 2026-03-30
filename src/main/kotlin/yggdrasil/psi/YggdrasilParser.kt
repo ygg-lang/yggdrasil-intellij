@@ -7,12 +7,13 @@ import com.intellij.lang.PsiParser
 import com.intellij.psi.tree.IElementType
 
 class YggdrasilParser: PsiParser, LightPsiParser {
-    override fun parse(p0: IElementType, p1: PsiBuilder): ASTNode {
+    override fun parse(root: IElementType, builder: PsiBuilder): ASTNode {
         TODO("Not yet implemented")
     }
 
-    override fun parseLight(p0: IElementType?, p1: PsiBuilder?) {
+    override fun parseLight(root: IElementType?, builder: PsiBuilder?) {
         TODO("Not yet implemented")
     }
+
 
 }
