@@ -5,15 +5,15 @@ import com.intellij.lang.PairedBraceMatcher
 import com.intellij.psi.PsiFile
 import com.intellij.psi.tree.IElementType
 import com.intellij.psi.tree.TokenSet
-import yggdrasil.psi.YggdrasilTypes.*
+import yggdrasil.psi.YggdrasilTypes
 
 
 class BraceMatch : PairedBraceMatcher {
     override fun getPairs(): Array<BracePair> {
         return arrayOf(
-            BracePair(BRACE_L, BRACE_R, true),
-            BracePair(BRACKET_L, BRACKET_R, true),
-            BracePair(PARENTHESIS_L, PARENTHESIS_R, true),
+            BracePair(YggdrasilTypes.BRACE_L, YggdrasilTypes.BRACE_R, true),
+            BracePair(YggdrasilTypes.BRACKET_L, YggdrasilTypes.BRACKET_R, true),
+            BracePair(YggdrasilTypes.PARENTHESIS_L, YggdrasilTypes.PARENTHESIS_R, true),
         )
     }
 
@@ -27,10 +27,10 @@ class BraceMatch : PairedBraceMatcher {
 
     companion object {
         val Left = TokenSet.create(
-            PARENTHESIS_L, BRACKET_L, BRACE_L,
+            YggdrasilTypes.PARENTHESIS_L, YggdrasilTypes.BRACKET_L, YggdrasilTypes.BRACE_L,
         )
         val Right = TokenSet.create(
-            PARENTHESIS_R, BRACKET_R, BRACE_R,
+            YggdrasilTypes.PARENTHESIS_R, YggdrasilTypes.BRACKET_R, YggdrasilTypes.BRACE_R,
         )
     }
 }

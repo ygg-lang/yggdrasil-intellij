@@ -17,11 +17,11 @@ class YggdrasilLineMarkerVisitor : YggdrasilVisitor {
     }
 
     override fun visitDefineClass(o: YggdrasilDefineClass) {
-        mark(o.identifier?.firstChild, AllIcons.Nodes.Class)
+        mark(o.nameIdentifier, AllIcons.Nodes.Class)
     }
 
     override fun visitDefineUnion(o: YggdrasilDefineUnion) {
-        mark(o.identifier?.firstChild, AllIcons.Nodes.Interface)
+        mark(o.nameIdentifier, AllIcons.Nodes.Interface)
     }
 
     override fun visitDefineFunction(o: YggdrasilDefineFunction) {

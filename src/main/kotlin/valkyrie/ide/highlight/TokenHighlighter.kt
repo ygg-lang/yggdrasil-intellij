@@ -7,13 +7,12 @@ import com.intellij.openapi.fileTypes.SyntaxHighlighter
 import com.intellij.openapi.fileTypes.SyntaxHighlighterBase.pack
 import com.intellij.psi.tree.IElementType
 import yggdrasil.language.YggdrasilLanguage
-import yggdrasil.psi.YggdrasilTypes.*
-import yggdrasil.psi._YggdrasilLexer
-import com.intellij.lexer.FlexAdapter
+import yggdrasil.psi.YggdrasilTypes
+import yggdrasil.psi.YggdrasilLexer
 
 class TokenHighlighter : SyntaxHighlighter {
     override fun getHighlightingLexer(): Lexer {
-        return FlexAdapter(_YggdrasilLexer(null))
+        return YggdrasilLexer()
     }
 
     override fun getTokenHighlights(tokenType: IElementType): Array<TextAttributesKey> {
@@ -22,21 +21,21 @@ class TokenHighlighter : SyntaxHighlighter {
 
     private fun getTokenColor(tokenType: IElementType): HighlightColor? {
         return when (tokenType) {
-            KW_GRAMMAR, KW_USING,
-            KW_CLASS, KW_UNION, KW_GROUP, KW_MACRO,
+            YggdrasilTypes.KW_GRAMMAR, YggdrasilTypes.KW_USING,
+            YggdrasilTypes.KW_CLASS, YggdrasilTypes.KW_UNION, YggdrasilTypes.KW_GROUP, YggdrasilTypes.KW_MACRO,
                 -> HighlightColor.KEYWORD
             // operations
-            COLON, BIND -> HighlightColor.OPERATION
-            OP_OR, OP_CONCAT -> HighlightColor.OPERATION
-            OP_REMARK -> HighlightColor.OPERATION
-            OP_OPTIONAL, OP_MANY, OP_MANY1 -> HighlightColor.OPERATION
+            YggdrasilTypes.COLON, YggdrasilTypes.BIND -> HighlightColor.OPERATION
+            YggdrasilTypes.OP_OR, YggdrasilTypes.OP_CONCAT -> HighlightColor.OPERATION
+            YggdrasilTypes.OP_REMARK -> HighlightColor.OPERATION
+            YggdrasilTypes.OP_OPTIONAL, YggdrasilTypes.OP_MANY, YggdrasilTypes.OP_MANY1 -> HighlightColor.OPERATION
             // literals
-            TEXT_SINGLE, TEXT_DOUBLE -> HighlightColor.STRING
-            ESCAPED -> HighlightColor.STRING_ESCAPED
-            INTEGER -> HighlightColor.INTEGER
+            YggdrasilTypes.TEXT_SINGLE, YggdrasilTypes.TEXT_DOUBLE -> HighlightColor.STRING
+            YggdrasilTypes.ESCAPED -> HighlightColor.STRING_ESCAPED
+            YggdrasilTypes.INTEGER -> HighlightColor.INTEGER
             // comments
-            COMMENT_LINE -> HighlightColor.COMMENT_LINE
-            COMMENT_BLOCK -> HighlightColor.COMMENT_BLOCK
+            YggdrasilTypes.COMMENT_LINE -> HighlightColor.COMMENT_LINE
+            YggdrasilTypes.COMMENT_BLOCK -> HighlightColor.COMMENT_BLOCK
             // errors
 //            TokenType.BAD_CHARACTER -> YggdrasilHighlightColor.BAD_CHARACTER
 
