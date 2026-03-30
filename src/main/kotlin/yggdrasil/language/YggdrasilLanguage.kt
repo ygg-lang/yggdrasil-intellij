@@ -1,9 +1,8 @@
 package yggdrasil.language
 
 import com.intellij.lang.Language
-import com.intellij.lexer.FlexAdapter
 import com.intellij.openapi.fileTypes.LanguageFileType
-import yggdrasil.psi._YggdrasilLexer
+import yggdrasil.psi.YggdrasilLexer
 
 
 private const val LANGUAGE_ID = "yggdrasil"

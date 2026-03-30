@@ -23,8 +23,8 @@ class YggdrasilParserDefinition : ParserDefinition {
     override fun getWhitespaceTokens(): TokenSet = TokenSet.create(TokenType.WHITE_SPACE)
     override fun createElement(node: ASTNode): PsiElement = YggdrasilTypes.Factory.createElement(node)
     override fun createFile(viewProvider: FileViewProvider): PsiFile = YggdrasilFileNode(viewProvider)
-    override fun spaceExistenceTypeBetweenTokens(left: ASTNode, right: ASTNode): YggdrasilParserDefinition.SpaceRequirements {
-        return YggdrasilParserDefinition.SpaceRequirements.MAY
+    override fun spaceExistenceTypeBetweenTokens(left: ASTNode, right: ASTNode): ParserDefinition.SpaceRequirements {
+        return ParserDefinition.SpaceRequirements.MAY
     }
 
 }
