@@ -15,7 +15,7 @@
 			fieldName="INSTANCE"/>
 		<lang.parserDefinition
 			language="yggdrasil"
-			implementationClass="yggdrasil.psi.ParserDefinition"/>
+			implementationClass="yggdrasil.psi.YggdrasilParserDefinition"/>
 		<multiHostInjector implementation="valkyrie.ide.matcher.LanguageInjector"/>
 		<!-- Project Namespace -->
 		<iconProvider implementation="yggdrasil.language.file.YggdrasilIconProvider"/>

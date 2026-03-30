@@ -1,6 +1,5 @@
 package yggdrasil.psi
 
-import com.intellij.lexer.Lexer
 import com.intellij.lang.ASTNode
 import com.intellij.lang.ParserDefinition
 import com.intellij.openapi.project.Project
@@ -12,13 +11,9 @@ import com.intellij.psi.tree.IFileElementType
 import com.intellij.psi.tree.TokenSet
 import yggdrasil.language.YggdrasilLanguage
 import yggdrasil.language.file.YggdrasilFileNode
-import yggdrasil.psi.parser.YggdrasilParser
-import com.intellij.lexer.FlexAdapter
 
-class ParserDefinition : ParserDefinition {
-    override fun createLexer(project: Project): Lexer {
-        return FlexAdapter(_YggdrasilLexer(null))
-    }
+class YggdrasilParserDefinition : ParserDefinition {
+    override fun createLexer(project: Project) = YggdrasilLexer()
     override fun createParser(project: Project) = YggdrasilParser()
     override fun getFileNodeType(): IFileElementType = IFileElementType(YggdrasilLanguage)
     override fun getCommentTokens(): TokenSet =
@@ -28,8 +23,9 @@ class ParserDefinition : ParserDefinition {
     override fun getWhitespaceTokens(): TokenSet = TokenSet.create(TokenType.WHITE_SPACE)
     override fun createElement(node: ASTNode): PsiElement = YggdrasilTypes.Factory.createElement(node)
     override fun createFile(viewProvider: FileViewProvider): PsiFile = YggdrasilFileNode(viewProvider)
-    override fun spaceExistenceTypeBetweenTokens(left: ASTNode, right: ASTNode): ParserDefinition.SpaceRequirements {
-        return ParserDefinition.SpaceRequirements.MAY
+    override fun spaceExistenceTypeBetweenTokens(left: ASTNode, right: ASTNode): YggdrasilParserDefinition.SpaceRequirements {
+        return YggdrasilParserDefinition.SpaceRequirements.MAY
     }
 
 }
+
