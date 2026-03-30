@@ -9,7 +9,10 @@ import com.intellij.codeInsight.daemon.impl.analysis.HighlightInfoHolder
 import com.intellij.psi.PsiElement
 import com.intellij.psi.PsiFile
 import yggdrasil.language.file.YggdrasilFileNode
-import yggdrasil.psi.node.*
+import yggdrasil.psi.node.YggdrasilDefineClass
+import yggdrasil.psi.node.YggdrasilDefineFunction
+import yggdrasil.psi.node.YggdrasilDefineUnion
+import yggdrasil.psi.node.YggdrasilVisitor
 
 class YggdrasilSemanticHighlighter : YggdrasilVisitor(), HighlightVisitor {
     private var infoHolder: HighlightInfoHolder? = null
@@ -37,12 +40,7 @@ class YggdrasilSemanticHighlighter : YggdrasilVisitor(), HighlightVisitor {
         infoHolder?.add(builder.create())
     }
 
-    override fun analyze(
-        file: PsiFile,
-        updateWholeFile: Boolean,
-        holder: HighlightInfoHolder,
-        action: Runnable,
-    ): Boolean {
+    override fun analyze(file: PsiFile, whole: Boolean, holder: HighlightInfoHolder, action: Runnable): Boolean {
         infoHolder = holder
         action.run()
 

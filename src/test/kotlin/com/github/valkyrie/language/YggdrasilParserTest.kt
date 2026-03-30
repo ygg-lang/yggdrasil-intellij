@@ -3,7 +3,7 @@ package com.github.valkyrie.language
 import yggdrasil.psi.YggdrasilParserDefinition
 import com.intellij.testFramework.ParsingTestCase
 
-class YggdrasilParserTest : ParsingTestCase("parser", "yggdrasil", true, YggdrasilParserDefinition()) {
+class YggdrasilParserTest : ParsingTestCase("parser", "yggdrasil", YggdrasilParserDefinition()) {
     override fun getTestDataPath(): String {
         return "src/test/testData"
     }

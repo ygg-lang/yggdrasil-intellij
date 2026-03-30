@@ -406,23 +406,24 @@ class YggdrasilParser : PsiParser, LightPsiParser {
     private fun parseExpressionSoft(builder: PsiBuilder) {
         val expressionSoftMarker = builder.mark()
         parseExpressionTag(builder)
-        while (parseExpressionTag(builder)) {
-            // Continue parsing expression tags
-        }
         expressionSoftMarker.done(YggdrasilTypes.EXPRESSION_SOFT)
     }
 
-    private fun parseExpressionTag(builder: PsiBuilder): Boolean {
+    private fun parseExpressionTag(builder: PsiBuilder) {
         val expressionTagMarker = builder.mark()
         if (builder.tokenType == YggdrasilTypes.SYMBOL) {
             parseIdentifier(builder)
             if (builder.tokenType == YggdrasilTypes.BIND) {
                 builder.advanceLexer() // consume BIND
             }
+        } else {
+            // If no symbol, just advance the lexer to avoid infinite loop
+            if (!builder.eof()) {
+                builder.advanceLexer()
+            }
         }
         parseTerm(builder)
         expressionTagMarker.done(YggdrasilTypes.EXPRESSION_TAG)
-        return true
     }
 
     private fun parseTerm(builder: PsiBuilder) {

@@ -124,8 +124,7 @@ object YggdrasilTypes {
     // Factory object for creating elements
     object Factory {
         fun createElement(node: com.intellij.lang.ASTNode): com.intellij.psi.PsiElement {
-            // This will be implemented later
-            throw UnsupportedOperationException("Not implemented yet")
+            return yggdrasil.psi.YggdrasilElement(node)
         }
     }
 }

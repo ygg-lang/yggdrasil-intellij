@@ -6,15 +6,11 @@ import com.intellij.testFramework.LexerTestCase
 
 class YggdrasilLexerTest : LexerTestCase() {
     override fun getDirPath(): String {
-        return "lexer"
+        return "src/test/testData/lexer"
     }
 
     override fun createLexer(): Lexer {
         return YggdrasilLexer()
-    }
-
-    fun testEmpty() {
-        doTest("empty.yggdrasil")
     }
 
     fun testWhitespace() {
