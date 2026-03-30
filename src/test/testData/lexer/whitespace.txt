@@ -1,5 +1,20 @@
-WHITE_SPACE '   '
-WHITE_SPACE '\n'
-WHITE_SPACE '\t'
-WHITE_SPACE '\n'
-WHITE_SPACE '  \t  '
+// Yggdrasil 空白字符测试
+
+// 空格
+class Test {
+    '{' '}'
+}
+
+// 制表符
+class Test {	'{'	'}'	}
+
+// 换行符
+class Test {
+'{'
+'}'
+}
+
+// 混合空白
+class Test {
+    '{'	'}'
+}

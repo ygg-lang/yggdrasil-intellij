@@ -11,7 +11,7 @@ import com.intellij.psi.PsiFile
 import yggdrasil.language.file.YggdrasilFileNode
 import yggdrasil.psi.node.*
 
-class NodeHighlighter : YggdrasilVisitor(), HighlightVisitor {
+class YggdrasilSemanticHighlighter : YggdrasilVisitor(), HighlightVisitor {
     private var infoHolder: HighlightInfoHolder? = null
 
     override fun visitGrammar(o: YggdrasilGrammar) {
@@ -112,7 +112,7 @@ class NodeHighlighter : YggdrasilVisitor(), HighlightVisitor {
         return true
     }
 
-    override fun clone(): HighlightVisitor = NodeHighlighter()
+    override fun clone(): HighlightVisitor = YggdrasilSemanticHighlighter()
 
     override fun suitableForFile(file: PsiFile): Boolean = file is YggdrasilFileNode
 

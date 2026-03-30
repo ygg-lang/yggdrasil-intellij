@@ -26,10 +26,10 @@
 		<breadcrumbsInfoProvider implementation="valkyrie.ide.view.YggdrasilBreadcrumbsProvider"/>
 		<!-- Highlight -->
 		<colorSettingsPage implementation="valkyrie.ide.highlight.HighlightSetting"/>
-		<highlightVisitor implementation="valkyrie.ide.highlight.NodeHighlighter"/>
+		<highlightVisitor implementation="valkyrie.ide.highlight.YggdrasilSemanticHighlighter"/>
 		<lang.syntaxHighlighter
 			language="yggdrasil"
-			implementationClass="valkyrie.ide.highlight.TokenHighlighter"
+			implementationClass="valkyrie.ide.highlight.YggdrasilSyntaxHighlighter"
 		/>
 		<!-- Formatter -->
 		<lang.formatter language="yggdrasil" implementationClass="valkyrie.ide.formatter.FormatBuilder"/>

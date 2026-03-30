@@ -20,7 +20,7 @@ class HighlightSetting : ColorSettingsPage {
 
     override fun getIcon() = YggdrasilIconProvider.Instance.Yggdrasil
 
-    override fun getHighlighter() = TokenHighlighter()
+    override fun getHighlighter() = YggdrasilSyntaxHighlighter()
 
     override fun getAdditionalHighlightingTagToDescriptorMap() = annotatorTags
 

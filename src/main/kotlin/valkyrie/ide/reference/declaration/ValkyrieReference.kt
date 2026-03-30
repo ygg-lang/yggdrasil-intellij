@@ -3,7 +3,7 @@ package valkyrie.ide.reference.declaration
 import com.intellij.openapi.util.TextRange
 import com.intellij.psi.*
 import valkyrie.ide.highlight.HighlightColor
-import valkyrie.ide.highlight.NodeHighlighter
+import valkyrie.ide.highlight.YggdrasilSemanticHighlighter
 import yggdrasil.psi.node.YggdrasilDefineClass
 import yggdrasil.psi.node.YggdrasilDefineUnion
 import yggdrasil.psi.node.YggdrasilGroupItemNode
@@ -65,7 +65,7 @@ open class ValkyrieReference : PsiPolyVariantReference {
     }
 
 
-    fun highlight(highlighter: NodeHighlighter) {
+    fun highlight(highlighter: YggdrasilSemanticHighlighter) {
         return when (resolveSequence().firstOrNull()) {
             is YggdrasilDefineClass -> highlighter.highlight(_element, HighlightColor.RULE_CLASS)
             is YggdrasilDefineUnion -> highlighter.highlight(_element, HighlightColor.RULE_UNION)

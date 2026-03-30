@@ -1,17 +1,32 @@
-class Person {
-    let name: String
-    let age: Int
+// Yggdrasil 类声明测试
 
-    def new(name: String, age: Int) {
-        this.name = name
-        this.age = age
-    }
+// 基本类声明
+class TestClass {
+    '{' '}'
+}
 
-    def get_name(): String {
-        return name
-    }
+// 带成员的类声明
+class TestClassWithMembers {
+    '{'
+        TestMember (',' TestMember)* ','?
+    '}'
+}
 
-    def get_age(): Int {
-        return age
-    }
+class TestMember {
+    TestIdentifier ':' TestType
+}
+
+class TestType {
+    TestIdentifier
+}
+
+// 原子类
+atomic class TestAtomic {
+    /[a-z]+/
+}
+
+// 带修饰符的类
+@style(string)
+class TestStyledClass {
+    "test"
 }
