@@ -5,7 +5,6 @@ import com.intellij.psi.codeStyle.CodeStyleSettings
 import com.intellij.psi.codeStyle.CommonCodeStyleSettings
 import com.intellij.psi.tree.TokenSet
 import yggdrasil.language.YggdrasilLanguage
-import yggdrasil.psi.ParserExtension
 
 
 private val removeSpaceBefore = TokenSet.orSet(
@@ -30,7 +29,7 @@ private val removeSpaceNewlineAfter = TokenSet.orSet(
 // 左右插入一个空格
 private val spaceAroundOperator = TokenSet.orSet(
 //    createTokenSet(YggdrasilLanguage),
-    ParserExtension.OperatorInfix
+//    ParserExtension.OperatorInfix
 )
 
 private val addSpaceAfter = TokenSet.orSet(

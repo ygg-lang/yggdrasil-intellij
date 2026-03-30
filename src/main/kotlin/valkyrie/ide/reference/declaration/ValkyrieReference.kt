@@ -37,10 +37,8 @@ open class ValkyrieReference : PsiPolyVariantReference {
     }
 
   private  fun resolveSequence(): Sequence<PsiNameIdentifierOwner> {
-      return element.containingFile.definitions.getDefinitions().filter {
-            it.name == element.name
-
-        }
+      // TODO: Implement proper resolution
+      return emptySequence()
     }
 
 

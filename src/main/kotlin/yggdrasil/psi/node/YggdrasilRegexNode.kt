@@ -4,6 +4,6 @@ import com.intellij.lang.ASTNode
 import yggdrasil.psi.YggdrasilElement
 
 class YggdrasilRegexNode(node: ASTNode) : YggdrasilElement(node) {
-    val text: String
+    val regexText: String
         get() = node.text
 }

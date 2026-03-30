@@ -5,6 +5,6 @@ import yggdrasil.psi.YggdrasilElement
 import yggdrasil.psi.YggdrasilTypes
 
 class YggdrasilGrammarNode(node: ASTNode) : YggdrasilElement(node) {
-    val name: String?
+    val grammarName: String?
         get() = node.findChildByType(YggdrasilTypes.IDENTIFIER)?.text
 }

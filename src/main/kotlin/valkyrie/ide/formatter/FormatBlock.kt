@@ -7,6 +7,7 @@ import com.intellij.psi.PsiErrorElement
 import com.intellij.psi.formatter.FormatterUtil
 import yggdrasil.antlr.isWhitespaceOrEmpty
 import yggdrasil.language.psi.ValkyrieAlignmentElement
+import yggdrasil.psi.YggdrasilTypes
 import yggdrasil.psi.node.*
 
 //import nexus.language.psi.ValkyrieTokenType
@@ -86,15 +87,15 @@ class FormatBlock : ASTBlock {
     private fun computeIndent(child: ASTNode): Indent? {
         val isCorner = _node.firstChildNode == child || _node.lastChildNode == child
         val byCorner = if (isCorner) Indent.getNoneIndent() else Indent.getNormalIndent();
-        return when (node.psi) {
-            is YggdrasilGrammarBody -> byCorner
-            is YggdrasilClassBody -> byCorner
-            is YggdrasilUnionBody -> byCorner
-            is YggdrasilGroupBody -> byCorner
-            is YggdrasilExpressionGroup -> byCorner
-            is YggdrasilFunctionBlock -> byCorner
-            is YggdrasilFunctionParameter -> byCorner
-            is YggdrasilTuple -> byCorner
+        return when (_node.elementType) {
+            YggdrasilTypes.GRAMMAR_BODY -> byCorner
+            YggdrasilTypes.CLASS_BODY -> byCorner
+            YggdrasilTypes.UNION_BODY -> byCorner
+            YggdrasilTypes.GROUP_BODY -> byCorner
+            YggdrasilTypes.EXPRESSION_GROUP -> byCorner
+            YggdrasilTypes.FUNCTION_BLOCK -> byCorner
+            YggdrasilTypes.FUNCTION_PARAMETER -> byCorner
+            YggdrasilTypes.TUPLE -> byCorner
             else -> Indent.getNoneIndent()
         }
     }
